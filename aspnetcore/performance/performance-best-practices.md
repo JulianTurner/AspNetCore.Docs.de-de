@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 94ae9e52ed99c3fe8e7044f474cdf5b702dc5adf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 587872b269d897d7c86eb77c110a4b6432218ed3
+ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634461"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88746558"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Bewährte Methoden für die ASP.net Core Leistung
 
@@ -57,6 +57,12 @@ Ein häufiges Leistungsproblem bei ASP.net Core-Apps ist das Blockieren von aufr
 * Aktionen für Controller/ Razor Seite asynchron durchführen. Die gesamte-aufrufsstapel ist asynchron, um von [Async/](/dotnet/csharp/programming-guide/concepts/async/) Erwartungs Mustern zu profitieren.
 
 Ein Profiler, z. b. [perfview](https://github.com/Microsoft/perfview), kann verwendet werden, um häufig dem [Thread Pool](/windows/desktop/procthread/thread-pools)hinzugefügte Threads zu suchen. Das `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` Ereignis gibt einen Thread an, der dem Thread Pool hinzugefügt wurde. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
+
+## <a name="return-ienumerablet-or-iasyncenumerablet"></a>IEnumerable \<T> oder iasyncenumerable zurückgeben\<T>
+
+`IEnumerable<T>`Die Rückgabe von einer Aktion führt zu einer synchronen Auflistungs Iterationen durch das Serialisierungsprogramm. Das Ergebnis sind die Blockierung von Aufrufen und die potenzielle Außerkraftsetzung des Threadpools. Um eine synchrone Enumeration zu vermeiden, verwenden Sie `ToListAsync` vor dem Zurückgeben der Enumerable.
+
+Ab ASP.net Core 3,0 `IAsyncEnumerable<T>` kann als Alternative zu verwendet werden, `IEnumerable<T>` die asynchron auflistet. Weitere Informationen finden Sie unter [Rückgabe Typen von Controller Aktionen](xref:web-api/action-return-types#return-ienumerablet-or-iasyncenumerablet).
 
 ## <a name="minimize-large-object-allocations"></a>Minimieren von großen Objekt Zuordnungen
 
@@ -357,3 +363,11 @@ Wenn Sie überprüfen, ob die Antwort nicht gestartet wurde, können Sie einen R
 ## <a name="do-not-call-next-if-you-have-already-started-writing-to-the-response-body"></a>"Next ()" nicht aufzurufen, wenn Sie bereits mit dem Schreiben in den Antworttext begonnen haben
 
 Komponenten erwarten nur, dass Sie aufgerufen werden, wenn Sie die Antwort verarbeiten und bearbeiten können.
+
+## <a name="use-in-process-hosting-with-iis"></a>Verwenden des in-Process-Hosting mit IIS
+
+Beim Einsatz von In-Process-Hosting wird eine ASP.NET Core-App im gleichen Prozess wie ihr IIS-Arbeitsprozess ausgeführt. Das in-Process-Hosting bietet eine verbesserte Leistung gegenüber dem Out-of-Process-Hosting, da Anforderungen nicht über den Loopback Adapter über einen Proxy gesendet werden. Der Loopback Adapter ist eine Netzwerkschnittstelle, die ausgehenden Netzwerk Datenverkehr zurück an denselben Computer zurückgibt. IIS erledigt das Prozessmanagement mit dem [Windows-Prozessaktivierungsdienst (Process Activation Service, WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+
+-Projekte werden standardmäßig in ASP.net Core 3,0 und höher auf das in-Process-Hostingmodell eingestellt.
+
+Weitere Informationen finden Sie unter [Hosten von ASP.net Core unter Windows mit IIS](xref:host-and-deploy/iis/index)

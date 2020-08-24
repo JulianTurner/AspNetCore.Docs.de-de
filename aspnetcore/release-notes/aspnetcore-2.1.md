@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: 3fb524748b9e2aa2c12b64f67a7960c4f0f911b0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d10fd89a3eac34e855ba92673033edc541aa6393
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021158"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632407"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>Neuerungen in ASP.NET Core 2.1
 
@@ -51,7 +52,7 @@ Weitere Informationen finden Sie unter [Erstellen einer wiederverwendbaren Benut
 
 ## <a name="no-locidentity-ui-library--scaffolding"></a>Bibliothek und Gerüst der Identity-Benutzeroberfläche
 
-ASP.NET Core 2.1 stellt [ASP.NET Core Identity](xref:security/authentication/identity) als [Razor-Klassenbibliothek](xref:razor-pages/ui-class) bereit. Apps, die über Identity verfügen, können das neue Gerüst Identity anwenden, um die in der Identity-Klassenbibliothek Razor enthaltenen Quellcode selektiv hinzuzufügen. Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können. Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren. Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek Identity.
+ASP.NET Core 2.1 stellt [ASP.NET Core Identity](xref:security/authentication/identity) als eine [Razor-Klassenbibliothek](xref:razor-pages/ui-class) bereit. Apps, die über Identity verfügen, können das neue Gerüst Identity anwenden, um die in der Identity-Klassenbibliothek Razor enthaltenen Quellcode selektiv hinzuzufügen. Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können. Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren. Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek Identity.
 
 Apps **ohne** Authentifizierung können das Gerüst Identity anwenden, um das Paket der Razor-Klassenbibliothek Identity hinzuzufügen. Sie können Code der Klassenbibliothek Identity auswählen, der generiert werden soll.
 

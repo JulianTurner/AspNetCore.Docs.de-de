@@ -4,8 +4,9 @@ author: rick-anderson
 description: Informationen zum Erstellen einer Web-API mit ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/25/2020
+ms.date: 08/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: ad6eac246e5bc7039158981bbe96036389512e4f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ce0dfdf1ce88b55790d33918a2d20bc19a09b288
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019234"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626895"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Erstellen einer Web-API mit ASP.NET Core
 
@@ -293,7 +294,8 @@ Führen Sie die folgenden Befehle aus:
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+dotnet tool update -g Dotnet-aspnet-codegenerator
+dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
 Die obenstehenden Befehle haben folgende Konsequenzen:
@@ -324,6 +326,8 @@ Ersetzen Sie die Rückgabeanweisung in `PostTodoItem` durch eine Anweisung mit d
 
 Der oben stehende Code ist eine HTTP POST-Methode, wie durch das [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute)-Attribut angegeben. Die Methode ruft den Wert der Aufgabe aus dem Text der HTTP-Anforderung ab.
 
+Weitere Informationen finden Sie unter [Attributrouting mit Http[Verb]-Attributen](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+
 Die <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*>-Methode:
 
 * Gibt den HTTP-Statuscode 201 zurück, wenn der Vorgang erfolgreich ist. HTTP 201 ist die Standardantwort für eine HTTP POST-Methode, die eine neue Ressource auf dem Server erstellt.
@@ -348,6 +352,7 @@ Dieses Tutorial verwendet Postman zum Testen der Web-API.
 
 * Erstellen Sie eine neue Anforderung.
 * Legen Sie als HTTP-Methode `POST` fest.
+* Legen Sie den URI auf `https://localhost:<port>/api/TodoItems` fest. Beispiel: `https://localhost:5001/api/TodoItems`.
 * Wählen Sie die Registerkarte **Body** (Text) aus.
 * Wählen Sie das Optionsfeld **raw** (Unformatiert) aus.
 * Legen Sie den Typ auf **JSON (application/json)** fest.
@@ -364,15 +369,15 @@ Dieses Tutorial verwendet Postman zum Testen der Web-API.
 
   ![Postman mit erstellter Anforderung](first-web-api/_static/3/create.png)
 
-### <a name="test-the-location-header-uri"></a>Testen des Adressheader-URIs
+### <a name="test-the-location-header-uri-with-postman"></a>Testen des Adressheader-URIs mit Postman
 
 * Wählen Sie auf der Registerkarte **Header** (Header) den Bereich **Response** (Antwort) aus.
 * Kopieren Sie den den Headerwert von **Location** (Speicherort):
 
   ![Registerkarte „Header“ in der Postman-Konsole](first-web-api/_static/3/create.png)
 
-* Legen Sie die Methode auf „GET“ fest.
-* Fügen Sie den URI (z. B. `https://localhost:5001/api/TodoItems/1`) ein.
+* Legen Sie als HTTP-Methode `GET` fest.
+* Legen Sie den URI auf `https://localhost:<port>/api/TodoItems/1` fest. Beispiel: `https://localhost:5001/api/TodoItems/1`.
 * Wählen Sie **Send** (Senden) aus.
 
 ## <a name="examine-the-get-methods"></a>Überblick über die GET-Methoden
@@ -403,7 +408,7 @@ Durch einen Aufruf von `GetTodoItems` wird eine Antwort gesendet, die der folgen
 
 * Erstellen Sie eine neue Anforderung.
 * Legen Sie die HTTP-Methode auf **GET** fest.
-* Legen Sie die Anforderungs-URL auf `https://localhost:<port>/api/TodoItems` fest. Beispielsweise `https://localhost:5001/api/TodoItems`.
+* Legen Sie den Anforderungs-URI auf `https://localhost:<port>/api/TodoItems` fest. Beispielsweise `https://localhost:5001/api/TodoItems`.
 * Wählen Sie in Postman **Two pane view** (Ansicht mit zwei Bereichen) aus.
 * Wählen Sie **Send** (Senden) aus.
 
@@ -804,7 +809,7 @@ Dieses Tutorial verwendet Postman zum Testen der Web-API.
 
 * Erstellen Sie eine neue Anforderung.
   * Legen Sie die HTTP-Methode auf **GET** fest.
-  * Legen Sie die Anforderungs-URL auf `https://localhost:<port>/api/todo` fest. Beispielsweise `https://localhost:5001/api/todo`.
+  * Legen Sie den Anforderungs-URI auf `https://localhost:<port>/api/todo` fest. Beispielsweise `https://localhost:5001/api/todo`.
 * Wählen Sie in Postman **Two pane view** (Ansicht mit zwei Bereichen) aus.
 * Wählen Sie **Send** (Senden) aus.
 
@@ -830,6 +835,7 @@ Die `CreatedAtAction`-Methode:
 
 * Erstellen Sie das Projekt.
 * Legen Sie in Postman die HTTP-Methode auf `POST` fest.
+* Legen Sie den URI auf `https://localhost:<port>/api/TodoItem` fest. Beispiel: `https://localhost:5001/api/TodoItem`.
 * Wählen Sie die Registerkarte **Body** (Text) aus.
 * Wählen Sie das Optionsfeld **raw** (Unformatiert) aus.
 * Legen Sie den Typ auf **JSON (application/json)** fest.
@@ -856,7 +862,7 @@ Die `CreatedAtAction`-Methode:
   ![Registerkarte „Header“ in der Postman-Konsole](first-web-api/_static/pmc2.png)
 
 * Legen Sie die Methode auf „GET“ fest.
-* Fügen Sie den URI (z. B. `https://localhost:5001/api/Todo/2`) ein.
+*Legen Sie den URI auf  `https://localhost:<port>/api/TodoItems/2` fest. Beispiel:  `https://localhost:5001/api/TodoItems/2`.
 * Wählen Sie **Send** (Senden) aus.
 
 ## <a name="add-a-puttodoitem-method"></a>Hinzufügen einer PutTodoItem-Methode

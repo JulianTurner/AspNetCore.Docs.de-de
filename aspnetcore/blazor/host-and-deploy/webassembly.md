@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 06059e0f9ff6a3f4073d8d01d1ac541c30ad1ab1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9e3933d8800c00eb135c041bb1c65fbf01d4ef83
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014190"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628039"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -85,6 +86,12 @@ Um die Komprimierung zu deaktivieren, fügen Sie der Projektdatei der App die `B
 <PropertyGroup>
   <BlazorEnableCompression>false</BlazorEnableCompression>
 </PropertyGroup>
+```
+
+Die `BlazorEnableCompression`-Eigenschaft kann an den [`dotnet publish`](/dotnet/core/tools/dotnet-publish)-Befehl mit der folgenden Syntax in einer Befehlsshell übergeben werden:
+
+```dotnetcli
+dotnet publish -p:BlazorEnableCompression=false
 ```
 
 ## <a name="rewrite-urls-for-correct-routing"></a>Erneutes Generieren von URLs für ein ordnungsgemäßes Routing

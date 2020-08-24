@@ -5,8 +5,9 @@ description: Erfahren Sie, wie Sie Blazor-Apps debuggen.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2020
+ms.date: 08/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 225916411550cc8e89c604e1426316843bb0ff52
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5aeb333dc36ebc4c3a324b397793343e0335b1e1
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014541"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628364"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
@@ -42,7 +43,7 @@ Verfügbare Szenarien:
 Folgendes ist derzeit *nicht möglich*:
 
 * Halt bei Ausnahmefehlern
-* Erreichen von Breakpoints beim App-Start
+* Erreichen von Breakpoints während des App-Starts, bevor der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
 
 Die Debuggingfunktionen werden in zukünftigen Releases weiter verbessert.
 
@@ -80,7 +81,7 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio:
 1. Drücken Sie <kbd>F5</kbd>, um die App im Debugger auszuführen.
 
    > [!NOTE]
-   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt.
+   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
 1. Legen Sie in `Pages/Counter.razor` einen Breakpoint in der `IncrementCount`-Methode fest.
 1. Rufen Sie die Registerkarte **`Counter`** auf, und klicken Sie auf die Schaltfläche zum Erreichen des Breakpoints:
@@ -128,7 +129,7 @@ Während Sie Ihre Blazor WebAssembly-App debuggen, können Sie auch Ihren Server
 1. Starten Sie das Debuggen mit der Tastenkombination <kbd>F5</kbd> oder dem Menü Element.
 
    > [!NOTE]
-   > **Ohne Debuggen ausführen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt.
+   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
 1. Wenn Sie dazu aufgefordert werden, wählen Sie die Option **Blazor WebAssembly debuggen**, um das Debuggen zu starten.
 
@@ -284,3 +285,13 @@ protected override async Task OnInitializedAsync()
     ...
 }
 ```
+
+### <a name="visual-studio-timeout"></a>Visual Studio-Timeout
+
+Wenn Visual Studio eine Ausnahme auslöst, dass der Debugadapter nicht gestartet werden konnte, und meldet, dass das Timeout erreicht wurde, können Sie das Timeout mit einer Registrierungseinstellung anpassen:
+
+```console
+VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorTimeoutInMilliseconds" dword {TIMEOUT}
+```
+
+Der Platzhalter `{TIMEOUT}` im vorangehenden Befehl wird in Millisekunden angegeben. Beispielsweise wird eine Minute als `60000` zugewiesen.

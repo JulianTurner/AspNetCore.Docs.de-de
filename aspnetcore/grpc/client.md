@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 07/27/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 5aca81da34e5ed51b2dc4f404c1ba4d7377a422f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 28e4f372e301a673644bfa97763ebc930f2d0ad5
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016244"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634331"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Aufrufen von gRPC-Diensten mithilfe eines .NET-Clients
 
@@ -136,7 +137,7 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 
 ### <a name="client-streaming-call"></a>Clientstreamingaufruf
 
-Ein Clientstreamingaufruf beginnt, *ohne* dass der Client eine Nachricht sendet. Der Client kann Nachrichten mit `RequestStream.WriteAsync` senden. Wenn der Client das Senden von Nachrichten abgeschlossen hat, sollte `RequestStream.CompleteAsync` aufgerufen werden, damit der Dienst benachrichtigt wird. Der Aufruf ist abgeschlossen, wenn der Dienst eine Antwortnachricht zurückgibt.
+Ein Clientstreamingaufruf beginnt, *ohne* dass der Client eine Nachricht sendet. Der Client kann Nachrichten mit `RequestStream.WriteAsync` senden. Wenn der Client das Senden von Nachrichten abgeschlossen hat, sollte `RequestStream.CompleteAsync()` aufgerufen werden, damit der Dienst benachrichtigt wird. Der Aufruf ist abgeschlossen, wenn der Dienst eine Antwortnachricht zurückgibt.
 
 ```csharp
 var client = new Counter.CounterClient(channel);
@@ -188,6 +189,14 @@ Console.WriteLine("Disconnecting");
 await call.RequestStream.CompleteAsync();
 await readTask;
 ```
+
+Um die beste Leistung zu erzielen und unnötige Fehler beim Client und beim Dienst zu vermeiden, versuchen Sie, bidirektionale Streamingaufrufe ordnungsgemäß abzuschließen. Ein bidirektionaler Aufruf wird ordnungsgemäß abgeschlossen, wenn der Server das Lesen des Anforderungsdatenstroms und der Client das Lesen des Antwortdatenstroms beendet hat. Der vorherige Beispielaufruf ist ein Beispiel für einen bidirektionalen Aufruf, der ordnungsgemäß beendet wird. Im Aufruf führt der Client die folgenden Aktionen aus:
+
+1. Er startet einen neuen bidirektionalen Streamingaufruf, indem `EchoClient.Echo` aufgerufen wird.
+2. Er erstellt einen Hintergrundtask zum Lesen von Nachrichten aus dem Dienst mit `ResponseStream.ReadAllAsync()`.
+3. Er sendet Nachrichten mit `RequestStream.WriteAsync` an den Server.
+4. Er benachrichtigt den Server, dass das Senden von Nachrichten mit `RequestStream.CompleteAsync()` abgeschlossen wurde.
+5. Er wartet, bis der Hintergrundtask alle eingehenden Nachrichten gelesen hat.
 
 Während des Aufrufs von bidirektionalem Streaming können sich Client und Dienst jederzeit gegenseitig Nachrichten senden. Die beste Clientlogik für die Interaktion mit einem bidirektionalem Aufruf variiert je nach Dienstlogik.
 

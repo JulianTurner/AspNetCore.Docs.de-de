@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 48b9c41b468f04134164a9c499e7fadca107cab2
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 04d2f0d289e2c9ec13aeb880df47240bec19d3ec
+ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
 ms.translationtype: MT
 ms.contentlocale: de-DE
 ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865105"
+ms.locfileid: "88876762"
 ---
 # <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>Verwenden der cookie Authentifizierung ohne ASP.NET Core Identity
 
@@ -116,6 +116,8 @@ Um den aktuellen Benutzer zu abmelden und dessen zu löschen, wenden Sie Folgend
 [!code-csharp[](cookie/samples/3.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
 Wenn `CookieAuthenticationDefaults.AuthenticationScheme` (oder " Cookie s") nicht als Schema verwendet wird (z. b. "Configuration Manager" Cookie ), geben Sie das Schema an, das beim Konfigurieren des Authentifizierungs Anbieters verwendet wird. Andernfalls wird das Standardschema verwendet.
+
+Der Server hat keine Kontrolle über den Browser des Clients. Wenn der Benutzer den Browser oder die Registerkarte schließt, kann der Server den Benutzer nicht abmelden. Zum Implementieren der Abmeldung des Benutzers, wenn der Browser geschlossen wird, müssen Sie diesen mit JavaScript erkennen. Suchen Sie nach "Gewusst wie: Erkennen des Browser Fensters Registerkarte Close-Ereignis?".
 
 ## <a name="react-to-back-end-changes"></a>Reagieren auf Back-End-Änderungen
 

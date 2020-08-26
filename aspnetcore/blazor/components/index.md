@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 6ee767ee76b622e15a1dc5a7fe2f3e05f03dabd0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 26e8239634c3edb99c7606ab2e250c69af4e746f
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628494"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865286"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -249,7 +249,7 @@ Komponenten können Routenparameter von der Routenvorlage empfangen, die in der 
 
 Optionale Parameter werden nicht unterstützt. Deshalb werden im vorherigen Beispiel zwei [`@page`][9]-Anweisungen angewendet. Die erste ermöglicht die Navigation zur Komponente ohne einen Parameter. Die zweite [`@page`][9]-Anweisung empfängt den `{text}`-Routenparameter und weist den Wert der `Text`-Eigenschaft zu.
 
-Die *Catch-all*-Parametersyntax (`*`/`**`), die den Pfad über Ordnergrenzen hinweg erfasst, wird in Razor-Komponenten (`.razor`) **nicht** unterstützt.
+Informationen zu Routenparametern (`{*pageRoute}`), die Pfade über mehrere Ordnergrenzen hinweg erfassen, finden Sie unter <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
 ### <a name="component-parameters"></a>Komponentenparameter
 

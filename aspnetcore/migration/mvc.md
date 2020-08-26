@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: cd1a7ff57d911f96f0adfe4b548fa80ec844886d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d615f67fc5cb23499ee7e14b747390a7a1b5a693
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632238"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865138"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Migrating from ASP.NET MVC to ASP.NET Core MVC (Migrieren von ASP.NET MVC zu ASP.NET Core MVC)
 
@@ -97,7 +97,7 @@ Im ASP.net Core Projekt wird eine neue leere Controller Klasse und Ansichts Klas
 
 Das ASP.net Core *"WebApp1"* -Projekt enthält bereits einen minimalen Beispiel Controller und eine Ansicht mit dem gleichen Namen wie das ASP.NET MVC-Projekt. Diese dienen als Platzhalter für den ASP.NET MVC-Controller und Sichten, die aus dem ASP.NET MVC *"WebApp1"* -Projekt migriert werden sollen.
 
-1. Kopieren Sie die Methoden aus ASP.NET MVC `HomeController` , um die neuen ASP.net Core `HomeController` Methoden zu ersetzen. Es ist nicht erforderlich, den Rückgabetyp der Aktionsmethoden zu ändern. Der Rückgabetyp der Controller Aktionsmethode der integrierten ASP.NET MVC-Vorlage ist " [Action result](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);". in ASP.net Core MVC wird stattdessen die Aktionsmethode zurückgegeben `IActionResult` . `ActionResult` implementiert `IActionResult`.
+1. Kopieren Sie die Methoden aus ASP.NET MVC `HomeController` , um die neuen ASP.net Core `HomeController` Methoden zu ersetzen. Es ist nicht erforderlich, den Rückgabetyp der Aktionsmethoden zu ändern. Der Rückgabetyp der Controller Aktionsmethode der integrierten ASP.NET MVC-Vorlage ist <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; in ASP.net Core MVC geben die Aktionsmethoden `IActionResult` stattdessen zurück. `ActionResult` implementiert `IActionResult`.
 1. Klicken Sie im ASP.net Core-Projekt mit der rechten Maustaste auf das Verzeichnis *views/Home* , und wählen Sie **Add** > **Vorhandenes Element**hinzufügen aus.
 1. Navigieren Sie im Dialogfeld **Vorhandenes Element hinzufügen** zum Verzeichnis *views/Home* des ASP.NET MVC *"WebApp1"* -Projekts.
 1. Wählen Sie die Ansichts Dateien *about. cshtml*, *Contact. cshtml*und *Index. cshtml* aus Razor , und klicken Sie dann auf **Hinzufügen**, um die vorhandenen Dateien zu ersetzen.
@@ -291,7 +291,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 ## <a name="controllers-and-views"></a>Controller und Ansichten
 
-* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage " [Action result](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);". in ASP.net Core MVC wird stattdessen die Aktionsmethode zurückgegeben `IActionResult` . `ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
+* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; in ASP.net Core MVC geben die Aktionsmethoden `IActionResult` stattdessen zurück. `ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
 
 * Kopieren Sie die Ansichts Dateien " *about. cshtml*", " *Contact. cshtml*" und " *Index. cshtml* " Razor vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.
 
@@ -477,7 +477,7 @@ Die folgende Funktionalität erfordert eine Migration von dem Beispiel ASP.NET M
 
 ## <a name="controllers-and-views"></a>Controller und Ansichten
 
-* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage " [Action result](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);". in ASP.net Core MVC wird stattdessen die Aktionsmethode zurückgegeben `IActionResult` . `ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
+* Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` . In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; in ASP.net Core MVC geben die Aktionsmethoden `IActionResult` stattdessen zurück. `ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.
 
 * Kopieren Sie die Ansichts Dateien " *about. cshtml*", " *Contact. cshtml*" und " *Index. cshtml* " Razor vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 42a7231b529dd9f8ecbce4f8116111e1c96c830d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 345d20494111b808dac9678637de060169730a53
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633096"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865359"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Taghilfsprogramme in ASP.NET Core
 
@@ -254,9 +254,9 @@ Mithilfe des Visual Studio-Editors können Sie das **gesamte** Markup im Taghilf
 
 ## <a name="tag-helpers-compared-to-web-server-controls"></a>Taghilfsprogramm zu Webserversteuerelementen im Vergleich
 
-* Taghilfsprogramme besitzen das Element nicht, dem sie zugeordnet sind. Stattdessen sind sie nur Teil des Rendervorgangs des Elements und des Inhalts. [Webserversteuerelemente](https://msdn.microsoft.com/library/7698y1f0.aspx) für ASP.NET werden auf einer Seite deklariert und aufgerufen.
+* Taghilfsprogramme besitzen das Element nicht, dem sie zugeordnet sind. Stattdessen sind sie nur Teil des Rendervorgangs des Elements und des Inhalts. ASP.net <https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/7698y1f0(v=vs.85)> werden deklariert und auf einer Seite aufgerufen.
 
-* [Webserversteuerelemente](https://msdn.microsoft.com/library/zsyt68f1.aspx) haben einen nicht trivialen Lebenszyklus, aufgrund dessen sich das Entwickeln und Debuggen als schwierig gestalten kann.
+* <https://docs.microsoft.com/previous-versions/zsyt68f1(v=vs.140)> haben Sie einen nicht trivialen Lebenszyklus, der die Entwicklung und das Debuggen erschweren kann.
 
 * Mithilfe von Webserversteuerelementen können Sie Funktionen zu den Dokumentobjektmodellelementen des Clients über Clientsteuerelemente hinzufügen. Taghilfsprogramme verfügen nicht über Dokumentobjektmodelle.
 

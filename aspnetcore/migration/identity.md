@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/identity
-ms.openlocfilehash: 85674d7ed02f189f78da92bffdf927a3ca21357d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c8e6a1a8bf9ef06d98db0e7e0a6a0e5ff393e322
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629508"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865544"
 ---
 # <a name="migrate-authentication-and-no-locidentity-to-aspnet-core"></a>Migrieren von Authentifizierung und Identity zu ASP.net Core
 
@@ -33,7 +33,7 @@ Im vorherigen Artikel haben wir die [Konfiguration von einem ASP.NET MVC-Projekt
 
 In ASP.NET MVC werden Authentifizierungs-und Identitäts Funktionen mithilfe von ASP.net Identity in *Startup.auth.cs* und * Identity config.cs*konfiguriert, die sich im Ordner *App_Start* befinden. In ASP.net Core MVC sind diese Funktionen in *Startup.cs*konfiguriert.
 
-Installieren Sie die folgenden nuget-Pakete:
+Installieren Sie die folgenden NuGet-Pakete:
 
 * `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
 * `Microsoft.AspNetCore.Authentication.Cookies`

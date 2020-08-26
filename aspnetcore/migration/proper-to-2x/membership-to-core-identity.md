@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: de9d1e5f6f595269595212fbab60d12dfd5a29e4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a9ec02381b156a6599042d8e504a476036246302
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633642"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865560"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-no-locidentity"></a>Migrieren von der ASP.net-Mitgliedschafts Authentifizierung zu ASP.net Core 2,0 Identity
 
@@ -35,7 +35,7 @@ In diesem Artikel wird das Migrieren des Datenbankschemas für ASP.net-apps mith
 
 ## <a name="review-of-membership-schema"></a>Überprüfen des Mitgliedschafts Schemas
 
-Vor ASP.NET 2,0 waren die Entwickler dafür zuständig, den gesamten Authentifizierungs-und Autorisierungs Prozess für Ihre apps zu erstellen. Mit ASP.NET 2,0 wurde die Mitgliedschaft eingeführt, die eine Bausteine-Lösung für die Handhabung der Sicherheit innerhalb von ASP.net-apps bereitstellt. Entwickler waren nun in der Lage, ein Schema mit dem [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) -Befehl in eine SQL Server Datenbank zu bootstrap. Nachdem Sie diesen Befehl ausgeführt haben, wurden die folgenden Tabellen in der-Datenbank erstellt.
+Vor ASP.NET 2,0 waren die Entwickler dafür zuständig, den gesamten Authentifizierungs-und Autorisierungs Prozess für Ihre apps zu erstellen. Mit ASP.NET 2,0 wurde die Mitgliedschaft eingeführt, die eine Bausteine-Lösung für die Handhabung der Sicherheit innerhalb von ASP.net-apps bereitstellt. Entwickler konnten nun mit dem Befehl ein Bootstrap für ein Schema in eine SQL Server Datenbank durcharbeiten <https://docs.microsoft.com/previous-versions/ms229862(v=vs.140)> . Nachdem Sie diesen Befehl ausgeführt haben, wurden die folgenden Tabellen in der-Datenbank erstellt.
 
   ![Mitgliedschafts Tabellen](identity/_static/membership-tables.png)
 

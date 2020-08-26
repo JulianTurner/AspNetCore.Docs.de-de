@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: c95952face8763dc9f2dd12312cab1a1bc07528a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3ba033b4165b19131d11311e5ae9d64e6afe48ca
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632342"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865431"
 ---
 # <a name="work-with-samesite-no-loccookies-in-aspnet-core"></a>Arbeiten mit SameSite cookie s in ASP.net Core
 
@@ -73,11 +73,11 @@ Das folgende Beispiel kann heruntergeladen und getestet werden:
 
 ## <a name="net-core-support-for-the-samesite-attribute"></a>.Net Core-Unterstützung für das SameSite-Attribut
 
-.Net Core 2,2 unterstützt seit der Veröffentlichung von Updates im Dezember 2019 den 2019-Entwurfs Standard für SameSite. Entwickler können den Wert des SameSite-Attributs Programm gesteuert mithilfe der- `HttpCookie.SameSite` Eigenschaft steuern. Das Festlegen der- `SameSite` Eigenschaft auf Strict, Lax oder None führt dazu, dass die Werte mit dem im Netzwerk geschrieben werden cookie . Wenn diese Eigenschaft auf (samesitemode) (-1) festgelegt wird, bedeutet dies, dass kein SameSite-Attribut im Netzwerk mit dem cookie
+.Net Core 2,2 und höhere Versionen unterstützen 2019 den Entwurf Standard für SameSite seit der Veröffentlichung von Updates im Dezember 2019. Entwickler können den Wert des SameSite-Attributs Programm gesteuert mithilfe der- `HttpCookie.SameSite` Eigenschaft steuern. Das Festlegen der- `SameSite` Eigenschaft auf Strict, Lax oder None führt dazu, dass die Werte mit dem im Netzwerk geschrieben werden cookie . Wenn Sie den Wert auf festlegen, `(SameSiteMode)(-1)` wird angegeben, dass kein SameSite-Attribut im Netzwerk mit dem cookie
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
-.Net Core 3,0 unterstützt die aktualisierten SameSite-Werte und fügt der Enumeration einen zusätzlichen Enumerationswert hinzu `SameSiteMode.Unspecified` `SameSiteMode` .
+.Net Core 3,0 und höhere Versionen unterstützen die aktualisierten SameSite-Werte und fügen der Enumeration einen zusätzlichen Enumerationswert hinzu `SameSiteMode.Unspecified` `SameSiteMode` .
 Dieser neue Wert gibt an, dass keine SameSite mit dem gesendet werden soll cookie .
 
 ::: moniker-end

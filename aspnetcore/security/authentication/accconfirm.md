@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6ea37ceb83ffbaa94187e0c541c79428594e4b4
+ms.sourcegitcommit: 2039e60eb7b482da8298f82dcd5eda27cf747f32
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635371"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88906448"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Kontobestätigung und Kennwortwiederherstellung in ASP.NET Core)
 
@@ -160,7 +160,13 @@ Führen Sie die Web-App aus, und testen Sie den Ablauf der Konto Bestätigung un
 * Geben Sie die e-Mail ein, die Sie zum Registrieren des Kontos verwendet haben.
 * Eine e-Mail mit einem Link zum Zurücksetzen Ihres Kennworts wird gesendet. Überprüfen Sie Ihre e-Mail, und klicken Sie auf den Link zum Zurücksetzen Ihres Kennworts Nachdem das Kennwort erfolgreich zurückgesetzt wurde, können Sie sich mit Ihrer e-Mail-Adresse und dem neuen Kennwort anmelden.
 
-## <a name="change-email-and-activity-timeout"></a>E-Mail-und Aktivitäts Timeout ändern
+<a name="resend"></a>
+
+## <a name="resend-email-confirmation"></a>E-Mail-Bestätigung erneut senden
+
+Wählen Sie in ASP.net Core 5,0 und höher den Link **e-Mail-Bestätigung erneut senden** auf der **Anmelde** Seite aus.
+
+### <a name="change-email-and-activity-timeout"></a>E-Mail-und Aktivitäts Timeout ändern
 
 Das standardmäßige Inaktivitäts Timeout beträgt 14 Tage. Mit dem folgenden Code wird das Inaktivitäts Timeout auf 5 Tage festgelegt:
 
@@ -185,10 +191,6 @@ Fügen Sie einen benutzerdefinierten [dataprotectortokenprovider \<TUser> ](/dot
 Fügen Sie dem Dienst Container den benutzerdefinierten Anbieter hinzu:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=10-16)]
-
-### <a name="resend-email-confirmation"></a>E-Mail-Bestätigung erneut senden
-
-Weitere Informationen finden Sie im entsprechenden [GitHub-Issue](https://github.com/dotnet/AspNetCore/issues/5410).
 
 <a name="debug"></a>
 

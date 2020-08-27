@@ -285,7 +285,7 @@ Mit den Methoden <xref:Microsoft.Extensions.Configuration.ConfigurationSection.G
 
 Konfigurationsschlüssel:
 
-* Groß-/Kleinschreibung wird beachtet. Beispielsweise verweisen `ConnectionString` und `connectionstring` auf denselben Schlüssel.
+* Groß-/Kleinschreibung wird nicht beachtet. Beispielsweise verweisen `ConnectionString` und `connectionstring` auf denselben Schlüssel.
 * Wenn ein Schlüssel und ein Wert in mehreren Konfigurationsanbietern festgelegt ist, wird der Wert des zuletzt hinzugefügten Anbieters verwendet. Weitere Informationen finden Sie unter [Standardkonfiguration](#default).
 * Hierarchische Schlüssel
   * Innerhalb der Konfigurations-API funktioniert ein Doppelpunkt (`:`) als Trennzeichen auf allen Plattformen.

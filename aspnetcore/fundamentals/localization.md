@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 254cae2b66773d7bb71aa6313fd08b6f739b7682
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d5be01c67f455a2706a654574ef9f5e273551e70
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634643"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865448"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalisierung und Lokalisierung in ASP.NET Core
 
@@ -250,7 +250,7 @@ Die Reihenfolge der Standardliste fängt bei den spezifischsten Anbietern an und
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
+Einige Apps verwenden eine Abfragezeichenfolge, um die <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1> festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
 
    `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
 
@@ -349,7 +349,7 @@ Der Lokalisierungsprozess für Ihre App erfordert ein grundlegendes Verständnis
 
 [Lokalisierbarkeit](/dotnet/standard/globalization-localization/localizability-review) ist ein Zwischenschritt zum Überprüfen, ob eine globalisierte App bereit für die Lokalisierung ist.
 
-Das Format [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) für den Kulturnamen ist `<languagecode2>-<country/regioncode2>`, wobei `<languagecode2>` der Sprachcode und `<country/regioncode2>` der Unterkulturcode. Zum Beispiel steht `es-CL` für Spanisch (Chile), `en-US` für Englisch (USA) und `en-AU` für Englisch (Australien). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) ist eine Kombination der ISO 639, bei der zwei Kleinbuchstaben den Kulturcode beschreiben, der einer Sprache zugeordnet ist, und der ISO 3166, bei der zwei Großbuchstaben den Unterkulturcode beschreiben, der einem Land oder einer Region zugeordnet ist. Weitere Informationen finden Sie unter [Language Culture Name (Sprachen- und Kulturbezeichnungen)](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx).
+Das Format [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) für den Kulturnamen ist `<languagecode2>-<country/regioncode2>`, wobei `<languagecode2>` der Sprachcode und `<country/regioncode2>` der Unterkulturcode. Zum Beispiel steht `es-CL` für Spanisch (Chile), `en-US` für Englisch (USA) und `en-AU` für Englisch (Australien). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) ist eine Kombination der ISO 639, bei der zwei Kleinbuchstaben den Kulturcode beschreiben, der einer Sprache zugeordnet ist, und der ISO 3166, bei der zwei Großbuchstaben den Unterkulturcode beschreiben, der einem Land oder einer Region zugeordnet ist. Siehe <https://docs.microsoft.com/previous-versions/commerce-server/ee825488(v=cs.20)>.
 
 Die Internationalisierung (Internationalization) wird oft mit „I18N“ abgekürzt. Diese Abkürzung verwendet den ersten und den letzten Buchstaben und die Anzahl der dazwischen liegenden Buchstaben, 18 steht also für die Menge der Buchstaben zwischen dem ersten „I“ und dem letzten „N“. Das gleiche gilt für Globalisierung (Globalization, G11N) und Lokalisierung (Localization, L10N).
 
@@ -604,7 +604,7 @@ Die Reihenfolge der Standardliste fängt bei den spezifischsten Anbietern an und
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
+Einige Apps verwenden eine Abfragezeichenfolge, um die <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1> festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -705,7 +705,7 @@ Der Lokalisierungsprozess für Ihre App erfordert ein grundlegendes Verständnis
 
 [Lokalisierbarkeit](/dotnet/standard/globalization-localization/localizability-review) ist ein Zwischenschritt zum Überprüfen, ob eine globalisierte App bereit für die Lokalisierung ist.
 
-Das Format [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) für den Kulturnamen ist `<languagecode2>-<country/regioncode2>`, wobei `<languagecode2>` der Sprachcode und `<country/regioncode2>` der Unterkulturcode. Zum Beispiel steht `es-CL` für Spanisch (Chile), `en-US` für Englisch (USA) und `en-AU` für Englisch (Australien). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) ist eine Kombination der ISO 639, bei der zwei Kleinbuchstaben den Kulturcode beschreiben, der einer Sprache zugeordnet ist, und der ISO 3166, bei der zwei Großbuchstaben den Unterkulturcode beschreiben, der einem Land oder einer Region zugeordnet ist. Weitere Informationen finden Sie unter [Language Culture Name (Sprachen- und Kulturbezeichnungen)](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx).
+Das Format [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) für den Kulturnamen ist `<languagecode2>-<country/regioncode2>`, wobei `<languagecode2>` der Sprachcode und `<country/regioncode2>` der Unterkulturcode. Zum Beispiel steht `es-CL` für Spanisch (Chile), `en-US` für Englisch (USA) und `en-AU` für Englisch (Australien). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) ist eine Kombination der ISO 639, bei der zwei Kleinbuchstaben den Kulturcode beschreiben, der einer Sprache zugeordnet ist, und der ISO 3166, bei der zwei Großbuchstaben den Unterkulturcode beschreiben, der einem Land oder einer Region zugeordnet ist. Siehe <https://docs.microsoft.com/previous-versions/commerce-server/ee825488(v=cs.20)>.
 
 Die Internationalisierung (Internationalization) wird oft mit „I18N“ abgekürzt. Diese Abkürzung verwendet den ersten und den letzten Buchstaben und die Anzahl der dazwischen liegenden Buchstaben, 18 steht also für die Menge der Buchstaben zwischen dem ersten „I“ und dem letzten „N“. Das gleiche gilt für Globalisierung (Globalization, G11N) und Lokalisierung (Localization, L10N).
 
@@ -959,7 +959,7 @@ Die Reihenfolge der Standardliste fängt bei den spezifischsten Anbietern an und
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-Einige Apps verwenden eine Abfragezeichenfolge, um die [Kultur und Benutzeroberflächenkultur](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx) festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
+Einige Apps verwenden eine Abfragezeichenfolge, um die <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1> festzulegen. Bei Apps, die die Ansätze cookie oder Accept-Language-Header verwenden, ist das Hinzufügen einer Abfragezeichenfolge zur URL für das Debuggen und Testen von Code nützlich. Standardmäßig ist `QueryStringRequestCultureProvider` als erster Lokalisierungsanbieter in der Liste `RequestCultureProvider` registriert. Sie übergeben die Abfragezeichenfolge-Parameter `culture` und `ui-culture`. Im folgenden Beispiel ist die spezifische Kultur (Sprache und Region) auf Spanisch/Mexiko festgelegt:
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -1007,7 +1007,7 @@ Der [Accept-Language-Header](https://www.w3.org/International/questions/qa-accep
 
 ### <a name="the-content-language-http-header"></a>Der Content-Language-HTTP-Header
 
-Der [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language)-Entitätsheader:
+Der [Content-Language](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Language)-Entitätsheader:
 
 * Wird verwendet, um die für die Zielgruppe vorgesehenen Sprachen zu beschreiben.
 * Ermöglicht einem Benutzer, gemäß seiner bevorzugten Sprache zu differenzieren.
@@ -1083,7 +1083,7 @@ Der Lokalisierungsprozess für Ihre App erfordert ein grundlegendes Verständnis
 
 [Lokalisierbarkeit](/dotnet/standard/globalization-localization/localizability-review) ist ein Zwischenschritt zum Überprüfen, ob eine globalisierte App bereit für die Lokalisierung ist.
 
-Das Format [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) für den Kulturnamen ist `<languagecode2>-<country/regioncode2>`, wobei `<languagecode2>` der Sprachcode und `<country/regioncode2>` der Unterkulturcode. Zum Beispiel steht `es-CL` für Spanisch (Chile), `en-US` für Englisch (USA) und `en-AU` für Englisch (Australien). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) ist eine Kombination der ISO 639, bei der zwei Kleinbuchstaben den Kulturcode beschreiben, der einer Sprache zugeordnet ist, und der ISO 3166, bei der zwei Großbuchstaben den Unterkulturcode beschreiben, der einem Land oder einer Region zugeordnet ist. Weitere Informationen finden Sie unter [Language Culture Name (Sprachen- und Kulturbezeichnungen)](https://msdn.microsoft.com/library/ee825488(v=cs.20).aspx).
+Das Format [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) für den Kulturnamen ist `<languagecode2>-<country/regioncode2>`, wobei `<languagecode2>` der Sprachcode und `<country/regioncode2>` der Unterkulturcode. Zum Beispiel steht `es-CL` für Spanisch (Chile), `en-US` für Englisch (USA) und `en-AU` für Englisch (Australien). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) ist eine Kombination der ISO 639, bei der zwei Kleinbuchstaben den Kulturcode beschreiben, der einer Sprache zugeordnet ist, und der ISO 3166, bei der zwei Großbuchstaben den Unterkulturcode beschreiben, der einem Land oder einer Region zugeordnet ist. Siehe <https://docs.microsoft.com/previous-versions/commerce-server/ee825488(v=cs.20)>.
 
 Die Internationalisierung (Internationalization) wird oft mit „I18N“ abgekürzt. Diese Abkürzung verwendet den ersten und den letzten Buchstaben und die Anzahl der dazwischen liegenden Buchstaben, 18 steht also für die Menge der Buchstaben zwischen dem ersten „I“ und dem letzten „N“. Das gleiche gilt für Globalisierung (Globalization, G11N) und Lokalisierung (Localization, L10N).
 

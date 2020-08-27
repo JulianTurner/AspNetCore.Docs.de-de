@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/entity-framework-6
-ms.openlocfilehash: d01c0a1bdf29dbb79c04504d747b319fff710d89
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 64d420d7076f1da453ee423cc4a3732eeb47b221
+ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633759"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88876697"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core und Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
@@ -51,7 +51,7 @@ Die empfohlene Methode zum Verwenden von Entity Framework 6 in einer ASP.NET Cor
 
 Sie können den Kontext von Entity Framework 6 nicht in ASP.NET Core-Projekte einfügen, da diese nicht alle Funktionalitäten unterstützen, die für Entity Framework 6-Befehle (wie *Enable-Migrations*) erforderlich sind.    
 
-Unabhängig vom Projekttyp, in dem Sie den Kontext von Entity Framework 6 platzieren, funktionieren nur Entity Framework 6-Befehlszeilentools mit diesem Kontext. `Scaffold-DbContext` ist beispielsweise nur in Entity Framework Core verfügbar. Wenn Sie bei einer Datenbank das Reverse Engineering (Zurückentwicklung) in ein Entity Framework 6-Modell durchführen müssen, finden Sie weitere Informationen unter [Code First to an Existing Database (Entity Framework Code First für eine vorhandene Datenbank)](https://msdn.microsoft.com/jj200620).  
+Unabhängig vom Projekttyp, in dem Sie den Kontext von Entity Framework 6 platzieren, funktionieren nur Entity Framework 6-Befehlszeilentools mit diesem Kontext. `Scaffold-DbContext` ist beispielsweise nur in Entity Framework Core verfügbar. Wenn Sie bei einer Datenbank das Reverse Engineering (Zurückentwicklung) in ein Entity Framework 6-Modell durchführen müssen, finden Sie weitere Informationen unter <https://docs.microsoft.com/ef/ef6/modeling/code-first/workflows/existing-database>.    
 
 ## <a name="reference-full-framework-and-ef6-in-the-aspnet-core-project"></a>Verweisen auf das vollständige Framework und auf Entity Framework 6 in einem ASP.NET Core-Projekt 
 
@@ -67,7 +67,7 @@ Die Entity Framework 6-Befehlszeilentools, die Sie im Entity Framework 6-Klassen
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContext.cs?name=snippet_Constructor)]   
 
-Da in Ihrem Entity Framework 6-Kontext kein Konstruktor ohne Parameter vorhanden ist, muss Ihr Entity Framework 6-Projekt eine Implementierung von [IDbContextFactory](https://msdn.microsoft.com/library/hh506876) bereitstellen. Das Entity Framework 6-Befehlszeilentool sucht und verwendet diese Implementierung, damit der Kontext instanziiert werden kann. Hier finden Sie ein Beispiel dafür.    
+Da in Ihrem Entity Framework 6-Kontext kein Konstruktor ohne Parameter vorhanden ist, muss Ihr Entity Framework 6-Projekt eine Implementierung von <https://docs.microsoft.com/dotnet/api/system.data.entity.infrastructure.idbcontextfactory-1?view=entity-framework-6.2.0> bereitstellen. Das Entity Framework 6-Befehlszeilentool sucht und verwendet diese Implementierung, damit der Kontext instanziiert werden kann. Hier finden Sie ein Beispiel dafür.   
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContextFactory.cs?name=snippet_IDbContextFactory)]  
 

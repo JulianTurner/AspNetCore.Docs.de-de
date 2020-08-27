@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: 9fc44d228a31b8ae6c78dc12988392806dd95823
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 03febbd71df19cd3524d26e229a8bd8798a874b5
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633434"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865116"
 ---
 # <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Part 3: Gerüstbau mit Razor Pages in ASP.NET Core
 
@@ -98,9 +98,8 @@ Die Basisklasse `PageModel` verfügt über eine `ViewData`-Wörterbucheigenschaf
 
 Die Eigenschaft `"Title"` wird in der Datei *Pages/Shared/_Layout.cshtml* verwendet. Das folgende Markup zeigt die ersten Zeilen der Datei *Pages/_Layout.cshtml* an.
 
-<!-- we need a snapshot copy of layout because we are
-changing in in the next step.
--->
+<!-- We need a snapshot copy of layout because we are changing in the next step. -->
+
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/NU/_Layout.cshtml?highlight=6)]
 
 Die Zeile `@*Markup removed for brevity.*@` ist ein Razor-Kommentar. Im Gegensatz zu HTML-Kommentaren (`<!-- -->`) werden Razor-Kommentare nicht an den Client gesendet.
@@ -284,9 +283,8 @@ Die Basisklasse `PageModel` verfügt über eine `ViewData`-Wörterbucheigenschaf
 
 Die Eigenschaft „Title“ wird in der Datei *Pages/Shared/_Layout.cshtml* verwendet. Das folgende Markup zeigt die ersten Zeilen der Datei *Pages/_Layout.cshtml* an.
 
-<!-- we need a snapshot copy of layout because we are
-changing in in the next step.
--->
+<!-- We need a snapshot copy of layout because we are changing in the next step. -->
+
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/NU/_Layout.cshtml?highlight=6-99)]
 
 Die Zeile `@*Markup removed for brevity.*@` ist ein Razor-Kommentar, der in Ihrer Layoutdatei nicht angezeigt wird. Im Gegensatz zu HTML-Kommentaren (`<!-- -->`) werden Razor-Kommentare nicht an den Client gesendet.

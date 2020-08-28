@@ -94,6 +94,9 @@
         - name: Back-End für mobile Geräte
           displayName: tutorial
           uid: mobile/native-mobile-backend
+        - name: Veröffentlichen in Azure API Management
+          displayName: tutorial
+          uid: tutorials/publish-to-azure-api-management-using-vs
     - name: Web-Apps in Echtzeit
       items:
         - name: SignalR mit Javascript
@@ -702,7 +705,11 @@
         - name: Erste Schritte mit dem gRPC-Dienst
           uid: tutorials/grpc/grpc-start
     - name: gRPC-Dienste mit C#
-      uid: grpc/basics
+      items:
+        - name: Übersicht
+          uid: grpc/basics
+        - name: Erstellen von gRPC-Diensten
+          uid: grpc/services
     - name: gRPC-Dienste mit ASP.NET Core
       uid: grpc/aspnetcore
     - name: Aufrufen von gRPC-Diensten mithilfe des .NET-Clients
@@ -711,6 +718,8 @@
       uid: grpc/clientfactory
     - name: Verwenden von gRPC in Browser-Apps
       uid: grpc/browser
+    - name: Prozessübergreifende Kommunikation mit gRPC
+      uid: grpc/interprocess
     - name: Konfiguration
       uid: grpc/configuration
     - name: Authentifizierung und Autorisierung
@@ -719,6 +728,8 @@
       uid: grpc/diagnostics
     - name: Sicherheitsüberlegungen
       uid: grpc/security
+    - name: Erstellen von Protobuf-Nachrichten
+      uid: grpc/protobuf
     - name: Bewährte Methoden für Leistung
       uid: grpc/performance
     - name: Versionsverwaltung für gRPC-Dienste

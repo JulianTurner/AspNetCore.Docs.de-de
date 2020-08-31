@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: c409eaaf07109d363581ee7d61dc76521d6818d0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9bb055670b73c9a1ae04083bc326200a42151708
+ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630665"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89102795"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Speicherverwaltung und Garbage Collection (GC) in ASP.net Core
 
@@ -235,7 +235,7 @@ Der gleiche Fehler kann im Benutzercode auftreten, indem eine der folgenden Akti
 
 ### <a name="large-objects-heap"></a>Heap für große Objekte
 
-Häufige Speicher Belegungen/freie Zyklen können den Arbeitsspeicher fragmentieren, insbesondere bei der Zuordnung von großen Arbeitsspeicher Blöcken. Objekte werden in zusammenhängenden Speicherblöcken zugeordnet. Um die Fragmentierung zu minimieren, wird das Defragmentieren, wenn der GC Speicher freigibt, defragmentiert. Dieser Vorgang wird als " **Komprimierung**" bezeichnet. Die Komprimierung umfasst das Verschieben von Objekten. Das Verschieben von großen Objekten führt zu einer Leistungs Einbuße. Aus diesem Grund erstellt der GC eine spezielle Speicher Zone für _große_ Objekte ( [Large Object Heap](/dotnet/standard/garbage-collection/large-object-heap) , Loh). Objekte, die größer als 85.000 Byte sind (etwa 83 KB):
+Häufige Speicher Belegungen/freie Zyklen können den Arbeitsspeicher fragmentieren, insbesondere bei der Zuordnung von großen Arbeitsspeicher Blöcken. Objekte werden in zusammenhängenden Speicherblöcken zugeordnet. Um die Fragmentierung zu verringern, versucht die GC, Sie zu defragmentieren, wenn die GC Speicher freigibt. Dieser Vorgang wird als " **Komprimierung**" bezeichnet. Die Komprimierung umfasst das Verschieben von Objekten. Das Verschieben von großen Objekten führt zu einer Leistungs Einbuße. Aus diesem Grund erstellt der GC eine spezielle Speicher Zone für _große_ Objekte ( [Large Object Heap](/dotnet/standard/garbage-collection/large-object-heap) , Loh). Objekte, die größer als 85.000 Byte sind (etwa 83 KB):
 
 * Auf dem Loh platziert.
 * Nicht komprimiert.

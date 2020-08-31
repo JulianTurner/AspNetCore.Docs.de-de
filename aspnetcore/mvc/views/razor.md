@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: e42ee7a80475e784ea4791395d9b0665aca94a03
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 9c2bbd2d463af8a2ea7db716d01bf1436338ea77
+ms.sourcegitcommit: cd861463faf44956855e3c4b3669483bbc4a7463
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865173"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89101360"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor Syntax Verweis für ASP.net Core
 
@@ -131,17 +131,15 @@ C#-Ausdrücke, die als Zeichenfolge ausgewertet werden, werden HTML-codiert. C#-
 @("<span>Hello World</span>")
 ```
 
-Der Code rendert den folgenden HTML-Code:
+Der vorangehende Code rendert den folgenden HTML-Code:
 
 ```html
 &lt;span&gt;Hello World&lt;/span&gt;
 ```
 
-Der HTML-Code wird im Browser folgendermaßen angezeigt:
+Der HTML-Code wird im Browser als nur-Text angezeigt:
 
-```html
-<span>Hello World</span>
-```
+&lt;Span &gt; Hallo Welt &lt; /span&gt;
 
 Die Ausgabe `HtmlHelper.Raw` wird nicht codiert, sondern als HTML-Markup gerendert.
 

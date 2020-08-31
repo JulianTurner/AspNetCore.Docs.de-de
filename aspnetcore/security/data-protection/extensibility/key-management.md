@@ -17,22 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/key-management
-ms.openlocfilehash: 797df457a5584233043210e9ba2657b7fd7f3893
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: db718b8d4c305b75ad52054efde6b2d03f6825ed
+ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631003"
+ms.lasthandoff: 08/31/2020
+ms.locfileid: "89153531"
 ---
 # <a name="key-management-extensibility-in-aspnet-core"></a>Erweiterbarkeit der Schlüsselverwaltung in ASP.net Core
 
-> [!TIP]
-> Lesen Sie den Abschnitt [Key Management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) vor dem Lesen dieses Abschnitts, da hier einige der grundlegenden Konzepte hinter diesen APIs erläutert werden.
+Lesen Sie den Abschnitt [Key Management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) vor dem Lesen dieses Abschnitts, da hier einige der grundlegenden Konzepte hinter diesen APIs erläutert werden.
 
-> [!WARNING]
-> Typen, die eine der folgenden Schnittstellen implementieren, sollten für mehrere Aufrufer Thread sicher sein.
+**Warnung**: Typen, die eine der folgenden Schnittstellen implementieren, sollten für mehrere Aufrufer Thread sicher sein.
 
-## <a name="key"></a>Schlüssel
+## <a name="key"></a>Key
 
 Die- `IKey` Schnittstelle ist die grundlegende Darstellung eines Schlüssels in Cryptosystem. Der Begriff Key wird hier im abstrakten Sinn verwendet, nicht im literalsinn von "kryptografieschlüsselmaterial". Ein Schlüssel weist die folgenden Eigenschaften auf:
 

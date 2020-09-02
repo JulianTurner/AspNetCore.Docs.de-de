@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 4690c279c24ef23806a6e72aece5f7cd821752bc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6fde5800a6a791c4a5923c13964c34977a59c017
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628325"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865309"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Blazor-Formulare und -Validierung in ASP.NET Core
 
@@ -47,7 +47,7 @@ public class ExampleModel
 Ein Formular wird mithilfe der <xref:Microsoft.AspNetCore.Components.Forms.EditForm>-Komponente definiert. Im folgenden Formular sehen Sie typische Elemente, Komponenten und typischen Razor-Code:
 
 ```razor
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -78,20 +78,39 @@ Im vorherigen Beispiel:
 
 ## <a name="built-in-forms-components"></a>Integrierte Formularkomponenten
 
-Einige integrierte Eingabekomponenten sind verfügbar, um Benutzereingaben zu empfangen und zu validieren. Eingaben werden validiert, wenn sie geändert werden und wenn ein Formular gesendet wird. In der folgenden Tabelle finden Sie verfügbare Eingabekomponenten.
+Einige integrierte Komponenten sind verfügbar, um Benutzereingaben zu empfangen und zu überprüfen. Eingaben werden validiert, wenn sie geändert werden und wenn ein Formular gesendet wird. In der folgenden Tabelle finden Sie verfügbare Eingabekomponenten.
+
+::: moniker range=">= aspnetcore-5.0"
 
 | Eingabekomponenten | Wird gerendert als&hellip; |
 | --------------- | ------------------- |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| [`InputRadio`](#radio-buttons) | `<input type="radio">` |
+| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+| Eingabekomponenten | Wird gerendert als&hellip; |
+| --------------- | ------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
 
 Alle Eingabekomponenten einschließlich <xref:Microsoft.AspNetCore.Components.Forms.EditForm> unterstützen arbiträre Attribute. Attribute, die nicht mit einem Komponentenparameter übereinstimmen, werden dem gerenderten HTML-Element hinzugefügt.
 
-Eingabekomponenten stellen Standardverhalten für das Validieren bei Bearbeitung zur Verfügung und ändern ihre CSS-Klasse, um den Feldzustand darzustellen. Einige Komponenten beinhalten hilfreiche Parsinglogik. <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> und <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> verarbeiten beispielsweise nicht parsbare Werte ordnungsgemäß. Typen, die NULL-Werte akzeptieren, unterstützen auch die NULL-Zulässigkeit des Zielfelds (z. B. `int?`).
+Eingabekomponenten weisen ein Standardverhalten für Validierungen auf, wenn ein Feld geändert wird, einschließlich der Aktualisierung der CSS-Klasse des Felds, um den Feldzustand darzustellen. Einige Komponenten beinhalten hilfreiche Parsinglogik. <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> und <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> verarbeiten beispielsweise nicht parsbare Werte ordnungsgemäß, indem nicht parsbare Werte als Validierungsfehler registriert werden. Typen, die NULL-Werte akzeptieren, unterstützen auch die NULL-Zulässigkeit des Zielfelds (z. B. `int?`).
 
 Der folgende `Starship`-Typ definiert eine Validierungslogik mithilfe einer größeren Anzahl Eigenschaften und Datenanmerkungen wie die frühere `ExampleModel`-Klasse:
 
@@ -134,7 +153,7 @@ Das folgende Formular validiert Benutzereingaben mithilfe der im `Starship`-Mode
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -252,6 +271,39 @@ Im folgenden Beispiel:
 > [!NOTE]
 > Die Framework-API ist nicht dafür zuständig, Validierungsmeldungen direkt aus einem <xref:Microsoft.AspNetCore.Components.Forms.EditContext> zu löschen. Daher empfiehlt es sich nicht allgemein, einem neuen <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> in einem Formular Validierungsmeldungen hinzuzufügen. Verwenden Sie zum Verwalten von Validierungsmeldungen eine [Validierungskomponente](#validator-components) mit dem [Validierungscode für Geschäftslogik](#business-logic-validation), wie in diesem Artikel beschrieben.
 
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="display-name-support"></a>Unterstützung für Anzeigenamen
+
+*Dieser Abschnitt gilt ab dem Release Candidate 1 (RC1) für .NET 5, der Mitte September veröffentlicht wird.*
+
+Die folgenden integrierten Komponenten unterstützen Anzeigenamen mit dem `DisplayName`-Parameter:
+
+* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601>
+
+Für das folgende `InputDate`-Komponentenbeispiel gilt Folgendes:
+
+* Der Anzeigename (`DisplayName`) wird auf `birthday` festgelegt.
+* Die Komponente ist an die `BirthDate`-Eigenschaft als `DateTime`-Typ gebunden.
+
+```razor
+<InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
+
+@code {
+    public DateTime BirthDate { get; set; }
+}
+```
+
+Wenn der Benutzer keinen Datumswert angibt, wird der Validierungsfehler folgendermaßen angezeigt:
+
+```
+The birthday must be a date.
+```
+
+::: moniker-end
+
 ## <a name="validator-components"></a>Validierungssteuerelementkomponente
 
 Validierungssteuerelementkomponenten unterstützen Formularvalidierung durch die Verwaltung eines <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> für den <xref:Microsoft.AspNetCore.Components.Forms.EditContext> eines Formulars.
@@ -345,7 +397,7 @@ Wenn Validierungsmeldungen in der Komponente festgelegt werden, werden sie dem <
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -545,7 +597,7 @@ Im Clientprojekt wird das *Starfleet Starship Database*-Formular aktualisiert, u
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -694,10 +746,10 @@ Die `CustomInputText`-Komponente kann überall dort verwendet werden, wo <xref:M
 `Pages/TestForm.razor`:
 
 ```razor
-@page  "/testform"
+@page "/testform"
 @using System.ComponentModel.DataAnnotations;
 
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -728,6 +780,77 @@ Die `CustomInputText`-Komponente kann überall dort verwendet werden, wo <xref:M
 ```
 
 ## <a name="radio-buttons"></a>Optionsfelder
+
+::: moniker range=">= aspnetcore-5.0"
+
+Verwenden Sie `InputRadio`-Komponenten mit der `InputRadioGroup`-Komponente, um eine Optionsfeldgruppe zu erstellen. Im folgenden Beispiel werden dem im Abschnitt [Integrierte Formularkomponenten](#built-in-forms-components) beschriebenem `Starship`-Modell Eigenschaften hinzugefügt:
+
+```csharp
+[Required]
+[Range(typeof(Manufacturer), nameof(Manufacturer.SpaceX), 
+    nameof(Manufacturer.VirginGalactic), ErrorMessage = "Pick a manufacturer.")]
+public Manufacturer Manufacturer { get; set; } = Manufacturer.Unknown;
+
+[Required, EnumDataType(typeof(Color))]
+public Color? Color { get; set; } = null;
+
+[Required, EnumDataType(typeof(Engine))]
+public Engine? Engine { get; set; } = null;
+```
+
+Fügen Sie der App die folgende `enums`-Klasse hinzu. Erstellen Sie eine neue Datei, in der `enums` gespeichert werden kann, oder fügen Sie der `Starship.cs`-Datei `enums` hinzu. Sorgen Sie dafür, dass das `Starship`-Modell und das *Starfleet Starship Database*-Formular auf `enums` zugreifen können:
+
+```csharp
+public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
+public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
+public enum Engine { Ion, Plasma, Fusion, Warp }
+```
+
+Aktualisieren Sie das im Abschnitt [Integrierte Formularkomponenten](#built-in-forms-components) beschriebene *Starfleet Starship Database*-Formular. Fügen Sie die Komponenten hinzu, damit Folgendes erstellt wird:
+
+* Eine Optionsfeldgruppe für den Schiffshersteller.
+* Eine geschachtelte Optionsfeldgruppe für die Farbe und den Motor des Schiffs.
+
+```razor
+<p>
+    <InputRadioGroup @bind-Value="starship.Manufacturer">
+        Manufacturer:
+        <br>
+        @foreach (var manufacturer in (Manufacturer[])Enum
+            .GetValues(typeof(Manufacturer)))
+        {
+            <InputRadio Value="manufacturer" />
+            @manufacturer
+            <br>
+        }
+    </InputRadioGroup>
+</p>
+
+<p>
+    Pick one color and one engine:
+    <InputRadioGroup Name="engine" @bind-Value="starship.Engine">
+        <InputRadioGroup Name="color" @bind-Value="starship.Color">
+            <InputRadio Name="color" Value="Color.ImperialRed" />Imperial Red<br>
+            <InputRadio Name="engine" Value="Engine.Ion" />Ion<br>
+            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
+                Spacecruiser Green<br>
+            <InputRadio Name="engine" Value="Engine.Plasma" />Plasma<br>
+            <InputRadio Name="color" Value="Color.StarshipBlue" />Starship Blue<br>
+            <InputRadio Name="engine" Value="Engine.Fusion" />Fusion<br>
+            <InputRadio Name="color" Value="Color.VoyagerOrange" />
+                Voyager Orange<br>
+            <InputRadio Name="engine" Value="Engine.Warp" />Warp<br>
+        </InputRadioGroup>
+    </InputRadioGroup>
+</p>
+```
+
+> [!NOTE]
+> Wenn `Name` ausgelassen wird, werden die `InputRadio`-Komponenten nach dem direkten Vorgänger gruppiert.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 Beim Verwenden von Optionsfeldern in einem Formular werden Datenbindungen nicht wie andere Elemente verarbeitet, da Optionsfelder als Gruppe ausgewertet werden. Der Wert der einzelnen Optionsfelder ist fest. Der Wert der Optionsfeldgruppe ist jedoch der Wert des ausgewählten Optionsfelds. Das folgende Beispiel veranschaulicht die Vorgehensweise:
 
@@ -782,7 +905,7 @@ Die folgende <xref:Microsoft.AspNetCore.Components.Forms.EditForm>-Klasse verwen
 
 <h1>Radio Button Group Test</h1>
 
-<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -814,6 +937,8 @@ Die folgende <xref:Microsoft.AspNetCore.Components.Forms.EditForm>-Klasse verwen
     }
 }
 ```
+
+::: moniker-end
 
 ## <a name="binding-select-element-options-to-c-object-null-values"></a>Binden von `<select>`-Elementoptionen an `null`-Werte von C#-Objekten
 
@@ -920,7 +1045,7 @@ Blazor bietet Unterstützung für die Validierung von Formulareingaben mithilfe 
 Verwenden Sie den `ObjectGraphDataAnnotationsValidator`, der im *experimentellen* Paket [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) bereitgestellt wird, um den gesamten Objektgraph des gebundenen Modells zu validieren, einschließlich Sammlungseigenschaften und komplexer Eigenschaften:
 
 ```razor
-<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -1021,7 +1146,7 @@ Eine Nebenwirkung des vorangehenden Ansatzes ist, dass eine <xref:Microsoft.AspN
 * Lassen Sie die <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>-Komponente einblenden, wenn auf die Schaltfläche zum Senden geklickt wird, z. B. in einer `HandleValidSubmit`-Methode.
 
 ```razor
-<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
 

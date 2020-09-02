@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: db817827cc0132c15b82f4cda74e35a7d7807c48
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b71b742c8a60b4b563649baa181b8c332ff02501
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625413"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865195"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>ASP.NET Core Blazor Server mit Entity Framework Core (EFCore)
 
@@ -106,6 +106,8 @@ Im folgenden Beispiel wird [SQLite](https://www.sqlite.org/index.html) konfiguri
 Die Factory wird in Komponenten eingefügt und zum Erstellen neuer Instanzen verwendet. Gehen Sie beispielsweise in `Pages/Index.razor` folgendermaßen vor:
 
 [!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
+
+> ![HINWEIS] `Wrapper` ist eine [Komponentenreferenz](xref:blazor/components/index#capture-references-to-components) für die `GridWrapper`-Komponente. Sehen Sie sich dazu die `Index`-Komponente (`Pages/Index.razor`) in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor) an.
 
 ### <a name="scope-to-the-component-lifetime"></a>Gültigkeitsbereich für die Komponentenlebensdauer
 
@@ -210,6 +212,8 @@ Im folgenden Beispiel wird [SQLite](https://www.sqlite.org/index.html) konfiguri
 Die Factory wird in Komponenten eingefügt und zum Erstellen neuer Instanzen verwendet. Gehen Sie beispielsweise in `Pages/Index.razor` folgendermaßen vor:
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
+
+> ![HINWEIS] `Wrapper` ist eine [Komponentenreferenz](xref:blazor/components/index#capture-references-to-components) für die `GridWrapper`-Komponente. Sehen Sie sich dazu die `Index`-Komponente (`Pages/Index.razor`) in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor) an.
 
 ### <a name="scope-to-the-component-lifetime"></a>Gültigkeitsbereich für die Komponentenlebensdauer
 

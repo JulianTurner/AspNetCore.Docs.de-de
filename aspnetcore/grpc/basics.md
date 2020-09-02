@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/basics
-ms.openlocfilehash: 61ac7b84ec6a5eeb344cbf6f9a6712366be7d3c9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: aacaf9cca131d3fba1c3ae96cf42d51d3fdc17b6
+ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627077"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88945427"
 ---
 # <a name="grpc-services-with-c"></a>gRPC-Dienste mit C\#
 
@@ -37,7 +37,7 @@ gRPC verwendet einen Vertrag zuerst-Ansatz für die API-Entwicklung. Protokollpu
 * Die Definition des gRPC-Diensts
 * Die zwischen Clients und Servern übermittelten Nachrichten
 
-Weitere Informationen zur Syntax der protobuf-Dateien finden Sie in der [offiziellen Dokumentation zu Protokollpuffern](https://developers.google.com/protocol-buffers/docs/proto3).
+Weitere Informationen zur Syntax von protobuf-Dateien finden Sie unter <xref:grpc/protobuf>.
 
 Sehen Sie sich beispielsweise die Datei *greet.proto* an, die in den [ersten Schritten mit dem gRPC-Dienst](xref:tutorials/grpc/grpc-start) verwendet wird:
 

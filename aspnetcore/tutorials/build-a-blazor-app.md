@@ -5,7 +5,7 @@ description: Erstellen Sie Schritt für Schritt eine Blazor-App.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2020
+ms.date: 08/22/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 769b3bda591252c51bec3ffd72a43eaa5929349e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7335b68ad06b9d2b8d7e056cfc1a6d8214119b21
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630834"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865416"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
 
@@ -51,7 +51,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
    dotnet new blazorserver -o TodoList
    ```
 
-   Der oben stehende Befehl erstellt einen Ordner namens `TodoList` zum Speichern der App. Ändern Sie das Verzeichnis mit dem folgenden Befehl in den Ordner `TodoList`:
+   Der oben stehende Befehl erstellt einen Ordner namens `TodoList` zum Speichern der App. Der `TodoList`-Ordner ist der *Stammordner* des Projekts. Ändern Sie das Verzeichnis mit dem folgenden Befehl in den Ordner `TodoList`:
 
    ```dotnetcli
    cd TodoList
@@ -64,7 +64,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
    ```
 
    > [!IMPORTANT]
-   > Bei Razor-Komponenten-Dateinamen muss der erste Buchstabe groß geschrieben werden. Vergewissern Sie sich daher, dass der `Todo`-Komponenten-Dateiname mit dem Großbuchstaben `T` beginnt.
+   > Der erste Buchstabe von Razor-Komponentendateinamen muss großgeschrieben werden. Öffnen Sie den `Pages`-Ordner. Überprüfen Sie, ob der `Todo`-Komponentendateiname mit einem großgeschriebenen ersten Buchstaben (`T`) beginnt. Der Dateiname sollte `Todo.razor` lauten.
 
 1. Geben Sie in `Pages/Todo.razor` das ursprüngliche Markup für die Komponente an:
 
@@ -88,9 +88,9 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
    </li>
    ```
 
-1. Erstellen Sie die App neu, und führen Sie sie aus. Besuchen Sie die neue Todo-Seite, um sicherzustellen, dass der Link zur `Todo`-Komponente funktioniert.
+1. Erstellen Sie die App, und führen Sie sie aus, indem Sie den `dotnet run`-Befehl in der Befehlsshell im `TodoList`-Ordner ausführen. Besuchen Sie die neue Todo-Seite, um sicherzustellen, dass der Link zur `Todo`-Komponente funktioniert.
 
-1. Fügen Sie dem Stamm des Projekts eine `TodoItem.cs`-Datei hinzu, die eine Klasse zum Darstellen eines Aufgabenelements enthalten soll. Verwenden Sie den folgenden C#-Code für die `TodoItem`-Klasse:
+1. Fügen Sie dem Stamm des Projekts (der `TodoList`-Ordner) eine `TodoItem.cs`-Datei hinzu, die eine Klasse zum Darstellen eines Aufgabenelements enthalten soll. Verwenden Sie den folgenden C#-Code für die `TodoItem`-Klasse:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
 
@@ -105,7 +105,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
 
-1. Erstellen Sie die App neu, und führen Sie sie aus. Bei Auswahl der Schaltfläche **`Add todo`** geschieht nichts, da kein Ereignishandler mit der Schaltfläche verknüpft ist.
+1. Halten Sie die Ausführung der App in der Befehlsshell an. In vielen Befehlsshells kann der Tastaturbefehl <kbd>STRG</kbd>+<kbd>C</kbd> verwendet werden, um eine App anzuhalten. Erstellen Sie die App neu, und führen Sie sie mit dem `dotnet run`-Befehl aus. Bei Auswahl der Schaltfläche **`Add todo`** geschieht nichts, da kein Ereignishandler mit der Schaltfläche verknüpft ist.
 
 1. Fügen Sie eine `AddTodo`-Methode zur `Todo`-Komponente hinzu, und registrieren Sie sie mit dem `@onclick`-Attribut für eine Schaltflächenauswahl. Die C#-Methode `AddTodo` wird aufgerufen, wenn die Schaltfläche ausgewählt wird:
 
@@ -123,7 +123,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo8.razor?highlight=19-26)]
 
-1. Erstellen Sie die App neu, und führen Sie sie aus. Fügen Sie der Aufgabenliste einige Aufgabenelemente hinzu, um den neuen Code zu testen.
+1. Halten Sie die Ausführung der App in der Befehlsshell an. Erstellen Sie die App neu, und führen Sie sie mit dem `dotnet run`-Befehl aus. Fügen Sie der Aufgabenliste einige Aufgabenelemente hinzu, um den neuen Code zu testen.
 
 1. Der Titeltext für die einzelnen Aufgabenelemente kann als bearbeitbar festgelegt werden, und ein Kontrollkästchen kann dem Benutzer helfen, die erledigten Elemente nachzuverfolgen. Fügen Sie für jedes Aufgabenelement eine Kontrollkästcheneingabe hinzu, und binden Sie ihren Wert an die `IsDone`-Eigenschaft. Ändern Sie `@todo.Title` in ein `<input>`-Element, das an `@todo.Title` gebunden ist:
 
@@ -139,7 +139,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
-1. Erstellen Sie die App neu, und führen Sie sie aus. Fügen Sie Aufgabenelemente hinzu, um den neuen Code zu testen.
+1. Halten Sie die Ausführung der App in der Befehlsshell an. Erstellen Sie die App neu, und führen Sie sie mit dem `dotnet run`-Befehl aus. Fügen Sie Aufgabenelemente hinzu, um den neuen Code zu testen.
 
 ## <a name="next-steps"></a>Nächste Schritte
 

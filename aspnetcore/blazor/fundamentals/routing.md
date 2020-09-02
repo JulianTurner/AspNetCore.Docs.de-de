@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 0c878a05a50e5a6879278ee737ada167669ee0ff
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: eb9e3cbddd2eaca8fef9a6782c28bbce4c029f58
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626479"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865329"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor-Routing
 
@@ -169,13 +169,43 @@ In Blazor Server-Apps ist die Standardroute in `_Host.cshtml` `/` (`@page "/"`).
 
 Die `"/{**path}"`-Vorlage enthält Folgendes:
 
-* *catch-all*-Syntax mit doppelten Sternchen (`**`) zur Erfassung des Pfades über mehrere Ordnergrenzen hinweg ohne Codierung von Schrägstrichen (`/`).
+* *Catch-All*-Syntax mit doppelten Sternchen (`**`) zur Erfassung des Pfades über mehrere Ordnergrenzen hinweg ohne Decodierung von Schrägstrichen (`/`).
 * Name des `path`-Routenparameters.
 
-> [!NOTE]
-> Die *Catch-all*-Parametersyntax (`*`/`**`) wird **nicht** in Razor-Komponenten (`.razor`) unterstützt.
-
 Weitere Informationen finden Sie unter <xref:fundamentals/routing>.
+
+## <a name="catch-all-route-parameters"></a>Catch-All-Routenparameter
+
+::: moniker range=">= aspnetcore-5.0"
+
+*Dieser Abschnitt gilt ab dem Release Candidate 1 (RC1) für .NET 5, der Mitte September veröffentlicht wird.*
+
+Catch-All-Routenparameter, die Pfade über mehrere Ordnergrenzen hinweg erfassen, werden in Komponenten unterstützt. Für die Catch-All-Routenparameter gilt Folgendes:
+
+* Sie müssen so benannt werden, dass sie dem Routensegmentnamen entsprechen. Die Groß-/Kleinschreibung muss bei der Benennung nicht beachtet werden.
+* Ein `string`-Typ. Im Framework steht keine automatische Übertragung zur Verfügung.
+* Am Ende der URL.
+
+```razor
+@page "/page/{*pageRoute}"
+
+@code {
+    [Parameter]
+    public string PageRoute { get; set; }
+}
+```
+
+Bei der URL `/page/this/is/a/test` mit der Routenvorlage `/page/{*pageRoute}` wird der Wert für `PageRoute` auf `this/is/a/test` festgelegt.
+
+Schrägstriche und Segmente des erfassten Pfads werden decodiert. Bei der Routenvorlage `/page/{*pageRoute}` hält die URL `/page/this/is/a%2Ftest%2A` `this/is/a/test*` an.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Ab dem Release Candidate 1 (RC1) von .NET 5, der Mitte September veröffentlicht wird, werden Catch-All-Routenparameter unterstützt.*
+
+::: moniker-end
 
 ## <a name="navlink-component"></a>NavLink-Komponente
 

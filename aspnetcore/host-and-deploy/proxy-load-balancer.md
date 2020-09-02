@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/proxy-load-balancer
-ms.openlocfilehash: 737575667be0e6b776a4d9ec9fb75bc0d11309dc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 209f75edc2901422b94c619a505e0b8316aec699
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634175"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865391"
 ---
 # <a name="configure-aspnet-core-to-work-with-proxy-servers-and-load-balancers"></a>Konfigurieren von ASP.NET Core zur Verwendung mit Proxyservern und Lastenausgleich
 
@@ -208,7 +208,7 @@ Sie können die Adresse auch im Hexadezimalformat angeben (`10.11.12.1` in IPv6 
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
-// using using System.Net;
+// using System.Net;
 // using Microsoft.AspNetCore.HttpOverrides;
 services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -586,7 +586,7 @@ Sie können die Adresse auch im Hexadezimalformat angeben (`10.11.12.1` in IPv6 
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
-// using using System.Net;
+// using System.Net;
 // using Microsoft.AspNetCore.HttpOverrides;
 services.Configure<ForwardedHeadersOptions>(options =>
 {

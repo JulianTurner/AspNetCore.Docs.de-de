@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 3b41aedcbd0d2c22b20d8fa3a21b8af97d1fbb2c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d88cad10314872271250cd43212a64698f485381
+ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628559"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89280399"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor-Datenbindung
 
@@ -79,27 +79,7 @@ Binden Sie eine Eigenschaft oder ein Feld an andere Ereignisse, indem Sie auch e
 
 Im Gegensatz zu `onchange`, das ausgelöst wird, wenn das Element den Fokus verliert, wird `oninput` ausgelöst, wenn sich der Wert des Textfelds ändert.
 
-Verwenden Sie `@bind-{ATTRIBUTE}` mit der `@bind-{ATTRIBUTE}:event`-Syntax, um andere Elementattribute als `value` zu binden. Im folgenden Beispiel:
-
-* Der Stil des Absatzes ist **rot**, wenn die Komponente geladen wird (`style="color:red"`).
-* Der Benutzer ändert den Wert des Textfelds, um einen anderen CSS-Farbstil widerzuspiegeln, und ändert den Elementfokus der Seite. Der Benutzer ändert z. B. den Wert des Textfelds in `color:blue` und drückt die <kbd>TAB-TASTE</kbd> auf der Tastatur.
-* Wenn sich der Elementfokus ändert:
-  * Der Wert von `paragraphStyle` wird aus dem Wert des `<input>`-Elements zugewiesen.
-  * Der Absatzstil wird aktualisiert, um den neuen Stil in `paragraphStyle` widerzuspiegeln. Wenn der Stil in `color:blue` aktualisiert wird, ändert sich die Textfarbe in **blau**.
-
-```razor
-<p>
-    <input type="text" @bind="paragraphStyle" />
-</p>
-
-<p @bind-style="paragraphStyle" @bind-style:event="onchange">
-    Blazorify the app!
-</p>
-
-@code {
-    private string paragraphStyle = "color:red";
-}
-```
+<!-- Hold location for resolution of https://github.com/dotnet/AspNetCore.Docs/issues/19721 -->
 
 Bei der Attributbindung wird die Groß- und Kleinschreibung berücksichtigt.
 

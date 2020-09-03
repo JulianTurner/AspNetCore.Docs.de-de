@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/details
-ms.openlocfilehash: b25113f8e2132c06e06d53a25e71ed2a42deb00f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4683f106b3372a2f14f289b39c8a0b8b6c8b5aa1
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629703"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379366"
 ---
 # <a name="part-10-examine-the-details-and-delete-methods-of-an-aspnet-core-app"></a>Teil 10: Untersuchen der Methoden „Details“ und „Delete“ einer ASP.NET Core-App
 
@@ -64,7 +64,7 @@ public async Task<IActionResult> Delete(int id, bool notUsed)
 
 ### <a name="publish-to-azure"></a>Veröffentlichen in Azure
 
-Informationen zum Bereitstellen in Azure finden Sie unter [Tutorial: Erstellen einer .NET Core- und SQL-Datenbank-Web-App in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+Informationen zum Bereitstellen in Azure finden Sie unter [Tutorial: Erstellen einer ASP.NET Core- und SQL-Datenbank-App in Azure App Service](/azure/app-service/tutorial-dotnetcore-sqldb-app).
 
 > [!div class="step-by-step"]
 > [Vorherige](validation.md)

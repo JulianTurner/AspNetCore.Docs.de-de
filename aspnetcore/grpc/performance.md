@@ -1,5 +1,5 @@
 ---
-title: Bewährte Methoden für die Leistung in gRPC für ASP.NET Core
+title: Bewährte Methoden für Leistung mit gRPC
 author: jamesnk
 description: In diesem Artikel werden bewährte Methoden zum Erstellen leistungsstarker gRPC-Dienste vorgestellt.
 monikerRange: '>= aspnetcore-3.0'
@@ -17,24 +17,24 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: f9cefa89ec6e533920b33223b34333f6ebe38428
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: a0a1a6901e07fb0074ca403870378f267d3d4403
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876723"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379444"
 ---
-# <a name="performance-best-practices-in-grpc-for-aspnet-core"></a>Bewährte Methoden für die Leistung in gRPC für ASP.NET Core
+# <a name="performance-best-practices-with-grpc"></a>Bewährte Methoden für Leistung mit gRPC
 
 Von [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC ist für leistungsstarke Dienste konzipiert. In dieser Dokumentation wird erläutert, wie Sie die bestmögliche Leistung von gRPC erzielen.
 
-## <a name="reuse-channel"></a>Wiederverwenden von Kanälen
+## <a name="reuse-grpc-channels"></a>Wiederverwenden von gRPC-Kanälen
 
 Ein gRPC-Kanal sollte für gRPC-Aufrufe wiederverwendet werden. Durch die Wiederverwendung eines Kanals können Aufrufe für Multiplexing über eine vorhandene HTTP/2-Verbindung verwendet werden.
 
-Wenn ein neuer Kanal für jeden gRPC-Aufruf erstellt wird, kann dies deutlich mehr Zeit beanspruchen. Jeder Aufruf erfordert mehrere Netzwerkroundtrips zwischen dem Client und dem Server, um eine HTTP/2-Verbindung herzustellen:
+Wenn ein neuer Kanal für jeden gRPC-Aufruf erstellt wird, kann dies deutlich mehr Zeit beanspruchen. Jeder Aufruf erfordert mehrere Netzwerkroundtrips zwischen dem Client und dem Server, um eine neue HTTP/2-Verbindung herzustellen:
 
 1. Öffnen eines Sockets
 2. Herstellen der TCP-Verbindung
@@ -48,6 +48,8 @@ Kanäle können problemlos für mehrere gRPC-Aufrufe gemeinsam genutzt und wiede
 * Aus einem Kanal können mehrere gRPC-Clients erstellt werden, einschließlich verschiedener Clienttypen.
 * Ein Kanal und Clients, die aus dem Kanal erstellt wurden, können sicher von mehreren Threads verwendet werden.
 * Clients, die aus dem Kanal erstellt wurden, können mehrere gleichzeitige Aufrufe durchführen.
+
+Die gRPC-Clientfactory bietet eine zentralisierte Möglichkeit zum Konfigurieren von Kanälen. Zugrunde liegende Kanäle werden automatisch wiederverwendet. Weitere Informationen finden Sie unter <xref:grpc/clientfactory>.
 
 ## <a name="connection-concurrency"></a>Verbindungsparallelität
 
@@ -85,6 +87,38 @@ Es gibt einige Problemumgehungen für .NET Core 3.1-Apps:
 >
 > * Threadkonflikte zwischen Streams, die versuchen in die Verbindung zu schreiben
 > * Verlust von Verbindungspaketen, der dazu führt, dass alle Aufrufe auf der TCP-Ebene blockiert werden
+
+## <a name="load-balancing"></a>Lastenausgleich
+
+Einige Lastenausgleiche funktionieren mit gRPC nicht effektiv. L4-Lastenausgleiche (Transport) agieren auf Verbindungsebene, indem sie TCP-Verbindungen endpunktübergreifend verteilen. Dieser Ansatz eignet sich für den Lastenausgleich von API-Aufrufen mit HTTP/1.1. Gleichzeitige HTTP/1.1-Aufrufe werden über verschiedene Verbindungen gesendet, sodass der Lastenausgleich für diese endpunktübergreifend erfolgen kann.
+
+Da L4-Lastenausgleiche auf Verbindungsebene agieren, sind sie für gRPC nicht besonders gut geeignet. gRPC verwendet HTTP/2, sodass ein Multiplexing für mehrere Aufrufe über eine einzige TCP-Verbindung erfolgt. Alle gRPC-Aufrufe über diese Verbindung werden an einen Endpunkt gesendet.
+
+Es gibt zwei Optionen für den effektiven Lastenausgleich von gRPC:
+
+* Clientseitiger Lastenausgleich
+* L7-Proxylastenausgleich (Anwendung)
+
+> [!NOTE]
+> Nur für gRPC-Aufrufe kann ein Lastenausgleich zwischen Endpunkten ausgeführt werden. Sobald ein gRPC-Streamingaufruf erstellt wurde, werden alle über den Stream gesendeten Nachrichten an einen Endpunkt weitergeleitet.
+
+### <a name="client-side-load-balancing"></a>Clientseitiger Lastenausgleich
+
+Beim clientseitigen Lastenausgleich kennt der Client die Endpunkte. Für jeden gRPC-Rückruf wählt er einen anderen Endpunkt aus, an den der Aufruf gesendet werden soll. Der clientseitige Lastenausgleich ist eine gute Wahl, wenn die Latenz entscheidend ist. Zwischen dem Client und dem Dienst ist kein Proxy vorhanden, sodass der Aufruf direkt an den Dienst gesendet wird. Der Nachteil beim clientseitigen Lastenausgleich besteht darin, dass jeder Client die verfügbaren Endpunkte nachverfolgen muss, die er verwenden soll.
+
+Der clientseitige Lookaside-Lastenausgleich ist ein Verfahren, bei dem der Lastenausgleichzustand an einem zentralen Ort gespeichert wird. Clients fragen diesen zentralen Ort regelmäßig auf Informationen bezüglich Lastenausgleichsentscheidungen ab.
+
+`Grpc.Net.Client` unterstützt derzeit keinen clientseitigen Lastenausgleich. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) ist eine gute Wahl, wenn der clientseitige Lastenausgleich in .NET erforderlich ist.
+
+### <a name="proxy-load-balancing"></a>Proxylastenausgleich
+
+Ein L7-Proxy (Anwendung) agiert auf einer höheren Ebene als ein L4-Proxy (Transport). L7-Proxys sind mit HTTP/2 kompatibel und können gRPC-Aufrufe per Multiplexing über eine HTTP/2-Verbindung und mehrere Endpunkte an den Proxy verteilen. Die Verwendung eines Proxys ist einfacher als der clientseitige Lastenausgleich, kann jedoch die Latenz für gRPC-Aufrufe erhöhen.
+
+Es gibt viele verfügbare L7-Proxys. Unter anderem gibt es folgende Optionen:
+
+* [Envoy](https://www.envoyproxy.io/), ein beliebter Open-Source-Proxy
+* [Linkerd](https://linkerd.io/), ein Dienstnetz für Kubernetes
+* [YARP: A Reverse Proxy](https://microsoft.github.io/reverse-proxy/), ein als Vorschauversion verfügbarer Open-Source-Proxy, der in .NET geschrieben wurde
 
 ::: moniker range=">= aspnetcore-5.0"
 

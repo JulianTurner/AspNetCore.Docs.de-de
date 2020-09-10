@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 0a51647463362d6cfac335688d42d4be013f8b9c
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: 2d002e075f9d57654589b540e522307c363d9660
+ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712511"
+ms.lasthandoff: 08/31/2020
+ms.locfileid: "89153544"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Dependency Injection in ASP.NET Core
 
@@ -345,7 +345,6 @@ Wenn die App in der [Entwicklungsumgebung](xref:fundamentals/environments) ausge
 
 * bereichsbezogene Dienste nicht vom Stammdienstanbieter aufgelöst werden.
 * bereichsbezogene Dienste nicht in Singletons eingefügt werden.
-* vorübergehende Dienste nicht in Singletons oder bereichsbezogene Dienste eingefügt werden.
 
 Der Stammdienstanbieter wird erstellt, wenn <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> aufgerufen wird. Die Lebensdauer des Stammdienstanbieters entspricht der Lebensdauer der App, wenn der Anbieter beim Start der App erstellt und beim Herunterfahren gelöscht wird.
 
@@ -518,7 +517,7 @@ Die Factorymethode des einzelnen Diensts, z. B. das zweite Argument für [AddSi
   [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
 
 * Löschbare temporäre Dienste werden vom Container für die Löschung erfasst. Dadurch kann es zu Arbeitsspeicherverlusten kommen, wenn diese vom obersten Container aufgelöst werden.
-* Aktivieren Sie die Bereichsüberprüfung, um sicherzustellen, dass die App keine bereichsbezogenen Dienste aufweist, die Singletons erfassen. Weitere Informationen finden Sie unter [Bereichsvalidierung](#scope-validation).
+* Aktivieren Sie die Bereichsüberprüfung, um sicherzustellen, dass die App keine Singletons aufweist, die bereichsbezogene Dienste erfassen. Weitere Informationen finden Sie unter [Bereichsvalidierung](#scope-validation).
 
 Wie bei allen Empfehlungen treffen Sie möglicherweise auf Situationen, in denen eine Empfehlung ignoriert werden muss. Es gibt nur wenige Ausnahmen, die sich meistens auf besondere Fälle innerhalb des Frameworks beziehen.
 

@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: b8149b79c1e7b204e52cc8595d1193b623bb0008
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 60af1add9ae2f8b2b94bc19b65667d7af91fb122
+ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945488"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89102665"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>Erstellen von Protobuf-Nachrichten für .NET-Apps
 
 Von [James Newton-King](https://twitter.com/jamesnk) und [Mark Rendle](https://twitter.com/markrendle)
 
-gRPC verwendet [Protobuf](https://developers.google.com/protocol-buffers) als Interface Definition Language (IDL). Protobuf-IDL ist ein sprachunabhängiges Format zum Angeben der Nachrichten, die von gRPC-Diensten gesendet und empfangen werden. Protobuf-Nachrichten werden in *PROTO*-Dateien definiert. In dieser Dokumentation wird erläutert, wie Protobuf-Konzepte auf .NET übertragen werden können.
+gRPC verwendet [Protobuf](https://developers.google.com/protocol-buffers) als Interface Definition Language (IDL). Protobuf-IDL ist ein sprachunabhängiges Format zum Angeben der Nachrichten, die von gRPC-Diensten gesendet und empfangen werden. Protobuf-Nachrichten werden in `.proto`-Dateien definiert. In dieser Dokumentation wird erläutert, wie Protobuf-Konzepte auf .NET übertragen werden können.
 
 ## <a name="protobuf-messages"></a>Protobuf-Nachrichten
 
@@ -50,7 +50,7 @@ In der obigen Nachrichtendefinition werden drei Felder als Name/Wert-Paare angeg
 
 Zusätzlich zu einem Namen verfügt jedes Feld in der Nachrichtendefinition über eine eindeutige Zahl. Feldzahlen werden dazu verwendet, Felder zu identifizieren, wenn die Nachricht an Protobuf serialisiert wird. Die Serialisierung einer kleinen Zahl ist schneller als die Serialisierung des gesamten Feldnamens. Da Feldzahlen zur Identifikation eines Felds dienen, ist es wichtig, dass Änderung mit Bedacht vorgenommen werden. Weitere Informationen zum Ändern von Protobuf-Nachrichten finden Sie unter <xref:grpc/versioning>.
 
-Wenn eine App erstellt wird, generieren die Protobuf-Tools .NET-Typen aus *PROTO*-Dateien. Die `Person`-Nachricht generiert eine .NET-Klasse:
+Wenn eine App erstellt wird, generieren die Protobuf-Tools .NET-Typen aus `.proto`-Dateien. Die `Person`-Nachricht generiert eine .NET-Klasse:
 
 ```csharp
 public class Person
@@ -87,15 +87,15 @@ Protobuf unterstützt eine Reihe nativer Skalarwerttypen. In der folgenden Tabel
 
 ### <a name="dates-and-times"></a>Datums- und Zeitangaben
 
-Die nativen Skalartypen stellen wie die .NET-Typen <xref:System.DateTimeOffset>, <xref:System.DateTime> und <xref:System.TimeSpan> keine Datums- und Zeitwerte bereit. Diese Typen können mithilfe der Protobuf-Erweiterung „Well Known Types“ (bekannte Typen) angegeben werden. Diese Erweiterungen bieten Codegenerierung und Runtime-Unterstützung für komplexe Feldtypen für die unterstützten Plattformen.
+Die nativen Skalartypen stellen wie die .NET-Typen <xref:System.DateTimeOffset>, <xref:System.DateTime> und <xref:System.TimeSpan> keine Datums- und Zeitwerte bereit. Diese Typen können mithilfe der Protobuf-Erweiterung *Well Known Types* angegeben werden. Diese Erweiterungen bieten Codegenerierung und Runtime-Unterstützung für komplexe Feldtypen für die unterstützten Plattformen.
 
 In der folgenden Tabelle werden die Datums- und Zeittypen aufgeführt:
 
-| .NET-Typ | Bekannter Protobuf-Typ |
-| ------- | ------------------------ |
+| .NET-Typ        | Bekannter Protobuf-Typ    |
+| ---------------- | --------------------------- |
 | `DateTimeOffset` | `google.protobuf.Timestamp` |
-| `DateTime` | `google.protobuf.Timestamp` |
-| `TimeSpan` | `google.protobuf.Duration` |
+| `DateTime`       | `google.protobuf.Timestamp` |
+| `TimeSpan`       | `google.protobuf.Duration`  |
 
 ```protobuf  
 syntax = "proto3"
@@ -132,7 +132,7 @@ var duration = meeting.Duration?.ToTimeSpan();
 
 Bei der Protobuf-Codegenerierung für C# werden die nativen Typen verwendet, z. B. `int` für `int32`. Daher können die Werte, die immer enthalten sind, nicht `null` sein.
 
-Für Werte, die einen expliziten `null`-Wert erfordern, z. B. `int?` in C#-Code, umfasst die Protobuf-Erweiterung „Well Known Types“ Wrapper, die in Nullwerte zulassende C#-Typen kompiliert wurden. Importieren Sie `wrappers.proto` in Ihre `.proto`-Datei wie im folgenden Code, um sie zu verwenden:
+Für Werte, die einen expliziten `null`-Wert erfordern, z. B. `int?` in C#-Code, umfasst die Protobuf-Erweiterung „Well Known Types“ Wrapper, die in C#-Nullable-Typen kompiliert werden. Importieren Sie `wrappers.proto` in Ihre `.proto`-Datei wie im folgenden Code, um sie zu verwenden:
 
 ```protobuf  
 syntax = "proto3"
@@ -149,7 +149,7 @@ Protobuf verwendet Nullwerte zulassende C#-Typen, z. B. `int?`, für die generi
 
 In der folgenden Tabelle finden Sie eine vollständige Liste der Wrappertypen mit dem entsprechenden C#-Typ:
 
-| C#-Typ   | Well Known Type-Wrapper       |
+| C#-Typ   | Wrapper für bekannte Typen       |
 | --------- | ----------------------------- |
 | `bool?`   | `google.protobuf.BoolValue`   |
 | `double?` | `google.protobuf.DoubleValue` |
@@ -161,7 +161,7 @@ In der folgenden Tabelle finden Sie eine vollständige Liste der Wrappertypen mi
 
 ### <a name="decimals"></a>Dezimalstellen
 
-Protobuf unterstützt den .NET-Typ `decimal` nicht nativ, nur `double` und `float`. Im Protobuf-Projekt gibt es eine fortlaufende Diskussion über die Möglichkeit, einen Standarddezimaltyp mit Plattformunterstützung für Sprachen und Frameworks, die den Typ unterstützen, zu den bekannten Typen hinzuzufügen. Bisher wurde keine Implementierung vorgenommen.
+Protobuf unterstützt den .NET-Typ `decimal` nicht nativ, nur `double` und `float`. Im Protobuf-Projekt gibt es eine fortlaufende Diskussion darüber, einen Standarddezimaltyp mit Plattformunterstützung für Sprachen und Frameworks, die den Typ unterstützen, zur Erweiterung „Well-Known Types“ hinzuzufügen. Bisher wurde keine Implementierung vorgenommen.
 
 Eine Nachrichtendefinition zum Darstellen des `decimal`-Typs kann erstellt werden, die für die sichere Serialisierung zwischen .NET-Clients und -Servern verwendet werden kann. Entwickler anderer Plattformen müssten jedoch das verwendete Format verstehen und ihr eigenes Format implementieren, um dieses zu verarbeiten.
 
@@ -284,11 +284,17 @@ person.Attributes.Add(attributes);
 
 ## <a name="unstructured-and-conditional-messages"></a>Nicht strukturiere und bedingte Nachrichten
 
-Protobuf ist ein „Vertrag zuerst“-Nachrichtenformat. Die Nachrichten einer App müssen in *PROTO*-Dateien angegeben werden, wenn die App erstellt wird. Für erweiterte Szenarios bietet Protobuf Sprachfeatures und bekannte Typen, um bedingte und unbekannte Nachrichten zu unterstützen.
+Protobuf ist ein Contract-First-Messagingformat. Die Nachrichten einer App, einschließlich der Felder und Typen, müssen beim Kompilieren der App in `.proto`-Dateien angegeben werden. Das Contract-First-Design von Protobuf ist gut geeignet, um Nachrichteninhalte zu erzwingen, kann jedoch zu Einschränkungen führen, falls kein strenger Vertrag erforderlich ist:
+
+* Nachrichten mit unbekannten Nutzdaten, z. B. eine Nachricht mit einem Feld, das eine beliebige Nachricht enthalten könnte
+* Bedingte Nachrichten, z. B. eine von einem gRPC-Dienst zurückgegebene Nachricht, ob ein Vorgang erfolgreich war oder ein Fehler aufgetreten ist
+* Dynamische Werte, z. B. eine Nachricht mit einem Feld, das eine ungeordnete Wertesammlung (ähnlich wie JSON) enthält
+
+Protobuf bietet Sprachfeatures und Typen, um diese Szenarios zu unterstützen.
 
 ### <a name="any"></a>Any
 
-Mithilfe des `Any`-Typs können Sie Nachrichten als eingebettete Typen ohne *.proto*-Definition verwenden. Importieren Sie `any.proto`, um den `Any`-Typ zu verwenden.
+Mithilfe des `Any`-Typs können Sie Nachrichten als eingebettete Typen ohne `.proto`-Definition verwenden. Importieren Sie `any.proto`, um den `Any`-Typ zu verwenden.
 
 ```protobuf
 import "google/protobuf/any.proto";
@@ -338,7 +344,7 @@ Felder in der `oneof`-Gruppe müssen über eindeutige Feldnummern in der gesamte
 Bei Verwendung von `oneof` enthält der generierte C#-Code eine Enumeration, die angibt, welche Felder festgelegt wurden. Sie können die Enumeration testen, um herauszufinden, welches Feld festgelegt wurde. Für nicht festgelegte Felder wird `null` oder der Standardwert zurückgegeben, anstatt dass eine Ausnahme ausgelöst wird.
 
 ```csharp
-var response = client.GetPersonAsync(new RequestMessage());
+var response = await client.GetPersonAsync(new RequestMessage());
 
 switch (response.ResultCase)
 {
@@ -355,7 +361,7 @@ switch (response.ResultCase)
 
 ### <a name="value"></a>Wert
 
-Der `Value`-Typ stellt einen dynamisch typisierten Wert dar. Dabei kann es sich um `null`, eine Zahl, eine Zeichenfolge, einen booleschen Wert, ein Wörterbuch mit Werten (`Struct`) oder eine Liste von Werten (`ValueList`) handeln. `Value` ist ein bekannter Typ, der das zuvor beschriebene `oneof`-Feature nutzt. Importieren Sie `struct.proto`, um den `Value`-Typ zu verwenden.
+Der `Value`-Typ stellt einen dynamisch typisierten Wert dar. Dabei kann es sich um `null`, eine Zahl, eine Zeichenfolge, einen booleschen Wert, ein Wörterbuch mit Werten (`Struct`) oder eine Liste von Werten (`ValueList`) handeln. `Value` ist ein bekannter Protobuf-Typ, der das zuvor beschriebene `oneof`-Feature nutzt. Importieren Sie `struct.proto`, um den `Value`-Typ zu verwenden.
 
 ```protobuf
 import "google/protobuf/struct.proto";

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: fc257015a9ee972da90b0f206a60b07bd6cc1f97
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bba965e14058663c3ed9c0f15afc6a8d78997aea
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631107"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009751"
 ---
 # <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.net Core SignalR Hosting und Skalierung
 
@@ -82,7 +82,7 @@ Das Ergebnis ist, dass der Dienst alle Clientverbindungen verwaltet, während je
 Diese Vorgehensweise zum horizontalen hochskalieren hat gegenüber der redis-Rückwand-Alternative mehrere Vorteile:
 
 * Persistente Sitzungen, auch bekannt als [Client Affinität](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), sind nicht erforderlich, da Clients sofort an den Azure-Dienst umgeleitet werden, SignalR Wenn Sie eine Verbindung herstellen.
-* Eine SignalR App kann basierend auf der Anzahl der gesendeten Nachrichten horizontal hochskaliert werden, während der Azure- SignalR Dienst automatisch skaliert wird, um beliebig viele Verbindungen zu verarbeiten. Es könnten z. b. Tausende von Clients vorhanden sein. Wenn jedoch nur wenige Nachrichten pro Sekunde gesendet werden, SignalR muss die APP nicht auf mehrere Server horizontal hochskaliert werden, um die Verbindungen selbst zu bewältigen.
+* Eine SignalR App kann basierend auf der Anzahl der gesendeten Nachrichten horizontal hochskaliert werden, während der Azure- SignalR Dienst für eine beliebige Anzahl von Verbindungen skaliert wird. Es könnten z. b. Tausende von Clients vorhanden sein. Wenn jedoch nur wenige Nachrichten pro Sekunde gesendet werden, SignalR muss die APP nicht auf mehrere Server horizontal hochskaliert werden, um die Verbindungen selbst zu bewältigen.
 * Eine SignalR App verwendet nicht wesentlich mehr Verbindungs Ressourcen als eine Web-App ohne SignalR .
 
 Aus diesen Gründen wird der Azure- SignalR Dienst für alle ASP.net Core- SignalR apps empfohlen, die in Azure gehostet werden, einschließlich APP Service, VMS und Containern.

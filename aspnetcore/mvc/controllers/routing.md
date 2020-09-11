@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 83ddb49f60058ecc744163faa2f5c454abc7b42d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 08cd6396cca78488827dfa7c2cca62a35c500dbd
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630311"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009699"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -152,7 +152,7 @@ Für die meisten Apps sollte eine grundlegendes und beschreibendes Routingschema
 
 * Sie unterstützt ein grundlegendes und beschreibendes Routingschema.
 * Sie stellt einen nützlichen Startpunkt für benutzeroberflächenbasierte Apps dar.
-* Ist die einzige Routen Vorlage, die für viele Web-UI-apps benötigt wird. Bei größeren Webanwendungs-Apps ist eine weitere Route, die [Bereiche](#areas) verwendet, wenn diese häufig benötigt werden.
+* Ist die einzige Routen Vorlage, die für viele Web-UI-apps benötigt wird. Bei größeren Webanwendungs-Apps ist eine andere Route, die [Bereiche](#areas) verwendet, häufig alle erforderlich.
 
 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> und <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
 
@@ -189,7 +189,7 @@ Da `controller` und `action` nicht in der Routen Vorlage `"blog/{*article}"` als
 
 `/Blog`, `/Blog/Article` und `/Blog/{any-string}` sind die einzigen URL-Pfade, die der Blog Route entsprechen.
 
-Das vorherige Beispiel:
+Für das vorherige Beispiel gilt Folgendes:
 
 * `blog` Route hat eine höhere Priorität als die Route, `default` da Sie zuerst hinzugefügt wird.
 * Ist ein Beispiel für das Routing im [Slug](https://developer.mozilla.org/docs/Glossary/Slug) -Stil, bei dem es typisch ist, einen Artikelnamen als Teil der URL zu haben.

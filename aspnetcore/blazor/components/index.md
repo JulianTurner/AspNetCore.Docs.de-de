@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 26e8239634c3edb99c7606ab2e250c69af4e746f
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: be1584e72fc1504ac9f8ca10a6b084c95a579b5b
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865286"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009621"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -266,7 +266,7 @@ Im folgenden Beispiel aus der Beispiel-App legt der `ParentComponent` den Wert d
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Erstellen Sie keine Komponenten, die beim Rendern der Komponenteninhalte mit einem <xref:Microsoft.AspNetCore.Components.RenderFragment> in ihre eigenen *Komponentenparameter* schreiben. Verwenden Sie stattdessen ein privates Feld. Weitere Informationen finden Sie im Abschnitt [Überschriebene Parameter mit `RenderFragment`](#overwritten-parameters-with-renderfragment).
+> Erstellen Sie keine Komponenten, die in ihre eigenen *Komponentenparameter* schreiben, sondern verwenden Sie stattdessen ein privates Feld. Weitere Informationen finden Sie im Abschnitt [Überschriebene Parameter](#overwritten-parameters).
 
 ## <a name="child-content"></a>Untergeordneter Inhalt
 
@@ -625,14 +625,9 @@ Im Allgemeinen ist es sinnvoll, Werte der folgenden Kategorien für [`@key`][5] 
 
 Stellen Sie sicher, dass die für [`@key`][5] verwendeten Werte nicht kollidieren. Wenn innerhalb desselben übergeordneten Elements kollidierende Werte erkannt werden, löst Blazor eine Ausnahme aus, da alte Elemente oder Komponenten nicht deterministisch neuen Elementen oder Komponenten zugeordnet werden können. Verwenden Sie nur eindeutige Werte wie Objektinstanzen oder Primärschlüsselwerte.
 
-## <a name="overwritten-parameters-with-renderfragment"></a>Überschriebene Parameter mit `RenderFragment`
+## <a name="overwritten-parameters"></a>Überschriebene Parameter
 
-Parameter werden unter den folgenden Bedingungen überschrieben:
-
-* Der Inhalt einer untergeordneten Komponente wird mit einem <xref:Microsoft.AspNetCore.Components.RenderFragment> gerendert.
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> wird in der übergeordneten Komponente aufgerufen.
-
-Parameter werden zurückgesetzt, weil die übergeordnete Komponente erneut gerendert wird, wenn <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> aufgerufen wird und der untergeordneten Komponente neue Parameterwerte bereitgestellt werden.
+Es werden neue Parameterwerte bereitgestellt, mit denen in der Regel vorhandene Parameter überschrieben werden, wenn die übergeordnete Komponente wiederholt gerendert wird.
 
 Angenommen, die folgende `Expander`-Komponente:
 

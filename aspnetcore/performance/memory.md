@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: 9bb055670b73c9a1ae04083bc326200a42151708
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: 7f1d20687f6dd588e125acf3815815c2bcf0cd04
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102795"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722682"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Speicherverwaltung und Garbage Collection (GC) in ASP.net Core
 
@@ -355,7 +355,7 @@ Die- `HttpClient` Instanz wird freigegeben, wenn die APP angehalten wird. Dieses
 
 Im folgenden finden Sie eine bessere Möglichkeit zur Handhabung der Lebensdauer einer `HttpClient` Instanz:
 
-* [HttpClient und die Verwaltung der Lebensdauer](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
+* [HttpClient und die Verwaltung der Lebensdauer](../fundamentals/http-requests.md#httpclient-and-lifetime-management)
 * [HttpClient-Factory-Blog](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
 ### <a name="object-pooling"></a>Objektpooling

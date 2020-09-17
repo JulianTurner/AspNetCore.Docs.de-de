@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 1cb2c2d18b717dc99c6ef4dac9954fef149c6deb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b5260084c2fdd296168e918f06d8b54faf1865d5
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631562"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722656"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Erzwingen von HTTPS in ASP.net Core
 
@@ -109,7 +109,7 @@ Geben Sie den HTTPS-Port an, indem Sie einen der folgenden Ansätze verwenden:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Festlegen der `https_port` [Host Einstellung](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#https_port):
+* Festlegen der `https_port` [Host Einstellung](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#https_port):
 
   * In der Host Konfiguration.
   * Durch Festlegen der `ASPNETCORE_HTTPS_PORT` Umgebungsvariable.
@@ -117,7 +117,7 @@ Geben Sie den HTTPS-Port an, indem Sie einen der folgenden Ansätze verwenden:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
-* Geben Sie einen Port mit dem sicheren Schema an, indem Sie die [ASPNETCORE_URLS-Umgebungsvariable](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls)verwenden. Die Umgebungsvariable konfiguriert den Server. Die Middleware ermittelt indirekt den HTTPS-Port über <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . Diese Vorgehensweise funktioniert nicht in reverseproxybereitstellungen.
+* Geben Sie einen Port mit dem sicheren Schema an, indem Sie die [ASPNETCORE_URLS-Umgebungsvariable](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls)verwenden. Die Umgebungsvariable konfiguriert den Server. Die Middleware ermittelt indirekt den HTTPS-Port über <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . Diese Vorgehensweise funktioniert nicht in reverseproxybereitstellungen.
 
 ::: moniker-end
 
@@ -161,7 +161,7 @@ Wenn Anforderungen in einer Reverseproxykonfiguration weitergeleitet werden, ver
 
 Wenn Sie Azure App Service bereitstellen, befolgen Sie die Anweisungen im [Tutorial: Binden eines vorhandenen benutzerdefinierten SSL-Zertifikats an Azure-Web-Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-### <a name="options"></a>Optionen
+### <a name="options"></a>Tastatur
 
 Der folgende markierte Code ruft [addhttpsredirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) auf, um Middleware-Optionen zu konfigurieren:
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/client-features
-ms.openlocfilehash: df0084411134167df31506a01362a0520821e577
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bb8352b11e78582c4a32b67da7dcb701d020b0d9
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631757"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721709"
 ---
 # <a name="aspnet-core-no-locsignalr-clients"></a>ASP.net Core SignalR Clients
 
@@ -46,12 +46,12 @@ Die 1. x-Versionen von entsprechen SignalR den .net Core-Versionen 2,1 und 2,2 u
 
 In der folgenden Tabelle sind die Features und die Unterstützung für Clients aufgeführt, die Echtzeitunterstützung anbieten. Für jede Funktion wird die *Mindestversion* aufgelistet, die dieses Feature unterstützt. Wenn keine Version aufgeführt ist, wird die Funktion nicht unterstützt.
 
-| Feature | Server | .NET-Client | JavaScript-Client | Java-Client |
+| Funktion | Server | .NET-Client | JavaScript-Client | Java-Client |
 | ---- | :-: | :-: | :-: | :-: |
 | Azure- SignalR Dienst Unterstützung |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Streaming zwischen Server und Client](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Client-zu-Server-Streaming](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|
-| Automatische erneute Verbindung ([.net](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection), [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
+| Automatische erneute Verbindung ([.net](./dotnet-client.md?tabs=visual-studio&view=aspnetcore-3.0#handle-lost-connection), [JavaScript](./javascript-client.md?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
 | Websockets-Transport |2.1.0|1.0.0|1.0.0|1.0.0|
 | Transport von Server gesendeten Ereignissen |2.1.0|1.0.0|1.0.0|❌|
 | Langer Abruf Transport |2.1.0|1.0.0|1.0.0|3.0.0|

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 587872b269d897d7c86eb77c110a4b6432218ed3
-ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
+ms.openlocfilehash: 01575ec87d2d346da7367523ca5e257d53de4983
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88746558"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722617"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Bewährte Methoden für die ASP.net Core Leistung
 
@@ -42,7 +42,7 @@ In diesem Dokument wird ein *Hot-Codepfad* als Codepfad definiert, der häufig a
 
 ASP.net Core-apps sollten so entworfen werden, dass viele Anforderungen gleichzeitig verarbeitet werden. Asynchrone APIs ermöglichen es einem kleinen Thread Pool, Tausende gleichzeitiger Anforderungen zu verarbeiten, indem nicht auf blockierende Aufrufe gewartet wird. Anstatt auf den Abschluss einer synchronen Aufgabe mit langer Laufzeit zu warten, kann der Thread an einer anderen Anforderung arbeiten.
 
-Ein häufiges Leistungsproblem bei ASP.net Core-Apps ist das Blockieren von aufrufen, die asynchron sein könnten. Viele synchrone blockierende Aufrufe führen zu einem [Thread Pool-Hunger](https://blogs.msdn.microsoft.com/vancem/2018/10/16/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall/) und zu beeinträchtigten Reaktionszeiten.
+Ein häufiges Leistungsproblem bei ASP.net Core-Apps ist das Blockieren von aufrufen, die asynchron sein könnten. Viele synchrone blockierende Aufrufe führen zu einem [Thread Pool-Hunger](/archive/blogs/vancem/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall) und zu beeinträchtigten Reaktionszeiten.
 
 **Nicht**:
 

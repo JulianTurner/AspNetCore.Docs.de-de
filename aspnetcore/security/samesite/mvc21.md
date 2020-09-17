@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 0a719ae48199f7854ded534446045eb304d4d9f0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 38e5f0d1a2ecf5b46f73bf8574f73934a070880f
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632355"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722604"
 ---
 # <a name="aspnet-core-21-mvc-samesite-no-loccookie-sample"></a>ASP.net Core 2,1 MVC SameSite- cookie Beispiel
 
@@ -57,7 +57,7 @@ Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 
 ## <a name="setting-no-loccookie-authentication-and-session-state-no-loccookies"></a>Festlegen der Cookie Authentifizierung und des Sitzungs Zustands cookie
 
-Cookie Authentifizierung, Sitzungs Status und [verschiedene andere Komponenten](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) legen ihre SameSite-Optionen über Cookie Optionen fest, z. b.
+Cookie Authentifizierung, Sitzungs Status und [verschiedene andere Komponenten](../samesite.md?view=aspnetcore-2.1) legen ihre SameSite-Optionen über Cookie Optionen fest, z. b.
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -90,7 +90,7 @@ Sie können in der obigen Abbildung sehen, dass das cookie , das durch das Beisp
 
 Um s abzufangen cookie , muss die Middleware verwendet werden, um den Wert None gemäß der Unterstützung im Browser-Agent des Benutzers anzupassen `CookiePolicy` . Diese muss in der HTTP-Anforderungs Pipeline **vor** allen Komponenten platziert werden, die cookie in schreiben und in konfiguriert sind `ConfigureServices()` .
 
-Um Sie in die Pipeline einzufügen, verwenden Sie in `app.UseCookiePolicy()` der- `Configure(IApplicationBuilder, IHostingEnvironment)` Methode in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Beispiel:
+Um Sie in die Pipeline einzufügen, verwenden Sie in `app.UseCookiePolicy()` der- `Configure(IApplicationBuilder, IHostingEnvironment)` Methode in [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs). Zum Beispiel:
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -120,7 +120,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-Anschließend können Sie in der `ConfigureServices(IServiceCollection services)` cookie Richtlinie konfigurieren, um eine Hilfsklasse aufzurufen, wenn e angefügt cookie oder gelöscht werden. Beispiel:
+Anschließend können Sie in der `ConfigureServices(IServiceCollection services)` cookie Richtlinie konfigurieren, um eine Hilfsklasse aufzurufen, wenn e angefügt cookie oder gelöscht werden. Zum Beispiel:
 
 ```c#
 public void ConfigureServices(IServiceCollection services)
@@ -172,5 +172,5 @@ Um die ASP.net Core Änderungen für .NET Framework zu erhalten, stellen Sie sic
 ### <a name="more-information"></a>Weitere Informationen
  
 [Chrome-Updates](https://www.chromium.org/updates/same-site) 
- Dokumentation zu ASP.net Core [SameSite](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) 
+ Dokumentation zu ASP.net Core [SameSite](../samesite.md?view=aspnetcore-2.1) 
  [ASP.net Core 2,1 SameSite-Änderungs Ankündigung](https://github.com/dotnet/aspnetcore/issues/8212)

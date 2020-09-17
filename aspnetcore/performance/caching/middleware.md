@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/middleware
-ms.openlocfilehash: 43b0ef1dcbf6d0137b14be9e58eb056f06ae093d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7fe9629e1c60a6156c69e546736049653a4229b7
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633447"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722643"
 ---
 # <a name="response-caching-middleware-in-aspnet-core"></a>Zwischen Speicherungs Middleware für Antworten in ASP.net Core
 
@@ -59,14 +59,14 @@ Die Beispiel-App Fügt Header zum Steuern der Zwischenspeicherung bei nachfolgen
 
 Die vorangehenden Header werden nicht in die Antwort geschrieben und überschrieben, wenn ein Controller, eine Aktion oder eine Razor Seite:
 
-* Verfügt über ein [[Response Cache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) -Attribut. Dies gilt auch, wenn eine Eigenschaft nicht festgelegt ist. Wenn Sie z. b. die [VaryByHeader](/aspnet/core/performance/caching/response#vary) -Eigenschaft weglassen, bewirkt dies, dass der entsprechende Header aus der Antwort entfernt wird.
+* Verfügt über ein [[Response Cache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) -Attribut. Dies gilt auch, wenn eine Eigenschaft nicht festgelegt ist. Wenn Sie z. b. die [VaryByHeader](./response.md#vary) -Eigenschaft weglassen, bewirkt dies, dass der entsprechende Header aus der Antwort entfernt wird.
 
 Die Middleware zum Zwischenspeichern von Antworten speichert nur Server Antworten zwischen, die zu einem 200 (OK)-Statuscode führen. Alle anderen Antworten, einschließlich der [Fehlerseiten](xref:fundamentals/error-handling), werden von der Middleware ignoriert.
 
 > [!WARNING]
 > Antworten, die Inhalte für authentifizierte Clients enthalten, müssen als nicht zwischen speicherbar gekennzeichnet werden, um zu verhindern, dass die Middleware diese Antworten speichert und bedient. Ausführliche Informationen dazu, wie die Middleware festlegt, ob eine Antwort zwischengespeichert werden kann, finden Sie unter [Bedingungen für das Caching](#conditions-for-caching) .
 
-## <a name="options"></a>Optionen
+## <a name="options"></a>Tastatur
 
 Die Optionen zum Zwischenspeichern von Antworten sind in der folgenden Tabelle aufgeführt.
 
@@ -203,14 +203,14 @@ Die Beispiel-App Fügt Header zum Steuern der Zwischenspeicherung bei nachfolgen
 
 Die vorangehenden Header werden nicht in die Antwort geschrieben und überschrieben, wenn ein Controller, eine Aktion oder eine Razor Seite:
 
-* Verfügt über ein [[Response Cache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) -Attribut. Dies gilt auch, wenn eine Eigenschaft nicht festgelegt ist. Wenn Sie z. b. die [VaryByHeader](/aspnet/core/performance/caching/response#vary) -Eigenschaft weglassen, bewirkt dies, dass der entsprechende Header aus der Antwort entfernt wird.
+* Verfügt über ein [[Response Cache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) -Attribut. Dies gilt auch, wenn eine Eigenschaft nicht festgelegt ist. Wenn Sie z. b. die [VaryByHeader](./response.md#vary) -Eigenschaft weglassen, bewirkt dies, dass der entsprechende Header aus der Antwort entfernt wird.
 
 Die Middleware zum Zwischenspeichern von Antworten speichert nur Server Antworten zwischen, die zu einem 200 (OK)-Statuscode führen. Alle anderen Antworten, einschließlich der [Fehlerseiten](xref:fundamentals/error-handling), werden von der Middleware ignoriert.
 
 > [!WARNING]
 > Antworten, die Inhalte für authentifizierte Clients enthalten, müssen als nicht zwischen speicherbar gekennzeichnet werden, um zu verhindern, dass die Middleware diese Antworten speichert und bedient. Ausführliche Informationen dazu, wie die Middleware festlegt, ob eine Antwort zwischengespeichert werden kann, finden Sie unter [Bedingungen für das Caching](#conditions-for-caching) .
 
-## <a name="options"></a>Optionen
+## <a name="options"></a>Tastatur
 
 Die Optionen zum Zwischenspeichern von Antworten sind in der folgenden Tabelle aufgeführt.
 

@@ -2,7 +2,7 @@
 title: Konfigurieren des Linkers für ASP.NET Core Blazor
 author: guardrex
 description: Erfahren Sie, wie Sie den IL-Linker (Intermediate Language, Zwischensprache) beim Erstellen einer Blazor-App steuern.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: 27a7edf0de1acc107d324afe07db63624615e550
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 34582fdeb4951a110b03880887b978add07687f4
+ms.sourcegitcommit: 0cfada7cbcd8e76aba0ae70eb6bbbf4437f287cc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628130"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90081636"
 ---
 # <a name="configure-the-linker-for-aspnet-core-no-locblazor"></a>Konfigurieren des Linkers für ASP.NET Core Blazor
 
@@ -31,7 +31,7 @@ Von [Luke Latham](https://github.com/guardrex)
 
 Blazor WebAssembly führt bei einem Build eine [IL](/dotnet/standard/managed-code#intermediate-language--execution)-Verknüpfung durch, um nicht benötigte Zwischensprache aus den Ausgabeassemblys der App zu kürzen. Der Linker ist beim Buildvorgang in der Debugkonfiguration deaktiviert. Apps müssen in der Releasekonfiguration erstellt werden, damit der Linker aktiviert wird. Sie sollten die Releasekonfiguration beim Buildvorgang anwenden, wenn Sie Blazor WebAssembly-Apps erstellen. 
 
-Das Verknüpfen einer App optimiert die Größe, kann jedoch auch negative Auswirkungen haben. Apps, die Reflektion oder ähnliche dynamische Features verwenden, können beim Kürzen unterbrochen werden, da der Linker dieses dynamische Verhalten nicht kennt und nicht ermitteln kann, welche Typen für die Reflektion zur Laufzeit erforderlich sind. Zur Kürzung solcher Apps muss der Linker über alle Typen informiert werden, die für die Reflektion im Code und in Paketen oder Frameworks erforderlich sind, von denen die App abhängig ist. 
+Das Verknüpfen einer App optimiert die Größe, kann jedoch auch negative Auswirkungen haben. Apps, die Reflektion oder ähnliche dynamische Features verwenden, können beim Kürzen unterbrochen werden, da der Linker dieses dynamische Verhalten nicht kennt und nicht ermitteln kann, welche Typen für die Reflektion zur Laufzeit erforderlich sind. Zur Kürzung solcher Apps muss der Linker über alle Typen informiert werden, die für die Reflektion im Code und in Paketen oder Frameworks erforderlich sind, von denen die App abhängig ist.
 
 Wenn Sie sicherstellen möchten, dass die gekürzte App nach der Bereitstellung ordnungsgemäß funktioniert, ist es wichtig, bei der Entwicklung häufig die Releasebuilds der App zu testen.
 

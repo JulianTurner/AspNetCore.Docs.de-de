@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 391a38e9af42b162fc74bac803e6aa3cf687e7d5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e1af8f1de61edd934505a44e75ea07e0f09a67b5
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626063"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592955"
 ---
 # <a name="secure-aspnet-core-no-locblazor-webassembly"></a>Schützen der Blazor WebAssembly von ASP.NET Core
 
@@ -98,6 +98,13 @@ Wenden Sie die [`[Authorize]`-Attribute](xref:blazor/security/index#authorize-at
 Aktualisierungstoken können nicht auf Clientseite in Blazor WebAssembly-Apps gesichert werden. Daher sollten Aktualisierungstoken nicht zur direkten Verwendung an die App gesendet werden.
 
 Aktualisierungstoken können von der serverseitigen App in einer gehosteten Blazor WebAssembly-Lösung verwaltet und verwendet werden, um auf APIs von Drittanbietern zuzugreifen. Weitere Informationen finden Sie unter <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+
+## <a name="establish-claims-for-users"></a>Erstellen von Ansprüchen für Benutzer
+
+Apps fordern häufig Ansprüche für Benutzer basierend auf einem Web-API-Aufruf an einen Server an. Beispielsweise werden Ansprüche häufig bei der [Autorisierung](xref:blazor/security/index#authorization) in Apps verwendet. In diesen Szenarios fordert die App ein Zugriffstoken für den Zugriff auf den Dienst an und verwendet dieses Token zum Abrufen der Benutzerdaten für die Ansprüche. Beispiele finden Sie in den folgenden Ressourcen:
+
+* [Zusätzliche Szenarios: Anpassen des Benutzers](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
+* <xref:blazor/security/webassembly/aad-groups-roles>
 
 ## <a name="implementation-guidance"></a>Implementierungsleitfaden
 

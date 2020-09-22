@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 3430d842b6a4f7da30370977f72e6f132e28bb7f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36341a0e439be57d7da4f787aa6103b92c624e96
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634253"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847584"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Einrichtung externer Anmelde Informationen für Microsoft-Konto mit ASP.net Core
 
@@ -41,6 +41,8 @@ Wenn Sie keine Microsoft-Konto haben, wählen Sie **Erstellen**aus. Nachdem Sie 
 * **Neue Registrierung** auswählen
 * Geben Sie einen **Namen** ein.
 * Wählen Sie eine Option für **unterstützte Konto Typen**aus.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
+  * Das `MicrosoftAccount` Paket unterstützt standardmäßig App-Registrierungen, die mit "Konten in einem beliebigen Organisations Verzeichnis" oder "Konten in beliebigen Organisations Verzeichnis-und Microsoft-Konten" erstellt wurden.
+  * Um andere Optionen zu verwenden, `AuthorizationEndpoint` legen `TokenEndpoint` Sie und Member von `MicrosoftAccountOptions` zum Initialisieren der Microsoft-Konto Authentifizierung für die URLs, die auf der Seite **Endpunkte** der APP-Registrierung angezeigt werden, nach der Erstellung fest (verfügbar, indem Sie auf der Seite **Übersicht** auf Endpunkte klicken).
 * Geben Sie unter **Umleitungs-URI**Ihre Entwicklungs-URL mit angefügt ein `/signin-microsoft` . Beispiel: `https://localhost:5001/signin-microsoft`. Das Microsoft-Authentifizierungsschema, das weiter unten in diesem Beispiel konfiguriert wird, verarbeitet Anforderungen bei der `/signin-microsoft` Route automatisch, um den OAuth-Fluss zu implementieren.
 * Wählen Sie **Registrieren** aus.
 

@@ -18,20 +18,22 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 7b11172df902f0d6a26f357755f33c78e7f8d1ff
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 359aa2b9e6b7f826d75f10645b7f2b565ab48b7a
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631419"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847688"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.net Core SignalR JavaScript-Client
+
+::: moniker range=">= aspnetcore-3.0"
 
 Von [Rachel Appel](https://twitter.com/rachelappel)
 
 Die ASP.net Core SignalR JavaScript-Client Bibliothek ermöglicht es Entwicklern, serverseitigen Hub-Code aufzurufen.
 
-[Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
+[Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/javascript-client/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
 ## <a name="install-the-no-locsignalr-client-package"></a>Installieren des SignalR Client Pakets
 
@@ -39,9 +41,7 @@ Die SignalR JavaScript-Client Bibliothek wird als [NPM](https://www.npmjs.com/) 
 
 ### <a name="install-with-npm"></a>Installieren mit NPM
 
-Wenn Sie Visual Studio verwenden, führen Sie die folgenden Befehle über die **Paket-Manager-Konsole** im Stamm Ordner aus. Führen Sie für Visual Studio Code die folgenden Befehle über das **integrierte Terminal**aus.
-
-::: moniker range=">= aspnetcore-3.0"
+Führen Sie in Visual Studio die folgenden Befehle über die **Paket-Manager-Konsole** im Stamm Ordner aus. Führen Sie für Visual Studio Code die folgenden Befehle über das **integrierte Terminal**aus.
 
 ```bash
 npm init -y
@@ -50,20 +50,7 @@ npm install @microsoft/signalr
 
 NPM installiert den Paket Inhalt im Ordner *" \\ @microsoft\signalr\dist\browser node_modules* ". Erstellen Sie einen neuen Ordner mit dem Namen *signalr* unter dem Ordner *wwwroot \\ lib* . Kopieren Sie die *signalr.js* Datei in den Ordner " *wwwroot\lib\signalr* ".
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-```bash
-npm init -y
-npm install @aspnet/signalr
-```
-
-NPM installiert den Paket Inhalt im Ordner *" \\ @aspnet\signalr\dist\browser node_modules* ". Erstellen Sie einen neuen Ordner mit dem Namen *signalr* unter dem Ordner *wwwroot \\ lib* . Kopieren Sie die *signalr.js* Datei in den Ordner " *wwwroot\lib\signalr* ".
-
-::: moniker-end
-
-Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel:
+Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Zum Beispiel:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -71,29 +58,15 @@ Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Verwenden eines Content Delivery Network (CDN)
 
-Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Beispiel:
+Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Zum Beispiel:
 
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
-```
+[!code-html[](javascript-client/samples/3.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
 
 Die Client Bibliothek ist unter den folgenden CDNs verfügbar:
-
-::: moniker range=">= aspnetcore-3.0"
 
 * [cdnjs verfügbar](https://cdnjs.com/libraries/microsoft-signalr)
 * [jsdelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
 * [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.min.js)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-* [cdnjs verfügbar](https://cdnjs.com/libraries/aspnet-signalr)
-* [jsdelivr](https://www.jsdelivr.com/package/npm/@aspnet/signalr)
-* [unpkg](https://unpkg.com/@aspnet/signalr@next/dist/browser/signalr.min.js)
-
-::: moniker-end
 
 ### <a name="install-with-libman"></a>Installieren mit Libman
 
@@ -103,47 +76,51 @@ Die Client Bibliothek ist unter den folgenden CDNs verfügbar:
 
 Mit dem folgenden Code wird eine Verbindung erstellt und gestartet. Der Name des Hubs wird nicht beachtet.
 
-[!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-13,28-51)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=3-6,29-43)]
 
 ### <a name="cross-origin-connections"></a>Ursprungs übergreifende Verbindungen
 
 Normalerweise laden Browser Verbindungen aus derselben Domäne wie die angeforderte Seite. Es gibt jedoch Situationen, in denen eine Verbindung mit einer anderen Domäne erforderlich ist.
 
-Um zu verhindern, dass ein böswilliger Standort vertrauliche Daten von einem anderen Standort liest, sind [Ursprungs übergreifende Verbindungen](xref:security/cors) standardmäßig deaktiviert. Um eine Ursprungs übergreifende Anforderung zuzulassen, aktivieren Sie Sie in der- `Startup` Klasse.
+Um zu verhindern, dass ein böswilliger Standort vertrauliche Daten von einem anderen Standort liest, sind [Ursprungs übergreifende Verbindungen](xref:security/cors) standardmäßig deaktiviert. Um eine Ursprungs übergreifende Anforderung zuzulassen, aktivieren Sie Sie in der- `Startup` Klasse:
 
-[!code-csharp[Cross-origin connections](javascript-client/sample/Startup.cs?highlight=29-35,56)]
+[!code-csharp[](javascript-client/samples/3.x/SignalRChat/Startup.cs?highlight=16-23,40)]
 
-## <a name="call-hub-methods-from-client"></a>Hub-Methoden vom Client abrufen
+## <a name="call-hub-methods-from-the-client"></a>Callhub-Methoden vom Client
 
-JavaScript-Clients rufen öffentliche Methoden für Hubs über die [Aufruf Methode](/javascript/api/%40aspnet/signalr/hubconnection#invoke) von [hubconnection](/javascript/api/%40aspnet/signalr/hubconnection)auf. Die- `invoke` Methode akzeptiert zwei Argumente:
+JavaScript-Clients rufen öffentliche Methoden für Hubs über die [Aufruf Methode](/javascript/api/%40microsoft/signalr/hubconnection#invoke-string--any---) von [hubconnection](/javascript/api/%40microsoft/signalr/hubconnection)auf. Die- `invoke` Methode akzeptiert Folgendes:
 
-* Der Name der Hub-Methode. Im folgenden Beispiel ist der Methodenname auf dem Hub `SendMessage` .
-* Alle Argumente, die in der Hub-Methode definiert sind. Im folgenden Beispiel lautet der Argument Name `message` . Im Beispielcode wird eine Pfeil Funktions Syntax verwendet, die in den aktuellen Versionen aller wichtigen Browser mit Ausnahme von Internet Explorer unterstützt wird.
+* Der Name der Hub-Methode.
+* Alle Argumente, die in der Hub-Methode definiert sind.
 
-  [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
+Im folgenden Beispiel ist der Methodenname auf dem Hub `SendMessage` . Das zweite und dritte Argument, das an `invoke` das-Argument und das-Argument der Hub-Methode übermittelt wird `user` `message` :
+
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke&highlight=2)]
 
 > [!NOTE]
 > Das Aufrufen von Hub-Methoden von einem Client wird nur unterstützt, wenn der Azure- SignalR Dienst im *Standard* Modus verwendet wird. Weitere Informationen finden Sie unter [häufig gestellte Fragen (Azure-signalr-GitHub-Repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
-Die- `invoke` Methode gibt eine JavaScript- [Zusage](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)zurück. Die `Promise` wird mit dem Rückgabewert (sofern vorhanden) aufgelöst, wenn die-Methode auf dem Server zurückgibt. Wenn die-Methode auf dem Server einen Fehler auslöst, `Promise` wird mit der Fehlermeldung zurückgewiesen. Verwenden `then` Sie die- `catch` Methode und die-Methode für den `Promise` selbst, um diese Fälle (oder `await` Syntax) zu verarbeiten.
+Die- `invoke` Methode gibt eine JavaScript- [Zusage](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)zurück. Die `Promise` wird mit dem Rückgabewert (sofern vorhanden) aufgelöst, wenn die-Methode auf dem Server zurückgibt. Wenn die-Methode auf dem Server einen Fehler auslöst, `Promise` wird mit der Fehlermeldung zurückgewiesen. Verwenden `async` `await` Sie und oder die `Promise` - `then` Methode und die- `catch` Methode, um diese Fälle zu behandeln.
 
-Die- `send` Methode gibt ein JavaScript zurück `Promise` . Der `Promise` wird aufgelöst, wenn die Nachricht an den Server gesendet wurde. Wenn beim Senden der Nachricht ein Fehler auftritt, `Promise` wird mit der Fehlermeldung zurückgewiesen. Verwenden `then` Sie die- `catch` Methode und die-Methode für den `Promise` selbst, um diese Fälle (oder `await` Syntax) zu verarbeiten.
+JavaScript-Clients können auch öffentliche Methoden auf Hubs über die [Send](/javascript/api/%40microsoft/signalr/hubconnection#send-string--any---) -Methode von aufzurufen `HubConnection` . Anders als bei der- `invoke` Methode wartet die- `send` Methode nicht auf eine Antwort vom Server. Die- `send` Methode gibt ein JavaScript zurück `Promise` . Der `Promise` wird aufgelöst, wenn die Nachricht an den Server gesendet wurde. Wenn beim Senden der Nachricht ein Fehler auftritt, `Promise` wird mit der Fehlermeldung zurückgewiesen. Verwenden `async` `await` Sie und oder die `Promise` - `then` Methode und die- `catch` Methode, um diese Fälle zu behandeln.
 
 > [!NOTE]
 > Die Verwendung von `send` wartet nicht, bis der Server die Nachricht empfangen hat. Folglich ist es nicht möglich, Daten oder Fehler vom Server zurückzugeben.
 
-## <a name="call-client-methods-from-hub"></a>Client Methoden aus Hub abrufen
+## <a name="call-client-methods-from-the-hub"></a>Client Methoden aus dem Hub abrufen
 
-Um Nachrichten vom Hub zu empfangen, definieren Sie mithilfe der [on](/javascript/api/%40aspnet/signalr/hubconnection#on) -Methode von eine Methode `HubConnection` .
+Um Nachrichten vom Hub zu empfangen, definieren Sie mithilfe der [on](/javascript/api/%40microsoft/signalr/hubconnection#on-string---args--any-------void-) -Methode von eine Methode `HubConnection` .
 
-* Der Name der JavaScript-Client Methode. Im folgenden Beispiel lautet der Methodenname `ReceiveMessage` .
-* Argumente, die der Hub an die Methode übergibt. Im folgenden Beispiel ist der Argument Wert `message` .
+* Der Name der JavaScript-Client Methode.
+* Argumente, die der Hub an die Methode übergibt.
 
-[!code-javascript[Receive calls from hub](javascript-client/sample/wwwroot/js/chat.js?range=14-19)]
+Im folgenden Beispiel lautet der Methodenname `ReceiveMessage` . Die Argument Namen lauten `user` und `message` :
 
-Der vorangehende Code in wird ausgeführt, `connection.on` Wenn der serverseitige Code ihn mithilfe der [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) -Methode aufruft.
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
-[!code-csharp[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
+Der vorangehende Code in wird ausgeführt, `connection.on` Wenn der serverseitige Code ihn mit der- <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> Methode aufruft:
+
+[!code-csharp[Call client-side](javascript-client/samples/3.x/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
 
 SignalR bestimmt, welche Client Methode aufgerufen werden soll, indem der Methodenname und die in und definierten Argumente abgeglichen werden `SendAsync` `connection.on` .
 
@@ -152,9 +129,9 @@ SignalR bestimmt, welche Client Methode aufgerufen werden soll, indem der Method
 
 ## <a name="error-handling-and-logging"></a>Fehlerbehandlung und Protokollierung
 
-Verketten Sie eine `catch` Methode an das Ende der `start` Methode, um Client seitige Fehler zu behandeln. Verwenden `console.error` Sie, um Fehler an die Konsole des Browsers auszugeben.
+Verwenden `try` `catch` Sie und mit `async` und `await` oder der `Promise` -Methode von `catch` , um Client seitige Fehler zu behandeln. Verwenden `console.error` Sie, um Fehler an die Konsole des Browsers auszugeben:
 
-[!code-javascript[Error handling](javascript-client/sample/wwwroot/js/chat.js?range=50)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke&highlight=1,3-5)]
 
 Richten Sie die Client seitige Protokoll Ablauf Verfolgung ein, indem Sie eine Protokollierung und einen Ereignistyp an die Protokollierung übergeben, wenn die Verbindung hergestellt wird. Nachrichten werden mit der angegebenen Protokollebene und höher protokolliert. Folgende Protokoll Ebenen sind verfügbar:
 
@@ -163,13 +140,11 @@ Richten Sie die Client seitige Protokoll Ablauf Verfolgung ein, indem Sie eine P
 * `signalR.LogLevel.Information`: Status Meldungen ohne Fehler. Protokolliert `Information` die `Warning` Meldungen, und `Error` .
 * `signalR.LogLevel.Trace`: Ablauf Verfolgungs Meldungen. Protokolliert alles, einschließlich Daten, die zwischen dem Hub und dem Client transportiert werden.
 
-Verwenden Sie die Methode configure [relogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) für [hubconnectionbuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) , um die Protokollebene zu konfigurieren. Nachrichten werden in der Browser Konsole protokolliert.
+Verwenden Sie die Methode configure [relogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) für [hubconnectionbuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) , um die Protokollebene zu konfigurieren. Nachrichten werden in der Browser Konsole protokolliert:
 
-[!code-javascript[Logging levels](javascript-client/sample/wwwroot/js/chat.js?range=9-12)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Connection&highlight=3)]
 
 ## <a name="reconnect-clients"></a>Clients erneut verbinden
-
-::: moniker range=">= aspnetcore-3.0"
 
 ### <a name="automatically-reconnect"></a>Automatisch wiederherstellen der Verbindung
 
@@ -224,7 +199,7 @@ async function start() {
     try {
         await connection.start();
         console.assert(connection.state === signalR.HubConnectionState.Connected);
-        console.log("connected");
+        console.log("SignalR Connected.");
     } catch (err) {
         console.assert(connection.state === signalR.HubConnectionState.Disconnected);
         console.log(err);
@@ -292,23 +267,158 @@ const connection = new signalR.HubConnectionBuilder()
 
 Alternativ dazu können Sie auch Code schreiben, mit dem der Client manuell erneut eine Verbindung herstellt, wie in [Manuelles Wiederherstellen der Verbindung](#manually-reconnect)gezeigt.
 
-::: moniker-end
-
 ### <a name="manually-reconnect"></a>Verbindung manuell wiederherstellen
-
-::: moniker range="< aspnetcore-3.0"
-
-> [!WARNING]
-> Vor 3,0 wird vom JavaScript-Client für SignalR nicht automatisch eine erneute Verbindung hergestellt. Sie müssen Code schreiben, mit dem der Client manuell erneut eine Verbindung herstellt.
-
-::: moniker-end
 
 Der folgende Code veranschaulicht einen typischen manuellen Verbindungs Ansatz:
 
 1. Eine Funktion (in diesem Fall die `start` Funktion) wird erstellt, um die Verbindung zu starten.
 1. Die `start` -Funktion wird im-Ereignishandler der Verbindung aufgerufen `onclose` .
 
-[!code-javascript[Reconnect the JavaScript client](javascript-client/sample/wwwroot/js/chat.js?range=28-40)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=30-40)]
+
+Eine reale Implementierung würde einen exponentiellen Backoff verwenden oder eine angegebene Anzahl von Wiederholungen wiederholen, bevor Sie zurückgegeben wird.
+
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
+
+* [JavaScript-API-Referenz](/javascript/api/?view=signalr-js-latest&preserve-view=true )
+* [JavaScript-Tutorial](xref:tutorials/signalr)
+* [WebPack und typescript-Tutorial](xref:tutorials/signalr-typescript-webpack)
+* [Hubs](xref:signalr/hubs)
+* [.NET-Client](xref:signalr/dotnet-client)
+* [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)
+* [Cross-Origin-Anforderungen (cors)](xref:security/cors)
+* [Azure- SignalR Dienst Server lose Dokumentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+Von [Rachel Appel](https://twitter.com/rachelappel)
+
+Die ASP.net Core SignalR JavaScript-Client Bibliothek ermöglicht es Entwicklern, serverseitigen Hub-Code aufzurufen.
+
+[Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/javascript-client/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
+
+## <a name="install-the-no-locsignalr-client-package"></a>Installieren des SignalR Client Pakets
+
+Die SignalR JavaScript-Client Bibliothek wird als [NPM](https://www.npmjs.com/) -Paket bereitgestellt. In den folgenden Abschnitten werden verschiedene Möglichkeiten zum Installieren der-Client Bibliothek erläutert.
+
+### <a name="install-with-npm"></a>Installieren mit NPM
+
+Wenn Sie Visual Studio verwenden, führen Sie die folgenden Befehle über die **Paket-Manager-Konsole** im Stamm Ordner aus. Führen Sie für Visual Studio Code die folgenden Befehle über das **integrierte Terminal**aus.
+
+```bash
+npm init -y
+npm install @aspnet/signalr
+```
+
+NPM installiert den Paket Inhalt im Ordner *" \\ @aspnet\signalr\dist\browser node_modules* ". Erstellen Sie einen neuen Ordner mit dem Namen *signalr* unter dem Ordner *wwwroot \\ lib* . Kopieren Sie die *signalr.js* Datei in den Ordner " *wwwroot\lib\signalr* ".
+
+Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Zum Beispiel:
+
+```html
+<script src="~/lib/signalr/signalr.js"></script>
+```
+
+### <a name="use-a-content-delivery-network-cdn"></a>Verwenden eines Content Delivery Network (CDN)
+
+Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Zum Beispiel:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
+```
+
+Die Client Bibliothek ist unter den folgenden CDNs verfügbar:
+
+* [cdnjs verfügbar](https://cdnjs.com/libraries/aspnet-signalr)
+* [jsdelivr](https://www.jsdelivr.com/package/npm/@aspnet/signalr)
+* [unpkg](https://unpkg.com/@aspnet/signalr@next/dist/browser/signalr.min.js)
+
+### <a name="install-with-libman"></a>Installieren mit Libman
+
+[Libman](xref:client-side/libman/index) kann verwendet werden, um bestimmte Client Bibliotheksdateien aus der CDN-gehosteten Client Bibliothek zu installieren. Fügen Sie z. b. nur die minierte JavaScript-Datei zum Projekt hinzu. Weitere Informationen zu diesem Ansatz finden [Sie unter Hinzufügen der SignalR Client Bibliothek](xref:tutorials/signalr#add-the-signalr-client-library).
+
+## <a name="connect-to-a-hub"></a>Herstellen einer Verbindung mit einem Hub
+
+Mit dem folgenden Code wird eine Verbindung erstellt und gestartet. Der Name des Hubs wird nicht beachtet.
+
+[!code-javascript[Call hub methods](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=9-13,28-51)]
+
+### <a name="cross-origin-connections"></a>Ursprungs übergreifende Verbindungen
+
+Normalerweise laden Browser Verbindungen aus derselben Domäne wie die angeforderte Seite. Es gibt jedoch Situationen, in denen eine Verbindung mit einer anderen Domäne erforderlich ist.
+
+Um zu verhindern, dass ein böswilliger Standort vertrauliche Daten von einem anderen Standort liest, sind [Ursprungs übergreifende Verbindungen](xref:security/cors) standardmäßig deaktiviert. Um eine Ursprungs übergreifende Anforderung zuzulassen, aktivieren Sie Sie in der- `Startup` Klasse.
+
+[!code-csharp[Cross-origin connections](javascript-client/samples/2.x/SignalRChat/Startup.cs?highlight=29-35,56)]
+
+## <a name="call-hub-methods-from-client"></a>Hub-Methoden vom Client abrufen
+
+JavaScript-Clients rufen öffentliche Methoden für Hubs über die [Aufruf Methode](/javascript/api/%40aspnet/signalr/hubconnection#invoke) von [hubconnection](/javascript/api/%40aspnet/signalr/hubconnection)auf. Die- `invoke` Methode akzeptiert zwei Argumente:
+
+* Der Name der Hub-Methode. Im folgenden Beispiel ist der Methodenname auf dem Hub `SendMessage` .
+* Alle Argumente, die in der Hub-Methode definiert sind. Im folgenden Beispiel lautet der Argument Name `message` . Im Beispielcode wird eine Pfeil Funktions Syntax verwendet, die in den aktuellen Versionen aller wichtigen Browser mit Ausnahme von Internet Explorer unterstützt wird.
+
+  [!code-javascript[Call hub methods](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=24)]
+
+> [!NOTE]
+> Das Aufrufen von Hub-Methoden von einem Client wird nur unterstützt, wenn der Azure- SignalR Dienst im *Standard* Modus verwendet wird. Weitere Informationen finden Sie unter [häufig gestellte Fragen (Azure-signalr-GitHub-Repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
+
+Die- `invoke` Methode gibt eine JavaScript- [Zusage](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)zurück. Die `Promise` wird mit dem Rückgabewert (sofern vorhanden) aufgelöst, wenn die-Methode auf dem Server zurückgibt. Wenn die-Methode auf dem Server einen Fehler auslöst, `Promise` wird mit der Fehlermeldung zurückgewiesen. Verwenden `then` Sie die- `catch` Methode und die-Methode für den `Promise` selbst, um diese Fälle (oder `await` Syntax) zu verarbeiten.
+
+Die- `send` Methode gibt ein JavaScript zurück `Promise` . Der `Promise` wird aufgelöst, wenn die Nachricht an den Server gesendet wurde. Wenn beim Senden der Nachricht ein Fehler auftritt, `Promise` wird mit der Fehlermeldung zurückgewiesen. Verwenden `then` Sie die- `catch` Methode und die-Methode für den `Promise` selbst, um diese Fälle (oder `await` Syntax) zu verarbeiten.
+
+> [!NOTE]
+> Die Verwendung von `send` wartet nicht, bis der Server die Nachricht empfangen hat. Folglich ist es nicht möglich, Daten oder Fehler vom Server zurückzugeben.
+
+## <a name="call-client-methods-from-hub"></a>Client Methoden aus Hub abrufen
+
+Um Nachrichten vom Hub zu empfangen, definieren Sie mithilfe der [on](/javascript/api/%40aspnet/signalr/hubconnection#on) -Methode von eine Methode `HubConnection` .
+
+* Der Name der JavaScript-Client Methode. Im folgenden Beispiel lautet der Methodenname `ReceiveMessage` .
+* Argumente, die der Hub an die Methode übergibt. Im folgenden Beispiel ist der Argument Wert `message` .
+
+[!code-javascript[Receive calls from hub](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=14-19)]
+
+Der vorangehende Code in wird ausgeführt, `connection.on` Wenn der serverseitige Code ihn mit der- <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> Methode aufruft.
+
+[!code-csharp[Call client-side](javascript-client/samples/2.x/SignalRChat/hubs/chathub.cs?range=8-11)]
+
+SignalR bestimmt, welche Client Methode aufgerufen werden soll, indem der Methodenname und die in und definierten Argumente abgeglichen werden `SendAsync` `connection.on` .
+
+> [!NOTE]
+> Es wird empfohlen, die [Start](/javascript/api/%40aspnet/signalr/hubconnection#start) -Methode für den After-Befehl aufzurufen `HubConnection` `on` . Dadurch wird sichergestellt, dass ihre Handler registriert werden, bevor Nachrichten empfangen werden.
+
+## <a name="error-handling-and-logging"></a>Fehlerbehandlung und Protokollierung
+
+Verketten Sie eine `catch` Methode an das Ende der `start` Methode, um Client seitige Fehler zu behandeln. Verwenden `console.error` Sie, um Fehler an die Konsole des Browsers auszugeben.
+
+[!code-javascript[Error handling](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=50)]
+
+Richten Sie die Client seitige Protokoll Ablauf Verfolgung ein, indem Sie eine Protokollierung und einen Ereignistyp an die Protokollierung übergeben, wenn die Verbindung hergestellt wird. Nachrichten werden mit der angegebenen Protokollebene und höher protokolliert. Folgende Protokoll Ebenen sind verfügbar:
+
+* `signalR.LogLevel.Error`: Fehlermeldungen. Protokolliert `Error` nur Meldungen.
+* `signalR.LogLevel.Warning`: Warnmeldungen zu möglichen Fehlern. Protokolle `Warning` und `Error` Nachrichten.
+* `signalR.LogLevel.Information`: Status Meldungen ohne Fehler. Protokolliert `Information` die `Warning` Meldungen, und `Error` .
+* `signalR.LogLevel.Trace`: Ablauf Verfolgungs Meldungen. Protokolliert alles, einschließlich Daten, die zwischen dem Hub und dem Client transportiert werden.
+
+Verwenden Sie die Methode configure [relogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) für [hubconnectionbuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) , um die Protokollebene zu konfigurieren. Nachrichten werden in der Browser Konsole protokolliert.
+
+[!code-javascript[Logging levels](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=9-12)]
+
+## <a name="reconnect-clients"></a>Clients erneut verbinden
+
+### <a name="manually-reconnect"></a>Verbindung manuell wiederherstellen
+
+> [!WARNING]
+> Vor 3,0 wird vom JavaScript-Client für SignalR nicht automatisch eine erneute Verbindung hergestellt. Sie müssen Code schreiben, mit dem der Client manuell erneut eine Verbindung herstellt.
+
+Der folgende Code veranschaulicht einen typischen manuellen Verbindungs Ansatz:
+
+1. Eine Funktion (in diesem Fall die `start` Funktion) wird erstellt, um die Verbindung zu starten.
+1. Die `start` -Funktion wird im-Ereignishandler der Verbindung aufgerufen `onclose` .
+
+[!code-javascript[Reconnect the JavaScript client](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=28-40)]
 
 Eine reale Implementierung würde einen exponentiellen Backoff verwenden oder eine angegebene Anzahl von Wiederholungen wiederholen, bevor Sie zurückgegeben wird.
 
@@ -322,3 +432,5 @@ Eine reale Implementierung würde einen exponentiellen Backoff verwenden oder ei
 * [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin-Anforderungen (cors)](xref:security/cors)
 * [Azure- SignalR Dienst Server lose Dokumentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
+
+::: moniker-end

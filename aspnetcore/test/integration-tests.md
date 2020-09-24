@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: b06c06fb5e525a0bdc3df1de50236fa8f76daca9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9b36a77730a43c7515fcd2c56621412453784c9d
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635111"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722539"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Integrationstests in ASP.NET Core
 
@@ -388,7 +388,7 @@ Beim GS handelt es sich um ein Razor Pages-Nachrichtensystem mit folgenden Merkm
 
 &#8224;Im Entity Framework-Thema [Testen mit InMemory](/ef/core/miscellaneous/testing/in-memory) wird die Verwendung einer In-Memory-Datenbank für Tests mit MSTest erläutert. In diesem Thema wird das Testframework [xUnit](https://xunit.github.io/) verwendet. Testkonzepte und Testimplementierungen in verschiedenen Testframeworks sind ähnlich, jedoch nicht identisch.
 
-Obwohl die App nicht das Repositorymuster verwendet und kein effektives Beispiel für das [Arbeitseinheitsmuster](https://martinfowler.com/eaaCatalog/unitOfWork.html) ist, unterstützt Razor Pages diese Entwicklungsmuster. Weitere Informationen finden Sie unter [Entwerfen der Persistenzebene der Infrastruktur](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) und [Testcontrollerlogik](/aspnet/core/mvc/controllers/testing) (im Beispiel wird das Repositorymuster implementiert).
+Obwohl die App nicht das Repositorymuster verwendet und kein effektives Beispiel für das [Arbeitseinheitsmuster](https://martinfowler.com/eaaCatalog/unitOfWork.html) ist, unterstützt Razor Pages diese Entwicklungsmuster. Weitere Informationen finden Sie unter [Entwerfen der Persistenzebene der Infrastruktur](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) und [Testcontrollerlogik](../mvc/controllers/testing.md) (im Beispiel wird das Repositorymuster implementiert).
 
 ### <a name="test-app-organization"></a>Organisation der Test-App
 
@@ -779,7 +779,7 @@ Beim GS handelt es sich um ein Razor Pages-Nachrichtensystem mit folgenden Merkm
 
 &#8224;Im Entity Framework-Thema [Testen mit InMemory](/ef/core/miscellaneous/testing/in-memory) wird die Verwendung einer In-Memory-Datenbank für Tests mit MSTest erläutert. In diesem Thema wird das Testframework [xUnit](https://xunit.github.io/) verwendet. Testkonzepte und Testimplementierungen in verschiedenen Testframeworks sind ähnlich, jedoch nicht identisch.
 
-Obwohl die App nicht das Repositorymuster verwendet und kein effektives Beispiel für das [Arbeitseinheitsmuster](https://martinfowler.com/eaaCatalog/unitOfWork.html) ist, unterstützt Razor Pages diese Entwicklungsmuster. Weitere Informationen finden Sie unter [Entwerfen der Persistenzebene der Infrastruktur](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) und [Testcontrollerlogik](/aspnet/core/mvc/controllers/testing) (im Beispiel wird das Repositorymuster implementiert).
+Obwohl die App nicht das Repositorymuster verwendet und kein effektives Beispiel für das [Arbeitseinheitsmuster](https://martinfowler.com/eaaCatalog/unitOfWork.html) ist, unterstützt Razor Pages diese Entwicklungsmuster. Weitere Informationen finden Sie unter [Entwerfen der Persistenzebene der Infrastruktur](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) und [Testcontrollerlogik](../mvc/controllers/testing.md) (im Beispiel wird das Repositorymuster implementiert).
 
 ### <a name="test-app-organization"></a>Organisation der Test-App
 

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: d5be01c67f455a2706a654574ef9f5e273551e70
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 478e9e58f265a8c372dd048f9ba8593424050e01
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865448"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722669"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalisierung und Lokalisierung in ASP.NET Core
 
@@ -66,7 +66,7 @@ Im obigen Codebeispiel werden beide factory.Create-Methoden veranschaulicht.
 
 Sie können Ihre lokalisierten Zeichenfolgen in Steuerelemente und Bereiche aufteilen oder nur einen Container verwenden. In der Beispiel-App wird eine Dummyklasse namens `SharedResource` für freigegebene Ressourcen verwendet.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 Einige Entwickler verwenden die Klasse `Startup`, damit globale oder freigegebene Zeichenfolgen enthalten sind. Im folgenden Beispiel werden die Lokalisierer `InfoController` und `SharedResource` verwendet:
 
@@ -420,7 +420,7 @@ Im obigen Codebeispiel werden beide factory.Create-Methoden veranschaulicht.
 
 Sie können Ihre lokalisierten Zeichenfolgen in Steuerelemente und Bereiche aufteilen oder nur einen Container verwenden. In der Beispiel-App wird eine Dummyklasse namens `SharedResource` für freigegebene Ressourcen verwendet.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 Einige Entwickler verwenden die Klasse `Startup`, damit globale oder freigegebene Zeichenfolgen enthalten sind. Im folgenden Beispiel werden die Lokalisierer `InfoController` und `SharedResource` verwendet:
 
@@ -775,7 +775,7 @@ Im obigen Codebeispiel werden beide factory.Create-Methoden veranschaulicht.
 
 Sie können Ihre lokalisierten Zeichenfolgen in Steuerelemente und Bereiche aufteilen oder nur einen Container verwenden. In der Beispiel-App wird eine Dummyklasse namens `SharedResource` für freigegebene Ressourcen verwendet.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 Einige Entwickler verwenden die Klasse `Startup`, damit globale oder freigegebene Zeichenfolgen enthalten sind. Im folgenden Beispiel werden die Lokalisierer `InfoController` und `SharedResource` verwendet:
 

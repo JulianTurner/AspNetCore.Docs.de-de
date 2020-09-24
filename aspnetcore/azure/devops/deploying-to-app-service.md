@@ -3,7 +3,7 @@ title: Bereitstellen einer App für App Service – DevOps mit ASP.NET Core und 
 author: CamSoper
 description: Stellen Sie eine ASP.NET Core-App für Azure App Service bereit, der erste Schritt für DevOps mit ASP.NET Core und Azure.
 ms.author: casoper
-ms.custom: devx-track-csharp, mvc, seodec18
+ms.custom: devx-track-csharp, mvc, seodec18, devx-track-azurecli
 ms.date: 10/24/2018
 no-loc:
 - ASP.NET Core Identity
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: 31cd1f6ac8e1243b25569ae34ea252185bbf6467
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e6d8b4bcbbbe909fde971a8c706287654fcc98ba
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625478"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847623"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Bereitstellen einer App für App Service
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 3fab57df84e6902a8041940939c067da41f1674c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 55269c6985534b49cc2567b2d197e46d9b7b1fd7
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629729"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722526"
 ---
 # <a name="part-5-no-locrazor-pages-with-ef-core-in-aspnet-core---data-model"></a>Teil 5: Razor Pages mit EF Core in ASP.NET Core (Datenmodell)
 
@@ -70,7 +70,7 @@ Bei `FullName` handelt es sich um eine berechnete Eigenschaft, die einen Wert zu
 
 Für die Anmeldedaten von Studenten zeigen alle Webseiten derzeit die Zeit und das Datum an, obwohl nur das Datum relevant ist. Indem Sie Attribute für die Datenanmerkung verwenden, können Sie eine Codeänderungen vornehmen, durch die das Anzeigeformat auf jeder Seite korrigiert wird, in der die Daten angezeigt werden. 
 
-Das [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1)-Attribut gibt einen Datentyp an, der spezifischer als der datenbankinterne Typ ist. In diesem Fall sollte nur das Datum angezeigt werden, nicht das Datum und die Uhrzeit. Die [DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1)-Enumeration stellt viele Datentypen bereit, wie z.B. „Date“, „Time“, „PhoneNumber“, „Currency“, „EmailAddress“. Das `DataType`-Attribut kann der App auch das Bereitstellen typspezifischer Features ermöglichen. Zum Beispiel:
+Das [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute)-Attribut gibt einen Datentyp an, der spezifischer als der datenbankinterne Typ ist. In diesem Fall sollte nur das Datum angezeigt werden, nicht das Datum und die Uhrzeit. Die [DataType](/dotnet/api/system.componentmodel.dataannotations.datatype)-Enumeration stellt viele Datentypen bereit, wie z.B. „Date“, „Time“, „PhoneNumber“, „Currency“, „EmailAddress“. Das `DataType`-Attribut kann der App auch das Bereitstellen typspezifischer Features ermöglichen. Zum Beispiel:
 
 * Der Link `mailto:` wird automatisch für `DataType.EmailAddress` erstellt.
 * Die Datumsauswahl für `DataType.Date` wird in den meisten Browsern bereitgestellt.
@@ -100,11 +100,11 @@ Weitere Informationen finden Sie in der [Dokumentation zum \<input>-Taghilfsprog
 [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
 ```
 
-Die Regeln für die Datenvalidierung und Meldungen für Validierungsfehler können mithilfe von Attributen angegeben werden. Das [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1)-Attribut gibt den mindestens erforderlichen und maximal zulässigen Wert für die Zeichenlänge eines Datenfelds an. Der gezeigte Code beschränkt Namen auf maximal 50 Zeichen. Ein Beispiel, das die minimale Zeichenfolgenlänge festlegt, wird [später](#the-required-attribute) gezeigt.
+Die Regeln für die Datenvalidierung und Meldungen für Validierungsfehler können mithilfe von Attributen angegeben werden. Das [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute)-Attribut gibt den mindestens erforderlichen und maximal zulässigen Wert für die Zeichenlänge eines Datenfelds an. Der gezeigte Code beschränkt Namen auf maximal 50 Zeichen. Ein Beispiel, das die minimale Zeichenfolgenlänge festlegt, wird [später](#the-required-attribute) gezeigt.
 
 Das `StringLength`-Attribut stellt ebenfalls die clientseitige und serverseitige Validierung bereit. Der mindestens erforderliche Wert hat keine Auswirkungen auf das Datenbankschema.
 
-Das `StringLength`-Attribut verhindert nicht, dass ein Benutzer einen Leerraum als Namen eingibt. Das Attribut [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) kann verwendet werden, um Einschränkungen auf die Eingabe anzuwenden. Folgender Code erfordert beispielsweise, dass das erste Zeichen ein Großbuchstabe sein muss und die restlichen Zeichen alphabetisch sein müssen:
+Das `StringLength`-Attribut verhindert nicht, dass ein Benutzer einen Leerraum als Namen eingibt. Das Attribut [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) kann verwendet werden, um Einschränkungen auf die Eingabe anzuwenden. Folgender Code erfordert beispielsweise, dass das erste Zeichen ein Großbuchstabe sein muss und die restlichen Zeichen alphabetisch sein müssen:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
@@ -760,7 +760,7 @@ Aktualisieren Sie *Models/Student.cs* mit folgendem hervorgehobenen Code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-Das [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1)-Attribut gibt einen Datentyp an, der spezifischer als der datenbankinterne Typ ist. In diesem Fall sollte nur das Datum angezeigt werden, nicht das Datum und die Uhrzeit. Die [DataType](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1)-Enumeration stellt viele Datentypen bereit, wie z.B. „Date“, „Time“, „PhoneNumber“, „Currency“, „EmailAddress“. Das `DataType`-Attribut kann der App auch das Bereitstellen typspezifischer Features ermöglichen. Zum Beispiel:
+Das [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute)-Attribut gibt einen Datentyp an, der spezifischer als der datenbankinterne Typ ist. In diesem Fall sollte nur das Datum angezeigt werden, nicht das Datum und die Uhrzeit. Die [DataType](/dotnet/api/system.componentmodel.dataannotations.datatype)-Enumeration stellt viele Datentypen bereit, wie z.B. „Date“, „Time“, „PhoneNumber“, „Currency“, „EmailAddress“. Das `DataType`-Attribut kann der App auch das Bereitstellen typspezifischer Features ermöglichen. Zum Beispiel:
 
 * Der Link `mailto:` wird automatisch für `DataType.EmailAddress` erstellt.
 * Die Datumsauswahl für `DataType.Date` wird in den meisten Browsern bereitgestellt.
@@ -790,13 +790,13 @@ Führen Sie die App aus. Navigieren Sie zur Indexseite „Studenten“. Die Uhrz
 
 ### <a name="the-stringlength-attribute"></a>Das StringLength-Attribut
 
-Die Regeln für die Datenvalidierung und Meldungen für Validierungsfehler können mithilfe von Attributen angegeben werden. Das [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1)-Attribut gibt den mindestens erforderlichen und maximal zulässigen Wert für die Zeichenlänge eines Datenfelds an. Das `StringLength`-Attribut stellt ebenfalls die clientseitige und serverseitige Validierung bereit. Der mindestens erforderliche Wert hat keine Auswirkungen auf das Datenbankschema.
+Die Regeln für die Datenvalidierung und Meldungen für Validierungsfehler können mithilfe von Attributen angegeben werden. Das [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute)-Attribut gibt den mindestens erforderlichen und maximal zulässigen Wert für die Zeichenlänge eines Datenfelds an. Das `StringLength`-Attribut stellt ebenfalls die clientseitige und serverseitige Validierung bereit. Der mindestens erforderliche Wert hat keine Auswirkungen auf das Datenbankschema.
 
 Aktualisieren Sie das `Student`-Modell mit folgendem Code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
-Der vorangehende Code beschränkt Namen auf maximal 50 Zeichen. Das `StringLength`-Attribut verhindert nicht, dass ein Benutzer einen Leerraum als Namen eingibt. Das Attribut [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) wird verwendet, um Einschränkungen auf die Eingabe anzuwenden. Folgender Code erfordert beispielsweise, dass das erste Zeichen ein Großbuchstabe sein muss und die restlichen Zeichen alphabetisch sein müssen:
+Der vorangehende Code beschränkt Namen auf maximal 50 Zeichen. Das `StringLength`-Attribut verhindert nicht, dass ein Benutzer einen Leerraum als Namen eingibt. Das Attribut [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) wird verwendet, um Einschränkungen auf die Eingabe anzuwenden. Folgender Code erfordert beispielsweise, dass das erste Zeichen ein Großbuchstabe sein muss und die restlichen Zeichen alphabetisch sein müssen:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]

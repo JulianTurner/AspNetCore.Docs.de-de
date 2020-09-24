@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: a53ba22c301b04aafa1eeb53d91f82f90dab0bad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a1cbd8f434214ce488fc3febe63d8aaf54db71a3
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631549"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722786"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>Neuerungen in ASP.NET Core 3.0
 
@@ -397,7 +397,7 @@ Hostanforderungen:
 * Windows-Hosts müssen dem Benutzerkonto, das die App hostet, [Dienstprinzipalnamen](/windows/win32/ad/service-principal-names) hinzufügen.
 * Linux- und macOS-Computer müssen der Domäne beigetreten sein.
   * Für den Webprozess müssen Dienstprinzipalnamen erstellt werden.
-  * [Keytab-Dateien](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) müssen generiert und auf dem Hostcomputer konfiguriert werden.
+  * [Keytab-Dateien](/archive/blogs/pie/all-you-need-to-know-about-keytab-files) müssen generiert und auf dem Hostcomputer konfiguriert werden.
 
 Weitere Informationen finden Sie unter <xref:security/authentication/windowsauth>.
 
@@ -550,4 +550,3 @@ Eine vollständige Liste der Assemblys, die aus dem freigegebenen Framework entf
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
 -->
- 

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: d922e3a4ad3660bdd1c70dc262acc2f87bdd4214
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 78eb466fcfeb130e411df490f033114b3fdebeef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626999"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722630"
 ---
 # <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>Teil 4: Razor Pages mit EF Core-Migrationen in ASP.NET Core
 
@@ -132,7 +132,7 @@ Führen Sie die App aus, und stellen Sie sicher, dass für die Datenbank ein See
 
 ## <a name="applying-migrations-in-production"></a>Anwenden von Migrationen in der Produktionsumgebung
 
-Es wird empfohlen, dass Produktions-Apps [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) beim Anwendungsstart **nicht** aufrufen. `Migrate` sollte nicht aus einer APP aufgerufen werden, die in einer Serverfarm bereitgestellt wird. Wenn die App auf mehrere Serverinstanzen horizontal hochskaliert wird, ist es schwierig sicherzustellen, dass Datenbankschemaaktualisierungen nicht von mehreren Servern erfolgen oder mit Lese-/Schreibzugriffen einen Konflikt verursachen.
+Es wird empfohlen, dass Produktions-Apps [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) beim Anwendungsstart **nicht** aufrufen. `Migrate` sollte nicht aus einer APP aufgerufen werden, die in einer Serverfarm bereitgestellt wird. Wenn die App auf mehrere Serverinstanzen horizontal hochskaliert wird, ist es schwierig sicherzustellen, dass Datenbankschemaaktualisierungen nicht von mehreren Servern erfolgen oder mit Lese-/Schreibzugriffen einen Konflikt verursachen.
 
 Die Datenbankmigration sollte im Rahmen der Bereitstellung und auf kontrollierte Weise erfolgen. Zu den Ansätzen für die Migration von Produktionsdatenbanken zählen die folgenden:
 
@@ -295,7 +295,7 @@ Führen Sie die App aus, und überprüfen Sie, ob alles funktioniert.
 
 ## <a name="applying-migrations-in-production"></a>Anwenden von Migrationen in der Produktionsumgebung
 
-Es wird empfohlen, dass Produktions-Apps [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) beim Anwendungsstart **nicht** aufrufen. `Migrate` sollte in der Serverfarm nicht über eine App aufgerufen werden. Beispielsweise wenn die App über eine Cloud mit horizontaler Skalierung bereitgestellt wurde (mehrere Instanzen der App werden ausgeführt).
+Es wird empfohlen, dass Produktions-Apps [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) beim Anwendungsstart **nicht** aufrufen. `Migrate` sollte in der Serverfarm nicht über eine App aufgerufen werden. Beispielsweise wenn die App über eine Cloud mit horizontaler Skalierung bereitgestellt wurde (mehrere Instanzen der App werden ausgeführt).
 
 Die Datenbankmigration sollte im Rahmen der Bereitstellung und auf kontrollierte Weise erfolgen. Zu den Ansätzen für die Migration von Produktionsdatenbanken zählen die folgenden:
 

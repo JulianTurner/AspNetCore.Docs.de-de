@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/modules
-ms.openlocfilehash: 7ddc1b0f80625fbc39ac49f305f745b005cbce46
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6936071339786262fa8eeb669a59225a695d7488
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634669"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722805"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>IIS-Module mit ASP.NET Core
 
@@ -178,5 +178,5 @@ Das HTTP-Zwischenspeicherungsmodul (`HttpCacheModule`) implementiert den IIS-Aus
 
 * [Introduction to IIS Architectures: Modules in IIS (Einführung in IIS-Architekturen: Module in IIS)](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#modules-in-iis)
 * [Übersicht über IIS-Module](/iis/get-started/introduction-to-iis/iis-modules-overview)
-* [Anpassen von IIS 7.0-Rollen und -Modulen](https://technet.microsoft.com/library/cc627313.aspx)
+* [Anpassen von IIS 7.0-Rollen und -Modulen](/previous-versions/tn-archive/cc627313(v=technet.10))
 * [IIS\<system.webServer>](/iis/configuration/system.webServer/)

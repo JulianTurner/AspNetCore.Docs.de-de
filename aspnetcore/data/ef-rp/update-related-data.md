@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: 603c5e7c9f095c380461f8c6e4ead783ad35abe2
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 17b200f0ba90035c417c96689798263af16551de
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630860"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722818"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Teil 7: Razor Pages mit EF Core in ASP.NET Core – Aktualisieren relevanter Daten
 
@@ -46,7 +46,7 @@ Erstellen Sie eine Datei *Pages/Courses/DepartmentNamePageModel.cs* mit dem folg
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-Der vorangehende Code erstellt eine [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0), in der die Liste der Abteilungsnamen enthalten sein soll. Wenn `selectedDepartment` angegeben ist, wird diese Abteilung in `SelectList` ausgewählt.
+Der vorangehende Code erstellt eine [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist), in der die Liste der Abteilungsnamen enthalten sein soll. Wenn `selectedDepartment` angegeben ist, wird diese Abteilung in `SelectList` ausgewählt.
 
 Die Modellklassen der Seiten „Create“ (Erstellen) und „Edit“ (Bearbeiten) werden von `DepartmentNamePageModel` abgeleitet.
 
@@ -111,7 +111,7 @@ Die Seite enthält ein ausgeblendetes Feld (`<input type="hidden">`) für die Ku
 
 ## <a name="update-the-course-details-and-delete-pages"></a>Aktualisieren der Seiten „Course Details“ und „Delete“
 
-Durch [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) kann die Leistung verbessert werden, wenn keine Nachverfolgung erforderlich ist.
+Durch [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) kann die Leistung verbessert werden, wenn keine Nachverfolgung erforderlich ist.
 
 ### <a name="update-the-course-page-models"></a>Aktualisieren der Seitenmodelle „Course“
 
@@ -263,7 +263,7 @@ Auf den Seiten „Courses/Create“ (Kurse/Erstellen) und „Courses/Edit“ (Ku
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-Der vorangehende Code erstellt eine [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0), in der die Liste der Abteilungsnamen enthalten sein soll. Wenn `selectedDepartment` angegeben ist, wird diese Abteilung in `SelectList` ausgewählt.
+Der vorangehende Code erstellt eine [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist), in der die Liste der Abteilungsnamen enthalten sein soll. Wenn `selectedDepartment` angegeben ist, wird diese Abteilung in `SelectList` ausgewählt.
 
 Die Modellklassen der Seiten „Create“ (Erstellen) und „Edit“ (Bearbeiten) werden von `DepartmentNamePageModel` abgeleitet.
 
@@ -328,7 +328,7 @@ Testen Sie den aktualisierten Code. Erstellen, bearbeiten und löschen Sie einen
 
 ## <a name="add-asnotracking-to-the-details-and-delete-page-models"></a>Hinzufügen von „AsNoTracking“ zu den Seitenmodellen „Details“ und „Delete“ (Löschen)
 
-Durch [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) kann die Leistung verbessert werden, wenn keine Nachverfolgung erforderlich ist. Fügen Sie `AsNoTracking` zu den Seitenmodellen „Delete“ (Löschen) und „Details“ (Details) hinzu. Im folgenden Code wird das aktualisierte Seitenmodell „Delete“ (Löschen) dargestellt:
+Durch [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) kann die Leistung verbessert werden, wenn keine Nachverfolgung erforderlich ist. Fügen Sie `AsNoTracking` zu den Seitenmodellen „Delete“ (Löschen) und „Details“ (Details) hinzu. Im folgenden Code wird das aktualisierte Seitenmodell „Delete“ (Löschen) dargestellt:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 

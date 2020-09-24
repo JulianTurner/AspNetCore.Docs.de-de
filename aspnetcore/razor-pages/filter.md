@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: b6d6585c0cbd52715c4192d4ab3bee756dbb41b3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 436d640130b378e2c770322186020c6e252872ef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635046"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722513"
 ---
 # <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>Filtermethoden für Razor-Seiten in ASP-NET Core
 
@@ -39,7 +39,7 @@ Filter für Razor Pages:
 * Führen Code aus, nachdem die Handlermethode ausgeführt wird
 * Können auf einer Seite oder global implementiert werden
 * Können nicht auf seitenspezifische Handlermethoden angewendet werden
-* Alle Konstruktorabhängigkeiten werden durch die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) aufgefüllt. Weitere Informationen finden Sie unter [ServiceFilterAttribute](/aspnet/core/mvc/controllers/filters#servicefilterattribute) und [TypeFilterAttribute](/aspnet/core/mvc/controllers/filters#typefilterattribute).
+* Alle Konstruktorabhängigkeiten werden durch die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) aufgefüllt. Weitere Informationen finden Sie unter [ServiceFilterAttribute](../mvc/controllers/filters.md#servicefilterattribute) und [TypeFilterAttribute](../mvc/controllers/filters.md#typefilterattribute).
 
 Während Seitenkonstruktoren und Middleware die Ausführung von benutzerdefiniertem Code vor der Ausführung einer Handlermethode ermöglichen, gestatten nur Razor Page-Filter den Zugriff auf <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> und die Seite. Middleware hat Zugriff auf den `HttpContext`, aber nicht auf den „Seitenkontext“. Filter verfügen über einen Parameter, der von <xref:Microsoft.AspNetCore.Mvc.Filters.FilterContext> abgeleitet ist, um Zugriff auf `HttpContext` zu ermöglichen. Im Folgenden finden Sie ein Beispiel für einen Seitenfilter: [Implementieren eines Filterattributs](#ifa) fügt der Antwort einen Header hinzu. Dies kann nicht über Konstruktoren oder Middleware erfolgen. Der Zugriff auf den Seitenkontext, der den Zugriff auf die Instanzen der Seite und ihr Modell enthält, ist nur verfügbar, wenn Filter, Handler oder der Text einer Razor-Seite ausgeführt werden.
 

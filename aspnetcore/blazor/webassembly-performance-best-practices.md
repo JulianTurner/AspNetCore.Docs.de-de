@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 5d3cd1480dd37f437b2d6d5a89af0a842286be95
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: d1ad646f82e5c9ba611a60fc9be8378bedef8dee
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080263"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721722"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Best Practices zur Blazor WebAssembly-Leistung in ASP.NET Core
 
@@ -81,10 +81,7 @@ Weitere Informationen finden Sie unter <xref:blazor/components/lifecycle#after-c
 
 Komponenten stellen einen bequemen Ansatz dar, um wiederverwendbare Code- und Markupfragmente zu generieren. Allgemein wird empfohlen, einzelne Komponenten zu erstellen, die am besten die Anforderungen der App erfüllen können. Eine Einschränkung besteht darin, dass die einzelnen zusätzlichen untergeordneten Komponenten zur Gesamtzeit beitragen, die benötigt wird, eine übergeordnete Komponente zu rendern. Bei den meisten Apps kann dieser zusätzliche Aufwand vernachlässigt werden. Für Apps, die eine große Anzahl Komponenten erzeugen, sollte die Verwendung von Strategien in Betracht gezogen werden, die den Verarbeitungsaufwand reduzieren, z. B. indem die Anzahl gerenderter Komponenten begrenzt wird.
 
-Bei einem Raster oder einer Liste, die Hunderte Datensätze rendert, die Komponenten enthalten, ist die Auslastung des Prozessors für das Rendern beispielsweise höher. Ziehen Sie es in Betracht, ein Raster oder ein Listenlayout zu virtualisieren, sodass nur eine Teilmenge der Komponenten jeweils gleichzeitig gerendert wird. Ein Beispiel für das Rendern einer Teilmenge von Komponenten finden Sie bei den folgenden Komponenten unter [`Virtualization`-Beispiel-App (aspnet/samples, GitHub-Repository)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
-
-* `Virtualize`-Komponente ([`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): Eine in C# geschriebene Komponente, die <xref:Microsoft.AspNetCore.Components.ComponentBase> implementiert, um mehrere Wetterdatensätze basierend auf dem Scrollen des Benutzers zu rendern
-* `FetchData`-Komponente ([`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): Verwendet die `Virtualize`-Komponente, um 25 Wetterdatensätze gleichzeitig anzuzeigen
+Weitere Informationen finden Sie unter <xref:blazor/components/virtualization>.
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>Vermeiden von JavaScript-Interoperabilität zum Marshallen von Daten
 

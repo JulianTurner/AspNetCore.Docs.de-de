@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 4d3aa2db7939313088fbc7b20e7cba2d75463b84
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: c8bce9572f0c21fdbd7ed585772c2b7965f40598
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865147"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592942"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>Zusätzliche Sicherheitsszenarios für ASP.NET Core Blazor Server
 
@@ -123,25 +123,31 @@ Lösen Sie in der `App`-Komponente (`App.razor`) den Dienst auf, und initialisie
 }
 ```
 
+Fügen Sie der App einen Paketverweis für das NuGet-Paket [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) hinzu.
+
 Fügen Sie den Tokenanbieter in den Dienst ein, der eine sichere API-Anforderung stellt, und rufen Sie das Token ab, um die API aufzurufen:
 
 ```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 public class WeatherForecastService
 {
-    private readonly TokenProvider _store;
+    private readonly TokenProvider store;
 
     public WeatherForecastService(IHttpClientFactory clientFactory, 
         TokenProvider tokenProvider)
     {
         Client = clientFactory.CreateClient();
-        _store = tokenProvider;
+        store = tokenProvider;
     }
 
     public HttpClient Client { get; }
 
     public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
     {
-        var token = _store.AccessToken;
+        var token = store.AccessToken;
         var request = new HttpRequestMessage(HttpMethod.Get, 
             "https://localhost:5003/WeatherForecast");
         request.Headers.Add("Authorization", $"Bearer {token}");

@@ -16,13 +16,14 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
+- Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 3d83141b8b638a369b08b0fadafccd96c0b48214
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: ebce9f2f4992d83c6b28edb5c771cdfc8a7a0b6a
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876788"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080380"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Erstellen einer Web-API mit ASP.NET Core
 
@@ -197,25 +198,25 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Modelle*.
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Models* .
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem*, und wählen Sie **Hinzufügen** aus.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem*, und wählen Sie **Hinzufügen** aus.
 
 * Ersetzen Sie den Vorlagencode durch den folgenden Code:
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Fügen Sie einen Ordner namens *Modelle* hinzu.
+* Fügen Sie einen Ordner mit dem Namen *Models* hinzu.
 
-* Fügen Sie dem Ordner *Modelle* mit dem folgenden Code eine `TodoItem`-Klasse hinzu:
+* Fügen Sie dem Ordner *Models* mit dem folgenden Code eine `TodoItem`-Klasse hinzu:
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Modelle*.
+* Klicken Sie mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Models* .
 
   ![Neuer Ordner](first-web-api-mac/_static/folder.png)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und wählen Sie **Hinzufügen** > **Neue Datei** > **Allgemein** > **Leere Klasse** aus.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Neue Datei** > **Allgemein** > **Leere Klasse** aus.
 
 * Nennen Sie die Klasse *TodoItem*, und klicken Sie dann auf **Neu**.
 
@@ -227,7 +228,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 Die `Id`-Eigenschaft fungiert als eindeutiger Schlüssel in einer relationalen Datenbank.
 
-Modellklassen können überall im Projekt platziert werden, doch gemäß der Konvention wird der Ordner *Modelle* verwendet.
+Modellklassen können überall im Projekt platziert werden, doch gemäß der Konvention wird der Ordner *Models* verwendet.
 
 ## <a name="add-a-database-context"></a>Hinzufügen eines Datenbankkontexts
 
@@ -247,11 +248,11 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 
 ## <a name="add-the-todocontext-database-context"></a>Hinzufügen des TodoContext-Datenbankkontexts
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext*, und klicken Sie auf **Hinzufügen**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext*, und klicken Sie auf **Hinzufügen**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Fügen Sie eine `TodoContext`-Klasse zum Ordner *Modelle* hinzu.
+* Fügen Sie eine `TodoContext`-Klasse zum Ordner *Models* hinzu.
 
 ---
 
@@ -639,25 +640,25 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Modelle*.
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Models* .
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem*, und wählen Sie **Hinzufügen** aus.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem*, und wählen Sie **Hinzufügen** aus.
 
 * Ersetzen Sie den Vorlagencode durch den folgenden Code:
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-* Fügen Sie einen Ordner namens *Modelle* hinzu.
+* Fügen Sie einen Ordner mit dem Namen *Models* hinzu.
 
-* Fügen Sie dem Ordner *Modelle* mit dem folgenden Code eine `TodoItem`-Klasse hinzu:
+* Fügen Sie dem Ordner *Models* mit dem folgenden Code eine `TodoItem`-Klasse hinzu:
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Modelle*.
+* Klicken Sie mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Models* .
 
   ![Neuer Ordner](first-web-api-mac/_static/folder.png)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und wählen Sie **Hinzufügen** > **Neue Datei** > **Allgemein** > **Leere Klasse** aus.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Neue Datei** > **Allgemein** > **Leere Klasse** aus.
 
 * Nennen Sie die Klasse *TodoItem*, und klicken Sie dann auf **Neu**.
 
@@ -669,7 +670,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 Die `Id`-Eigenschaft fungiert als eindeutiger Schlüssel in einer relationalen Datenbank.
 
-Modellklassen können überall im Projekt platziert werden, doch gemäß der Konvention wird der Ordner *Modelle* verwendet.
+Modellklassen können überall im Projekt platziert werden, doch gemäß der Konvention wird der Ordner *Models* verwendet.
 
 ## <a name="add-a-database-context"></a>Hinzufügen eines Datenbankkontexts
 
@@ -677,11 +678,11 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext*, und klicken Sie auf **Hinzufügen**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext*, und klicken Sie auf **Hinzufügen**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Fügen Sie eine `TodoContext`-Klasse zum Ordner *Modelle* hinzu.
+* Fügen Sie eine `TodoContext`-Klasse zum Ordner *Models* hinzu.
 
 ---
 

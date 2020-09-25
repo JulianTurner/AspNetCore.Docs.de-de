@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: d933a677a063d50fbe708264106e3ce19400a270
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 82969bf92965bfdeb1d1474ab47ca74ecbe6dd97
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628572"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080302"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>Klassenbibliotheken für ASP.NET Core-Razor-Komponenten
 
@@ -183,5 +183,16 @@ Laden Sie das Paket mit dem Befehl [`dotnet nuget push`](/dotnet/core/tools/dotn
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
+::: moniker range=">= aspnetcore-5.0"
+
 * <xref:razor-pages/ui-class>
-* [Hinzufügen einer XML-Linkerkonfigurationsdatei zu einer Bibliothek](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+* [Hinzufügen eines XML-IL-Trimmer-Konfigurationsdatei (Intermediate Language, Zwischensprache) zu einer Bibliothek](xref:blazor/host-and-deploy/configure-trimmer)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:razor-pages/ui-class>
+* [Hinzufügen eines XML-IL-Linker-Konfigurationsdatei (Intermediate Language, Zwischensprache) zu einer Bibliothek](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+
+::: moniker-end

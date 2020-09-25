@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie Anforderungen in Apps und über die NavLink-K
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2020
+ms.date: 09/02/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: eb9e3cbddd2eaca8fef9a6782c28bbce4c029f58
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 09e7ca9c03103de116c566352496174e97fbc3ce
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865329"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593007"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor-Routing
 
@@ -161,16 +161,35 @@ Die in der folgenden Tabelle aufgeführten Routeneinschränkungen sind verfügba
 
 ### <a name="routing-with-urls-that-contain-dots"></a>Routing mit URLs, die Punkte enthalten
 
-In Blazor Server-Apps ist die Standardroute in `_Host.cshtml` `/` (`@page "/"`). Eine Anforderungs-URL, die einen Punkt (`.`) enthält, wird nicht mit der Standardroute abgeglichen, da die URL zum Anfordern einer Datei angezeigt wird. Eine Blazor-App gibt eine Antwort *404 – Nicht gefunden* für eine statische Datei zurück, die nicht vorhanden ist. Um Routen zu verwenden, die einen Punkt enthalten, konfigurieren Sie `_Host.cshtml` mit der folgenden Routenvorlage:
+Wenn das letzte Segment einer Anforderungs-URL einen Punkt (`.`) enthält (z. B. `https://localhost.com:5001/example/some.thing`), wird bei gehosteten Blazor WebAssembly- und Blazor Server-Apps von der serverseitigen Standardvorlage für Routen davon ausgegangen, dass eine Datei angefordert wird. Ohne zusätzliche Konfiguration gibt eine App eine *404 – Nicht gefunden*-Antwort zurück, wenn damit an eine Komponente weitergeleitet werden soll. Wenn eine Route mit einem Parameter verwendet werden soll, der einen Punkt enthält, muss die Route von der App mit einer benutzerdefinierten Vorlage konfiguriert werden.
 
-```cshtml
-@page "/{**path}"
+Betrachten Sie die folgende `Example`-Komponente, die einen Routenparameter aus dem letzten Segment der URL empfangen kann:
+
+```razor
+@page "/example"
+@page "/example/{param}"
+
+<p>
+    Param: @Param
+</p>
+
+@code {
+    [Parameter]
+    public string Param { get; set; }
+}
 ```
 
-Die `"/{**path}"`-Vorlage enthält Folgendes:
+Wenn Sie möchten, dass die *Server*-App einer gehosteten Blazor WebAssembly-Lösung die Anforderung mit einem Punkt im `param`-Parameter weiterleiten können soll, fügen Sie eine Ausweichdateiroutenvorlage hinzu, wobei sich der optionale Parameter in `Startup.Configure` (`Startup.cs`) befindet:
 
-* *Catch-All*-Syntax mit doppelten Sternchen (`**`) zur Erfassung des Pfades über mehrere Ordnergrenzen hinweg ohne Decodierung von Schrägstrichen (`/`).
-* Name des `path`-Routenparameters.
+```csharp
+endpoints.MapFallbackToFile("/example/{param?}", "index.html");
+```
+
+Um eine Blazor Server-App so zu konfigurieren, dass die Anforderung mit einem Punkt im `param`-Parameter weiterleitet wird, fügen Sie eine Ausweichdateiroutenvorlage hinzu, wobei sich der optionale Parameter in `Startup.Configure` (`Startup.cs`) befindet:
+
+```csharp
+endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
+```
 
 Weitere Informationen finden Sie unter <xref:fundamentals/routing>.
 
@@ -178,7 +197,7 @@ Weitere Informationen finden Sie unter <xref:fundamentals/routing>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-*Dieser Abschnitt gilt ab dem Release Candidate 1 (RC1) für .NET 5, der Mitte September veröffentlicht wird.*
+*Dieser Abschnitt gilt für ASP.NET Core in .NET 5 Release Candidate 1 (RC1) oder höher.*
 
 Catch-All-Routenparameter, die Pfade über mehrere Ordnergrenzen hinweg erfassen, werden in Komponenten unterstützt. Für die Catch-All-Routenparameter gilt Folgendes:
 
@@ -203,7 +222,7 @@ Schrägstriche und Segmente des erfassten Pfads werden decodiert. Bei der Routen
 
 ::: moniker range="< aspnetcore-5.0"
 
-Ab dem Release Candidate 1 (RC1) von .NET 5, der Mitte September veröffentlicht wird, werden Catch-All-Routenparameter unterstützt.*
+Catch-All-Routenparameter werden in ASP.NET Core in .NET 5 Release Candidate 1 (RC1) oder höher unterstützt.*
 
 ::: moniker-end
 

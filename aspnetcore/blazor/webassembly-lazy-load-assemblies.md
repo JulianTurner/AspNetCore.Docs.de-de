@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Lazy Loading von Assemblys in ASP.NET Core Blazor
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 09/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 46f98080ad40f614f9cb1af2190f263d205c1016
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: eb4aaa2f3d412cdf650ed2daf7c12166991d92a1
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865160"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592903"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>Lazy Loading von Assemblys in ASP.NET Core Blazor WebAssembly
 
@@ -42,20 +42,9 @@ Markieren Sie Assemblys in der Projektdatei der App (`.csproj`) mithilfe des `Bl
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls" />
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
 </ItemGroup>
 ```
-
-Nur für Assemblys, die von der App verwendet werden, kann Lazy Loading genutzt werden. Der Linker entfernt nicht verwendete Assemblys aus der veröffentlichten Ausgabe.
-
-> [!NOTE]
-> Ab dem Release Candidate 1 (RC1) von .NET 5, der Mitte September veröffentlicht wird, benötigt der Assemblyname die `.dll`-Erweiterung:
->
-> ```xml
-> <ItemGroup>
->  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
-> </ItemGroup>
-> ```
 
 ## <a name="router-component"></a>`Router`-Komponente
 
@@ -114,8 +103,11 @@ Implementieren Sie in `OnNavigateAsync` Logik, um die zu ladenden Assemblys zu b
 * Sie verwendet JS Interop zum Abrufen von Assemblys über einen Netzwerkaufruf.
 * Lädt Assemblys in die Laufzeit, die für WebAssembly im Browser ausgeführt werden.
 
-> [!NOTE]
-> Die Lazy Loading-Implementierung des Frameworks unterstützt PreRendering auf dem Server. Während des PreRenderings werden alle Assemblys (einschließlich der für Lazy Loading markierten Assemblys) als geladen angenommen.
+Die Lazy Loading-Implementierung des Frameworks unterstützt Lazy Loading mit Prerendering in einer gehosteten Blazor-Lösung. Während des PreRenderings werden alle Assemblys (einschließlich der für Lazy Loading markierten Assemblys) als geladen angenommen. Registrieren Sie `LazyAssemblyLoader` manuell in der `Startup.ConfigureServices`-Methode des *Serverprojekts* (`Startup.cs`):
+
+```csharp
+services.AddSingleton<LazyAssemblyLoader>();
+```
 
 ### <a name="user-interaction-with-navigating-content"></a>Benutzerinteraktion mit `<Navigating>`-Inhalt
 

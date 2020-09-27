@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bb75d8b7d78c82c9c32605ac645b8895fdfb78e3
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630626"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393651"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Verwenden von Teilansichten in ASP.NET Core
 
 Von [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) und [Scott Sauber](https://twitter.com/scottsauber)
 
-Eine Teilansicht ist eine [Razor](xref:mvc/views/razor) Markup Datei (*. cshtml*), die die HTML-Ausgabe *innerhalb* der gerenderten Ausgabe einer anderen Markup Datei rendert.
+Eine Teilansicht ist eine [Razor](xref:mvc/views/razor) Markup Datei (*. cshtml*) ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die die HTML-Ausgabe *innerhalb* der gerenderten Ausgabe einer anderen Markup Datei rendert.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -57,7 +57,7 @@ Verwenden Sie keine Teilansicht, wenn für das Rendern des Markups eine komplexe
 
 ::: moniker range=">= aspnetcore-2.0"
 
-Eine Teilansicht ist eine *cshtml* -Markup Datei, die im Ordner *views* (MVC) oder im Ordner *pages* ( Razor Seiten) verwaltet wird.
+Eine Teilansicht ist eine *cshtml* -Markup Datei ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die im Ordner *views* (MVC) oder im Ordner *pages* ( Razor Seiten) beibehalten wird.
 
 In ASP.NET Core MVC kann <xref:Microsoft.AspNetCore.Mvc.ViewResult> eines Controllers eine Ansicht oder eine Teilansicht zurückgeben. In Razor Seiten kann eine <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> eine partielle Ansicht zurückgeben, die als-Objekt dargestellt wird <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> . Das Verweisen auf und Rendern von Teilansichten wird im Abschnitt [Verweisen auf eine Teilansicht](#reference-a-partial-view) beschrieben.
 

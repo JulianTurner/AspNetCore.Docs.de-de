@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 08cd6396cca78488827dfa7c2cca62a35c500dbd
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: e451d511ab7791a05024d88635d8005132ad4edd
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009699"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393924"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -277,7 +277,7 @@ Beim Attributrouting werden Aktionen mithilfe von Attributen direkt Routenvorlag
 
 Im vorangehenden Code <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> wird innerhalb von aufgerufen, `UseEndpoints` um Attribut Routing Controller zuzuordnen.
 
-Im folgenden Beispiel:
+Siehe folgendes Beispiel:
 
 * Die vorangehende `Configure` Methode wird verwendet.
 * `HomeController` entspricht einem Satz von URLs, die mit der herkömmlichen Standardroute `{controller=Home}/{action=Index}/{id?}` übereinstimmen.
@@ -353,7 +353,7 @@ Beachten Sie den folgenden Controller:
 Für den Code oben gilt:
 
 * Jede Aktion enthält das- `[HttpGet]` Attribut, das die Übereinstimmung von HTTP-GET-Anforderungen einschränkt.
-* Die `GetProduct` Aktion enthält die `"{id}"` Vorlage und `id` wird daher an die `"api/[controller]"` Vorlage auf dem Controller angehängt. Die Methoden Vorlage ist `"api/[controller]/"{id}""` . Daher entspricht diese Aktion nur Get-Anforderungen von für das Formular `/api/test2/xyz` , `/api/test2/123` , `/api/test2/{any string}` usw.
+* Die `GetProduct` Aktion enthält die `"{id}"` Vorlage und `id` wird daher an die `"api/[controller]"` Vorlage auf dem Controller angehängt. Die Methoden Vorlage ist `"api/[controller]/"{id}""` . Daher entspricht diese Aktion nur Get-Anforderungen für das Formular `/api/test2/xyz` , `/api/test2/123` , `/api/test2/{any string}` usw.
   [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
 * Die `GetIntProduct` Aktion enthält die `"int/{id:int}")` Vorlage. Der `:int` Teil der Vorlage schränkt die `id` Routen Werte auf Zeichen folgen ein, die in eine ganze Zahl konvertiert werden können. Eine GET-Anforderung für `/api/test2/int/abc` :
   * Entspricht dieser Aktion nicht.
@@ -1410,7 +1410,7 @@ Aktionen werden entweder herkömmlich oder über Attribute zugeordnet, d.h., das
 
 ## <a name="complex-segments"></a>Komplexe Segmente
 
-Komplexe Segmente (z.B. `[Route("/dog{token}cat")]`) werden von rechts nach links auf eine nicht gierige Weise durch entsprechende Literale verarbeitet. Eine entsprechende Beschreibung finden Sie im [Quellcode](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296). Weitere Informationen finden Sie in [diesem Thema](https://github.com/dotnet/AspNetCore.Docs/issues/8197).
+Komplexe Segmente (z.B. `[Route("/dog{token}cat")]`) werden von rechts nach links auf eine nicht gierige Weise durch entsprechende Literale verarbeitet. Eine entsprechende Beschreibung finden Sie im [Quellcode](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296). Weitere Informationen finden Sie unter [diesem Problem](https://github.com/dotnet/AspNetCore.Docs/issues/8197).
 
 <a name="routing-url-gen-ref-label"></a>
 

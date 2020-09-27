@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: ec36ff6d646e0554550a4372389aed89aa267b1f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ca2f071ccb84fdb2eb06f533fc4d088ad1b1c785
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633980"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393885"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Modellbindung in ASP.NET Core
 
@@ -315,7 +315,7 @@ Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter.
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
-## <a name="collections"></a>Auflistungen
+## <a name="collections"></a>Sammlungen
 
 Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
 
@@ -393,6 +393,47 @@ Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *par
 
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
+  
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="constructor-binding-and-record-types"></a>Konstruktorbindungs-und Daten Satz Typen
+
+Die Modell Bindung erfordert, dass komplexe Typen über einen Parameter losen Konstruktor verfügen. Sowohl `System.Text.Json` als auch `Newtonsoft.Json` basierte Eingabe Formatierer unterstützen die Deserialisierung von Klassen, die über keinen Parameter losen Konstruktor verfügen. 
+
+C# 9 führt Daten Satz Typen ein, die eine hervorragend Möglichkeit darstellen, Daten über das Netzwerk zu übermitteln. ASP.net Core fügt Unterstützung für die Modell Bindung und die Validierung von Daten Satz Typen mit einem einzelnen Konstruktor hinzu:
+
+```csharp
+public record Person([Required] string Name, [Range(0, 150)] int Age);
+
+public class PersonController
+{
+   public IActionResult Index() => View();
+
+   [HttpPost]
+   public IActionResult Index(Person person)
+   {
+       ...
+   }
+}
+```
+
+`Person/Index.cshtml`:
+
+```cshtml
+@model Person
+
+Name: <input asp-for="Name" />
+...
+Age: <input asp-for="Age" />
+```
+
+Beim Überprüfen von Daten Satz Typen sucht die Common Language Runtime anstelle von Eigenschaften nach Validierungs Metadaten speziell für Parameter.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 <a name="glob"></a>
 
@@ -512,6 +553,7 @@ Der Name dieses Attributs folgt dem Muster von Modellbindungsattributen, die ein
 * <xref:mvc/advanced/custom-model-binding>
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 In diesem Artikel wird erläutert, was Modellbindung ist, wie sie funktioniert, und wie Sie ihr Verhalten anpassen können.
@@ -801,7 +843,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 Das `[Bind]`-Attribut kann zum Schutz vor Overposting in *Erstellungs*szenarien (create) verwendet werden. Es funktioniert nicht gut in Bearbeitungsszenarien (edit), weil ausgeschlossene Eigenschaften auf „null“ oder einen Standardwert festgelegt werden, anstatt unverändert zu bleiben. Zum Schutz vor Overposting werden Ansichtsmodelle empfohlen, anstelle des `[Bind]`-Attributs. Weitere Informationen finden Sie unter [Sicherheitshinweis zum Overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
-## <a name="collections"></a>Auflistungen
+## <a name="collections"></a>Sammlungen
 
 Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
 

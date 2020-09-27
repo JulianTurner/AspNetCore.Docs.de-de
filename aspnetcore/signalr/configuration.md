@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: fc0e6398884bb5c3b806a587a8a361d7f279461f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 579491cfe60a26593ca038a1691f9b52f0fb1d06
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625556"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393872"
 ---
 # <a name="aspnet-core-no-locsignalr-configuration"></a>SignalR-Konfiguration in ASP.NET Core
 
@@ -85,6 +85,7 @@ In der folgenden Tabelle werden die Optionen zum Konfigurieren von SignalR Hubs 
 | `EnableDetailedErrors` | `false` | Wenn der Wert `true` ist, werden ausführliche Ausnahme Meldungen an Clients zurückgegeben, wenn eine Ausnahme in einer Hub-Methode ausgelöst wird. Der Standardwert ist `false` , da diese Ausnahme Meldungen vertrauliche Informationen enthalten können. |
 | `StreamBufferCapacity` | `10` | Die maximale Anzahl von Elementen, die für Client-uploadstreams gepuffert werden können. Wenn dieser Grenzwert erreicht wird, wird die Verarbeitung von Aufrufen blockiert, bis der Server streamingelemente verarbeitet.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximale Größe einer einzelnen eingehenden Hub-Nachricht. |
+| `MaximumParallelInvocationsPerClient` | 1 | Die maximale Anzahl von hubmethoden, die jeder Client parallel vor der Warteschlange abrufen kann. |
 
 Optionen können für alle Hubs konfiguriert werden, indem ein Options Delegat für den Aufruf in bereitgestellt wird `AddSignalR` `Startup.ConfigureServices` .
 
@@ -342,11 +343,11 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `SkipNegotiation` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `ClientCertificates` | Leer | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
-| `Cookies` | Leer | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
-| `Credentials` | Leer | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
+| `ClientCertificates` | Empty | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
+| `Cookies` | Empty | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Credentials` | Empty | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
 | `CloseTimeout` | 5 Sekunden | Nur websockets. Die maximale Zeitspanne, die der Client nach dem Schließen des Servers wartet, um die Anforderung zum Schließen zu bestätigen. Wenn der Server die Schließung innerhalb dieses Zeitraums nicht anerkennt, trennt der Client die Verbindung. |
-| `Headers` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Headers` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 | `HttpMessageHandlerFactory` | `null` | Ein Delegat, der verwendet werden kann, um den `HttpMessageHandler` zum Senden von HTTP-Anforderungen verwendeten zu konfigurieren oder zu ersetzen. Wird nicht für WebSocket-Verbindungen verwendet. Dieser Delegat muss einen Wert zurückgeben, der nicht NULL ist, und erhält den Standardwert als Parameter. Ändern Sie die Einstellungen für diesen Standardwert, und geben Sie ihn zurück, oder geben Sie eine neue `HttpMessageHandler` Instanz zurück. **Wenn Sie den Handler ersetzen, stellen Sie sicher, dass die Einstellungen, die Sie beibehalten möchten, vom bereitgestellten Handler kopiert werden. Andernfalls gelten die konfigurierten Optionen (z. b. Cookie s und Header) nicht für den neuen Handler.** |
 | `Proxy` | `null` | Ein HTTP-Proxy, der beim Senden von HTTP-Anforderungen verwendet wird. |
 | `UseDefaultCredentials` | `false` | Legen Sie diesen booleschen Wert fest, um die Standard Anmelde Informationen für http-und websockets-Anforderungen zu senden Dies ermöglicht die Verwendung der Windows-Authentifizierung. |
@@ -368,7 +369,7 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `shouldSkipNegotiate` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `withHeader` `withHeaders` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `withHeader` `withHeaders` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 
 ---
 
@@ -730,11 +731,11 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `SkipNegotiation` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `ClientCertificates` | Leer | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
-| `Cookies` | Leer | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
-| `Credentials` | Leer | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
+| `ClientCertificates` | Empty | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
+| `Cookies` | Empty | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Credentials` | Empty | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
 | `CloseTimeout` | 5 Sekunden | Nur websockets. Die maximale Zeitspanne, die der Client nach dem Schließen des Servers wartet, um die Anforderung zum Schließen zu bestätigen. Wenn der Server die Schließung innerhalb dieses Zeitraums nicht anerkennt, trennt der Client die Verbindung. |
-| `Headers` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Headers` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 | `HttpMessageHandlerFactory` | `null` | Ein Delegat, der verwendet werden kann, um den `HttpMessageHandler` zum Senden von HTTP-Anforderungen verwendeten zu konfigurieren oder zu ersetzen. Wird nicht für WebSocket-Verbindungen verwendet. Dieser Delegat muss einen Wert zurückgeben, der nicht NULL ist, und erhält den Standardwert als Parameter. Ändern Sie die Einstellungen für diesen Standardwert, und geben Sie ihn zurück, oder geben Sie eine neue `HttpMessageHandler` Instanz zurück. **Wenn Sie den Handler ersetzen, stellen Sie sicher, dass die Einstellungen, die Sie beibehalten möchten, vom bereitgestellten Handler kopiert werden. Andernfalls gelten die konfigurierten Optionen (z. b. Cookie s und Header) nicht für den neuen Handler.** |
 | `Proxy` | `null` | Ein HTTP-Proxy, der beim Senden von HTTP-Anforderungen verwendet wird. |
 | `UseDefaultCredentials` | `false` | Legen Sie diesen booleschen Wert fest, um die Standard Anmelde Informationen für http-und websockets-Anforderungen zu senden Dies ermöglicht die Verwendung der Windows-Authentifizierung. |
@@ -754,7 +755,7 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `shouldSkipNegotiate` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `withHeader` `withHeaders` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `withHeader` `withHeaders` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 
 ---
 
@@ -1115,11 +1116,11 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `SkipNegotiation` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `ClientCertificates` | Leer | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
-| `Cookies` | Leer | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
-| `Credentials` | Leer | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
+| `ClientCertificates` | Empty | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
+| `Cookies` | Empty | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Credentials` | Empty | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
 | `CloseTimeout` | 5 Sekunden | Nur websockets. Die maximale Zeitspanne, die der Client nach dem Schließen des Servers wartet, um die Anforderung zum Schließen zu bestätigen. Wenn der Server die Schließung innerhalb dieses Zeitraums nicht anerkennt, trennt der Client die Verbindung. |
-| `Headers` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Headers` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 | `HttpMessageHandlerFactory` | `null` | Ein Delegat, der verwendet werden kann, um den `HttpMessageHandler` zum Senden von HTTP-Anforderungen verwendeten zu konfigurieren oder zu ersetzen. Wird nicht für WebSocket-Verbindungen verwendet. Dieser Delegat muss einen Wert zurückgeben, der nicht NULL ist, und erhält den Standardwert als Parameter. Ändern Sie die Einstellungen für diesen Standardwert, und geben Sie ihn zurück, oder geben Sie eine neue `HttpMessageHandler` Instanz zurück. **Wenn Sie den Handler ersetzen, stellen Sie sicher, dass die Einstellungen, die Sie beibehalten möchten, vom bereitgestellten Handler kopiert werden. Andernfalls gelten die konfigurierten Optionen (z. b. Cookie s und Header) nicht für den neuen Handler.** |
 | `Proxy` | `null` | Ein HTTP-Proxy, der beim Senden von HTTP-Anforderungen verwendet wird. |
 | `UseDefaultCredentials` | `false` | Legen Sie diesen booleschen Wert fest, um die Standard Anmelde Informationen für http-und websockets-Anforderungen zu senden Dies ermöglicht die Verwendung der Windows-Authentifizierung. |
@@ -1139,7 +1140,7 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `shouldSkipNegotiate` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `withHeader` `withHeaders` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `withHeader` `withHeaders` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 
 ---
 
@@ -1464,11 +1465,11 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `SkipNegotiation` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `ClientCertificates` | Leer | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
-| `Cookies` | Leer | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
-| `Credentials` | Leer | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
+| `ClientCertificates` | Empty | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
+| `Cookies` | Empty | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Credentials` | Empty | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
 | `CloseTimeout` | 5 Sekunden | Nur websockets. Die maximale Zeitspanne, die der Client nach dem Schließen des Servers wartet, um die Anforderung zum Schließen zu bestätigen. Wenn der Server die Schließung innerhalb dieses Zeitraums nicht anerkennt, trennt der Client die Verbindung. |
-| `Headers` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Headers` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 | `HttpMessageHandlerFactory` | `null` | Ein Delegat, der verwendet werden kann, um den `HttpMessageHandler` zum Senden von HTTP-Anforderungen verwendeten zu konfigurieren oder zu ersetzen. Wird nicht für WebSocket-Verbindungen verwendet. Dieser Delegat muss einen Wert zurückgeben, der nicht NULL ist, und erhält den Standardwert als Parameter. Ändern Sie die Einstellungen für diesen Standardwert, und geben Sie ihn zurück, oder geben Sie eine neue `HttpMessageHandler` Instanz zurück. **Wenn Sie den Handler ersetzen, stellen Sie sicher, dass die Einstellungen, die Sie beibehalten möchten, vom bereitgestellten Handler kopiert werden. Andernfalls gelten die konfigurierten Optionen (z. b. Cookie s und Header) nicht für den neuen Handler.** |
 | `Proxy` | `null` | Ein HTTP-Proxy, der beim Senden von HTTP-Anforderungen verwendet wird. |
 | `UseDefaultCredentials` | `false` | Legen Sie diesen booleschen Wert fest, um die Standard Anmelde Informationen für http-und websockets-Anforderungen zu senden Dies ermöglicht die Verwendung der Windows-Authentifizierung. |
@@ -1488,7 +1489,7 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `shouldSkipNegotiate` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `withHeader` `withHeaders` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `withHeader` `withHeaders` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 
 ---
 
@@ -1807,11 +1808,11 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | -------------- | ----------- |
 | `AccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `SkipNegotiation` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `ClientCertificates` | Leer | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
-| `Cookies` | Leer | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
-| `Credentials` | Leer | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
+| `ClientCertificates` | Empty | Eine Auflistung von TLS-Zertifikaten, die zum Authentifizieren von Anforderungen gesendet werden sollen. |
+| `Cookies` | Empty | Eine Auflistung von http- cookie s, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Credentials` | Empty | Anmelde Informationen, die mit jeder HTTP-Anforderung gesendet werden. |
 | `CloseTimeout` | 5 Sekunden | Nur websockets. Die maximale Zeitspanne, die der Client nach dem Schließen des Servers wartet, um die Anforderung zum Schließen zu bestätigen. Wenn der Server die Schließung innerhalb dieses Zeitraums nicht anerkennt, trennt der Client die Verbindung. |
-| `Headers` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `Headers` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 | `HttpMessageHandlerFactory` | `null` | Ein Delegat, der verwendet werden kann, um den `HttpMessageHandler` zum Senden von HTTP-Anforderungen verwendeten zu konfigurieren oder zu ersetzen. Wird nicht für WebSocket-Verbindungen verwendet. Dieser Delegat muss einen Wert zurückgeben, der nicht NULL ist, und erhält den Standardwert als Parameter. Ändern Sie die Einstellungen für diesen Standardwert, und geben Sie ihn zurück, oder geben Sie eine neue `HttpMessageHandler` Instanz zurück. **Wenn Sie den Handler ersetzen, stellen Sie sicher, dass die Einstellungen, die Sie beibehalten möchten, vom bereitgestellten Handler kopiert werden. Andernfalls gelten die konfigurierten Optionen (z. b. Cookie s und Header) nicht für den neuen Handler.** |
 | `Proxy` | `null` | Ein HTTP-Proxy, der beim Senden von HTTP-Anforderungen verwendet wird. |
 | `UseDefaultCredentials` | `false` | Legen Sie diesen booleschen Wert fest, um die Standard Anmelde Informationen für http-und websockets-Anforderungen zu senden Dies ermöglicht die Verwendung der Windows-Authentifizierung. |
@@ -1831,7 +1832,7 @@ Zusätzliche Optionen können in der- `WithUrl` Methode ( `withUrl` in JavaScrip
 | ----------- | ------------- | ----------- |
 | `withAccessTokenProvider` | `null` | Eine Funktion, die eine Zeichenfolge zurückgibt, die als bearerauthentifizierungstoken in HTTP-Anforderungen bereitgestellt |
 | `shouldSkipNegotiate` | `false` | Legen Sie dies auf fest, `true` um den Aushandlungs Schritt zu überspringen Wird **nur unterstützt, wenn der websockets-Transport der einzige aktivierte Transport ist**. Diese Einstellung kann nicht aktiviert werden, wenn der Azure-Dienst verwendet wird SignalR . |
-| `withHeader` `withHeaders` | Leer | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
+| `withHeader` `withHeaders` | Empty | Eine Karte mit zusätzlichen HTTP-Headern, die mit jeder HTTP-Anforderung gesendet werden sollen. |
 
 ---
 

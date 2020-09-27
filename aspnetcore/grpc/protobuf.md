@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: 60af1add9ae2f8b2b94bc19b65667d7af91fb122
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: ea46e04bc4aa6269efbf8917d5f32194402a66ef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102665"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722695"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>Erstellen von Protobuf-Nachrichten für .NET-Apps
 
@@ -85,6 +85,10 @@ Protobuf unterstützt eine Reihe nativer Skalarwerttypen. In der folgenden Tabel
 | `string`      | `string`     |
 | `bytes`       | `ByteString` |
 
+Skalarwerte weisen immer einen Standardwert auf und können nicht auf `null` festgelegt werden. Diese Einschränkung umfasst `string` und `ByteString`, die C#-Klassen sind. `string` ist standardmäßig ein leerer Zeichenfolgenwert, `ByteString` ist standardmäßig ein leerer Bytewert. Wenn Sie versuchen, diese Angaben auf `null` festzulegen, wird ein Fehler ausgelöst.
+
+[Nullable-Wrappertypen](#nullable-types) können zur Unterstützung von NULL-Werten verwendet werden.
+
 ### <a name="dates-and-times"></a>Datums- und Zeitangaben
 
 Die nativen Skalartypen stellen wie die .NET-Typen <xref:System.DateTimeOffset>, <xref:System.DateTime> und <xref:System.TimeSpan> keine Datums- und Zeitwerte bereit. Diese Typen können mithilfe der Protobuf-Erweiterung *Well Known Types* angegeben werden. Diese Erweiterungen bieten Codegenerierung und Runtime-Unterstützung für komplexe Feldtypen für die unterstützten Plattformen.
@@ -145,19 +149,42 @@ message Person {
 }
 ```
 
-Protobuf verwendet Nullwerte zulassende C#-Typen, z. B. `int?`, für die generierte Nachrichteneigenschaft.
+`wrappers.proto`-Typen werden in den generierten Eigenschaften nicht verfügbar gemacht. Protobuf ordnet diese automatisch entsprechenden .NET-Nullable-Typen in C#-Nachrichten zu. Beispielsweise generiert ein `google.protobuf.Int32Value`-Feld eine `int?`-Eigenschaft. Verweistypeigenschaften wie `string` und `ByteString` bleiben unverändert, außer dass `null` ihnen ohne Fehler zugewiesen werden kann.
 
 In der folgenden Tabelle finden Sie eine vollständige Liste der Wrappertypen mit dem entsprechenden C#-Typ:
 
-| C#-Typ   | Wrapper für bekannte Typen       |
-| --------- | ----------------------------- |
-| `bool?`   | `google.protobuf.BoolValue`   |
-| `double?` | `google.protobuf.DoubleValue` |
-| `float?`  | `google.protobuf.FloatValue`  |
-| `int?`    | `google.protobuf.Int32Value`  |
-| `long?`   | `google.protobuf.Int64Value`  |
-| `uint?`   | `google.protobuf.UInt32Value` |
-| `ulong?`  | `google.protobuf.UInt64Value` |
+| C#-Typ      | Wrapper für bekannte Typen       |
+| ------------ | ----------------------------- |
+| `bool?`      | `google.protobuf.BoolValue`   |
+| `double?`    | `google.protobuf.DoubleValue` |
+| `float?`     | `google.protobuf.FloatValue`  |
+| `int?`       | `google.protobuf.Int32Value`  |
+| `long?`      | `google.protobuf.Int64Value`  |
+| `uint?`      | `google.protobuf.UInt32Value` |
+| `ulong?`     | `google.protobuf.UInt64Value` |
+| `string`     | `google.protobuf.StringValue` |
+| `ByteString` | `google.protobuf.BytesValue`  |
+
+### <a name="bytes"></a>Byte
+
+Binäre Nutzlasten werden in Protobuf mit dem `bytes`-Skalarenwerttyp unterstützt. Eine generierte Eigenschaft in C# verwendet `ByteString` als Eigenschaftstyp.
+
+Verwenden Sie `ByteString.CopyFrom(byte[] data)`, um eine neue Instanz aus einem Bytearray zu erstellen:
+
+```csharp
+var data = await File.ReadAllBytesAsync(path);
+
+var payload = new PayloadResponse();
+payload.Data = ByteString.CopyFrom(data);
+```
+
+Der Zugriff auf `ByteString`-Daten erfolgt direkt über `ByteString.Span` oder `ByteString.Memory`. Oder rufen Sie `ByteString.ToByteArray()` auf, um eine Instanz zurück in ein Bytearray zu konvertieren:
+
+```csharp
+var payload = await client.GetPayload(new PayloadRequest());
+
+await File.WriteAllBytesAsync(path, payload.Data.ToByteArray());
+```
 
 ### <a name="decimals"></a>Dezimalstellen
 

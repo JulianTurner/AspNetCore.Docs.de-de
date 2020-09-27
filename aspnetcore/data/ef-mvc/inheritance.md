@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 9a17a2ddbdac6b4fc6ba90804a31915d3b96d707
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 34c4ea28103b9eb12601b383a46091084391f120
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629183"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847597"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Tutorial: Implementieren von Vererbung: ASP.NET MVC mit EF Core
 
@@ -62,6 +62,9 @@ Es gibt mehrere Möglichkeiten, wie diese Vererbungsstruktur in der Datenbank da
 Dieses Muster, bei dem aus einer einzigen Datenbanktabelle eine Vererbungsstruktur für Entitäten generiert wird, wird als TPH-Vererbung (TPH = Table per Hierarchy, Tabelle pro Hierarchie) bezeichnet.
 
 Alternativ kann die Datenbank so gestaltet werden, dass sie mehr wie die Vererbungsstruktur aussieht. Die Tabelle „Person“ könnte beispielsweise nur die Namensfelder aufweisen und über separate Tabellen mit den Namen „Instructor“ und „Student“ verfügen, in denen die Datumsfelder enthalten sind.
+
+> [!WARNING]
+> Tabelle pro Typ (TPT) wird von EF Core 3.x nicht unterstützt, wurde aber trotzdem in [EF Core 5.0](https://docs.microsoft.com/ef/core/what-is-new/ef-core-5.0/plan) implementiert.
 
 !["Tabelle pro Typ"-Vererbung](inheritance/_static/tpt.png)
 

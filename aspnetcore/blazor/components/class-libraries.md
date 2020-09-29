@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: 82969bf92965bfdeb1d1474ab47ca74ecbe6dd97
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: afd1bfffae11520a5d9abccc1d2ee4cf3a46a4bf
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080302"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722461"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>Klassenbibliotheken für ASP.NET Core-Razor-Komponenten
 
@@ -170,6 +170,43 @@ Eine RCL kann statische Objekte enthalten. Die statischen Objekte sind für jede
 ## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>Bereitstellen von Komponenten und statischen Ressourcen für mehrere gehostete Blazor-Apps
 
 Weitere Informationen finden Sie unter <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="browser-compatibility-analyzer-for-no-locblazor-webassembly"></a>Browserkompatibilitäts-Analysetool für Blazor WebAssembly
+
+Blazor WebAssembly-Apps zielen auf die vollständige .NET-API-Oberfläche ab, aber aufgrund von Browsersandboxeinschränkungen werden nicht alle .NET-APIs in WebAssembly unterstützt. Nicht unterstützte APIs lösen <xref:System.PlatformNotSupportedException> bei der Ausführung in Webassembly aus. Ein Plattformkompatibilitäts-Analysetool warnt den Entwickler, wenn die API APIs verwendet, die nicht von den Zielplattformen der App unterstützt werden. Bei Blazor WebAssembly-Apps bedeutet dies eine Überprüfung, dass die APIs in Browsern unterstützt werden. Das Kommentieren von .NET Framework-APIs für das Kompatibilitätsanalysetool Analyzer ist ein fortlaufenden Prozess, sodass nicht alle .NET Framework-APIs derzeit mit Anmerkungen versehen sind.
+
+Blazor WebAssembly- und Razor-Klassenbibliotheksprojekte aktivieren *automatisch* Browserkompatibilitätsprüfungen, indem `browser` als unterstützte Plattform mit dem MSBuild-Element `SupportedPlatform` hinzugefügt wird. Bibliotheksentwickler können das `SupportedPlatform`-Element manuell zur Projektdatei einer Bibliothek hinzufügen, um das Feature zu aktivieren:
+
+```xml
+<ItemGroup>
+  <SupportedPlatform Include="browser" />
+</ItemGroup>
+```
+
+Geben Sie beim Erstellen einer Bibliothek an, dass eine bestimmte API in Browsern nicht unterstützt wird, indem Sie `browser` für <xref:System.Runtime.Versioning.UnsupportedOSPlatformAttribute>angeben:
+
+```csharp
+[UnsupportedOSPlatform("browser")]
+private static string GetLoggingDirectory()
+{
+    ...
+}
+```
+
+Weitere Informationen finden Sie unter [Kommentieren von APIs als nicht unterstützt auf bestimmten Plattformen (dotnet/designs-GitHub-Repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
+
+## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor-JavaScript-Isolierung und Objektverweise
+
+Blazor aktiviert JavaScript-Isolierung in [JavaScript-Standardmodulen](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript-Isolierung bietet die folgenden Vorteile:
+
+* Importiertes JavaScript verschmutzt nicht mehr den globalen Namespace.
+* Consumer der Bibliothek und Komponenten müssen das zugehörige JavaScript nicht manuell importieren.
+
+Weitere Informationen finden Sie unter <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
+
+::: moniker-end
 
 ## <a name="build-pack-and-ship-to-nuget"></a>Erstellen, Verpacken und Liefern an NuGet
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 82ed4cc2ce47d3bd85ca9c2ba2bbeb075eaefcef
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: af282ec1f82b2ac31fd0b46b2406110e24e9211b
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635332"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424242"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Richtlinien basierte Autorisierung in ASP.net Core
 
@@ -122,13 +122,13 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> od
 
 Wenn Sie Seiten verwenden Razor , finden Sie weitere Informationen unter [Anwenden von Richtlinien auf Razor Seiten](#apply-policies-to-razor-pages) in diesem Dokument.
 
-Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Beispiel:
+Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Anwenden von Richtlinien auf Razor Seiten
 
-Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Beispiel:
+Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -177,7 +177,7 @@ Der vorangehende Code durchsucht die " [pdingrequirequirements](/dotnet/api/micr
 
 ### <a name="handler-registration"></a>Handlerregistrierung
 
-Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Beispiel:
+Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Zum Beispiel:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
@@ -193,7 +193,7 @@ Beachten Sie, dass die- `Handle` Methode im [handlerbeispiel](#security-authoriz
 
 * Um einen Fehler zu gewährleisten, müssen Sie, auch wenn andere Anforderungs Handler erfolgreich sind, den Befehl `context.Fail`
 
-Wenn ein Handler `context.Succeed` oder aufruft `context.Fail` , werden alle anderen Handler immer noch aufgerufen. Dies ermöglicht die Generierung von Nebeneffekten, wie z. b. die Protokollierung, die auch dann stattfindet, wenn ein anderer Handler eine Anforderung erfolgreich überprüft oder nicht erfüllt hat. Wenn diese Eigenschaft auf festgelegt ist `false` , wird die Ausführung von Handlern durch die [invokehandlersafterfailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) -Eigenschaft (verfügbar in ASP.net Core 1,1 und höher) kurz beendet, wenn `context.Fail` aufgerufen wird. `InvokeHandlersAfterFailure` der Standardwert `true` ist. in diesem Fall werden alle Handler aufgerufen.
+Wenn ein Handler `context.Succeed` oder aufruft `context.Fail` , werden alle anderen Handler immer noch aufgerufen. Dies ermöglicht die Generierung von Nebeneffekten, wie z. b. die Protokollierung, die auch dann stattfindet, wenn ein anderer Handler eine Anforderung erfolgreich überprüft oder nicht erfüllt hat. Wenn diese Eigenschaft auf festgelegt `false` ist, wird die Ausführung von Handlern durch die [invokehandlersafterfailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) -Eigenschaft kurz verknüpft, wenn `context.Fail` aufgerufen wird. `InvokeHandlersAfterFailure` der Standardwert `true` ist. in diesem Fall werden alle Handler aufgerufen.
 
 > [!NOTE]
 > Autorisierungs Handler werden auch dann aufgerufen, wenn die Authentifizierung fehlschlägt.
@@ -230,7 +230,7 @@ Die vorherige könnte z. b. `BadgeEntryHandler` wie folgt umgeschrieben werden:
 
 Die `HandleRequirementAsync` Methode, die Sie in einem Autorisierungs Handler implementieren, verfügt über zwei Parameter: einen `AuthorizationHandlerContext` und den, den `TRequirement` Sie behandeln. Frameworks wie MVC oder SignalR können jedes beliebige Objekt der- `Resource` Eigenschaft im hinzufügen `AuthorizationHandlerContext` , um zusätzliche Informationen zu übergeben.
 
-Wenn Sie das Endpunkt Routing verwenden, wird die Autorisierung in der Regel von der Autorisierungs Middleware verarbeitet. In diesem Fall ist die `Resource` Eigenschaft eine Instanz von <xref:Microsoft.AspNetCore.Http.Endpoint> . Der Endpunkt kann verwendet werden, um die zugrunde liegende Ressource zu überprüfen, an die Sie weiterleiten. Beispiel:
+Wenn Sie das Endpunkt Routing verwenden, wird die Autorisierung in der Regel von der Autorisierungs Middleware verarbeitet. In diesem Fall ist die `Resource` Eigenschaft eine Instanz von <xref:Microsoft.AspNetCore.Http.Endpoint> . Der Endpunkt kann verwendet werden, um die zugrunde liegende Ressource zu überprüfen, an die Sie weiterleiten. Zum Beispiel:
 
 ```csharp
 if (context.Resource is Endpoint endpoint)
@@ -358,13 +358,13 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> od
 
 Wenn Sie Seiten verwenden Razor , finden Sie weitere Informationen unter [Anwenden von Richtlinien auf Razor Seiten](#apply-policies-to-razor-pages) in diesem Dokument.
 
-Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Beispiel:
+Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Anwenden von Richtlinien auf Razor Seiten
 
-Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Beispiel:
+Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -411,7 +411,7 @@ Der vorangehende Code durchsucht die " [pdingrequirequirements](/dotnet/api/micr
 
 ### <a name="handler-registration"></a>Handlerregistrierung
 
-Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Beispiel:
+Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 
@@ -427,7 +427,7 @@ Beachten Sie, dass die- `Handle` Methode im [handlerbeispiel](#security-authoriz
 
 * Um einen Fehler zu gewährleisten, müssen Sie, auch wenn andere Anforderungs Handler erfolgreich sind, den Befehl `context.Fail`
 
-Wenn ein Handler `context.Succeed` oder aufruft `context.Fail` , werden alle anderen Handler immer noch aufgerufen. Dies ermöglicht die Generierung von Nebeneffekten, wie z. b. die Protokollierung, die auch dann stattfindet, wenn ein anderer Handler eine Anforderung erfolgreich überprüft oder nicht erfüllt hat. Wenn diese Eigenschaft auf festgelegt ist `false` , wird die Ausführung von Handlern durch die [invokehandlersafterfailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) -Eigenschaft (verfügbar in ASP.net Core 1,1 und höher) kurz beendet, wenn `context.Fail` aufgerufen wird. `InvokeHandlersAfterFailure` der Standardwert `true` ist. in diesem Fall werden alle Handler aufgerufen.
+Wenn ein Handler `context.Succeed` oder aufruft `context.Fail` , werden alle anderen Handler immer noch aufgerufen. Dies ermöglicht die Generierung von Nebeneffekten, wie z. b. die Protokollierung, die auch dann stattfindet, wenn ein anderer Handler eine Anforderung erfolgreich überprüft oder nicht erfüllt hat. Wenn diese Eigenschaft auf festgelegt `false` ist, wird die Ausführung von Handlern durch die [invokehandlersafterfailure](/dotnet/api/microsoft.aspnetcore.authorization.authorizationoptions.invokehandlersafterfailure#Microsoft_AspNetCore_Authorization_AuthorizationOptions_InvokeHandlersAfterFailure) -Eigenschaft kurz verknüpft, wenn `context.Fail` aufgerufen wird. `InvokeHandlersAfterFailure` der Standardwert `true` ist. in diesem Fall werden alle Handler aufgerufen.
 
 > [!NOTE]
 > Autorisierungs Handler werden auch dann aufgerufen, wenn die Authentifizierung fehlschlägt.

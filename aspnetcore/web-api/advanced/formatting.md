@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 618bb60ea382437b2787adb814f319b1f0cea4ca
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b89be93fc33d1eba5c2ad9508adf93fa54014ff8
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626531"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606783"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formatieren von Antwortdaten in Web-APIs in ASP.NET Core
 
@@ -164,9 +164,17 @@ Vor ASP.NET Core 3.0 wurden standardmäßig die JSON-Formatierer verwendet, die
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
 
+Im vorangehenden Code werden mit dem-Befehl `AddNewtonsoftJson` die folgenden Features für Web-API, MVC und Pages konfiguriert, die verwendet werden können Razor `Newtonsoft.Json` :
+
+* Eingabe-und Ausgabe Formatierer, die JSON lesen und schreiben
+* <xref:Microsoft.AspNetCore.Mvc.JsonResult>
+* [JSON Patch](xref:web-api/jsonpatch)
+* <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
+* [TempData](xref:fundamentals/app-state#tempdata)
+
 Einige Features funktionieren mit `System.Text.Json`-basierten Formatierern möglicherweise nicht gut und erfordern einen Verweis auf die `Newtonsoft.Json`-basierten Formatierer. Verwenden Sie weiterhin `Newtonsoft.Json`-basierte Formatierer, wenn für die App Folgendes gilt:
 
-* Sie verwendet `Newtonsoft.Json`-Attribute.  Zum Beispiel: `[JsonProperty]` oder `[JsonIgnore]`.
+* Sie verwendet `Newtonsoft.Json`-Attribute. Zum Beispiel: `[JsonProperty]` oder `[JsonIgnore]`.
 * Sie passt die Serialisierungseinstellungen an.
 * Sie nutzt Features, die von `Newtonsoft.Json` bereitgestellt werden.
 * `Microsoft.AspNetCore.Mvc.JsonResult.SerializerSettings` konfiguriert. Vor ASP.NET Core 3.0 akzeptiert `JsonResult.SerializerSettings` eine Instanz von `JsonSerializerSettings`, die für `Newtonsoft.Json` spezifisch ist.

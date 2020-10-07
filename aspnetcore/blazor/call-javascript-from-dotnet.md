@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: a62462e3a0a2366a8662573ada5d2e7589c14c0d
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: da4ce8a2610fc07d22153f66831d693ae66e0fe5
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722474"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424151"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
 
@@ -36,6 +36,8 @@ In diesem Artikel wird das Aufrufen von JavaScript-Funktionen über .NET behande
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
 Verwenden Sie die <xref:Microsoft.JSInterop.IJSRuntime>-Abstraktion, um JavaScript über .NET aufzurufen. Fügen Sie die <xref:Microsoft.JSInterop.IJSRuntime>-Abstraktion in Ihre Komponente ein, um JS Interop-Aufrufe auszugeben. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> akzeptiert einen Bezeichner für die JavaScript-Funktion, die Sie aufrufen möchten, sowie eine beliebige Anzahl JSON-serialisierbarer Argumente. Der Funktionsbezeichner ist relativ zum globalen Bereich (`window`). Wenn Sie `window.someScope.someFunction` aufrufen möchten, lautet der Bezeichner `someScope.someFunction`. Die Funktion muss nicht registriert werden, bevor sie aufgerufen wird. Der Rückgabetyp `T` muss ebenfalls JSON-serialisierbar sein. `T` sollte mit dem .NET-Typ übereinstimmen, der dem zurückgegebenen JSON-Typ am ehesten entspricht.
+
+JavaScript-Funktionen, die eine [Zusage](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) zurückgeben, werden mit <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> aufgerufen. `InvokeAsync` entpackt die Zusage und gibt den Wert zurück, der von der Zusage erwartet wird.
 
 Bei Blazor Server-Apps mit aktiviertem Prerendering ist das Aufrufen von JavaScript beim ersten Prerendering nicht möglich. JavaScript-Interoperabilitätsaufrufe müssen verzögert werden, bis die Verbindung mit dem Browser hergestellt ist. Weitere Informationen finden Sie im Abschnitt [Erkennen, wenn für eine Blazor Server-App ein Prerendering durchgeführt wird](#detect-when-a-blazor-server-app-is-prerendering).
 
@@ -497,7 +499,7 @@ Weitere Informationen finden Sie unter den folgenden Problemen:
 
 ## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor-JavaScript-Isolation und Objektverweise
 
-Blazor aktiviert die JavaScript-Isolation in [JavaScript-Standardmodulen](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript-Isolation bietet die folgenden Vorteile:
+Blazor aktiviert JavaScript-Isolierung in [JavaScript-Standardmodulen](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript-Isolierung bietet die folgenden Vorteile:
 
 * Importiertes JavaScript verschmutzt nicht mehr den globalen Namespace.
 * Consumer einer Bibliothek und Komponenten müssen nicht das zugehörige JavaScript importieren.

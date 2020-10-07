@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: dadf6076e7f07c07381856aa225667a6eb38046a
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: 3436620123618ab32daa44c4a37057aaadb89563
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080315"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393690"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -51,11 +51,15 @@ Blazor basiert auf dem Host, um die entsprechenden komprimierten Dateien bereitz
 * Informationen zur Komprimierungskonfiguration der Datei `web.config` von IIS finden Sie im Abschnitt [IIS: Brotli- und Gzip-Komprimierung](#brotli-and-gzip-compression). 
 * Beim Hosten über statische Hostinglösungen, die die Inhaltsaushandlung für statisch komprimierte Dateien nicht unterstützen (z. B. GitHub-Seiten), sollten Sie die App so konfigurieren, dass sie die in das Brotli-Format komprimierten Dateien abruft und decodiert:
 
-  * Rufen Sie den JavaScript Brotli-Decoder aus dem [GitHub-Repository „google/brotli“](https://github.com/google/brotli) ab. Ab Juli 2020 heißt die Decoderdatei `decode.min.js` und befindet sich im [Ordner `js`](https://github.com/google/brotli/tree/master/js) des Repositorys.
+  * Rufen Sie den JavaScript Brotli-Decoder aus dem [GitHub-Repository „google/brotli“](https://github.com/google/brotli) ab. Ab September 2020 heißt die Decoderdatei `decode.js` und befindet sich im [Ordner `js`](https://github.com/google/brotli/tree/master/js) des Repositorys.
+  
+    > [!NOTE]
+    > Eine Regression ist in der verkleinerten Version des Skripts `decode.js` (`decode.min.js`) im [GitHub-Repository „google/brotli“](https://github.com/google/brotli) enthalten. Verkleinern Sie das Skript entweder selbst, oder verwenden Sie das [npm-Paket](https://www.npmjs.com/package/brotli), bis das Problem [Window.BrotliDecode ist nicht in „decode.min.js“ festgelegt (google/brotli, 844)](https://github.com/google/brotli/issues/844) behoben wurde. Im Beispielcode in diesem Abschnitt wird die **nicht verkleinerte** Version des Skripts verwendet.
+
   * Aktualisieren Sie die App zur Verwendung des Decoders. Ändern Sie das Markup innerhalb des schließenden `<body>`-Tags in der Datei `wwwroot/index.html` wie folgt:
   
     ```html
-    <script src="decode.min.js"></script>
+    <script src="decode.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
       Blazor.start({
@@ -863,5 +867,3 @@ In der Projektdatei wird das Skript nach Veröffentlichung der App ausgeführt:
 
 > [!NOTE]
 > Für das Umbenennen und verzögerte Laden derselben Assemblys finden Sie unter <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files> eine Anleitung.
-
-Wenn Sie Feedback geben möchten, besuchen Sie [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).

@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 43794fad36efe44cad6fbb2f1a1cae293a2ddad1
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a74f056447839c4cf057948f26a9ece9b5799656
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625959"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606726"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>Blazor-Zustandsverwaltung in ASP.NET Core
 
@@ -58,11 +58,12 @@ Eine App kann nur den *App-Zustand* beibehalten. Benutzeroberflächen wie Kompon
 
 ## <a name="where-to-persist-state"></a>Speicherort des Zustands
 
-Es gibt drei allgemeine Speicherorte für die Beibehaltung des Zustands:
+Es gibt allgemeine Speicherorte für die Beibehaltung des Zustands:
 
 * [Serverseitige Speicherung](#server-side-storage)
 * [URL](#url)
 * [Browserspeicherung](#browser-storage)
+* [Arbeitsspeicherinterner Zustandscontainer des Diensts](#in-memory-state-container-service)
 
 ### <a name="server-side-storage"></a>Serverseitige Speicherung
 
@@ -119,6 +120,10 @@ Im Allgemeinen ist `sessionStorage` in der Anwendung sicherer. `sessionStorage` 
 > [!WARNING]
 > Benutzer können die Daten anzeigen oder bearbeiten, die in `localStorage` und `sessionStorage` gespeichert sind.
 
+## <a name="in-memory-state-container-service"></a>Arbeitsspeicherinterner Zustandscontainer des Diensts
+
+[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
+
 ## <a name="additional-resources"></a>Weitere Ressourcen
 
 * [Speichern des App-Zustands vor einem Authentifizierungsvorgang](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
@@ -162,11 +167,12 @@ Eine App kann nur den *App-Zustand* beibehalten. Benutzeroberflächen wie Kompon
 
 ## <a name="where-to-persist-state"></a>Speicherort des Zustands
 
-Es gibt drei allgemeine Speicherorte für die Beibehaltung des Zustands:
+Es gibt allgemeine Speicherorte für die Beibehaltung des Zustands:
 
 * [Serverseitige Speicherung](#server-side-storage)
 * [URL](#url)
 * [Browserspeicherung](#browser-storage)
+* [Arbeitsspeicherinterner Zustandscontainer des Diensts](#in-memory-state-container-service)
 
 ### <a name="server-side-storage"></a>Serverseitige Speicherung
 
@@ -701,5 +707,9 @@ In folgenden Fällen wird im Allgemeinen das Muster der *übergeordneten Kompone
 Um viele verschiedene Zustandsobjekte beizubehalten und verschiedene Teilmengen von Objekten an verschiedenen Orten zu verarbeiten, ist es besser, das globale persistente Speichern des Zustands zu vermeiden.
 
 ::: moniker-end
+
+## <a name="in-memory-state-container-service"></a>Arbeitsspeicherinterner Zustandscontainer des Diensts
+
+[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
 ::: zone-end

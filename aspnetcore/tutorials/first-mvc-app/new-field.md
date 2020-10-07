@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 40e615d0698a0ed1d3ef40a222e064d72184f0c8
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a0c53755bd56b6c169437ca9f0ea915e46ad79ec
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635293"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606754"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Teil 8: Hinzufügen eines neuen Felds zu einer ASP.NET Core MVC-App
 
@@ -62,7 +62,7 @@ Befehl ⌘ + B
 
 ------
 
-Da Sie der `Movie`-Klasse ein neues Feld hinzugefügt haben, müssen Sie die Positivliste für die Bindung aktualisieren, damit diese neue Eigenschaft eingeschlossen wird. Aktualisieren Sie in *MoviesController.cs* das `[Bind]`-Attribut für die Aktionsmethoden `Create` und `Edit` so, dass die `Rating`-Eigenschaft eingeschlossen wird:
+Da Sie der `Movie`-Klasse ein neues Feld hinzugefügt haben, müssen Sie die Eigenschaftenbindungsliste aktualisieren, damit diese neue Eigenschaft eingeschlossen wird. Aktualisieren Sie in *MoviesController.cs* das `[Bind]`-Attribut für die Aktionsmethoden `Create` und `Edit` so, dass die `Rating`-Eigenschaft eingeschlossen wird:
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
@@ -133,7 +133,7 @@ Werden alle Datensätze aus der Datenbank gelöscht, führt die initialize-Metho
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Löschen Sie die Datenbank, und verwenden Sie Migrationen, um die Datenbank erneut zu erstellen. Um die Datenbank zu löschen, löschen Sie die Datenbankdatei (*MvcMovie.db*). Führen Sie dann den `ef database update`-Befehl aus:
+Löschen Sie die Datenbank, und verwenden Sie Migrationen, um die Datenbank erneut zu erstellen. Um die Datenbank zu löschen, löschen Sie die Datenbankdatei *MvcMovie.db*. Führen Sie dann den `ef database update`-Befehl aus:
 
 ```dotnetcli
 dotnet ef database update

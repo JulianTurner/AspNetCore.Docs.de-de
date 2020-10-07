@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 7681deb70610a8fbc27ccda7317b73921646794a
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: e12b0e6d1bf9eab751f6605b9a156f637f2b0c0f
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876775"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393833"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
@@ -109,11 +109,55 @@ Während Sie eine Blazor WebAssembly-App debuggen, können Sie auch Ihren Server
 > [!NOTE]
 > Während App-Starts werden Breakpoints **nicht** erreicht, während der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
 
+Wenn die App in einem anderen [App-Basispfad](xref:blazor/host-and-deploy/index#app-base-path) als `/` gehostet wird, aktualisieren Sie die folgenden Eigenschaften in `Properties/launchSettings.json`, um den Basispfad der App anzugeben:
+
+* `applicationUrl`:
+
+  ```json
+  "iisSettings": {
+    ...
+    "iisExpress": {
+      "applicationUrl": "http://localhost:{INSECURE PORT}/{APP BASE PATH}/",
+      "sslPort": {SECURE PORT}
+    }
+  },
+  ```
+
+* `inspectUri` von jedem Profil:
+
+  ```json
+  "profiles": {
+    ...
+    "{PROFILE 1, 2, ... N}": {
+      ...
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/{APP BASE PATH}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      ...
+    }
+  }
+  ```
+
+Die Platzhalter in den vorherigen Einstellungen:
+
+* `{INSECURE PORT}`: Der unsichere Port. Standardmäßig wird ein zufälliger Wert bereitgestellt, ein benutzerdefinierter Port ist aber zulässig.
+* `{APP BASE PATH}`: Der Basispfad der App.
+* `{SECURE PORT}`: Der sichere Port. Standardmäßig wird ein zufälliger Wert bereitgestellt, ein benutzerdefinierter Port ist aber zulässig.
+* `{PROFILE 1, 2, ... N}`: Profile mit Starteinstellungen. In der Regel gibt eine App standardmäßig mehrere Profile an (z. B. ein Profil für IIS Express und ein Projektprofil, das vom Kestrel-Server verwendet wird).
+
+In den folgenden Beispielen wird die App unter `/OAT` gehostet, und der in `wwwroot/index.html` konfigurierte Basispfad lautet `<base href="/OAT/">`:
+
+```json
+"applicationUrl": "http://localhost:{INSECURE PORT}/OAT/",
+```
+
+```json
+"inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/OAT/_framework/debug/ws-proxy?browser={browserInspectUri}",
+```
+
+Weitere Informationen zur Verwendung eines benutzerdefinierten App-Basispfads für Blazor WebAssembly-Apps finden Sie unter <xref:blazor/host-and-deploy/index#app-base-path>.
+
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-<a id="vscode"></a>
-
-## <a name="debug-standalone-no-locblazor-webassembly"></a>Debuggen von eigenständiger Blazor WebAssembly
+<h2 id="vscode">Debuggen von eigenständiger Blazor WebAssembly</h2>
 
 1. Öffnen Sie die eigenständige Blazor WebAssembly-App in VS Code.
 
@@ -257,7 +301,7 @@ Während Sie eine Blazor WebAssembly-App debuggen, können Sie auch Ihren Server
 > [!NOTE]
 > Während App-Starts werden Breakpoints **nicht** erreicht, während der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
 
-Weitere Informationen finden Sie unter [Debuggen in Visual Studio für Mac](/visualstudio/mac/debugging?view=vsmac-2019).
+Weitere Informationen finden Sie unter [Debuggen in Visual Studio für Mac](/visualstudio/mac/debugging).
 
 ---
 

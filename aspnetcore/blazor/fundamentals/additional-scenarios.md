@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 870509a3cbbcbea9b1c4804185c49a831af22630
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 236d95e54b772ea522911421084ec0d9022c45ff
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009634"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424138"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>Hostingmodellkonfiguration für ASP.NET Core Blazor
 
@@ -290,7 +290,15 @@ Passen Sie die Verzögerung an, bevor die Anzeige einer erneuten Verbindung ange
 }
 ```
 
-::: moniker-end
+## <a name="disconnect-the-no-locblazor-circuit-from-the-client"></a>Trennen der Blazor-Verbindung mit dem Client
+
+Standardmäßig wird eine Blazor-Verbindung getrennt, wenn das [`unload`-Ereignis der Seite](https://developer.mozilla.org/docs/Web/API/Window/unload_event) ausgelöst wird. Um die Verbindung in anderen Szenarien auf dem Client zu trennen, rufen Sie `Blazor.disconnect` im entsprechenden Ereignishandler auf. Im folgenden Beispiel wird die Verbindung getrennt, wenn die Seite ausgeblendet wird ([`pagehide`-Ereignis](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
+
+```javascript
+window.addEventListener('pagehide', () => {
+  Blazor.disconnect();
+});
+```
 
 ## <a name="influence-html-head-tag-elements"></a>Beeinflussen von HTML-`<head>`-Tagelementen
 
@@ -322,6 +330,8 @@ Wenn eine der Frameworkkomponenten in einer untergeordneten Komponente verwendet
 
 * Nach Anwendungszustand geändert werden kann. Ein hartcodiertes HTML-Tag kann nicht nach Anwendungszustand geändert werden.
 * Aus dem HTML-`<head>` entfernt wird, wenn die übergeordnete Komponente nicht mehr gerendert wird.
+
+::: moniker-end
 
 ## <a name="static-files"></a>Statische Dateien
 

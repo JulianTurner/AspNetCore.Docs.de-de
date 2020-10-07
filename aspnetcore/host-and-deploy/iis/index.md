@@ -18,27 +18,69 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/index
-ms.openlocfilehash: f648837ce42bef4a828d7eda1a6abdfdd8ac07a2
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: 7fe3e18b226061260d0c17220ba110bd61486b5f
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91654035"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754696"
 ---
 # <a name="host-aspnet-core-on-windows-with-iis"></a>Hosten von ASP.NET Core unter Windows mit IIS
 
-<!-- 
+::: moniker range=">= aspnetcore-5.0"
 
-    NOTE FOR 5.0
-    
-    When making the 5.0 version of this topic, remove the Hosting Bundle
-    direct download section from the (new) <5.0 & >2.2 version and modify 
-    the text and heading for the *Earlier versions of the installer* 
-    section. See the 2.2 version for an example.
-    
--->
+IIS (Internetinformationsdienste) stellen einen flexiblen, sicheren und verwaltbaren Webserver für das Hosten von Web-Apps (einschließlich ASP.NET Core) dar.
 
-::: moniker range=">= aspnetcore-3.0"
+## <a name="supported-platforms"></a>Unterstützte Plattformen
+
+Die folgenden Betriebssysteme werden unterstützt:
+
+* Windows 7 oder höher
+* Windows Server 2012 R2 oder höher
+
+Apps, die für Bereitstellungen für 32-Bit-Systeme (x86) oder 64-Bit-Systeme (x64) veröffentlicht wurden, werden unterstützt. Stellen Sie eine 32-Bit-App mit einem .NET Core SDK für 32-Bit (x86) bereit, es sei denn:
+
+* Die App benötigt den größeren Adressraum des virtuellen Arbeitsspeichers, der 64-Bit-Apps zur Verfügung steht.
+* Die App erfordert den größeren IIS-Stapel.
+* Die App weist native 64-Bit-Abhängigkeiten auf.
+
+## <a name="install-the-aspnet-core-modulehosting-bundle"></a>Installieren des ASP.NET Core-Moduls/Hostingpakets
+
+Laden Sie den Installer über folgenden Link herunter:
+
+[Aktueller Installer für das .NET Core Hosting-Paket (direkter Download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+
+Ausführlichere Anweisungen zum Installieren des ASP.NET Core-Moduls oder einer anderen Version finden Sie unter [Installieren des .NET Core-Hostingpakets](xref:host-and-deploy/iis/hosting-bundle).
+
+## <a name="get-started"></a>Erste Schritte
+
+Eine Einführung in das Hosten einer Website auf IIS finden Sie in unserem [Leitfaden zu den ersten Schritten](xref:tutorials/publish-to-iis).
+
+Eine Einführung in das Hosten einer Website in Azure App Service finden Sie im [Bereitstellungsleitfaden für Azure App Service](xref:host-and-deploy/azure-apps/index).
+
+## <a name="deployment-resources-for-iis-administrators"></a>Bereitstellungsressourcen für IIS-Administratoren
+
+* [IIS-Dokumentation](/iis)
+* [Erste Schritte mit IIS-Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
+* [.NET Core-Anwendungsbereitstellung](/dotnet/core/deploying/)
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/directory-structure>
+* <xref:host-and-deploy/iis/modules>
+* <xref:test/troubleshoot-azure-iis>
+* <xref:host-and-deploy/azure-iis-errors-reference>
+
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
+
+* <xref:test/troubleshoot>
+* <xref:index>
+* [Die offizielle Microsoft IIS-Website](https://www.iis.net/)
+* [Bibliothek mit technischem Inhalt zu Windows Server](/windows-server/windows-server)
+* [HTTP/2 unter IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
+* <xref:host-and-deploy/iis/transform-webconfig>
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 Ein Tutorial zum Veröffentlichen einer ASP.NET Core-App auf einem IIS-Server finden Sie unter <xref:tutorials/publish-to-iis>.
 
@@ -99,7 +141,7 @@ Nach der Verarbeitung der Anforderung durch den IIS-HTTP-Server:
 
 Das In-Process-Hosting ist eine wählbare Option für vorhandene Apps. Die ASP.NET Core-Webvorlagen verwenden das In-Process-Hostingmodell.
 
-`CreateDefaultBuilder` fügt eine <xref:Microsoft.AspNetCore.Hosting.Server.IServer>-Instanz hinzu, indem die <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*>-Methode aufgerufen wird, um die [CoreCLR](/dotnet/standard/glossary#coreclr) zu starten und die App im IIS-Workerprozess zu hosten (*w3wp.exe* oder *iisexpress.exe*). Leistungstests weisen darauf hin, dass das In-Process-Hosting einer .NET Core-App einen weitaus höheren Anforderungsdurchsatz im Vergleich zum Out-of-Process-Hosting der App mit Weiterleitung der Anforderungen über einen Proxy an [Kestrel](xref:fundamentals/servers/kestrel) bietet.
+`CreateDefaultBuilder` fügt eine <xref:Microsoft.AspNetCore.Hosting.Server.IServer>-Instanz hinzu, indem die <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS%2A>-Methode aufgerufen wird, um die [CoreCLR](/dotnet/standard/glossary#coreclr) zu starten und die App im IIS-Workerprozess zu hosten (`w3wp.exe` oder `iisexpress.exe`). Leistungstests weisen darauf hin, dass das In-Process-Hosting einer .NET Core-App einen weitaus höheren Anforderungsdurchsatz im Vergleich zum Out-of-Process-Hosting der App mit Weiterleitung der Anforderungen über einen Proxy an [Kestrel](xref:fundamentals/servers/kestrel) bietet.
 
 Apps, die als einzelne ausführbare Datei veröffentlicht wurden, können vom In-Prozess-Hostingmodell nicht geladen werden.
 
@@ -116,7 +158,7 @@ Das folgende Diagramm zeigt die Beziehung zwischen IIS, dem ASP.NET Core-Modul u
 1. Das Modul leitet die Anforderung an Kestrel auf einem zufälligen Port der App weiter. Der zufällige Port entspricht nicht Port 80 oder 443.
 
 <!-- make this a bullet list -->
-Das ASP.NET Core-Modul gibt den Port beim Start über eine Umgebungsvariable an. Mit der <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*>-Erweiterung wird der Server so konfiguriert, dass er an `http://localhost:{PORT}` lauscht. Zusätzliche Überprüfungen werden durchgeführt. Anforderungen, die nicht vom Modul stammen, werden abgelehnt. Das Modul unterstützt die HTTPS-Weiterleitung nicht. Deshalb werden Anforderungen über HTTP weitergeleitet, selbst wenn sie von IIS über HTTPS empfangen wurden.
+Das ASP.NET Core-Modul gibt den Port beim Start über eine Umgebungsvariable an. Mit der <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration%2A>-Erweiterung wird der Server so konfiguriert, dass er an `http://localhost:{PORT}` lauscht. Zusätzliche Überprüfungen werden durchgeführt. Anforderungen, die nicht vom Modul stammen, werden abgelehnt. Das Modul unterstützt die HTTPS-Weiterleitung nicht. Deshalb werden Anforderungen über HTTP weitergeleitet, selbst wenn sie von IIS über HTTPS empfangen wurden.
 
 Nachdem Kestrel die Anforderung vom Modul erhalten hat, wird die Anforderung an die ASP.NET Core-Middlewarepipeline weitergeleitet. Die Middleware-Pipeline behandelt die Anforderung und gibt sie als `HttpContext`-Instanz an die App-Logik weiter. Die durch IIS-Integration hinzugefügte Middleware aktualisiert das Schema, die Remote-IP und die Pfadbasis, um der Weiterleitung der Anforderung an Kestrel Rechnung zu tragen. Die Antwort der App wird dann an IIS zurückgegeben und an den HTTP-Client weitergeleitet, der die Anforderung initiiert hat.
 
@@ -128,7 +170,7 @@ Weitere Informationen zum Hosten finden Sie unter [Hosten in ASP.NET Core](xref:
 
 ### <a name="enable-the-iisintegration-components"></a>Aktivieren der IISIntegration-Komponenten
 
-Rufen Sie beim Erstellen eines Hosts in `CreateHostBuilder` (*Program.cs*) <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> ab, um die IIS-Integration zu aktivieren:
+Rufen Sie beim Erstellen eines Hosts in `CreateHostBuilder` (`Program.cs`) <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> ab, um die IIS-Integration zu aktivieren:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -142,7 +184,7 @@ Weitere Informationen zu `CreateDefaultBuilder` finden Sie unter <xref:fundament
 
 **In-Process-Hostingmodell**
 
-Schließen Sie zur Konfiguration von IIS-Serveroptionen eine Dienstkonfiguration für <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*> ein. Mit dem folgenden Beispiel wird AutomaticAuthentication deaktiviert:
+Schließen Sie zur Konfiguration von IIS-Serveroptionen eine Dienstkonfiguration für <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A> ein. Mit dem folgenden Beispiel wird AutomaticAuthentication deaktiviert:
 
 ```csharp
 services.Configure<IISServerOptions>(options => 
@@ -156,11 +198,11 @@ services.Configure<IISServerOptions>(options =>
 | `AutomaticAuthentication`      | `true`  | Bei Festlegung auf `true` legt der Server den per [Windows-Authentifizierung](xref:security/authentication/windowsauth) authentifizierten `HttpContext.User` fest. Bei Festlegung auf `false` stellt der Server nur eine Identität für `HttpContext.User` bereit und antwortet auf explizite Anforderungen durch `AuthenticationScheme`. Die Windows-Authentifizierung muss in IIS aktiviert sein, damit `AutomaticAuthentication` funktioniert. Weitere Informationen finden Sie unter [Windows-Authentifizierung](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Legt den Anzeigename fest, der Benutzern auf Anmeldungsseiten angezeigt wird |
 | `AllowSynchronousIO`           | `false` | Steuert, ob synchrone E/A-Vorgänge für `HttpContext.Request` und `HttpContext.Response` zulässig sind. |
-| `MaxRequestBodySize`           | `30000000`  | Dient zum Abrufen oder Festlegen der maximalen Größe des Anforderungstexts für `HttpRequest`. Beachten Sie, dass IIS selbst das Limit `maxAllowedContentLength` aufweist, das vor der in den `IISServerOptions` festgelegten `MaxRequestBodySize` verarbeitet wird. Das Ändern von `MaxRequestBodySize` hat keine Auswirkungen auf `maxAllowedContentLength`. Zum Erhöhen von `maxAllowedContentLength` fügen Sie einen Eintrag in *web.config* hinzu, um `maxAllowedContentLength` auf einen höheren Wert festzulegen. Weitere Informationen hierzu finden Sie unter [Konfiguration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
+| `MaxRequestBodySize`           | `30000000`  | Dient zum Abrufen oder Festlegen der maximalen Größe des Anforderungstexts für `HttpRequest`. Beachten Sie, dass IIS selbst das Limit `maxAllowedContentLength` aufweist, das vor der in den `IISServerOptions` festgelegten `MaxRequestBodySize` verarbeitet wird. Das Ändern von `MaxRequestBodySize` hat keine Auswirkungen auf `maxAllowedContentLength`. Zum Erhöhen von `maxAllowedContentLength` fügen Sie einen Eintrag in `web.config` hinzu, um `maxAllowedContentLength` auf einen höheren Wert festzulegen. Weitere Informationen hierzu finden Sie unter [Konfiguration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 **Out-of-Process-Hostingmodell**
 
-Schließen Sie zur Konfiguration von IIS-Optionen eine Dienstkonfiguration für <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*> ein. Im folgenden Beispiel wird Verhindert, dass die App `HttpContext.Connection.ClientCertificate` auffüllt:
+Schließen Sie zur Konfiguration von IIS-Optionen eine Dienstkonfiguration für <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A> ein. Im folgenden Beispiel wird Verhindert, dass die App `HttpContext.Connection.ClientCertificate` auffüllt:
 
 ```csharp
 services.Configure<IISOptions>(options => 
@@ -186,21 +228,21 @@ Die [Middleware für die IIS-Integration](#enable-the-iisintegration-components)
 
 Möglicherweise ist zusätzliche Konfiguration für Apps erforderlich, die hinter weiteren Proxyservern und Lastenausgleichsmodulen (Load Balancer) gehostet werden. Weitere Informationen hierzu feinden Sie unter [Konfigurieren von ASP.NET Core zur Verwendung mit Proxyservern und Lastenausgleich](xref:host-and-deploy/proxy-load-balancer).
 
-### <a name="webconfig-file"></a>Datei „web.config“
+### <a name="webconfig-file"></a>`web.config`-Datei
 
-Mit der Datei *web.config* wird das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) konfiguriert. Die Erstellung, Transformation und Veröffentlichung der Datei *web.config* wird bei der Projektveröffentlichung von einem MSBuild-Ziel (`_TransformWebConfig`) abgewickelt. Dieses Ziel ist in den Web SDK-Zielen (`Microsoft.NET.Sdk.Web`) vorhanden. Das SDK wird am Anfang der Projektdatei festgelegt:
+Mit der Datei `web.config` wird das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) konfiguriert. Die Erstellung, Transformation und Veröffentlichung der Datei `web.config` wird bei der Projektveröffentlichung von einem MSBuild-Ziel (`_TransformWebConfig`) abgewickelt. Dieses Ziel ist in den Web SDK-Zielen (`Microsoft.NET.Sdk.Web`) vorhanden. Das SDK wird am Anfang der Projektdatei festgelegt:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-Wenn im Projekt keine Datei namens *web.config* vorhanden ist, wird sie zur Konfiguration des ASP.NET Core-Moduls mit dem richtigen *processPath*- und *arguments*-Attribut erstellt und in die [veröffentlichte Ausgabe](xref:host-and-deploy/directory-structure) verschoben.
+Wenn im Projekt keine Datei namens `web.config` vorhanden ist, wird sie zur Konfiguration des ASP.NET Core-Moduls mit dem richtigen `processPath`- und `arguments`-Attribut erstellt und in die [veröffentlichte Ausgabe](xref:host-and-deploy/directory-structure) verschoben.
 
-Ist eine Datei namens *web.config* im Projekt vorhanden, wird sie zur Konfiguration des ASP.NET Core-Moduls mit dem richtigen *processPath*- und *arguments*-Attribut transformiert und in die veröffentlichte Ausgabe verschoben. Die Transformation ändert die IIS-Konfigurationseinstellungen in der Datei nicht.
+Ist eine Datei namens `web.config` im Projekt vorhanden, wird sie zur Konfiguration des ASP.NET Core-Moduls mit dem richtigen `processPath`- und `arguments`-Attribut transformiert und in die veröffentlichte Ausgabe verschoben. Die Transformation ändert die IIS-Konfigurationseinstellungen in der Datei nicht.
 
-Die Datei *web.config* kann zusätzliche IIS-Konfigurationseinstellungen zum Steuern der aktiven IIS-Module bereitstellen. Informationen zu IIS-Modulen, die Anforderungen mit ASP.NET Core-Apps verarbeiten können, finden Sie im Thema [IIS-Module](xref:host-and-deploy/iis/modules).
+Die Datei `web.config` kann zusätzliche IIS-Konfigurationseinstellungen zum Steuern der aktiven IIS-Module bereitstellen. Informationen zu IIS-Modulen, die Anforderungen mit ASP.NET Core-Apps verarbeiten können, finden Sie im Thema [IIS-Module](xref:host-and-deploy/iis/modules).
 
-Verwenden Sie die Eigenschaft **\<IsTransformWebConfigDisabled>** in der Projektdatei, um zu verhindern, dass das Web-SDK die Datei *web.config* transformiert:
+Verwenden Sie die Eigenschaft `<IsTransformWebConfigDisabled>` in der Projektdatei, um zu verhindern, dass das Web-SDK die Datei `web.config` transformiert:
 
 ```xml
 <PropertyGroup>
@@ -208,19 +250,19 @@ Verwenden Sie die Eigenschaft **\<IsTransformWebConfigDisabled>** in der Projekt
 </PropertyGroup>
 ```
 
-Wenn die Transformation der Datei durch das Web-SDK deaktiviert wird, müssen die Attribute *processPath* und *arguments* manuell durch den Entwickler festgelegt werden. Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module>.
+Wenn die Transformation der Datei durch das Web-SDK deaktiviert wird, müssen die Attribute `processPath` und `arguments` manuell durch den Entwickler festgelegt werden. Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module>.
 
-### <a name="webconfig-file-location"></a>Speicherort der Datei „web.config“
+### <a name="webconfig-file-location"></a>Speicherort der Datei `web.config`
 
-Zum Erstellen des [ASP.NET Core-Moduls](xref:host-and-deploy/aspnet-core-module) muss die Datei *web.config* im [Inhaltsstammpfad](xref:fundamentals/index#content-root) (normalerweise dem App-Basispfad) der bereitgestellten App vorhanden sein. Dies ist der physische Pfad der Website, der in IIS bereitgestellt wurde. Die Datei *Web.config* wird im Stammverzeichnis der App benötigt, um die Veröffentlichung mehrerer Apps mit Web Deploy zu ermöglichen.
+Zum Erstellen des [ASP.NET Core-Moduls](xref:host-and-deploy/aspnet-core-module) muss die Datei `web.config` im [Inhaltsstammpfad](xref:fundamentals/index#content-root) (normalerweise dem App-Basispfad) der bereitgestellten App vorhanden sein. Dies ist der physische Pfad der Website, der in IIS bereitgestellt wurde. Die Datei `web.config` wird im Stammverzeichnis der App benötigt, um die Veröffentlichung mehrerer Apps mit Web Deploy zu ermöglichen.
 
-Im physischen Pfad der App sind vertrauliche Dateien vorhanden, z. B. *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (XML-Dokumentationskommentare) und *\<assembly>.deps.json*. Wenn die *web.config*-Datei vorhanden ist und die Website normal startet, werden diese vertraulichen Dateien bei Anforderung nicht offengelegt. Wenn die Datei *web.config* fehlt, falsch benannt wurde oder die Website nicht für den normalen Start konfigurieren kann, macht IIS vertrauliche Dateien möglicherweise öffentlich verfügbar.
+Vertrauliche Dateien wie `{ASSEMBLY}.runtimeconfig.json`, `{ASSEMBLY}.xml` (Kommentare zur XML-Dokumentation) und `{ASSEMBLY}.deps.json` sind im physischen Pfad der App vorhanden. Der Platzhalter `{ASSEMBLY}` steht hierbei für den Assemblynamen. Wenn die `web.config`-Datei vorhanden ist und die Website normal startet, werden diese vertraulichen Dateien bei Anforderung nicht offengelegt. Wenn die Datei `web.config` fehlt, falsch benannt wurde oder die Website nicht für den normalen Start konfigurieren kann, macht IIS vertrauliche Dateien möglicherweise öffentlich verfügbar.
 
-**Die Datei *web.config* muss immer in der Bereitstellung vorhanden, richtig benannt und in der Lage sein, die Website für einen normalen Start zu konfigurieren. Entfernen Sie die Datei *web.config* niemals aus einer Produktionsbereitstellung.**
+**Die Datei `web.config` muss immer in der Bereitstellung vorhanden, richtig benannt und in der Lage sein, die Website für einen normalen Start zu konfigurieren. Entfernen Sie die Datei `web.config` niemals aus einer Produktionsbereitstellung.**
 
 ### <a name="transform-webconfig"></a>Transformieren von web.config
 
-Wenn Sie *web.config* beim Veröffentlichen transformieren müssen, finden Sie weitere Informationen unter <xref:host-and-deploy/iis/transform-webconfig>. Sie müssen möglicherweise *web.config* beim Veröffentlichen transformieren, um Umgebungsvariablen basierend auf der Konfiguration, dem Profil oder der Umgebung festzulegen.
+Wenn Sie `web.config` beim Veröffentlichen transformieren müssen, finden Sie weitere Informationen unter <xref:host-and-deploy/iis/transform-webconfig>. Sie müssen möglicherweise `web.config` beim Veröffentlichen transformieren, um Umgebungsvariablen basierend auf der Konfiguration, dem Profil oder der Umgebung festzulegen.
 
 ## <a name="iis-configuration"></a>IIS-Konfiguration
 
@@ -237,7 +279,7 @@ Aktivieren Sie die Serverrolle **Webserver (IIS)** , und richten Sie Rollendiens
    ![Die Standardrollendienste werden im Schritt „Rollendienste auswählen“ ausgewählt.](index/_static/role-services-ws2016.png)
 
    **Windows-Authentifizierung (optional)**  
-   Um die Windows-Authentifizierung zu aktivieren, erweitern Sie die folgenden Knoten: **Webserver** > **Sicherheit**. Wählen Sie das Feature **Windows-Authentifizierung** aus. Weitere Informationen finden Sie unter [Windows-Authentifizierung \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) und [Konfigurieren der Windows-Authentifizierung](xref:security/authentication/windowsauth).
+   Um die Windows-Authentifizierung zu aktivieren, erweitern Sie die folgenden Knoten: **Webserver** > **Sicherheit**. Wählen Sie das Feature **Windows-Authentifizierung** aus. Weitere Informationen finden Sie unter [Windows-Authentifizierung `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) und [Konfigurieren der Windows-Authentifizierung](xref:security/authentication/windowsauth).
 
    **WebSockets (optional)**  
    WebSockets wird mit ASP.NET Core 1.1 oder höher unterstützt. Um WebSockets zu aktivieren, erweitern Sie die folgenden Knoten: **Webserver** > **Anwendungsentwicklung**. Wählen Sie das Feature **WebSocket-Protokoll** aus. Weitere Informationen finden Sie unter [WebSockets](xref:fundamentals/websockets).
@@ -303,7 +345,7 @@ So erhalten Sie eine frühere Version des Installers:
    * `OPT_NO_RUNTIME=1`: Überspringen Sie die Installation der .NET Core-Runtime. Wird verwendet, wenn der Server nur [eigenständige Bereitstellungen (Self-contained Deployments, SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) hostet.
    * `OPT_NO_SHAREDFX=1`: Überspringen Sie die Installation des freigegebenen ASP.NET-Frameworks (ASP.NET-Runtime). Wird verwendet, wenn der Server nur [eigenständige Bereitstellungen (Self-contained Deployments, SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) hostet.
    * `OPT_NO_X86=1`: Überspringen Sie die Installation von x86-Runtimes. Verwenden Sie diesen Parameter, wenn Sie wissen, dass Sie keine 32-Bit-Apps hosten. Sollte die Möglichkeit bestehen, dass Sie sowohl 32-Bit- als auch 64-Bit-Apps hosten könnten, verwenden Sie diesen Parameter nicht, und installieren Sie beide Runtimes.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Deaktivieren Sie die Überprüfung auf Verwendung einer gemeinsamen IIS-Konfiguration, wenn sich die gemeinsam genutzte Konfiguration (*applicationHost.config*) auf demselben Computer wie die IIS-Installation befindet. *Nur für Installationsprogramme für Hostingbundles für ASP.NET Core 2.2 oder höher verfügbar.* Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Deaktivieren Sie die Überprüfung auf Verwendung einer gemeinsamen IIS-Konfiguration, wenn sich die gemeinsam genutzte Konfiguration (`applicationHost.config`) auf demselben Computer wie die IIS-Installation befindet. *Nur für Installationsprogramme für Hostingbundles für ASP.NET Core 2.2 oder höher verfügbar.* Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
 1. Starten Sie das System neu, oder führen Sie die folgenden Befehle in einer Befehlsshell aus:
 
    ```console
@@ -364,7 +406,7 @@ Weitere Informationen finden Sie unter [Konfigurieren der Windows-Authentifizier
 
 ## <a name="deploy-the-app"></a>Bereitstellen der App
 
-Stellen Sie die App im IIS-Ordner **Physischer Pfad** bereit, der im Abschnitt [Erstellen der IIS-Website](#create-the-iis-site) eingerichtet wurde. [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) ist die empfohlene Methode für die Bereitstellung, aber es gibt verschiedene Optionen, um die Anwendung aus dem Ordner *publish* des Projekts in den Bereitstellungsordner des Hostsystems zu verschieben.
+Stellen Sie die App im IIS-Ordner **Physischer Pfad** bereit, der im Abschnitt [Erstellen der IIS-Website](#create-the-iis-site) eingerichtet wurde. [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) ist die empfohlene Methode für die Bereitstellung, aber es gibt verschiedene Optionen, um die Anwendung aus dem Ordner `publish` des Projekts in den Bereitstellungsordner des Hostsystems zu verschieben.
 
 ### <a name="web-deploy-with-visual-studio"></a>Web Deploy mit Visual Studio
 
@@ -394,9 +436,9 @@ Im folgenden Beispiel ist die Website an den IIS-**Hostnamen** von `www.mysite.c
 
 Die Dateien im Bereitstellungsordner werden gesperrt, wenn die App ausgeführt wird. Gesperrte Dateien können während der Bereitstellung nicht überschrieben werden. Um gesperrte Dateien in einer Bereitstellung freizugeben, beenden Sie den App-Pool mit **einer** der folgenden Methoden:
 
-* Verwenden Sie Web Deploy, und verweisen Sie auf `Microsoft.NET.Sdk.Web` in der Projektdatei. Eine Datei namens *app_offline.htm* befindet sich im Stammverzeichnis des Web-App-Verzeichnisses. Wenn die Datei vorhanden ist, fährt das ASP.NET Core Module die App ordnungsgemäß herunter und verarbeitet die Datei *app_offline.htm* während der Bereitstellung. Weitere Informationen finden Sie unter [Konfigurationsreferenz für das ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
+* Verwenden Sie Web Deploy, und verweisen Sie auf `Microsoft.NET.Sdk.Web` in der Projektdatei. Eine Datei namens `app_offline.htm` befindet sich im Stammverzeichnis des Web-App-Verzeichnisses. Wenn die Datei vorhanden ist, fährt das ASP.NET Core Module die App ordnungsgemäß herunter und verarbeitet die Datei `app_offline.htm` während der Bereitstellung. Weitere Informationen finden Sie unter [Konfigurationsreferenz für das ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 * Beenden Sie den App-Pool im IIS-Manager auf dem Server manuell.
-* Verwenden Sie PowerShell, um *app_offline.htm* abzulegen (erfordert PowerShell 5 oder höher):
+* Verwenden Sie PowerShell, um `app_offline.htm` abzulegen (erfordert PowerShell 5 oder höher):
 
   ```powershell
   $pathToApp = 'PATH_TO_APP'
@@ -408,7 +450,6 @@ Die Dateien im Bereitstellungsordner werden gesperrt, wenn die App ausgeführt w
 
   # Restart the AppPool
   Remove-Item -Path $pathToApp app_offline.htm
-
   ```
 
 ## <a name="data-protection"></a>Schutz von Daten
@@ -531,7 +572,7 @@ Wenn der IIS-Workerprozess erhöhte Rechte für den Zugriff auf Ihre Anwendung e
 
 1. Wählen Sie die Schaltfläche **Speicherorte** aus, und stellen Sie sicher, dass das System ausgewählt ist.
 
-1. Geben Sie im Bereich **Geben Sie die Namen der auszuwählenden Objekte ein** den Wert **IIS AppPool\\<Name_des_AppPools>** ein. Klicken Sie auf die Schaltfläche **Namen überprüfen**. Überprüfen Sie für *DefaultAppPool* die Namen mit **IIS AppPool\DefaultAppPool**. Bei Auswahl der Schaltfläche **Namen überprüfen** wird im Bereich für Objektnamen der Wert **DefaultAppPool** angegeben. Es ist nicht möglich, den Namen des App-Pools direkt in den Bereich für Objektnamen einzugeben. Verwenden Sie das Format **IIS AppPool\\<Name_des_AppPools>** , wenn Sie die Objektnamen überprüfen.
+1. Geben Sie `IIS AppPool\{APP POOL NAME}` ein. Hierbei steht der Platzhalter `{APP POOL NAME}` für den Namen des App-Pools im Bereich **Geben Sie die Namen der auszuwählenden Objekte ein**. Klicken Sie auf die Schaltfläche **Namen überprüfen**. Überprüfen Sie für *DefaultAppPool* die Namen mit `IIS AppPool\DefaultAppPool`. Bei Auswahl der Schaltfläche **Namen überprüfen** wird im Bereich für Objektnamen der Wert `DefaultAppPool` angegeben. Es ist nicht möglich, den Namen des App-Pools direkt in den Bereich für Objektnamen einzugeben. Verwenden Sie das Format `IIS AppPool\{APP POOL NAME}`, wenn Sie den Objektnamen überprüfen. Hierbei steht der Platzhalter `{APP POOL NAME}` für den Namen des App-Pools.
 
    ![Dialogfeld „Benutzer oder Gruppen auswählen“ für den App-Ordner: Der Name des App-Pools, „DefaultAppPool“, wird an „IIS AppPool\"“ im Bereich der Objektnamen angehängt, bevor „Namen überprüfen“ ausgewählt wird.](index/_static/select-users-or-groups-1.png)
 
@@ -541,7 +582,7 @@ Wenn der IIS-Workerprozess erhöhte Rechte für den Zugriff auf Ihre Anwendung e
 
 1. Standardmäßig sollten Lese- und Schreibberechtigungen gewährt werden. Erteilen Sie weitere Berechtigungen, sofern erforderlich.
 
-Zugriff kann auch über eine Eingabeaufforderung mit dem Tool **ICACLS** gewährt werden. Im folgenden Befehl wird als Beispiel *DefaultAppPool* verwendet:
+Zugriff kann auch über eine Eingabeaufforderung mit dem Tool **ICACLS** gewährt werden. Im folgenden Befehl wird als Beispiel `DefaultAppPool` verwendet:
 
 ```console
 ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
@@ -549,11 +590,29 @@ ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
 
 Weitere Informationen finden Sie im Thema [icacls](/windows-server/administration/windows-commands/icacls).
 
+## <a name="http2-support"></a>HTTP/2-Unterstützung
+
+[HTTP/2](https://httpwg.org/specs/rfc7540.html) wird mit ASP.NET Core in den folgenden IIS-Bereitstellungsszenarien unterstützt:
+
+* In-Process
+  * Windows Server 2016/Windows 10 oder höher, IIS 10 oder höher
+  * TLS 1.2-Verbindung oder höher
+* Out-of-Process
+  * Windows Server 2016/Windows 10 oder höher, IIS 10 oder höher
+  * Öffentlich zugängliche Edge-Server-Verbindungen verwenden HTTP/2, aber die Reverseproxyverbindung mit dem [Kestrel-Server](xref:fundamentals/servers/kestrel) verwendet HTTP/1.1.
+  * TLS 1.2-Verbindung oder höher
+
+Für eine In-Process-Bereitstellung, wenn eine HTTP/2-Verbindung hergestellt wurde, meldet [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) den Wert `HTTP/2`. Für eine Out-of-Process-Bereitstellung, wenn eine HTTP/2-Verbindung hergestellt wurde, meldet [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) den Wert `HTTP/1.1`.
+
+Weitere Informationen zu den In-Process- und Out-of-Process-Hostingmodellen finden Sie unter <xref:host-and-deploy/aspnet-core-module>.
+
+HTTP/2 ist standardmäßig aktiviert. Verbindungen führen ein Fallback auf HTTP/1.1 aus, wenn keine HTTP/2-Verbindung hergestellt wurde. Weitere Informationen zur HTTP/2-Konfiguration mit IIS-Bereitstellungen finden Sie unter [HTTP/2 unter IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis).
+
 ## <a name="cors-preflight-requests"></a>CORS-Preflightanforderungen
 
 *Dieser Abschnitt gilt nur für ASP.NET Core-Apps, die auf das .NET Framework ausgerichtet sind.*
 
-Für eine ASP.NET Core-App, die auf das .NET Framework ausgerichtet ist, werden OPTIONS-Anforderungen in IIS standardmäßig nicht an die App übergeben. Informationen dazu, wie Sie die IIS-Handler der App in *web.config* so konfigurieren, dass OPTIONS-Anforderungen übergeben werden, finden Sie unter [Aktivieren ursprungsübergreifender Anforderungen in ASP.NET-Web-API 2: Funktionsweise von CORS](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works).
+Für eine ASP.NET Core-App, die auf das .NET Framework ausgerichtet ist, werden OPTIONS-Anforderungen in IIS standardmäßig nicht an die App übergeben. Informationen dazu, wie Sie die IIS-Handler der App in `web.config` so konfigurieren, dass OPTIONS-Anforderungen übergeben werden, finden Sie unter [Aktivieren ursprungsübergreifender Anforderungen in ASP.NET-Web-API 2: Funktionsweise von CORS](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works).
 
 ## <a name="application-initialization-module-and-idle-timeout"></a>Anwendungsinitialisierungsmodul und Leerlauftimeout
 
@@ -593,7 +652,7 @@ Verwenden Sie einen der folgenden Ansätze, um das Anwendungsinitialisierungsmod
   1. Klicken Sie mit der rechten Maustaste zunächst auf die App und dann auf **Website verwalten** > **Erweiterte Einstellungen**.
   1. Die Standardeinstellung für **Vorabladen aktiviert** ist **False**. Legen Sie für **Vorabladen aktiviert** **True** fest. Klicken Sie auf **OK**.
 
-* Fügen Sie bei Verwenden von *web.config* das `<applicationInitialization>`-Element hinzu, wobei `doAppInitAfterRestart` auf `true` für die `<system.webServer>`-Elemente in der *web.config*-Datei der App festgelegt ist:
+* Fügen Sie bei Verwenden von `web.config` das `<applicationInitialization>`-Element hinzu, wobei `doAppInitAfterRestart` für die `<system.webServer>`-Elemente in der web.config-Datei der App auf `true` festgelegt ist:
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -708,7 +767,7 @@ Nachdem der IIS-HTTP-Server die Anforderung verarbeitet hat, wird die Anforderun
 
 In-Process-Hosting ist eine wählbare Option für vorhandene Apps. Die [dotnet new](/dotnet/core/tools/dotnet-new)-Vorlagen sehen das In-Process-Hostingmodell aber als Standard für alle IIS- und IIS Express-Szenarios vor.
 
-`CreateDefaultBuilder` fügt eine <xref:Microsoft.AspNetCore.Hosting.Server.IServer>-Instanz hinzu, indem die <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*>-Methode aufgerufen wird, um die [CoreCLR](/dotnet/standard/glossary#coreclr) zu starten und die App im IIS-Workerprozess zu hosten (*w3wp.exe* oder *iisexpress.exe*). Leistungstests weisen darauf hin, dass das In-Process-Hosting einer .NET Core-App einen weitaus höheren Anforderungsdurchsatz im Vergleich zum Out-of-Process-Hosting der App mit Weiterleitung der Anforderungen über einen Proxy an [Kestrel](xref:fundamentals/servers/kestrel) Server bietet.
+`CreateDefaultBuilder` fügt eine <xref:Microsoft.AspNetCore.Hosting.Server.IServer>-Instanz hinzu, indem die <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS%2A>-Methode aufgerufen wird, um die [CoreCLR](/dotnet/standard/glossary#coreclr) zu starten und die App im IIS-Workerprozess zu hosten (*w3wp.exe* oder *iisexpress.exe*). Leistungstests weisen darauf hin, dass das In-Process-Hosting einer .NET Core-App einen weitaus höheren Anforderungsdurchsatz im Vergleich zum Out-of-Process-Hosting der App mit Weiterleitung der Anforderungen über einen Proxy an [Kestrel](xref:fundamentals/servers/kestrel) Server bietet.
 
 ### <a name="out-of-process-hosting-model"></a>Out-of-Process-Hostingmodell
 
@@ -732,7 +791,7 @@ Weitere Informationen zum Hosten finden Sie unter [Hosten in ASP.NET Core](xref:
 
 ### <a name="enable-the-iisintegration-components"></a>Aktivieren der IISIntegration-Komponenten
 
-Rufen Sie beim Erstellen eines Hosts in `CreateWebHostBuilder` (*Program.cs*) <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> ab, um die IIS-Integration zu aktivieren:
+Rufen Sie beim Erstellen eines Hosts in `CreateWebHostBuilder` (*Program.cs*) <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> ab, um die IIS-Integration zu aktivieren:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -746,7 +805,7 @@ Weitere Informationen zu `CreateDefaultBuilder` finden Sie unter <xref:fundament
 
 **In-Process-Hostingmodell**
 
-Schließen Sie zur Konfiguration von IIS-Serveroptionen eine Dienstkonfiguration für <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*> ein. Mit dem folgenden Beispiel wird AutomaticAuthentication deaktiviert:
+Schließen Sie zur Konfiguration von IIS-Serveroptionen eine Dienstkonfiguration für <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A> ein. Mit dem folgenden Beispiel wird AutomaticAuthentication deaktiviert:
 
 ```csharp
 services.Configure<IISServerOptions>(options => 
@@ -1297,7 +1356,7 @@ Nachdem Kestrel die Anforderung vom Modul erhalten hat, wird die Anforderung in 
 
 `CreateDefaultBuilder` konfiguriert [Kestrel](xref:fundamentals/servers/kestrel) Server als Webserver und aktiviert die IIS-Integration durch Konfigurierung des Basispfads und Ports für das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module).
 
-Das ASP.NET Core-Modul generiert einen dynamischen Port, der dem Back-End-Prozess zugewiesen wird. `CreateDefaultBuilder` ruft die <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*>-Methode auf. `UseIISIntegration` konfiguriert Kestrel so, dass an dem dynamischen Port an der Localhost-IP-Adresse (`127.0.0.1`) gelauscht wird. Wenn der dynamische Port 1234 ist, lauscht Kestrel an `127.0.0.1:1234`. Diese Konfiguration ersetzt andere Konfigurationen von:
+Das ASP.NET Core-Modul generiert einen dynamischen Port, der dem Back-End-Prozess zugewiesen wird. `CreateDefaultBuilder` ruft die <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration%2A>-Methode auf. `UseIISIntegration` konfiguriert Kestrel so, dass an dem dynamischen Port an der Localhost-IP-Adresse (`127.0.0.1`) gelauscht wird. Wenn der dynamische Port 1234 ist, lauscht Kestrel an `127.0.0.1:1234`. Diese Konfiguration ersetzt andere Konfigurationen von:
 
 * `UseUrls`
 * [der Listen-API von Kestrel](xref:fundamentals/servers/kestrel#endpoint-configuration)
@@ -1313,7 +1372,7 @@ Weitere Informationen zum Hosten finden Sie unter [Hosten in ASP.NET Core](xref:
 
 ### <a name="enable-the-iisintegration-components"></a>Aktivieren der IISIntegration-Komponenten
 
-Rufen Sie beim Erstellen eines Hosts in `CreateWebHostBuilder` (*Program.cs*) <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> ab, um die IIS-Integration zu aktivieren:
+Rufen Sie beim Erstellen eines Hosts in `CreateWebHostBuilder` (*Program.cs*) <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> ab, um die IIS-Integration zu aktivieren:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

@@ -1,5 +1,3 @@
----
----
 Während für eine Blazor Server-App ein Prerendering erfolgt, sind bestimmte Aktionen (z. B. Aufrufe in JavaScript) nicht möglich, da noch keine Verbindung mit dem Browser hergestellt wurde. Komponenten müssen wahrscheinlich unterschiedlich rendern, wenn dafür ein Prerendering durchgeführt wurde.
 
 Wenn Sie JavaScript-Interop-Aufrufe bis nach Herstellung der Verbindung zum Browser verzögern möchten, können Sie das [Lebenszyklusereignis der OnAfterRenderAsync-Komponente](xref:blazor/components/lifecycle#after-component-render) verwenden. Dieses Ereignis wird nur aufgerufen, nachdem die App vollständig gerendert und die Clientverbindung hergestellt wurde.

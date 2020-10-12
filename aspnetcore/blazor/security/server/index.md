@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie Blazor Server-Apps als ASP.NET Core-Anwendung
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2020
+ms.date: 10/06/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: ba9fe3c0149679fa5760c0c9214cd426f1804c31
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6d0f6f859dbaef98c6c8a9c53fe9858705cdc0a
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626453"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805504"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Schützen von Blazor Server-Apps von ASP.NET Core
 
 Von [Luke Latham](https://github.com/guardrex)
 
-Das Schützen von Blazor Server-Apps funktioniert genau wie bei ASP.NET Core-Apps. Weitere Informationen finden Sie in den Artikeln unter <xref:security/index>. Die Themen in dieser Übersicht gelten speziell für Blazor Server. 
+Das Schützen von Blazor Server-Apps funktioniert genau wie bei ASP.NET Core-Apps. Weitere Informationen finden Sie in den Artikeln unter <xref:security/index>. Die Themen in dieser Übersicht gelten speziell für Blazor Server.
 
 ## <a name="no-locblazor-server-project-template"></a>Blazor Server-Projektvorlage
 
@@ -108,7 +108,14 @@ Bei Verwenden der Option `-o|--output` nutzt der Befehl den für den Platzhalter
 * Erstellen Sie einen Ordner für das Projekt.
 * Benennen Sie das Projekt.
 
-Weitere Informationen finden Sie im Befehl [`dotnet new`](/dotnet/core/tools/dotnet-new) im Leitfaden für .NET Core.
+Weitere Informationen finden Sie unter:
+
+* Lesen Sie im Leitfaden für .NET Core die Informationen zum Befehl [`dotnet new`](/dotnet/core/tools/dotnet-new).
+* Führen Sie in einer Befehlsshell den Hilfebefehl für die Vorlage Blazor Server (`blazorserver`) aus:
+
+  ```dotnetcli
+  dotnet new blazorserver --help
+  ```
 
 ---
 
@@ -118,3 +125,8 @@ Gerüst Identity in einem Blazor Server-Projekt:
 
 * [Ohne vorhandene Autorisierung](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
 * [Mit Autorisierung](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization)
+
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
+
+* [Schnellstart: Hinzufügen von „Bei Microsoft anmelden“ zu einer ASP.NET Core-Web-App](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
+* [Schnellstart: Schützen einer ASP.NET Core-Web-API mit Microsoft Identity Platform](/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)

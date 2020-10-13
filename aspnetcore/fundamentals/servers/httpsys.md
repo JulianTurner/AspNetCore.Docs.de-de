@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: e5346c1e58127747d777b5040fe7bc7d99b9a489
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 8ed9ec3447205107194ffa5c329c0e5ae0fc5553
+ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722870"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91653970"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementierung des Http.sys-Webservers in ASP.NET Core
 
@@ -272,6 +272,23 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 Für Apps, die von HTTP.sys gehostet werden und mit Anforderungen aus dem Internet oder einem Unternehmensnetzwerk interagieren, ist möglicherweise eine zusätzliche Konfiguration erforderlich, wenn sie hinter Proxyservern und Lastenausgleichsmodulen hosten. Weitere Informationen hierzu feinden Sie unter [Konfigurieren von ASP.NET Core zur Verwendung mit Proxyservern und Lastenausgleich](xref:host-and-deploy/proxy-load-balancer).
 
+## <a name="advanced-http2-features-to-support-grpc"></a>Erweiterte HTTP/2-Features zur Unterstützung von gRPC
+
+Zusätzliche HTTP/2-Features in HTTP.sys zur Unterstützung von gRPC, einschließlich der Unterstützung für Antwortnachspanne und das Senden von Frames zum Zurücksetzen
+
+Anforderungen zum Ausführen von gRPC mit HTTP.sys:
+
+* Windows 10, OS Build 19041.508 oder höher
+* TLS 1.2-Verbindung oder höher
+
+### <a name="trailers"></a>Trailer
+
+[!INCLUDE[](~/includes/trailers.md)]
+
+### <a name="reset"></a>Reset
+
+[!INCLUDE[](~/includes/reset.md)]
+
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Aktivieren der Windows-Authentifizierung mit HTTP.sys](xref:security/authentication/windowsauth#httpsys)
@@ -348,7 +365,7 @@ Die weitere Konfiguration von HTTP.sys erfolgt über [Registrierungseinstellunge
 
 **HTTP.sys-Optionen**
 
-| Eigenschaft | Beschreibung | Standard |
+| Eigenschaft | BESCHREIBUNG | Standard |
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Hiermit steuern Sie, ob eine synchrone Eingabe/Ausgabe für `HttpContext.Request.Body` und `HttpContext.Response.Body` zulässig ist. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Hiermit lassen Sie anonyme Anforderungen zu. | `true` |
@@ -601,7 +618,7 @@ Die weitere Konfiguration von HTTP.sys erfolgt über [Registrierungseinstellunge
 
 **HTTP.sys-Optionen**
 
-| Eigenschaft | Beschreibung | Standard |
+| Eigenschaft | BESCHREIBUNG | Standard |
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Hiermit steuern Sie, ob eine synchrone Eingabe/Ausgabe für `HttpContext.Request.Body` und `HttpContext.Response.Body` zulässig ist. | `true` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Hiermit lassen Sie anonyme Anforderungen zu. | `true` |
@@ -854,7 +871,7 @@ Die weitere Konfiguration von HTTP.sys erfolgt über [Registrierungseinstellunge
 
 **HTTP.sys-Optionen**
 
-| Eigenschaft | Beschreibung | Standard |
+| Eigenschaft | BESCHREIBUNG | Standard |
 | -------- | ----------- | :-----: |
 | [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Hiermit steuern Sie, ob eine synchrone Eingabe/Ausgabe für `HttpContext.Request.Body` und `HttpContext.Response.Body` zulässig ist. | `true` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Hiermit lassen Sie anonyme Anforderungen zu. | `true` |

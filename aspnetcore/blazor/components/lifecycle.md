@@ -5,7 +5,7 @@ description: Erfahren Sie, wie die Lebenszyklusmethoden von Razor-Komponenten in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 10/06/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,18 +18,48 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: 00573f87b65e53a7bfd9cc2aed1d2ed7772b9a4a
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 0acf757c21d444136e7a6d81d5958be5bc72c2fc
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847610"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805543"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>ASP.NET Core Blazor-Lebenszyklus
 
 Von [Luke Latham](https://github.com/guardrex) und [Daniel Roth](https://github.com/danroth27)
 
 Das Blazor-Framework umfasst synchrone und asynchrone Lebenszyklusmethoden. Setzen Sie Lebenszyklusmethoden außer Kraft, um während der Komponenteninitialisierung und des Renderings zusätzliche Vorgänge mit Komponenten durchzuführen.
+
+Auf den folgenden Abbildungen wird der Blazor-Lebenszyklus veranschaulicht. In den folgenden Abschnitten dieses Artikels werden die Lebenszyklusmethoden mit Beispielen definiert.
+
+Ereignisse des Komponentenlebenszyklus:
+
+1. Wenn die Komponente erstmalig ein Rendering für eine Anforderung ausführt, führen Sie folgende Schritte durch:
+   * Erstellen Sie die Instanz der Komponente.
+   * Führen Sie eine Eigenschaftsinjektion durch. Führen Sie [`SetParametersAsync`](#before-parameters-are-set) aus.
+   * Rufen Sie [`OnInitialized{Async}`](#component-initialization-methods) auf. Wenn <xref:System.Threading.Tasks.Task> zurückgegeben wird, wird auf <xref:System.Threading.Tasks.Task> gewartet, und dann wird die Komponente gerendert. Wenn <xref:System.Threading.Tasks.Task> nicht zurückgegeben wird, wird die Komponente gerendert.
+1. Rufen Sie [`OnParametersSet{Async}`](#after-parameters-are-set) auf. Wenn <xref:System.Threading.Tasks.Task> zurückgegeben wird, wird auf <xref:System.Threading.Tasks.Task> gewartet, und dann wird die Komponente gerendert. Wenn <xref:System.Threading.Tasks.Task> nicht zurückgegeben wird, wird die Komponente gerendert.
+
+<img src="lifecycle/_static/lifecycle1.png" alt="Component lifecycle events of a Razor component in Blazor" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+
+Verarbeitung von DOM-Ereignissen (Document Object Model):
+
+1. Der Ereignishandler wird ausgeführt.
+1. Wenn <xref:System.Threading.Tasks.Task> zurückgegeben wird, wird auf <xref:System.Threading.Tasks.Task> gewartet, und dann wird die Komponente gerendert. Wenn <xref:System.Threading.Tasks.Task> nicht zurückgegeben wird, wird die Komponente gerendert.
+
+<img src="lifecycle/_static/lifecycle2.png" alt="Document Object Model (DOM) event processing" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+
+Der `Render`-Lebenszyklus:
+
+1. Wenn es sich beim Renderingvorgang nicht um das erste Rendering der Komponente handelt oder wenn [`ShouldRender`](#suppress-ui-refreshing) als `false` ausgewertet wird, führen Sie keine weiteren Vorgänge für die Komponente aus.
+1. Erstellen Sie das Diff (Unterschied) der Renderstruktur, und rendern Sie die Komponente.
+1. Warten Sie, bis das DOM aktualisiert wurde.
+1. Rufen Sie [`OnAfterRender{Async}`](#after-component-render) auf.
+
+<img src="lifecycle/_static/lifecycle3.png" alt="Render lifecycle" data-linktype="relative-path" style="max-width:350px;display:block;margin:0 auto">
+
+Wenn [`StateHasChanged`](#state-changes) von Entwicklern aufgerufen wird, führt dies zu einem Rendervorgang.
 
 ## <a name="lifecycle-methods"></a>Lebenszyklusmethoden
 
@@ -191,7 +221,7 @@ In der `FetchData`-Komponente der Blazor-Vorlagen wird <xref:Microsoft.AspNetCor
 
 `Pages/FetchData.razor` in der Blazor Server-Vorlage:
 
-[!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
+[!code-razor[](lifecycle/samples_snapshot/FetchData.razor?highlight=9,21,25)]
 
 ## <a name="handle-errors"></a>Behandeln von Fehlern
 
@@ -286,11 +316,11 @@ Kündigen Sie die .NET-Ereignisabonnements der Ereignishandler. Die folgenden [B
 
 * Ansatz mit einem privatem Feld und Lambdaausdruck
 
-  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-1.razor?highlight=23,28)]
+  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-1.razor?highlight=23,28)]
 
 * Ansatz mit einer privaten Methode
 
-  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-2.razor?highlight=16,26)]
+  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
 
 ## <a name="cancelable-background-work"></a>Abbrechbare Hintergrundarbeit
 

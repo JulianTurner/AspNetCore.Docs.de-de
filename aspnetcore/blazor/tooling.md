@@ -5,7 +5,7 @@ description: Informieren Sie sich über die Tools, die zum Erstellen von Blazor-
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 09/28/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: d7e3743d12c235c20cc27f6a3263e2994a9e160a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d1626fe753782d524bf75c398c11235c3110633a
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625829"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762151"
 ---
 # <a name="tooling-for-aspnet-core-no-locblazor"></a>Tools für ASP.NET-Core Blazor
 
@@ -52,13 +52,13 @@ Weitere Informationen zum Festlegen des ASP.NET Core-HTTPS-Entwicklungszertifika
 
 ::: zone pivot="linux"
 
-1. Installieren Sie die neueste Version des [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). Wenn Sie das SDK zuvor installiert haben, können Sie die installierte Version ermitteln, indem Sie den folgenden Befehl in einer Befehlsshell ausführen:
+1. Installieren Sie die neueste Version des [.NET Core SDK](https://dotnet.microsoft.com/download). Wenn Sie das SDK zuvor installiert haben, können Sie die installierte Version ermitteln, indem Sie den folgenden Befehl in einer Befehlsshell ausführen:
 
    ```dotnetcli
    dotnet --version
    ```
 
-1. Installieren Sie die neueste Version von [Visual Studio Code](https://code.visualstudio.com/).
+1. Installieren Sie die neueste Version von [Visual Studio Code](https://code.visualstudio.com).
 
 1. Installieren Sie die aktuellste [C# für Visual Studio Code-Erweiterung](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
@@ -90,7 +90,7 @@ Es gibt keine zentrale Möglichkeit, ein Zertifikat in Linux als vertrauenswürd
 * Festlegen aller selbstsignierten Zertifikate für `localhost` als vertrauenswürdig.
 * Hinzufügen des Zertifikats zur Liste der vertrauenswürdigen Zertifikate im Browser.
 
-Weitere Informationen finden Sie in der Dokumentation zu Ihrem Browser und Ihrer Linux-Distribution.
+Weitere Informationen finden Sie in der Dokumentation zu Ihrem Browseranbieter und Ihrer Linux-Distribution.
 
 ::: zone-end
 

@@ -5,7 +5,7 @@ description: In diesem Artikel erfahren Sie, wie Sie JavaScript-Funktionen über
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/17/2020
+ms.date: 10/02/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: da4ce8a2610fc07d22153f66831d693ae66e0fe5
-ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
+ms.openlocfilehash: d36140067ba6e75f2d00cb86ea488e40d28bd86f
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91424151"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762164"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
 
@@ -515,13 +515,13 @@ export function showPrompt(message) {
 Fügen Sie das oben gezeigte JavaScript-Modul einer .NET-Bibliothek als statische Webressource (`wwwroot/exampleJsInterop.js`) hinzu, und importieren Sie das Modul dann mithilfe des <xref:Microsoft.JSInterop.IJSRuntime>-Diensts in den .NET-Code. Der Dienst wird im folgenden Beispiel als `jsRuntime` (nicht gezeigt) eingefügt:
 
 ```csharp
-var module = await jsRuntime.InvokeAsync<JSObjectReference>(
+var module = await jsRuntime.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
 Der Bezeichner `import` im Beispiel oben ist ein spezieller Bezeichner, der insbesondere zum Importieren eines JavaScript-Moduls verwendet wird. Geben Sie das Modul mithilfe seines stabilen statischen Webressourcenpfads an: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. Der Platzhalter `{LIBRARY NAME}` ist der Name der Bibliothek. Der Platzhalter `{PATH UNDER WWWROOT}` ist der Pfad zum Skript unter `wwwroot`.
 
-<xref:Microsoft.JSInterop.IJSRuntime> importiert das Modul als `JSObjectReference`-Element, das einen Verweis auf ein JavaScript-Objekt aus .NET-Code darstellt. Verwenden Sie `JSObjectReference`, um exportierte JavaScript-Funktionen aus dem Modul aufzurufen:
+<xref:Microsoft.JSInterop.IJSRuntime> importiert das Modul als `IJSObjectReference`-Element, das einen Verweis auf ein JavaScript-Objekt aus .NET-Code darstellt. Verwenden Sie `IJSObjectReference`, um exportierte JavaScript-Funktionen aus dem Modul aufzurufen:
 
 ```csharp
 public async ValueTask<string> Prompt(string message)
@@ -529,6 +529,139 @@ public async ValueTask<string> Prompt(string message)
     return await module.InvokeAsync<string>("showPrompt", message);
 }
 ```
+
+`IJSInProcessObjectReference` steht für einen Verweis auf ein JavaScript-Objekt, dessen Funktionen synchron aufgerufen werden können.
+
+`IJSUnmarshalledObjectReference` steht für einen Verweis auf ein JavaScript-Objekt, dessen Funktionen aufgerufen werden können, ohne dass .NET-Daten serialisiert werden müssen. Die Verwendung in Blazor WebAssembly bietet sich an, wenn die Leistung entscheidend ist:
+
+```javascript
+window.unmarshalledInstance = {
+  helloWorld: function (personNamePointer) {
+    const personName = Blazor.platform.readStringField(value, 0);
+    return `Hello ${personName}`;
+  }
+};
+```
+
+```csharp
+var unmarshalledRuntime = (IJSUnmarshalledRuntime)jsRuntime;
+var jsUnmarshalledReference = unmarshalledRuntime
+    .InvokeUnmarshalled<IJSUnmarshalledObjectReference>("unmarshalledInstance");
+
+string helloWorldString = jsUnmarshalledReference.InvokeUnmarshalled<string, string>(
+    "helloWorld");
+```
+
+## <a name="use-of-javascript-libraries-that-render-ui-dom-elements"></a>Verwendung von JavaScript-Bibliotheken zum Rendern von Benutzeroberflächenelementen (DOM-Elemente)
+
+Manchmal möchten Sie vielleicht JavaScript-Bibliotheken verwenden, die sichtbare Benutzeroberflächenelemente innerhalb des Browser-DOM erstellen. Auf den ersten Blick scheint dies schwierig zu sein, da das Vergleichssystem von Blazor darauf beruht, die Kontrolle über die Struktur von DOM-Elementen zu haben. Außerdem treten Fehler auf, wenn externer Code die DOM-Struktur bearbeitet, was den Mechanismus für die Diff-Anwendung unmöglich macht. Dabei handelt es sich um keine Blazor-spezifische Einschränkung. Die gleiche Herausforderung stellt sich bei jedem anderen Diff-basierten Benutzeroberflächenframework.
+
+Glücklicherweise ist es einfach, extern erstellte Benutzeroberflächenelemente innerhalb der Oberfläche einer Blazor-Komponente zuverlässig einzubetten. Die hierfür empfohlene Methode besteht darin, den Code der Komponente (`.razor`-Datei) ein leeres Element erzeugen zu lassen. Im Vergleichssystem von Blazor ist das Element immer leer, der Renderer durchläuft das Element also nicht rekursiv, sondern berücksichtigt die Inhalte gar nicht. Dies führt dazu, dass das Auffüllen des Elements mit zufälligem extern verwalteten Inhalt sicher ist.
+
+Das folgende Beispiel veranschaulicht das Konzept. Wenn innerhalb der `if`-Anweisung `firstRender` `true` ist, kann `myElement` genutzt werden. Beispielsweise wird für die Auffüllung eine externe JavaScript-Bibliothek aufgerufen. Blazor berücksichtigt die Inhalte des Elements solange nicht, bis die Komponente selbst entfernt wird. Wenn die Komponente entfernt wird, wird die gesamte DOM-Unterstruktur der Komponente ebenfalls entfernt.
+
+```razor
+<h1>Hello! This is a Blazor component rendered at @DateTime.Now</h1>
+
+<div @ref="myElement"></div>
+
+@code {
+    HtmlElement myElement;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            ...
+        }
+    }
+}
+```
+
+Als detailliertes Beispiel können Sie sich die folgende Komponente ansehen, die eine interaktive Karte mithilfe der [Open-Source-Mapbox-APIs](https://www.mapbox.com/) rendert:
+
+```razor
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div @ref="mapElement" style='width: 400px; height: 300px;'></div>
+
+<button @onclick="() => ShowAsync(51.454514, -2.587910)">Show Bristol, UK</button>
+<button @onclick="() => ShowAsync(35.6762, 139.6503)">Show Tokyo, Japan</button>
+
+@code
+{
+    ElementReference mapElement;
+    IJSObjectReference mapModule;
+    IJSObjectReference mapInstance;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            mapModule = await JS.InvokeAsync<IJSObjectReference>(
+                "import", "./mapComponent.js");
+            mapInstance = await mapModule.InvokeAsync<IJSObjectReference>(
+                "addMapToElement", mapElement);
+        }
+    }
+
+    Task ShowAsync(double latitude, double longitude)
+        => mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude, 
+            longitude).AsTask();
+
+    private async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        await mapInstance.DisposeAsync();
+        await mapModule.DisposeAsync();
+    }
+}
+```
+
+Das entsprechende JavaScript-Modul, das unter `wwwroot/mapComponent.js` platziert werden sollte, sieht folgendermaßen aus:
+
+```javascript
+import 'https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js';
+
+// TO MAKE THE MAP APPEAR YOU MUST ADD YOUR ACCESS TOKEN FROM 
+// https://account.mapbox.com
+mapboxgl.accessToken = '{ACCESS TOKEN}';
+
+export function addMapToElement(element) {
+  return new mapboxgl.Map({
+    container: element,
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-74.5, 40],
+    zoom: 9
+  });
+}
+
+export function setMapCenter(map, latitude, longitude) {
+  map.setCenter([longitude, latitude]);
+}
+```
+
+Ersetzen Sie im vorherigen Beispiel die Zeichenfolge `{ACCESS TOKEN}` durch ein gültiges Zugriffstoken, das Sie von https://account.mapbox.com abrufen können.
+
+Für eine korrekte Formatierung fügen Sie der HTML-Hostseite den folgenden Stylesheet-Tag hinzu (`index.html` oder `_Host.cshtml`):
+
+```html
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" />
+```
+
+Das vorangehende Beispiel erzeugt eine interaktive Kartenbenutzeroberfläche, auf der der Benutzer folgende Möglichkeiten hat:
+
+* Ziehen der Karte zum Scrollen oder Zoomen
+* Klicken auf Schaltflächen, um zu vordefinierten Standorten zu springen
+
+![Mapbox-Straßenkarte von Tokio in Japan, mit Schaltflächen, über die Bristol im Vereinigten Königreich und Tokio in Japan ausgewählt werden können](https://user-images.githubusercontent.com/1101362/94939821-92ef6700-04ca-11eb-858e-fff6df0053ae.png)
+
+Die wichtigsten Punkte, die verstanden werden müssen, sind die folgenden:
+
+ * Für Blazor gilt, dass `<div>` mit `@ref="mapElement"` leer bleibt. Deshalb kann die Auffüllung durch `mapbox-gl.js` sicher erfolgen, und die Inhalte können im Laufe der Zeit bearbeitet werden. Sie können dieses Vorgehen für alle JavaScript-Bibliotheken verwenden, die Benutzeroberflächen rendern. Sie könnten sogar Komponenten des JavaScript-SPA-Frameworks eines Drittanbieters innerhalb der Blazor-Komponenten einbetten, solange nicht aktiv versucht wird, andere Teile der Seite zu ändern. Es ist *nicht* sicher, wenn externer JavaScript-Code Elemente bearbeitet, die von Blazor nicht als leer klassifiziert werden.
+ * Bei Verwendung dieses Ansatzes sollten Sie die Regeln im Hinterkopf behalten, wie Blazor DOM-Elemente beibehält oder löscht. Im vorherigen Beispiel kann die Komponente Klickereignisse auf Schaltflächen sicher verarbeiten und die vorhandene Karteninstanz aktualisieren, da DOM-Elemente standardmäßig beibehalten werden, wo dies möglich ist. Wenn Sie eine Liste von Kartenelementen innerhalb einer `@foreach`-Schleife rendern, sollten Sie `@key` verwenden, um für die Beibehaltung der Komponenteninstanzen zu sorgen. Andernfalls könnten Änderungen der Listendaten dazu führen, dass Komponenteninstanzen den Status vorheriger Instanzen auf nicht gewünschte Weise beibehalten. Weitere Informationen finden Sie unter [Verwenden von @key zur Beibehaltung von Elementen und Komponenten](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components).
+
+Außerdem zeigt das vorherige Beispiel, wie es möglich ist, JavaScript-Logik und -Abhängigkeiten innerhalb eines ES6-Moduls zu kapseln und dynamisch mithilfe des `import`-Bezeichners zu laden. Weitere Informationen finden Sie unter [JavaScript-Isolierung in Blazor und Objektverweise](#blazor-javascript-isolation-and-object-references).
 
 ::: moniker-end
 

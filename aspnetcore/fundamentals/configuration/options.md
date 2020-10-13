@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/options
-ms.openlocfilehash: a6af5a7b1b4bc066a563c7cac59274fd39594cf6
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6eafad63bd4c49cee6a85108b37a8b61e1214bce
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632589"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762333"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Optionsmuster in ASP.NET Core
 
@@ -37,6 +37,8 @@ Das Optionsmuster verwendet Klassen, um stark typisierten Zugriff auf zusammenge
 * [Trennung von Zuständigkeiten:](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) Einstellungen für verschiedene App-Komponenten sind nicht voneinander abhängig und nicht aneinander gekoppelt.
 
 Optionen bieten auch einen Mechanismus, um Konfigurationsdaten zu validieren. Weitere Informationen finden Sie im Abschnitt [Optionsvalidierung](#options-validation).
+
+Dieses Thema enthält Informationen zu den Optionsmustern in ASP.NET Core. Informationen zur Verwendung des Optionsmusters in Konsolen-Apps finden Sie unter [Optionsmuster in .NET](/dotnet/core/extensions/options).
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 

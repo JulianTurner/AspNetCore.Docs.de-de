@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 5e073845acbecdf0db4c30c4725f12033cfc42ac
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e01704cb10c88f3e9442e74034f5e5d39787f300
+ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634682"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91653892"
 ---
 # <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Teil 3: Razor Pages mit EF Core in ASP.NET Core – Sortieren, Filtern und Paging
 
@@ -42,25 +42,26 @@ Die folgende Abbildung zeigt eine fertige Seite. Die Spaltenüberschriften sind 
 
 Ersetzen Sie den Code in *Pages/Students/Index.cshtml.cs* durch den folgenden Code, um Sortierung hinzuzufügen.
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All&highlight=21-24,26,28-52)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All)]
 
 Der vorangehende Code:
 
+* Er erfordert das Hinzufügen von `using System;`.
 * Fügt Eigenschaften hinzu, die die Sortierparameter enthalten.
 * Ändert den Namen der `Student`-Eigenschaft in `Students`.
 * Ersetzt den Code in der `OnGetAsync`-Methode.
 
-Die `OnGetAsync`-Methode empfängt einen `sortOrder`-Parameter aus der Abfragezeichenfolge in der URL. Die URL (einschließlich der Abfragezeichenfolge) wird vom [Anchor-Taghilfsprogramm](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) generiert.
+Die `OnGetAsync`-Methode empfängt einen `sortOrder`-Parameter aus der Abfragezeichenfolge in der URL. Die URL und die Abfragezeichenfolge werden vom [Anchor-Taghilfsprogramm](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) generiert.
 
-Der Parameter `sortOrder` ist entweder „Name“ oder „Datum“. Dem Parameter `sortOrder` folgt optional „_desc“ zur Angabe einer absteigenden Reihenfolge. Standardmäßig wird eine aufsteigende Sortierreihenfolge verwendet.
+Der `sortOrder`-Parameter ist entweder `Name` oder `Date`. Dem Parameter `sortOrder` folgt optional `_desc` zur Angabe einer absteigenden Reihenfolge. Standardmäßig wird eine aufsteigende Sortierreihenfolge verwendet.
 
-Wenn die Indexseite über den Link **Studenten** angefordert wird, gibt es keine Abfragezeichenfolge. Die Studenten werden in aufsteigender Reihenfolge nach Nachnamen angezeigt. Die aufsteigende Reihenfolge nach Nachnamen (FallThrough-Fall) ist in der `switch`-Anweisung die Standardeinstellung. Wenn der Benutzer auf einen Link in einer Spaltenüberschrift klickt, wird der entsprechende `sortOrder`-Wert im Abfragezeichenfolgenwert bereitgestellt.
+Wenn die Indexseite über den Link **Studenten** angefordert wird, gibt es keine Abfragezeichenfolge. Die Studenten werden in aufsteigender Reihenfolge nach Nachnamen angezeigt. Die aufsteigende Reihenfolge nach Nachnamen ist `default` in der `switch`-Anweisung. Wenn der Benutzer auf einen Link in einer Spaltenüberschrift klickt, wird der entsprechende `sortOrder`-Wert im Abfragezeichenfolgenwert bereitgestellt.
 
 `NameSort` und `DateSort` werden auf der Razor-Seite verwendet, um die Hyperlinks in den Spaltenüberschriften mit den entsprechenden Abfragezeichenfolgenwerten zu konfigurieren:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_Ternary)]
 
-Der Code verwendet den bedingten C#-Operator [?:](/dotnet/csharp/language-reference/operators/conditional-operator). Der Operator `?:` ist ein ternärer Operator (er nimmt drei Operanden an). Die erste Zeile gibt an, dass wenn `sortOrder` NULL oder leer ist, `NameSort` auf „name_desc“ festgelegt wird. Wenn `sortOrder`**nicht** NULL oder leer ist, wird `NameSort` auf eine leere Zeichenfolge festgelegt.
+Der Code verwendet den bedingten C#-Operator [?:](/dotnet/csharp/language-reference/operators/conditional-operator). Der Operator `?:` ist ein ternärer Operator (er nimmt drei Operanden an). Die erste Zeile gibt an, dass wenn `sortOrder` NULL oder leer ist, `NameSort` auf `name_desc` festgelegt wird. Wenn `sortOrder`***nicht*** NULL oder leer ist, wird `NameSort` auf eine leere Zeichenfolge festgelegt.
 
 Durch diese beiden Anweisungen können auf der Seite die Hyperlinks in den Spaltenüberschriften wie folgt festgelegt werden:
 
@@ -110,7 +111,7 @@ So fügen Sie Filter zur Indexseite „Studenten“ hinzu:
 
 Ersetzen Sie den Code in *Students/Index.cshtml.cs* durch den folgenden Code, um Filterung hinzuzufügen:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=28,33,37-41)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=17,22,26-30)]
 
 Der vorangehende Code:
 
@@ -119,7 +120,7 @@ Der vorangehende Code:
 
 ### <a name="iqueryable-vs-ienumerable"></a>IQueryable im Vergleich zu IEnumerable
 
-Der Code ruft die Methode `Where` in einem `IQueryable`-Objekt auf, und der Filter wird auf dem Server verarbeitet. In einigen Szenarios ruft die App möglicherweise die Methode `Where` als Erweiterungsmethode für eine Auflistung im Speicher auf. Angenommen, `_context.Students` wird beispielsweise von EF Core `DbSet` in eine Repositorymethode geändert, die eine `IEnumerable`-Sammlung zurückgibt. Das Ergebnis wäre normalerweise identisch, aber in einigen Fällen kann es unterschiedlich ausfallen.
+Der Code ruft die Methode <xref:System.Linq.Queryable.Where%2A> in einem `IQueryable`-Objekt auf, und der Filter wird auf dem Server verarbeitet. In einigen Szenarios ruft die App möglicherweise die Methode `Where` als Erweiterungsmethode für eine Auflistung im Speicher auf. Angenommen, `_context.Students` wird beispielsweise von EF Core `DbSet` in eine Repositorymethode geändert, die eine `IEnumerable`-Sammlung zurückgibt. Das Ergebnis wäre normalerweise identisch, aber in einigen Fällen kann es unterschiedlich ausfallen.
 
 Bei der .NET Framework-Implementierung von `Contains` wird beispielsweise standardmäßig ein Vergleich unter Beachtung der Groß-/Kleinschreibung vorgenommen. In SQL Server wird die Unterscheidung von Groß-/Kleinschreibung bei `Contains` durch die Einstellung für die Sortierung der SQL Server-Instanz bestimmt. Bei SQL Server wird die Groß-/Kleinschreibung standardmäßig nicht beachtet. Für SQLite wird standardmäßig zwischen Groß-/Kleinschreibung unterschieden. `ToUpper` könnte aufgerufen werden, wenn die Groß-/Kleinschreibung bei der Durchführung des Tests explizit nicht beachtet werden soll:
 
@@ -139,7 +140,7 @@ Weitere Informationen finden Sie unter [Verwenden von Abfragen ohne Berücksicht
 
 ### <a name="update-the-no-locrazor-page"></a>Aktualisieren der Razor-Seite
 
-Ersetzen Sie den Code in *Pages/Students/Index.cshtml*, um eine Schaltfläche **Search** (Suchen) und sortiertes Chrom zu erstellen.
+Ersetzen Sie den Code in *Pages/Students/Index.cshtml*, um eine Schaltfläche **Search** (Suchen) hinzuzufügen.
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
@@ -153,8 +154,8 @@ Testen der App:
 
 Beachten Sie, dass die URL die Suchzeichenfolge enthält. Zum Beispiel:
 
-```
-https://localhost:<port>/Students?SearchString=an
+```browser-address-bar
+https://localhost:5001/Students?SearchString=an
 ```
 
 Wenn die Seite als Lesezeichen gespeichert wird, enthält das Lesezeichen die URL der Seite und die `SearchString`-Abfragezeichenfolge. Durch `method="get"` im `form`-Tag wurde die Abfragezeichenfolge generiert.
@@ -181,15 +182,16 @@ Die Methode `CreateAsync` dient zum Erstellen des Objekts `PaginatedList<T>`. Ei
 
 Ersetzen Sie den Code in *Students/Index.cshtml.cs*, um Paging hinzuzufügen.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=26,28-29,31,34-41,68-70)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=15-20,23-30,57-59)]
 
 Der vorangehende Code:
 
 * Ändert den Typ der `Students`-Eigenschaft aus `IList<Student>` in `PaginatedList<Student>`.
 * Fügt den Seitenindex, die aktuelle `sortOrder` und den `currentFilter` zur `OnGetAsync`-Methodensignatur hinzu.
-* Speichert die Sortierreihenfolge in der CurrentSort-Eigenschaft.
+* Er speichert die Sortierreihenfolge in der `CurrentSort`-Eigenschaft.
 * Setzt den Seitenindex auf 1 zurück, wenn eine neue Suchzeichenfolge vorhanden ist.
 * Verwendet die `PaginatedList`-Klasse zum Abrufen von Student-Entitäten.
+* Er legt `pageSize` auf 3 fest. Eine echte App verwendet [Configuration](xref:fundamentals/configuration/index)(Konfiguration), um den Wert für die Seitengröße festzulegen.
 
 Alle Parameter, die `OnGetAsync` empfängt, sind NULL, wenn:
 
@@ -212,7 +214,7 @@ Wenn die Suchzeichenfolge während des Pagings geändert wird, wird die Seite au
 
   Die Methode `PaginatedList.CreateAsync` konvertiert die Studentenabfrage in eine einzelne Studentenseite in einem Sammlungstyp, der das Paging unterstützt. Diese einzelne Studentenseite wird an die Razor Page übergeben.
 
-  Die zwei Fragezeichen nach `pageIndex` im `PaginatedList.CreateAsync`-Aufruf stellen den [NULL-Sammeloperator](/dotnet/csharp/language-reference/operators/null-conditional-operator) dar. Der NULL-Sammeloperator definiert einen Standardwert für einen auf NULL festlegbaren Typ. Der Ausdruck `(pageIndex ?? 1)` bedeutet, dass der Wert von `pageIndex` zurückgegeben wird, wenn dieser einen Wert aufweist. Wenn der `pageIndex` keinen Wert aufweist, wird 1 zurückgegeben.
+  Die zwei Fragezeichen nach `pageIndex` im `PaginatedList.CreateAsync`-Aufruf stellen den [NULL-Sammeloperator](/dotnet/csharp/language-reference/operators/null-conditional-operator) dar. Der NULL-Sammeloperator definiert einen Standardwert für einen auf NULL festlegbaren Typ. Der Ausdruck `pageIndex ?? 1` gibt den Wert `pageIndex` zurück, wenn er über einen Wert verfügt, andernfalls wird 1 zurückgegeben.
 
 ### <a name="add-paging-links-to-the-no-locrazor-page"></a>Hinzufügen von Paging-Links zur Razor-Seite
 
@@ -258,7 +260,7 @@ Fügen Sie eine Datei *Pages/About.cshtml* mit dem folgenden Code hinzu:
 
 ### <a name="create-the-page-model"></a>Erstellen des Seitenmodells
 
-Erstellen Sie eine Datei *Pages/About.cshtml.cs* mit dem folgenden Code:
+Aktualisieren Sie die Datei *Pages/About.cshtml.cs* mit folgendem Code:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/About.cshtml.cs)]
 

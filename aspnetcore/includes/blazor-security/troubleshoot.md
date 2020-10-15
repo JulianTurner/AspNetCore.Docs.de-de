@@ -12,7 +12,7 @@ Ein Ansatz, um zu verhindern, dass veraltete Cookies und Standortdaten das Teste
 
 * Browser konfigurieren
   * Verwenden Sie zum Testen einen Browser, den Sie so konfigurieren können, dass alle Cookies und Standortdaten jedes Mal gelöscht werden, wenn der Browser geschlossen wird.
-  * Stellen Sie sicher, dass der Browser manuell oder durch die IDE zwischen allen Änderungen an der App, dem Testbenutzer oder der Anbieterkonfiguration geschlossen wird.
+  * Stellen Sie sicher, dass der Browser manuell oder durch die IDE für alle Änderungen an der App, dem Testbenutzer oder der Anbieterkonfiguration geschlossen wird.
 * Verwenden Sie einen benutzerdefinierten Befehl, um in Visual Studio einen Browser im Inkognito- oder im privaten Modus zu öffnen:
   * Öffnen Sie mithilfe der Schaltfläche **Ausführen** von Visual Studio das Dialogfeld **Browserauswahl**.
   * Wählen Sie die Schaltfläche **Hinzufügen** aus.
@@ -21,13 +21,13 @@ Ein Ansatz, um zu verhindern, dass veraltete Cookies und Standortdaten das Teste
     * Google Chrome: `C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
     * Mozilla Firefox: `C:\Program Files\Mozilla Firefox\firefox.exe`
   * Geben Sie im Feld **Argumente** die Befehlszeilenoption an, die der Browser verwendet, um im Inkognito- oder im privaten Modus geöffnet zu werden. Für einige Browser ist die URL der App erforderlich.
-    * Microsoft Edge: `-inprivate`
-    * Google Chrome: `--incognito --new-window https://localhost:5001`
-    * Mozilla Firefox: `-private -url https://localhost:5001`
+    * Microsoft Edge: Verwenden Sie `-inprivate`.
+    * Google Chrome: Verwenden Sie `--incognito --new-window {URL}`, wobei der Platzhalter `{URL}` die zu öffnende URL ist (z. B. `https://localhost:5001`).
+    * Mozilla Firefox: Verwenden Sie `-private -url {URL}`, wobei der Platzhalter `{URL}` die zu öffnende URL ist (z. B. `https://localhost:5001`).
   * Geben Sie im Feld **Anzeigename** einen Namen ein. Beispielsweise `Firefox Auth Testing`.
   * Klicken Sie auf die Schaltfläche **OK**.
   * Um zu vermeiden, dass das Browserprofil für jede einzelne Testiteration einer App ausgewählt werden muss, legen Sie das Profil mithilfe der Schaltfläche **Als Standard festlegen** als Standard fest.
-  * Stellen Sie sicher, dass der Browser von der IDE zwischen allen Änderungen an der App, dem Testbenutzer oder der Anbieterkonfiguration geschlossen wird.
+  * Stellen Sie sicher, dass der Browser von der IDE für alle Änderungen an der App, dem Testbenutzer oder der Anbieterkonfiguration geschlossen wird.
 
 ### <a name="run-the-server-app"></a>Ausführen der Server-App
 

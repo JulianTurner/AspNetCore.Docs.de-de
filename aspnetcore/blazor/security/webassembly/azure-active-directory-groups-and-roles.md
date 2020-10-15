@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 7a0c606d82dd625c179ec89e22b9313dfa5d18b4
-ms.sourcegitcommit: c026bf76a0e14a5ee68983519a63574c674e9ff7
+ms.openlocfilehash: ac666a4c7493140d4ae93047e18202c3d8314c7b
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91636776"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900699"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>AAD-Gruppen (Azure Active Directory), Administratorrollen und benutzerdefinierte Rollen
 
@@ -49,7 +49,7 @@ Die Informationen in diesem Artikel beziehen sich auf die in den folgenden Artik
 
 Für alle App-Benutzer, die über mehr als fünf AAD-Administratorrollen und Mitgliedschaften in Sicherheitsgruppen verfügen, ist ein Aufruf der [Microsoft Graph-API](/graph/use-the-api) erforderlich.
 
-Um Graph-API Aufrufe zuzulassen, erteilen Sie der eigenständigen oder Client-App einer gehosteten Blazor-Lösung eine der folgenden [Graph-API-Berechtigungen](/graph/permissions-reference) im Azure-Portal:
+Um Graph-API Aufrufe zuzulassen, erteilen Sie der eigenständigen oder *`Client`* -App einer gehosteten Blazor-Lösung eine der folgenden [Graph-API-Berechtigungen](/graph/permissions-reference) im Azure-Portal:
 
 * `Directory.Read.All`
 * `Directory.ReadWrite.All`
@@ -88,7 +88,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Erstellen Sie in der eigenständigen App oder der Client-App einer gehosteten Blazor-Lösung eine benutzerdefinierte <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>-Klasse. Verwenden Sie den richtigen Gültigkeitsbereich (Berechtigung) für Graph-API-Aufrufe, die Rollen- und Gruppeninformationen abrufen.
+Erstellen Sie in der eigenständigen App oder der *`Client`* -App einer gehosteten Blazor-Lösung eine benutzerdefinierte <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>-Klasse. Verwenden Sie den richtigen Gültigkeitsbereich (Berechtigung) für Graph-API-Aufrufe, die Rollen- und Gruppeninformationen abrufen.
 
 `GraphAPIAuthorizationMessageHandler.cs`:
 
@@ -250,7 +250,7 @@ Für das Entfernen des ursprünglichen `groups`-Anspruchs muss kein Code bereitg
 >
 > Allgemeine Erläuterungen zu diesem Ansatz finden Sie im Artikel <xref:blazor/security/webassembly/additional-scenarios#custom-authorizationmessagehandler-class>.
 
-Registrieren Sie die Factory in `Program.Main` (`Program.cs`) der eigenständigen App oder der Client-App einer gehosteten Blazor-Lösung. Stimmen Sie dem `Directory.Read.All`-Berechtigungsbereich als zusätzlichen Bereich für die App zu:
+Registrieren Sie die Factory in `Program.Main` (`Program.cs`) der eigenständigen App oder der *`Client`* -App einer gehosteten Blazor-Lösung. Stimmen Sie dem `Directory.Read.All`-Berechtigungsbereich als zusätzlichen Bereich für die App zu:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
@@ -651,9 +651,9 @@ Im folgenden Beispiel wird davon ausgegangen, dass eine App mit zwei Rollen konf
 
 Der von AAD gesendete einzelne `roles`-Anspruch zeigt die benutzerdefinierten Rollen jeweils als `value` für `appRoles` in einem JSON-Array an. Die App muss das JSON-Array mit Rollen in einzelne `role`-Ansprüche konvertieren.
 
-Die im Abschnitt [Benutzerdefinierte Gruppen und AAD-Administratorrollen](#user-defined-groups-and-administrator-roles) gezeigte `CustomUserFactory` ist so eingerichtet, dass sie auf einen `roles`-Anspruch mit einem JSON-Arraywert reagiert. Fügen Sie die `CustomUserFactory` wie im Abschnitt [Benutzerdefinierte Gruppen und AAD-Administratorrollen](#user-defined-groups-and-administrator-roles) beschrieben in der eigenständigen App oder der Client-App einer gehosteten Blazor-Lösung hinzu, und registrieren Sie sie dort. Für das Entfernen des ursprünglichen `roles`-Anspruchs muss kein Code bereitgestellt werden, da das Framework diesen automatisch entfernt.
+Die im Abschnitt [Benutzerdefinierte Gruppen und AAD-Administratorrollen](#user-defined-groups-and-administrator-roles) gezeigte `CustomUserFactory` ist so eingerichtet, dass sie auf einen `roles`-Anspruch mit einem JSON-Arraywert reagiert. Fügen Sie die `CustomUserFactory` wie im Abschnitt [Benutzerdefinierte Gruppen und AAD-Administratorrollen](#user-defined-groups-and-administrator-roles) beschrieben in der eigenständigen App oder der *`Client`* -App einer gehosteten Blazor-Lösung hinzu, und registrieren Sie sie dort. Für das Entfernen des ursprünglichen `roles`-Anspruchs muss kein Code bereitgestellt werden, da das Framework diesen automatisch entfernt.
 
-Geben Sie in `Program.Main` der eigenständigen oder Client-App einer gehosteten Blazor-Lösung den Anspruch mit dem Namen „`role`“ als Rollenanspruch an:
+Geben Sie in `Program.Main` der eigenständigen oder *`Client`* -App einer gehosteten Blazor-Lösung den Anspruch mit dem Namen „`role`“ als Rollenanspruch an:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

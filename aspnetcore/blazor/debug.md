@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: d4fd0d501ff14e37bb55b78bb6493ad43f9e5a87
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: b8dd272d673e84b45a39272531385ebfd1d06175
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805569"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900985"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
@@ -93,7 +93,7 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio:
    > [!NOTE]
    > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
-1. Legen Sie in der *Client*-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
+1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
 1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
 1. Sehen Sie sich in Visual Studio den Wert des `currentCount`-Felds im Fenster **Lokale Variablen** an.
 1. Drücken Sie <kbd>F5</kbd>, um die Ausführung fortzusetzen.
@@ -180,7 +180,7 @@ Weitere Informationen zur Verwendung eines benutzerdefinierten App-Basispfads f�
 
 1. Die eigenständige App wird gestartet, und es wird ein Debuggingbrowser geöffnet.
 
-1. Legen Sie in der *Client*-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
+1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
 
 1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
 
@@ -285,7 +285,7 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio Code für Mac:
    > [!IMPORTANT]
    > Google Chrome oder Microsoft Edge muss der für die Debugsitzung ausgewählte Browser sein.
 
-1. Legen Sie in der *Client*-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
+1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
 1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
 1. Sehen Sie sich in Visual Studio den Wert des `currentCount`-Felds im Fenster **Lokale Variablen** an.
 1. Drücken Sie <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>, um die Ausführung fortzusetzen.

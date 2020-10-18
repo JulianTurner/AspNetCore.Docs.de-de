@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 0111b7944bc95932937f0fd74524e3960c5fb681
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f8271d71f34487062484581ba6b3b8445a62439c
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634617"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113790"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hosten und Bereitstellen von ASP.NET Core
 
@@ -70,7 +70,7 @@ Möglicherweise ist zusätzliche Konfiguration für Apps erforderlich, die hinte
 
 ## <a name="use-visual-studio-and-msbuild-to-automate-deployments"></a>Verwenden von Visual Studio und MSBuild zum Automatisieren der Bereitstellungen
 
-Die Bereitstellung erfordert neben dem Kopieren der Ausgabe von [dotnet publish](/dotnet/core/tools/dotnet-publish) auf einen Server oft zusätzliche Aufgaben. Beispielsweise können zusätzliche Dateien aus dem Ordner *publish* erforderlich oder ausgeschlossen sein. Visual Studio verwendet MSBuild für die Webbereitstellung, und MSBuild kann für die Ausführung vieler weiterer Tasks während der Bereitstellung angepasst werden. Weitere Informationen finden Sie unter <xref:host-and-deploy/visual-studio-publish-profiles> und im Buch [Using MSBuild and Team Foundation Build (Verwenden von MSBuild und Team Foundation Build)](http://msbuildbook.com/).
+Die Bereitstellung erfordert neben dem Kopieren der Ausgabe von [dotnet publish](/dotnet/core/tools/dotnet-publish) auf einen Server oft zusätzliche Aufgaben. Beispielsweise können zusätzliche Dateien aus dem Ordner *publish* erforderlich oder ausgeschlossen sein. Visual Studio verwendet [MSBuild](/visualstudio/msbuild/msbuild) für die Webbereitstellung, und MSBuild kann für die Ausführung vieler weiterer Tasks während der Bereitstellung angepasst werden. Weitere Informationen finden Sie unter <xref:host-and-deploy/visual-studio-publish-profiles> und im Buch [Using MSBuild and Team Foundation Build (Verwenden von MSBuild und Team Foundation Build)](http://msbuildbook.com/).
 
 Mithilfe des [Features zum Veröffentlichen einer Web-App](xref:tutorials/publish-to-azure-webapp-using-vs) oder der [integrierten Git-Unterstützung](xref:host-and-deploy/azure-apps/azure-continuous-deployment) können Apps direkt von Visual Studio in Azure App Service bereitgestellt werden. Azure DevOps Services unterstützt [Continuous Deployment](/azure/devops/pipelines/targets/webapp) in Azure App Service. Weitere Informationen finden Sie unter [DevOps mit ASP.NET Core und Azure](xref:azure/devops/index).
 

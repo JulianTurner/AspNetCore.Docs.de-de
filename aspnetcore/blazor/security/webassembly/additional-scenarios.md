@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 2881b5d01f3b2e41659e3166a4e77b64a450f017
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 50d455b37c51fdd6d3b52b10b3e819eb45526de4
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592918"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900959"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>Zusätzliche Sicherheitsszenarios für ASP.NET Core Blazor WebAssembly
 
@@ -177,7 +177,7 @@ Für eine Blazor-App, die auf der Projektvorlage „Blazor WebAssembly Hosted“
 
 ### <a name="graph-api-example"></a>Graph-API-Beispiel
 
-Im folgenden Beispiel wird ein benannter <xref:System.Net.Http.HttpClient> für Graph-API verwendet, um die Mobiltelefonnummer eines Benutzers zum Verarbeiten eines Anrufs abzurufen. Nach dem Hinzufügen der `User.Read`-Berechtigung von Microsoft Graph-API im AAD-Bereich des Azure-Portals wird der Bereich für den benannten Client in der eigenständigen App oder Client-App einer gehosteten Blazor-Lösung konfiguriert.
+Im folgenden Beispiel wird ein benannter <xref:System.Net.Http.HttpClient> für Graph-API verwendet, um die Mobiltelefonnummer eines Benutzers zum Verarbeiten eines Anrufs abzurufen. Nach dem Hinzufügen der `User.Read`-Berechtigung von Microsoft Graph-API im AAD-Bereich des Azure-Portals wird der Bereich für den benannten Client in der eigenständigen App oder *`Client`* -App einer gehosteten Blazor-Lösung konfiguriert.
 
 > [!NOTE]
 > In dem Beispiel in diesem Abschnitt werden Graph-API-Daten für den Benutzer im *Komponentencode* abgerufen. Informationen zum Erstellen von Benutzeransprüchen über Graph-API finden Sie in den folgenden Ressourcen:
@@ -1070,7 +1070,7 @@ Nachdem Sie die Anleitung in einem der Themen zu gehosteten Blazor WebAssembly-A
 * Pfade vorab rendert, für die keine Autorisierung erforderlich ist.
 * Keine Pfade vorab rendert, für die eine Autorisierung erforderlich ist.
 
-Schreiben Sie in der `Program`-Klasse der Client-App (`Program.cs`) allgemeine Dienstregistrierungen in eine separate Methode (z. B. `ConfigureCommonServices`):
+Schreiben Sie in der `Program`-Klasse der *`Client`* -App (`Program.cs`) allgemeine Dienstregistrierungen in eine separate Methode (z. B. `ConfigureCommonServices`):
 
 ```csharp
 public class Program
@@ -1130,7 +1130,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Erstellen Sie in der Server-App einen Ordner `Pages`, falls dieser nicht vorhanden ist. Erstellen Sie in der Server-App innerhalb des Ordners `Pages` die Seite `_Host.cshtml`. Fügen Sie den Inhalt der Datei `wwwroot/index.html` der Client-App in die Datei `Pages/_Host.cshtml` ein. Aktualisieren Sie den Inhalt der Datei:
+Erstellen Sie in der Server-App einen Ordner `Pages`, falls dieser nicht vorhanden ist. Erstellen Sie in der Server-App innerhalb des Ordners `Pages` die Seite `_Host.cshtml`. Fügen Sie den Inhalt der Datei `wwwroot/index.html` der *`Client`* -App in die Datei `Pages/_Host.cshtml` ein. Aktualisieren Sie den Inhalt der Datei:
 
 * Fügen Sie `@page "_Host"` am Anfang der Datei ein.
 * Ersetzen Sie das Tag `<app>Loading...</app>` durch Folgendes:

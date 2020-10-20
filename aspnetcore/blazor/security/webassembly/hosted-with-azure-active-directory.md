@@ -5,7 +5,7 @@ description: In diesem Artikel erfahren Sie, wie Sie eine gehostete ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: devx-track-csharp, mvc
-ms.date: 07/08/2020
+ms.date: 10/08/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
-ms.openlocfilehash: 12a2509998bb9b4d56e250518b2db91f73dd0e67
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: e6f514793a2efde120f70ac58f4ad4be7516ada7
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712414"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900841"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-azure-active-directory"></a>Sichern einer gehosteten ASP.NET Core Blazor WebAssembly-App mit Azure Active Directory
 
@@ -68,30 +68,52 @@ Gehen Sie unter **Eine API verfügbar machen** wie folgt vor:
 
 Notieren Sie sich folgende Informationen:
 
-* App-ID-URI (z. B. `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`, `api://41451fa7-82d9-4673-8fa5-69eff5a761fd` oder der von Ihnen angegebene benutzerdefinierte Wert)
+* App-ID-URI (z. B. `api://41451fa7-82d9-4673-8fa5-69eff5a761fd`, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd` oder der von Ihnen angegebene benutzerdefinierte Wert)
 * Bereichsname (beispielsweise `API.Access`)
-
-Für den App-ID-URI ist möglicherweise eine bestimmte Konfiguration in der Client-App erforderlich, die im Abschnitt [Zugriffstokenbereiche](#access-token-scopes) weiter unten in diesem Thema beschrieben wird.
 
 ### <a name="register-a-client-app"></a>Registrieren einer Client-App
 
-Befolgen Sie die Anweisungen unter [Schnellstart: Registrieren einer Anwendung bei Microsoft Identity Platform](/azure/active-directory/develop/quickstart-register-app) und in den anschließenden Azure AAD-Themen, um eine AAD-App für die *Client-App* zu registrieren, und tun Sie danach Folgendes:
+Befolgen Sie die Anweisungen unter [Schnellstart: Registrieren einer Anwendung bei Microsoft Identity Platform](/azure/active-directory/develop/quickstart-register-app) und in den anschließenden Azure AAD-Themen, um eine AAD-App für die *`Client`* -App zu registrieren, und tun Sie danach Folgendes:
 
-1. Klicken Sie unter **Azure Active Directory** > **App-Registrierungen** auf **Neue Registrierung**.
+::: moniker range=">= aspnetcore-5.0"
+
+1. Wählen Sie unter **Azure Active Directory** > **App-Registrierungen** die Option **Neue Registrierung** aus.
 1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Client AAD**).
 1. Wählen Sie einen **Unterstützten Kontotyp** aus. Hier können Sie die Option **Nur Konten in diesem Organisationsverzeichnis** (einzelner Mandant) auswählen.
-1. Belassen Sie die Dropdownauswahl für **Umleitungs-URI** auf **Web**, und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der Server-App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Im Abschnitt zum [Erstellen der App](#create-the-app) erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
-1. Deaktivieren Sie das Kontrollkästchen bei **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen**.
+1. Treffen Sie für **Umleitungs-URI** die Dropdownauswahl **Single-Page-Anwendung (SPA)** , und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der *`Server`* -App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Im Abschnitt zum [Erstellen der App](#create-the-app) erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
+1. Deaktivieren Sie das Kontrollkästchen **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen**.
 1. Wählen Sie **Registrieren**.
 
-Notieren Sie sich die Anwendungs-ID (Client-ID) der *Client-App* (z. B. `4369008b-21fa-427c-abaa-9b53bf58e538`).
+Notieren Sie sich die Anwendungs-ID (Client-ID) der *`Client`* -App (z. B. `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
-Gehen Sie unter **Authentifizierung** > **Plattformkonfigurationen** > **Web** wie folgt vor:
+In **Authentifizierung** > **Plattformkonfigurationen** > **Single-Page-Anwendung (SPA)** :
+
+1. Vergewissern Sie sich, dass der **Umleitungs-URI** von `https://localhost:{PORT}/authentication/login-callback` vorhanden ist.
+1. Stellen Sie sicher, dass für **Implizite Gewährung** die Kontrollkästchen **Zugriffstoken** und **ID-Token** **nicht** aktiviert sind.
+1. Die verbleibenden Standardwerte für die App müssen für dieses Szenario nicht angepasst werden.
+1. Klicken Sie auf die Schaltfläche **Speichern**.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+1. Wählen Sie unter **Azure Active Directory** > **App-Registrierungen** die Option **Neue Registrierung** aus.
+1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Client AAD**).
+1. Wählen Sie einen **Unterstützten Kontotyp** aus. Hier können Sie die Option **Nur Konten in diesem Organisationsverzeichnis** (einzelner Mandant) auswählen.
+1. Belassen Sie die Dropdownauswahl für **Umleitungs-URI** auf **Web**, und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der *`Server`* -App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Im Abschnitt zum [Erstellen der App](#create-the-app) erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
+1. Deaktivieren Sie das Kontrollkästchen **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen**.
+1. Wählen Sie **Registrieren**.
+
+Notieren Sie sich die Anwendungs-ID (Client-ID) der *`Client`* -App (z. B. `4369008b-21fa-427c-abaa-9b53bf58e538`).
+
+In **Authentifizierung** > **Plattformkonfigurationen** > **Web**:
 
 1. Vergewissern Sie sich, dass der **Umleitungs-URI** von `https://localhost:{PORT}/authentication/login-callback` vorhanden ist.
 1. Aktivieren Sie für **Implizite Gewährung** die Kontrollkästchen **Zugriffstoken** und **ID-Token**.
 1. Die verbleibenden Standardwerte für die App müssen für dieses Szenario nicht angepasst werden.
 1. Klicken Sie auf die Schaltfläche **Speichern**.
+
+::: moniker-end
 
 Gehen Sie unter **API-Berechtigungen** wie folgt vor:
 
@@ -111,33 +133,62 @@ Verwenden Sie einen leeren Ordner, ersetzen Sie im folgenden Befehl die Platzhal
 dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho -o {APP NAME} --tenant-id "{TENANT ID}"
 ```
 
-| Platzhalter                  | Name im Azure-Portal                                     | Beispiel                                |
-| ---------------------------- | ----------------------------------------------------- | -------------------------------------- |
-| `{APP NAME}`                 | &mdash;                                               | `BlazorSample`                         |
-| `{CLIENT APP CLIENT ID}`     | Anwendungs-ID (Client-ID) für die *Client-App*          | `4369008b-21fa-427c-abaa-9b53bf58e538` |
-| `{DEFAULT SCOPE}`            | Bereichsname                                            | `API.Access`                           |
-| `{SERVER API APP CLIENT ID}` | Anwendungs-ID (Client-ID) für die *Server-API-App*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SERVER API APP ID URI}`    | Anwendungs-ID-URI ([siehe Hinweis](#access-token-scopes)) | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{TENANT DOMAIN}`            | Primäre, Herausgeber- oder Mandantendomäne                       | `contoso.onmicrosoft.com`              |
-| `{TENANT ID}`                | Verzeichnis-ID (Mandant)                                 | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
+| Platzhalter                  | Name im Azure-Portal                                     | Beispiel                                      |
+| ---------------------------- | ----------------------------------------------------- | -------------------------------------------- |
+| `{APP NAME}`                 | &mdash;                                               | `BlazorSample`                               |
+| `{CLIENT APP CLIENT ID}`     | Anwendungs-ID (Client-ID) für die *`Client`* -App        | `4369008b-21fa-427c-abaa-9b53bf58e538`       |
+| `{DEFAULT SCOPE}`            | Bereichsname                                            | `API.Access`                                 |
+| `{SERVER API APP CLIENT ID}` | Anwendungs-ID (Client-ID) für die *Server-API-App*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd`       |
+| `{SERVER API APP ID URI}`    | Anwendungs-ID-URI                                    | `api://41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{TENANT DOMAIN}`            | Primäre, Herausgeber- oder Mandantendomäne                       | `contoso.onmicrosoft.com`                    |
+| `{TENANT ID}`                | Verzeichnis-ID (Mandant)                                 | `e86c78e2-8bb4-4c41-aefd-918e0565a45e`       |
 
 Der mit der Option `-o|--output` angegebene Ausgabespeicherort erstellt einen Projektordner, sofern kein solcher vorhanden ist, und wird Teil des Namens der App.
 
-> [!NOTE]
-> Übergeben Sie den App-ID-URI an die Option `app-id-uri`. Beachten Sie jedoch, dass eine Änderung der Konfiguration in der Client-App erforderlich sein könnte, die im Abschnitt [Zugriffstokenbereiche](#access-token-scopes) beschrieben ist.
+::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Im Azure-Portal ist der **Authentifizierung** > **Plattformkonfigurationen** > **Web** > **Umleitungs-URI** der *Client-App* für Apps für Port 5001 konfiguriert, die auf dem Kestrel-Server mit Standardeinstellungen ausgeführt werden.
->
-> Wenn die *Client-App* an einem zufälligen IIS Express-Port ausgeführt wird, finden Sie den Port der App in den Eigenschaften der *Server-API-App* im Panel **Debuggen**.
->
-> Wenn der Port nicht zuvor mit dem bekannten Port der *Client-App* konfiguriert wurde, kehren Sie zur *Client-App-Registrierung* im Azure-Portal zurück, und aktualisieren Sie den Umleitungs-URI mit dem korrekten Port.
+> Eine Konfigurationsänderung ist möglicherweise erforderlich, wenn Sie einen Azure-Mandanten mit einer nicht überprüften Herausgeberdomäne verwenden, was im Abschnitt [App-Einstellungen](#app-settings) beschrieben wird.
 
-## <a name="server-app-configuration"></a>Server-App-Konfiguration
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+> [!NOTE]
+> Eine Konfigurationsänderung ist möglicherweise erforderlich, wenn Sie einen Azure-Mandanten mit einer nicht überprüften Herausgeberdomäne verwenden, was im Abschnitt [Zugriffstokenbereiche](#access-token-scopes) beschrieben wird.
+
+::: moniker-end
+
+> [!NOTE]
+> Im Azure-Portal ist der **Umleitungs-URI** für die Plattformkonfiguration der *`Client`* -App für Apps, die auf dem Kestrel-Server mit Standardeinstellungen ausgeführt werden, für Port 5001 konfiguriert.
+>
+> Wenn die *`Client`* -App an einem zufälligen IIS Express-Port ausgeführt wird, finden Sie den Port der App in den Eigenschaften der *Server-API-App* im Panel **Debuggen**.
+>
+> Wenn der Port nicht zuvor mit dem bekannten Port der *`Client`* -App konfiguriert wurde, kehren Sie zur *`Client`* -App-Registrierung im Azure-Portal zurück, und aktualisieren Sie den Umleitungs-URI mit dem korrekten Port.
+
+## <a name="server-app-configuration"></a>*`Server`* -App-Konfiguration
 
 *Dieser Abschnitt bezieht sich auf die **`Server`** -App der Lösung.*
 
 ### <a name="authentication-package"></a>Authentifizierungspaket
+
+::: moniker range=">= aspnetcore-5.0"
+
+Die Unterstützung für die Authentifizierung und Autorisierung von Aufrufen von ASP.NET Core-Web-APIs mit der Microsoft Identity Platform wird von folgenden Paketen bereitgestellt:
+
+* [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web)
+* [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)
+
+```xml
+<PackageReference Include="Microsoft.Identity.Web" Version="{VERSION}" />
+<PackageReference Include="Microsoft.Identity.Web.UI" Version="{VERSION}" />
+```
+
+Für den Platzhalter `{VERSION}` kann die letzte stabile Version des Pakets, die mit der Version des gemeinsam genutzten Frameworks der App übereinstimmt, im **Versionsverlauf** des Pakets auf NuGet.org ermittelt werden.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 Die Unterstützung für die Authentifizierung und Autorisierung von Aufrufen von ASP.NET Core-Web-APIs wird vom Paket [`Microsoft.AspNetCore.Authentication.AzureAD.UI`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI) bereitgestellt:
 
@@ -148,7 +199,22 @@ Die Unterstützung für die Authentifizierung und Autorisierung von Aufrufen von
 
 Für den Platzhalter `{VERSION}` kann die letzte stabile Version des Pakets, die mit der Version des gemeinsam genutzten Frameworks der Anwendung übereinstimmt, im **Versionsverlauf** des Pakets auf [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI) ermittelt werden.
 
+::: moniker-end
+
 ### <a name="authentication-service-support"></a>Unterstützung für Authentifizierungsdienste
+
+::: moniker range=">= aspnetcore-5.0"
+
+Die `AddAuthentication`-Methode richtet Authentifizierungsdienste innerhalb der App ein und konfiguriert den JWT-Bearerhandler als Standardauthentifizierungsmethode. Mit der <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilderExtensions.AddMicrosoftIdentityWebApi%2A>-Methode werden Dienste konfiguriert, um die Web-API mit Microsoft Identity Platform v 2.0 zu schützen. Diese Methode erwartet einen `AzureAd`-Abschnitt in der App-Konfiguration mit den erforderlichen Einstellungen zum Initialisieren der Authentifizierungsoptionen.
+
+```csharp
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 Die `AddAuthentication`-Methode richtet Authentifizierungsdienste innerhalb der App ein und konfiguriert den JWT-Bearerhandler als Standardauthentifizierungsmethode. Die <xref:Microsoft.AspNetCore.Authentication.AzureADAuthenticationBuilderExtensions.AddAzureADBearer%2A>-Methode richtet die spezifischen Parameter im JWT-Bearerhandler ein, die zum Überprüfen der von Azure Active Directory ausgegebenen Token erforderlich sind:
 
@@ -156,6 +222,8 @@ Die `AddAuthentication`-Methode richtet Authentifizierungsdienste innerhalb der 
 services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
     .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
 ```
+
+::: moniker-end
 
 <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> und <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> stellen Folgendes sicher:
 
@@ -169,7 +237,7 @@ app.UseAuthorization();
 
 ### <a name="userno-locidentityname"></a>User.Identity.Name
 
-Standardmäßig füllt die Server-App-API `User.Identity.Name` mit dem Wert aus dem `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`-Anspruchstyp (z. B. `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`) auf.
+Standardmäßig füllt die *`Server`* -App-API `User.Identity.Name` mit dem Wert aus dem `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name`-Anspruchstyp (z. B. `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`) auf.
 
 Konfigurieren Sie <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> von <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`, um die App so zu konfigurieren, dass sie den Wert aus dem `name`-Anspruchstyp empfängt:
 
@@ -186,6 +254,42 @@ services.Configure<JwtBearerOptions>(
 ```
 
 ### <a name="app-settings"></a>App-Einstellungen
+
+::: moniker range=">= aspnetcore-5.0"
+
+Die Datei `appsettings.json` enthält die Optionen zum Konfigurieren des JWT-Bearerhandlers, der zum Überprüfen von Zugriffstoken verwendet wird:
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://login.microsoftonline.com/",
+    "Domain": "{DOMAIN}",
+    "TenantId": "{TENANT ID}",
+    "ClientId": "{SERVER API APP CLIENT ID}",
+    "CallbackPath": "/signin-oidc"
+  }
+}
+```
+
+Beispiel:
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://login.microsoftonline.com/",
+    "Domain": "contoso.onmicrosoft.com",
+    "TenantId": "e86c78e2-8bb4-4c41-aefd-918e0565a45e",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "CallbackPath": "/signin-oidc"
+  }
+}
+```
+
+[!INCLUDE[](~/includes/blazor-security/azure-scope-5x.md)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 Die Datei `appsettings.json` enthält die Optionen zum Konfigurieren des JWT-Bearerhandlers, der zum Überprüfen von Zugriffstoken verwendet wird:
 
@@ -213,6 +317,8 @@ Beispiel:
 }
 ```
 
+::: moniker-end
+
 ### <a name="weatherforecast-controller"></a>WeatherForecast-Controller
 
 Der WeatherForecast-Controller (*Controllers/WeatherForecastController.cs*) macht eine geschützte API mit auf den Controller angewendetem [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Attribut verfügbar. Es ist **wichtig**, Folgendes zu verstehen:
@@ -234,7 +340,7 @@ public class WeatherForecastController : ControllerBase
 }
 ```
 
-## <a name="client-app-configuration"></a>Client-App-Konfiguration
+## <a name="client-app-configuration"></a>*`Client`* -App-Konfiguration
 
 *Dieser Abschnitt bezieht sich auf die **`Client`** -App der Lösung.*
 
@@ -325,7 +431,17 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
+Geben Sie zusätzliche Bereiche mit `AdditionalScopesToConsent` an:
+
+```csharp
+options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
+```
+
+::: moniker range="< aspnetcore-5.0"
+
+[!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
+
+::: moniker-end
 
 Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *zusätzlichen Szenarios*:
 

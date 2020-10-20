@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie eine Blazor-App mithilfe von ASP.NET Core, Co
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 10/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 3436620123618ab32daa44c4a37057aaadb89563
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 63954bd2fbb8fdb2e347d552a10adc52263c3ad6
+ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393690"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91900712"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -867,3 +867,76 @@ In der Projektdatei wird das Skript nach Veröffentlichung der App ausgeführt:
 
 > [!NOTE]
 > Für das Umbenennen und verzögerte Laden derselben Assemblys finden Sie unter <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files> eine Anleitung.
+
+## <a name="resolve-integrity-check-failures"></a>Lösen von Fehlern bei der Integritätsprüfung
+
+Wenn Blazor WebAssembly die Startdateien einer App herunterlädt, wird der Browser angewiesen, Integritätsprüfungen der Antworten auszuführen. Informationen in der `blazor.boot.json`-Datei werden verwendet, um die erwarteten SHA-256-Hashwerte für `.dll`-, `.wasm`- und andere Dateien anzugeben. Dies ist aus folgenden Gründen vorteilhaft:
+
+* Es wird sichergestellt, dass kein inkonsistenter Satz von Dateien geladen wird, wenn z. B. eine neue Bereitstellung auf den Webserver angewendet wird, während der Benutzer die Anwendungsdateien herunterlädt. Inkonsistente Dateien könnten zu undefiniertem Verhalten führen.
+* Es wird sichergestellt, dass der Browser des Benutzers nie inkonsistente oder ungültige Antworten zwischenspeichert. Dies könnte verhindern, dass er die App startet, auch wenn er die Seite manuell aktualisiert.
+* Es wird dadurch sicher, die Antworten zwischenzuspeichern und nicht einmal auf serverseitige Änderungen zu prüfen, bis die erwarteten SHA-256-Hashwerte selbst geändert werden. Nachfolgende Seitenladevorgänge sind so mit weniger Anforderungen verbunden und werden viel schneller abgeschlossen.
+
+Wenn Ihr Webserver Antworten zurückgibt, die nicht den erwarteten SHA-256-Hashwerten entsprechen, wird in der Entwicklerkonsole des Browsers eine Fehlermeldung angezeigt, die der folgenden ähnelt:
+
+```
+Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
+```
+
+In den meisten Fällen liegt hier *kein* Problem mit der Integritätsprüfung selbst vor. Stattdessen bedeutet dies, dass ein anderes Problem vorliegt, und die Integritätsüberprüfung warnt Sie vor diesem anderen Problem.
+
+### <a name="diagnosing-integrity-problems"></a>Diagnostizieren von Integritätsproblemen
+
+Wenn eine App erstellt wird, beschreibt das generierte `blazor.boot.json`-Manifest die SHA-256-Hashwerte ihrer Startressourcen (z. B. `.dll`, `.wasm` und andere Dateien) zum Zeitpunkt der Erstellung der Buildausgabe. Die Integritätsprüfung wird durchgeführt, solange die SHA-256-Hashwerte in `blazor.boot.json` mit den Dateien, die an den Browser übermittelt werden, übereinstimmen.
+
+Häufige Ursachen für Fehler sind hier:
+
+ * Die Antwort des Webservers ist eine Fehlermeldung (z. B. *404 – nicht gefunden* oder *500 – Interner Serverfehler*) anstelle der vom Browser angeforderten Datei. Dies wird vom Browser als Fehler bei der Integritätsprüfung gemeldet, nicht als Antwortfehler.
+ * Der Inhalt der Dateien wurde zwischen dem Build und der Übermittlung der Dateien an den Browser geändert. Dies kann vorkommen:
+   * Wenn Sie oder Buildtools die Buildausgabe manuell ändern.
+   * Wenn ein Aspekt des Bereitstellungsprozesses die Dateien geändert hat. Wenn Sie z. B. einen Bereitstellungsmechanismus auf Git-Basis verwenden, bedenken Sie, dass Git die Zeilenenden im Windows-Format transparent in UNIX-Zeilenenden konvertiert, wenn Sie Dateien unter Windows übertragen und unter Linux auschecken. Durch das Ändern von Dateizeilenenden werden die SHA-256-Hashwerte geändert. Um dieses Problem zu vermeiden, sollten Sie die [Verwendung von `.gitattributes` erwägen, um Buildartefakte als `binary`-Dateien](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) zu behandeln.
+   * Der Webserver ändert Dateiinhalte im Rahmen ihrer Bereitstellung. Einige Content Distribution Networks (CDNs) versuchen z. B. automatisch, HTML zu [minimieren](xref:client-side/bundling-and-minification#minification) und damit zu ändern. Sie müssen diese Features möglicherweise deaktivieren.
+
+So diagnostizieren Sie, was davon in Ihrem Fall zutrifft:
+
+ 1. Beachten Sie, welche Datei den Fehler auslöst, indem Sie die Fehlermeldung lesen.
+ 1. Öffnen Sie die Entwicklertools Ihres Browsers, und sehen Sie sich die Registerkarte *Netzwerk* an. Laden Sie ggf. die Seite erneut, um die Liste der Anforderungen und Antworten anzuzeigen. Suchen Sie die Datei, die den in dieser Liste ausgeführten Fehler auslöst.
+ 1. Überprüfen Sie den HTTP-Statuscode in der Antwort. Wenn der Server etwas anderes als *200 – OK* (oder einen anderen 2xx-Statuscode) zurückgibt, müssen Sie ein serverseitiges Problem diagnostizieren. Der Statuscode 403 bedeutet beispielsweise, dass ein Autorisierungsproblem vorliegt, während der Statuscode 500 bedeutet, dass ein nicht angegebener Serverfehler aufgetreten ist. Untersuchen Sie serverseitige Protokolle, um die App zu diagnostizieren und zu korrigieren.
+ 1. Wenn der Statuscode für die Ressource *200 – OK* ist, sehen Sie sich den Antwortinhalt in den Entwicklertools des Browsers an, und überprüfen Sie, ob der Inhalt mit den erwarteten Daten übereinstimmt. Ein häufiges Problem ist beispielsweise die falsche Konfiguration des Routings, sodass Anforderungen Ihre `index.html`-Daten auch für andere Dateien zurückgeben. Stellen Sie sicher, dass Antworten auf `.wasm`-Anforderungen WebAssembly-Binärdateien und Antworten auf `.dll`-Anforderungen .NET-Assembly-Binärdateien sind. Wenn dies nicht der Fall ist, müssen Sie ein serverseitiges Routingproblem diagnostizieren.
+
+Wenn Sie sich vergewissert haben, dass der Server überzeugend korrekte Daten zurückgibt, muss irgendetwas anderes zwischen Build und Übermittlung der Datei den Inhalt ändern. So ermitteln Sie dies:
+
+ * Untersuchen Sie die Buildtoolkette und den Bereitstellungsmechanismus darauf hin, ob sie Dateien nach dem Erstellen ändern. Dies ist beispielsweise der Fall, wenn Git wie zuvor beschrieben Dateizeilenenden transformiert.
+ * Untersuchen Sie den Webserver oder die CDN-Konfiguration darauf hin, ob sie so eingerichtet sind, dass Antworten dynamisch geändert werden (z. B. der Versuch, HTML zu minimieren). Es ist in Ordnung, dass der Webserver die HTTP-Komprimierung implementiert (z. B. Rückgabe von `content-encoding: br` oder `content-encoding: gzip`), da dies das Ergebnis nach der Dekomprimierung nicht beeinträchtigt. Es ist jedoch *nicht* in Ordnung, dass der Webserver die nicht komprimierten Daten ändert.
+
+### <a name="disable-integrity-checking-for-non-pwa-apps"></a>Deaktivieren der Integritätsprüfung für Nicht-PWA-Apps
+
+Deaktivieren Sie die Integritätsprüfung in den meisten Fällen nicht. Das Deaktivieren der Integritätsprüfung löst nicht das zugrunde liegende Problem, das die unerwarteten Antworten verursacht hat, und führt zu einem Verlust der zuvor aufgeführten Vorteile.
+
+Möglicherweise gibt es Fälle, in denen Sie sich nicht darauf verlassen können, dass der Webserver konsistente Antworten zurückgibt, und Sie haben keine andere Wahl, als Integritätsprüfungen zu deaktivieren. Fügen Sie zum Deaktivieren von Integritätsprüfungen einer Eigenschaftengruppe in der `.csproj`-Datei des Blazor WebAssembly-Projekts Folgendes hinzu:
+
+```xml
+<BlazorCacheBootResources>false</BlazorCacheBootResources>
+```
+
+`BlazorCacheBootResources` deaktiviert auch das Standardverhalten von Blazor beim Zwischenspeichern der `.dll`-, `.wasm`- und anderer Dateien auf der Grundlage ihrer SHA-256-Hashwerte, da die Eigenschaft angibt, dass die Richtigkeit der SHA-256-Hashwerte nicht verlässlich ist. Auch mit dieser Einstellung kann der normale HTTP-Cache des Browsers diese Dateien weiterhin zwischenspeichern. Ob dies der Fall ist, hängt von der Konfiguration Ihres Webservers und den `cache-control`-Headern ab, die er bedient.
+
+> [!NOTE]
+> Die `BlazorCacheBootResources`-Eigenschaft deaktiviert keine Integritätsprüfungen für [progressive Webanwendungen (Progressive Web Applications, PWAs)](xref:blazor/progressive-web-app). Anleitungen zu PWAs finden Sie im Abschnitt [Deaktivieren der Integritätsprüfung für PWAs](#disable-integrity-checking-for-pwas).
+
+### <a name="disable-integrity-checking-for-pwas"></a>Deaktivieren der Integritätsprüfung für PWAs
+
+Die Vorlage für progressive Webanwendungen (Progressive Web Applications, PWAs) von Blazor enthält eine vorgeschlagene `service-worker.published.js`-Datei, die für das Abrufen und Speichern von Anwendungsdateien für die Offlineverwendung zuständig ist. Dabei handelt es sich um einen vom normalen App-Startmechanismus separaten Prozess, der über eine eigene, separate Logik zur Integritätsprüfung verfügt.
+
+Die `service-worker.published.js`-Datei enthält folgende Zeile:
+
+```javascript
+.map(asset => new Request(asset.url, { integrity: asset.hash }));
+```
+
+Entfernen Sie zum Deaktivieren der Integritätsprüfung den `integrity`-Parameter, indem Sie die Zeile wie folgt ändern:
+
+```javascript
+.map(asset => new Request(asset.url));
+```
+
+Noch einmal: Das Deaktivieren der Integritätsprüfung bedeutet, dass Sie die Sicherheitsgarantien verlieren, die die Integritätsprüfung bietet. Beispielsweise besteht folgendes Risiko: Wenn der Browser des Benutzers genau in dem Moment, in dem Sie eine neue Version bereitstellen, die App zwischenspeichert, könnte er einige Dateien aus der alten und einige aus der neuen Bereitstellung zwischenspeichern. Wenn dies der Fall ist, bleibt die App in einem defekten Zustand, bis Sie ein weiteres Update bereitstellen.

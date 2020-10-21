@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 213807634a2a6990e9025de7871295cf97a81faf
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 808215d103db9c5d63fe63b6875a222e6b0ba1fa
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865587"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326615"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Migrieren von HTTP-Handlern und Modulen zu ASP.net Core Middleware
 
@@ -356,7 +356,7 @@ Gibt Ihnen eine eindeutige ID für jede Anforderung. Sehr nützlich, um in Ihre 
 
 **HttpContext. Response. TransmitFile**
 
-Die Einrichtung einer Datei wird [hier](../fundamentals/request-features.md#middleware-and-request-features)erläutert.
+Die Einrichtung einer Datei wird unter [Middleware und Anforderungs Features](xref:fundamentals/request-features#middleware-and-request-features)erläutert.
 
 **HttpContext. Response. Headers**
 
@@ -396,6 +396,6 @@ Die `SetCookies` Rückruf Methode würde wie folgt aussehen:
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Übersicht über HTTP-Handler und HTTP-Module](/iis/configuration/system.webserver/)
-* [Konfiguration](xref:fundamentals/configuration/index)
+* [Configuration](xref:fundamentals/configuration/index)
 * [Anwendungsstart](xref:fundamentals/startup)
 * [Middleware](xref:fundamentals/middleware/index)

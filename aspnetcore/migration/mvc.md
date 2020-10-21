@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: d615f67fc5cb23499ee7e14b747390a7a1b5a693
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 51228e59284b5edf0554e9929b16deafe08ea31e
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865138"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326626"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>Migrating from ASP.NET MVC to ASP.NET Core MVC (Migrieren von ASP.NET MVC zu ASP.NET Core MVC)
 
@@ -57,7 +57,7 @@ Erstellen Sie eine neue Projekt Mappe mit einem neuen ASP.net Core Projekt, zu d
 
 1. Starten Sie eine zweite Instanz von Visual Studio.
 1. Klicken Sie im Menü **Datei** auf **Neu** > **Projekt**.
-1. Wählen Sie **ASP.net Web Core-Webanwendung** und dann **weiter**aus.
+1. Klicken Sie auf **ASP.NET Core-Webanwendung** und dann auf **Weiter**.
 1. Benennen Sie im Dialogfeld **Neues Projekt konfigurieren** das Projekt *"WebApp1"*.
 1. Legen Sie den Speicherort auf ein anderes Verzeichnis als das vorherige Projekt fest, um denselben Projektnamen zu verwenden. Wenn Sie den gleichen Namespace verwenden, ist es einfacher, Code zwischen den beiden Projekten zu kopieren. Klicken Sie auf **Erstellen**.
 1. Vergewissern Sie sich, dass im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Optionen **.NET Core** und **ASP.NET Core 3.1** ausgewählt sind. Wählen Sie die Projektvorlage **Webanwendung (Model-View-Controller)** aus, und klicken Sie auf **Erstellen**.

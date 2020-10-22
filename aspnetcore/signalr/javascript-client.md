@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 6fc586d144547585ef75d653bf54193def5c8b7f
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: 6f611e56ec62ad7aea8a93e4761e1f67d0f76574
+ms.sourcegitcommit: fad0cd264c9d07a48a8c6ba1690807e0f8728898
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606684"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92379470"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.net Core SignalR JavaScript-Client
 
@@ -50,7 +50,7 @@ npm install @microsoft/signalr
 
 NPM installiert den Paket Inhalt im Ordner *" \\ @microsoft\signalr\dist\browser node_modules* ". Erstellen Sie einen neuen Ordner mit dem Namen *signalr* unter dem Ordner *wwwroot \\ lib* . Kopieren Sie die *signalr.js* Datei in den Ordner " *wwwroot\lib\signalr* ".
 
-Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel:
+Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Zum Beispiel:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -58,7 +58,7 @@ Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Verwenden eines Content Delivery Network (CDN)
 
-Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Beispiel:
+Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Zum Beispiel:
 
 [!code-html[](javascript-client/samples/3.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
 
@@ -278,46 +278,6 @@ Der folgende Code veranschaulicht einen typischen manuellen Verbindungs Ansatz:
 
 Eine reale Implementierung würde einen exponentiellen Backoff verwenden oder eine angegebene Anzahl von Wiederholungen wiederholen, bevor Sie zurückgegeben wird.
 
-## <a name="troubleshoot-websocket-handshake-errors"></a>Problembehandlung bei WebSocket-Hand Shake Fehlern
-
-Dieser Abschnitt enthält Hilfe zur Ausnahme *"Fehler während des WebSocket-Handshakes"* , die beim Herstellen einer Verbindung mit ASP.net Core SignalR Hub auftritt.
-
-### <a name="response-code-400-or-503"></a>Antwort Code 400 oder 503
-
-Für den folgenden Fehler:
-
-```log
-WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 400
-
-Error: Failed to start the connection: Error: There was an error with the transport.
-```
-
-Der Fehler wird normalerweise dadurch verursacht, dass der Client websockets-Transport verwendet, das websockets-Protokoll auf dem Server jedoch nicht aktiviert ist.
-
-### <a name="response-code-307"></a>Antwort Code 307
-
-```log
-WebSocket connection to 'ws://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 307
-```
-
-Dies tritt häufig auf, wenn der SignalR Hub-Server:
-
-* Überwacht und antwortet sowohl über HTTP als auch über HTTPS.
-* Ist zum Erzwingen von HTTPS durch Aufrufen von `UseHttpsRedirection` in konfiguriert `Startup` oder erzwingt HTTPS per URL-Rewrite-Regel.
-
-Dieser Fehler kann dadurch verursacht werden, dass die http-URL auf Clientseite mithilfe von angegeben wird `.withUrl("http://xxx/HubName")` . Die Behebung für diesen Fall besteht darin, den Code so zu ändern, dass eine HTTPS-URL verwendet wird.
-
-### <a name="response-code-404"></a>Antwort Code 404
-
-```log
-WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 404
-```
-
-Wenn die APP auf "localhost" funktioniert, aber nach der Veröffentlichung auf dem IIS-Server diesen Fehler zurückgibt:
-
-* Vergewissern Sie sich, dass die ASP.net Core- SignalR App als IIS-unter Anwendung gehostet wird.
-* Legen Sie die URL nicht mit der pathbase der untergeordneten App auf der SignalR Clientseite von JavaScript fest `.withUrl("/SubAppName/HubName")` .
-
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [JavaScript-API-Referenz](/javascript/api/?view=signalr-js-latest&preserve-view=true )
@@ -328,6 +288,7 @@ Wenn die APP auf "localhost" funktioniert, aber nach der Veröffentlichung auf d
 * [Veröffentlichen in Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin-Anforderungen (cors)](xref:security/cors)
 * [Azure- SignalR Dienst Server lose Dokumentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
+* [Beheben von Verbindungsproblemen](xref:signalr/troubleshoot)
 
 ::: moniker-end
 
@@ -354,7 +315,7 @@ npm install @aspnet/signalr
 
 NPM installiert den Paket Inhalt im Ordner *" \\ @aspnet\signalr\dist\browser node_modules* ". Erstellen Sie einen neuen Ordner mit dem Namen *signalr* unter dem Ordner *wwwroot \\ lib* . Kopieren Sie die *signalr.js* Datei in den Ordner " *wwwroot\lib\signalr* ".
 
-Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel:
+Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Zum Beispiel:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -362,7 +323,7 @@ Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Verwenden eines Content Delivery Network (CDN)
 
-Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Beispiel:
+Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Zum Beispiel:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>

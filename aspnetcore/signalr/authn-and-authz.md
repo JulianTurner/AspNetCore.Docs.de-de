@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 3a2ae5c7bc4853bad7b94af0d26ad5cd0358688f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e16efa59a82d0f3cb1a2272ae0c07654ebec6a51
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628931"
+ms.lasthandoff: 10/23/2020
+ms.locfileid: "92491560"
 ---
 # <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>Authentifizierung und Autorisierung in ASP.net Core SignalR
 
@@ -99,8 +99,6 @@ Cookies sind eine browserspezifische Methode zum Senden von Zugriffs Token, die 
 
 Der Client kann ein Zugriffs Token bereitstellen, anstatt zu verwenden cookie . Der Server überprüft das Token und verwendet es zum Identifizieren des Benutzers. Diese Überprüfung erfolgt nur, wenn die Verbindung hergestellt wird. Während der Lebensdauer der Verbindung wird der Server nicht automatisch neu validiert, um die tokensperrung zu überprüfen.
 
-Auf dem Server wird die Bearertokenauthentifizierung unter Verwendung der [JWT Bearer-Middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer) konfiguriert.
-
 Im JavaScript-Client kann das Token mithilfe der [accesstokenfactory](xref:signalr/configuration#configure-bearer-authentication) -Option bereitgestellt werden.
 
 [!code-typescript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.ts?range=52-55)]
@@ -119,14 +117,60 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > Die von Ihnen bereitgestellte zugriffstokenfunktion wird vor **jeder** http-Anforderung von aufgerufen SignalR . Wenn Sie das Token erneuern müssen, um die Verbindung aktiv zu halten (da es während der Verbindung ablaufen kann), verwenden Sie dies innerhalb dieser Funktion, und geben Sie das aktualisierte Token zurück.
 
-In Standard-Web-APIs werden bearertoken in einem HTTP-Header gesendet. SignalRKann diese Header jedoch nicht in Browsern festlegen, wenn einige Transporte verwendet werden. Wenn websockets und Server gesendete Ereignisse verwendet werden, wird das Token als Abfrage Zeichenfolgen-Parameter übertragen. Um dies auf dem Server zu unterstützen, sind zusätzliche Konfigurationsschritte erforderlich:
+In Standard-Web-APIs werden bearertoken in einem HTTP-Header gesendet. SignalRKann diese Header jedoch nicht in Browsern festlegen, wenn einige Transporte verwendet werden. Wenn websockets und Server-Sent Ereignisse verwendet werden, wird das Token als Abfrage Zeichenfolgen-Parameter übertragen. 
+
+#### <a name="built-in-jwt-authentication"></a>Integrierte JWT-Authentifizierung
+
+Auf dem Server wird die bearertokenauthentifizierung mithilfe der [JWT-bearermiddleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A)konfiguriert:
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 > [!NOTE]
-> Die Abfrage Zeichenfolge wird in Browsern verwendet, wenn eine Verbindung mit websockets und Server gesendeten Ereignissen aufgrund von Einschränkungen der Browser-API hergestellt wird. Bei Verwendung von HTTPS werden Abfrage Zeichen folgen Werte durch die TLS-Verbindung gesichert. Viele Server protokollieren jedoch Abfrage Zeichen folgen Werte. Weitere Informationen finden Sie unter [Sicherheitsüberlegungen in SignalR ASP.net Core ](xref:signalr/security). SignalR verwendet Header zum Übertragen von Token in Umgebungen, die diese unterstützen (z. b. die .net-und Java-Clients).
+> Die Abfrage Zeichenfolge wird in Browsern verwendet, wenn eine Verbindung mit websockets hergestellt und Ereignisse aufgrund von Einschränkungen der Browser-API Server-Sent werden. Bei Verwendung von HTTPS werden Abfrage Zeichen folgen Werte durch die TLS-Verbindung gesichert. Viele Server protokollieren jedoch Abfrage Zeichen folgen Werte. Weitere Informationen finden Sie unter [Sicherheitsüberlegungen in SignalR ASP.net Core ](xref:signalr/security). SignalR verwendet Header zum Übertragen von Token in Umgebungen, die diese unterstützen (z. b. die .net-und Java-Clients).
+
+#### <a name="no-locidentity-server-jwt-authentication"></a>Identity Server-JWT-Authentifizierung
+
+Wenn Sie Identity Server verwenden, fügen Sie <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> dem Projekt einen Dienst hinzu:
+
+```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
+public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
+{
+    public void PostConfigure(string name, JwtBearerOptions options)
+    {
+        var originalOnMessageReceived = options.Events.OnMessageReceived;
+        options.Events.OnMessageReceived = async context =>
+        {
+            await originalOnMessageReceived(context);
+                
+            if (string.IsNullOrEmpty(context.Token))
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                
+                if (!string.IsNullOrEmpty(accessToken) && 
+                    path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+                }
+            }
+        };
+    }
+}
+```
+
+Registrieren Sie den Dienst in, `Startup.ConfigureServices` nachdem Sie Dienste für <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> die Authentifizierung () und den Authentifizierungs Handler für Identity Server () hinzugefügt haben <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> :
+
+```csharp
+services.AddAuthentication()
+    .AddIdentityServerJwt();
+services.TryAddEnumerable(
+    ServiceDescriptor.Singleton<IPostConfigureOptions<JwtBearerOptions>, 
+        ConfigureJwtBearerOptions>());
+```
 
 ### <a name="no-loccookies-vs-bearer-tokens"></a>Cookiee im Vergleich zu Träger Token 
 

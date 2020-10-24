@@ -1,3 +1,5 @@
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 > [!WARNING]
 > Ein **catch-all**-Parameter kann aufgrund eines [Fehlers](https://github.com/dotnet/aspnetcore/issues/18677) beim Routing nicht ordnungsgemäß mit Routen übereinstimmen. Apps, die von diesem Fehler betroffen sind, weisen die folgenden Merkmale auf:
 >
@@ -18,3 +20,5 @@
 >}
 >// Remaining code removed for brevity.
 >```
+
+::: moniker-end

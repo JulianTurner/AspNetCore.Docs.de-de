@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 9d70b292a93a5d19cc25b2fc592ec88ce8262434
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 177112106d143a6826c1f927aac807da0aa9f2b4
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629989"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113828"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Erste Schritte mit ASP.NET Core MVC
 
@@ -67,15 +67,15 @@ Am Ende verfügen Sie über eine App, die Filmdaten verwalten und anzeigen kann.
 
 * Wählen Sie in Visual Studio die Option **Neues Projekt erstellen** aus.
 
-* Klicken Sie auf **ASP.NET Core-Webanwendung** und dann auf **Weiter**.
+* Wählen Sie **ASP.NET Core-Webanwendung** > **Weiter** aus.
 
 ![neue ASP.NET Core-Webanwendung](start-mvc/_static/np_2.1.png)
 
-* Geben Sie dem Projekt den Namen **MvcMovie**, und klicken Sie dann auf **Erstellen**. Es ist wichtig, dem Projekt den Namen **MvcMovie** zu geben, damit beim Kopieren von Code der Namespace übereinstimmt.
+* Geben Sie dem Projekt den Namen **MvcMovie** , und klicken Sie dann auf **Erstellen** . Es ist wichtig, dem Projekt den Namen **MvcMovie** zu geben, damit beim Kopieren von Code der Namespace übereinstimmt.
 
   ![neue ASP.NET Core-Webanwendung](start-mvc/_static/config.png)
 
-* Klicken Sie auf **Webanwendung (Model View Controller)** und anschließend auf **Erstellen**.
+* Wählen Sie **Webanwendung (Model View Controller)** aus. Wählen Sie in den Dropdownfeldern **.NET Core** und **ASP.NET Core 3.1** und anschließend **Erstellen** aus.
 
 ![Dialogfeld „Neues Projekt“, .NET Core im linken Bereich, ASP.NET Core-Web-App ](start-mvc/_static/new_project30.png)
 
@@ -96,16 +96,16 @@ Das Tutorial setzt voraus, dass Sie mit VS Code vertraut sind. Weitere Informati
 
   * Es wird ein Dialogfeld mit folgender Meldung angezeigt: **Die erforderlichen Objekte zum Erstellen und Debuggen sind in "MvcMovie" nicht vorhanden. Sollen sie hinzugefügt werden?**  Wählen Sie **Ja** aus.
 
-  * `dotnet new mvc -o MvcMovie`: Erstellt ein neues ASP.NET Core MVC-Projekt im Ordner *MvcMovie*.
+  * `dotnet new mvc -o MvcMovie`: Erstellt ein neues ASP.NET Core MVC-Projekt im Ordner *MvcMovie* .
   * `code -r MvcMovie`: Lädt die Projektdatei *MvcMovie.csproj* in Visual Studio Code.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie auf **Datei** > **Neue Projektmappe**.
+* Klicken Sie auf **Datei** > **Neue Projektmappe** .
 
   ![Neue Projektmappe in macOS](start-mvc/_static/new_project_vsmac.png)
 
-* Navigieren Sie in Visual Studio für Mac-Versionen vor Version 8.6 zu **.NET Core** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter**. Bei Version 8.6 oder höher klicken Sie auf **Web and Console** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter** (Web und Konsole).
+* Navigieren Sie in Visual Studio für Mac-Versionen vor Version 8.6 zu **.NET Core** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter** . Bei Version 8.6 oder höher klicken Sie auf **Web and Console** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter** (Web und Konsole).
 
   ![Auswählen der macOS-Web-App-Vorlage](start-mvc/_static/web_app_template_vsmac.png)
 
@@ -114,9 +114,9 @@ Das Tutorial setzt voraus, dass Sie mit VS Code vertraut sind. Weitere Informati
   * Vergewissern Sie sich, dass **Authentifizierung** auf **Keine Authentifizierung** festgelegt ist.
   * Wenn eine Option zum Auswählen eines **Zielframeworks** angezeigt wird, wählen Sie die neueste 3.x-Version aus.
 
-  Klicken Sie auf **Weiter**.
+  Klicken Sie auf **Weiter** .
 
-* Nennen Sie das Projekt **MvcMovie**, und wählen Sie dann **Erstellen** aus.
+* Nennen Sie das Projekt **MvcMovie** , und wählen Sie dann **Erstellen** aus.
 
   ![Benennen des macOS-Projekts](start-mvc/_static/MvcMovie.png)
 
@@ -126,7 +126,7 @@ Das Tutorial setzt voraus, dass Sie mit VS Code vertraut sind. Weitere Informati
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Drücken Sie **STRG+F5**, um die App im Nicht-Debugmodus auszuführen.
+Drücken Sie **STRG+F5** , um die App im Nicht-Debugmodus auszuführen.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
@@ -219,16 +219,16 @@ Am Ende verfügen Sie über eine App, die Filmdaten verwalten und anzeigen kann.
 
 * Wählen Sie in Visual Studio die Option **Neues Projekt erstellen** aus.
 
-* Klicken Sie auf **ASP.NET Core-Webanwendung** und dann auf **Weiter**.
+* Klicken Sie auf **ASP.NET Core-Webanwendung** und dann auf **Weiter** .
 
 ![neue ASP.NET Core-Webanwendung](start-mvc/_static/np_2.1.png)
 
-* Geben Sie dem Projekt den Namen **MvcMovie**, und klicken Sie dann auf **Erstellen**. Es ist wichtig, dem Projekt den Namen **MvcMovie** zu geben, damit beim Kopieren von Code der Namespace übereinstimmt.
+* Geben Sie dem Projekt den Namen **MvcMovie** , und klicken Sie dann auf **Erstellen** . Es ist wichtig, dem Projekt den Namen **MvcMovie** zu geben, damit beim Kopieren von Code der Namespace übereinstimmt.
 
   ![neue ASP.NET Core-Webanwendung](start-mvc/_static/config.png)
 
 
-* Klicken Sie auf **Webanwendung (Model View Controller)** und anschließend auf **Erstellen**.
+* Klicken Sie auf **Webanwendung (Model View Controller)** und anschließend auf **Erstellen** .
 
 ![Dialogfeld „Neues Projekt“, .NET Core im linken Bereich, ASP.NET Core-Web-App ](start-mvc/_static/new_project22-21.png)
 
@@ -249,25 +249,25 @@ Das Tutorial setzt voraus, dass Sie mit VS Code vertraut sind. Weitere Informati
 
   * Es wird ein Dialogfeld mit folgender Meldung angezeigt: **Die erforderlichen Objekte zum Erstellen und Debuggen sind in "MvcMovie" nicht vorhanden. Sollen sie hinzugefügt werden?**  Wählen Sie **Ja** aus.
 
-  * `dotnet new mvc -o MvcMovie`: Erstellt ein neues ASP.NET Core MVC-Projekt im Ordner *MvcMovie*.
+  * `dotnet new mvc -o MvcMovie`: Erstellt ein neues ASP.NET Core MVC-Projekt im Ordner *MvcMovie* .
   * `code -r MvcMovie`: Lädt die Projektdatei *MvcMovie.csproj* in Visual Studio Code.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie auf **Datei** > **Neue Projektmappe**.
+* Klicken Sie auf **Datei** > **Neue Projektmappe** .
 
   ![Neue Projektmappe in macOS](./start-mvc/_static/new_project_vsmac.png)
 
-* Navigieren Sie in Visual Studio für Mac-Versionen vor Version 8.6 zu **.NET Core** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter**. Bei Version 8.6 oder höher klicken Sie auf **Web and Console** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter** (Web und Konsole).
+* Navigieren Sie in Visual Studio für Mac-Versionen vor Version 8.6 zu **.NET Core** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter** . Bei Version 8.6 oder höher klicken Sie auf **Web and Console** > **App** > **Webanwendung (Model-View-Controller)**  > **Weiter** (Web und Konsole).
 
 * Gehen Sie im Dialogfeld **Neue Webanwendung konfigurieren** folgendermaßen vor:
 
   * Vergewissern Sie sich, dass **Authentifizierung** auf **Keine Authentifizierung** festgelegt ist.
   * Wenn eine Option zum Auswählen eines **Zielframeworks** angezeigt wird, wählen Sie die neueste 2.x-Version aus.
 
-  Klicken Sie auf **Weiter**.
+  Klicken Sie auf **Weiter** .
 
-* Nennen Sie das Projekt **MvcMovie**, und wählen Sie dann **Erstellen** aus.
+* Nennen Sie das Projekt **MvcMovie** , und wählen Sie dann **Erstellen** aus.
 
 ---
 
@@ -275,7 +275,7 @@ Das Tutorial setzt voraus, dass Sie mit VS Code vertraut sind. Weitere Informati
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Drücken Sie **STRG+F5**, um die App im Nicht-Debugmodus auszuführen.
+Drücken Sie **STRG+F5** , um die App im Nicht-Debugmodus auszuführen.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 

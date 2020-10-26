@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: d36140067ba6e75f2d00cb86ea488e40d28bd86f
-ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
+ms.openlocfilehash: 3bd881b124e00b91ab0aa9d3eb7531f10ef895f2
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91762164"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326496"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
 
 Von [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
 
-Eine Blazor-App kann JavaScript-Funktionen über .NET-Methoden und .NET-Methoden über JavaScript-Funktionen aufrufen. Diese Szenarios werden als *JavaScript-Interoperabilität* (*JS Interop*) bezeichnet.
+Eine Blazor-App kann JavaScript-Funktionen über .NET-Methoden und .NET-Methoden über JavaScript-Funktionen aufrufen. Diese Szenarios werden als *JavaScript-Interoperabilität* ( *JS Interop* ) bezeichnet.
 
 In diesem Artikel wird das Aufrufen von JavaScript-Funktionen über .NET behandelt. Weitere Informationen zum Aufrufen von .NET-Methoden über JavaScript finden Sie unter <xref:blazor/call-dotnet-from-javascript>.
 
@@ -164,7 +164,10 @@ Der Platzhalter `{APP ASSEMBLY}` ist der App-Assemblyname der App (z. B. `Blazo
 
 ## <a name="call-a-void-javascript-function"></a>Aufrufen der JavaScript-Funktion „void“
 
-JavaScript-Funktionen, die [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) oder [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) zurückgeben, werden mit <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> aufgerufen.
+Verwenden Sie <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> für Folgendes:
+
+* JavaScript-Funktionen, die [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) oder [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) zurückgeben
+* Wenn .NET nicht erforderlich ist, um das Ergebnis eines JavaScript-Aufrufs zu lesen
 
 ## <a name="detect-when-a-no-locblazor-server-app-is-prerendering"></a>Erkennen, wenn für eine Blazor Server-App ein Prerendering durchgeführt wird
  
@@ -192,7 +195,7 @@ Im folgenden Beispiel wird das Erfassen eines Verweises auf das `username` `<inp
 > [!WARNING]
 > Verwenden Sie Elementverweise nur, um die Inhalte eines leeren Elements zu ändern, das nicht mit Blazor interagiert. Dieses Szenario ist nützlich, wenn eine Drittanbieter-API Inhalt für das Element bereitstellt. Da Blazor nicht mit dem Element interagiert, kann kein Konflikt zwischen der Darstellung von Blazor des Elements und dem DOM auftreten.
 >
-> Im folgenden Beispiel ist es *gefährlich*, die Inhalte der unsortierten Liste (`ul`) zu ändern, weil Blazor mit dem DOM interagiert, um die Listenelemente (`<li>`) dieses Elements aufzufüllen:
+> Im folgenden Beispiel ist es *gefährlich* , die Inhalte der unsortierten Liste (`ul`) zu ändern, weil Blazor mit dem DOM interagiert, um die Listenelemente (`<li>`) dieses Elements aufzufüllen:
 >
 > ```razor
 > <ul ref="MyList">
@@ -205,7 +208,7 @@ Im folgenden Beispiel wird das Erfassen eines Verweises auf das `username` `<inp
 >
 > Wenn die Inhalte des Elements `MyList` durch JS Interop geändert werden und Blazor versucht, diffs-Algorithmen auf das Element anzuwenden, entsprechen diese nicht dem DOM.
 
-Bei .NET-Code handelt es sich bei <xref:Microsoft.AspNetCore.Components.ElementReference> um einen nicht transparenten Handle. Das *Einzige*, was Sie mit <xref:Microsoft.AspNetCore.Components.ElementReference> tun können, ist, es per JS Interop an JavaScript-Code zu übergeben. Dadurch empfängt der JavaScript-seitige Code eine `HTMLElement`-Instanz, die er mit normalen DOM-APIs verwenden kann.
+Bei .NET-Code handelt es sich bei <xref:Microsoft.AspNetCore.Components.ElementReference> um einen nicht transparenten Handle. Das *Einzige* , was Sie mit <xref:Microsoft.AspNetCore.Components.ElementReference> tun können, ist, es per JS Interop an JavaScript-Code zu übergeben. Dadurch empfängt der JavaScript-seitige Code eine `HTMLElement`-Instanz, die er mit normalen DOM-APIs verwenden kann.
 
 Im folgenden Code wird beispielsweise eine .NET-Erweiterungsmethode definiert, die das Festlegen des Fokus auf ein Element ermöglicht:
 
@@ -257,9 +260,7 @@ public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef,
 
 ## <a name="reference-elements-across-components"></a>Komponentenübergreifende Verweiselemente
 
-<xref:Microsoft.AspNetCore.Components.ElementReference> ist nur in der <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>-Methode einer Komponente garantiert gültig (und ein Elementverweis ist ein `struct`), daher kann ein Elementverweis nicht zwischen Komponenten übergeben werden.
-
-Damit eine übergeordnete Komponente einen Elementverweis anderen Komponenten zur Verfügung stellen kann, kann die übergeordnete Komponente:
+Eine <xref:Microsoft.AspNetCore.Components.ElementReference>-Instanz ist nur in der <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>-Methode einer Komponente garantiert gültig (und ein Elementverweis ist ein `struct`), daher kann ein Elementverweis nicht zwischen Komponenten übergeben werden. Damit eine übergeordnete Komponente einen Elementverweis anderen Komponenten zur Verfügung stellen kann, kann die übergeordnete Komponente:
 
 * zulassen, dass untergeordnete Komponenten Rückrufe registrieren.
 * die registrierten Rückrufe während des <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>-Ereignisses mit dem übergebenen Elementverweis aufrufen. Dieser Ansatz ermöglicht untergeordneten Komponenten indirekt die Interaktion mit dem Elementverweis des übergeordneten Elements.
@@ -665,8 +666,33 @@ Außerdem zeigt das vorherige Beispiel, wie es möglich ist, JavaScript-Logik un
 
 ::: moniker-end
 
+## <a name="size-limits-on-js-interop-calls"></a>Größenbeschränkungen bei JS-Interop-Aufrufen
+
+In Blazor WebAssembly gibt das Framework keine Beschränkungen hinsichtlich der Größe von Ein- und Ausgaben von JS-Interop-Aufrufen vor.
+
+In Blazor Server wird das Ergebnis eines JS-Interop-Aufrufs durch die maximale Payloadgröße beschränkt, die von SignalR (<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>) erzwungen wird. Der Standardwert ist 32 KB. Anwendungen, die versuchen, mit einer Payload über <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> auf einen JS-Interop-Befehl zu reagieren, lösen einen Fehler aus. Eine höherer Grenzwert kann durch Ändern von <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> konfiguriert werden. Im folgenden Beispiel wird die maximale Größe eingehender Nachrichten auf 64 KB (64 × 1.024 × 1.024) festgelegt:
+
+```csharp
+services.AddServerSideBlazor()
+   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 1024);
+```
+
+Wenn Sie den Grenzwert von SignalR erhöhen, verbrauchen Sie auch mehr Serverressourcen und setzen den Server einem erhöhten Risiko durch böswillige Benutzer aus. Darüber hinaus kann das Lesen sehr großer Inhalte in den Arbeitsspeicher als Zeichenfolgen oder Bytearrays zu Zuordnungen führen, die vom Garbage Collector nur schlecht verarbeitet werden können. Dies kann zu zusätzlichen Leistungseinbußen führen. Eine Möglichkeit zum Lesen großer Payloads besteht darin, den Inhalt in kleineren Blöcken zu senden und die Nutzdaten als <xref:System.IO.Stream> zu verarbeiten. Diesen Ansatz können Sie anwenden, wenn große JSON-Payloads gelesen werden oder die Daten in JavaScript als unformatierte Bytes verfügbar sind. Ein Beispiel für das Senden großer binärer Payloads in Blazor Server, bei dem ähnliche Techniken wie die `InputFile`-Komponente verwendet werden, finden Sie unter der [Beispiel-App BinarySubmit](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
+
+Beachten Sie die folgenden Anleitungen, wenn Sie Code zum Übertragen großer Datenmengen zwischen JavaScript und Blazor entwickeln:
+
+* Segmentieren Sie die Daten in kleinere Teile, und senden Sie die Datensegmente sequenziell, bis alle Daten vom Server empfangen wurden.
+* Ordnen Sie in JavaScript- und C#-Code keine großen Objekte zu.
+* Blockieren Sie den hauptsächlichen Benutzeroberflächenthread nicht für lange Zeiträume, wenn Sie Daten senden oder empfangen.
+* Geben Sie belegten Arbeitsspeicher frei, wenn der Prozess abgeschlossen oder abgebrochen wird.
+* Erzwingen Sie die folgenden zusätzlichen Anforderungen aus Sicherheitsgründen:
+  * Deklarieren Sie die maximale Datei- oder Datengröße, die übermittelt werden kann.
+  * Deklarieren Sie die minimale Uploadrate vom Client an den Server.
+* Nachdem die Daten vom Server empfangen wurden, ist mit den Daten Folgendes möglich:
+  * Sie können temporär in einem Speicherpuffer gespeichert werden, bis alle Segmente gesammelt wurden.
+  * Sie können sofort verarbeitet werden. Beispielsweise können die Daten sofort in einer Datenbank gespeichert oder auf den Datenträger geschrieben werden, wenn die einzelnen Segmente empfangen werden.
+
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:blazor/call-dotnet-from-javascript>
 * [InteropComponent.razor-Beispiel (dotnet/AspNetCore-GitHub-Repository, Releasebranch 3.1)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Ausführen umfangreicher Datenübertragungen in Blazor Server-Apps](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

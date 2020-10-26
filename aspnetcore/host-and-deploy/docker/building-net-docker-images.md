@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: 791cc14feac30ad8a571d155624ab821dfd77981
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 6f94323873937d1428d6cfa1b0ef15e44611fd47
+ms.sourcegitcommit: b3ec60f7682e43211c2b40c60eab3d4e45a48ab1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722857"
+ms.lasthandoff: 10/17/2020
+ms.locfileid: "92153648"
 ---
 # <a name="docker-images-for-aspnet-core"></a>Docker-Images für ASP.NET Core
 
@@ -85,7 +85,7 @@ Die Dockerfile-Beispieldatei verwendet das [Docker-Feature für mehrstufige Buil
 
 ## <a name="run-the-app-locally"></a>Lokales Ausführen der App
 
-* Navigieren Sie zum Projektordner unter *dotnet-docker/samples/aspnetapp/aspnetapp*.
+* Navigieren Sie zum Projektordner unter *dotnet-docker/samples/aspnetapp/aspnetapp* .
 
 * Führen Sie den folgenden Befehl aus, um die App zu erstellen und lokal auszuführen:
 
@@ -99,9 +99,9 @@ Die Dockerfile-Beispieldatei verwendet das [Docker-Feature für mehrstufige Buil
 
 ## <a name="run-in-a-linux-container"></a>Ausführen in einem Linux-Container
 
-* Wechseln Sie im Docker-Client zu Linux-Containern.
+* Wechseln Sie im Docker-Client [zu Linux-Containern](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
-* Navigieren Sie zum Dockerfile-Ordner unter *dotnet-docker/samples/aspnetapp*.
+* Navigieren Sie zum Dockerfile-Ordner unter *dotnet-docker/samples/aspnetapp* .
 
 * Führen Sie die folgenden Befehle zum Erstellen und Ausführen des Beispiels in Docker aus:
 
@@ -125,7 +125,7 @@ Die Dockerfile-Beispieldatei verwendet das [Docker-Feature für mehrstufige Buil
 
 ## <a name="run-in-a-windows-container"></a>Ausführen in einem Windows-Container
 
-* Wechseln Sie im Docker-Windows zu Linux-Containern.
+* Wechseln Sie im Docker-Client [zu Windows-Containern](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 Navigieren Sie zum Dockerfile-Ordner unter `dotnet-docker/samples/aspnetapp`.
 
@@ -157,7 +157,7 @@ Navigieren Sie zum Dockerfile-Ordner unter `dotnet-docker/samples/aspnetapp`.
 
 In einigen Szenarien möchten Sie eine App möglicherweise in einem Container bereitstellen, indem Sie die zur Laufzeit benötigten Anwendungsdateien in diesen kopieren. In diesem Abschnitt wird gezeigt, wie Sie die Bereitstellung manuell ausführen.
 
-* Navigieren Sie zum Projektordner unter *dotnet-docker/samples/aspnetapp/aspnetapp*.
+* Navigieren Sie zum Projektordner unter *dotnet-docker/samples/aspnetapp/aspnetapp* .
 
 * Führen Sie den Befehl [dotnet publish](/dotnet/core/tools/dotnet-publish) aus:
 
@@ -167,7 +167,7 @@ In einigen Szenarien möchten Sie eine App möglicherweise in einem Container be
 
   Argumente des Befehls:
   * Erstellen Sie die Anwendung im Releasemodus (der Standardwert ist der Debugmodus).
-  * Erstellen Sie die Dateien im Ordner *published*.
+  * Erstellen Sie die Dateien im Ordner *published* .
 
 * Führen Sie die Anwendung aus.
 
@@ -198,7 +198,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>Die Dockerfile-Datei
 
-Dies ist die *Dockerfile*-Datei, die vom zuvor ausgeführten Befehl `docker build` verwendet wurde.  Dabei wird `dotnet publish` auf die gleiche Weise wie in diesem Abschnitt zum Erstellen und Bereitstellen verwendet.  
+Dies ist die *Dockerfile* -Datei, die vom zuvor ausgeführten Befehl `docker build` verwendet wurde.  Dabei wird `dotnet publish` auf die gleiche Weise wie in diesem Abschnitt zum Erstellen und Bereitstellen verwendet.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
@@ -233,7 +233,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### <a name="the-dockerfile"></a>Die Dockerfile-Datei
 
-Dies ist die *Dockerfile*-Datei, die vom zuvor ausgeführten Befehl `docker build` verwendet wurde.  Dabei wird `dotnet publish` auf die gleiche Weise wie in diesem Abschnitt zum Erstellen und Bereitstellen verwendet.  
+Dies ist die *Dockerfile* -Datei, die vom zuvor ausgeführten Befehl `docker build` verwendet wurde.  Dabei wird `dotnet publish` auf die gleiche Weise wie in diesem Abschnitt zum Erstellen und Bereitstellen verwendet.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build

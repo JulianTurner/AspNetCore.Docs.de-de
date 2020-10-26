@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: a0c53755bd56b6c169437ca9f0ea915e46ad79ec
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: 2a80a9c4848703802b15348a30f2564f9580a24b
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606754"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113880"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Teil 8: Hinzufügen eines neuen Felds zu einer ASP.NET Core MVC-App
 
@@ -70,7 +70,7 @@ Da Sie der `Movie`-Klasse ein neues Feld hinzugefügt haben, müssen Sie die Eig
 
 Aktualisieren Sie die Ansichtsvorlagen, um die neue `Rating`-Eigenschaft in der Browseransicht anzuzeigen, zu erstellen und zu bearbeiten.
 
-Bearbeiten Sie die Datei */Views/Movies/Index.cshtml*, und fügen Sie das Feld `Rating` hinzu:
+Bearbeiten Sie die Datei */Views/Movies/Index.cshtml* , und fügen Sie das Feld `Rating` hinzu:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
 
@@ -112,7 +112,7 @@ Für dieses Tutorial wird Code First-Migrationen verwendet.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Öffnen Sie das Menü **Extras**. Wählen Sie dort **NuGet-Paket-Manager > Paket-Manager-Konsole** aus.
+Öffnen Sie das Menü **Extras** . Wählen Sie dort **NuGet-Paket-Manager > Paket-Manager-Konsole** aus.
 
   ![PMC-Menü](adding-model/_static/pmc.png)
 
@@ -133,11 +133,16 @@ Werden alle Datensätze aus der Datenbank gelöscht, führt die initialize-Metho
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Löschen Sie die Datenbank, und verwenden Sie Migrationen, um die Datenbank erneut zu erstellen. Um die Datenbank zu löschen, löschen Sie die Datenbankdatei *MvcMovie.db*. Führen Sie dann den `ef database update`-Befehl aus:
+Löschen Sie die Datenbank und die vorherige Migration, und verwenden Sie Migrationsvorgänge, um die Datenbank erneut zu erstellen:
 
 ```dotnetcli
+dotnet ef migrations remove
+dotnet ef database drop
+dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
+
+`dotnet ef migrations remove` entfernt die letzte Migration. Wenn mehrere Migrationsvorgänge vorhanden ist, löschen Sie den Migrationsordner.
 
 ---
 <!-- End of VS tabs -->

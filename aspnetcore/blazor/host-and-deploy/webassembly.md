@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 63954bd2fbb8fdb2e347d552a10adc52263c3ad6
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: c3f537ff3b55f295db478cb097bc99023cc71a87
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900712"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326514"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -124,7 +124,7 @@ Wenn Sie die Bereitstellung auf einem IIS-Server durchführen, können Sie das U
 
 Mit einer *gehosteten Bereitstellung* wird die Blazor WebAssembly-App über eine auf einem Webserver ausgeführte [ASP.NET Core-App](xref:index) für Browser bereitgestellt.
 
-Die Blazor WebAssembly-Client-App wird im Ordner `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` der Server-App zusammen mit allen anderen statischen Webressourcen der Server-App veröffentlicht. Die beiden Apps werden zusammen bereitgestellt. Hierfür wird ein Webserver benötigt, auf dem eine ASP.NET Core-App gehostet werden kann. Bei einer gehosteten Bereitstellung enthält Visual Studio die **Blazor WebAssembly-App**-Projektvorlage (`blazorwasm`-Vorlage bei Verwendung des Befehls [`dotnet new`](/dotnet/core/tools/dotnet-new)) mit der ausgewählten Option **`Hosted`** (`-ho|--hosted`, wenn Sie den Befehl `dotnet new` verwenden).
+Die Blazor WebAssembly-Client-App wird im Ordner `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` der Server-App zusammen mit allen anderen statischen Webressourcen der Server-App veröffentlicht. Die beiden Apps werden zusammen bereitgestellt. Hierfür wird ein Webserver benötigt, auf dem eine ASP.NET Core-App gehostet werden kann. Bei einer gehosteten Bereitstellung enthält Visual Studio die **Blazor WebAssembly-App** -Projektvorlage (`blazorwasm`-Vorlage bei Verwendung des Befehls [`dotnet new`](/dotnet/core/tools/dotnet-new)) mit der ausgewählten Option **`Hosted`** (`-ho|--hosted`, wenn Sie den Befehl `dotnet new` verwenden).
 
 Weitere Informationen zum Hosten und Bereitstellen von ASP.NET Core-Apps finden Sie unter <xref:host-and-deploy/index>.
 
@@ -450,14 +450,20 @@ Beim Veröffentlichen eines Blazor-Projekts wird eine `web.config`-Datei mit der
   
 #### <a name="use-a-custom-webconfig"></a>Verwenden einer benutzerdefinierten Datei web.config
 
-Um eine benutzerdefinierte Datei `web.config` zu verwenden, speichern Sie die benutzerdefinierte Datei `web.config` im Stammverzeichnis des Projektordners und veröffentlichen das Projekt.
+Um eine benutzerdefinierte Datei `web.config` zu verwenden, speichern Sie die benutzerdefinierte Datei `web.config` im Stammverzeichnis des Projektordners. Konfigurieren Sie das Projekt für die Veröffentlichung IIS-spezifischer Ressourcen mithilfe von `PublishIISAssets` in der Projektdatei der App, und veröffentlichen Sie das Projekt:
+
+```xml
+<PropertyGroup>
+  <PublishIISAssets>true</PublishIISAssets>
+</PropertyGroup>
+```
 
 #### <a name="install-the-url-rewrite-module"></a>Installieren des URL-Rewrite-Moduls
 
 Das [URL-Rewrite-Modul](https://www.iis.net/downloads/microsoft/url-rewrite) wird zum Umschreiben von URLs benötigt. Das Modul wird nicht standardmäßig installiert und ist für die Installation als Webserver (IIS)-Rollendienstfunktion nicht verfügbar. Das Modul muss von der IIS-Website heruntergeladen werden. Verwenden Sie den Webplattform-Installer zur Installation des Moduls:
 
 1. Navigieren Sie lokal zur [URL-Rewrite-Module-Downloadseite](https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads). Wählen Sie zum Herunterladen der englischen Version des WebPI-Installers **WebPI** aus. Wählen Sie zum Herunterladen des Installers in einer anderen Sprache die entsprechende Architektur für den Server (x86/x64) aus.
-1. Kopieren Sie den Installer auf den Server. Führen Sie den Installer aus. Klicken Sie auf die Schaltfläche **Installieren**, und stimmen Sie den Lizenzbedingungen zu. Der Server muss nach Abschluss der Installation nicht neu gestartet werden.
+1. Kopieren Sie den Installer auf den Server. Führen Sie den Installer aus. Klicken Sie auf die Schaltfläche **Installieren** , und stimmen Sie den Lizenzbedingungen zu. Der Server muss nach Abschluss der Installation nicht neu gestartet werden.
 
 #### <a name="configure-the-website"></a>Konfigurieren der Website
 
@@ -890,7 +896,7 @@ Wenn eine App erstellt wird, beschreibt das generierte `blazor.boot.json`-Manife
 
 Häufige Ursachen für Fehler sind hier:
 
- * Die Antwort des Webservers ist eine Fehlermeldung (z. B. *404 – nicht gefunden* oder *500 – Interner Serverfehler*) anstelle der vom Browser angeforderten Datei. Dies wird vom Browser als Fehler bei der Integritätsprüfung gemeldet, nicht als Antwortfehler.
+ * Die Antwort des Webservers ist eine Fehlermeldung (z. B. *404 – nicht gefunden* oder *500 – Interner Serverfehler* ) anstelle der vom Browser angeforderten Datei. Dies wird vom Browser als Fehler bei der Integritätsprüfung gemeldet, nicht als Antwortfehler.
  * Der Inhalt der Dateien wurde zwischen dem Build und der Übermittlung der Dateien an den Browser geändert. Dies kann vorkommen:
    * Wenn Sie oder Buildtools die Buildausgabe manuell ändern.
    * Wenn ein Aspekt des Bereitstellungsprozesses die Dateien geändert hat. Wenn Sie z. B. einen Bereitstellungsmechanismus auf Git-Basis verwenden, bedenken Sie, dass Git die Zeilenenden im Windows-Format transparent in UNIX-Zeilenenden konvertiert, wenn Sie Dateien unter Windows übertragen und unter Linux auschecken. Durch das Ändern von Dateizeilenenden werden die SHA-256-Hashwerte geändert. Um dieses Problem zu vermeiden, sollten Sie die [Verwendung von `.gitattributes` erwägen, um Buildartefakte als `binary`-Dateien](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) zu behandeln.

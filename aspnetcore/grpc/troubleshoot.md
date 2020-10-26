@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/troubleshoot
-ms.openlocfilehash: 2f2a41af544bc040bd20e15b057ad8fc7fb16cfe
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 0c897c8c640f8713fc7d3b6cad0e6c571131d7a5
+ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633967"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92113841"
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>Problembehandlung für gRPC in .NET Core
 
@@ -86,7 +86,7 @@ var client = new Greet.GreeterClient(channel);
 
 ## <a name="call-insecure-grpc-services-with-net-core-client"></a>Aufrufen unsicherer gRPC-Dienste mit dem .NET Core-Client
 
-Wenn Sie unsichere gRPC-Dienste mit dem .NET Core-Client aufrufen möchten, sind weitere Konfigurationen erforderlich. Der gRPC-Client muss für den Parameter `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` `true` festlegen und in der Serveradresse `http` verwenden:
+Wenn eine App .NET Core 3.x verwendet, sind weitere Konfigurationen erforderlich, um unsichere gRPC-Dienste mit dem .NET Core-Client aufrufen zu können. Der gRPC-Client muss für den Parameter `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` `true` festlegen und in der Serveradresse `http` verwenden:
 
 ```csharp
 // This switch must be set before creating the GrpcChannel/HttpClient.
@@ -97,6 +97,8 @@ AppContext.SetSwitch(
 var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greet.GreeterClient(channel);
 ```
+
+Bei .NET 5-Apps ist keine zusätzliche Konfiguration erforderlich. Damit jedoch unsichere gRPC-Dienste aufgerufen werden können, muss mindestens Version 2.32.0 von `Grpc.Net.Client` verwendet werden.
 
 ## <a name="unable-to-start-aspnet-core-grpc-app-on-macos"></a>ASP.NET Core-gRPC-App kann unter macOS nicht gestartet werden
 
@@ -134,7 +136,7 @@ Der gRPC-Client muss ebenfalls so konfiguriert sein, dass er kein TLS verwendet.
 
 Für das Generieren von gRPC-Code für konkrete Clients und Dienstbasisklassen muss in einem Projekt auf Protobuf-Dateien und -Tools verwiesen werden. Folgendes muss enthalten sein:
 
-* *.proto*-Dateien, die Sie in der Elementgruppe `<Protobuf>` verwenden wollen. Auf [importierte *.proto*-Dateien](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) muss im Projekt verwiesen werden.
+* *.proto* -Dateien, die Sie in der Elementgruppe `<Protobuf>` verwenden wollen. Auf [importierte *.proto* -Dateien](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) muss im Projekt verwiesen werden.
 * Paketverweis auf das gRPC-Toolpaket [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
 
 Weitere Informationen zum Generieren von gRPC-C#-Objekten finden Sie unter <xref:grpc/basics>.
@@ -157,16 +159,16 @@ Bei einer gRPC-Client-App, die gRPC-Aufrufe ausführt, muss nur der konkrete Cli
 
 ## <a name="wpf-projects-unable-to-generate-grpc-c-assets-from-proto-files"></a>Generieren von gRPC-C#-Objekten aus PROTO-Dateien in WPF-Projekten nicht möglich
 
-Es gibt ein [bekanntes Problem](https://github.com/dotnet/wpf/issues/810) bei WPF-Projekten, das verhindert, dass das Generieren von gRPC-Code richtig funktioniert. Bei der Verwendung aller gRPC-Typen, die in einem WPF-Projekt durch Verweise auf `Grpc.Tools` und *.proto*-Dateien generiert werden, treten Kompilierungsfehler auf:
+Es gibt ein [bekanntes Problem](https://github.com/dotnet/wpf/issues/810) bei WPF-Projekten, das verhindert, dass das Generieren von gRPC-Code richtig funktioniert. Bei der Verwendung aller gRPC-Typen, die in einem WPF-Projekt durch Verweise auf `Grpc.Tools` und *.proto* -Dateien generiert werden, treten Kompilierungsfehler auf:
 
 > Fehler CS0246: Der Typ- oder Namespacename „MyGrpcServices“ wurde nicht gefunden (möglicherweise fehlt eine using-Direktive oder ein Assemblyverweis).
 
 So umgehen Sie dieses Problem:
 
 1. Erstellen Sie ein neues .NET Core-Klassenbibliotheksprojekt.
-2. Fügen Sie im neuen Projekt Verweise hinzu, um das [Generieren von C#-Code aus *\*.proto*-Dateien](xref:grpc/basics#generated-c-assets) zu ermöglichen:
+2. Fügen Sie im neuen Projekt Verweise hinzu, um das [Generieren von C#-Code aus *\*.proto* -Dateien](xref:grpc/basics#generated-c-assets) zu ermöglichen:
     * Fügen Sie dem [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)-Paket einen Paketverweis hinzu.
-    * Fügen Sie der `<Protobuf>`-Elementgruppe *\*.proto*-Dateien hinzu.
+    * Fügen Sie der `<Protobuf>`-Elementgruppe *\*.proto* -Dateien hinzu.
 3. Fügen Sie in der WPF-Anwendung einen Verweis auf das neue Projekt hinzu.
 
 Die WPF-Anwendung kann die in gRPC generierten Typen aus dem neuen Klassenbibliotheksprojekt verwenden.

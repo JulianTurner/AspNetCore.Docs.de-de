@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: 2b8820acba564bdfb85f8338ed5482573960fbb4
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: 4345dd8525c2e72aaddc8e45a4fd4d9bfdd63040
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080276"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326529"
 ---
 # <a name="aspnet-core-no-locblazor-globalization-and-localization"></a>Globalisierung und Lokalisierung in ASP.NET Core Blazor
 
@@ -36,8 +36,8 @@ Razor-Komponenten können Benutzern mit verschiedenen Kulturen und Sprachen zur 
 
 Derzeit werden Lokalisierungsszenarios für ASP.NET Core eingeschränkt unterstützt:
 
-* <xref:Microsoft.Extensions.Localization.IStringLocalizer> und <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> werden in Blazor-Apps *unterstützt*.
-* <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> und die Lokalisierung von Datenanmerkungen sind ASP.NET Core MVC-Szenarios und **werden nicht in Blazor-Apps unterstützt**.
+* <xref:Microsoft.Extensions.Localization.IStringLocalizer> und <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> werden in Blazor-Apps *unterstützt* .
+* <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> und die Lokalisierung von Datenanmerkungen sind ASP.NET Core MVC-Szenarios und **werden nicht in Blazor-Apps unterstützt** .
 
 Weitere Informationen finden Sie unter <xref:fundamentals/localization>.
 
@@ -76,7 +76,28 @@ Legen Sie in `Program.Main` <xref:System.Globalization.CultureInfo.DefaultThread
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Blazor WebAssembly enthält standardmäßig Globalisierungsressourcen, die zum Anzeigen von Werten wie Datums- und Währungsangaben in der Kultur des Benutzers erforderlich sind. Wenn für die App keine Lokalisierung erforderlich ist, können Sie die App so konfigurieren, dass die invariante Kultur unterstützt wird, die auf der `en-US`-Kultur basiert:
+Blazor WebAssembly enthält standardmäßig minimale Globalisierungsressourcen, die zum Anzeigen von Werten wie Datums- und Währungsangaben in der Kultur des Benutzers erforderlich sind. Bei Anwendungen, die eine dynamische Änderung der Kultur unterstützen müssen, sollte `BlazorWebAssemblyLoadAllGlobalizationData` in der Projektdatei konfiguriert werden:
+
+```xml
+<PropertyGroup>
+  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+</PropertyGroup>
+```
+
+Blazor WebAssembly kann auch so konfiguriert werden, dass der Start mithilfe einer bestimmten Anwendungskultur erfolgt, indem Optionen an `Blazor.start` übergeben werden. Das folgende Beispiel zeigt eine App, die für den Start mit der Kultur `en-GB` konfiguriert wurde:
+
+```html
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    applicationCulture: 'en-GB'
+  });
+</script>
+```
+
+Der Wert von `applicationCulture` muss dem [Sprachentagformat BCP-47](https://tools.ietf.org/html/bcp47) entsprechen.
+
+Wenn für die App keine Lokalisierung erforderlich ist, können Sie die App so konfigurieren, dass die invariante Kultur unterstützt wird, die auf der `en-US`-Kultur basiert:
 
 ```xml
 <PropertyGroup>

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 236d95e54b772ea522911421084ec0d9022c45ff
-ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
+ms.openlocfilehash: 075bcc68fd2dff0ebf2cfceacec24fde8c818603
+ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91424138"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92326544"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>Hostingmodellkonfiguration für ASP.NET Core Blazor
 
@@ -371,6 +371,14 @@ Verwenden Sie **einen** der folgenden Ansätze, um zusätzliche Dateizuordnungen
 
   app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
   app.UseStaticFiles();
+  ```
+
+* Sie können eine Störung der Verarbeitung von `_framework/blazor.server.js` verhindern, indem Sie mit <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> eine benutzerdefinierte Middleware für statische Dateien ausführen:
+
+  ```csharp
+  app.MapWhen(ctx => !ctx.Request.Path
+      .StartsWithSegments("_framework/blazor.server.js", 
+          subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
   ```
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen

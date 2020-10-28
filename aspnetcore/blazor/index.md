@@ -4,7 +4,7 @@ author: guardrex
 description: Lernen Sie ASP.NET Core Blazor kennen, eine Möglichkeit, interaktive clientseitige Webbenutzeroberflächen mit .NET in einer ASP.NET Core-App zu erstellen.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc, seoapril2019
+ms.custom: mvc, seoapril2019, devx-track-js
 ms.date: 09/25/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: 7ad374fdc7452664e3367d6ef214fd4cebdf3b08
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: bae3e96021971e373ad743a0b52da7f69d839c40
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805522"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690602"
 ---
 # <a name="introduction-to-aspnet-core-no-locblazor"></a>Einführung in ASP.NET Core Blazor
 
@@ -49,7 +49,7 @@ Die Verwendung von .NET im für die clientseitige Webentwicklung bietet die folg
 
 ## <a name="components"></a>Komponenten
 
-Blazor-Apps basieren auf *Komponenten*. Eine Komponente in Blazor ist ein Element der Benutzeroberfläche, beispielsweise eine Seite, ein Dialogfeld oder ein Formular für die Dateneingabe.
+Blazor-Apps basieren auf *Komponenten* . Eine Komponente in Blazor ist ein Element der Benutzeroberfläche, beispielsweise eine Seite, ein Dialogfeld oder ein Formular für die Dateneingabe.
 
 Komponenten sind in [.NET-Assemblys](/dotnet/standard/assembly/) integrierte .NET-C#-Klassen, auf die Folgendes zutrifft:
 
@@ -125,7 +125,7 @@ Folgendes geschieht, wenn eine Blazor WebAssembly-App in einem Browser erstellt 
 * Die Assemblys und die [.NET-Runtime](/dotnet/framework/get-started/overview) werden in den Browser heruntergeladen.
 * Blazor WebAssembly startet die .NET-Runtime und konfiguriert die Runtime zum Laden der Assemblys für die App. DOM-Änderungen und API-Aufrufe im Browser werden von der Blazor WebAssembly-Runtime über die JavaScript-Interop verarbeitet.
 
-Die Größe der veröffentlichten App, ihre *Nutzlast*, ist ein wichtiger Leistungsfaktor für die Nutzbarkeit einer App. Das Herunterladen einer großen App in einen Browser dauert relativ lange, was die Benutzerfreundlichkeit beeinträchtigt. Blazor WebAssembly optimiert die Nutzlastgröße, um die Downloadzeiten zu verringern:
+Die Größe der veröffentlichten App, ihre *Nutzlast* , ist ein wichtiger Leistungsfaktor für die Nutzbarkeit einer App. Das Herunterladen einer großen App in einen Browser dauert relativ lange, was die Benutzerfreundlichkeit beeinträchtigt. Blazor WebAssembly optimiert die Nutzlastgröße, um die Downloadzeiten zu verringern:
 
 ::: moniker range=">= aspnetcore-5.0"
 

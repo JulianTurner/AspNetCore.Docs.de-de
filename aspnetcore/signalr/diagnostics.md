@@ -4,7 +4,7 @@ author: anurse
 description: Erfahren Sie, wie Sie Diagnoseinformationen aus Ihrer ASP.net Core- SignalR App erfassen.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
-ms.custom: devx-track-csharp, signalr
+ms.custom: devx-track-csharp, signalr, devx-track-js
 ms.date: 06/12/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 649398a3868117b2e7f3358aa25544c99cc625b3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 890359c9e9f6c3c60f3105124f52c66b09a8a4fb
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631341"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690675"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Protokollierung und Diagnose in ASP.net Core SignalR
 
@@ -41,7 +41,7 @@ Da SignalR Teil ASP.net Core ist, wird das ASP.net Core Protokollierungs System 
 SignalR verwendet zwei Kategorien von Kategorien:
 
 * `Microsoft.AspNetCore.SignalR`: Bei Protokollen im Zusammenhang mit hubprotokollen, beim Aktivieren von Hubs, beim Aufrufen von Methoden und anderen hubbezogenen Aktivitäten.
-* `Microsoft.AspNetCore.Http.Connections`: Bei Protokollen, die sich auf Transporte beziehen, wie z. b. websockets, langes abrufen, vom Server gesendete Ereignisse und Low-Level- SignalR Infrastrukturen.
+* `Microsoft.AspNetCore.Http.Connections`: Bei Protokollen im Zusammenhang mit Transporten, z. b. websockets, langem Abruf, Server-Sent Ereignissen und Low-Level- SignalR Infrastruktur.
 
 Wenn Sie ausführliche Protokolle von aktivieren möchten SignalR , konfigurieren Sie beide vorangehenden Präfixe für die `Debug` Ebene in Ihrer *appsettings.js* Datei, indem Sie dem `LogLevel` unter Abschnitt in die folgenden Elemente hinzufügen `Logging` :
 
@@ -157,7 +157,7 @@ Diese Methode funktioniert für alle apps.
 
 Wenn Sie eine Verbindung über HTTPS herstellen, sind einige zusätzliche Schritte erforderlich, um sicherzustellen, dass der HTTPS-Datenverkehr von fddler entschlüsselt werden kann Weitere Informationen finden Sie in der [Dokumentation](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS)zu "Dokumentation".
 
-Nachdem Sie die Ablauf Verfolgung gesammelt haben, können Sie die Ablauf Verfolgung exportieren **File**, indem Sie auf  >  **Save**  >  der Menüleiste auf Datei**alle Sitzungen** speichern klicken.
+Nachdem Sie die Ablauf Verfolgung gesammelt haben, können Sie die Ablauf Verfolgung exportieren **File** , indem Sie auf  >  **Save**  >  der Menüleiste auf Datei **alle Sitzungen** speichern klicken.
 
 ![Exportieren aller Sitzungen aus "fddler"](diagnostics/fiddler-export.png)
 
@@ -177,7 +177,7 @@ Ersetzen `[interface]` Sie durch die Netzwerkschnittstelle, die Sie erfassen mö
 
 Diese Methode funktioniert nur bei browserbasierten apps.
 
-Die meisten Browser Entwicklertools über eine Registerkarte "Netzwerk" verfügen, mit der Sie die Netzwerkaktivität zwischen dem Browser und dem Server erfassen können. Diese Ablauf Verfolgungen enthalten jedoch keine WebSocket-und vom Server gesendeten Ereignis Nachrichten. Wenn Sie diese Transporte verwenden, ist die Verwendung eines Tools wie z. b. "fddler" oder "tcpdump" (unten beschrieben) ein besserer Ansatz.
+Die meisten Browser Entwicklertools über eine Registerkarte "Netzwerk" verfügen, mit der Sie die Netzwerkaktivität zwischen dem Browser und dem Server erfassen können. Diese Ablauf Verfolgungen enthalten jedoch keine WebSocket-und Server-Sent Ereignis Nachrichten. Wenn Sie diese Transporte verwenden, ist die Verwendung eines Tools wie z. b. "fddler" oder "tcpdump" (unten beschrieben) ein besserer Ansatz.
 
 ### <a name="microsoft-edge-and-internet-explorer"></a>Microsoft Edge und Internet Explorer
 

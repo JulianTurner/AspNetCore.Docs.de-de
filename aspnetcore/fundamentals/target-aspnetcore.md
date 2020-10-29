@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: fundamentals/target-aspnetcore
 ms.openlocfilehash: 571e6c66f60bbc09b902ff9064d2fb1c18c433dc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
+ms.lasthandoff: 10/26/2020
 ms.locfileid: "88630054"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Verwenden von ASP.NET Core-APIs in einer Klassenbibliothek
@@ -61,7 +61,7 @@ Verwenden Sie zur Unterstützung der Nutzung von Razor-Komponenten sowohl in [Bl
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek**. Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte deaktiviert sein.
+Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek** . Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte deaktiviert sein.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -73,7 +73,7 @@ dotnet new razorclasslib
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek**.
+Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek** .
 
 ---
 
@@ -125,7 +125,7 @@ Die Projektvorlage **Razor-Klassenbibliothek** erfüllt die obigen Voraussetzung
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek**. Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte aktiviert sein.
+Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek** . Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte aktiviert sein.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 

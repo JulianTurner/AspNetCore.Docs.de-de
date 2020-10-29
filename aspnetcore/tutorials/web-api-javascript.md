@@ -3,7 +3,7 @@ title: 'Tutorial: Aufrufen einer ASP.NET Core-Web-API mit JavaScript'
 author: rick-anderson
 description: Erfahren Sie, wie Sie eine ASP.NET Core-Web-API mit JavaScript aufrufen.
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 11/26/2019
 no-loc:
 - ASP.NET Core Identity
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 3d097d724ac5e2313d24f1f06e47b881f29a4a98
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b41288bd63267a9aa7035e25ebc8d838eed5d93b
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633798"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690681"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: Aufrufen einer ASP.NET Core-Web-API mit JavaScript
 
@@ -55,11 +55,11 @@ Ein sehr einfacher `fetch`-Aufruf akzeptiert einen einzelnen Parameter, der die 
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
-1. Erstellen Sie im Stammverzeichnis den Ordner *wwwroot*.
+1. Erstellen Sie im Stammverzeichnis den Ordner *wwwroot* .
 
-1. Erstellen Sie einen *js*-Ordner im *wwwroot*-Ordner.
+1. Erstellen Sie einen *js* -Ordner im *wwwroot* -Ordner.
 
-1. Fügen Sie eine HTML-Datei namens *index.html* zum *wwwroot*-Ordner hinzu. Ersetzen Sie den Inhalt von *index.html* durch folgendes Markup:
+1. Fügen Sie eine HTML-Datei namens *index.html* zum *wwwroot* -Ordner hinzu. Ersetzen Sie den Inhalt von *index.html* durch folgendes Markup:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
 
@@ -69,7 +69,7 @@ Ein sehr einfacher `fetch`-Aufruf akzeptiert einen einzelnen Parameter, der die 
 
 Möglicherweise ist eine Änderung an den Starteinstellungen des ASP.NET Core-Projekts erforderlich, um die HTML-Seite lokal zu testen:
 
-1. Öffnen Sie *Properties\launchSettings.json*.
+1. Öffnen Sie *Properties\launchSettings.json* .
 1. Entfernen Sie die `launchUrl`-Eigenschaft, um zu erzwingen, dass die App mit *index.html* als Startseite geöffnet wird. Dies ist die Standarddatei des Projekts.
 
 Dieses Beispiel ruft alle CRUD-Methoden der Web-API auf. Im Folgenden werden die Web-API-Aufrufe erläutert.
@@ -101,7 +101,7 @@ Wenn die Web-API den Statuscode „Erfolgreich“ zurückgibt, wird die Funktion
 
 Das Aktualisieren eines To-Do-Elements funktioniert sehr ähnlich wie das Hinzufügen. Allerdings gibt es zwei wesentliche Unterschiede:
 
-* Die Route erhält den eindeutigen Bezeichner des zu aktualisierenden Elements als Suffix. Beispiel: *api/TodoItems/1*.
+* Die Route erhält den eindeutigen Bezeichner des zu aktualisierenden Elements als Suffix. Beispiel: *api/TodoItems/1* .
 * Das HTTP-Aktionsverb ist PUT, wie durch die Option `method` angegeben.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_UpdateItem)]

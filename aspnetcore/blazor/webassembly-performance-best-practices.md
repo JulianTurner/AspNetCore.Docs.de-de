@@ -4,7 +4,7 @@ author: pranavkm
 description: In diesem Artikel erhalten Sie Tipps für das Steigern der Leistung von Blazor WebAssembly-Apps in ASP.NET Core und das Vermeiden von häufig auftretenden Leistungsproblemen.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 10/09/2020
 no-loc:
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: ea3f197e5bab82f4fb40238fe31cd5ce29ab62ad
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 0e827680e7024eabed09b989466476a3a80eb225
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900972"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690274"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Best Practices zur Blazor WebAssembly-Leistung in ASP.NET Core
 
@@ -31,8 +31,8 @@ Von [Pranav Krishnamoorthy](https://github.com/pranavkm) und [Steve Sanderson](h
 
 Blazor WebAssembly wurde sorgfältig entworfen und optimiert, um hohe Leistung in den realistischsten Anwendungsbenutzeroberflächen-Szenarien zu ermöglichen. Die besten Ergebnisse zu erzielen, hängt jedoch davon ab, dass die Entwickler die richtigen Muster und Features verwenden. Berücksichtigen Sie folgende Aspekte:
 
-* **Laufzeitdurchsatz**: Der .NET-Code wird in einem Interpreter innerhalb der WebAssembly-Laufzeit ausgeführt, sodass der CPU-Durchsatz begrenzt ist. In anspruchsvollen Szenarien profitiert die App vom [Optimieren der Renderinggeschwindigkeit](#optimize-rendering-speed).
-* **Startzeit**: Die App überträgt eine .NET-Laufzeit an den Browser. Daher ist es wichtig, Features zu verwenden, die die [Größe des Anwendungsdownloads minimieren](#minimize-app-download-size).
+* **Laufzeitdurchsatz** : Der .NET-Code wird in einem Interpreter innerhalb der WebAssembly-Laufzeit ausgeführt, sodass der CPU-Durchsatz begrenzt ist. In anspruchsvollen Szenarien profitiert die App vom [Optimieren der Renderinggeschwindigkeit](#optimize-rendering-speed).
+* **Startzeit** : Die App überträgt eine .NET-Laufzeit an den Browser. Daher ist es wichtig, Features zu verwenden, die die [Größe des Anwendungsdownloads minimieren](#minimize-app-download-size).
 
 ## <a name="optimize-rendering-speed"></a>Optimieren der Renderinggeschwindigkeit
 

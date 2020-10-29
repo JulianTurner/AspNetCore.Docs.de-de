@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 88c3ded79db65557d9426fde6f43aace4d9d8ae2
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: ad244c29c8e8e904793745119366cd677389b12d
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606674"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690608"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Blazor-Formulare und -Validierung in ASP.NET Core
 
@@ -224,7 +224,7 @@ Das folgende Formular validiert Benutzereingaben mithilfe der im `Starship`-Mode
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> erstellt <xref:Microsoft.AspNetCore.Components.Forms.EditContext> als [kaskadierenden Wert](xref:blazor/components/cascading-values-and-parameters), der Metadaten zum Bearbeitungsprozess erfasst, einschließlich der Felder, die geändert wurden und den aktuellen Validierungsnachrichten.
 
-Weisen Sie <xref:Microsoft.AspNetCore.Components.Forms.EditForm> **entweder** einen <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **oder** ein <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> zu. Die Zuweisung beider Elemente wird nicht unterstützt und generiert einen **Laufzeitfehler**.
+Weisen Sie <xref:Microsoft.AspNetCore.Components.Forms.EditForm> **entweder** einen <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **oder** ein <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> zu. Die Zuweisung beider Elemente wird nicht unterstützt und generiert einen **Laufzeitfehler** .
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> stellt für gültige und ungültige Formularübermittlungen geeignete Ereignisse zur Verfügung:
 
@@ -450,7 +450,7 @@ Servervalidierung kann mit einer Server-[Validierungssteuerelementkomponente](#v
 * Verarbeiten Sie clientseitige Validierung im Formular mit der <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>-Komponente.
 * Wenn das Formular clientseitige Validierung besteht (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> wird aufgerufen), senden Sie das <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> zur Formularverarbeitung an eine Back-End-Server-API.
 * Verarbeiten Sie die Modellvalidierung auf dem Server.
-* Die Server-API umfasst sowohl die integrierte Framework-Datenanmerkungsvalidierung als auch benutzerdefinierte Validierungslogik, die vom Entwickler bereitgestellt wird. Wenn die Validierung auf dem Server bestanden wird, verarbeiten Sie das Formular, und senden Sie einen Erfolgsstatuscode zurück (*200 - OK*). Wenn bei der Validierung ein Fehler auftritt, werden ein Fehlerstatuscode (*400 - Bad Request* (Ungültige Anforderung)) und die Feldvalidierungsfehler zurückgegeben.
+* Die Server-API umfasst sowohl die integrierte Framework-Datenanmerkungsvalidierung als auch benutzerdefinierte Validierungslogik, die vom Entwickler bereitgestellt wird. Wenn die Validierung auf dem Server bestanden wird, verarbeiten Sie das Formular, und senden Sie einen Erfolgsstatuscode zurück ( *200 - OK* ). Wenn bei der Validierung ein Fehler auftritt, werden ein Fehlerstatuscode ( *400 - Bad Request* (Ungültige Anforderung)) und die Feldvalidierungsfehler zurückgegeben.
 * Deaktivieren Sie entweder das Formular bei Erfolg, oder zeigen Sie die Fehler an.
 
 Das folgende Beispiel beruht auf Folgendem:
@@ -519,7 +519,7 @@ namespace BlazorSample.Server.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError("Validation Error: {MESSAGE}", ex.Message);
+                logger.LogError("Validation Error: {Message}", ex.Message);
             }
 
             return BadRequest(ModelState);
@@ -528,7 +528,7 @@ namespace BlazorSample.Server.Controllers
 }
 ```
 
-Wenn ein Validierungsfehler der Modellbindung auf dem Server auftritt, gibt ein [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normalerweise eine [Standardantwort „Ungültige Anforderung“](xref:web-api/index#default-badrequest-response) mit <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> zurück. Die Antwort enthält mehr Daten als nur die Validierungsfehler (wie im folgenden Beispiel gezeigt), wenn alle Felder des *Starfleet Starship Database*-Formulars nicht übermittelt wurden und die Validierung des Formulars fehlschlägt:
+Wenn ein Validierungsfehler der Modellbindung auf dem Server auftritt, gibt ein [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normalerweise eine [Standardantwort „Ungültige Anforderung“](xref:web-api/index#default-badrequest-response) mit <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> zurück. Die Antwort enthält mehr Daten als nur die Validierungsfehler (wie im folgenden Beispiel gezeigt), wenn alle Felder des *Starfleet Starship Database* -Formulars nicht übermittelt wurden und die Validierung des Formulars fehlschlägt:
 
 ```json
 {
@@ -583,7 +583,7 @@ Weitere Informationen finden Sie unter <xref:web-api/handle-errors#validation-fa
 
 Fügen Sie im Clientprojekt die im Abschnitt [Validierungssteuerelementkomponenten](#validator-components) gezeigte Validierungssteuerelementkomponente hinzu.
 
-Im Clientprojekt wird das *Starfleet Starship Database*-Formular aktualisiert, um Servervalidierungsfehler mithilfe der `CustomValidator`-Komponente anzuzeigen. Wenn die Server-API Validierungsmeldungen zurückgibt, werden diese dem <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> der `CustomValidator`-Komponente hinzugefügt. Die Fehler sind im <xref:Microsoft.AspNetCore.Components.Forms.EditContext> des Formulars zur Anzeige durch die <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> des Formulars verfügbar:
+Im Clientprojekt wird das *Starfleet Starship Database* -Formular aktualisiert, um Servervalidierungsfehler mithilfe der `CustomValidator`-Komponente anzuzeigen. Wenn die Server-API Validierungsmeldungen zurückgibt, werden diese dem <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> der `CustomValidator`-Komponente hinzugefügt. Die Fehler sind im <xref:Microsoft.AspNetCore.Components.Forms.EditContext> des Formulars zur Anzeige durch die <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> des Formulars verfügbar:
 
 ```razor
 @page "/FormValidation"
@@ -706,7 +706,7 @@ Im Clientprojekt wird das *Starfleet Starship Database*-Formular aktualisiert, u
         }
         catch (Exception ex)
         {
-            Logger.LogError("Form processing error: {MESSAGE}", ex.Message);
+            Logger.LogError("Form processing error: {Message}", ex.Message);
             disabled = true;
             messageStyles = "color:red";
             message = "There was an error processing the form.";
@@ -802,7 +802,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Fügen Sie der App die folgende `enums`-Klasse hinzu. Erstellen Sie eine neue Datei, in der `enums` gespeichert werden kann, oder fügen Sie der `Starship.cs`-Datei `enums` hinzu. Sorgen Sie dafür, dass das `Starship`-Modell und das *Starfleet Starship Database*-Formular auf `enums` zugreifen können:
+Fügen Sie der App die folgende `enums`-Klasse hinzu. Erstellen Sie eine neue Datei, in der `enums` gespeichert werden kann, oder fügen Sie der `Starship.cs`-Datei `enums` hinzu. Sorgen Sie dafür, dass das `Starship`-Modell und das *Starfleet Starship Database* -Formular auf `enums` zugreifen können:
 
 ```csharp
 public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
@@ -810,7 +810,7 @@ public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange 
 public enum Engine { Ion, Plasma, Fusion, Warp }
 ```
 
-Aktualisieren Sie das im Abschnitt [Integrierte Formularkomponenten](#built-in-forms-components) beschriebene *Starfleet Starship Database*-Formular. Fügen Sie die Komponenten hinzu, damit Folgendes erstellt wird:
+Aktualisieren Sie das im Abschnitt [Integrierte Formularkomponenten](#built-in-forms-components) beschriebene *Starfleet Starship Database* -Formular. Fügen Sie die Komponenten hinzu, damit Folgendes erstellt wird:
 
 * Eine Optionsfeldgruppe für den Schiffshersteller.
 * Eine geschachtelte Optionsfeldgruppe für die Farbe und den Motor des Schiffs.
@@ -958,7 +958,7 @@ Das Blazor-Framework versucht nicht, das Standardverhalten zu unterdrücken, wei
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Das plausibelste Äquivalent zu `null` in HTML ist eine `value` mit einer *leeren Zeichenfolge*. Das Blazor-Framework verarbeitet `null` als Konvertierung einer leeren Zeichenfolge für eine bidirektionale Bindung an einen `<select>`-Wert.
+Das plausibelste Äquivalent zu `null` in HTML ist eine `value` mit einer *leeren Zeichenfolge* . Das Blazor-Framework verarbeitet `null` als Konvertierung einer leeren Zeichenfolge für eine bidirektionale Bindung an einen `<select>`-Wert.
 
 ::: moniker-end
 
@@ -1059,7 +1059,7 @@ private class MyFieldClassProvider : FieldCssClassProvider
 
 ### <a name="no-locblazor-data-annotations-validation-package"></a>Validierungspakete für Datenanmerkungen in Blazor
 
-[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) ist ein Paket, das Lücken bei der Validierung mithilfe der <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>-Komponente schließt. Das Paket ist aktuell *experimentell*.
+[`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) ist ein Paket, das Lücken bei der Validierung mithilfe der <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>-Komponente schließt. Das Paket ist aktuell *experimentell* .
 
 > [!NOTE]
 > Das [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)-Paket enthält die neueste Version des *Release Candidate* auf [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Verwenden Sie zu diesem Zeitpunkt weiterhin das *experimentelle* Release Candidate-Paket. Die Assembly des Pakets wird möglicherweise in einer zukünftigen Version entweder in das Framework oder die Laufzeit verschoben. Weitere Aktualisierungen finden Sie im [GitHub-Repository „Announcements“](https://github.com/aspnet/Announcements) (Ankündigungen), im [dotnet/aspnetcore-Repositoryvon GitHub ](https://github.com/dotnet/aspnetcore) oder in diesem Themenabschnitt.

@@ -5,7 +5,7 @@ description: In diesem Artikel finden Sie Informationen zum Sichern einer gehost
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/02/2020
+ms.date: 10/27/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: 6ae8c55fcfc85dc725a7dd20a7dbecba063a13e9
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: a6fd005e19f532089ac1a1914756fb03eabb24c4
+ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900783"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92690479"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Sichern einer gehosteten Blazor WebAssembly-App in ASP.NET Core mit Identity Server
 
@@ -42,7 +42,7 @@ So erstellen Sie ein neues Blazor WebAssembly-Projekt mit einem Authentifizierun
 
 1. Wählen Sie **Einzelne Benutzerkonten** mit der Option **In-App-Speicherung von Benutzerkonten** aus, um Benutzer über das [Identity](xref:security/authentication/identity)-System von ASP.NET Core innerhalb der App zu speichern.
 
-1. Aktivieren Sie im Bereich **Erweitert** das Kontrollkästchen **Von ASP.NET Core gehostet**.
+1. Aktivieren Sie im Bereich **Erweitert** das Kontrollkästchen **Von ASP.NET Core gehostet** .
 
 # <a name="visual-studio-code--net-core-cli"></a>[Visual Studio Code / .NET Core-CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -68,7 +68,7 @@ So erstellen Sie ein neues Blazor WebAssembly-Projekt mit einem Authentifizierun
 
 1. Die App wird für einzelne Benutzer erstellt, die über [Identity](xref:security/authentication/identity) von ASP.NET Core in der App gespeichert sind.
 
-1. Aktivieren Sie das Kontrollkästchen **Von ASP.NET Core gehostet**.
+1. Aktivieren Sie das Kontrollkästchen **Von ASP.NET Core gehostet** .
 
 ---
 
@@ -280,8 +280,8 @@ Die `LoginDisplay`-Komponente (`Shared/LoginDisplay.razor`) wird in der `MainLay
 
 Führen Sie die App aus dem Serverprojekt aus. Wenn Sie Visual Studio verwenden, haben Sie folgende beiden Möglichkeiten:
 
-* Wählen Sie in der Dropdownliste **Startprojekte** in der Symbolleiste die *Server-API-App* aus, und klicken Sie auf **Ausführen**.
-* Wählen Sie das Serverprojekt im **Projektmappen-Explorer** aus, und klicken Sie in der Symbolleiste auf **Ausführen**, oder starten Sie die App über das Menü **Debuggen**.
+* Wählen Sie in der Dropdownliste **Startprojekte** in der Symbolleiste die *Server-API-App* aus, und klicken Sie auf **Ausführen** .
+* Wählen Sie das Serverprojekt im **Projektmappen-Explorer** aus, und klicken Sie in der Symbolleiste auf **Ausführen** , oder starten Sie die App über das Menü **Debuggen** .
 
 ## <a name="name-and-role-claim-with-api-authorization"></a>Namens- und Rollenanspruch mit API-Autorisierung
 
@@ -418,7 +418,7 @@ public class ProfileService : IProfileService
     {
     }
 
-    public Task GetProfileDataAsync(ProfileDataRequestContext context)
+    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
     {
         var nameClaim = context.Subject.FindAll(JwtClaimTypes.Name);
         context.IssuedClaims.AddRange(nameClaim);
@@ -426,12 +426,12 @@ public class ProfileService : IProfileService
         var roleClaims = context.Subject.FindAll(JwtClaimTypes.Role);
         context.IssuedClaims.AddRange(roleClaims);
 
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 
-    public Task IsActiveAsync(IsActiveContext context)
+    public async Task IsActiveAsync(IsActiveContext context)
     {
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 }
 ```
@@ -475,7 +475,7 @@ Verwenden Sie für dieses Hostingszenario **nicht** dasselbe Zertifikat für den
 
 * Die Verwendung anderer Zertifikate für diese beiden Anforderungen gilt aus Sicherheitsgründen als Best Practice, da private Schlüssel für die einzelnen Zwecke isoliert werden.
 * TLS-Zertifikate für die Kommunikation mit Browsern werden unabhängig verwaltet, ohne dass dadurch eine Auswirkung auf die Tokensignatur von Identity Server entsteht.
-* Wenn [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) aus Gründen der Bindung einer benutzerdefinierten Domäne ein Zertifikat für eine App Service-App bereitstellt, kann Identity Server nicht dasselbe Zertifikat von Azure Key Vault abrufen, um das Token zu signieren. Obwohl es möglich ist, dass Identity Server so konfiguriert wird, dass dasselbe TLS-Zertifikat aus einem physischen Pfad verwendet wird, ist das Unterstellen von Zertifikaten unter die Quellcodeverwaltung **nicht zu empfehlen und sollte in den meisten Szenarios vermieden werden**.
+* Wenn [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) aus Gründen der Bindung einer benutzerdefinierten Domäne ein Zertifikat für eine App Service-App bereitstellt, kann Identity Server nicht dasselbe Zertifikat von Azure Key Vault abrufen, um das Token zu signieren. Obwohl es möglich ist, dass Identity Server so konfiguriert wird, dass dasselbe TLS-Zertifikat aus einem physischen Pfad verwendet wird, ist das Unterstellen von Zertifikaten unter die Quellcodeverwaltung **nicht zu empfehlen und sollte in den meisten Szenarios vermieden werden** .
 
 In der folgenden Anleitung wird ein selbstsigniertes Zertifikat in Azure Key Vault erstellt, das lediglich der Tokensignatur in Identity Server dient. Die Identity Server-Konfiguration nutzt das Zertifikat in Key Vault über den `My` > `CurrentUser`-Zertifikatspeicher der App. Andere für HTTPS-Datenverkehr mit benutzerdefinierten Domänen verwendete Zertifikate werden unabhängig vom Signaturzertifikat für Identity Server erstellt und konfiguriert.
 
@@ -501,27 +501,27 @@ Konfigurieren einer App sowie Konfigurieren von Azure App Service und Azure Key 
    Weitere Informationen zu Azure Key Vault-Zertifikaten finden Sie unter [Azure Key Vault: Zertifikate](/azure/key-vault/certificates/) aus.
 1. Erstellen Sie eine neue Azure Key Vault-Instanz, oder verwenden Sie einen Schlüsseltresor in Ihrem Azure-Abonnement.
 1. Importieren Sie im Bereich **Zertifikate** des Schlüsseltresors das PFX-Sitezertifikat. Speichern Sie den Zertifikatfingerabdruck, der später für die Konfiguration der App verwendet wird.
-1. Erstellen Sie in Azure Key Vault ein selbstsigniertes Zertifikat für die Identity Server-Tokensignatur. Versehen Sie das Zertifikat mit einem **Zertifikatname** und einem **Antragsteller**. Der **Antragsteller** wird als `CN={COMMON NAME}` angegeben. Der Platzhalter `{COMMON NAME}` steht dabei für den allgemeinen Namen des Zertifikats. Beim allgemeinen Namen kann es sich um eine beliebige alphanumerische Zeichenfolge handeln. Bei `CN=IdentityServerSigning` handelt es sich beispielsweise um einen gültigen **Antragsteller** für ein Zertifikat. Verwenden Sie die Standardeinstellungen der **Erweiterten Richtlinienkonfiguration**. Speichern Sie den Zertifikatfingerabdruck, der später für die Konfiguration der App verwendet wird.
+1. Erstellen Sie in Azure Key Vault ein selbstsigniertes Zertifikat für die Identity Server-Tokensignatur. Versehen Sie das Zertifikat mit einem **Zertifikatname** und einem **Antragsteller** . Der **Antragsteller** wird als `CN={COMMON NAME}` angegeben. Der Platzhalter `{COMMON NAME}` steht dabei für den allgemeinen Namen des Zertifikats. Beim allgemeinen Namen kann es sich um eine beliebige alphanumerische Zeichenfolge handeln. Bei `CN=IdentityServerSigning` handelt es sich beispielsweise um einen gültigen **Antragsteller** für ein Zertifikat. Verwenden Sie die Standardeinstellungen der **Erweiterten Richtlinienkonfiguration** . Speichern Sie den Zertifikatfingerabdruck, der später für die Konfiguration der App verwendet wird.
 1. Navigieren Sie im Azure-Portal zu Azure App Service, und erstellen Sie eine neu App Service-Instanz mit der folgenden Konfiguration:
    * Legen Sie **Veröffentlichen** auf `Code` fest.
    * Legen Sie als **Runtimestapel** die Runtime der App fest.
-   * Bestätigen Sie für **SKU und Größe**, dass die Dienstebene der App Service-Instanz mindestens `Basic B1` ist.  App Service erfordert mindestens eine `Basic B1`-Dienstebene, um benutzerdefinierte Domänen nutzen zu können.
+   * Bestätigen Sie für **SKU und Größe** , dass die Dienstebene der App Service-Instanz mindestens `Basic B1` ist.  App Service erfordert mindestens eine `Basic B1`-Dienstebene, um benutzerdefinierte Domänen nutzen zu können.
 1. Sobald die App Service-Instanz von Azure erstellt wurde, öffnen Sie die **Konfiguration** der App, und fügen Sie eine neue Anwendungseinstellung hinzu, die den zuvor gespeicherten Zertifikatfingerabdruck angibt. Der App-Einstellungsschlüssel lautet `WEBSITE_LOAD_CERTIFICATES`. Trennen Sie die Zertifikatfingerabdrücke im App-Einstellungswert jeweils durch ein Komma, wie es im folgenden Beispiel zu sehen ist:
    * Schlüssel: `WEBSITE_LOAD_CERTIFICATES`
    * Wert: `57443A552A46DB...D55E28D412B943565,29F43A772CB6AF...1D04F0C67F85FB0B1`
 
-   Das Speichern der App-Einstellungen im Azure-Portal ist ein zweistufiger Prozess: Speichern Sie die Schlüssel-Wert-Einstellung `WEBSITE_LOAD_CERTIFICATES`, und klicken Sie dann oben auf dem Blatt auf die Schaltfläche **Speichern**.
-1. Klicken Sie auf die **TLS-/SSL-Einstellungen** der App. Klicken Sie auf **Private Schlüsselzertifikate (PFX)** . Verwenden Sie den **Key Vault-Zertifikat importieren**-Prozess zweimal, um sowohl das Zertifikat der Website für die HTTPS-Kommunikation als auch das selbstsignierte Identity Server-Zertifikat für die Tokensignatur der Website zu importieren.
-1. Navigieren Sie zum Blatt **Benutzerdefinierte Domänen**. Verwenden Sie auf der Website Ihrer Domänenregistrierungsstelle die **IP-Adresse** und eine **Verifizierungs-ID für eine benutzerdefinierte Domäne**, um die Domäne zu konfigurieren. Eine typische Domänenkonfiguration umfasst Folgendes:
+   Das Speichern der App-Einstellungen im Azure-Portal ist ein zweistufiger Prozess: Speichern Sie die Schlüssel-Wert-Einstellung `WEBSITE_LOAD_CERTIFICATES`, und klicken Sie dann oben auf dem Blatt auf die Schaltfläche **Speichern** .
+1. Klicken Sie auf die **TLS-/SSL-Einstellungen** der App. Klicken Sie auf **Private Schlüsselzertifikate (PFX)** . Verwenden Sie den **Key Vault-Zertifikat importieren** -Prozess zweimal, um sowohl das Zertifikat der Website für die HTTPS-Kommunikation als auch das selbstsignierte Identity Server-Zertifikat für die Tokensignatur der Website zu importieren.
+1. Navigieren Sie zum Blatt **Benutzerdefinierte Domänen** . Verwenden Sie auf der Website Ihrer Domänenregistrierungsstelle die **IP-Adresse** und eine **Verifizierungs-ID für eine benutzerdefinierte Domäne** , um die Domäne zu konfigurieren. Eine typische Domänenkonfiguration umfasst Folgendes:
    * Einen **A-Datensatz** mit `@` als **Host** und einen Wert der IP-Adresse aus dem Azure-Portal
    * Einen **TXT-Datensatz** mit `asuid` als **Host** und den Wert der von Azure generierten und vom Azure-Portal bereitgestellten Verifizierungs-ID
 
    Achten Sie darauf, dass Sie die Änderungen auf der Website Ihrer Domänenregistrierungsstelle korrekt speichern. Für manche Registrierungsstellenwebsites ist ein zweistufiger Prozess erforderlich, um Domänendatensätze zu speichern: Ein oder mehrere Datensätze werden einzeln gespeichert. Dann wird die Registrierung der Domäne über eine eigene Schaltfläche aktualisiert.
-1. Wechseln Sie zurück zum Blatt **Benutzerdefinierte Domänen** im Azure-Portal. Wählen Sie **Benutzerdefinierte Domäne hinzufügen**. Klicken Sie auf die Option **A-Datensatz**. Geben Sie die Domäne an, und klicken Sie auf **Überprüfen**. Wenn die Domänendatensätze korrekt sind und über das Internet weitergegeben werden, haben Sie im Portal die Möglichkeit, auf die Schaltfläche **Benutzerdefinierte Domäne hinzufügen** zu klicken.
+1. Wechseln Sie zurück zum Blatt **Benutzerdefinierte Domänen** im Azure-Portal. Wählen Sie **Benutzerdefinierte Domäne hinzufügen** . Klicken Sie auf die Option **A-Datensatz** . Geben Sie die Domäne an, und klicken Sie auf **Überprüfen** . Wenn die Domänendatensätze korrekt sind und über das Internet weitergegeben werden, haben Sie im Portal die Möglichkeit, auf die Schaltfläche **Benutzerdefinierte Domäne hinzufügen** zu klicken.
 
    Es kann einige Tage dauern, bis Änderungen an der Domänenregistrierung über Domänennamenserver (Domain Name Servers, DNS) im Internet weitergegeben werden, nachdem sie von Ihrer Domänenregistrierungsstelle verarbeitet wurden. Wenn Domänendatensätze nicht innerhalb von drei Werktagen aktualisiert wurden, überprüfen Sie, ob die Datensätze bei der Registrierungsstelle richtig festgelegt wurden, und wenden Sie sich an den entsprechenden Kundensupport.
-1. Auf dem Blatt **Benutzerdefinierte Domänen** ist die Option **SSL-Status** für die Domäne mit `Not Secure` markiert. Klicken Sie auf den Link **Bindung hinzufügen**. Wählen Sie für die benutzerdefinierte Domänenbindung das HTTPS-Zertifikat der Website aus dem Schlüsseltresor aus.
-1. Öffnen Sie in Visual Studio die Datei mit den App-Einstellungen des *Server*-Projekts (`appsettings.json` oder `appsettings.Production.json`). Fügen Sie in der Identity Server-Konfiguration den folgenden `Key`-Abschnitt hinzu. Geben Sie den **Antragsteller** des selbstsignierten Zertifikats für den `Name`-Schlüssel an. Im folgenden Beispiel handelt es sich beim im Schlüsseltresor zugewiesenen allgemeinen Namen des Zertifikats um `IdentityServerSigning`, was zu `CN=IdentityServerSigning` als **Antragsteller** führt:
+1. Auf dem Blatt **Benutzerdefinierte Domänen** ist die Option **SSL-Status** für die Domäne mit `Not Secure` markiert. Klicken Sie auf den Link **Bindung hinzufügen** . Wählen Sie für die benutzerdefinierte Domänenbindung das HTTPS-Zertifikat der Website aus dem Schlüsseltresor aus.
+1. Öffnen Sie in Visual Studio die Datei mit den App-Einstellungen des *Server* -Projekts (`appsettings.json` oder `appsettings.Production.json`). Fügen Sie in der Identity Server-Konfiguration den folgenden `Key`-Abschnitt hinzu. Geben Sie den **Antragsteller** des selbstsignierten Zertifikats für den `Name`-Schlüssel an. Im folgenden Beispiel handelt es sich beim im Schlüsseltresor zugewiesenen allgemeinen Namen des Zertifikats um `IdentityServerSigning`, was zu `CN=IdentityServerSigning` als **Antragsteller** führt:
 
    ```json
    "IdentityServer": {
@@ -537,8 +537,8 @@ Konfigurieren einer App sowie Konfigurieren von Azure App Service und Azure Key 
    },
    ```
 
-1. Erstellen Sie in Visual Studio ein Azure App Service-[Veröffentlichungsprofil](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) für das *Server*-Projekt. Klicken Sie in der Menüleiste auf Folgendes: **Erstellen** > **Veröffentlichen** > **Neu** > **Azure** > **Azure App Service** (Windows oder Linux). Wenn Visual Studio mit einem Azure-Abonnement verbunden ist, können Sie die **Anzeige** der Azure-Ressourcen nach **Ressourcentyp** festlegen. Suchen Sie in der Liste mit **Web-Apps** nach der App Service-Instanz für die App, und klicken Sie darauf. Wählen Sie **Fertig stellen** aus.
-1. Wenn Sie in Visual Studio zum **Veröffentlichen**-Fenster zurückgeleitet werden, werden der Schlüsseltresor und die Abhängigkeiten vom SQL Server-Datenbank-Dienst automatisch erkannt.
+1. Erstellen Sie in Visual Studio ein Azure App Service- [Veröffentlichungsprofil](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) für das *Server* -Projekt. Klicken Sie in der Menüleiste auf Folgendes: **Erstellen** > **Veröffentlichen** > **Neu** > **Azure** > **Azure App Service** (Windows oder Linux). Wenn Visual Studio mit einem Azure-Abonnement verbunden ist, können Sie die **Anzeige** der Azure-Ressourcen nach **Ressourcentyp** festlegen. Suchen Sie in der Liste mit **Web-Apps** nach der App Service-Instanz für die App, und klicken Sie darauf. Wählen Sie **Fertig stellen** aus.
+1. Wenn Sie in Visual Studio zum **Veröffentlichen** -Fenster zurückgeleitet werden, werden der Schlüsseltresor und die Abhängigkeiten vom SQL Server-Datenbank-Dienst automatisch erkannt.
 
    Für die Azure Key Vault-Instanz sind keine Konfigurationsänderungen an den Standardeinstellungen erforderlich.
 
@@ -546,7 +546,7 @@ Konfigurieren einer App sowie Konfigurieren von Azure App Service und Azure Key 
    * [App Service](/azure/app-service/)
    * [Identity Server](https://identityserver4.readthedocs.io/en/latest/)
 
-1. Klicken Sie unter dem Namen des Bereitstellungsprofils oben im Fenster auf den Link **Bearbeiten**. Ändern Sie die Ziel-URL in die URL der benutzerdefinierten Domäne der Website, z. B. `https://www.contoso.com`. Speichern Sie die Einstellungen.
+1. Klicken Sie unter dem Namen des Bereitstellungsprofils oben im Fenster auf den Link **Bearbeiten** . Ändern Sie die Ziel-URL in die URL der benutzerdefinierten Domäne der Website, z. B. `https://www.contoso.com`. Speichern Sie die Einstellungen.
 1. Veröffentlichen Sie die App. Visual Studio öffnet ein Browserfenster und fordert die Website unter der dazugehörigen benutzerdefinierten Domäne an.
 
 Die Azure-Dokumentation enthält weitere Informationen zur Verwendung von Azure-Diensten und benutzerdefinierten Domänen mit TLS-Bindung in App Service, einschließlich Details zur Verwendung von CNAME-Einträgen anstelle von A-Datensätzen. Weitere Informationen finden Sie in den folgenden Ressourcen:

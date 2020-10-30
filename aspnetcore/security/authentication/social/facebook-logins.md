@@ -7,6 +7,7 @@ ms.custom: seoapril2019, mvc, seodec18
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: ce0e7ad30c137562b74dc9fe5c53235e3599e575
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: be0b655645fd2bd0eab9f9c30a65485f386cead3
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634357"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053357"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>Einrichtung externer Facebook-Anmelde Informationen in ASP.net Core
 
@@ -48,7 +49,7 @@ In diesem Tutorial mit Codebeispielen wird veranschaulicht, wie Sie es Ihren Ben
 
   ![Erstellen Sie ein neues APP-ID-Formular.](index/_static/FBNewAppId.png)
 
-* Wählen Sie auf der neuen App-Karte **Produkt hinzufügen**aus.  Klicken Sie auf der **Facebook-Anmelde** Karte auf **Einrichten** . 
+* Wählen Sie auf der neuen App-Karte **Produkt hinzufügen** aus.  Klicken Sie auf der **Facebook-Anmelde** Karte auf **Einrichten** . 
 
   ![Seite "Produkt Setup"](index/_static/FBProductSetup.png)
 
@@ -65,7 +66,7 @@ In diesem Tutorial mit Codebeispielen wird veranschaulicht, wie Sie es Ihren Ben
 > [!NOTE]
 > Der URI */SignIn-Facebook* wird als Standard Rückruf des Facebook-Authentifizierungs Anbieters festgelegt. Sie können den Standard-Rückruf-URI beim Konfigurieren der Facebook-Authentifizierungs Middleware über die geerbte [remoteauthenticationoptions. callbackpath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) -Eigenschaft der [facebookoptions](/dotnet/api/microsoft.aspnetcore.authentication.facebook.facebookoptions) -Klasse ändern.
 
-* Klicken Sie auf **Änderungen speichern**.
+* Klicken Sie auf **Änderungen speichern** .
 
 * Klicken Sie im linken Navigationsbereich auf **Einstellungen**  >  **Basic** -Link.
 
@@ -103,8 +104,8 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 ## <a name="sign-in-with-facebook"></a>Mit Facebook anmelden
 
-* Führen Sie die APP aus, und wählen Sie **Anmelden aus**. 
-* Wählen Sie unter **anderen Dienst zum Anmelden verwenden. die**Option Facebook aus.
+* Führen Sie die APP aus, und wählen Sie **Anmelden aus** . 
+* Wählen Sie unter **anderen Dienst zum Anmelden verwenden. die** Option Facebook aus.
 * Sie werden zur Authentifizierung an **Facebook** umgeleitet.
 * Ihre Facebook-Anmelde Informationen eingeben.
 * Sie werden zurück zu Ihrer Website umgeleitet, auf der Sie Ihre e-Mail festlegen können.
@@ -132,7 +133,7 @@ Wir empfehlen, dass die `AccessDeniedPath` Seite die folgenden Informationen ent
 * Navigieren Sie zu [Facebook.com](https://www.facebook.com/)
 * Wenn Sie angemeldet sind, müssen Sie sich abmelden.
 * Führen Sie die APP aus, und wählen Sie die Facebook-Anmeldung aus.
-* Wählen Sie **nicht jetzt**aus. Sie werden auf die angegebene `AccessDeniedPath` Seite umgeleitet.
+* Wählen Sie **nicht jetzt** aus. Sie werden auf die angegebene `AccessDeniedPath` Seite umgeleitet.
 
 <!-- End of React  -->
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
@@ -146,7 +147,7 @@ Weitere Informationen zu den von der Facebook-Authentifizierung unterstützten K
 
 ## <a name="troubleshooting"></a>Problembehandlung
 
-* **Nur ASP.net Core 2. x:** Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, führt der Versuch, sich zu authentifizieren, zu *argumumtexception: die Option "signinscheme" muss angegeben werden*. Die Projektvorlage, die in diesem Tutorial verwendete wird sichergestellt, dass dies geschehen ist.
+* **Nur ASP.net Core 2. x:** Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, führt der Versuch, sich zu authentifizieren, zu *argumumtexception: die Option "signinscheme" muss angegeben werden* . Die Projektvorlage, die in diesem Tutorial verwendete wird sichergestellt, dass dies geschehen ist.
 * Wenn die Standortdatenbank nicht erstellt wurde, indem die ursprüngliche Migration anwenden, erhalten Sie *Fehler bei ein Datenbankvorgang beim Verarbeiten der Anforderung* Fehler. Tippen Sie auf **Migrations anwenden** , um die Datenbank zu erstellen und zu aktualisieren, um den Fehler zu überschreiten.
 
 ## <a name="next-steps"></a>Nächste Schritte

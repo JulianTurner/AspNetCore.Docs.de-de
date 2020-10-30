@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über Bereiche, ein Feature von ASP.NET MVC, das 
 ms.author: riande
 ms.date: 03/21/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: 033b57f5406d0344347b2f787fa2b2fbb2da8604
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 42eec406813adce4d7edbc1ab66a1f689c4aca0e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630249"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053526"
 ---
 # <a name="areas-in-aspnet-core"></a>Bereiche in ASP.NET Core
 
@@ -62,7 +63,7 @@ Eine typische ASP.NET Core-Web-App, die Bereiche, Controller und Ansichten verwe
 
 ### <a name="area-folder-structure"></a>Bereichsordnerstruktur
 
-Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Dienste*. Wenn Bereiche verwendet werden, würde die Ordnerstruktur ähnlich dem Folgenden aussehen:
+Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Dienste* . Wenn Bereiche verwendet werden, würde die Ordnerstruktur ähnlich dem Folgenden aussehen:
 
 * Projektname
   * Bereiche
@@ -138,7 +139,7 @@ Weitere Informationen finden Sie unter [Routing zu Controlleraktionen in ASP.NET
 
 ### <a name="shared-layout-for-areas-using-the-_viewstartcshtml-file"></a>Freigegebenes Layout für Bereiche unter Verwendung der _ViewStart.cshtml-Datei
 
-Wenn Sie ein gemeinsames Layout für die gesamte App freigeben möchten, behalten Sie die *_ViewStart. cshtml* im Stamm [Ordner der Anwendung](#arf)bei. Weitere Informationen finden Sie unter <xref:mvc/views/layout>.
+Wenn Sie ein gemeinsames Layout für die gesamte App freigeben möchten, behalten Sie die *_ViewStart. cshtml* im Stamm [Ordner der Anwendung](#arf)bei. Weitere Informationen finden Sie unter <xref:mvc/views/layout>
 
 <a name="arf"></a>
 
@@ -148,7 +149,7 @@ Der Stamm Ordner der Anwendung ist der Ordner, der *Startup.cs* in Web-App enth�
 
 ### <a name="_viewimportscshtml"></a>_ViewImports.cshtml
 
- */Views/_ViewImports. cshtml*, for MVC und */pages/_ViewImports. cshtml* für Razor Seiten, wird nicht in Ansichten in Bereichen importiert. Verwenden Sie einen der folgenden Ansätze, um Ansichts Importe für alle Sichten bereitzustellen:
+ */Views/_ViewImports. cshtml* , for MVC und */pages/_ViewImports. cshtml* für Razor Seiten, wird nicht in Ansichten in Bereichen importiert. Verwenden Sie einen der folgenden Ansätze, um Ansichts Importe für alle Sichten bereitzustellen:
 
 * Fügen Sie *_ViewImports. cshtml* dem [Anwendungs Stamm Ordner](#arf)hinzu. Eine *_ViewImports. cshtml* -Datei im Stamm Ordner der Anwendung gilt für alle Sichten in der app.
 * Kopieren Sie die Datei *_ViewImports. cshtml* in den entsprechenden Ansichts Ordner Unterbereiche.
@@ -204,7 +205,7 @@ Für den Code oben gilt:
 
 Eine *_ViewImports. cshtml* -Datei kann jedem Ordner der Bereichs *Seiten* hinzugefügt werden, um die Namespace-und taghilfsprogramme auf jede Razor Seite im Ordner zu importieren.
 
-Betrachten Sie den Bereich *Services* des Beispielcodes, der keine *_ViewImports.cshtml*-Datei enthält. Das folgende Markup zeigt die */Services/Manage/about* - Razor Seite an:
+Betrachten Sie den Bereich *Services* des Beispielcodes, der keine *_ViewImports.cshtml* -Datei enthält. Das folgende Markup zeigt die */Services/Manage/about* - Razor Seite an:
 
 [!code-cshtml[](areas/31samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -213,7 +214,7 @@ Im obenstehenden Markup:
 * Der vollqualifizierte Domänenname muss verwendet werden, um das Modell anzugeben (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
 * [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) werden aktiviert durch `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
-Im Beispieldownload enthält der Bereich „Products“ die folgende *_ViewImports.cshtml*-Datei:
+Im Beispieldownload enthält der Bereich „Products“ die folgende *_ViewImports.cshtml* -Datei:
 
 [!code-cshtml[](areas/31samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
@@ -231,7 +232,7 @@ Um ein gemeinsames Layout für die gesamte App freizugeben, verschieben Sie *_Vi
 
 ### <a name="publishing-areas"></a>Veröffentlichen von Bereichen
 
-Alle *.cshtml-Dateien und Dateien im *wwwroot*-Verzeichnis werden in der Ausgabe veröffentlicht, wenn `<Project Sdk="Microsoft.NET.Sdk.Web">` in der *.csproj-Datei enthalten ist.
+Alle *.cshtml-Dateien und Dateien im *wwwroot* -Verzeichnis werden in der Ausgabe veröffentlicht, wenn `<Project Sdk="Microsoft.NET.Sdk.Web">` in der *.csproj-Datei enthalten ist.
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -264,7 +265,7 @@ Eine typische ASP.NET Core-Web-App, die Bereiche, Controller und Ansichten verwe
 
 ### <a name="area-folder-structure"></a>Bereichsordnerstruktur
 
-Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Dienste*. Wenn Bereiche verwendet werden, würde die Ordnerstruktur ähnlich dem Folgenden aussehen:
+Stellen Sie sich eine App vor, die zwei logische Gruppen hat, *Produkte* und *Dienste* . Wenn Bereiche verwendet werden, würde die Ordnerstruktur ähnlich dem Folgenden aussehen:
 
 * Projektname
   * Bereiche
@@ -393,7 +394,7 @@ Für den Code oben gilt:
 
 Eine *_ViewImports. cshtml* -Datei kann jedem Ordner der Bereichs *Seiten* hinzugefügt werden, um die Namespace-und taghilfsprogramme auf jede Razor Seite im Ordner zu importieren.
 
-Betrachten Sie den Bereich *Services* des Beispielcodes, der keine *_ViewImports.cshtml*-Datei enthält. Das folgende Markup zeigt die */Services/Manage/about* - Razor Seite an:
+Betrachten Sie den Bereich *Services* des Beispielcodes, der keine *_ViewImports.cshtml* -Datei enthält. Das folgende Markup zeigt die */Services/Manage/about* - Razor Seite an:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Services/Pages/Manage/About.cshtml)]
 
@@ -402,7 +403,7 @@ Im obenstehenden Markup:
 * Der vollqualifizierte Domänenname muss verwendet werden, um das Modell anzugeben (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
 * [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) werden aktiviert durch `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
-Im Beispieldownload enthält der Bereich „Products“ die folgende *_ViewImports.cshtml*-Datei:
+Im Beispieldownload enthält der Bereich „Products“ die folgende *_ViewImports.cshtml* -Datei:
 
 [!code-cshtml[](areas/samples/RPareas/Areas/Products/Pages/_ViewImports.cshtml)]
 
@@ -420,5 +421,5 @@ Um ein gemeinsames Layout für die gesamte App freizugeben, verschieben Sie *_Vi
 
 ### <a name="publishing-areas"></a>Veröffentlichen von Bereichen
 
-Alle *.cshtml-Dateien und Dateien im *wwwroot*-Verzeichnis werden in der Ausgabe veröffentlicht, wenn `<Project Sdk="Microsoft.NET.Sdk.Web">` in der *.csproj-Datei enthalten ist.
+Alle *.cshtml-Dateien und Dateien im *wwwroot* -Verzeichnis werden in der Ausgabe veröffentlicht, wenn `<Project Sdk="Microsoft.NET.Sdk.Web">` in der *.csproj-Datei enthalten ist.
 ::: moniker-end

@@ -5,6 +5,7 @@ description: Entdecken Sie Artikel, die auf ASP.net Core Projekte basieren, die 
 ms.author: riande
 ms.date: 12/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/individual
-ms.openlocfilehash: 0cbde7cf0be830dab9dd094df6d102d81f9f0949
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 656006396de120b7feae6f2e08b5dad3b5a170b5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632615"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053344"
 ---
 # <a name="articles-based-on-aspnet-core-projects-created-with-individual-user-accounts"></a>Artikel, die auf ASP.net Core Projekten basieren, die mit einzelnen Benutzerkonten erstellt wurden
 
@@ -53,7 +54,7 @@ Sehen Sie sich [dieses GitHub-Problem](https://github.com/dotnet/AspNetCore/issu
 
 ## <a name="no-authentication"></a>Keine Authentifizierung
 
-Die Authentifizierung wird im .net Core-CLI mit der `-au` Option angegeben. In Visual Studio ist das Dialogfeld **Authentifizierung ändern** für neue Webanwendungen verfügbar. Der Standardwert für neue Web-Apps in Visual Studio ist **keine Authentifizierung**.
+Die Authentifizierung wird im .net Core-CLI mit der `-au` Option angegeben. In Visual Studio ist das Dialogfeld **Authentifizierung ändern** für neue Webanwendungen verfügbar. Der Standardwert für neue Web-Apps in Visual Studio ist **keine Authentifizierung** .
 
 Ohne Authentifizierung erstellte Projekte:
 

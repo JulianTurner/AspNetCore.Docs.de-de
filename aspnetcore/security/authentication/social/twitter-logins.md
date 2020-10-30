@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/twitter-logins
-ms.openlocfilehash: da0c5579b0828aee7f1c78ec7f5731db50151e90
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 47926d12ac5f922f2937df164d38ff6eb63cacf1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634058"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053279"
 ---
 # <a name="twitter-external-sign-in-setup-with-aspnet-core"></a>Externe Twitter-Anmelde Einrichtung mit ASP.net Core
 
@@ -37,7 +38,7 @@ Dieses Beispiel zeigt, wie Sie es Benutzern mithilfe eines auf der [vorherigen S
 
 * Navigieren Sie zu, [https://apps.twitter.com/](https://apps.twitter.com/) und melden Sie sich an. Wenn Sie noch nicht über ein Twitter-Konto verfügen, verwenden Sie den Link **[jetzt registrieren](https://twitter.com/signup)** , um einen zu erstellen.
 
-* Wählen Sie **app erstellen**aus. Geben Sie den **APP-Namen**, die **Anwendungsbeschreibung** und den URI der öffentlichen **Website** an (Dies kann temporär sein, bis Sie den Domänen Namen registrieren):
+* Wählen Sie **app erstellen** aus. Geben Sie den **APP-Namen** , die **Anwendungsbeschreibung** und den URI der öffentlichen **Website** an (Dies kann temporär sein, bis Sie den Domänen Namen registrieren):
 
 * Aktivieren Sie das Kontrollkästchen neben **Anmelden mit Twitter aktivieren** .
 
@@ -48,7 +49,7 @@ Dieses Beispiel zeigt, wie Sie es Benutzern mithilfe eines auf der [vorherigen S
   > [!NOTE]
   > Das URI-Segment `/signin-twitter` wird als Standard Rückruf des Twitter-Authentifizierungs Anbieters festgelegt. Sie können den Standard-Rückruf-URI ändern, während Sie die Twitter-Authentifizierungs Middleware über die geerbte [remoteauthenticationoptions. callbackpath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) -Eigenschaft der [twitteroptions](/dotnet/api/microsoft.aspnetcore.authentication.twitter.twitteroptions) -Klasse konfigurieren.
 
-* Füllen Sie das restliche Formular aus, und klicken Sie auf **Erstellen**. Es werden neue Anwendungsdetails angezeigt:
+* Füllen Sie das restliche Formular aus, und klicken Sie auf **Erstellen** . Es werden neue Anwendungsdetails angezeigt:
 
 ## <a name="store-the-twitter-consumer-api-key-and-secret"></a>Speichern Sie den Schlüssel und das Geheimnis der Twitter-consumerapi
 
@@ -80,7 +81,7 @@ Weitere Informationen zu von der Twitter-Authentifizierung unterstützten Konfig
 
 ## <a name="sign-in-with-twitter"></a>Mit Twitter anmelden
 
-Führen Sie die APP aus, und wählen Sie **Anmelden aus**. Eine Option zum Anmelden bei Twitter wird angezeigt:
+Führen Sie die APP aus, und wählen Sie **Anmelden aus** . Eine Option zum Anmelden bei Twitter wird angezeigt:
 
 Beim Klicken auf **Twitter** wird die Authentifizierung an Twitter umgeleitet:
 
@@ -98,7 +99,7 @@ Rather in the twitter setup, you can provide an External sign-in homepage. The e
 
 ## <a name="troubleshooting"></a>Problembehandlung
 
-* **Nur ASP.net Core 2. x:** Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, führt der Versuch, sich zu authentifizieren, zu *argumumtexception: die Option "signinscheme" muss angegeben werden*. Die in diesem Beispiel verwendete Projektvorlage stellt sicher, dass dies abgeschlossen ist.
+* **Nur ASP.net Core 2. x:** Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, führt der Versuch, sich zu authentifizieren, zu *argumumtexception: die Option "signinscheme" muss angegeben werden* . Die in diesem Beispiel verwendete Projektvorlage stellt sicher, dass dies abgeschlossen ist.
 * Wenn die Standortdatenbank nicht durch Anwenden der anfänglichen Migration erstellt wurde, wird *bei der Verarbeitung des Anforderungs Fehlers ein Daten Bank Vorgang* nicht ausgeführt. Tippen Sie auf **Migrations anwenden** , um die Datenbank zu erstellen und zu aktualisieren, um den Fehler zu überschreiten.
 
 ## <a name="next-steps"></a>Nächste Schritte

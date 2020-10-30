@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: a9ec02381b156a6599042d8e504a476036246302
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: d981c424fd2d6cad95b9164420f093672325c347
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865560"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051355"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-no-locidentity"></a>Migrieren von der ASP.net-Mitgliedschafts Authentifizierung zu ASP.net Core 2,0 Identity
 
@@ -47,16 +48,16 @@ ASP.net Core 2,0 befolgt das [Identity](/aspnet/identity/index) in ASP.NET 4,5 e
 
 Die schnellste Möglichkeit, das Schema für ASP.net Core 2,0 anzuzeigen Identity , besteht darin, eine neue ASP.net Core 2,0-App zu erstellen. Führen Sie diese Schritte in Visual Studio 2017 aus:
 
-1. Klicken Sie auf **Datei** > **Neu** > **Projekt**.
-1. Erstellen Sie ein neues **ASP.net Core Webanwendungs** Projekt mit dem Namen *Core Identity Sample*.
-1. Wählen Sie in der Dropdown Liste **ASP.net Core 2,0** aus, und wählen Sie dann **Webanwendung**. Diese Vorlage erzeugt eine [ Razor pages](xref:razor-pages/index) -app. Bevor Sie auf **OK**klicken, klicken Sie auf **Authentifizierung ändern**.
-1. Wählen Sie **einzelne Benutzerkonten** für die Identity Vorlagen aus. Klicken Sie abschließend auf **OK**und dann auf **OK**. Visual Studio erstellt ein Projekt mithilfe der ASP.NET Core Identity Vorlage.
-1. Klicken **Sie**  >  auf Extras**nuget-Paket-Manager**  >  **Paket-Manager-Konsole** , um das Fenster der Paket-Manager- **Konsole** (PMC)
+1. Klicken Sie auf **Datei** > **Neu** > **Projekt** .
+1. Erstellen Sie ein neues **ASP.net Core Webanwendungs** Projekt mit dem Namen *Core Identity Sample* .
+1. Wählen Sie in der Dropdown Liste **ASP.net Core 2,0** aus, und wählen Sie dann **Webanwendung** . Diese Vorlage erzeugt eine [ Razor pages](xref:razor-pages/index) -app. Bevor Sie auf **OK** klicken, klicken Sie auf **Authentifizierung ändern** .
+1. Wählen Sie **einzelne Benutzerkonten** für die Identity Vorlagen aus. Klicken Sie abschließend auf **OK** und dann auf **OK** . Visual Studio erstellt ein Projekt mithilfe der ASP.NET Core Identity Vorlage.
+1. Klicken **Sie**  >  auf Extras **nuget-Paket-Manager**  >  **Paket-Manager-Konsole** , um das Fenster der Paket-Manager- **Konsole** (PMC)
 1. Navigieren Sie in der PMC zum Stammverzeichnis des Projekts, und führen Sie den Befehl [Entity Framework (EF) Core](/ef/core) aus `Update-Database` .
 
     ASP.net Core 2,0 Identity verwendet EF Core, um mit der Datenbank zu interagieren, in der die Authentifizierungsdaten gespeichert werden. Damit die neu erstellte APP funktioniert, muss eine Datenbank vorhanden sein, um diese Daten zu speichern. Nach dem Erstellen einer neuen App besteht die schnellste Möglichkeit zum Überprüfen des Schemas in einer Datenbankumgebung darin, die Datenbank mithilfe [EF Core Migrationen](/ef/core/managing-schemas/migrations/)zu erstellen. Bei diesem Vorgang wird eine Datenbank erstellt, entweder lokal oder an anderer Stelle, die das Schema imitiert. Weitere Informationen finden Sie in der vorangehenden Dokumentation.
 
-    EF Core Befehle verwenden die Verbindungs Zeichenfolge für die in *appsettings.json*angegebene Datenbank. Die folgende Verbindungs Zeichenfolge bezieht sich auf eine Datenbank auf dem *localhost* mit dem Namen *ASP-NET-Core-Identity*. In dieser Einstellung ist EF Core für die Verwendung der `DefaultConnection` Verbindungs Zeichenfolge konfiguriert.
+    EF Core Befehle verwenden die Verbindungs Zeichenfolge für die in angegebene Datenbank *appsettings.json* . Die folgende Verbindungs Zeichenfolge bezieht sich auf eine Datenbank auf dem *localhost* mit dem Namen *ASP-NET-Core-Identity* . In dieser Einstellung ist EF Core für die Verwendung der `DefaultConnection` Verbindungs Zeichenfolge konfiguriert.
 
     ```json
     {
@@ -66,7 +67,7 @@ Die schnellste Möglichkeit, das Schema für ASP.net Core 2,0 anzuzeigen Identit
     }
     ```
 
-1. Wählen **View**Sie  >  **SQL Server-Objekt-Explorer**anzeigen aus. Erweitern Sie den Knoten, der dem Datenbanknamen entspricht, der in der- `ConnectionStrings:DefaultConnection` Eigenschaft von *appsettings.json*angegeben ist.
+1. Wählen **View** Sie  >  **SQL Server-Objekt-Explorer** anzeigen aus. Erweitern Sie den Knoten, der dem in der-Eigenschaft von angegebenen Datenbanknamen entspricht `ConnectionStrings:DefaultConnection` *appsettings.json* .
 
     Der `Update-Database` Befehl hat die mit dem Schema angegebene Datenbank und alle Daten, die für die APP-Initialisierung erforderlich sind, erstellt. Die folgende Abbildung zeigt die Tabellenstruktur, die mit den vorherigen Schritten erstellt wurde.
 
@@ -74,11 +75,11 @@ Die schnellste Möglichkeit, das Schema für ASP.net Core 2,0 anzuzeigen Identit
 
 ## <a name="migrate-the-schema"></a>Migrieren des Schemas
 
-Es gibt feine Unterschiede in den Tabellenstrukturen und-Feldern für die Mitgliedschaft und ASP.NET Core Identity . Das Muster wurde für die Authentifizierung/Autorisierung mit ASP.net-und ASP.net Core-apps erheblich geändert. Die Schlüssel Objekte, die weiterhin mit verwendet werden, Identity sind *Benutzer* und *Rollen*. Hier sind die Zuordnung von Tabellen für *Benutzer*, *Rollen*und *Benutzer Rollen*.
+Es gibt feine Unterschiede in den Tabellenstrukturen und-Feldern für die Mitgliedschaft und ASP.NET Core Identity . Das Muster wurde für die Authentifizierung/Autorisierung mit ASP.net-und ASP.net Core-apps erheblich geändert. Die Schlüssel Objekte, die weiterhin mit verwendet werden, Identity sind *Benutzer* und *Rollen* . Hier sind die Zuordnung von Tabellen für *Benutzer* , *Rollen* und *Benutzer Rollen* .
 
 ### <a name="users"></a>Benutzer
 
-|Identity<br>( `dbo.AspNetUsers` )-Spalte  |type     |Mitgliedschaft<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` )-Spalte|type      |
+|Identity<br>( `dbo.AspNetUsers` )-Spalte  |Typ     |Membership<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` )-Spalte|Typ      |
 |-------------------------------------------|-----------------------------------------------------------------------|
 | `Id`                            | `string`| `aspnet_Users.UserId`                                      | `string` |
 | `UserName`                      | `string`| `aspnet_Users.UserName`                                    | `string` |
@@ -93,7 +94,7 @@ Es gibt feine Unterschiede in den Tabellenstrukturen und-Feldern für die Mitgli
 
 ### <a name="roles"></a>Rollen
 
-|Identity<br>( `dbo.AspNetRoles` )-Spalte|type|Mitgliedschaft<br>( `dbo.aspnet_Roles` )-Spalte|type|
+|Identity<br>( `dbo.AspNetRoles` )-Spalte|Typ|Membership<br>( `dbo.aspnet_Roles` )-Spalte|Typ|
 |----------------------------------------|-----------------------------------|
 |`Id`                           |`string`|`RoleId`         | `string`        |
 |`Name`                         |`string`|`RoleName`       | `string`        |
@@ -101,12 +102,12 @@ Es gibt feine Unterschiede in den Tabellenstrukturen und-Feldern für die Mitgli
 
 ### <a name="user-roles"></a>Benutzerrollen
 
-|Identity<br>( `dbo.AspNetUserRoles` )-Spalte|type|Mitgliedschaft<br>( `dbo.aspnet_UsersInRoles` )-Spalte|type|
+|Identity<br>( `dbo.AspNetUserRoles` )-Spalte|Typ|Membership<br>( `dbo.aspnet_UsersInRoles` )-Spalte|Typ|
 |-------------------------|----------|--------------|---------------------------|
 |`RoleId`                 |`string`  |`RoleId`      |`string`                   |
 |`UserId`                 |`string`  |`UserId`      |`string`                   |
 
-Verweisen Sie auf die vorangehenden Mapping-Tabellen, wenn Sie ein Migrations Skript für *Benutzer* und *Rollen*erstellen. Im folgenden Beispiel wird davon ausgegangen, dass Sie zwei Datenbanken auf einem Datenbankserver haben. Eine Datenbank enthält das vorhandene ASP.net-Mitgliedschafts Schema und die Daten. Die andere *Core- Identity Beispiel* Datenbank wurde mithilfe der zuvor beschriebenen Schritte erstellt. Kommentare sind Inline enthalten, um weitere Informationen zu erhalten.
+Verweisen Sie auf die vorangehenden Mapping-Tabellen, wenn Sie ein Migrations Skript für *Benutzer* und *Rollen* erstellen. Im folgenden Beispiel wird davon ausgegangen, dass Sie zwei Datenbanken auf einem Datenbankserver haben. Eine Datenbank enthält das vorhandene ASP.net-Mitgliedschafts Schema und die Daten. Die andere *Core- Identity Beispiel* Datenbank wurde mithilfe der zuvor beschriebenen Schritte erstellt. Kommentare sind Inline enthalten, um weitere Informationen zu erhalten.
 
 ```sql
 -- THIS SCRIPT NEEDS TO RUN FROM THE CONTEXT OF THE MEMBERSHIP DB
@@ -200,7 +201,7 @@ Nachdem das vorherige Skript abgeschlossen wurde, ASP.NET Core Identity wird die
 > [!NOTE]
 > Wenn das Mitgliedschaftssystem Benutzer mit Benutzernamen enthielt, die nicht mit der e-Mail-Adresse übereinstimmen, sind Änderungen an der zuvor erstellten App erforderlich, um dies zu ermöglichen. Die Standardvorlage erwartet `UserName` `Email` , dass und identisch sind. In Situationen, in denen Sie sich unterscheiden, muss der Anmeldevorgang so geändert werden, dass `UserName` anstelle von verwendet wird `Email` .
 
-Entfernen Sie auf der `PageModel` Anmeldeseite, die sich unter *Pages\Account\Login.cshtml.cs*befindet, das `[EmailAddress]` -Attribut aus der *Email-* Eigenschaft. Benennen Sie ihn in *username*um. Dies erfordert eine Änderung, wo immer `EmailAddress` erwähnt wird, in der *Ansicht* und im Seiten *Modell*. Das Ergebnis sieht wie folgt aus:
+Entfernen Sie auf der `PageModel` Anmeldeseite, die sich unter *Pages\Account\Login.cshtml.cs* befindet, das `[EmailAddress]` -Attribut aus der *Email-* Eigenschaft. Benennen Sie ihn in *username* um. Dies erfordert eine Änderung, wo immer `EmailAddress` erwähnt wird, in der *Ansicht* und im Seiten *Modell* . Das Ergebnis sieht wie folgt aus:
 
  ![Anmeldung korrigiert](identity/_static/fixed-login.png)
 

@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hubs
-ms.openlocfilehash: 71ca0896bc645b7625f60c3a9e8fe321079d524a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4a31c16eb44e2244574d0df49c30e7a44b2bba6e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631276"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050939"
 ---
 # <a name="use-hubs-in-no-locsignalr-for-aspnet-core"></a>Verwenden von Hubs in SignalR für ASP.net Core
 
@@ -89,7 +90,7 @@ Sie können einen Rückgabetyp und Parameter, einschließlich komplexer Typen un
 
 Die- `Hub` Klasse verfügt über eine- `Context` Eigenschaft, die die folgenden Eigenschaften mit Informationen über die Verbindung enthält:
 
-| Eigenschaft | BESCHREIBUNG |
+| Eigenschaft | Beschreibung |
 | ------ | ----------- |
 | `ConnectionId` | Ruft die eindeutige ID für die Verbindung ab, die von zugewiesen wird SignalR . Es gibt eine Verbindungs-ID für jede Verbindung.|
 | `UserIdentifier` | Ruft den [Benutzer Bezeichner](xref:signalr/groups)ab. Standardmäßig SignalR verwendet die `ClaimTypes.NameIdentifier` aus der, die `ClaimsPrincipal` der Verbindung zugeordnet ist, als Benutzer Bezeichner. |
@@ -100,7 +101,7 @@ Die- `Hub` Klasse verfügt über eine- `Context` Eigenschaft, die die folgenden 
 
 `Hub.Context` enthält auch die folgenden Methoden:
 
-| Methode | BESCHREIBUNG |
+| Methode | Beschreibung |
 | ------ | ----------- |
 | `GetHttpContext` | Gibt den `HttpContext` für die Verbindung zurück, oder, `null` Wenn die Verbindung nicht mit einer HTTP-Anforderung verknüpft ist. Für http-Verbindungen können Sie diese Methode verwenden, um Informationen wie HTTP-Header und Abfrage Zeichenfolgen zu erhalten. |
 | `Abort` | Bricht die Verbindung ab. |
@@ -109,7 +110,7 @@ Die- `Hub` Klasse verfügt über eine- `Context` Eigenschaft, die die folgenden 
 
 Die- `Hub` Klasse verfügt über eine- `Clients` Eigenschaft, die die folgenden Eigenschaften für die Kommunikation zwischen Server und Client enthält:
 
-| Eigenschaft | BESCHREIBUNG |
+| Eigenschaft | Beschreibung |
 | ------ | ----------- |
 | `All` | Ruft eine Methode auf allen verbundenen Clients auf. |
 | `Caller` | Ruft eine Methode auf dem Client auf, der die Hub-Methode aufgerufen hat. |
@@ -117,7 +118,7 @@ Die- `Hub` Klasse verfügt über eine- `Clients` Eigenschaft, die die folgenden 
 
 `Hub.Clients` enthält auch die folgenden Methoden:
 
-| Methode | BESCHREIBUNG |
+| Methode | Beschreibung |
 | ------ | ----------- |
 | `AllExcept` | Ruft eine Methode auf allen verbundenen Clients mit Ausnahme der angegebenen Verbindungen auf. |
 | `Client` | Ruft eine Methode auf einem bestimmten verbundenen Client auf. |
@@ -155,7 +156,7 @@ Diese Schnittstelle kann verwendet werden, um das vorherige Beispiel zu umgestal
 
 `Hub<IChatClient>`Die Verwendung von ermöglicht die Überprüfung der Client Methoden über die Kompilierzeit. Dies verhindert Probleme, die durch die Verwendung von magischen Zeichen folgen verursacht werden, da `Hub<T>` nur den Zugriff auf die in der-Schnittstelle definierten Methoden ermöglicht.
 
-Durch die Verwendung eines stark typisierten wird `Hub<T>` die Möglichkeit zur Verwendung von deaktiviert `SendAsync` . Alle für die Schnittstelle definierten Methoden können weiterhin als asynchron definiert werden. Tatsächlich sollte jede dieser Methoden eine zurückgeben `Task` . Da es sich um eine Schnittstelle handelt, verwenden Sie das `async` Schlüsselwort nicht. Beispiel:
+Durch die Verwendung eines stark typisierten wird `Hub<T>` die Möglichkeit zur Verwendung von deaktiviert `SendAsync` . Alle für die Schnittstelle definierten Methoden können weiterhin als asynchron definiert werden. Tatsächlich sollte jede dieser Methoden eine zurückgeben `Task` . Da es sich um eine Schnittstelle handelt, verwenden Sie das `async` Schlüsselwort nicht. Zum Beispiel:
 
 ```csharp
 public interface IClient
@@ -185,13 +186,13 @@ Die SignalR Hubs-API stellt `OnConnectedAsync` die `OnDisconnectedAsync` virtuel
 
 [!INCLUDE[](~/includes/connectionid-signalr.md)]
 
-## <a name="handle-errors"></a>Fehlerbehandlung
+## <a name="handle-errors"></a>Behandeln von Fehlern
 
 Ausnahmen, die in ihren hubmethoden ausgelöst werden, werden an den Client gesendet, der die Methode aufgerufen hat. Auf dem JavaScript-Client `invoke` gibt die Methode eine [JavaScript-Zusage](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises)zurück. Wenn der Client einen Fehler mit einem Handler empfängt, der mithilfe von verbunden `catch` ist, wird er aufgerufen und als JavaScript- `Error` Objekt übermittelt.
 
 [!code-javascript[Error](hubs/sample/wwwroot/js/chat.js?range=23)]
 
-Wenn Ihr Hub eine Ausnahme auslöst, werden die Verbindungen nicht geschlossen. Standardmäßig wird SignalR eine generische Fehlermeldung an den Client zurückgegeben. Beispiel:
+Wenn Ihr Hub eine Ausnahme auslöst, werden die Verbindungen nicht geschlossen. Standardmäßig wird SignalR eine generische Fehlermeldung an den Client zurückgegeben. Zum Beispiel:
 
 ```
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.
@@ -206,7 +207,7 @@ Wenn Sie eine Ausnahme Bedingung haben, die Sie an den Client weiter *geben* mö
 > [!NOTE]
 > SignalR sendet die- `Message` Eigenschaft der Ausnahme nur an den Client. Die Stapel Überwachung und andere Eigenschaften der Ausnahme sind für den Client nicht verfügbar.
 
-## <a name="related-resources"></a>Zugehörige Ressourcen
+## <a name="related-resources"></a>Verwandte Ressourcen
 
 * [Einführung in ASP.net Core SignalR](xref:signalr/introduction)
 * [JavaScript-Client](xref:signalr/javascript-client)

@@ -5,6 +5,7 @@ description: Verwenden Sie dies Identity mit einer ASP.net Core-app. Erfahren Si
 ms.author: riande
 ms.date: 7/15/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 1d14a3668192a165ea5025ae0575a8e3d6dfd8e4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bfcef860beb07ab81dda1a10a1648491ae187bef
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633252"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052018"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>Einführung in Identity ASP.net Core
 
@@ -61,10 +62,10 @@ Erstellen Sie ein ASP.net Core Webanwendungs Projekt mit einzelnen Benutzerkonte
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Wählen Sie **Datei** > **neu** > **Projekt**aus.
-* Wählen Sie **ASP.NET Core-Webanwendung** aus. Nennen Sie das Projekt **"WebApp1"** , um den gleichen Namespace wie das Projekt herunterzuladen. Klicken Sie auf **OK**.
-* Wählen Sie eine ASP.net Core **Webanwendung**, und wählen Sie dann **Authentifizierung ändern**aus.
-* Wählen Sie **einzelne Benutzerkonten** , und klicken Sie auf **OK**.
+* Wählen Sie **Datei** > **neu** > **Projekt** aus.
+* Wählen Sie **ASP.NET Core-Webanwendung** aus. Nennen Sie das Projekt **"WebApp1"** , um den gleichen Namespace wie das Projekt herunterzuladen. Klicken Sie auf **OK** .
+* Wählen Sie eine ASP.net Core **Webanwendung** , und wählen Sie dann **Authentifizierung ändern** aus.
+* Wählen Sie **einzelne Benutzerkonten** , und klicken Sie auf **OK** .
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
@@ -80,7 +81,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-Das generierte Projekt stellt [ASP.NET Core Identity](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Beispiel:
+Das generierte Projekt stellt [ASP.NET Core Identity](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Zum Beispiel:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -189,7 +190,7 @@ Im vorangehenden Code muss der Code `return RedirectToPage();` eine Umleitung se
 
 [Signoutasync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) löscht die in einer gespeicherten Ansprüche des Benutzers cookie .
 
-Post wird in der Datei *pages/Shared/_LoginPartial. cshtml*angegeben:
+Post wird in der Datei *pages/Shared/_LoginPartial. cshtml* angegeben:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
@@ -295,10 +296,10 @@ Erstellen Sie ein ASP.net Core Webanwendungs Projekt mit einzelnen Benutzerkonte
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Wählen Sie **Datei** > **neu** > **Projekt**aus.
-* Wählen Sie **ASP.NET Core-Webanwendung** aus. Nennen Sie das Projekt **"WebApp1"** , um den gleichen Namespace wie das Projekt herunterzuladen. Klicken Sie auf **OK**.
-* Wählen Sie eine ASP.net Core **Webanwendung**, und wählen Sie dann **Authentifizierung ändern**aus.
-* Wählen Sie **einzelne Benutzerkonten** , und klicken Sie auf **OK**.
+* Wählen Sie **Datei** > **neu** > **Projekt** aus.
+* Wählen Sie **ASP.NET Core-Webanwendung** aus. Nennen Sie das Projekt **"WebApp1"** , um den gleichen Namespace wie das Projekt herunterzuladen. Klicken Sie auf **OK** .
+* Wählen Sie eine ASP.net Core **Webanwendung** , und wählen Sie dann **Authentifizierung ändern** aus.
+* Wählen Sie **einzelne Benutzerkonten** , und klicken Sie auf **OK** .
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
@@ -308,7 +309,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-Das generierte Projekt stellt [ASP.NET Core Identity](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Beispiel:
+Das generierte Projekt stellt [ASP.NET Core Identity](xref:security/authentication/identity) als [ Razor Klassenbibliothek](xref:razor-pages/ui-class)bereit. Die Identity Razor Klassenbibliothek macht Endpunkte mit dem `Identity` Bereich verfügbar. Zum Beispiel:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -408,7 +409,7 @@ Der Link " **Abmelden** " Ruft die `LogoutModel.OnPost` Aktion auf.
 
 [Signoutasync](/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1.signoutasync#Microsoft_AspNetCore_Identity_SignInManager_1_SignOutAsync) löscht die in einer gespeicherten Ansprüche des Benutzers cookie .
 
-Post wird in der Datei *pages/Shared/_LoginPartial. cshtml*angegeben:
+Post wird in der Datei *pages/Shared/_LoginPartial. cshtml* angegeben:
 
 [!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 

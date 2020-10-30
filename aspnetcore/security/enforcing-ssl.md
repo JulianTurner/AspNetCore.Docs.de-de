@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: b5260084c2fdd296168e918f06d8b54faf1865d5
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: e473da9a7cbd91a601ad4af0c7c02c7f576f348c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722656"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051121"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Erzwingen von HTTPS in ASP.net Core
 
@@ -113,7 +114,7 @@ Geben Sie den HTTPS-Port an, indem Sie einen der folgenden Ansätze verwenden:
 
   * In der Host Konfiguration.
   * Durch Festlegen der `ASPNETCORE_HTTPS_PORT` Umgebungsvariable.
-  * Indem Sie einen Eintrag der obersten Ebene in *appsettings.js*hinzufügen:
+  * Durch Hinzufügen eines Eintrags auf oberster Ebene in *appsettings.json* :
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -127,7 +128,7 @@ Geben Sie den HTTPS-Port an, indem Sie einen der folgenden Ansätze verwenden:
 
   * In der Host Konfiguration.
   * Durch Festlegen der `ASPNETCORE_HTTPS_PORT` Umgebungsvariable.
-  * Indem Sie einen Eintrag der obersten Ebene in *appsettings.js*hinzufügen:
+  * Durch Hinzufügen eines Eintrags auf oberster Ebene in *appsettings.json* :
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -135,7 +136,7 @@ Geben Sie den HTTPS-Port an, indem Sie einen der folgenden Ansätze verwenden:
 
 ::: moniker-end
 
-* Legen Sie in Entwicklung in *launchsettings.js*eine HTTPS-URL fest. Aktivieren Sie HTTPS, wenn IIS Express verwendet wird.
+* Legen Sie in Entwicklung in *launchsettings.js* eine HTTPS-URL fest. Aktivieren Sie HTTPS, wenn IIS Express verwendet wird.
 
 * Konfigurieren Sie einen HTTPS-URL-Endpunkt für eine Public-Edge-Bereitstellung von [Kestrel](xref:fundamentals/servers/kestrel) -Server oder [HTTP.sys](xref:fundamentals/servers/httpsys) -Server. Nur **ein HTTPS-Port** wird von der APP verwendet. Die Middleware ermittelt den Port über <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> .
 
@@ -161,7 +162,7 @@ Wenn Anforderungen in einer Reverseproxykonfiguration weitergeleitet werden, ver
 
 Wenn Sie Azure App Service bereitstellen, befolgen Sie die Anweisungen im [Tutorial: Binden eines vorhandenen benutzerdefinierten SSL-Zertifikats an Azure-Web-Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-### <a name="options"></a>Tastatur
+### <a name="options"></a>Optionen
 
 Der folgende markierte Code ruft [addhttpsredirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) auf, um Middleware-Optionen zu konfigurieren:
 
@@ -192,7 +193,7 @@ Die Middleware sendet standardmäßig ein [Status307TemporaryRedirect](/dotnet/a
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Beim Konfigurieren von Diensten in *Startup.cs*:
+Beim Konfigurieren von Diensten in *Startup.cs* :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -213,7 +214,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker range="<= aspnetcore-2.2"
 
-Beim Konfigurieren von Diensten in *Startup.cs*:
+Beim Konfigurieren von Diensten in *Startup.cs* :
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -412,7 +413,7 @@ Mit den obigen Befehlen werden die meisten Browser Vertrauensstellungs Probleme 
 ### <a name="docker---certificate-not-trusted"></a>Docker-Zertifikat nicht vertrauenswürdig
 
 * Löschen Sie den Ordner " *c:\Users \{ User} \appdata\roaming\asp.net\https* ".
-* Bereinigen Sie die Projekt Mappe. Löschen Sie die Ordner *bin* und *obj*.
+* Bereinigen Sie die Projekt Mappe. Löschen Sie die Ordner *bin* und *obj* .
 * Starten Sie das Entwicklungs Tool neu. Beispielsweise Visual Studio, Visual Studio Code oder Visual Studio für Mac.
 
 ### <a name="windows---certificate-not-trusted"></a>Windows-Zertifikat nicht vertrauenswürdig
@@ -448,7 +449,7 @@ Informationen zur Behandlung von Zertifikat Problemen mit Visual Studio finden [
 
 ### <a name="iis-express-ssl-certificate-used-with-visual-studio"></a>IIS Express SSL-Zertifikat, das mit Visual Studio verwendet wird.
 
-Um Probleme mit dem IIS Express Zertifikat zu beheben, wählen Sie im Visual Studio-Installer **Reparieren** aus. Weitere Informationen finden Sie in [diesem GitHub-Issue](https://github.com/dotnet/aspnetcore/issues/16892).
+Um Probleme mit dem IIS Express Zertifikat zu beheben, wählen Sie im Visual Studio-Installer **Reparieren** aus. Weitere Informationen finden Sie in [diesem GitHub-Problem](https://github.com/dotnet/aspnetcore/issues/16892).
 
 ## <a name="additional-information"></a>Zusätzliche Informationen
 

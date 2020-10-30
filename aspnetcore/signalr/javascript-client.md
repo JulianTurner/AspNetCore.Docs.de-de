@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc, devx-track-js
 ms.date: 04/08/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: be271272c952487fccc5136307c84fdf49391848
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: b4b1bc6131a6676710adbf2503efe3f304d89a58
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690646"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050848"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>ASP.net Core SignalR JavaScript-Client
 
@@ -50,7 +51,7 @@ npm install @microsoft/signalr
 
 NPM installiert den Paket Inhalt im Ordner *" \\ @microsoft\signalr\dist\browser node_modules* ". Erstellen Sie einen neuen Ordner mit dem Namen *signalr* unter dem Ordner *wwwroot \\ lib* . Kopieren Sie die *signalr.js* Datei in den Ordner " *wwwroot\lib\signalr* ".
 
-Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel:
+Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Zum Beispiel:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -58,7 +59,7 @@ Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Verwenden eines Content Delivery Network (CDN)
 
-Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Beispiel:
+Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Zum Beispiel:
 
 [!code-html[](javascript-client/samples/3.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
 
@@ -81,6 +82,9 @@ Mit dem folgenden Code wird eine Verbindung erstellt und gestartet. Der Name des
 ### <a name="cross-origin-connections"></a>Ursprungs übergreifende Verbindungen
 
 Normalerweise laden Browser Verbindungen aus derselben Domäne wie die angeforderte Seite. Es gibt jedoch Situationen, in denen eine Verbindung mit einer anderen Domäne erforderlich ist.
+
+> [!IMPORTANT]
+> Der Client Code muss anstelle eines relative URL eine absolute URL verwenden. Ändern Sie `.withUrl("/chathub")` in `.withUrl("https://myappurl/chathub")`.
 
 Um zu verhindern, dass ein böswilliger Standort vertrauliche Daten von einem anderen Standort liest, sind [Ursprungs übergreifende Verbindungen](xref:security/cors) standardmäßig deaktiviert. Um eine Ursprungs übergreifende Anforderung zuzulassen, aktivieren Sie Sie in der- `Startup` Klasse:
 
@@ -315,7 +319,7 @@ npm install @aspnet/signalr
 
 NPM installiert den Paket Inhalt im Ordner *" \\ @aspnet\signalr\dist\browser node_modules* ". Erstellen Sie einen neuen Ordner mit dem Namen *signalr* unter dem Ordner *wwwroot \\ lib* . Kopieren Sie die *signalr.js* Datei in den Ordner " *wwwroot\lib\signalr* ".
 
-Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel:
+Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Zum Beispiel:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -323,7 +327,7 @@ Verweisen Sie SignalR auf den JavaScript-Client im- `<script>` Element. Beispiel
 
 ### <a name="use-a-content-delivery-network-cdn"></a>Verwenden eines Content Delivery Network (CDN)
 
-Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Beispiel:
+Wenn Sie die Client Bibliothek ohne die erforderliche Komponente für NPM verwenden möchten, verweisen Sie auf eine CDN-gehostete Kopie der Client Bibliothek. Zum Beispiel:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>

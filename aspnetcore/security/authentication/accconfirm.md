@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie eine ASP.net Core-App mit e-Mail-Bestätigung
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: d6ea37ceb83ffbaa94187e0c541c79428594e4b4
-ms.sourcegitcommit: 2039e60eb7b482da8298f82dcd5eda27cf747f32
+ms.openlocfilehash: 91148c67d5dc0bf97e2f926f50dcff5dd0708f4b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88906448"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052317"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>Account confirmation and password recovery in ASP.NET Core (Kontobestätigung und Kennwortwiederherstellung in ASP.NET Core)
 
@@ -53,10 +54,10 @@ dotnet run
 
 Führen Sie die APP aus, wählen Sie den Link **registrieren** aus, und registrieren Sie einen Benutzer. Nach der Registrierung werden Sie zur Seite an weitergeleitet, `/Identity/Account/RegisterConfirmation` die einen Link zum Simulieren einer e-Mail-Bestätigung enthält:
 
-* Klicken Sie auf den Link `Click here to confirm your account` (Zentralisierte Protokollierung).
+* Wählen Sie den `Click here to confirm your account` Link aus.
 * Wählen Sie den **Anmelde** Link aus, und melden Sie sich mit denselben Anmelde Informationen an.
 * Wählen Sie den `Hello YourEmail@provider.com!` Link aus, der Sie zur Seite umleitet `/Identity/Account/Manage/PersonalData` .
-* Wählen Sie auf der linken Seite die Registerkarte **persönliche Daten** aus, und klicken Sie dann auf **Löschen**.
+* Wählen Sie auf der linken Seite die Registerkarte **persönliche Daten** aus, und klicken Sie dann auf **Löschen** .
 
 ### <a name="configure-an-email-provider"></a>Konfigurieren eines e-Mail-Anbieters
 
@@ -64,13 +65,13 @@ In diesem Tutorial wird [sendgrid](https://sendgrid.com) zum Senden von e-Mails 
 
 Das sendgrid-Konto erfordert möglicherweise das [Hinzufügen eines Absenders](https://sendgrid.com/docs/ui/sending-email/senders/).
 
-Erstellen Sie eine Klasse zum Abrufen des Schlüssels für sichere e-Mails. Erstellen Sie für dieses Beispiel *Dienste/authmessagesenderoptions. cs*:
+Erstellen Sie eine Klasse zum Abrufen des Schlüssels für sichere e-Mails. Erstellen Sie für dieses Beispiel *Dienste/authmessagesenderoptions. cs* :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 #### <a name="configure-sendgrid-user-secrets"></a>Konfigurieren von sendgrid-Benutzer Geheimnissen
 
-Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Beispiel:
+Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Zum Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -155,7 +156,7 @@ Führen Sie die Web-App aus, und testen Sie den Ablauf der Konto Bestätigung un
 
 ### <a name="test-password-reset"></a>Kenn Wort Zurücksetzung testen
 
-* Wenn Sie angemeldet sind, wählen Sie **Abmelden aus**.
+* Wenn Sie angemeldet sind, wählen Sie **Abmelden aus** .
 * Wählen Sie den Link **Anmelden aus** , und wählen Sie den Link **Kennwort vergessen?** aus.
 * Geben Sie die e-Mail ein, die Sie zum Registrieren des Kontos verwendet haben.
 * Eine e-Mail mit einem Link zum Zurücksetzen Ihres Kennworts wird gesendet. Überprüfen Sie Ihre e-Mail, und klicken Sie auf den Link zum Zurücksetzen Ihres Kennworts Nachdem das Kennwort erfolgreich zurückgesetzt wurde, können Sie sich mit Ihrer e-Mail-Adresse und dem neuen Kennwort anmelden.
@@ -266,7 +267,7 @@ Führen Sie die APP aus, wählen Sie den Link **registrieren** aus, und registri
 
 Beachten Sie, dass das Feld der Tabelle `EmailConfirmed` ist `False` .
 
-Sie sollten diese e-Mail im nächsten Schritt erneut verwenden, wenn die APP eine Bestätigungs-e-Mail sendet. Klicken Sie mit der rechten Maustaste auf die Zeile, und wählen Sie **Löschen**. Wenn Sie den e-Mail-Alias löschen, wird dies in den folgenden Schritten vereinfacht.
+Sie sollten diese e-Mail im nächsten Schritt erneut verwenden, wenn die APP eine Bestätigungs-e-Mail sendet. Klicken Sie mit der rechten Maustaste auf die Zeile, und wählen Sie **Löschen** . Wenn Sie den e-Mail-Alias löschen, wird dies in den folgenden Schritten vereinfacht.
 
 <a name="prevent-login-at-registration"></a>
 
@@ -286,13 +287,13 @@ Aktualisieren `Startup.ConfigureServices`  Sie, um eine bestätigte e-Mail anzuf
 
 In diesem Tutorial wird [sendgrid](https://sendgrid.com) zum Senden von e-Mails verwendet. Sie benötigen ein sendgrid-Konto und einen Schlüssel zum Senden von e-Mails. Sie können andere e-Mail-Anbieter verwenden. ASP.net Core 2. x umfasst `System.Net.Mail` , das Ihnen ermöglicht, e-Mails von Ihrer APP zu senden. Es wird empfohlen, sendgrid oder einen anderen e-Mail-Dienst zum Senden von e-Mails zu verwenden SMTP ist schwierig zu sichern und ordnungsgemäß eingerichtet.
 
-Erstellen Sie eine Klasse zum Abrufen des Schlüssels für sichere e-Mails. Erstellen Sie für dieses Beispiel *Dienste/authmessagesenderoptions. cs*:
+Erstellen Sie eine Klasse zum Abrufen des Schlüssels für sichere e-Mails. Erstellen Sie für dieses Beispiel *Dienste/authmessagesenderoptions. cs* :
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Services/AuthMessageSenderOptions.cs?name=snippet1)]
 
 #### <a name="configure-sendgrid-user-secrets"></a>Konfigurieren von sendgrid-Benutzer Geheimnissen
 
-Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Beispiel:
+Legen Sie `SendGridUser` und `SendGridKey` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Zum Beispiel:
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
@@ -355,7 +356,7 @@ Fügen Sie der- `ConfigureServices` Methode in der Datei *Startup.cs* den folgen
 
 ## <a name="enable-account-confirmation-and-password-recovery"></a>Aktivieren der Konto Bestätigung und Kenn Wort Wiederherstellung
 
-Die Vorlage enthält den Code für die Konto Bestätigung und Kenn Wort Wiederherstellung. Suchen Sie die `OnPostAsync` -Methode in " *Areas/ Identity /pages/Account/Register.cshtml.cs*".
+Die Vorlage enthält den Code für die Konto Bestätigung und Kenn Wort Wiederherstellung. Suchen Sie die `OnPostAsync` -Methode in " *Areas/ Identity /pages/Account/Register.cshtml.cs* ".
 
 Verhindern Sie, dass neu registrierte Benutzer automatisch angemeldet werden, indem Sie die folgende Zeile auskommentieren:
 
@@ -385,7 +386,7 @@ Die Seite verwalten wird angezeigt, und die Registerkarte **Profil** ist ausgew�
 
 ### <a name="test-password-reset"></a>Kenn Wort Zurücksetzung testen
 
-* Wenn Sie angemeldet sind, wählen Sie **Abmelden aus**.
+* Wenn Sie angemeldet sind, wählen Sie **Abmelden aus** .
 * Wählen Sie den Link **Anmelden aus** , und wählen Sie den Link **Kennwort vergessen?** aus.
 * Geben Sie die e-Mail ein, die Sie zum Registrieren des Kontos verwendet haben.
 * Eine e-Mail mit einem Link zum Zurücksetzen Ihres Kennworts wird gesendet. Überprüfen Sie Ihre e-Mail, und klicken Sie auf den Link zum Zurücksetzen Ihres Kennworts Nachdem das Kennwort erfolgreich zurückgesetzt wurde, können Sie sich mit Ihrer e-Mail-Adresse und dem neuen Kennwort anmelden.

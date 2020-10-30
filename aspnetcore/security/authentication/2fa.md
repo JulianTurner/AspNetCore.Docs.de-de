@@ -7,6 +7,7 @@ ms.author: riande
 ms.date: 09/22/2018
 ms.custom: mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/2fa
-ms.openlocfilehash: e5e606afaf0219f3a0eb7301203b7142a00322be
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1ee9e656c2e631c9b5588149e0a75e07108baff1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634110"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051264"
 ---
 # <a name="two-factor-authentication-with-sms-in-aspnet-core"></a>Zweistufige Authentifizierung mit SMS in ASP.net Core
 
@@ -48,17 +49,17 @@ Erstellen Sie ein SMS-Konto, z. b. aus [twilio](https://www.twilio.com/) oder [A
 
 **Twilio**
 
-Kopieren Sie die **Konto-SID** und das Authentifizierungs **Token**auf der Registerkarte Dashboard Ihres twilio-Kontos.
+Kopieren Sie die **Konto-SID** und das Authentifizierungs **Token** auf der Registerkarte Dashboard Ihres twilio-Kontos.
 
 **Aspsms:**
 
-Navigieren Sie in Ihren Kontoeinstellungen zu **UserKey** , und kopieren Sie es mit Ihrem **Kennwort**.
+Navigieren Sie in Ihren Kontoeinstellungen zu **UserKey** , und kopieren Sie es mit Ihrem **Kennwort** .
 
 Diese Werte werden später in mit dem Secret-Manager-Tool in den Schlüsseln `SMSAccountIdentification` und gespeichert `SMSAccountPassword` .
 
 #### <a name="specifying-senderid--originator"></a>Angeben von SenderID/Absender
 
-**Twilio:** Kopieren Sie Ihre twilio- **Telefonnummer**auf der Registerkarte Zahlen.
+**Twilio:** Kopieren Sie Ihre twilio- **Telefonnummer** auf der Registerkarte Zahlen.
 
 **Aspsms:** Entsperren Sie einen oder mehrere Originatoren im Menü Unlock-Absender, oder wählen Sie einen alphanumerischen Absender aus (wird nicht von allen Netzwerken unterstützt).
 
@@ -72,7 +73,7 @@ Wir verwenden das [options Muster](xref:fundamentals/configuration/options) für
 
 [!code-csharp[](2fa/sample/Web2FA/Services/SMSoptions.cs)]
 
-Legen Sie `SMSAccountIdentification` `SMSAccountPassword` und `SMSAccountFrom` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Beispiel:
+Legen Sie `SMSAccountIdentification` `SMSAccountPassword` und `SMSAccountFrom` mit dem [Secret-Manager-Tool](xref:security/app-secrets)fest. Zum Beispiel:
 
 ```none
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345
@@ -99,7 +100,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 
 ### <a name="configure-startup-to-use-smsoptions"></a>Zu verwendenden Start konfigurieren `SMSoptions`
 
-Fügen Sie dem `SMSoptions` Dienst Container in der- `ConfigureServices` Methode in der *Startup.cs*hinzu:
+Fügen Sie dem `SMSoptions` Dienst Container in der- `ConfigureServices` Methode in der *Startup.cs* hinzu:
 
 [!code-csharp[](2fa/sample/Web2FA/Startup.cs?name=snippet1&highlight=4)]
 
@@ -117,7 +118,7 @@ Fügen Sie dem `SMSoptions` Dienst Container in der- `ConfigureServices` Methode
 
 ![Ansicht verwalten: Tippen Sie auf den Link "hinzufügen".](2fa/_static/login2fa2.png)
 
-* Fügen Sie eine Telefonnummer hinzu, die den Überprüfungs Code empfängt, und tippen **Sie auf Überprüfungs Code senden**.
+* Fügen Sie eine Telefonnummer hinzu, die den Überprüfungs Code empfängt, und tippen **Sie auf Überprüfungs Code senden** .
 
 ![Seite "Telefonnummer hinzufügen"](2fa/_static/login2fa3.png)
 
@@ -141,13 +142,13 @@ Wenn Sie keine SMS erhalten, finden Sie weitere Informationen auf der twilio-Pro
 
 * Melden Sie sich an.
 
-* Das Benutzerkonto hat die zweistufige Authentifizierung aktiviert, sodass Sie den zweiten Authentifizierungs Faktor bereitstellen müssen. In diesem Tutorial haben Sie die Telefon Überprüfung aktiviert. Die integrierten Vorlagen ermöglichen Ihnen auch das Einrichten von e-Mails als zweiten Faktor. Sie können weitere zweite Faktoren für die Authentifizierung einrichten, z. b. QR-Codes. Tippen Sie auf **senden**.
+* Das Benutzerkonto hat die zweistufige Authentifizierung aktiviert, sodass Sie den zweiten Authentifizierungs Faktor bereitstellen müssen. In diesem Tutorial haben Sie die Telefon Überprüfung aktiviert. Die integrierten Vorlagen ermöglichen Ihnen auch das Einrichten von e-Mails als zweiten Faktor. Sie können weitere zweite Faktoren für die Authentifizierung einrichten, z. b. QR-Codes. Tippen Sie auf **senden** .
 
 ![Überprüfungs Code Ansicht senden](2fa/_static/login2fa7.png)
 
 * Geben Sie den Code ein, den Sie in der SMS-Nachricht erhalten.
 
-* Wenn Sie auf das Kontrollkästchen **diesen Browser speichern** klicken, werden Sie von der Verwendung von 2FA zum Anmelden aufgefordert, wenn Sie das gleiche Gerät und den gleichen Browser verwenden. Durch das Aktivieren von 2FA und das Klicken auf **Speichern dieses Browsers** erhalten Sie einen starken 2FA-Schutz vor böswilligen Benutzern, die versuchen, auf Ihr Konto zuzugreifen, solange Sie keinen Zugriff auf Ihr Gerät haben. Hierfür können Sie ein beliebiges privates Gerät verwenden, das Sie regelmäßig verwenden. Wenn Sie  **diesen Browser merken**, erhalten Sie die zusätzliche Sicherheit von 2FA von Geräten, die Sie nicht regelmäßig verwenden, und Sie erhalten die Möglichkeit, die 2FA nicht auf Ihren eigenen Geräten zu durchlaufen.
+* Wenn Sie auf das Kontrollkästchen **diesen Browser speichern** klicken, werden Sie von der Verwendung von 2FA zum Anmelden aufgefordert, wenn Sie das gleiche Gerät und den gleichen Browser verwenden. Durch das Aktivieren von 2FA und das Klicken auf **Speichern dieses Browsers** erhalten Sie einen starken 2FA-Schutz vor böswilligen Benutzern, die versuchen, auf Ihr Konto zuzugreifen, solange Sie keinen Zugriff auf Ihr Gerät haben. Hierfür können Sie ein beliebiges privates Gerät verwenden, das Sie regelmäßig verwenden. Wenn Sie  **diesen Browser merken** , erhalten Sie die zusätzliche Sicherheit von 2FA von Geräten, die Sie nicht regelmäßig verwenden, und Sie erhalten die Möglichkeit, die 2FA nicht auf Ihren eigenen Geräten zu durchlaufen.
 
 ![Ansicht überprüfen](2fa/_static/login2fa8.png)
 

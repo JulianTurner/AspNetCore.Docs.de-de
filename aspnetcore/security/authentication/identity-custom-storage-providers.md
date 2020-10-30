@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-custom-storage-providers
-ms.openlocfilehash: a8414efeece1afd55d0f30d232ef360d0a21714c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c89098bf0b2c4396f9856aca2be9967af5df0cb7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630132"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051901"
 ---
 # <a name="custom-storage-providers-for-no-locaspnet-core-identity"></a>Benutzerdefinierte Speicher Anbieter für ASP.NET Core Identity
 
@@ -34,7 +35,7 @@ ASP.NET Core Identity ist ein erweiterbares System, mit dem Sie einen benutzerde
 
 ## <a name="introduction"></a>Einführung
 
-Standardmäßig speichert das ASP.NET Core Identity Systembenutzer Informationen in einer SQL Server-Datenbank mithilfe Entity Framework Core. Bei vielen apps funktioniert dieser Ansatz gut. Es empfiehlt sich jedoch, einen anderen Persistenzmechanismus oder ein anderes Datenschema zu verwenden. Beispiel:
+Standardmäßig speichert das ASP.NET Core Identity Systembenutzer Informationen in einer SQL Server-Datenbank mithilfe Entity Framework Core. Bei vielen apps funktioniert dieser Ansatz gut. Es empfiehlt sich jedoch, einen anderen Persistenzmechanismus oder ein anderes Datenschema zu verwenden. Zum Beispiel:
 
 * Sie verwenden [Azure Table Storage](/azure/storage/) oder einen anderen Datenspeicher.
 * Die Datenbanktabellen haben eine andere Struktur. 
@@ -180,7 +181,7 @@ In der- `UserStore` Klasse verwenden Sie die Datenzugriffsklassen, die Sie erste
 * **Iqueryableuserstore ist**  
  Die [ &lt; tuser &gt; -Schnittstelle iqueryableuserstore](/dotnet/api/microsoft.aspnetcore.identity.iqueryableuserstore-1) definiert die Elemente, die Sie implementieren, um einen abfragbaren Benutzerspeicher bereitzustellen.
 
-Sie implementieren nur die Schnittstellen, die in Ihrer APP benötigt werden. Beispiel:
+Sie implementieren nur die Schnittstellen, die in Ihrer APP benötigt werden. Zum Beispiel:
 
 ```csharp
 public class UserStore : IUserStore<IdentityUser>,
@@ -246,7 +247,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-## <a name="references"></a>References
+## <a name="references"></a>Referenzen
 
 * [Benutzerdefinierte Speicher Anbieter für ASP.NET 4. x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
 * [ASP.NET Core Identity](https://github.com/dotnet/AspNetCore/tree/master/src/Identity): Dieses Repository enthält Links zu von der Community verwalteten Speicheranbietern.

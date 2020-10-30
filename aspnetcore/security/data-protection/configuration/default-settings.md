@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über die Verwaltung von Daten und die Lebensdaue
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: b4578737a0ea36463b3c44254aad85a484c46090
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1303c5c2c993f1d20383457666aebfa2a583e938
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634474"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053006"
 ---
 # <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>(Data Protection key management and lifetime in ASP.NET Core) Gültigkeitsdauer und Verwaltung von Schlüsseln für den Schutz von Daten in ASP.NET Core
 
@@ -40,8 +41,8 @@ Die APP versucht, ihre Betriebsumgebung zu erkennen und die Schlüssel Konfigura
 
    Das [setProfileEnvironment-Attribut](/iis/configuration/system.applicationhost/applicationpools/add/processmodel#configuration) des App-Pools muss ebenfalls aktiviert sein. Der Standardwert von `setProfileEnvironment` ist `true`. In einigen Szenarien (z.B. Windows-Betriebssystem) ist `setProfileEnvironment` auf `false` festgelegt. Gehen Sie folgendermaßen vor, wenn Schlüssel nicht wie erwartet im Benutzerprofilverzeichnis gespeichert werden:
 
-   1. Navigieren Sie zum Ordner *%windir%/system32/inetsrv/config*.
-   1. Öffnen Sie die Datei *applicationHost.config*.
+   1. Navigieren Sie zum Ordner *%windir%/system32/inetsrv/config* .
+   1. Öffnen Sie die Datei *applicationHost.config* .
    1. Suchen Sie das Element `<system.applicationHost><applicationPools><applicationPoolDefaults><processModel>` .
    1. Bestätigen Sie, dass das `setProfileEnvironment`-Attribut nicht vorhanden ist, das standardmäßig den Wert `true` aufweist, oder legen Sie den Wert des Attributs explizit auf `true` fest.
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 35a12cb8d2a9617e51d886e798cff5ee60b0a8ad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ec65a2c8362c15716bebd6b22f5639785ba74c98
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634708"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051004"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>Unterstützung der EU-Datenschutz-Grundverordnung (dsgvo) in ASP.net Core
 
@@ -46,7 +47,7 @@ So aktivieren Sie das standardmäßige cookie Zustimmungs Feature wie das in den
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_Layout.cshtml?name=snippet&highlight=4)]
 
-* Fügen Sie dem Projekt die Datei " * \_ Cookie genehmipartial. cshtml* " hinzu:
+* Fügen Sie dem Projekt die Datei " *\_ Cookie genehmipartial. cshtml* " hinzu:
 
   [!code-cshtml[Main](gdpr/sample/RP3.0/Pages/Shared/_CookieConsentPartial.cshtml)]
 
@@ -71,8 +72,8 @@ Mit der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspne
 Razor Seiten und MVC-Projekte, die mit den Projektvorlagen erstellt wurden, enthalten die folgende dsgvo-Unterstützung:
 
 * [ Cookie Policyoptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) und [use Cookie Policy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) werden in der- `Startup` Klasse festgelegt.
-* Die [Teilansicht](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)" * \_ Cookie Zustimmung partial. cshtml* ". Eine **Accept** -Schaltfläche ist in dieser Datei enthalten. Wenn der Benutzer auf die Schaltfläche " **annehmen** " klickt, wird die Zustimmung zum Store cookie s bereitgestellt.
-* Die Seite *pages/Privacy. cshtml* oder *views/Home/Privacy. cshtml* enthält eine Seite, auf der Sie die Datenschutzrichtlinie Ihrer Website detailliert erläutern können. Die Datei " * \_ Cookie genehmipartial. cshtml* " generiert einen Link zur Datenschutzseite.
+* Die [Teilansicht](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)" *\_ Cookie Zustimmung partial. cshtml* ". Eine **Accept** -Schaltfläche ist in dieser Datei enthalten. Wenn der Benutzer auf die Schaltfläche " **annehmen** " klickt, wird die Zustimmung zum Store cookie s bereitgestellt.
+* Die Seite *pages/Privacy. cshtml* oder *views/Home/Privacy. cshtml* enthält eine Seite, auf der Sie die Datenschutzrichtlinie Ihrer Website detailliert erläutern können. Die Datei " *\_ Cookie genehmipartial. cshtml* " generiert einen Link zur Datenschutzseite.
 * Für apps, die mit einzelnen Benutzerkonten erstellt wurden, stellt die Seite verwalten Links zum herunterladen und Löschen [persönlicher Benutzerdaten](#pd)bereit.
 
 ### <a name="no-loccookiepolicyoptions-and-useno-loccookiepolicy"></a>CookiePolicyoptions und use Cookie Policy
@@ -87,13 +88,13 @@ Razor Seiten und MVC-Projekte, die mit den Projektvorlagen erstellt wurden, enth
 
 ### <a name="_no-loccookieconsentpartialcshtml-partial-view"></a>\_CookieTeilansicht von "Zustimmung partial. cshtml"
 
-Die Teilansicht " * \_ Cookie Zustimmung partial. cshtml* ":
+Die Teilansicht " *\_ Cookie Zustimmung partial. cshtml* ":
 
 [!code-cshtml[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 Diese partielle:
 
-* Ruft den Status der Nachverfolgung für den Benutzer ab. Wenn die APP so konfiguriert ist, dass Sie Zustimmung erfordert, muss der Benutzer zustimmen, bevor cookie s nachverfolgt werden kann. Wenn Zustimmung erforderlich ist, cookie wird der Zustimmungs Bereich am oberen Rand der von der Datei " * \_ Layout. cshtml* " erstellten Navigationsleiste korrigiert.
+* Ruft den Status der Nachverfolgung für den Benutzer ab. Wenn die APP so konfiguriert ist, dass Sie Zustimmung erfordert, muss der Benutzer zustimmen, bevor cookie s nachverfolgt werden kann. Wenn Zustimmung erforderlich ist, cookie wird der Zustimmungs Bereich am oberen Rand der von der Datei " *\_ Layout. cshtml* " erstellten Navigationsleiste korrigiert.
 * Stellt ein HTML `<p>` -Element bereit, um Ihre Datenschutz-und cookie Nutzungsrichtlinien zusammenzufassen.
 * Enthält einen Link zur Datenschutzseite oder-Ansicht, auf der Sie die Datenschutzrichtlinie Ihrer Website detailliert erläutern können.
 
@@ -121,7 +122,7 @@ Der [TempData-Anbieter](xref:fundamentals/app-state#tempdata) cookie ist nicht z
 
 ASP.net Core apps, die mit einzelnen Benutzerkonten erstellt wurden, enthalten Code zum herunterladen und Löschen von persönlichen Daten.
 
-Wählen Sie den Benutzernamen aus, und wählen Sie dann **persönliche Daten**aus:
+Wählen Sie den Benutzernamen aus, und wählen Sie dann **persönliche Daten** aus:
 
 ![Seite "persönliche Daten verwalten"](gdpr/_static/pd.png)
 
@@ -143,13 +144,13 @@ Einige Datenbanken und Speicher Mechanismen ermöglichen die Verschlüsselung ru
 * Ist die einfachste und sicherste Option.
 * Ermöglicht der Datenbank die Verwaltung von Schlüsseln und Verschlüsselung.
 
-Beispiel:
+Zum Beispiel:
 
 * Microsoft SQL und Azure SQL bieten [transparent Data Encryption](/sql/relational-databases/security/encryption/transparent-data-encryption) (TDE).
 * [Die Datenbank wird von SQL Azure standardmäßig verschlüsselt.](https://azure.microsoft.com/updates/newly-created-azure-sql-databases-encrypted-by-default/)
 * [Azure-blobdateien,-Dateien,-Tabellen und-Queue Storage werden standardmäßig verschlüsselt](https://azure.microsoft.com/blog/announcing-default-encryption-for-azure-blobs-files-table-and-queue-storage/).
 
-Bei Datenbanken, die keine integrierte Verschlüsselung im Ruhezustand bereitstellen, können Sie die Datenträger Verschlüsselung möglicherweise verwenden, um denselben Schutz zu gewährleisten. Beispiel:
+Bei Datenbanken, die keine integrierte Verschlüsselung im Ruhezustand bereitstellen, können Sie die Datenträger Verschlüsselung möglicherweise verwenden, um denselben Schutz zu gewährleisten. Zum Beispiel:
 
 * [BitLocker für Windows Server](/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
 * Linux:

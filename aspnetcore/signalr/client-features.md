@@ -6,6 +6,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/client-features
-ms.openlocfilehash: bb8352b11e78582c4a32b67da7dcb701d020b0d9
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 1d1778f95c53179ca05eaced3d1913f208220df4
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721709"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050978"
 ---
 # <a name="aspnet-core-no-locsignalr-clients"></a>ASP.net Core SignalR Clients
 
@@ -37,7 +38,7 @@ Die 1. x-Versionen von entsprechen SignalR den .net Core-Versionen 2,1 und 2,2 u
 | SignalR-Version | .NET Core-Version | Supportebene | Ende des Supports |
 | - | - | - | - |
 | 1.0. x | 2.1.x | Langfristige Unterstützung | 21. August 2021 |
-| 1.1. x | 2.2. x | Ende der Lebensdauer | 23. Dezember 2019 |
+| 1.1. x | 2.2.x | Ende der Lebensdauer | 23. Dezember 2019 |
 | 3. x oder höher | *identisch mit SignalR Version* | Weitere Informationen finden Sie in der [.net Core-Unterstützungs Richtlinie](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) . |
 
 **Hinweis:** In ASP.net Core 3,0 wurde der JavaScript- *moved* Client in das `@microsoft/signalr` NPM-Paket verschoben.
@@ -46,14 +47,14 @@ Die 1. x-Versionen von entsprechen SignalR den .net Core-Versionen 2,1 und 2,2 u
 
 In der folgenden Tabelle sind die Features und die Unterstützung für Clients aufgeführt, die Echtzeitunterstützung anbieten. Für jede Funktion wird die *Mindestversion* aufgelistet, die dieses Feature unterstützt. Wenn keine Version aufgeführt ist, wird die Funktion nicht unterstützt.
 
-| Funktion | Server | .NET-Client | JavaScript-Client | Java-Client |
+| Feature | Server | .NET-Client | JavaScript-Client | Java-Client |
 | ---- | :-: | :-: | :-: | :-: |
 | Azure- SignalR Dienst Unterstützung |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Streaming zwischen Server und Client](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Client-zu-Server-Streaming](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|
 | Automatische erneute Verbindung ([.net](./dotnet-client.md?tabs=visual-studio&view=aspnetcore-3.0#handle-lost-connection), [JavaScript](./javascript-client.md?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
 | Websockets-Transport |2.1.0|1.0.0|1.0.0|1.0.0|
-| Transport von Server gesendeten Ereignissen |2.1.0|1.0.0|1.0.0|❌|
+| Transport von Server-Sent Ereignissen |2.1.0|1.0.0|1.0.0|❌|
 | Langer Abruf Transport |2.1.0|1.0.0|1.0.0|3.0.0|
 | JSON Hub-Protokoll |2.1.0|1.0.0|1.0.0|1.0.0|
 | Hub-Protokoll „MessagePack“ |2.1.0|1.0.0|1.0.0|❌|

@@ -7,6 +7,7 @@ ms.author: brecon
 ms.custom: mvc
 ms.date: 05/22/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hub-filters
-ms.openlocfilehash: c3c44efcb3702f3edb51c821d042c2e7eb1748cd
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5a4cb5122080b72875ac11cf2e682162d017d7b9
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626665"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052720"
 ---
 # <a name="use-hub-filters-in-aspnet-core-no-locsignalr"></a>Verwenden von Hub-Filtern in ASP.net Core SignalR
 
@@ -142,7 +143,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
     }
     ```
 
-1. Definieren Sie einen Hub-Filter, um das Attribut zu überprüfen und verbotene Ausdrücke in einem Hub-Methoden Argument durch zu ersetzen `***` :
+1. Definieren Sie einen Hub-Filter, um das Attribut zu überprüfen und verbotene Ausdrücke in einem Hub-Methoden Argument durch zu ersetzen `**_` :
 
     ```csharp
     public class LanguageFilter : IHubFilter
@@ -161,7 +162,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
             {
                 foreach (var bannedPhrase in bannedPhrases)
                 {
-                    str = str.Replace(bannedPhrase, "***");
+                    str = str.Replace(bannedPhrase, "_**");
                 }
 
                 arguments = invocationContext.HubMethodArguments.ToArray();
@@ -196,7 +197,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
 
 `HubInvocationContext`Enthält Informationen für den aktuellen hubmethoden Aufruf.
 
-| Eigenschaft | BESCHREIBUNG | type |
+| Eigenschaft | Beschreibung | Typ |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Enthält Informationen über die Verbindung. | `HubCallerContext` |
 | `Hub` | Die Instanz des Hubs, der für diesen hubmethoden Aufruf verwendet wird. | `Hub` |
@@ -209,7 +210,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
 
 Der `HubLifetimeContext` enthält Informationen für die `OnConnectedAsync` `OnDisconnectedAsync` hubmethoden und.
 
-| Eigenschaft | BESCHREIBUNG | type |
+| Eigenschaft | Beschreibung | Typ |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Enthält Informationen über die Verbindung. | `HubCallerContext` |
 | `Hub` | Die Instanz des Hubs, der für diesen hubmethoden Aufruf verwendet wird. | `Hub` |

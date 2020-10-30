@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 7/18/2020
 ms.custom: mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: 5f86e514ee6339888171d83ab3117e9b3fcf107e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: accfd46fa72c33976f8af2a39267c993447e036e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627818"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051940"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Erstellen einer ASP.net Core-Web-App mit von der Autorisierung geschützten Benutzerdaten
 
@@ -44,7 +45,7 @@ In diesem Tutorial wird gezeigt, wie Sie eine ASP.net Core-Web-App mit Benutzerd
 
 Die Bilder in diesem Dokument entsprechen nicht exakt den neuesten Vorlagen.
 
-In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und **Edit** / **Löschen**bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
+In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und **Edit** / **Löschen** bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
 
 ![Screenshot der Anmeldung mit Rick](secure-data/_static/rick.png)
 
@@ -127,11 +128,11 @@ Legen Sie die Fall Back Authentifizierungs Richtlinie so fest, dass Benutzer aut
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
-Der obige markierte Code legt die [Fall Back Authentifizierungs Richtlinie](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)fest. Die Fall Back Authentifizierungs Richtlinie erfordert, dass ***alle*** Benutzer authentifiziert werden, mit Ausnahme der Razor Seiten, Controller oder Aktionsmethoden mit einem Authentifizierungs Attribut. Beispielsweise werden Razor Seiten, Controller oder Aktionsmethoden mit `[AllowAnonymous]` oder `[Authorize(PolicyName="MyPolicy")]` das angewendete Authentifizierungs Attribut anstelle der Fall Back Authentifizierungs Richtlinie verwendet.
+Der obige markierte Code legt die [Fall Back Authentifizierungs Richtlinie](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)fest. Die Fall Back Authentifizierungs Richtlinie erfordert, dass * *_all_* _-Benutzer authentifiziert werden, mit Ausnahme von Razor Seiten, Controllern oder Aktionsmethoden mit einem Authentifizierungs Attribut. Beispielsweise werden Razor Seiten, Controller oder Aktionsmethoden mit `[AllowAnonymous]` oder `[Authorize(PolicyName="MyPolicy")]` das angewendete Authentifizierungs Attribut anstelle der Fall Back Authentifizierungs Richtlinie verwendet.
 
 Die Richtlinie für die Fall Back Authentifizierung:
 
-* Wird auf alle Anforderungen angewendet, die nicht explizit eine Authentifizierungs Richtlinie angeben. Bei Anforderungen, die von der Endpunkt Weiterleitung verarbeitet werden, würde dies alle Endpunkte einschließen, für die kein Autorisierungs Attribut angegeben ist. Bei Anforderungen, die von einer anderen Middleware nach der Autorisierungs Middleware, wie z. b. [statischen Dateien](xref:fundamentals/static-files), verarbeitet werden, wird die Richtlinie auf alle Anforderungen angewendet.
+_ Wird auf alle Anforderungen angewendet, die nicht explizit eine Authentifizierungs Richtlinie angeben. Bei Anforderungen, die von der Endpunkt Weiterleitung verarbeitet werden, würde dies alle Endpunkte einschließen, für die kein Autorisierungs Attribut angegeben ist. Bei Anforderungen, die von einer anderen Middleware nach der Autorisierungs Middleware, wie z. b. [statischen Dateien](xref:fundamentals/static-files), verarbeitet werden, wird die Richtlinie auf alle Anforderungen angewendet.
 
 Das Festlegen der Fall Back Authentifizierungs Richtlinie, damit Benutzer authentifiziert werden müssen, schützt neu hinzugefügte Razor Seiten und Controller. Die standardmäßig erforderliche Authentifizierung ist sicherer als die Verwendung neuer Controller und Razor Seiten zum Einbeziehen des `[Authorize]` Attributs.
 
@@ -151,7 +152,7 @@ Fügen Sie den Seiten und die [Zuordnung](/dotnet/api/microsoft.aspnetcore.autho
 
 ### <a name="configure-the-test-account"></a>Konfigurieren des Testkontos
 
-Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs*) fest:
+Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs* ) fest:
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -303,7 +304,7 @@ Diese APP legt die Standard Richtlinie so fest, dass [Authentifizierte Benutzer 
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Details2.cshtml.cs?name=snippet)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * Wenn der Benutzer **nicht** authentifiziert ist, `ChallengeResult` wird eine zurückgegeben. Wenn eine `ChallengeResult` zurückgegeben wird, wird der Benutzer zur Anmeldeseite umgeleitet.
 * Wenn der Benutzer authentifiziert, aber nicht autorisiert ist, `ForbidResult` wird eine zurückgegeben. Wenn eine `ForbidResult` zurückgegeben wird, wird der Benutzer zur Seite Zugriff verweigert umgeleitet.
@@ -333,16 +334,16 @@ Eine einfache Möglichkeit zum Testen der abgeschlossenen App besteht darin, dre
 
 | Benutzer                | Seeding von der APP | Optionen                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Nein                | Bearbeiten/Löschen Sie die eigenen Daten.                |
-| manager@contoso.com | Ja               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
-| admin@contoso.com   | Ja               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
+| test@example.com    | No                | Bearbeiten/Löschen Sie die eigenen Daten.                |
+| manager@contoso.com | Yes               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
+| admin@contoso.com   | Yes               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
 
 Erstellen Sie einen Kontakt im Browser des Administrators. Kopieren Sie die URL zum Löschen und bearbeiten vom Administrator Kontakt. Fügen Sie diese Links in den Browser des Test Benutzers ein, um zu überprüfen, ob der Test Benutzer diese Vorgänge nicht ausführen kann.
 
 ## <a name="create-the-starter-app"></a>Erstellen der Starter-App
 
 * Erstellen Sie eine Seiten-App mit dem Razor Namen "ContactManager".
-  * Erstellen Sie die APP mit **einzelnen Benutzerkonten**.
+  * Erstellen Sie die APP mit **einzelnen Benutzerkonten** .
   * Nennen Sie Sie "ContactManager", damit der Namespace mit dem Namespace übereinstimmt, der im Beispiel verwendet wird.
   * `-uld` gibt localdb anstelle von SQLite an.
 
@@ -350,7 +351,7 @@ Erstellen Sie einen Kontakt im Browser des Administrators. Kopieren Sie die URL 
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* *Modelle/Contact. cs*hinzufügen:
+* *Modelle/Contact. cs* hinzufügen:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -398,7 +399,7 @@ In diesem Tutorial wird gezeigt, wie Sie eine ASP.net Core-Web-App mit Benutzerd
 * **Manager** können Kontaktdaten genehmigen oder ablehnen. Nur genehmigte Kontakte sind für Benutzer sichtbar.
 * **Administratoren** können beliebige Daten genehmigen/ablehnen und bearbeiten bzw. löschen.
 
-In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und **Edit** / **Löschen**bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
+In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und **Edit** / **Löschen** bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
 
 ![Screenshot der Anmeldung mit Rick](secure-data/_static/rick.png)
 
@@ -487,7 +488,7 @@ Fügen Sie die [Zuordnung](/dotnet/api/microsoft.aspnetcore.authorization.allowa
 
 ### <a name="configure-the-test-account"></a>Konfigurieren des Testkontos
 
-Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs*) fest:
+Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs* ) fest:
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -660,16 +661,16 @@ Eine einfache Möglichkeit zum Testen der abgeschlossenen App besteht darin, dre
 
 | Benutzer                | Seeding von der APP | Optionen                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | Nein                | Bearbeiten/Löschen Sie die eigenen Daten.                |
-| manager@contoso.com | Ja               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
-| admin@contoso.com   | Ja               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
+| test@example.com    | No                | Bearbeiten/Löschen Sie die eigenen Daten.                |
+| manager@contoso.com | Yes               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
+| admin@contoso.com   | Yes               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
 
 Erstellen Sie einen Kontakt im Browser des Administrators. Kopieren Sie die URL zum Löschen und bearbeiten vom Administrator Kontakt. Fügen Sie diese Links in den Browser des Test Benutzers ein, um zu überprüfen, ob der Test Benutzer diese Vorgänge nicht ausführen kann.
 
 ## <a name="create-the-starter-app"></a>Erstellen der Starter-App
 
 * Erstellen Sie eine Seiten-App mit dem Razor Namen "ContactManager".
-  * Erstellen Sie die APP mit **einzelnen Benutzerkonten**.
+  * Erstellen Sie die APP mit **einzelnen Benutzerkonten** .
   * Nennen Sie Sie "ContactManager", damit der Namespace mit dem Namespace übereinstimmt, der im Beispiel verwendet wird.
   * `-uld` gibt localdb anstelle von SQLite an.
 
@@ -677,7 +678,7 @@ Erstellen Sie einen Kontakt im Browser des Administrators. Kopieren Sie die URL 
   dotnet new webapp -o ContactManager -au Individual -uld
   ```
 
-* *Modelle/Contact. cs*hinzufügen:
+* *Modelle/Contact. cs* hinzufügen:
 
   [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 

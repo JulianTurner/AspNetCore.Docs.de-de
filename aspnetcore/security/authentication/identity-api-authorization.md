@@ -5,8 +5,9 @@ description: Verwenden Sie dies Identity mit einer einseitigen APP, die in einer
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/08/2019
+ms.date: 10/27/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,30 +19,30 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 1e50fb2f2f5e3621b189f756c53e80a2dd64c8a6
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 8acc34c88bf62b3da1b920acc7318c94435c100e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754527"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051979"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Authentifizierung und Autorisierung für Spas
 
 Der ASP.net Core 3,1-Vorlagen und spätere Vorlagen bieten die Authentifizierung in Single-Page-Apps (Spas) mithilfe der Unterstützung für API-Autorisierung. ASP.NET Core Identityzum Authentifizieren und Speichern von Benutzern wird der [ Identity Server](https://identityserver.io/) zum Implementieren von OpenID Connect kombiniert.
 
-Der **Angular** -und **der-Projekt** Vorlagen, die dem-Authentifizierungs Parameter in den Projektvorlagen für **Webanwendungen (Model-View-Controller)** (MVC) und **Webanwendungen** (Seiten) ähneln, wurde ein Authentifizierungs Parameter hinzugefügt Razor . Die zulässigen Parameterwerte sind **None** und **Individual**. Die Projektvorlage " **React.js und Redux** " unterstützt derzeit den Authentifizierungs Parameter nicht.
+Der **Angular** -und **der-Projekt** Vorlagen, die dem-Authentifizierungs Parameter in den Projektvorlagen für **Webanwendungen (Model-View-Controller)** (MVC) und **Webanwendungen** (Seiten) ähneln, wurde ein Authentifizierungs Parameter hinzugefügt Razor . Die zulässigen Parameterwerte sind **None** und **Individual** . Die Projektvorlage " **React.js und Redux** " unterstützt derzeit den Authentifizierungs Parameter nicht.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Erstellen einer APP mit Unterstützung für die API-Autorisierung
 
 Benutzerauthentifizierung und-Autorisierung können mit Angular-und reagingspas verwendet werden. Öffnen Sie eine Befehlsshell, und führen Sie den folgenden Befehl aus:
 
-**Angular**:
+**Angular** :
 
 ```dotnetcli
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**Reagieren**:
+**Reagieren** :
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
@@ -119,9 +120,9 @@ Um die vollständige Kontrolle über das Datenbankschema zu erhalten, erben Sie 
 
 Beachten Sie in der Datei " *controllers\oidcconfigurationcontroller.cs* " den Endpunkt, der bereitgestellt wird, um die oidc-Parameter bereitzustellen, die vom Client verwendet werden müssen.
 
-### <a name="appsettingsjson"></a>appsettings.json
+### appsettings.json
 
-In der *appsettings.js* -Datei des Projekt Stamms gibt es einen neuen `IdentityServer` Abschnitt, in dem die Liste der konfigurierten Clients beschrieben wird. Im folgenden Beispiel gibt es einen einzelnen Client. Der Clientname entspricht dem App-Namen, und er wird durch Konventionen dem OAuth-`ClientId`-Parameter zugeordnet. Das Profil gibt den App-Typ an, der konfiguriert wird. Sie wird intern verwendet, um Konventionen zu fördern, die den Konfigurationsprozess für den Server vereinfachen. Es stehen mehrere Profile zur Verfügung, wie im Abschnitt [Anwendungsprofile](#application-profiles) erläutert.
+In der *appsettings.json* -Datei des Projekt Stamms gibt es einen neuen `IdentityServer` Abschnitt, in dem die Liste der konfigurierten Clients beschrieben wird. Im folgenden Beispiel gibt es einen einzelnen Client. Der Clientname entspricht dem App-Namen, und er wird durch Konventionen dem OAuth-`ClientId`-Parameter zugeordnet. Das Profil gibt den App-Typ an, der konfiguriert wird. Sie wird intern verwendet, um Konventionen zu fördern, die den Konfigurationsprozess für den Server vereinfachen. Es stehen mehrere Profile zur Verfügung, wie im Abschnitt [Anwendungsprofile](#application-profiles) erläutert.
 
 ```json
 "IdentityServer": {
@@ -150,9 +151,9 @@ Im *appsettings.Development.jsfür* die Datei des Projekt Stamms gibt es einen `
 Die Unterstützung von Authentifizierung und API-Autorisierung in der Angular-Vorlage befindet sich in einem eigenen Angular-Modul im Verzeichnis *clientapp\src\api-Authorization* . Das Modul besteht aus den folgenden Elementen:
 
 * 3 Komponenten:
-  * *Login. Component. TS*: verarbeitet den Anmelde Fluss der app.
-  * *Abmelde. Component. TS*: verarbeitet den Abmelde Fluss der app.
-  * *Login-Menu. Component. TS*: ein Widget, das eine der folgenden Gruppen von Links anzeigt:
+  * *Login. Component. TS* : verarbeitet den Anmelde Fluss der app.
+  * *Abmelde. Component. TS* : verarbeitet den Abmelde Fluss der app.
+  * *Login-Menu. Component. TS* : ein Widget, das eine der folgenden Gruppen von Links anzeigt:
     * Benutzerprofil Verwaltung und Abmelde Links, wenn der Benutzer authentifiziert ist.
     * Links zur Registrierung und Anmeldung, wenn der Benutzer nicht authentifiziert ist.
 * Ein Weiterleitungs Wächter `AuthorizeGuard` , der Routen hinzugefügt werden kann und erfordert, dass ein Benutzer vor dem Besuch der Route authentifiziert wird.
@@ -165,12 +166,12 @@ Die Unterstützung von Authentifizierung und API-Autorisierung in der Angular-Vo
 Die Unterstützung für die Authentifizierung und API-Autorisierung in der "reagieren"-Vorlage befindet sich im Verzeichnis " *clientapp\src\components\api-Authorization* ". Sie besteht aus den folgenden Elementen:
 
 * 4 Komponenten:
-  * *Login.js*: übernimmt den Anmelde Fluss der app.
-  * *Logout.js*: verarbeitet den Abmelde Fluss der app.
-  * *LoginMenu.js*: ein Widget, das eine der folgenden Gruppen von Links anzeigt:
+  * *Login.js* : übernimmt den Anmelde Fluss der app.
+  * *Logout.js* : verarbeitet den Abmelde Fluss der app.
+  * *LoginMenu.js* : ein Widget, das eine der folgenden Gruppen von Links anzeigt:
     * Benutzerprofil Verwaltung und Abmelde Links, wenn der Benutzer authentifiziert ist.
     * Links zur Registrierung und Anmeldung, wenn der Benutzer nicht authentifiziert ist.
-  * *AuthorizeRoute.js*: eine Routen Komponente, für die vor dem Rendern der im-Parameter angegeben Komponente eine Authentifizierung des Benutzers erforderlich ist `Component` .
+  * *AuthorizeRoute.js* : eine Routen Komponente, für die vor dem Rendern der im-Parameter angegeben Komponente eine Authentifizierung des Benutzers erforderlich ist `Component` .
 * Eine exportierte `authService` Instanz der `AuthorizeService` -Klasse, die die Details des Authentifizierungsprozesses auf niedrigerer Ebene behandelt und Informationen über den authentifizierten Benutzer für den Rest der App zur Nutzung verfügbar macht.
 
 Nachdem Sie die Hauptkomponenten der Lösung kennengelernt haben, können Sie sich einen tieferen Einblick in die einzelnen Szenarios für die APP machen.
@@ -197,7 +198,7 @@ services.Configure<JwtBearerOptions>(
 
 Der JWT-Handler der API löst Ereignisse aus, die die Steuerung des Authentifizierungsprozesses mithilfe von ermöglichen `JwtBearerEvents` . Um Unterstützung für die API-Autorisierung zu bieten, `AddIdentityServerJwt` registriert seine eigenen Ereignishandler.
 
-Um die Behandlung eines Ereignisses anzupassen, binden Sie den vorhandenen Ereignishandler nach Bedarf mit zusätzlicher Logik ein. Beispiel:
+Um die Behandlung eines Ereignisses anzupassen, binden Sie den vorhandenen Ereignishandler nach Bedarf mit zusätzlicher Logik ein. Zum Beispiel:
 
 ```csharp
 services.Configure<JwtBearerOptions>(
@@ -282,11 +283,32 @@ Um die app in der Produktionsumgebung bereitzustellen, müssen die folgenden Res
   * Sie kann über Standard Tools wie PowerShell oder OpenSSL generiert werden.
   * Sie kann im Zertifikat Speicher auf den Ziel Computern installiert oder als *PFX* -Datei mit einem sicheren Kennwort bereitgestellt werden.
 
+### <a name="example-deploy-to-a-non-azure-web-hosting-provider"></a>Beispiel: Bereitstellen für einen nicht-Azure-Webhostinganbieter
+
+Erstellen oder laden Sie Ihr Zertifikat im webhostingpanel. Ändern Sie dann in der Datei der APP den Abschnitt so, dass er *appsettings.json* `IdentityServer` die Schlüssel Details enthält. Zum Beispiel:
+
+```json
+"IdentityServer": {
+  "Key": {
+    "Type": "Store",
+    "StoreName": "WebHosting",
+    "StoreLocation": "CurrentUser",
+    "Name": "CN=MyApplication"
+  }
+}
+```
+
+Im vorherigen Beispiel:
+
+* `StoreName` stellt den Namen des Zertifikat Speicher dar, in dem das Zertifikat gespeichert ist. In diesem Fall verweist Sie auf den webhostingspeicher.
+* `StoreLocation` Gibt an, wo das Zertifikat geladen werden soll ( `CurrentUser` in diesem Fall).
+* `Name` entspricht dem Distinguished Subject für das Zertifikat.
+
 ### <a name="example-deploy-to-azure-app-service"></a>Beispiel: Bereitstellen für Azure App Service
 
 In diesem Abschnitt wird beschrieben, wie Sie die APP für Azure App Service mithilfe eines im Zertifikat Speicher gespeicherten Zertifikats bereitstellen. Wenn Sie die APP so ändern möchten, dass ein Zertifikat aus dem Zertifikat Speicher geladen wird, ist beim Konfigurieren der app in der Azure-Portal in einem späteren Schritt ein Serviceplan vom Typ Standard oder besser erforderlich.
 
-Ändern Sie im *appsettings.js* Datei der APP den `IdentityServer` Abschnitt, um die Schlüssel Details einzuschließen:
+Ändern Sie in der *appsettings.json* Datei der APP den `IdentityServer` Abschnitt, um die Schlüssel Details einzuschließen:
 
 ```json
 "IdentityServer": {

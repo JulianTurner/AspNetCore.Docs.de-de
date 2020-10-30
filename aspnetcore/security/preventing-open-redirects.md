@@ -5,6 +5,7 @@ description: Zeigt, wie Sie Open Redirect-Angriffe gegen eine ASP.net Core-App v
 ms.author: riande
 ms.date: 07/07/2017
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/preventing-open-redirects
-ms.openlocfilehash: 5226e301960a56145b94b6128d0034c40b86bffd
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e546cd852367921c7c694db3639f7a233f606e75
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633460"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058388"
 ---
 # <a name="prevent-open-redirect-attacks-in-aspnet-core"></a>Verhindern offener Weiterleitungs Angriffe in ASP.net Core
 
@@ -39,7 +40,7 @@ Da die Ziel-URL in der Abfrage Zeichenfolge der Anforderung angegeben ist, kann 
 
 Ein böswilliger Benutzer kann einen Angriff entwickeln, der dem böswilligen Benutzer den Zugriff auf die Anmelde Informationen eines Benutzers oder vertrauliche Informationen ermöglicht. Um mit dem Angriff zu beginnen, überredet der böswillige Benutzer den Benutzer, auf einen Link zur Anmeldeseite Ihrer Website mit einem `returnUrl` QueryString-Wert zu klicken, der der URL hinzugefügt wurde. Betrachten Sie beispielsweise eine APP, `contoso.com` die eine Anmeldeseite unter enthält `http://contoso.com/Account/LogOn?returnUrl=/Home/About` . Der Angriff führt folgende Schritte aus:
 
-1. Der Benutzer klickt auf einen bösartigen Link zu `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (die zweite URL lautet "%%**1**amp; quot;", nicht "contoso.com").
+1. Der Benutzer klickt auf einen bösartigen Link zu `http://contoso.com/Account/LogOn?returnUrl=http://contoso1.com/Account/LogOn` (die zweite URL lautet "%% **1** amp; quot;", nicht "contoso.com").
 2. Der Benutzer meldet sich erfolgreich an.
 3. Der Benutzer wird (von der Site) an `http://contoso1.com/Account/LogOn` (ein böswilliger Standort, der genau wie die tatsächliche Website aussieht) umgeleitet.
 4. Der Benutzer meldet sich erneut an (gibt die Anmelde Informationen für böswillige Websites an) und wird zurück an die tatsächliche Website weitergeleitet.

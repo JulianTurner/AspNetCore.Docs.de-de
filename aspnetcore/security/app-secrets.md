@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 4/20/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/app-secrets
-ms.openlocfilehash: 74c9ae63ffbe39d6ba6e77aee8f6adcc8c8a157a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 174f831583c2ef6cb7f122a22fe855acc8fe3047
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634903"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056867"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Sichere Speicherung von App-Geheimnissen in der Entwicklung in ASP.net Core
 
@@ -38,7 +39,7 @@ Dieses Dokument erläutert Techniken zum Speichern und Abrufen von sensiblen Dat
 
 Umgebungsvariablen werden verwendet, um das Speichern von App-Geheimnissen im Code oder in lokalen Konfigurationsdateien zu vermeiden. Umgebungsvariablen überschreiben Konfigurationswerte für alle zuvor angegebenen Konfigurations Quellen.
 
-Stellen Sie sich eine ASP.net Core Web-App vor, in der die Sicherheit **einzelner Benutzerkonten** aktiviert ist. Eine standardmäßige Daten bankverbindungs Zeichenfolge ist in der *appsettings.js* Datei des Projekts mit dem Schlüssel enthalten `DefaultConnection` . Die Standard Verbindungs Zeichenfolge ist für localdb, das im Benutzermodus ausgeführt wird und kein Kennwort erfordert. Während der APP-Bereitstellung `DefaultConnection` kann der Schlüsselwert mit dem Wert einer Umgebungsvariablen überschrieben werden. In der Umgebungsvariablen kann die gesamte Verbindungs Zeichenfolge mit vertraulichen Anmelde Informationen gespeichert werden.
+Stellen Sie sich eine ASP.net Core Web-App vor, in der die Sicherheit **einzelner Benutzerkonten** aktiviert ist. Eine standardmäßige Daten bankverbindungs Zeichenfolge ist in der Projekt *appsettings.json* Datei mit dem Schlüssel enthalten `DefaultConnection` . Die Standard Verbindungs Zeichenfolge ist für localdb, das im Benutzermodus ausgeführt wird und kein Kennwort erfordert. Während der APP-Bereitstellung `DefaultConnection` kann der Schlüsselwert mit dem Wert einer Umgebungsvariablen überschrieben werden. In der Umgebungsvariablen kann die gesamte Verbindungs Zeichenfolge mit vertraulichen Anmelde Informationen gespeichert werden.
 
 > [!WARNING]
 > Umgebungsvariablen werden im Allgemeinen in unverschlüsseltem, unverschlüsseltem Text gespeichert. Wenn der Computer oder der Prozess kompromittiert ist, kann von nicht vertrauenswürdigen Parteien auf Umgebungsvariablen zugegriffen werden. Möglicherweise sind zusätzliche Maßnahmen erforderlich, um eine Offenlegung von Benutzer Geheimnissen zu verhindern.
@@ -100,7 +101,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 Im vorherigen Beispiel deutet der Doppelpunkt darauf hin, dass `Movies` Ein Objektliteral mit einer- `ServiceApiKey` Eigenschaft ist.
 
-Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die *csproj* -Datei vorhanden ist. Beispiel:
+Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die *csproj* -Datei vorhanden ist. Zum Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -108,7 +109,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Vereinfachen der JSON-Struktur in Visual Studio
 
-Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Beispiel:
+Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Zum Beispiel:
 
 ```json
 {
@@ -181,17 +182,17 @@ Die `Movies:ConnectionString` `Movies:ServiceApiKey` Geheimnisse und werden den 
 
 ## <a name="string-replacement-with-secrets"></a>Zeichen folgen Ersetzung mit geheimen Schlüsseln
 
-Das Speichern von Kenn Wörtern im Klartext ist unsicher. Beispielsweise kann eine Daten bankverbindungs Zeichenfolge, die in *appsettings.jsauf* gespeichert ist, ein Kennwort für den angegebenen Benutzer enthalten:
+Das Speichern von Kenn Wörtern im Klartext ist unsicher. Beispielsweise kann eine Datenbank-Verbindungs Zeichenfolge, die in gespeichert ist, *appsettings.json* ein Kennwort für den angegebenen Benutzer enthalten:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Beispiel:
+Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Zum Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.js*. Beispiel:
+Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.json* . Zum Beispiel:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -216,7 +217,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan*.
+Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan* .
 
 ## <a name="remove-a-single-secret"></a>Entfernen eines einzelnen geheimen Schlüssels
 
@@ -286,7 +287,7 @@ Dieses Dokument erläutert Techniken zum Speichern und Abrufen von sensiblen Dat
 
 Umgebungsvariablen werden verwendet, um das Speichern von App-Geheimnissen im Code oder in lokalen Konfigurationsdateien zu vermeiden. Umgebungsvariablen überschreiben Konfigurationswerte für alle zuvor angegebenen Konfigurations Quellen.
 
-Stellen Sie sich eine ASP.net Core Web-App vor, in der die Sicherheit **einzelner Benutzerkonten** aktiviert ist. Eine standardmäßige Daten bankverbindungs Zeichenfolge ist in der *appsettings.js* Datei des Projekts mit dem Schlüssel enthalten `DefaultConnection` . Die Standard Verbindungs Zeichenfolge ist für localdb, das im Benutzermodus ausgeführt wird und kein Kennwort erfordert. Während der APP-Bereitstellung `DefaultConnection` kann der Schlüsselwert mit dem Wert einer Umgebungsvariablen überschrieben werden. In der Umgebungsvariablen kann die gesamte Verbindungs Zeichenfolge mit vertraulichen Anmelde Informationen gespeichert werden.
+Stellen Sie sich eine ASP.net Core Web-App vor, in der die Sicherheit **einzelner Benutzerkonten** aktiviert ist. Eine standardmäßige Daten bankverbindungs Zeichenfolge ist in der Projekt *appsettings.json* Datei mit dem Schlüssel enthalten `DefaultConnection` . Die Standard Verbindungs Zeichenfolge ist für localdb, das im Benutzermodus ausgeführt wird und kein Kennwort erfordert. Während der APP-Bereitstellung `DefaultConnection` kann der Schlüsselwert mit dem Wert einer Umgebungsvariablen überschrieben werden. In der Umgebungsvariablen kann die gesamte Verbindungs Zeichenfolge mit vertraulichen Anmelde Informationen gespeichert werden.
 
 > [!WARNING]
 > Umgebungsvariablen werden im Allgemeinen in unverschlüsseltem, unverschlüsseltem Text gespeichert. Wenn der Computer oder der Prozess kompromittiert ist, kann von nicht vertrauenswürdigen Parteien auf Umgebungsvariablen zugegriffen werden. Möglicherweise sind zusätzliche Maßnahmen erforderlich, um eine Offenlegung von Benutzer Geheimnissen zu verhindern.
@@ -343,7 +344,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 Im vorherigen Beispiel deutet der Doppelpunkt darauf hin, dass `Movies` Ein Objektliteral mit einer- `ServiceApiKey` Eigenschaft ist.
 
-Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die *csproj* -Datei vorhanden ist. Beispiel:
+Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die *csproj* -Datei vorhanden ist. Zum Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -351,7 +352,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Vereinfachen der JSON-Struktur in Visual Studio
 
-Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Beispiel:
+Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Zum Beispiel:
 
 ```json
 {
@@ -426,17 +427,17 @@ Die `Movies:ConnectionString` `Movies:ServiceApiKey` Geheimnisse und werden den 
 
 ## <a name="string-replacement-with-secrets"></a>Zeichen folgen Ersetzung mit geheimen Schlüsseln
 
-Das Speichern von Kenn Wörtern im Klartext ist unsicher. Beispielsweise kann eine Daten bankverbindungs Zeichenfolge, die in *appsettings.jsauf* gespeichert ist, ein Kennwort für den angegebenen Benutzer enthalten:
+Das Speichern von Kenn Wörtern im Klartext ist unsicher. Beispielsweise kann eine Datenbank-Verbindungs Zeichenfolge, die in gespeichert ist, *appsettings.json* ein Kennwort für den angegebenen Benutzer enthalten:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Beispiel:
+Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Zum Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.js*. Beispiel:
+Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.json* . Zum Beispiel:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -461,7 +462,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan*.
+Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan* .
 
 ## <a name="remove-a-single-secret"></a>Entfernen eines einzelnen geheimen Schlüssels
 

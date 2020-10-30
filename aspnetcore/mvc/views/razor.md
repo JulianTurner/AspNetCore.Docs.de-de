@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über Razor Markup Syntax zum Einbetten von Serve
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 9c2bbd2d463af8a2ea7db716d01bf1436338ea77
-ms.sourcegitcommit: cd861463faf44956855e3c4b3669483bbc4a7463
+ms.openlocfilehash: c1278b0cd3e58814b1c06dca81efd662c3de0c54
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89101360"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059194"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor Syntax Verweis für ASP.net Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen)und [Dan vicarel](https://github.com/Rabadash8820)
 
-Razor ist eine Markup Syntax zum Einbetten von Server basiertem Code in Webseiten. Die Razor Syntax besteht aus Razor Markup, c# und HTML. Dateien mit Razor der Dateierweiterung " *. cshtml* ". Razorwird auch in [ Razor Komponenten](xref:blazor/components/index) Dateien (*Razor*-Dateien) gefunden.
+Razor ist eine Markup Syntax zum Einbetten von Server basiertem Code in Webseiten. Die Razor Syntax besteht aus Razor Markup, c# und HTML. Dateien mit Razor der Dateierweiterung " *. cshtml* ". Razorwird auch in [ Razor Komponenten](xref:blazor/components/index) Dateien ( *Razor* -Dateien) gefunden.
 
 ## <a name="rendering-html"></a>Rendern von HTML
 
@@ -72,7 +73,7 @@ Mit Ausnahme des C#-Schlüsselworts `await` dürfen implizite Ausdrücke keine L
 <p>@await DoSomething("hello", "world")</p>
 ```
 
-Implizite Ausdrücke dürfen **keine** C#-Generics enthalten, da die Zeichen innerhalb der Klammern (`<>`) als HTML-Tag interpretiert werden. Der folgende Code ist **ungültig**:
+Implizite Ausdrücke dürfen **keine** C#-Generics enthalten, da die Zeichen innerhalb der Klammern (`<>`) als HTML-Tag interpretiert werden. Der folgende Code ist **ungültig** :
 
 ```cshtml
 <p>@GenericMethod<int>()</p>
@@ -117,7 +118,7 @@ Explizite Ausdrücke können zum Verketten von Text mit einem Ergebnis des Ausdr
 
 Ohne den expliziten Ausdruck wird `<p>Age@joe.Age</p>` als E-Mail-Adresse behandelt und `<p>Age@joe.Age</p>` gerendert. `<p>Age33</p>` wird gerendert, wenn es als expliziter Ausdruck geschrieben wird.
 
-Explizite Ausdrücke können zum Rendern der Ausgabe von generischen Methoden in *.cshtml*-Dateien verwendet werden. Das folgende Markup zeigt, wie der weiter oben gezeigte Fehler behoben wird, der durch die Klammern einer generischen C#-Funktion verursacht wurde. Der Code wird als expliziter Ausdruck geschrieben:
+Explizite Ausdrücke können zum Rendern der Ausgabe von generischen Methoden in *.cshtml* -Dateien verwendet werden. Das folgende Markup zeigt, wie der weiter oben gezeigte Fehler behoben wird, der durch die Klammern einer generischen C#-Funktion verursacht wurde. Der Code wird als expliziter Ausdruck geschrieben:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
@@ -496,7 +497,7 @@ Verwenden Sie in- [ Razor Komponenten](xref:blazor/components/index), `@code` `@
 
 ::: moniker-end
 
-Beispiel:
+Zum Beispiel:
 
 [!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
 
@@ -582,7 +583,7 @@ Der Code rendert den folgenden HTML-Code:
 </div>
 ```
 
- `@model` und `@inherits` können in derselben Ansicht verwendet werden. `@inherits` kann in einer *_ViewImports.cshtml*-Datei verwendet werden, die von der Ansicht importiert wird:
+ `@model` und `@inherits` können in derselben Ansicht verwendet werden. `@inherits` kann in einer *_ViewImports.cshtml* -Datei verwendet werden, die von der Ansicht importiert wird:
 
 [!code-cshtml[](razor/sample/Views/_ViewImportsModel.cshtml)]
 
@@ -657,11 +658,11 @@ Die `@namespace`-Anweisung:
 
 Für das Razor Beispiel "Pages" in der folgenden Tabelle:
 
-* Jede Seite importiert *Pages/_ViewImports.cshtml*.
+* Jede Seite importiert *Pages/_ViewImports.cshtml* .
 * *Pages/_ViewImports.cshtml* enthält `@namespace Hello.World`.
 * Jede Seite weist `Hello.World` als Stamm ihres Namespace auf.
 
-| Page                                        | Namespace                             |
+| Seite                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/index. cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
@@ -673,7 +674,7 @@ Wenn mehrere Importdateien über eine `@namespace`-Anweisung verfügen, wird die
 
 Wenn der Ordner *EvenMorePages* im Beispiel oben eine Importdatei mit `@namespace Another.Planet` enthält (oder die Datei *Pages/MorePages/EvenMorePages/Page.cshtml*`@namespace Another.Planet` enthält), finden Sie das Ergebnis in der folgenden Tabelle.
 
-| Page                                        | Namespace               |
+| Seite                                        | Namespace               |
 | ------------------------------------------- | ----------------------- |
 | *Pages/index. cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
@@ -930,7 +931,7 @@ C# Razor -Schlüsselwörter müssen mit einem doppelten Escapezeichen versehen w
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Bei .net Core SDK 2,1 oder höher übernimmt das [ Razor SDK](xref:razor-pages/sdk) die Kompilierung von Razor Dateien. Beim Entwickeln eines Projekts generiert das Razor SDK eine *obj/<build_configuration>/<target_framework_moniker>/ Razor * Verzeichnis im Stammverzeichnis des Projekts. Die Verzeichnisstruktur im *Razor* Verzeichnis spiegelt die Verzeichnisstruktur des Projekts wider.
+Bei .net Core SDK 2,1 oder höher übernimmt das [ Razor SDK](xref:razor-pages/sdk) die Kompilierung von Razor Dateien. Beim Entwickeln eines Projekts generiert das Razor SDK eine *obj/<build_configuration>/<target_framework_moniker>/ Razor* Verzeichnis im Stammverzeichnis des Projekts. Die Verzeichnisstruktur im *Razor* Verzeichnis spiegelt die Verzeichnisstruktur des Projekts wider.
 
 Sehen Sie sich die folgende Verzeichnisstruktur in einem ASP.net Core 2,1 pages-Projekt an, das auf Razor .net Core 2,1 abzielt:
 
@@ -949,7 +950,7 @@ Sehen Sie sich die folgende Verzeichnisstruktur in einem ASP.net Core 2,1 pages-
    Index.cshtml.cs
   ```
 
-Wenn Sie das Projekt mit der Konfiguration zum *Debuggen* erstellen, wird folgendes *obj*-Verzeichnis erstellt:
+Wenn Sie das Projekt mit der Konfiguration zum *Debuggen* erstellen, wird folgendes *obj* -Verzeichnis erstellt:
 
 ```
  obj/
@@ -968,7 +969,7 @@ Wenn Sie das Projekt mit der Konfiguration zum *Debuggen* erstellen, wird folgen
            Index.g.cshtml.cs
 ```
 
-Öffnen Sie *obj/Debug/netcoreapp 2.1/ Razor /pages/index.g.cshtml.cs*, um die generierte Klasse für *pages/index. cshtml*anzuzeigen.
+Öffnen Sie *obj/Debug/netcoreapp 2.1/ Razor /pages/index.g.cshtml.cs* , um die generierte Klasse für *pages/index. cshtml* anzuzeigen.
 
 ::: moniker-end
 
@@ -993,8 +994,8 @@ Legen Sie auf der `return csharpDocument;`-Anweisung von `CustomTemplateEngine` 
 Die Razor Ansichts-Engine führt Suchvorgänge bei der Suche nach Groß-und Kleinschreibung durch. Der tatsächliche Suchvorgang wird jedoch vom zugrunde liegenden Dateisystem bestimmt:
 
 * Dateibasierte Quelle:
-  * Bei Betriebssystemen, die Dateisysteme ohne Berücksichtigung von Groß-/Kleinschreibung verwenden (z.B. Windows), wird bei Suchvorgängen nach physischen Dateianbietern die Groß- und Kleinschreibung nicht berücksichtigt. `return View("Test")` liefert beispielsweise Treffer für */Views/Home/Test.cshtml*, */Views/home/test.cshtml* sowie für jede andere Schreibweise.
-  * Bei Dateisystemen, die die Groß-/Kleinschreibung berücksichtigen (z.B. Linux, OSX sowie mit `EmbeddedFileProvider`), wird die Groß-/Kleinschreibung auch bei Suchvorgängen berücksichtigt. `return View("Test")` liefert beispielsweise ganz konkret Treffer für */Views/Home/Test.cshtml*.
+  * Bei Betriebssystemen, die Dateisysteme ohne Berücksichtigung von Groß-/Kleinschreibung verwenden (z.B. Windows), wird bei Suchvorgängen nach physischen Dateianbietern die Groß- und Kleinschreibung nicht berücksichtigt. `return View("Test")` liefert beispielsweise Treffer für */Views/Home/Test.cshtml* , */Views/home/test.cshtml* sowie für jede andere Schreibweise.
+  * Bei Dateisystemen, die die Groß-/Kleinschreibung berücksichtigen (z.B. Linux, OSX sowie mit `EmbeddedFileProvider`), wird die Groß-/Kleinschreibung auch bei Suchvorgängen berücksichtigt. `return View("Test")` liefert beispielsweise ganz konkret Treffer für */Views/Home/Test.cshtml* .
 * Vorkompilierte Ansichten: Ab ASP.NET Core 2.0 wird bei der Suche nach vorkompilierten Ansichten unter allen Betriebssystemen die Groß-/Kleinschreibung nicht berücksichtigt. Das Verhalten ist mit dem des physischen Dateianbieters unter Windows identisch. Unterscheiden sich zwei vorkompilierte Ansichten nur in der Groß-/Kleinschreibung, ist das Ergebnis der Suche nicht deterministisch.
 
 Entwicklern wird empfohlen, sich bei der Groß-/Kleinschreibung von Datei- und Verzeichnisnamen an der Schreibweise folgender Begriffe zu orientieren:

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/14/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-compilation
-ms.openlocfilehash: 3d76eff93d5c7c53b57136e5183e1ca5287dec81
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 77ca96b329136ee044ab6fc5f6b5ebb5b67fe64c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631120"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059077"
 ---
 # <a name="no-locrazor-file-compilation-in-aspnet-core"></a>Razor Datei Kompilierung in ASP.net Core
 
@@ -45,7 +46,7 @@ Die Razor Seiten und MVC-Projektvorlagen enthalten eine Option zum Aktivieren de
 Erstellen Sie im Dialogfeld **neue ASP.net Core Webanwendung erstellen** Folgendes:
 
 1. Wählen Sie entweder die Projektvorlage **Webanwendung** oder **Webanwendung (Model-View-Controller)** aus.
-1. Aktivieren Sie das Kontrollkästchen ** Razor Lauf Zeit Kompilierung aktivieren** .
+1. Aktivieren Sie das Kontrollkästchen **Razor Lauf Zeit Kompilierung aktivieren** .
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
@@ -62,7 +63,7 @@ dotnet new webapp --razor-runtime-compilation
 So aktivieren Sie die Lauf Zeit Kompilierung für alle Umgebungen in einem vorhandenen Projekt:
 
 1. Installieren Sie [Microsoft. aspnetcore. MVC. Razor . Runtimecompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) -nuget-Paket.
-1. Aktualisieren Sie die `Startup.ConfigureServices`-Methode des Projekts so, dass diese einen Aufruf von <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*> enthält. Beispiel:
+1. Aktualisieren Sie die `Startup.ConfigureServices`-Methode des Projekts so, dass diese einen Aufruf von <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*> enthält. Zum Beispiel:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
@@ -84,7 +85,7 @@ Die Laufzeitkompilierung kann so aktiviert werden, dass sie nur für die lokale 
 So aktivieren Sie die Lauf Zeit Kompilierung nur in der Entwicklungsumgebung:
 
 1. Installieren Sie [Microsoft. aspnetcore. MVC. Razor . Runtimecompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) -nuget-Paket.
-1. Ändern Sie den Abschnitt Start Profil `environmentVariables` in *launchSettings.js*:
+1. Ändern Sie den Abschnitt Start Profil `environmentVariables` in *launchSettings.js* :
     * Überprüfen `ASPNETCORE_ENVIRONMENT` ist auf festgelegt `"Development"` .
     * Legen Sie `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` auf `"Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"` fest.
 
@@ -96,7 +97,7 @@ In der-Klasse des Projekts sind keine Codeänderungen erforderlich `Startup` . Z
 
 ## <a name="enable-runtime-compilation-for-a-no-locrazor-class-library"></a>Aktivieren der Lauf Zeit Kompilierung für eine Razor Klassenbibliothek
 
-Stellen Sie sich ein Szenario vor, in dem ein Razor Seiten Projekt auf eine [ Razor Klassenbibliothek (RCL)](xref:razor-pages/ui-class) mit dem Namen *myclasslib*verweist. Die RCL enthält eine *_Layout. cshtml* -Datei, die von allen MVC-und Pages-Projekten Ihres Teams genutzt wird Razor . Sie möchten die Runtime-Kompilierung für die Datei *_Layout. cshtml* in dieser RCL aktivieren. Nehmen Sie die folgenden Änderungen im Razor pages-Projekt vor:
+Stellen Sie sich ein Szenario vor, in dem ein Razor Seiten Projekt auf eine [ Razor Klassenbibliothek (RCL)](xref:razor-pages/ui-class) mit dem Namen *myclasslib* verweist. Die RCL enthält eine *_Layout. cshtml* -Datei, die von allen MVC-und Pages-Projekten Ihres Teams genutzt wird Razor . Sie möchten die Runtime-Kompilierung für die Datei *_Layout. cshtml* in dieser RCL aktivieren. Nehmen Sie die folgenden Änderungen im Razor pages-Projekt vor:
 
 1. Aktivieren Sie die Lauf Zeit Kompilierung mit den Anweisungen unter [bedingt Aktivieren der Lauf Zeit Kompilierung in einem vorhandenen Projekt](#conditionally-enable-runtime-compilation-in-an-existing-project).
 1. Konfigurieren Sie die Optionen für die Lauf Zeit Kompilierung in `Startup.ConfigureServices` :
@@ -128,7 +129,7 @@ So aktivieren Sie die Laufzeitkompilierung für alle Umgebungen und Konfiguratio
 
 1. Installieren Sie [Microsoft. aspnetcore. MVC. Razor . Runtimecompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/) -nuget-Paket.
 
-1. Aktualisieren Sie die `Startup.ConfigureServices`-Methode des Projekts so, dass diese einen Aufruf von <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*> enthält. Beispiel:
+1. Aktualisieren Sie die `Startup.ConfigureServices`-Methode des Projekts so, dass diese einen Aufruf von <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*> enthält. Zum Beispiel:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)

@@ -6,6 +6,7 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: ca2f071ccb84fdb2eb06f533fc4d088ad1b1c785
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: a3be22134246c76b0a809ddb97b33ff97ace9a5b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393885"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057504"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Modellbindung in ASP.NET Core
 
@@ -80,7 +81,7 @@ Kann auf eine öffentliche Eigenschaft eines Controllers oder einer `PageModel`-
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
 
-### <a name="bindpropertiesattribute"></a>[BindProperties]-Attribut
+### <a name="bindproperties-attribute"></a>[BindProperties]-Attribut
 
 Verfügbar in ASP.NET Core 2.1 und höher.  Kann auf einen Controller oder eine `PageModel`-Klasse angewendet werden, um die Modellbindung anzuweisen, alle öffentlichen Eigenschaften dieser Klasse als Ziel zu verwenden:
 
@@ -203,7 +204,7 @@ Dieselbe Strategie empfiehlt sich, wenn Sie nicht möchten, dass Typkonvertierun
 
 Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren kann, sind unter anderem:
 
-* [Boolescher Wert](xref:System.ComponentModel.BooleanConverter)
+* [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
@@ -223,7 +224,7 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 
 Ein komplexer Typ muss einen öffentlichen Standardkonstruktor und öffentliche schreibbare Eigenschaften besitzen, die gebunden werden können. Wenn die Modellbindung erfolgt, wird die Klasse mit dem öffentlichen Standardkonstruktor instanziiert. 
 
-Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name*. Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
+Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name* . Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
 
 Beim Binden an einen Parameter ist das Präfix der Name des Parameters. Beim Binden an eine öffentliche Eigenschaft `PageModel` ist das Präfix der Name der öffentlichen Eigenschaft. Einige Attribute besitzen eine Eigenschaft `Prefix`, die es Ihnen gestattet, die Standardverwendung des Parameter- oder Eigenschaftennamens außer Kraft zu setzen.
 
@@ -279,11 +280,11 @@ Mehrere integrierte Attribute stehen für die Kontrolle der Modellbindung komple
 * `[BindNever]`
 
 > [!WARNING]
-> Diese Attribute wirken sich auf die Modellbindung aus, wenn bereitgestellte Formulardaten die Quelle der Wert sind. Sie wirken sich ***nicht*** auf Eingabe Formatierer aus, die gepostete JSON-und XML-Anforderungs Texte verarbeiten. Eingabeformatierer werden [später in diesem Artikel](#input-formatters) erklärt.
+> Diese Attribute wirken sich auf die Modellbindung aus, wenn bereitgestellte Formulardaten die Quelle der Wert sind. Sie haben * **nicht** _ Auswirkungen auf Eingabe Formatierungen, die gepostete JSON-und XML-Anforderungs Texte verarbeiten. Eingabeformatierer werden [später in diesem Artikel](#input-formatters) erklärt.
 
 ### <a name="bind-attribute"></a>[Bind]-Attribut
 
-Kann auf eine Klasse oder einen Methodenparameter angewendet werden. Gibt an, welche Eigenschaften eines Modells in die Modellbindung aufgenommen werden sollen. `[Bind]` wirkt sich ***nicht*** auf Eingabe Formatierer aus.
+Kann auf eine Klasse oder einen Methodenparameter angewendet werden. Gibt an, welche Eigenschaften eines Modells in die Modellbindung aufgenommen werden sollen. `[Bind]` wirkt sich _*_nicht_*_ auf Eingabe Formatierer aus.
 
 Im folgenden Beispiel werden nur die angegebenen Eigenschaften des `Instructor`-Modells gebunden, wenn ein Ereignishandler oder eine Aktionsmethode aufgerufen wird:
 
@@ -299,7 +300,7 @@ Im folgenden Beispiel werden nur die angegebenen Eigenschaften des `Instructor`-
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-Das `[Bind]`-Attribut kann zum Schutz vor Overposting in *Erstellungs*szenarien (create) verwendet werden. Es funktioniert nicht gut in Bearbeitungsszenarien (edit), weil ausgeschlossene Eigenschaften auf „null“ oder einen Standardwert festgelegt werden, anstatt unverändert zu bleiben. Zum Schutz vor Overposting werden Ansichtsmodelle empfohlen, anstelle des `[Bind]`-Attributs. Weitere Informationen finden Sie unter [Sicherheitshinweis zum Overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+Das- `[Bind]` Attribut kann verwendet werden, um in _create *-Szenarios vor overposting zu schützen. Es funktioniert nicht gut in Bearbeitungsszenarien (edit), weil ausgeschlossene Eigenschaften auf „null“ oder einen Standardwert festgelegt werden, anstatt unverändert zu bleiben. Zum Schutz vor Overposting werden Ansichtsmodelle empfohlen, anstelle des `[Bind]`-Attributs. Weitere Informationen finden Sie unter [Sicherheitshinweis zum Overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
 ### <a name="bindrequired-attribute"></a>[BindRequired]-Attribut
 
@@ -317,7 +318,7 @@ Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter.
 
 ## <a name="collections"></a>Sammlungen
 
-Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
+Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
 
 * Angenommen, der zu bindende Parameter ist ein Array namens `selectedCourses`:
 
@@ -362,7 +363,7 @@ Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Ü
 
 ## <a name="dictionaries"></a>Wörterbücher
 
-Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
+Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
 
 * Angenommen, der Zielparameter ist eine `Dictionary<int, string>` mit dem Namen `selectedCourses`:
 
@@ -474,7 +475,7 @@ Wird verwendet, um alle Werte aus bereitgestellten Formulardaten abzurufen.
 
 ## <a name="input-formatters"></a>Eingabeformatierer
 
-Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer*, der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
+Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer* , der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
 
 ASP.NET Core wählt Eingabeformatierer auf Grundlage des [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute)-Attributs aus. Wenn kein Attribut vorhanden ist, verwendet es den [Content-Type-Header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
@@ -608,7 +609,7 @@ Kann auf eine öffentliche Eigenschaft eines Controllers oder einer `PageModel`-
 
 [!code-csharp[](model-binding/samples/2.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs?name=snippet_BindProperty&highlight=3-4)]
 
-### <a name="bindpropertiesattribute"></a>[BindProperties]-Attribut
+### <a name="bindproperties-attribute"></a>[BindProperties]-Attribut
 
 Verfügbar in ASP.NET Core 2.1 und höher.  Kann auf einen Controller oder eine `PageModel`-Klasse angewendet werden, um die Modellbindung anzuweisen, alle öffentlichen Eigenschaften dieser Klasse als Ziel zu verwenden:
 
@@ -731,7 +732,7 @@ Dieselbe Strategie empfiehlt sich, wenn Sie nicht möchten, dass Typkonvertierun
 
 Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren kann, sind unter anderem:
 
-* [Boolescher Wert](xref:System.ComponentModel.BooleanConverter)
+* [Boolean](xref:System.ComponentModel.BooleanConverter)
 * [Byte](xref:System.ComponentModel.ByteConverter), [SByte](xref:System.ComponentModel.SByteConverter)
 * [Char](xref:System.ComponentModel.CharConverter)
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
@@ -751,7 +752,7 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 
 Ein komplexer Typ muss einen öffentlichen Standardkonstruktor und öffentliche schreibbare Eigenschaften besitzen, die gebunden werden können. Wenn die Modellbindung erfolgt, wird die Klasse mit dem öffentlichen Standardkonstruktor instanziiert. 
 
-Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name*. Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
+Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name* . Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
 
 Beim Binden an einen Parameter ist das Präfix der Name des Parameters. Beim Binden an eine öffentliche Eigenschaft `PageModel` ist das Präfix der Name der öffentlichen Eigenschaft. Einige Attribute besitzen eine Eigenschaft `Prefix`, die es Ihnen gestattet, die Standardverwendung des Parameter- oder Eigenschaftennamens außer Kraft zu setzen.
 
@@ -841,11 +842,11 @@ Im folgenden Beispiel werden nur die angegebenen Eigenschaften des `Instructor`-
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-Das `[Bind]`-Attribut kann zum Schutz vor Overposting in *Erstellungs*szenarien (create) verwendet werden. Es funktioniert nicht gut in Bearbeitungsszenarien (edit), weil ausgeschlossene Eigenschaften auf „null“ oder einen Standardwert festgelegt werden, anstatt unverändert zu bleiben. Zum Schutz vor Overposting werden Ansichtsmodelle empfohlen, anstelle des `[Bind]`-Attributs. Weitere Informationen finden Sie unter [Sicherheitshinweis zum Overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+Das `[Bind]`-Attribut kann zum Schutz vor Overposting in *Erstellungs* szenarien (create) verwendet werden. Es funktioniert nicht gut in Bearbeitungsszenarien (edit), weil ausgeschlossene Eigenschaften auf „null“ oder einen Standardwert festgelegt werden, anstatt unverändert zu bleiben. Zum Schutz vor Overposting werden Ansichtsmodelle empfohlen, anstelle des `[Bind]`-Attributs. Weitere Informationen finden Sie unter [Sicherheitshinweis zum Overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
 ## <a name="collections"></a>Sammlungen
 
-Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
+Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
 
 * Angenommen, der zu bindende Parameter ist ein Array namens `selectedCourses`:
 
@@ -890,7 +891,7 @@ Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Ü
 
 ## <a name="dictionaries"></a>Wörterbücher
 
-Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
+Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
 
 * Angenommen, der Zielparameter ist eine `Dictionary<int, string>` mit dem Namen `selectedCourses`:
 
@@ -961,7 +962,7 @@ Wird verwendet, um alle Werte aus bereitgestellten Formulardaten abzurufen.
 
 ## <a name="input-formatters"></a>Eingabeformatierer
 
-Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer*, der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
+Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer* , der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
 
 ASP.NET Core wählt Eingabeformatierer auf Grundlage des [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute)-Attributs aus. Wenn kein Attribut vorhanden ist, verwendet es den [Content-Type-Header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 

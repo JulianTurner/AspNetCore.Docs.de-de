@@ -5,6 +5,7 @@ description: Erfahren Sie, wie ASP.NET Core MVC Routingmiddleware verwendet, um 
 ms.author: riande
 ms.date: 3/25/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: e451d511ab7791a05024d88635d8005132ad4edd
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 9f64dd8f0ca026cec4b7ee4b5ea02523139eed4f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393924"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057153"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -119,7 +120,7 @@ Herkömmliches Routing wird mit Controllern und Ansichten verwendet. Die `defaul
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
-ist ein Beispiel für *herkömmliches Routing*. Es wird als *herkömmliches Routing* bezeichnet, da es eine *Konvention* für URL-Pfade festlegt:
+ist ein Beispiel für *herkömmliches Routing* . Es wird als *herkömmliches Routing* bezeichnet, da es eine *Konvention* für URL-Pfade festlegt:
 
 * Das erste Pfad Segment, `{controller=Home}` , wird dem Controller Namen zugeordnet.
 * Das zweite Segment, `{action=Index}` , wird dem [Aktions](#action) Namen zugeordnet.
@@ -132,7 +133,7 @@ Verwenden Sie diese `default` Route, den URL-Pfad:
 
 Diese Zuordnung:
 
-* Basiert **nur**auf den Controller-und [Aktions](#action) Namen.
+* Basiert **nur** auf den Controller-und [Aktions](#action) Namen.
 * Basiert nicht auf Namespaces, Quelldatei Speicherorten oder Methoden Parametern.
 
 Die Verwendung von herkömmlichem Routing mit der Standardroute ermöglicht das Erstellen der APP, ohne für jede Aktion ein neues URL-Muster zu erstellen. Für eine APP mit [CRUD-](https://wikipedia.org/wiki/Create,_read,_update_and_delete) Stil Aktionen mit Konsistenz für die URLs über Controller hinweg:
@@ -177,7 +178,7 @@ Mehrere [konventionelle Routen](#cr) können in hinzugefügt werden `UseEndpoint
 
 <a name="dcr"></a>
 
-Die `blog` Route im vorangehenden Code ist eine **dedizierte konventionelle Route**. Dies wird als dedizierte konventionelle Route bezeichnet:
+Die `blog` Route im vorangehenden Code ist eine **dedizierte konventionelle Route** . Dies wird als dedizierte konventionelle Route bezeichnet:
 
 * Es verwendet [herkömmliches Routing](#cr).
 * Es ist für eine bestimmte [Aktion](#action)vorgesehen.
@@ -196,7 +197,7 @@ Für das vorherige Beispiel gilt Folgendes:
 
 > [!WARNING]
 > In ASP.net Core 3,0 und höher ist das Routing nicht:
-> * Definieren Sie ein Konzept, das als *Route*bezeichnet wird. `UseRouting` fügt der Middlewarepipeline einen Routenabgleich hinzu. Die `UseRouting` Middleware prüft den Satz von Endpunkten, die in der APP definiert sind, und wählt basierend auf der Anforderung die beste Endpunkt Übereinstimmung aus.
+> * Definieren Sie ein Konzept, das als *Route* bezeichnet wird. `UseRouting` fügt der Middlewarepipeline einen Routenabgleich hinzu. Die `UseRouting` Middleware prüft den Satz von Endpunkten, die in der APP definiert sind, und wählt basierend auf der Anforderung die beste Endpunkt Übereinstimmung aus.
 > * Stellen Sie Garantien für die Ausführungsreihenfolge der Erweiterbarkeit wie <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> oder bereit <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint> .
 >
 >Referenzmaterial zum Routing finden Sie unter [Routing](xref:fundamentals/routing) .
@@ -219,7 +220,7 @@ Wenn zwei Endpunkte über das Routing abgleichen, muss das Routing einen der fol
 * Wählen Sie den besten Kandidaten aus.
 * Löst eine Ausnahme aus.
 
-Beispiel:
+Zum Beispiel:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -259,7 +260,7 @@ Routennamen:
 * Hat keine Auswirkung auf die URL-Übereinstimmung oder-Verarbeitung von Anforderungen.
 * Werden nur für die URL-Generierung verwendet.
 
-Das Routing Namenskonzept wird als " [iendpointnamemetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata)" dargestellt. Die Begriffe **Routen Name** und **Endpunkt Name**:
+Das Routing Namenskonzept wird als " [iendpointnamemetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata)" dargestellt. Die Begriffe **Routen Name** und **Endpunkt Name** :
 
 * Sind austauschbar.
 * Welche Informationen in der Dokumentation und im Code verwendet werden, hängt von der API ab, die beschrieben wird.
@@ -350,7 +351,7 @@ Beachten Sie den folgenden Controller:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * Jede Aktion enthält das- `[HttpGet]` Attribut, das die Übereinstimmung von HTTP-GET-Anforderungen einschränkt.
 * Die `GetProduct` Aktion enthält die `"{id}"` Vorlage und `id` wird daher an die `"api/[controller]"` Vorlage auf dem Controller angehängt. Die Methoden Vorlage ist `"api/[controller]/"{id}""` . Daher entspricht diese Aktion nur Get-Anforderungen für das Formular `/api/test2/xyz` , `/api/test2/123` , `/api/test2/{any string}` usw.
@@ -434,7 +435,7 @@ In der folgenden Tabelle werden die `[Route]` Attribute im vorangehenden Code er
 | `[Route("")]` | Ja | `"Home"` |
 | `[Route("Index")]` | Ja | `"Home/Index"` |
 | `[Route("/")]` | **Nein** | `""` |
-| `[Route("About")]` | Ja | `"Home/About"` |
+| `[Route("About")]` | Yes | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
@@ -471,7 +472,7 @@ Durch das Hinzufügen `Order` eines der Routen Attribute wird die Mehrdeutigkeit
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=2)]
 
-Mit dem vorangehenden Code `/home` führt den `HomeController.Index` Endpunkt aus. Um die `MyDemoController.MyIndex` anzufordern, fordern Sie an `/home/MyIndex` . **Hinweis**:
+Mit dem vorangehenden Code `/home` führt den `HomeController.Index` Endpunkt aus. Um die `MyDemoController.MyIndex` anzufordern, fordern Sie an `/home/MyIndex` . **Hinweis** :
 
 * Der vorangehende Code ist ein Beispiel oder ein schlechtes Routing Design. Es wurde verwendet, um die-Eigenschaft zu veranschaulichen `Order` .
 * Die- `Order` Eigenschaft löst nur die Mehrdeutigkeit auf, diese Vorlage kann nicht abgeglichen werden. Es wäre besser, die Vorlage zu entfernen `[Route("Home")]` .
@@ -493,7 +494,7 @@ Die Token `[action]` , `[area]` und `[controller]` werden durch die Werte für A
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
@@ -632,7 +633,7 @@ Sehen Sie sich beispielsweise den folgenden Controller an:
 
 [!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * Die Basis `namespace` ist `My.Application` .
 * Der vollständige Name des vorangehenden Controllers ist `My.Application.Admin.Controllers.UsersController` .
@@ -667,7 +668,7 @@ Im folgenden Beispiel wird die- `IUrlHelper` Schnittstelle mithilfe der- `Contro
 
 Wenn die APP die herkömmliche Standardroute verwendet, ist der Wert der `url` Variablen die URL-Pfad Zeichenfolge `/UrlGeneration/Destination` . Dieser URL-Pfad wird durch das Routing erstellt, indem Folgendes kombiniert wird:
 
-* Die Routen Werte aus der aktuellen Anforderung, die als **Umgebungs Werte**bezeichnet werden.
+* Die Routen Werte aus der aktuellen Anforderung, die als **Umgebungs Werte** bezeichnet werden.
 * Die Werte, die an weitergegeben werden, `Url.Action` und ersetzen diese Werte in der Routen Vorlage:
 
 ``` text
@@ -716,7 +717,7 @@ Wenn der Wert `{ d = Donovan }` hinzugefügt wird:
 * Der Wert `{ d = David }` wird ignoriert.
 * Der generierte URL-Pfad ist `Alice/Bob/Carol/Donovan` .
 
-**Warnung**: URL-Pfade sind hierarchisch. Im vorherigen Beispiel, wenn der Wert `{ c = Cheryl }` hinzugefügt wird:
+**Warnung** : URL-Pfade sind hierarchisch. Im vorherigen Beispiel, wenn der Wert `{ c = Cheryl }` hinzugefügt wird:
 
 * Beide Werte `{ c = Carol, d = David }` werden ignoriert.
 * Für ist kein Wert mehr vorhanden, `d` und die URL-Generierung schlägt fehl.
@@ -873,7 +874,7 @@ In diesem Artikel werden die Schnittstellen zwischen MVC und Routing und die Art
 
 ## <a name="setting-up-routing-middleware"></a>Einrichten der Routing-Middleware
 
-Ihre *Configure*-Methode kann Code wie diesen enthalten:
+Ihre *Configure* -Methode kann Code wie diesen enthalten:
 
 ```csharp
 app.UseMvc(routes =>
@@ -999,7 +1000,7 @@ app.UseMvc(routes =>
 });
 ```
 
-Die `blog`-Route hier ist eine *dedizierte herkömmliche Route*, d.h., dass das herkömmliche Routingsystem verwendet wird, aber einer bestimmten Aktion zugeordnet ist. Da `controller` und `action` nicht als Parameter in der Routenvorlage vorkommen, können sie nur die Standardwerte haben. Daher wird diese Route immer der Aktion `BlogController.Article` zugeordnet.
+Die `blog`-Route hier ist eine *dedizierte herkömmliche Route* , d.h., dass das herkömmliche Routingsystem verwendet wird, aber einer bestimmten Aktion zugeordnet ist. Da `controller` und `action` nicht als Parameter in der Routenvorlage vorkommen, können sie nur die Standardwerte haben. Daher wird diese Route immer der Aktion `BlogController.Article` zugeordnet.
 
 Die Routen in der Routenauflistung sind geordnet und werden in der Reihenfolge verarbeitet, in der sie hinzugefügt wurden. In diesem Beispiel wird daher die Route `blog` vor der Route `default` überprüft.
 
@@ -1008,11 +1009,11 @@ Die Routen in der Routenauflistung sind geordnet und werden in der Reihenfolge v
 
 ### <a name="fallback"></a>Fallback
 
-Im Rahmen der Anforderungsverarbeitung überprüft MVC, ob mit den Routenwerten ein Controller und eine Aktion in Ihrer Anwendung gefunden werden können. Falls die Routenwerte mit keiner Aktion übereinstimmen, gilt die Route nicht als Übereinstimmung, und die nächste Route wird überprüft. Dabei spricht man von einem *Fallback*. Dieser Vorgang soll Szenarios vereinfachen, bei denen sich herkömmliche Routen überschneiden.
+Im Rahmen der Anforderungsverarbeitung überprüft MVC, ob mit den Routenwerten ein Controller und eine Aktion in Ihrer Anwendung gefunden werden können. Falls die Routenwerte mit keiner Aktion übereinstimmen, gilt die Route nicht als Übereinstimmung, und die nächste Route wird überprüft. Dabei spricht man von einem *Fallback* . Dieser Vorgang soll Szenarios vereinfachen, bei denen sich herkömmliche Routen überschneiden.
 
 ### <a name="disambiguating-actions"></a>Aktionen eindeutig zuordnen
 
-Wenn zwei Aktionen beim Routing übereinstimmen, muss MVC beide analysieren und die beste auswählen oder eine Ausnahme auslösen. Beispiel:
+Wenn zwei Aktionen beim Routing übereinstimmen, muss MVC beide analysieren und die beste auswählen oder eine Ausnahme auslösen. Zum Beispiel:
 
 ```csharp
 public class ProductsController : Controller
@@ -1163,7 +1164,7 @@ public class ProductsApiController : Controller
 Routennamen können verwendet werden, um basierend auf einer bestimmten Route eine URL zu generieren. Routennamen haben keine Auswirkung auf das URL-Zuordnungsverhalten des Routings und dienen nur zur URL-Generierung. Routennamen müssen anwendungsweit eindeutig sein.
 
 > [!NOTE]
-> Vergleichen Sie dies mit der herkömmlichen *Standardroute*, die den `id`-Parameter als optional definiert (`{id?}`). APIs präzise angeben zu können, hat Vorteile, z.B. können `/products` und `/products/5` an unterschiedliche Aktionen gesendet werden.
+> Vergleichen Sie dies mit der herkömmlichen *Standardroute* , die den `id`-Parameter als optional definiert (`{id?}`). APIs präzise angeben zu können, hat Vorteile, z.B. können `/products` und `/products/5` an unterschiedliche Aktionen gesendet werden.
 
 <a name="routing-combining-ref-label"></a>
 
@@ -1451,14 +1452,14 @@ MVC erstellt eine Nachschlagetabelle aller über Attribute zugeordneten Aktionen
 `Url.Action` (`IUrlHelper` . `Action`) und alle zugehörigen Überladungen bauen alle auf der Idee auf, dass Sie angeben, was Sie verknüpfen möchten, indem Sie einen Controllernamen und einen Aktionsnamen angeben.
 
 > [!NOTE]
-> Bei Verwendung von `Url.Action` werden die aktuellen Routenwerte für `controller` und `action` für Sie festgelegt. Die Werte von `controller` und `action` bestehen sowohl aus *Umgebungswerten* **als auch aus ** *Werten*. Die Methode `Url.Action` verwendet immer die aktuellen Werte von `action` und `controller` und generiert einen URL-Pfad, der zur aktuellen Aktion weiterleitet.
+> Bei Verwendung von `Url.Action` werden die aktuellen Routenwerte für `controller` und `action` für Sie festgelegt. Die Werte von `controller` und `action` bestehen sowohl aus *Umgebungswerten* **als auch aus** *Werten* . Die Methode `Url.Action` verwendet immer die aktuellen Werte von `action` und `controller` und generiert einen URL-Pfad, der zur aktuellen Aktion weiterleitet.
 
 Beim Routing wird versucht, mit den Werten in den Umgebungswerten Informationen auszufüllen, die Sie beim Generieren einer URL nicht bereitgestellt haben. Mit Routen wie `{a}/{b}/{c}/{d}` und Umgebungswerten wie `{ a = Alice, b = Bob, c = Carol, d = David }` hat das Routing genügend Informationen, um eine URL ohne zusätzliche Werte zu generieren, da alle Routenparameter einen Wert aufweisen. Wenn Sie den Wert `{ d = Donovan }` hinzufügen, wird der Wert `{ d = David }` ignoriert, und der generierte URL-Pfad wäre `Alice/Bob/Carol/Donovan`.
 
 > [!WARNING]
 > URL-Pfade sind hierarchisch. Wenn Sie im obigen Beispiel den Wert `{ c = Cheryl }` hinzufügen, werden die beiden Werte `{ c = Carol, d = David }` ignoriert. In diesem Fall haben wir keinen Wert für `d` mehr, und die URL-Generierung schlägt fehl. Sie müssten dann den gewünschten Wert von `c` und `d` angeben.  Man könnte annehmen, dass dieses Problem bei der Standardroute auftritt (`{controller}/{action}/{id?}`). Tatsächlich passiert es in der Praxis jedoch selten, das `Url.Action` immer explizit einen `controller`- und `action`-Wert angibt.
 
-Längere Überladungen von `Url.Action` akzeptieren auch ein zusätzliches *route values*-Objekt, um andere Werte für Routenparameter als `controller` und `action` bereitzustellen. Es wird in der Regel mit `id` verwendet, z.B. in `Url.Action("Buy", "Products", new { id = 17 })`. Gemäß der Konvention ist das *Routenwerte*-Objekt eines des anonymen Typs, es kann aber auch ein `IDictionary<>`-Objekt oder ein *Plain Old .NET Object* sein. Alle zusätzlichen Routenwerte, die keinen Routenparametern zugeordnet sind, werden in der Abfragezeichenfolge platziert.
+Längere Überladungen von `Url.Action` akzeptieren auch ein zusätzliches *route values* -Objekt, um andere Werte für Routenparameter als `controller` und `action` bereitzustellen. Es wird in der Regel mit `id` verwendet, z.B. in `Url.Action("Buy", "Products", new { id = 17 })`. Gemäß der Konvention ist das *Routenwerte* -Objekt eines des anonymen Typs, es kann aber auch ein `IDictionary<>`-Objekt oder ein *Plain Old .NET Object* sein. Alle zusätzlichen Routenwerte, die keinen Routenparametern zugeordnet sind, werden in der Abfragezeichenfolge platziert.
 
 [!code-csharp[](routing/samples/2.x/main/Controllers/TestController.cs)]
 
@@ -1589,9 +1590,9 @@ public class ProductsController : Controller
 
 Unter Annahme der herkömmlichen Standardroute würde der URL-Pfad `/Products/Edit` die Werte `{ controller = Products, action = Edit }` erzeugen, die **beiden** hier gezeigten Aktionen entsprechen. In `IActionConstraint`-Terminologie würde man sagen, dass es sich bei beiden genannten Aktionen um Kandidaten handelt, da beide den Routendaten entsprechen.
 
-Wenn `HttpGetAttribute` ausgeführt wird, wird angegeben, dass *Edit()* mit *GET* übereinstimmt und mit keinem anderen HTTP-Verb. Für die `Edit(...)`-Aktion wurde keine Einschränkungen definiert, und daher stimmt sie mit allen HTTP-Verben überein. Wenn wir von `POST` ausgehen, stimmt nur `Edit(...)` überein. Für `GET` können jedoch beide Aktionen übereinstimmen. Eine Aktion mit `IActionConstraint` wird einer Aktion ohne jedoch immer *vorgezogen*. Da `Edit()` über `[HttpGet]` verfügt, gilt die Methode als spezifischer und wird ausgewählt, wenn beide Aktionen das Verb erkennen.
+Wenn `HttpGetAttribute` ausgeführt wird, wird angegeben, dass *Edit()* mit *GET* übereinstimmt und mit keinem anderen HTTP-Verb. Für die `Edit(...)`-Aktion wurde keine Einschränkungen definiert, und daher stimmt sie mit allen HTTP-Verben überein. Wenn wir von `POST` ausgehen, stimmt nur `Edit(...)` überein. Für `GET` können jedoch beide Aktionen übereinstimmen. Eine Aktion mit `IActionConstraint` wird einer Aktion ohne jedoch immer *vorgezogen* . Da `Edit()` über `[HttpGet]` verfügt, gilt die Methode als spezifischer und wird ausgewählt, wenn beide Aktionen das Verb erkennen.
 
-Im Prinzip ist `IActionConstraint` eine Form der *Überladung*. Anstatt jedoch Methoden mit demselben Namen zu überladen, führt es zu einer Überladung zwischen Aktionen, die dieselbe URL erkennen. Beim Attributrouting wird auch `IActionConstraint` verwendet. Aus diesem Grund kann es zu Aktionen aus verschiedenen Controllern führen, die beide als Kandidaten gelten.
+Im Prinzip ist `IActionConstraint` eine Form der *Überladung* . Anstatt jedoch Methoden mit demselben Namen zu überladen, führt es zu einer Überladung zwischen Aktionen, die dieselbe URL erkennen. Beim Attributrouting wird auch `IActionConstraint` verwendet. Aus diesem Grund kann es zu Aktionen aus verschiedenen Controllern führen, die beide als Kandidaten gelten.
 
 <a name="iactionconstraint-impl-ref-label"></a>
 

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 9516410399ce69f1d69b09781b2530d052a11e7a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 2864de5b9931ed255569cb087c67c71004c4df92
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631874"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059012"
 ---
 # <a name="response-caching-in-aspnet-core"></a>Zwischenspeichern von Antworten in ASP.net Core
 
@@ -38,30 +39,30 @@ Verwenden Sie für die serverseitige Zwischenspeicherung, die der HTTP 1,1-Cache
 
 ## <a name="http-based-response-caching"></a>HTTP-basiertes Zwischenspeichern von Antworten
 
-In der [http 1,1-cachingspezifikation](https://tools.ietf.org/html/rfc7234) wird beschrieben, wie sich die Internet Caches Verhalten. Der primäre HTTP-Header, der zum Zwischenspeichern verwendet wird, ist [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), der zum Angeben von Cache *Anweisungen*verwendet wird. Die Direktiven steuern das zwischen Speicherungs Verhalten, da Anforderungen von Clients auf Server und Antworten von Servern an Clients zurückgeben. Anforderungen und Antworten werden durch Proxy Server verschoben, und Proxy Server müssen ebenfalls der HTTP 1,1-cachingspezifikation entsprechen.
+In der [http 1,1-cachingspezifikation](https://tools.ietf.org/html/rfc7234) wird beschrieben, wie sich die Internet Caches Verhalten. Der primäre HTTP-Header, der zum Zwischenspeichern verwendet wird, ist [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), der zum Angeben von Cache *Anweisungen* verwendet wird. Die Direktiven steuern das zwischen Speicherungs Verhalten, da Anforderungen von Clients auf Server und Antworten von Servern an Clients zurückgeben. Anforderungen und Antworten werden durch Proxy Server verschoben, und Proxy Server müssen ebenfalls der HTTP 1,1-cachingspezifikation entsprechen.
 
 Allgemeine `Cache-Control` Anweisungen sind in der folgenden Tabelle aufgeführt.
 
 | Anweisung                                                       | Aktion |
 | --------------------------------------------------------------- | ------ |
-| [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Die Antwort kann in einem Cache gespeichert werden. |
+| [öffentlich](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | Die Antwort kann in einem Cache gespeichert werden. |
 | [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | Die Antwort darf nicht von einem freigegebenen Cache gespeichert werden. In einem privaten Cache kann die Antwort gespeichert und wieder verwendet werden. |
 | [Max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | Der Client akzeptiert keine Antwort, deren Alter größer ist als die angegebene Anzahl von Sekunden. Beispiele: `max-age=60` (60 Sekunden), `max-age=2592000` (1 Monat) |
-| [No-Cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Bei Anforderungen**: ein Cache darf keine gespeicherte Antwort verwenden, um die Anforderung zu erfüllen. Der Ursprungsserver generiert die Antwort für den Client erneut, und die Middleware aktualisiert die gespeicherte Antwort im Cache.<br><br>**Bei Antworten**: die Antwort darf nicht für eine nachfolgende Anforderung ohne Validierung auf dem Ursprungsserver verwendet werden. |
-| [No-Store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Bei Anforderungen**: die Anforderung darf nicht in einem Cache gespeichert werden.<br><br>**Bei Antworten**: ein Cache darf keinen Teil der Antwort speichern. |
+| [No-Cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **Bei Anforderungen** : ein Cache darf keine gespeicherte Antwort verwenden, um die Anforderung zu erfüllen. Der Ursprungsserver generiert die Antwort für den Client erneut, und die Middleware aktualisiert die gespeicherte Antwort im Cache.<br><br>**Bei Antworten** : die Antwort darf nicht für eine nachfolgende Anforderung ohne Validierung auf dem Ursprungsserver verwendet werden. |
+| [No-Store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **Bei Anforderungen** : die Anforderung darf nicht in einem Cache gespeichert werden.<br><br>**Bei Antworten** : ein Cache darf keinen Teil der Antwort speichern. |
 
 Andere Cache Header, die eine Rolle beim Caching spielen, sind in der folgenden Tabelle aufgeführt.
 
 | Header                                                     | Funktion |
 | ---------------------------------------------------------- | -------- |
-| [Eder](https://tools.ietf.org/html/rfc7234#section-5.1)     | Eine Schätzung der Zeitspanne (in Sekunden), seit die die Antwort auf dem Ursprungsserver generiert oder erfolgreich überprüft wurde. |
+| [Age](https://tools.ietf.org/html/rfc7234#section-5.1) (Alter)     | Eine Schätzung der Zeitspanne (in Sekunden), seit die die Antwort auf dem Ursprungsserver generiert oder erfolgreich überprüft wurde. |
 | [Laufzeit](https://tools.ietf.org/html/rfc7234#section-5.3) | Die Zeit, nach der die Antwort als veraltet eingestuft wird. |
 | [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Besteht aus Gründen der Abwärtskompatibilität mit HTTP/1.0-Caches zum Festlegen des `no-cache` Verhaltens. Wenn der `Cache-Control` Header vorhanden ist, `Pragma` wird der Header ignoriert. |
 | [Abweichen](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Gibt an, dass eine zwischengespeicherte Antwort nicht gesendet werden darf, es sei denn, alle `Vary` Header Felder stimmen mit der ursprünglichen Anforderung der zwischengespeicherten Antwort und der neuen Anforderung gleich. |
 
-## <a name="http-based-caching-respects-request-cache-control-directives"></a>HTTP-basiertes Zwischenspeichern, Anforderungs Cache-Steuerungs Direktiven
+## <a name="http-based-caching-respects-request-cache-control-directives"></a>HTTP-basiertes Zwischenspeichern von Anforderungen Cache-Control Direktiven
 
-Die [http 1,1-cachingspezifikation für den Cache-Control-Header](https://tools.ietf.org/html/rfc7234#section-5.2) erfordert einen Cache, um einen gültigen Header zu berücksichtigen, der `Cache-Control` vom Client gesendet wird. Ein Client kann Anforderungen mit einem `no-cache` Header Wert senden und erzwingen, dass der Server eine neue Antwort für jede Anforderung generiert.
+Die [http 1,1-Cache Spezifikation für den Cache-Control-Header](https://tools.ietf.org/html/rfc7234#section-5.2) erfordert, dass ein Cache einen gültigen Header berücksichtigt, `Cache-Control` der vom Client gesendet wird. Ein Client kann Anforderungen mit einem `no-cache` Header Wert senden und erzwingen, dass der Server eine neue Antwort für jede Anforderung generiert.
 
 `Cache-Control`Wenn Sie das Ziel der HTTP-Zwischenspeicherung in Erwägung gezogen haben, ist es sinnvoll, Client Anforderungs Header zu berücksichtigen. Unter der offiziellen Spezifikation soll das Caching die Latenz und den Netzwerk Aufwand bei der Erfüllung von Anforderungen in einem Netzwerk von Clients, Proxys und Servern reduzieren. Es ist nicht notwendigerweise eine Möglichkeit, die Last auf einem Ursprungsserver zu steuern.
 
@@ -71,7 +72,7 @@ Es gibt keine Entwickler Kontrolle über dieses zwischen Speicherungs Verhalten,
 
 ### <a name="in-memory-caching"></a>In-Memory-Caching
 
-In-Memory-Caching verwendet Server Arbeitsspeicher zum Speichern von zwischengespeicherten Daten. Diese Art der Zwischenspeicherung eignet sich für einen einzelnen Server oder mehrere Server, die persistente *Sitzungen*verwenden. Mit "persistente Sitzungen" können die Anforderungen von einem Client für die Verarbeitung immer an denselben Server weitergeleitet werden.
+In-Memory-Caching verwendet Server Arbeitsspeicher zum Speichern von zwischengespeicherten Daten. Diese Art der Zwischenspeicherung eignet sich für einen einzelnen Server oder mehrere Server, die persistente *Sitzungen* verwenden. Mit "persistente Sitzungen" können die Anforderungen von einem Client für die Verarbeitung immer an denselben Server weitergeleitet werden.
 
 Weitere Informationen finden Sie unter <xref:performance/caching/memory>.
 

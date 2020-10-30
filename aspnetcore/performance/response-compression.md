@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: b8947e3c3c4f634fbd838c22ff60799257143480
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9327c98c22a4d42d31ea8ba1eb8337153040b5b5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634994"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056971"
 ---
 # <a name="response-compression-in-aspnet-core"></a>Antwort Komprimierung in ASP.net Core
 
@@ -53,15 +54,15 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding` Header Werte | Unterstützte Middleware | BESCHREIBUNG |
+| `Accept-Encoding` Header Werte | Unterstützte Middleware | Beschreibung |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Ja (Standard)        | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | Nein                   | [Der XML-Austausch (effizient)](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
-| `gzip`                          | Ja                  | [Gzip-Dateiformat](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Ja                  | Bezeichner "keine Codierung": die Antwort darf nicht codiert werden. |
-| `pack200-gzip`                  | Nein                   | [Netzwerk Übertragungs Format für Java-Archive](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | Ja                  | Alle verfügbaren Inhalts Codierungen, die nicht explizit angefordert werden |
+| `deflate`                       | No                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | No                   | [Der XML-Austausch (effizient)](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `gzip`                          | Yes                  | [Gzip-Dateiformat](https://tools.ietf.org/html/rfc1952) |
+| `identity`                      | Yes                  | Bezeichner "keine Codierung": die Antwort darf nicht codiert werden. |
+| `pack200-gzip`                  | No                   | [Netzwerk Übertragungs Format für Java-Archive](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `*`                             | Yes                  | Alle verfügbaren Inhalts Codierungen, die nicht explizit angefordert werden |
 
 Weitere Informationen finden Sie in der [offiziellen Programmier Liste der IANA-Inhalte](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -73,7 +74,7 @@ Komprimierungs Algorithmen unterliegen einem Kompromiss zwischen der Komprimieru
 
 Die Header, die beim anfordern, senden, Zwischenspeichern und empfangen von komprimiertem Inhalt beteiligt sind, werden in der folgenden Tabelle beschrieben.
 
-| Header             | Role |
+| Header             | Rolle |
 | ------------------ | ---- |
 | `Accept-Encoding`  | Wird vom Client an den Server gesendet, um die Inhalts Codierungs Schemas anzugeben, die für den Client zulässig sind. |
 | `Content-Encoding` | Wird vom Server an den Client gesendet, um die Codierung des Inhalts in der Nutzlast anzugeben. |
@@ -147,7 +148,7 @@ Der brotli-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> . Der brotli-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | BESCHREIBUNG |
+| Compression Level | Beschreibung |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -187,7 +188,7 @@ Der GZip-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs A
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Der GZip-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | BESCHREIBUNG |
+| Compression Level | Beschreibung |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -218,7 +219,7 @@ Mithilfe der Beispiel-App übermittelt der Client eine Anforderung mit dem- `Acc
 
 Senden Sie eine Anforderung an die Beispiel-App mit dem `Accept-Encoding: mycustomcompression` -Header, und beobachten Sie die Antwortheader. Der `Vary` -Header und der- `Content-Encoding` Header sind in der Antwort vorhanden. Der Antworttext (nicht angezeigt) wird nicht durch das Beispiel komprimiert. In der-Klasse des Beispiels ist keine Komprimierungs Implementierung vorhanden `CustomCompressionProvider` . Das Beispiel zeigt jedoch, wo Sie einen solchen Komprimierungs Algorithmus implementieren würden.
 
-![Das Fenster "dateiddler" zeigt das Ergebnis einer Anforderung mit dem Accept-Encoding-Header und einem Wert von "mycustomcompression" an. Die variierenden und Content-Encoding-Header werden der Antwort hinzugefügt.](response-compression/_static/request-custom-compression.png)
+![Das Fenster "dateiddler" zeigt das Ergebnis einer Anforderung mit dem Accept-Encoding-Header und dem Wert "mycustomcompression" an. Die variierenden und Content-Encoding-Header werden der Antwort hinzugefügt.](response-compression/_static/request-custom-compression.png)
 
 ## <a name="mime-types"></a>MIME-Typen
 
@@ -233,7 +234,7 @@ Die Middleware gibt einen Standardsatz von MIME-Typen für die Komprimierung an:
 * `text/plain`
 * `text/xml`
 
-Ersetzen Sie MIME-Typen, oder fügen Sie Sie durch die Optionen für die Antwort Komprimierungs Middleware Beachten Sie, dass Platzhalter-MIME-Typen wie `text/*` nicht unterstützt werden. Die Beispiel-App Fügt einen MIME-Typ für hinzu `image/svg+xml` und komprimiert das ASP.net Core Banner Bild (*Banner. SVG*).
+Ersetzen Sie MIME-Typen, oder fügen Sie Sie durch die Optionen für die Antwort Komprimierungs Middleware Beachten Sie, dass Platzhalter-MIME-Typen wie `text/*` nicht unterstützt werden. Die Beispiel-App Fügt einen MIME-Typ für hinzu `image/svg+xml` und komprimiert das ASP.net Core Banner Bild ( *Banner. SVG* ).
 
 [!code-csharp[](response-compression/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=8-10)]
 
@@ -299,15 +300,15 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding` Header Werte | Unterstützte Middleware | BESCHREIBUNG |
+| `Accept-Encoding` Header Werte | Unterstützte Middleware | Beschreibung |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Ja (Standard)        | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | Nein                   | [Der XML-Austausch (effizient)](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
-| `gzip`                          | Ja                  | [Gzip-Dateiformat](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Ja                  | Bezeichner "keine Codierung": die Antwort darf nicht codiert werden. |
-| `pack200-gzip`                  | Nein                   | [Netzwerk Übertragungs Format für Java-Archive](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | Ja                  | Alle verfügbaren Inhalts Codierungen, die nicht explizit angefordert werden |
+| `deflate`                       | No                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | No                   | [Der XML-Austausch (effizient)](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `gzip`                          | Yes                  | [Gzip-Dateiformat](https://tools.ietf.org/html/rfc1952) |
+| `identity`                      | Yes                  | Bezeichner "keine Codierung": die Antwort darf nicht codiert werden. |
+| `pack200-gzip`                  | No                   | [Netzwerk Übertragungs Format für Java-Archive](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `*`                             | Yes                  | Alle verfügbaren Inhalts Codierungen, die nicht explizit angefordert werden |
 
 Weitere Informationen finden Sie in der [offiziellen Programmier Liste der IANA-Inhalte](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -319,7 +320,7 @@ Komprimierungs Algorithmen unterliegen einem Kompromiss zwischen der Komprimieru
 
 Die Header, die beim anfordern, senden, Zwischenspeichern und empfangen von komprimiertem Inhalt beteiligt sind, werden in der folgenden Tabelle beschrieben.
 
-| Header             | Role |
+| Header             | Rolle |
 | ------------------ | ---- |
 | `Accept-Encoding`  | Wird vom Client an den Server gesendet, um die Inhalts Codierungs Schemas anzugeben, die für den Client zulässig sind. |
 | `Content-Encoding` | Wird vom Server an den Client gesendet, um die Codierung des Inhalts in der Nutzlast anzugeben. |
@@ -393,7 +394,7 @@ Der brotli-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> . Der brotli-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | BESCHREIBUNG |
+| Compression Level | Beschreibung |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -433,7 +434,7 @@ Der GZip-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs A
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Der GZip-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | BESCHREIBUNG |
+| Compression Level | Beschreibung |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -463,7 +464,7 @@ Mithilfe der Beispiel-App übermittelt der Client eine Anforderung mit dem- `Acc
 
 Senden Sie eine Anforderung an die Beispiel-App mit dem `Accept-Encoding: mycustomcompression` -Header, und beobachten Sie die Antwortheader. Der `Vary` -Header und der- `Content-Encoding` Header sind in der Antwort vorhanden. Der Antworttext (nicht angezeigt) wird nicht durch das Beispiel komprimiert. In der-Klasse des Beispiels ist keine Komprimierungs Implementierung vorhanden `CustomCompressionProvider` . Das Beispiel zeigt jedoch, wo Sie einen solchen Komprimierungs Algorithmus implementieren würden.
 
-![Das Fenster "dateiddler" zeigt das Ergebnis einer Anforderung mit dem Accept-Encoding-Header und einem Wert von "mycustomcompression" an. Die variierenden und Content-Encoding-Header werden der Antwort hinzugefügt.](response-compression/_static/request-custom-compression.png)
+![Das Fenster "dateiddler" zeigt das Ergebnis einer Anforderung mit dem Accept-Encoding-Header und dem Wert "mycustomcompression" an. Die variierenden und Content-Encoding-Header werden der Antwort hinzugefügt.](response-compression/_static/request-custom-compression.png)
 
 ## <a name="mime-types"></a>MIME-Typen
 
@@ -478,7 +479,7 @@ Die Middleware gibt einen Standardsatz von MIME-Typen für die Komprimierung an:
 * `text/plain`
 * `text/xml`
 
-Ersetzen Sie MIME-Typen, oder fügen Sie Sie durch die Optionen für die Antwort Komprimierungs Middleware Beachten Sie, dass Platzhalter-MIME-Typen wie `text/*` nicht unterstützt werden. Die Beispiel-App Fügt einen MIME-Typ für hinzu `image/svg+xml` und komprimiert das ASP.net Core Banner Bild (*Banner. SVG*).
+Ersetzen Sie MIME-Typen, oder fügen Sie Sie durch die Optionen für die Antwort Komprimierungs Middleware Beachten Sie, dass Platzhalter-MIME-Typen wie `text/*` nicht unterstützt werden. Die Beispiel-App Fügt einen MIME-Typ für hinzu `image/svg+xml` und komprimiert das ASP.net Core Banner Bild ( *Banner. SVG* ).
 
 [!code-csharp[](response-compression/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=8-10)]
 
@@ -544,15 +545,15 @@ Normalerweise kann jede nicht System intern komprimierte Antwort von der Antwort
 
 Wenn ein Client komprimierte Inhalte verarbeiten kann, muss der Client den Server über seine Funktionen informieren, indem er die- `Accept-Encoding` Kopfzeile mit der Anforderung sendet. Wenn ein Server komprimierten Inhalt sendet, muss er Informationen in der Kopfzeile enthalten, in der `Content-Encoding` die komprimierte Antwort codiert wird. In der folgenden Tabelle sind die von der Middleware unterstützten Inhalts Codierungs Bezeichnungen aufgeführt.
 
-| `Accept-Encoding` Header Werte | Unterstützte Middleware | BESCHREIBUNG |
+| `Accept-Encoding` Header Werte | Unterstützte Middleware | Beschreibung |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | Nein                   | [Brotli-komprimiertes Datenformat](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | Nein                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | Nein                   | [Der XML-Austausch (effizient)](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `deflate`                       | No                   | [Komprimiertes Datenformat deflate](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | No                   | [Der XML-Austausch (effizient)](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | Ja (Standard)        | [Gzip-Dateiformat](https://tools.ietf.org/html/rfc1952) |
-| `identity`                      | Ja                  | Bezeichner "keine Codierung": die Antwort darf nicht codiert werden. |
-| `pack200-gzip`                  | Nein                   | [Netzwerk Übertragungs Format für Java-Archive](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
-| `*`                             | Ja                  | Alle verfügbaren Inhalts Codierungen, die nicht explizit angefordert werden |
+| `identity`                      | Yes                  | Bezeichner "keine Codierung": die Antwort darf nicht codiert werden. |
+| `pack200-gzip`                  | No                   | [Netzwerk Übertragungs Format für Java-Archive](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `*`                             | Yes                  | Alle verfügbaren Inhalts Codierungen, die nicht explizit angefordert werden |
 
 Weitere Informationen finden Sie in der [offiziellen Programmier Liste der IANA-Inhalte](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry).
 
@@ -564,7 +565,7 @@ Komprimierungs Algorithmen unterliegen einem Kompromiss zwischen der Komprimieru
 
 Die Header, die beim anfordern, senden, Zwischenspeichern und empfangen von komprimiertem Inhalt beteiligt sind, werden in der folgenden Tabelle beschrieben.
 
-| Header             | Role |
+| Header             | Rolle |
 | ------------------ | ---- |
 | `Accept-Encoding`  | Wird vom Client an den Server gesendet, um die Inhalts Codierungs Schemas anzugeben, die für den Client zulässig sind. |
 | `Content-Encoding` | Wird vom Server an den Client gesendet, um die Codierung des Inhalts in der Nutzlast anzugeben. |
@@ -638,7 +639,7 @@ Der GZip-Komprimierungs Anbieter muss hinzugefügt werden, wenn Komprimierungs A
 
 Legen Sie die Komprimierungs Ebene mit fest <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> . Der GZip-Komprimierungs Anbieter verwendet standardmäßig den schnellsten Komprimierungs Grad ([CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel)), der möglicherweise nicht die effizienteste Komprimierung erzeugt. Wenn die effizienteste Komprimierung erwünscht ist, konfigurieren Sie die Middleware für die optimale Komprimierung.
 
-| Compression Level | BESCHREIBUNG |
+| Compression Level | Beschreibung |
 | ----------------- | ----------- |
 | [CompressionLevel. schnellste](xref:System.IO.Compression.CompressionLevel) | Die Komprimierung sollte so schnell wie möglich durchgeführt werden, auch wenn die resultierende Ausgabe nicht optimal komprimiert ist. |
 | [CompressionLevel. NoCompression](xref:System.IO.Compression.CompressionLevel) | Es sollte keine Komprimierung durchgeführt werden. |
@@ -668,7 +669,7 @@ Mithilfe der Beispiel-App übermittelt der Client eine Anforderung mit dem- `Acc
 
 Senden Sie eine Anforderung an die Beispiel-App mit dem `Accept-Encoding: mycustomcompression` -Header, und beobachten Sie die Antwortheader. Der `Vary` -Header und der- `Content-Encoding` Header sind in der Antwort vorhanden. Der Antworttext (nicht angezeigt) wird nicht durch das Beispiel komprimiert. In der-Klasse des Beispiels ist keine Komprimierungs Implementierung vorhanden `CustomCompressionProvider` . Das Beispiel zeigt jedoch, wo Sie einen solchen Komprimierungs Algorithmus implementieren würden.
 
-![Das Fenster "dateiddler" zeigt das Ergebnis einer Anforderung mit dem Accept-Encoding-Header und einem Wert von "mycustomcompression" an. Die variierenden und Content-Encoding-Header werden der Antwort hinzugefügt.](response-compression/_static/request-custom-compression.png)
+![Das Fenster "dateiddler" zeigt das Ergebnis einer Anforderung mit dem Accept-Encoding-Header und dem Wert "mycustomcompression" an. Die variierenden und Content-Encoding-Header werden der Antwort hinzugefügt.](response-compression/_static/request-custom-compression.png)
 
 ## <a name="mime-types"></a>MIME-Typen
 
@@ -683,7 +684,7 @@ Die Middleware gibt einen Standardsatz von MIME-Typen für die Komprimierung an:
 * `text/plain`
 * `text/xml`
 
-Ersetzen Sie MIME-Typen, oder fügen Sie Sie durch die Optionen für die Antwort Komprimierungs Middleware Beachten Sie, dass Platzhalter-MIME-Typen wie `text/*` nicht unterstützt werden. Die Beispiel-App Fügt einen MIME-Typ für hinzu `image/svg+xml` und komprimiert das ASP.net Core Banner Bild (*Banner. SVG*).
+Ersetzen Sie MIME-Typen, oder fügen Sie Sie durch die Optionen für die Antwort Komprimierungs Middleware Beachten Sie, dass Platzhalter-MIME-Typen wie `text/*` nicht unterstützt werden. Die Beispiel-App Fügt einen MIME-Typ für hinzu `image/svg+xml` und komprimiert das ASP.net Core Banner Bild ( *Banner. SVG* ).
 
 [!code-csharp[](response-compression/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=8-10)]
 

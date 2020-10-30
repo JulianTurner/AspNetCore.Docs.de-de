@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.date: 04/11/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/ObjectPool
-ms.openlocfilehash: 6997dbfdd5c654e4a8b15a026fd3ec61d024f02d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3bbfde6f68a238131149e67ce72f0ddc68a9ea0f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632368"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056906"
 ---
 # <a name="object-reuse-with-objectpool-in-aspnet-core"></a>Wieder verwenden von Objekten mit Objectpool in ASP.net Core
 
@@ -73,8 +74,8 @@ Ruft <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> auf, um ein-Objekt
 ::: moniker range=">= aspnetcore-3.0"
 Wenn <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> verwendet wird und `T` implementiert `IDisposable` :
 
-* Elemente, die ***nicht*** an den Pool zurückgegeben werden, werden verworfen.
-* Wenn der Pool von di verworfen wird, werden alle Elemente im Pool verworfen.
+* Elemente, die * **Not** _ sind, werden an den Pool zurückgegeben.
+_ Wenn der Pool von di verworfen wird, werden alle Elemente im Pool verworfen.
 
 Hinweis: nach dem verwerfen des Pools:
 

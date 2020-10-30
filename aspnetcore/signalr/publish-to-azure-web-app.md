@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: b9d32e2f3c37f652be15c5857d14ac48f66695ad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e00eea81788c9b335691b7e5ffe6a46534c3c492
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631926"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058219"
 ---
 # <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a>Veröffentlichen einer ASP.net Core- SignalR app in Azure App Service
 
@@ -44,22 +45,22 @@ In diesem Artikel wird die Veröffentlichung mit den Tools in Visual Studio beha
 
 1. Wählen Sie im Dropdown Feld " **veröffentlichen** " die Option **Profil erstellen** aus.
 
-   Geben Sie die in der folgenden Tabelle beschriebenen Informationen in das Dialogfeld **App Service erstellen** ein, und wählen Sie **Erstellen**aus.
+   Geben Sie die in der folgenden Tabelle beschriebenen Informationen in das Dialogfeld **App Service erstellen** ein, und wählen Sie **Erstellen** aus.
 
-   | Element               | BESCHREIBUNG |
+   | Element               | Beschreibung |
    | ------------------ | ----------- |
    | **Name**           | Der eindeutige Name der app. |
    | **Abonnement**   | Azure-Abonnement, das von der APP verwendet wird. |
    | **Ressourcengruppe** | Gruppe verwandter Ressourcen, zu denen die APP gehört. |
    | **Hostingplan**   | Der Tarif für die Web-App. |
 
-1. Wählen Sie in der Dropdown Liste **Abhängigkeiten**hinzufügen den **Azure- SignalR Dienst** aus  >  **Add** :
+1. Wählen Sie in der Dropdown Liste **Abhängigkeiten** hinzufügen den **Azure- SignalR Dienst** aus  >  **Add** :
 
    ![Bereich Abhängigkeiten mit der Auswahl von Azure::: NO-LOC (signalr)::: Service in der Dropdown Liste hinzufügen](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
-1. Wählen Sie im Dialogfeld **Azure- SignalR Dienst** die Option **neue Azure- SignalR Dienst Instanz erstellen**aus.
+1. Wählen Sie im Dialogfeld **Azure- SignalR Dienst** die Option **neue Azure- SignalR Dienst Instanz erstellen** aus.
 
-1. Geben Sie einen **Namen**, eine **Ressourcengruppe**und einen **Speicherort**an. Wechseln Sie zum Dialogfeld **Azure- SignalR Dienst** , und wählen Sie **Hinzufügen**.
+1. Geben Sie einen **Namen** , eine **Ressourcengruppe** und einen **Speicherort** an. Wechseln Sie zum Dialogfeld **Azure- SignalR Dienst** , und wählen Sie **Hinzufügen** .
 
 Visual Studio führt die folgenden Aufgaben aus:
 
@@ -81,13 +82,13 @@ Wenn beim Bereitstellen einer APP, die auf eine Vorschauversion von .net Core au
 
 Aktivieren Sie für apps, die ohne Azure- SignalR Dienst gehostet werden, Folgendes:
 
-* [Arr-Affinität] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(Arr- cookie ) -for-Azure-web-apps.html), um Anforderungen von einem Benutzer zurück an dieselbe App Service Instanz weiterzuleiten. Die Standardeinstellung ist **on**.
-* [Websockets](xref:fundamentals/websockets) , damit der websockets-Transport funktioniert. Die Standardeinstellung ist **Off**.
+* [Arr-Affinität] ( https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity- cookie -(Arr- cookie ) -for-Azure-web-apps.html), um Anforderungen von einem Benutzer zurück an dieselbe App Service Instanz weiterzuleiten. Die Standardeinstellung ist **on** .
+* [Websockets](xref:fundamentals/websockets) , damit der websockets-Transport funktioniert. Die Standardeinstellung ist **Off** .
 
-1. Navigieren Sie in der Azure-Portal zu der Web-App in **App Services**.
-1. Öffnen Sie die allgemeinen **Konfigurations**  >  **Einstellungen**.
-1. Legen Sie **websockets** **auf ein**fest.
-1. Vergewissern Sie sich, dass **arr-Affinität** **auf**ein festgelegt ist.
+1. Navigieren Sie in der Azure-Portal zu der Web-App in **App Services** .
+1. Öffnen Sie die allgemeinen **Konfigurations**  >  **Einstellungen** .
+1. Legen Sie **websockets** **auf ein** fest.
+1. Vergewissern Sie sich, dass **arr-Affinität** **auf** ein festgelegt ist.
 
 ## <a name="app-service-plan-limits"></a>App Service Plan Limits
 
@@ -95,7 +96,7 @@ Websockets und andere Transporte sind auf Grundlage des ausgewählten App Servic
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* [Was ist der Azure- SignalR Dienst?](/azure/azure-signalr/signalr-overview)
+* [Was ist Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * <xref:signalr/introduction>
 * <xref:host-and-deploy/index>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>

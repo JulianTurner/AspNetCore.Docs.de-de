@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: c1891b8093c5a4c1599cd3c4ed4e5e60e2fd13e8
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 306416db3d9ae0219f859c3cf459eb08a5b778cf
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629001"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060923"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>Erstellen von Taghilfsprogrammen in ASP.NET Core
 
@@ -36,13 +37,13 @@ Dieses Tutorial soll als Einführung in das Programmieren von Taghilfsprogrammen
 
 Bei einem Taghilfsprogramm handelt es sich um eine Klasse, die die `ITagHelper`-Schnittstelle implementiert. Wenn Sie hingegen ein Taghilfsprogramm erstellen, stellen Sie in der Regel eine Ableitung von `TagHelper` her, wodurch Sie auf die `Process`-Methode zugreifen können.
 
-1. Erstellen Sie ein neues ASP.NET Core-Projekt mit dem Namen **AuthoringTagHelpers**. Für dieses Projekt benötigen Sie keine Authentifizierung.
+1. Erstellen Sie ein neues ASP.NET Core-Projekt mit dem Namen **AuthoringTagHelpers** . Für dieses Projekt benötigen Sie keine Authentifizierung.
 
-1. Erstellen Sie einen Ordner mit dem Namen *TagHelpers*, in dem die Taghilfsprogramme gespeichert werden sollen. Dieser *TagHelpers* Ordner ist *nicht* zwingend erforderlich, allerdings handelt es sich dabei um eine praktische Konvention. Im Folgenden werden Beispiele zum Schreiben einfacher Taghilfsprogramme beschrieben.
+1. Erstellen Sie einen Ordner mit dem Namen *TagHelpers* , in dem die Taghilfsprogramme gespeichert werden sollen. Dieser *TagHelpers* Ordner ist *nicht* zwingend erforderlich, allerdings handelt es sich dabei um eine praktische Konvention. Im Folgenden werden Beispiele zum Schreiben einfacher Taghilfsprogramme beschrieben.
 
 ## <a name="a-minimal-tag-helper"></a>Ein Taghilfsprogramm mit den mindestens erforderlichen Elementen
 
-In diesem Beispiel wird erläutert, wie Sie ein Taghilfsprogramm schreiben, das ein Update für ein E-Mail-Tag ausführt. Beispiel:
+In diesem Beispiel wird erläutert, wie Sie ein Taghilfsprogramm schreiben, das ein Update für ein E-Mail-Tag ausführt. Zum Beispiel:
 
 ```html
 <email>Support</email>
@@ -60,7 +61,7 @@ Dabei handelt es sich um ein Anchor-Tag, das daraus einen E-Mail-Link erstellt. 
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/z1EmailTagHelperCopy.cs)]
 
-   * Taghilfsprogramme verwenden Namenskonventionen, die auf die Elemente des Stammklassennamens ausgerichtet sind. Das Element *TagHelper* ist in dem Klassennamen allerdings nicht enthalten. In diesem Beispiel lautet der Stammname von **EmailTagHelper***email*, damit das `<email>`-Tag als Ziel verwendet wird. Diese Namenskonvention sollte für die meisten Taghilfsprogramme funktionieren. Nachfolgend finden Sie eine Erläuterung dazu, wie Sie diese außer Kraft setzen.
+   * Taghilfsprogramme verwenden Namenskonventionen, die auf die Elemente des Stammklassennamens ausgerichtet sind. Das Element *TagHelper* ist in dem Klassennamen allerdings nicht enthalten. In diesem Beispiel lautet der Stammname von **EmailTagHelper***email* , damit das `<email>`-Tag als Ziel verwendet wird. Diese Namenskonvention sollte für die meisten Taghilfsprogramme funktionieren. Nachfolgend finden Sie eine Erläuterung dazu, wie Sie diese außer Kraft setzen.
 
    * Die `EmailTagHelper`-Klasse wird von `TagHelper` abgeleitet. Über die `TagHelper`-Klasse werden Methoden und Eigenschaften für das Schreiben von Taghilfsprogrammen bereitgestellt.
 
@@ -70,7 +71,7 @@ Dabei handelt es sich um ein Anchor-Tag, das daraus einen E-Mail-Link erstellt. 
 
    * Der Ausgabeparameter von `Process` (und `ProcessAsync`) enthält ein zustandsbehaftetes HTML-Element, das für die Originalquelle steht, die zum Generieren eines HTML-Tags und von Inhalten verwendet wird.
 
-   * Der Klassenname in diesem Beispiel enthält ein **TagHelper**-Suffix, das *nicht* erforderlich ist, aber als bewährter Bestandteil angesehen wird. Sie können die Klasse wie folgt deklarieren:
+   * Der Klassenname in diesem Beispiel enthält ein **TagHelper** -Suffix, das *nicht* erforderlich ist, aber als bewährter Bestandteil angesehen wird. Sie können die Klasse wie folgt deklarieren:
 
    ```csharp
    public class Email : TagHelper
@@ -93,9 +94,9 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
     [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImports.cshtml?highlight=3&range=1-3)]
 -->
 
-Wenn Sie einer Ansicht über einen vollqualifizierten Namen ein Taghilfsprogramm hinzufügen möchten, müssen Sie zunächst den Namen (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) und dann den **Assemblynamen** (*AuthoringTagHelpers*, nicht notwendigerweise `namespace`) hinzufügen. Die meisten Entwickler verwenden am liebsten die Platzhaltersyntax. Unter [Introduction to Tag Helpers (Einführung in Taghilfsprogramme)](intro.md) finden Sie mehr Details zum Hinzufügen und Entfernen von Taghilfsprogrammen, zur Hierarchie und zur Platzhaltersyntax.
+Wenn Sie einer Ansicht über einen vollqualifizierten Namen ein Taghilfsprogramm hinzufügen möchten, müssen Sie zunächst den Namen (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) und dann den **Assemblynamen** ( *AuthoringTagHelpers* , nicht notwendigerweise `namespace`) hinzufügen. Die meisten Entwickler verwenden am liebsten die Platzhaltersyntax. Unter [Introduction to Tag Helpers (Einführung in Taghilfsprogramme)](intro.md) finden Sie mehr Details zum Hinzufügen und Entfernen von Taghilfsprogrammen, zur Hierarchie und zur Platzhaltersyntax.
 
-1. Aktualisieren Sie das Markup mit den folgenden Änderungen in der Datei *Views/Home/Contact.cshtml*:
+1. Aktualisieren Sie das Markup mit den folgenden Änderungen in der Datei *Views/Home/Contact.cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
@@ -119,7 +120,7 @@ Führen Sie über folgenden Code ein Update für die `EmailTagHelper`-Klasse aus
 
 Dieser Ansatz funktioniert für das Attribut „href“, wenn es zu diesem Zeitpunkt noch nicht in der Attributsammlung enthalten ist. Außerdem können Sie die `output.Attributes.Add`-Methode verwenden, um ein Attribut des Taghilfsprogramms am Ende der Tagattributsammlung hinzuzufügen.
 
-1. Aktualisieren Sie das Markup mit den folgenden Änderungen in der Datei *Views/Home/Contact.cshtml*:
+1. Aktualisieren Sie das Markup mit den folgenden Änderungen in der Datei *Views/Home/Contact.cshtml* :
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
@@ -148,7 +149,7 @@ In diesem Abschnitt wird beschrieben, wie Sie ein asynchrones E-Mail-Hilfsprogra
 
    * Verwenden Sie den Parameter `output`, um Inhalte des HTML-Elements abzurufen.
 
-1. Nehmen Sie folgende Änderung an der *Views/Home/Contact.cshtml*-Datei vor, damit das Taghilfsprogramm die Ziel-E-Mail abrufen kann.
+1. Nehmen Sie folgende Änderung an der *Views/Home/Contact.cshtml* -Datei vor, damit das Taghilfsprogramm die Ziel-E-Mail abrufen kann.
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
@@ -164,7 +165,7 @@ In diesem Abschnitt wird beschrieben, wie Sie ein asynchrones E-Mail-Hilfsprogra
 
    * Da der bestehende Taginhalt nicht ersetzt werden soll, müssen Sie das Starttag `<strong>` über die Methode `PreContent.SetHtmlContent` und das Endtag `</strong>` über die Methode `PostContent.SetHtmlContent` schreiben.
 
-1. Verändern Sie die Ansicht *About.cshtml*, damit diese den Attributwert `bold` enthält. Der fertige Code wird nachfolgend dargestellt.
+1. Verändern Sie die Ansicht *About.cshtml* , damit diese den Attributwert `bold` enthält. Der fertige Code wird nachfolgend dargestellt.
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
 
@@ -172,7 +173,7 @@ In diesem Abschnitt wird beschrieben, wie Sie ein asynchrones E-Mail-Hilfsprogra
 
    Das oben genannte `[HtmlTargetElement]`-Attribut gilt nur für HTML-Markups mit dem Attributnamen „bold“. Das `<bold>`-Element wurde vom Taghilfsprogramm nicht verändert.
 
-1. Kommentieren Sie die Attributzeile `[HtmlTargetElement]` aus, damit standardmäßig `<bold>`-Tags angezielt werden, also HTML-Markups im Format `<bold>`. Beachten Sie, dass die Standardnamenskonvention dem Klassennamen **Bold**TagHelper den `<bold>`-Tags entspricht.
+1. Kommentieren Sie die Attributzeile `[HtmlTargetElement]` aus, damit standardmäßig `<bold>`-Tags angezielt werden, also HTML-Markups im Format `<bold>`. Beachten Sie, dass die Standardnamenskonvention dem Klassennamen **Bold** TagHelper den `<bold>`-Tags entspricht.
 
 1. Führen Sie die App aus, und überprüfen Sie, ob das `<bold>`-Tag vom Taghilfsprogramm verarbeitet wird.
 
@@ -194,7 +195,7 @@ Außerdem können Sie `[HtmlTargetElement]` verwenden, um den Namen des angeziel
 
 ## <a name="pass-a-model-to-a-tag-helper"></a>Übergeben eines Modells an das Taghilfsprogramm
 
-1. Fügen Sie einen *Models*-Ordner hinzu.
+1. Fügen Sie einen *Models* -Ordner hinzu.
 
 1. Fügen Sie dem Ordner *Models* die folgende `WebsiteContext`-Klasse hinzu:
 
@@ -226,7 +227,7 @@ Außerdem können Sie `[HtmlTargetElement]` verwenden, um den Namen des angeziel
    $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
    ```
 
-1. Fügen Sie der *About.cshtml*-Ansicht das folgende Markup hinzu. Das markierte Markup zeigt die Websiteinformationen an.
+1. Fügen Sie der *About.cshtml* -Ansicht das folgende Markup hinzu. Das markierte Markup zeigt die Websiteinformationen an.
 
    [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 

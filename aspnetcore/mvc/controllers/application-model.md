@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie das Anwendungsmodell lesen und bearbeiten, um
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/application-model
-ms.openlocfilehash: f2e86a8607ddd00dc7f4bec36079660f0cd1eea3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a7a654eb43c0dbf375af911d8d5353ac4c04a825
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630288"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060936"
 ---
 # <a name="work-with-the-application-model-in-aspnet-core"></a>Arbeiten mit dem Anwendungsmodell in ASP.NET Core
 
 Von [Steve Smith](https://ardalis.com/)
 
-ASP.NET Core MVC definiert ein *Anwendungsmodell*, in dem die Komponenten einer MVC-App dargestellt werden. Sie können dieses Modell lesen und bearbeiten, um die Verhaltensweise von MVC-Elementen zu ändern. MVC folgt standardmäßig bestimmten Konventionen, um zu ermitteln, welche Klassen als Controller betrachtet werden, welche Methoden in diesen Klassen Aktionen darstellen und wie sich Parameter und das Routing verhalten. Sie können dieses Verhalten an die Anforderungen Ihrer App anpassen, indem Sie Ihre eigenen Konventionen schaffen und diese global oder in Form von Attributen anwenden.
+ASP.NET Core MVC definiert ein *Anwendungsmodell* , in dem die Komponenten einer MVC-App dargestellt werden. Sie können dieses Modell lesen und bearbeiten, um die Verhaltensweise von MVC-Elementen zu ändern. MVC folgt standardmäßig bestimmten Konventionen, um zu ermitteln, welche Klassen als Controller betrachtet werden, welche Methoden in diesen Klassen Aktionen darstellen und wie sich Parameter und das Routing verhalten. Sie können dieses Verhalten an die Anforderungen Ihrer App anpassen, indem Sie Ihre eigenen Konventionen schaffen und diese global oder in Form von Attributen anwenden.
 
 ## <a name="models-and-providers"></a>Modelle und Anbieter
 

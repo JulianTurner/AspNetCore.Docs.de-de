@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: e3e46f8050ba87c3108885341675c9d2a2cb7847
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 320805c0d40bf06cee384e6d98caea5c420d45bc
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635163"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061469"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>Migrieren von ASP.net-Web-API zu ASP.net Core
 
@@ -42,7 +43,7 @@ Eine ASP.NET 4. x-Web-API ist ein HTTP-Dienst, der eine breite Palette von Clien
 
 In diesem Artikel wird das Projekt *producungapp* verwendet, das Sie unter [Getting Started with ASP.net-Web-API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)erstellt haben. In diesem Projekt wird ein einfaches ASP.NET 4. x-Web-API-Projekt wie folgt konfiguriert.
 
-In *Global.asax.cs*wird ein-Rückruf für Folgendes durchgeführt `WebApiConfig.Register` :
+In *Global.asax.cs* wird ein-Rückruf für Folgendes durchgeführt `WebApiConfig.Register` :
 
 [!code-csharp[](webapi/sample/3.x/ProductsApp/Global.asax.cs?highlight=14)]
 
@@ -62,16 +63,16 @@ In den folgenden Abschnitten wird die Migration des Web-API-Projekts zu ASP.net 
 
 Erstellen Sie eine neue leere Projekt Mappe in Visual Studio, und fügen Sie der Migration das ASP.NET 4. x-Web-API-Projekt hinzu:
 
-1. Klicken Sie im Menü **Datei** auf **Neu** > **Projekt**.
-1. Wählen Sie die Vorlage **leere** Vorlage aus, und klicken Sie auf **weiter**.
-1. Nennen Sie die Projekt Mappe *webapimigration*. Klicken Sie auf **Erstellen**.
+1. Klicken Sie im Menü **Datei** auf **Neu** > **Projekt** .
+1. Wählen Sie die Vorlage **leere** Vorlage aus, und klicken Sie auf **weiter** .
+1. Nennen Sie die Projekt Mappe *webapimigration* . Klicken Sie auf **Erstellen** .
 1. Fügen Sie der Projekt Mappe das vorhandene *producungapp* -Projekt hinzu.
 
 Fügen Sie ein neues API-Projekt für die Migration hinzu:
 
 1. Fügen Sie der Projekt Mappe ein neues **ASP.net Core-Webanwendungs** Projekt hinzu.
-1. Benennen Sie im Dialogfeld **Neues Projekt konfigurieren** das Projekt *productscore*, und wählen Sie dann **Erstellen**aus.
-1. Vergewissern Sie sich, dass im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Optionen **.NET Core** und **ASP.NET Core 3.1** ausgewählt sind. Wählen Sie die Projektvorlage **API** aus, und klicken Sie auf **Erstellen**.
+1. Benennen Sie im Dialogfeld **Neues Projekt konfigurieren** das Projekt *productscore* , und wählen Sie dann **Erstellen** aus.
+1. Vergewissern Sie sich, dass im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Optionen **.NET Core** und **ASP.NET Core 3.1** ausgewählt sind. Wählen Sie die Projektvorlage **API** aus, und klicken Sie auf **Erstellen** .
 1. Entfernen Sie die Beispieldateien *WeatherForecast.cs* und *Controllers/weatherforecastcontroller. cs* aus dem neuen *productscore* -Projekt.
 
 Die Projekt Mappe enthält jetzt zwei Projekte. In den folgenden Abschnitten wird erläutert, wie der Inhalt des *productsapp* -Projekts in das *productscore* -Projekt migriert wird.
@@ -82,7 +83,7 @@ ASP.net Core verwendet nicht den Ordner *App_Start* oder die Datei *Global. asax
 
 Die `Startup`-Klasse:
 
-* Ersetzt *Global. asax*.
+* Ersetzt *Global. asax* .
 * Behandelt alle App-Start Tasks.
 
 Weitere Informationen finden Sie unter <xref:fundamentals/startup>.
@@ -164,7 +165,7 @@ Führen Sie das migrierte Projekt aus, und navigieren Sie zu `/api/products` . E
 
 In diesem Artikel wird das Projekt *producungapp* verwendet, das Sie unter [Getting Started with ASP.net-Web-API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)erstellt haben. In diesem Projekt wird ein einfaches ASP.NET 4. x-Web-API-Projekt wie folgt konfiguriert.
 
-In *Global.asax.cs*wird ein-Rückruf für Folgendes durchgeführt `WebApiConfig.Register` :
+In *Global.asax.cs* wird ein-Rückruf für Folgendes durchgeführt `WebApiConfig.Register` :
 
 [!code-csharp[](webapi/sample/2.x/ProductsApp/Global.asax.cs?highlight=14)]
 
@@ -180,9 +181,9 @@ In den folgenden Abschnitten wird die Migration des Web-API-Projekts zu ASP.net 
 
 Führen Sie in Visual Studio die folgenden Schritte aus:
 
-* Wechseln Sie zu **Datei**  >  **neu**  >  **Projekt**  >  **andere Projekttypen**  >  **Visual Studio**-Projektmappen. Wählen Sie **leere**Projekt Mappe aus, und nennen Sie die Projekt Mappe *webapimigration*. Klicken Sie auf die Schaltfläche **OK** .
+* Wechseln Sie zu **Datei**  >  **neu**  >  **Projekt**  >  **andere Projekttypen**  >  **Visual Studio** -Projektmappen. Wählen Sie **leere** Projekt Mappe aus, und nennen Sie die Projekt Mappe *webapimigration* . Klicken Sie auf die Schaltfläche **OK** .
 * Fügen Sie der Projekt Mappe das vorhandene *producungapp* -Projekt hinzu.
-* Fügen Sie der Projekt Mappe ein neues **ASP.net Core-Webanwendungs** Projekt hinzu. Wählen Sie in der Dropdown Liste das Ziel Framework **.net Core** aus, und wählen Sie die Vorlage **API** -Projekt aus. Nennen Sie das Projekt *productscore*, und klicken Sie auf die Schaltfläche **OK** .
+* Fügen Sie der Projekt Mappe ein neues **ASP.net Core-Webanwendungs** Projekt hinzu. Wählen Sie in der Dropdown Liste das Ziel Framework **.net Core** aus, und wählen Sie die Vorlage **API** -Projekt aus. Nennen Sie das Projekt *productscore* , und klicken Sie auf die Schaltfläche **OK** .
 
 Die Projekt Mappe enthält jetzt zwei Projekte. In den folgenden Abschnitten wird erläutert, wie der Inhalt des *productsapp* -Projekts in das *productscore* -Projekt migriert wird.
 
@@ -195,7 +196,7 @@ ASP.net Core nicht verwendet:
 
 Die `Startup`-Klasse:
 
-* Ersetzt *Global. asax*.
+* Ersetzt *Global. asax* .
 * Behandelt alle App-Start Tasks.
 
 Weitere Informationen finden Sie unter <xref:fundamentals/startup>.

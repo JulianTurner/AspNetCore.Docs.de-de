@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
-ms.openlocfilehash: 4a9f1958cd26bb57fcf3944aabacd57c470fb17e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 124f23caa4a757f63a80dfea627304204ba2cdca
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626947"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061430"
 ---
 # <a name="partial-tag-helper-in-aspnet-core"></a>Hilfsprogramm für Teiltags in ASP.NET Core
 
@@ -33,7 +34,7 @@ Eine Übersicht der Taghilfsprogramme finden Sie unter <xref:mvc/views/tag-helpe
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-## <a name="overview"></a>Übersicht
+## <a name="overview"></a>Überblick
 
 Das Hilfsprogramm für partielle Tags wird zum Rendern einer [Teilansicht](xref:mvc/views/partial) in Razor Seiten und MVC-Apps verwendet. Bedenken Sie dabei Folgendes:
 
@@ -66,7 +67,7 @@ Folgendes Markup verwendet einen expliziten Pfad, der angibt, dass *_ProductPart
 
 Das `for`-Attribut weist ein [ModelExpression](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.modelexpression)-Element zu, das für das aktuelle Modell ausgewertet werden soll. Ein `ModelExpression`-Element leitet die `@Model.`-Syntax ab. `for="Product"` kann beispielsweise anstelle von `for="@Model.Product"` verwendet werden. Dieses Standardverhalten für die Ableitung kann überschrieben werden, indem Sie das `@`-Symbol zum Definieren eines Inlineausdrucks verwenden.
 
-Folgendes Markup lädt *_ProductPartial.cshtml*:
+Folgendes Markup lädt *_ProductPartial.cshtml* :
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Pages/Product.cshtml?name=snippet_For)]
 

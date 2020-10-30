@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie Anspruchs Überprüfungen zur Autorisierung i
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/claims
-ms.openlocfilehash: 0615e9f13b0eca7d7ac924d90ae2004e41a51586
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6317da6bca69b4c46d74a2f76d81af4059d1cd8
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632602"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060273"
 ---
 # <a name="claims-based-authorization-in-aspnet-core"></a>Anspruchs basierte Autorisierung in ASP.net Core
 
@@ -157,7 +158,7 @@ Wenn der Anspruchs Wert kein einzelner Wert ist oder eine Transformation erforde
 
 ## <a name="multiple-policy-evaluation"></a>Bewertung mehrerer Richtlinien
 
-Wenn Sie mehrere Richtlinien auf einen Controller oder eine Aktion anwenden, müssen alle Richtlinien bestanden werden, bevor der Zugriff gewährt wird. Beispiel:
+Wenn Sie mehrere Richtlinien auf einen Controller oder eine Aktion anwenden, müssen alle Richtlinien bestanden werden, bevor der Zugriff gewährt wird. Zum Beispiel:
 
 ```csharp
 [Authorize(Policy = "EmployeeOnly")]

@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Back-End-Dienste mit ASP.NET Core MVC zur Unterst
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mobile/native-mobile-backend
-ms.openlocfilehash: 00e0c93d200e7eec6fd6bdac1f1246fe0909fc54
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 0bbf740cb49b77b476e7e015afee311110bbe5ea
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630535"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060988"
 ---
 # <a name="create-backend-services-for-native-mobile-apps-with-aspnet-core"></a>Erstellen von Back-End-Diensten für native mobile Apps mit ASP.NET Core
 
@@ -37,7 +38,7 @@ In diesem Tutorial wird veranschaulicht, wie Back-End-Dienste mit ASP.NET Core M
 
 ![Ausführen der ToDoRest-App auf einem Android-Smartphone](native-mobile-backend/_static/todo-android.png)
 
-### <a name="features"></a>Features
+### <a name="features"></a>Funktionen
 
 Die ToDoRest-App unterstützt das Auflisten, Hinzufügen, Löschen und Aktualisieren von To-Do-Elementen. Jedes Element verfügt über eine ID, einen Namen, Hinweise und über eine Eigenschaft, die angibt, ob ein Element abgeschlossen ist.
 
@@ -51,7 +52,7 @@ Durch Tippen auf ein Element auf dem Bildschirm mit der Hauptliste wird ein Dial
 
 ![Dialogfeld „Element bearbeiten“](native-mobile-backend/_static/todo-android-edit-item.png)
 
-Dieses Beispiel ist standardmäßig für die Verwendung von Back-End-Diensten konfiguriert, die unter developer.xamarin.com gehostet werden, und in denen schreibgeschützte Vorgänge zugelassen sind. Wenn Sie dies selbst bei der im nächsten Abschnitt erstellten ASP.NET Core-App testen möchten, die auf Ihrem Computer ausgeführt wird, müssen Sie die `RestUrl`-Konstante der App aktualisieren. Navigieren Sie zu dem Projekt `ToDoREST`, und öffnen Sie die Datei *Constants.cs*. Ersetzen Sie die `RestUrl` durch eine URL, die die IP-Adresse Ihres Computers enthält (nicht „localhost“ oder „127.0.0.1“, da diese Adresse vom Geräteemulator und nicht von Ihrem Computer verwendet wird). Schließen Sie auch die Portnummer (5000) ein. Stellen Sie sicher, dass keine aktive Firewall den Zugriff auf diesen Port blockiert, wenn Sie testen möchten, ob Ihre Dienste auf einem Gerät funktionieren.
+Dieses Beispiel ist standardmäßig für die Verwendung von Back-End-Diensten konfiguriert, die unter developer.xamarin.com gehostet werden, und in denen schreibgeschützte Vorgänge zugelassen sind. Wenn Sie dies selbst bei der im nächsten Abschnitt erstellten ASP.NET Core-App testen möchten, die auf Ihrem Computer ausgeführt wird, müssen Sie die `RestUrl`-Konstante der App aktualisieren. Navigieren Sie zu dem Projekt `ToDoREST`, und öffnen Sie die Datei *Constants.cs* . Ersetzen Sie die `RestUrl` durch eine URL, die die IP-Adresse Ihres Computers enthält (nicht „localhost“ oder „127.0.0.1“, da diese Adresse vom Geräteemulator und nicht von Ihrem Computer verwendet wird). Schließen Sie auch die Portnummer (5000) ein. Stellen Sie sicher, dass keine aktive Firewall den Zugriff auf diesen Port blockiert, wenn Sie testen möchten, ob Ihre Dienste auf einem Gerät funktionieren.
 
 ```csharp
 // URL of REST service (Xamarin ReadOnly Service)
@@ -63,11 +64,11 @@ public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
 
 ## <a name="creating-the-aspnet-core-project"></a>Erstellen des ASP.NET Core-Projekts
 
-Erstellen Sie in Visual Studio eine neue ASP.NET Core-Webanwendung. Wählen Sie die Web-API-Vorlage und „Keine Authentifizierung“ aus. Geben Sie dem Projekt den Namen *ToDoApi*.
+Erstellen Sie in Visual Studio eine neue ASP.NET Core-Webanwendung. Wählen Sie die Web-API-Vorlage und „Keine Authentifizierung“ aus. Geben Sie dem Projekt den Namen *ToDoApi* .
 
 ![Dialogfeld „Neue ASP.NET-Webanwendung“ mit ausgewählter Web-API-Projektvorlage](native-mobile-backend/_static/web-api-template.png)
 
-Die Anwendung sollte auf alle an Port 5000 gestellten Anforderungen reagieren. Aktualisieren Sie *Program.cs*, und schließen Sie `.UseUrls("http://*:5000")` ein, um Folgendes zu erreichen:
+Die Anwendung sollte auf alle an Port 5000 gestellten Anforderungen reagieren. Aktualisieren Sie *Program.cs* , und schließen Sie `.UseUrls("http://*:5000")` ein, um Folgendes zu erreichen:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Program.cs?range=10-16&highlight=3)]
 
@@ -86,18 +87,18 @@ In diesem Beispiel verwendet die Implementierung nur eine private Sammlung von E
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Services/ToDoRepository.cs)]
 
-Konfigurieren Sie die Implementierung in *Startup.cs*:
+Konfigurieren Sie die Implementierung in *Startup.cs* :
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs?highlight=6&range=29-35)]
 
-An diesem Punkt sind Sie bereit für die Erstellung von *ToDoItemsController*.
+An diesem Punkt sind Sie bereit für die Erstellung von *ToDoItemsController* .
 
 > [!TIP]
 > Weitere Informationen zur Erstellung von Web-APIs finden Sie unter [Build your first Web API with ASP.NET Core MVC and Visual Studio (Erstellen Ihrer ersten Web-API mit ASP.NET Core MVC und Visual Studio)](../tutorials/first-web-api.md).
 
 ## <a name="creating-the-controller"></a>Erstellen des Controllers
 
-Fügen Sie einen neuen Controller, *ToDoItemsController*, zu dem Projekt hinzu. Dieser sollte von „Microsoft.AspNetCore.Mvc.Controller“ erben. Fügen Sie das Attribut `Route` hinzu, um anzugeben, dass der Controller Anforderungen für Pfade bearbeitet, die mit `api/todoitems` beginnen. Das Token `[controller]` in der Route wird durch den Namen des Controllers ersetzt (dabei wird das Suffix `Controller` ausgelassen) und ist für globale Routen besonders nützlich. Weitere Informationen zu [Routing](../fundamentals/routing.md).
+Fügen Sie einen neuen Controller, *ToDoItemsController* , zu dem Projekt hinzu. Dieser sollte von „Microsoft.AspNetCore.Mvc.Controller“ erben. Fügen Sie das Attribut `Route` hinzu, um anzugeben, dass der Controller Anforderungen für Pfade bearbeitet, die mit `api/todoitems` beginnen. Das Token `[controller]` in der Route wird durch den Namen des Controllers ersetzt (dabei wird das Suffix `Controller` ausgelassen) und ist für globale Routen besonders nützlich. Weitere Informationen zu [Routing](../fundamentals/routing.md).
 
 Damit der Controller funktioniert, ist eine `IToDoRepository`-Schnittstelle erforderlich. Fordern Sie über den Konstruktor des Controllers eine Instanz dieses Typs an. Zur Laufzeit wird diese Instanz über die Frameworkunterstützung für [Dependency Injection](../fundamentals/dependency-injection.md) bereitgestellt.
 

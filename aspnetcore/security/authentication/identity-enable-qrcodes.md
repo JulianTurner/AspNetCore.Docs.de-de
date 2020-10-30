@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie die QR-Codegenerierung für TOTP Authenticato
 ms.author: riande
 ms.date: 08/14/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: e61aa925262fc9fe25c7bb2d37958cfaa308aeaf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b778e7238911ec9966edf7f0f7becd113b1e197a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630795"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060832"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>Aktivieren der QR-Code Generierung für TOTP Authenticator-apps in ASP.net Core
 
@@ -49,8 +50,8 @@ In diesen Anweisungen wird *qrcode.js* aus dem Repository verwendet https://davi
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* Befolgen Sie die Anweisungen in [ Identity Gerüstbau](xref:security/authentication/scaffold-identity) , um */Areas/ Identity /pages/Account/Manage/EnableAuthenticator.cshtml*zu generieren.
-* Suchen Sie in */Areas/ Identity /pages/Account/Manage/EnableAuthenticator.cshtml*den `Scripts` Abschnitt am Ende der Datei:
+* Befolgen Sie die Anweisungen in [ Identity Gerüstbau](xref:security/authentication/scaffold-identity) , um */Areas/ Identity /pages/Account/Manage/EnableAuthenticator.cshtml* zu generieren.
+* Suchen Sie in */Areas/ Identity /pages/Account/Manage/EnableAuthenticator.cshtml* den `Scripts` Abschnitt am Ende der Datei:
 
 ::: moniker-end
 
@@ -96,7 +97,7 @@ Führen Sie Ihre APP aus, und stellen Sie sicher, dass Sie den QR-Code Scannen u
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Der Name der Website im QR-Code stammt aus dem Projektnamen, den Sie beim ersten Erstellen des Projekts auswählen. Sie können es ändern, indem Sie die- `GenerateQrCodeUri(string email, string unformattedKey)` Methode in der */Areas/- Identity /pages/Account/Manage/EnableAuthenticator.cshtml.cs*suchen.
+Der Name der Website im QR-Code stammt aus dem Projektnamen, den Sie beim ersten Erstellen des Projekts auswählen. Sie können es ändern, indem Sie die- `GenerateQrCodeUri(string email, string unformattedKey)` Methode in der */Areas/- Identity /pages/Account/Manage/EnableAuthenticator.cshtml.cs* suchen.
 
 ::: moniker-end
 
@@ -134,6 +135,6 @@ Die korrekt formatierte URL für den QR-Code ist in verfügbar:
 
 ## <a name="totp-client-and-server-time-skew"></a>TOTP-Client-und Serverzeit Abweichung
 
-TOTP (zeitbasierte einmalige Kenn Wort Authentifizierung) hängt vom Server-und Authentifikator-Gerät ab, das über eine genaue Zeit verfügt. Token sind nur 30 Sekunden lang. Wenn TOTP 2FA-Anmeldungen fehlschlagen, überprüfen Sie, ob die Serverzeit genau ist und vorzugsweise mit einem genauen NTP-Dienst synchronisiert wird.
+TOTP (zeitbasierte One-Time Kenn Wort Authentifizierung) hängt vom Server-und Authentifikator-Gerät ab, das über eine genaue Zeit verfügt. Token sind nur 30 Sekunden lang. Wenn TOTP 2FA-Anmeldungen fehlschlagen, überprüfen Sie, ob die Serverzeit genau ist und vorzugsweise mit einem genauen NTP-Dienst synchronisiert wird.
 
 ::: moniker-end

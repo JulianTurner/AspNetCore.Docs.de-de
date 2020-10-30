@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/ip-safelist
-ms.openlocfilehash: 621be5351acb251335a42f57e8ea670af1b35a87
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: dfc134b97bb0976bc682a53d536cd27785550c7d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634448"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059662"
 ---
 # <a name="client-ip-safelist-for-aspnet-core"></a>Client-IP-SafeList für ASP.net Core
 
@@ -48,7 +49,7 @@ Der Zugriff ist zulässig, wenn das Array die IP-Adresse enthält. Andernfalls w
 
 In der Beispiel-App lautet die IP-Adresse SafeList:
 
-* Wird von der- `AdminSafeList` Eigenschaft in der *appsettings.js* Datei definiert.
+* Wird von der- `AdminSafeList` Eigenschaft in der *appsettings.json* Datei definiert.
 * Eine durch Semikolons getrennte Zeichenfolge, die sowohl [IPv4 (Internet Protocol Version 4)](https://wikipedia.org/wiki/IPv4) -als auch IPv6-Adressen [(Internet Protocol Version 6)](https://wikipedia.org/wiki/IPv6) enthalten kann.
 
 [!code-json[](ip-safelist/samples/3.x/ClientIpAspNetCore/appsettings.json?range=1-3&highlight=2)]
@@ -67,7 +68,7 @@ Die Middleware analysiert die Zeichenfolge in ein Array und sucht im Array nach 
 
 ## <a name="action-filter"></a>Aktionsfilter
 
-Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für bestimmte MVC-Controller oder Aktionsmethoden verwenden möchten, verwenden Sie einen Aktionsfilter. Beispiel:
+Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für bestimmte MVC-Controller oder Aktionsmethoden verwenden möchten, verwenden Sie einen Aktionsfilter. Zum Beispiel:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckActionFilter.cs?name=snippet_ClassOnly)]
 
@@ -104,7 +105,7 @@ In der Beispiel-APP wird der Aktionsfilter auf die Aktionsmethode des Controller
 
 ## <a name="no-locrazor-pages-filter"></a>Razor Seiten Filter
 
-Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für eine Razor pages-App verwenden möchten, verwenden Sie einen Razor Seiten Filter. Beispiel:
+Wenn Sie die SafeList-gesteuerte Zugriffs Steuerung für eine Razor pages-App verwenden möchten, verwenden Sie einen Razor Seiten Filter. Zum Beispiel:
 
 [!code-csharp[](ip-safelist/samples/Shared/ClientIpSafelistComponents/Filters/ClientIpCheckPageFilter.cs?name=snippet_ClassOnly)]
 

@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie Autorisierungs Anforderungs Handler mithilfe 
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,22 +17,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/dependencyinjection
-ms.openlocfilehash: 4bc7eb38262c8a94a84aacc978737a778bfd71a1
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6598a9c9cfd1e6597fffcc1aa0c53fa493532458
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632563"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060260"
 ---
 # <a name="dependency-injection-in-requirement-handlers-in-aspnet-core"></a>Abhängigkeitsinjektion in Anforderungs Handlern in ASP.net Core
 
 <a name="security-authorization-di"></a>
 
-[Autorisierungs Handler müssen](xref:security/authorization/policies#handler-registration) während der Konfiguration in der Dienst Auflistung registriert werden (mithilfe von [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection)).
+[Autorisierungs Handler müssen](xref:security/authorization/policies#handler-registration) während der Konfiguration mithilfe von [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection)in der Dienst Auflistung registriert werden.
 
 Angenommen, Sie hatten ein Repository von Regeln, die Sie innerhalb eines Autorisierungs Handlers auswerten wollten, und dieses Repository wurde in der Dienst Sammlung registriert. Die Autorisierung wird aufgelöst und in den Konstruktor eingefügt.
 
-Wenn Sie z. b. asp verwenden möchten. Die Protokollierungs Infrastruktur von NET, die Sie `ILoggerFactory` in ihren Handler einfügen möchten. Ein solcher Handler könnte wie folgt aussehen:
+Beispielsweise zur Verwendung von ASP. Die Protokollierungs Infrastruktur von NET, eingefügt `ILoggerFactory` in den-Handler. Ein solcher Handler könnte wie der folgende Code aussehen:
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
@@ -52,13 +53,13 @@ public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
    }
    ```
 
-Sie registrieren den Handler wie folgt `services.AddSingleton()` :
+Der vorangehende Handler kann bei jeder [Dienst Lebensdauer](/dotnet/core/extensions/dependency-injection#service-lifetimes)registriert werden. Der folgende Code verwendet `AddSingleton` , um den vorangehenden Handler zu registrieren:
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
 ```
 
-Eine Instanz des-Handlers wird erstellt, wenn die Anwendung gestartet wird, und di fügt die registrierte `ILoggerFactory` in ihren Konstruktor ein.
+Eine Instanz des-Handlers wird erstellt, wenn die APP gestartet wird, und di fügt die registrierte `ILoggerFactory` in den Konstruktor ein.
 
 > [!NOTE]
 > Handler, die Entity Framework verwenden, sollten nicht als Singletons registriert werden.

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 32ae699c4ef501096a9c4ab7bca6673139910f02
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e0ff97b53d12fbf6c6a89e94704de1aee9d7f9e6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635085"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060585"
 ---
 # <a name="view-components-in-aspnet-core"></a>Ansichtskomponenten in ASP.NET Core
 
@@ -95,7 +96,7 @@ Die Runtime sucht in den folgenden Pfaden nach der Ansicht:
 
 Der Suchpfad gilt für Projekte mit Controllern und Ansichten und Razor Seiten.
 
-Der Standardansichtsname für die Ansichtskomponente ist *Default*. Dies bedeutet, dass Ihre Ansichtsdatei normalerweise *Default.cshtml* heißt. Sie können einen anderen Ansichtsnamen angeben, wenn Sie die Ansichtskomponentenergebnisse erstellen oder die `View`-Methode aufrufen.
+Der Standardansichtsname für die Ansichtskomponente ist *Default* . Dies bedeutet, dass Ihre Ansichtsdatei normalerweise *Default.cshtml* heißt. Sie können einen anderen Ansichtsnamen angeben, wenn Sie die Ansichtskomponentenergebnisse erstellen oder die `View`-Methode aufrufen.
 
 Es wird empfohlen, dass Sie die Ansichtsdatei *Default.cshtml* nennen und den Pfad *View/Shared/Components/{Ansichtskomponentenname}/{Ansichtsname}* verwenden. Die Ansichtskomponente `PriorityList`, die in diesem Beispiel verwendet wird, verwendet *Views/Shared/Components/PriorityList/Default.cshtml* für die Ansichtskomponentenansicht.
 
@@ -166,20 +167,20 @@ In diesem Beispiel wird die Ansichtskomponente direkt von einem Controller aus a
 
 ## <a name="walkthrough-creating-a-simple-view-component"></a>Exemplarische Vorgehensweise: Erstellen einer einfachen Ansichtskomponente
 
-[Laden Sie den Startercode herunter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), und erstellen und testen Sie diesen. Dabei handelt es sich um ein einfaches Projekt mit einem `ToDo`-Controller, in dem eine Liste von *ToDo*-Elementen angezeigt wird.
+[Laden Sie den Startercode herunter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), und erstellen und testen Sie diesen. Dabei handelt es sich um ein einfaches Projekt mit einem `ToDo`-Controller, in dem eine Liste von *ToDo* -Elementen angezeigt wird.
 
 ![Liste mit ToDo-Elementen](view-components/_static/2dos.png)
 
 ### <a name="add-a-viewcomponent-class"></a>Hinzufügen einer ViewComponent-Klasse
 
-Erstellen Sie einen *ViewComponents*-Ordner, und fügen Sie die folgende `PriorityListViewComponent`-Klasse hinzu:
+Erstellen Sie einen *ViewComponents* -Ordner, und fügen Sie die folgende `PriorityListViewComponent`-Klasse hinzu:
 
 [!code-csharp[](view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponent1.cs?name=snippet1)]
 
 Bemerkungen zum Code:
 
 * Ansichtskomponentenklassen können sich in **jedem** Ordner im Projekt befinden.
-* Da der Klassenname „PriorityList**ViewComponent** mit dem Suffix **ViewComponent** endet, verwendet die Runtime die Zeichenfolge „PriorityList“, wenn Sie von einer Ansicht aus auf die Klassenkomponente verweist. Dies wird im Folgenden noch ausführlicher erklärt.
+* Da der Klassenname „PriorityList **ViewComponent** mit dem Suffix **ViewComponent** endet, verwendet die Runtime die Zeichenfolge „PriorityList“, wenn Sie von einer Ansicht aus auf die Klassenkomponente verweist. Dies wird im Folgenden noch ausführlicher erklärt.
 * Das `[ViewComponent]`-Attribut kann den Namen ändern, der zum Verweis auf eine Ansichtskomponente verwendet wird. Wir hätten die Klasse auch `XYZ` nennen und das `ViewComponent`-Attribut anwenden können:
 
   ```csharp
@@ -194,18 +195,18 @@ Bemerkungen zum Code:
 
 ### <a name="create-the-view-component-no-locrazor-view"></a>Erstellen der Ansichts Komponenten Razor Ansicht
 
-* Erstellen Sie den Ordner *Views/Shared/Components*. Diese Ordner **muss** den Namen *Components* besitzen.
+* Erstellen Sie den Ordner *Views/Shared/Components* . Diese Ordner **muss** den Namen *Components* besitzen.
 
-* Erstellen Sie den Ordner *Views/Shared/Components/PriorityList*. Der Ordnername muss mit dem Namen der Ansichtskomponentenklasse oder mit dem Namen der Klasse ohne Suffix (wenn wir uns an die Konvention gehalten und *ViewComponent* als Suffix im Klassennamen verwendet haben) übereinstimmen. Wenn Sie das Attribut `ViewComponent` verwenden, muss der Klassenname mit der Attributbezeichnung übereinstimmen.
+* Erstellen Sie den Ordner *Views/Shared/Components/PriorityList* . Der Ordnername muss mit dem Namen der Ansichtskomponentenklasse oder mit dem Namen der Klasse ohne Suffix (wenn wir uns an die Konvention gehalten und *ViewComponent* als Suffix im Klassennamen verwendet haben) übereinstimmen. Wenn Sie das Attribut `ViewComponent` verwenden, muss der Klassenname mit der Attributbezeichnung übereinstimmen.
 
 * Erstellen Sie eine *Sichten/Shared/Components/prioritylist/default. cshtml* - Razor Ansicht:
 
 
   [!code-cshtml[](view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/Default1.cshtml)]
 
-   RazorIn der Ansicht wird eine Liste `TodoItem` von angezeigt und angezeigt. Wenn die `InvokeAsync`-Methode der Ansichtskomponente nicht den Namen der Ansicht übergibt (wie in unserem Beispiel), wird *Default* per Konvention für den Ansichtsnamen verwendet. Später in diesem Tutorial erfahren Sie, wie Sie den Namen der Ansicht übergeben. Fügen Sie eine Ansicht einem controllerspezifischen Ansichtsordner hinzu, um das Standardformat für einen spezifischen Controller zu überschreiben (z.B. *Views/ToDo/Components/PriorityList/Default.cshtml*).
+   RazorIn der Ansicht wird eine Liste `TodoItem` von angezeigt und angezeigt. Wenn die `InvokeAsync`-Methode der Ansichtskomponente nicht den Namen der Ansicht übergibt (wie in unserem Beispiel), wird *Default* per Konvention für den Ansichtsnamen verwendet. Später in diesem Tutorial erfahren Sie, wie Sie den Namen der Ansicht übergeben. Fügen Sie eine Ansicht einem controllerspezifischen Ansichtsordner hinzu, um das Standardformat für einen spezifischen Controller zu überschreiben (z.B. *Views/ToDo/Components/PriorityList/Default.cshtml* ).
 
-    Wenn die Ansichtskomponente controllerspezifisch ist, können Sie sie dem controllerspezifischen Ordner hinzufügen (*Views/ToDo/Components/PriorityList/Default.cshtml*).
+    Wenn die Ansichtskomponente controllerspezifisch ist, können Sie sie dem controllerspezifischen Ordner hinzufügen ( *Views/ToDo/Components/PriorityList/Default.cshtml* ).
 
 * Fügen Sie ein `div`-Objekt, das einen Aufruf an eine Prioritätslistenkomponente enthält, am Ende der Datei *Views/ToDo/index.cshtml* hinzu:
 
@@ -213,7 +214,7 @@ Bemerkungen zum Code:
 
 Das Markup `@await Component.InvokeAsync` zeigt die Syntax für die aufrufenden Ansichtskomponenten an. Das erste Argument ist der Name der aufzurufenden Komponente. Darauffolgende Parameter werden an die Komponente übergeben. `InvokeAsync` kann eine arbiträre Anzahl von Argumenten annehmen.
 
-Testen Sie die App. In der folgenden Abbildung werden die ToDo-Liste und die Elemente mit Priorität angezeigt:
+Testen der App. In der folgenden Abbildung werden die ToDo-Liste und die Elemente mit Priorität angezeigt:
 
 ![ToDo-Liste und Prioritätselemente](view-components/_static/pi.png)
 
@@ -229,11 +230,11 @@ Eine komplexe Ansichtskomponente erfordert möglicherweise, dass unter bestimmte
 
 [!code-csharp[](../../mvc/views/view-components/sample/ViewCompFinal/ViewComponents/PriorityListViewComponentFinal.cs?highlight=4,5,6,7,8,9&range=28-39)]
 
-Kopieren Sie die Datei *Views/Shared/Components/PriorityList/Default.cshtml* in eine Ansicht mit dem Namen *Views/Shared/Components/PriorityList/PVC.cshtml*. Fügen Sie eine Überschrift hinzu, um anzugeben, dass die PVC-Ansicht verwendet wird.
+Kopieren Sie die Datei *Views/Shared/Components/PriorityList/Default.cshtml* in eine Ansicht mit dem Namen *Views/Shared/Components/PriorityList/PVC.cshtml* . Fügen Sie eine Überschrift hinzu, um anzugeben, dass die PVC-Ansicht verwendet wird.
 
 [!code-cshtml[](../../mvc/views/view-components/sample/ViewCompFinal/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-Aktualisieren Sie *Views/ToDo/Index.cshtml*:
+Aktualisieren Sie *Views/ToDo/Index.cshtml* :
 
 <!-- Views/ToDo/Index.cshtml is never imported, so change to test tutorial -->
 
@@ -259,7 +260,7 @@ Wenn die PVC-Ansicht nicht gerendert wird, stellen Sie sicher, dass Sie die Ansi
    EnsureSuccessful
    ```
 
-* Kopieren Sie *Views/ToDo/Components/PriorityList/1Default.cshtml* nach *Views/Shared/Components/PriorityList/Default.cshtml*.
+* Kopieren Sie *Views/ToDo/Components/PriorityList/1Default.cshtml* nach *Views/Shared/Components/PriorityList/Default.cshtml* .
 * Fügen Sie der ToDo-Ansichtskomponentenansicht *Shared* (Freigegeben) Markup hinzu, um anzugeben, dass die Ansicht aus dem Ordner *Shared* stammt.
 * Testen Sie die Komponentenansicht **Shared** (Freigegeben).
 
@@ -290,7 +291,7 @@ public class PriorityList : ViewComponent
 }
 ```
 
-Die Datei der Ansichts Komponente Razor Listet die an die Methode übergebenen Zeichen folgen auf `Invoke` (*views/Home/Components/prioritylist/default. cshtml*):
+Die Datei der Ansichts Komponente Razor Listet die an die Methode übergebenen Zeichen folgen auf `Invoke` ( *views/Home/Components/prioritylist/default. cshtml* ):
 
 ```cshtml
 @model List<string>
@@ -306,7 +307,7 @@ Die Datei der Ansichts Komponente Razor Listet die an die Methode übergebenen Z
 
 ::: moniker range=">= aspnetcore-1.1"
 
-Die Ansichts Komponente wird in einer Razor Datei (z. b. *views/Home/Index. cshtml*) mit einem der folgenden Ansätze aufgerufen:
+Die Ansichts Komponente wird in einer Razor Datei (z. b. *views/Home/Index. cshtml* ) mit einem der folgenden Ansätze aufgerufen:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
 * [Taghilfsprogramm](xref:mvc/views/tag-helpers/intro)
@@ -317,7 +318,7 @@ Rufen Sie `Component.InvokeAsync` auf, um das <xref:Microsoft.AspNetCore.Mvc.IVi
 
 ::: moniker range="< aspnetcore-1.1"
 
-Die Ansichts Komponente wird in einer Razor Datei (z. b. *views/Home/Index. cshtml*) mit aufgerufen <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> .
+Die Ansichts Komponente wird in einer Razor Datei (z. b. *views/Home/Index. cshtml* ) mit aufgerufen <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> .
 
 Rufen Sie `Component.InvokeAsync` auf:
 

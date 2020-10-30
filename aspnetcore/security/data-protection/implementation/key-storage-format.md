@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über die Implementierungsdetails des Speicher Fo
 ms.author: riande
 ms.date: 04/08/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-format
-ms.openlocfilehash: daf86d3e3357d42ddad74d5e2f06e00e0e24db07
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4a8503964c98d1828dc9d02640a7621b370e679c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631991"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060143"
 ---
 # <a name="key-storage-format-in-aspnet-core"></a>Schlüsselspeicher Format in ASP.net Core
 
@@ -34,7 +35,7 @@ Objekte werden im Ruhezustand in der XML-Darstellung gespeichert. Das Standardve
 
 ## <a name="the-key-element"></a>Das \<key>-Element
 
-Schlüssel sind im schlüsselrepository als Objekte der obersten Ebene vorhanden. Gemäß den kontokonventionenschlüsseln haben Sie den Dateinamen **Key-{GUID}. XML**, wobei {GUID} die ID des Schlüssels ist. Jede dieser Dateien enthält einen einzelnen Schlüssel. Das Format der Datei lautet wie folgt.
+Schlüssel sind im schlüsselrepository als Objekte der obersten Ebene vorhanden. Gemäß den kontokonventionenschlüsseln haben Sie den Dateinamen **Key-{GUID}. XML** , wobei {GUID} die ID des Schlüssels ist. Jede dieser Dateien enthält einen einzelnen Schlüssel. Das Format der Datei lautet wie folgt.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -77,7 +78,7 @@ Das jeweilige Format des- \<descriptor> Elements hängt von der durch den Schlü
 
 ## <a name="the-encryptedsecret-element"></a>Das \<encryptedSecret>-Element
 
-Wenn die [Verschlüsselung von geheimen Schlüsseln aktiviert ist](xref:security/data-protection/implementation/key-encryption-at-rest), kann ein ** &lt; verschlüsseltedsecret &gt; ** -Element vorhanden sein, das die verschlüsselte Form des geheimen Schlüssel Materials enthält. Das-Attribut `decryptorType` ist der durch die Assembly qualifizierte Name eines Typs, der [ixmldecryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmldecryptor)implementiert. Dieser Typ ist verantwortlich für das Lesen des inneren ** &lt; verschlüsseltedkey &gt; ** -Elements und das entschlüsseln, um den ursprünglichen Klartext wiederherzustellen.
+Wenn die [Verschlüsselung von geheimen Schlüsseln aktiviert ist](xref:security/data-protection/implementation/key-encryption-at-rest), kann ein **&lt; verschlüsseltedsecret &gt;** -Element vorhanden sein, das die verschlüsselte Form des geheimen Schlüssel Materials enthält. Das-Attribut `decryptorType` ist der durch die Assembly qualifizierte Name eines Typs, der [ixmldecryptor](/dotnet/api/microsoft.aspnetcore.dataprotection.xmlencryption.ixmldecryptor)implementiert. Dieser Typ ist verantwortlich für das Lesen des inneren **&lt; verschlüsseltedkey &gt;** -Elements und das entschlüsseln, um den ursprünglichen Klartext wiederherzustellen.
 
 Wie bei `<descriptor>` ist das jeweilige Format des `<encryptedSecret>` -Elements abhängig von dem verwendeten ruhenden Verschlüsselungsmechanismus. Im obigen Beispiel wird der Hauptschlüssel mit Windows DPAPI gemäß dem Kommentar verschlüsselt.
 

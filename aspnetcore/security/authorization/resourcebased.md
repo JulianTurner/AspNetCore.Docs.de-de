@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/15/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/resourcebased
-ms.openlocfilehash: bb47f3452d29dfeea0e4d3c4a9c22a06869a3fe7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 202ca681a66ddf7f729d8835e2f77da846583df1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631354"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060169"
 ---
 # <a name="resource-based-authorization-in-aspnet-core"></a>Ressourcenbasierte Autorisierung in ASP.net Core
 
 Autorisierungs Strategie hängt von der Ressource ab, auf die zugegriffen wird. Stellen Sie sich ein Dokument mit der Eigenschaft Autor vor. Nur der Autor darf das Dokument aktualisieren. Folglich muss das Dokument aus dem Datenspeicher abgerufen werden, bevor die Autorisierungs Auswertung erfolgen kann.
 
-Die Attribut Auswertung erfolgt vor der Datenbindung und vor der Ausführung des Seiten Handlers oder der Aktion, die das Dokument lädt. Aus diesen Gründen genügt die deklarative Autorisierung mit einem- `[Authorize]` Attribut nicht. Sie können stattdessen eine benutzerdefinierte Autorisierungs Methode aufrufen, die &mdash; als *imperative Autorisierung*bezeichnet wird.
+Die Attribut Auswertung erfolgt vor der Datenbindung und vor der Ausführung des Seiten Handlers oder der Aktion, die das Dokument lädt. Aus diesen Gründen genügt die deklarative Autorisierung mit einem- `[Authorize]` Attribut nicht. Sie können stattdessen eine benutzerdefinierte Autorisierungs Methode aufrufen, die &mdash; als *imperative Autorisierung* bezeichnet wird.
 
 ::: moniker range=">= aspnetcore-3.0"
 [Zeigen Sie Beispielcode an, oder laden Sie diesen herunter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/resourcebased/samples/3_0) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample)).

@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/actions
-ms.openlocfilehash: 9542a7c0fd16c00f46ee69c5873878a7c70ef626
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a9319e74d0213b178c2a71be69a0332270d9446c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630327"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061456"
 ---
 # <a name="handle-requests-with-controllers-in-aspnet-core-mvc"></a>Verarbeiten von Anforderungen mit Controllern in ASP.NET Core MVC
 
@@ -31,7 +32,7 @@ Controller, Aktionen und Folgen von Aktionen sind ein wesentlicher Bestandteil d
 
 ## <a name="what-is-a-controller"></a>Was ist ein Controller?
 
-Ein Controller wird verwendet, um mehrere Aktionen zu definieren und zu gruppieren. Eine Aktion (oder eine *Aktionsmethode*) ist eine Methode in einem Controller, der Abfragen behandelt. Controller gruppieren ähnliche Aktionen auf logische Weise. Diese Aktionsaggregation ermöglicht das Anwenden gemeinsamer Regeln, wie z.B. für das Routing, Caching und die Autorisierung. Anforderungen werden Aktionen über [Routing](xref:mvc/controllers/routing) zugeordnet.
+Ein Controller wird verwendet, um mehrere Aktionen zu definieren und zu gruppieren. Eine Aktion (oder eine *Aktionsmethode* ) ist eine Methode in einem Controller, der Abfragen behandelt. Controller gruppieren ähnliche Aktionen auf logische Weise. Diese Aktionsaggregation ermöglicht das Anwenden gemeinsamer Regeln, wie z.B. für das Routing, Caching und die Autorisierung. Anforderungen werden Aktionen über [Routing](xref:mvc/controllers/routing) zugeordnet.
 
 Per Konvention trifft Folgendes auf Controllerklassen zu:
 
@@ -48,11 +49,11 @@ Die Controllerklasse darf kein verknüpftes `[NonController]`-Attribut aufweisen
 
 Controller sollten dem [Prinzip der expliziten Abhängigkeiten](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) folgen. Zum Umsetzen dieses Prinzips gibt es mehrere Herangehensweisen. Wenn mehrere Controlleraktionen den gleichen Dienst erfordern, ziehen Sie [Constructor Injection](xref:mvc/controllers/dependency-injection#constructor-injection) zum Anfordern dieser Abhängigkeiten in Erwägung. Wenn der Dienst nur von einer einzigen Aktionsmethode benötigt wird, ist [Action Injection](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) möglicherweise nützlich.
 
-Im Muster **M**odel-**V**iew-**C**ontroller ist ein Controller für die erste Verarbeitung der Anforderung und die Instanziierung des Modells zuständig. Für gewöhnlich sollten Unternehmensentscheidungen innerhalb des Modell getroffen werden.
+Im Muster **M** odel- **V** iew- **C** ontroller ist ein Controller für die erste Verarbeitung der Anforderung und die Instanziierung des Modells zuständig. Für gewöhnlich sollten Unternehmensentscheidungen innerhalb des Modell getroffen werden.
 
 Der Controller nimmt das Ergebnis der Verarbeitung des Modells (falls es ein Ergebnis gibt) an und gibt entweder die geeignete Ansicht mit den verknüpften Ansichtsdaten oder das Ergebnis des API-Aufrufs zurück. In den folgenden Artikeln erfahren Sie mehr: [Übersicht über ASP.NET Core MVC](xref:mvc/overview) und [Erste Schritte mit ASP.NET Core MVC und Visual Studio](xref:tutorials/first-mvc-app/start-mvc).
 
-Der Controller ist eine Abstraktion *auf Ebene der Benutzeroberfläche*. Er ist dafür zuständig, die Gültigkeit von Anfragedaten zu gewährleisten und die zurückzugebende Ansicht auszuwählen. In gut gestalteten Apps schließt er nicht direkt Datenzugriff oder Geschäftslogik ein. Stattdessen delegiert der Controller an Dienste, die an diesen Stellen zuständig sind.
+Der Controller ist eine Abstraktion *auf Ebene der Benutzeroberfläche* . Er ist dafür zuständig, die Gültigkeit von Anfragedaten zu gewährleisten und die zurückzugebende Ansicht auszuwählen. In gut gestalteten Apps schließt er nicht direkt Datenzugriff oder Geschäftslogik ein. Stattdessen delegiert der Controller an Dienste, die an diesen Stellen zuständig sind.
 
 ## <a name="defining-actions"></a>Definieren von Aktionen
 
@@ -60,7 +61,7 @@ Der Controller ist eine Abstraktion *auf Ebene der Benutzeroberfläche*. Er ist 
 
 Aktionsmethoden sollten Logik zum Zuordnen einer Anforderung zu einem Unternehmen beinhalten. Unternehmen sollten normalerweise durch einen Dienst dargestellt werden, auf die der Controller über [Dependency Injection](xref:mvc/controllers/dependency-injection) zugreift. Anschließend ordnen Aktionen das Ergebnis der Unternehmensaktion einem Anwendungszustand zu.
 
-Aktionen können ein beliebiges Element zurückgeben. Häufig geben Sie jedoch eine Instanz von `IActionResult` (oder für async-Methoden eine Instanz von `Task<IActionResult>`) zurück, die eine Antwort erzeugt. Die Aktionsmethode ist dafür zuständig, *die Art der Antwort auszuwählen*. Das Aktionsergebnis *antwortet*.
+Aktionen können ein beliebiges Element zurückgeben. Häufig geben Sie jedoch eine Instanz von `IActionResult` (oder für async-Methoden eine Instanz von `Task<IActionResult>`) zurück, die eine Antwort erzeugt. Die Aktionsmethode ist dafür zuständig, *die Art der Antwort auszuwählen* . Das Aktionsergebnis *antwortet* .
 
 ### <a name="controller-helper-methods"></a>Hilfsmethoden von Controllern
 
@@ -88,7 +89,7 @@ Die meisten Hilfsmethoden in dieser Kategorie beinhalten eine `ContentType`-Eige
 
 Innerhalb dieser Kategorie gibt es wiederum zwei Ergebnistypen: [View](xref:mvc/views/overview) (Ansicht) und [Formatted Response](xref:web-api/advanced/formatting) (Formatierte Antwort).
 
-* **Ansicht**
+* **Anzeigen**
 
     Dieser Typ gibt eine Ansicht zurück, die ein Modell zum Rendern von HTML verwendet. `return View(customer);` übergibt beispielsweise zur Datenbindung ein Modell an die Ansicht.
 
@@ -106,7 +107,7 @@ Weitere Hilfsmethoden dieses Typs sind `BadRequest`, `CreatedAtRoute` und `Ok`. 
 
 ### <a name="cross-cutting-concerns"></a>Übergreifende Belange
 
-Verschiedene Anwendungen haben häufig übereinstimmende Teile in Ihrem Workflow. Beispiel dafür sind Anwendungen, die eine Authentifizierung erfordern, um auf den Einkaufswagen zugreifen zu können, oder Anwendungen, die Daten auf einigen Seiten zwischenspeichern. Verwenden Sie einen *Filter*, um Logik vor oder nach einer Aktionsmethode durchzuführen. Das Verwenden von [Filtern](xref:mvc/controllers/filters) bei übergreifenden Belangen kann Duplikate minimieren.
+Verschiedene Anwendungen haben häufig übereinstimmende Teile in Ihrem Workflow. Beispiel dafür sind Anwendungen, die eine Authentifizierung erfordern, um auf den Einkaufswagen zugreifen zu können, oder Anwendungen, die Daten auf einigen Seiten zwischenspeichern. Verwenden Sie einen *Filter* , um Logik vor oder nach einer Aktionsmethode durchzuführen. Das Verwenden von [Filtern](xref:mvc/controllers/filters) bei übergreifenden Belangen kann Duplikate minimieren.
 
 Die meisten Filterattribute, wie z.B. `[Authorize]`, können auf Ebene des Controllers oder der Aktion mit der gewünschten Detailgenauigkeit angewendet werden.
 

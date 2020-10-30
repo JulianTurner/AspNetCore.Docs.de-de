@@ -5,6 +5,7 @@ description: Erfahren Sie mehr über die Unterstützung von Dependency Injection
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 5ab79740d2068a50e4138e5b86f1622af8ef5ec7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a596d05e3d1d73d4faa2f84d97a40e4a2c1234e4
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633603"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059285"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>Dependency Injection in Ansichten in ASP.NET Core
 
@@ -33,9 +34,9 @@ ASP.NET Core unterstützt [Dependency Injection](xref:fundamentals/dependency-in
 
 ## <a name="configuration-injection"></a>Konfigurationsinjektion
 
-*appsettings.jason*-Werte können direkt in eine Ansicht eingefügt werden.
+*appsettings.json* Werte können direkt in eine Ansicht eingefügt werden.
 
-Beispiel einer *appsettings.json*-Datei:
+Beispiel für eine- *appsettings.json* Datei:
 
 ```json
 {

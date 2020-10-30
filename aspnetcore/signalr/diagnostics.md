@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: devx-track-csharp, signalr, devx-track-js
 ms.date: 06/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 890359c9e9f6c3c60f3105124f52c66b09a8a4fb
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 6e5e9d866a1e03e69856cc63dcfe30284048dd6d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690675"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061313"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Protokollierung und Diagnose in ASP.net Core SignalR
 
@@ -43,7 +44,7 @@ SignalR verwendet zwei Kategorien von Kategorien:
 * `Microsoft.AspNetCore.SignalR`: Bei Protokollen im Zusammenhang mit hubprotokollen, beim Aktivieren von Hubs, beim Aufrufen von Methoden und anderen hubbezogenen Aktivitäten.
 * `Microsoft.AspNetCore.Http.Connections`: Bei Protokollen im Zusammenhang mit Transporten, z. b. websockets, langem Abruf, Server-Sent Ereignissen und Low-Level- SignalR Infrastruktur.
 
-Wenn Sie ausführliche Protokolle von aktivieren möchten SignalR , konfigurieren Sie beide vorangehenden Präfixe für die `Debug` Ebene in Ihrer *appsettings.js* Datei, indem Sie dem `LogLevel` unter Abschnitt in die folgenden Elemente hinzufügen `Logging` :
+Um ausführliche Protokolle von zu aktivieren SignalR , konfigurieren Sie beide vorangehenden Präfixe für die `Debug` Ebene in der Datei, *appsettings.json* indem Sie dem `LogLevel` unter Abschnitt in die folgenden Elemente hinzufügen `Logging` :
 
 [!code-json[](diagnostics/logging-config.json?highlight=7-8)]
 
@@ -93,7 +94,7 @@ Um die Protokollierung vollständig zu deaktivieren, geben Sie `signalR.LogLevel
 
 In der folgenden Tabelle werden die für den JavaScript-Client verfügbaren Protokoll Ebenen angezeigt. Wenn Sie die Protokollebene auf einen dieser Werte festlegen, wird die Protokollierung auf dieser Ebene und allen darüber liegenden Ebenen in der Tabelle ermöglicht.
 
-| Ebene | BESCHREIBUNG |
+| Ebene | Beschreibung |
 | ----- | ----------- |
 | `None` | Es werden keine Nachrichten protokolliert. |
 | `Critical` | Meldungen, die auf einen Fehler in der gesamten App hindeuten. |
@@ -105,7 +106,7 @@ In der folgenden Tabelle werden die für den JavaScript-Client verfügbaren Prot
 
 Nachdem Sie die Ausführlichkeit konfiguriert haben, werden die Protokolle in die Browser Konsole (oder die Standard Ausgabe in einer nodejs-APP) geschrieben.
 
-Wenn Sie Protokolle an ein benutzerdefiniertes Protokollierungs System senden möchten, können Sie ein JavaScript-Objekt bereitstellen, das die- `ILogger` Schnittstelle implementiert. Die einzige Methode, die implementiert werden muss `log` , ist, die die Ebene des Ereignisses und die dem Ereignis zugeordnete Meldung annimmt. Beispiel:
+Wenn Sie Protokolle an ein benutzerdefiniertes Protokollierungs System senden möchten, können Sie ein JavaScript-Objekt bereitstellen, das die- `ILogger` Schnittstelle implementiert. Die einzige Methode, die implementiert werden muss `log` , ist, die die Ebene des Ereignisses und die dem Ereignis zugeordnete Meldung annimmt. Zum Beispiel:
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
@@ -225,7 +226,7 @@ Metriken sind eine Darstellung von Daten Messungen in Zeitintervallen. Beispiels
 
 SignalR servermetriken werden auf der <xref:Microsoft.AspNetCore.Http.Connections> Ereignis Quelle gemeldet.
 
-| Name                    | BESCHREIBUNG                 |
+| Name                    | Beschreibung                 |
 |-------------------------|-----------------------------|
 | `connections-started`   | Gestartete Verbindungen gesamt   |
 | `connections-stopped`   | Beendete Verbindungen insgesamt   |

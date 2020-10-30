@@ -5,6 +5,7 @@ description: Informationen zur Verarbeitung der Darstellung von App-Daten und zu
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: 6afd69414f2dc0158f724c6e6f7b3a3e51c1e92c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 373b17377740441d3859e3b7d942017a22bc7a68
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630678"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060624"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>Ansichten in ASP.NET Core MVC
 
@@ -31,11 +32,11 @@ In diesem Artikel werden die Ansichten erläutert, die in ASP.NET Core MVC-Anwen
 
 Im Muster Model-View-Controller (MVC) verarbeitet die *Ansicht* die Darstellung der App-Daten und der Benutzerinteraktion. Eine Sicht ist eine HTML-Vorlage mit eingebettetem [ Razor Markup](xref:mvc/views/razor). Razor Markup ist ein Code, der mit HTML-Markup interagiert, um eine Webseite zu entwickeln, die an den Client gesendet wird.
 
-In ASP.net Core MVC sind Sichten *cshtml* -Dateien, die die [Programmiersprache c#](/dotnet/csharp/) im Razor Markup verwenden. In der Regel werden Ansichtsdateien in Ordnern gruppiert, die für jeden [Controller](xref:mvc/controllers/actions) der App benannt werden. Die Ordner werden in *Ansichten*-Ordnern im Stammverzeichnis der App gespeichert:
+In ASP.net Core MVC sind Sichten *cshtml* -Dateien, die die [Programmiersprache c#](/dotnet/csharp/) im Razor Markup verwenden. In der Regel werden Ansichtsdateien in Ordnern gruppiert, die für jeden [Controller](xref:mvc/controllers/actions) der App benannt werden. Die Ordner werden in *Ansichten* -Ordnern im Stammverzeichnis der App gespeichert:
 
 ![Ansichtenordner werden im Projektmappen-Explorer von Visual Studio zusammen mit dem Basisordner geöffnet, um die Dateien „About.cshtml“, „Contact.cshtml“ und „Index.cshtml“ angezeigt werden.](overview/_static/views_solution_explorer.png)
 
-Der *Basis*-Controller wird im *Ansichten*-Ordner von einem *Basis*-Ordner dargestellt. Der *Basis*-Ordner enthält Ansichten für die (Homepage-)Webseiten *Hilfe*, *Kontakt* und *Index*. Wenn ein Benutzer eine dieser drei Webseiten aufruft, legen Controlleraktionen im *Basis*-Controller fest, welche der drei Ansichten verwendet werden, um Webseiten zu erstellen und diese an den Benutzer zurückzugeben.
+Der *Basis* -Controller wird im *Ansichten* -Ordner von einem *Basis* -Ordner dargestellt. Der *Basis* -Ordner enthält Ansichten für die (Homepage-)Webseiten *Hilfe* , *Kontakt* und *Index* . Wenn ein Benutzer eine dieser drei Webseiten aufruft, legen Controlleraktionen im *Basis* -Controller fest, welche der drei Ansichten verwendet werden, um Webseiten zu erstellen und diese an den Benutzer zurückzugeben.
 
 Verwenden Sie [Layouts](xref:mvc/views/layout), damit die Abschnitte der Webseiten konsistent angezeigt werden und die Wiederholung von Code vermieden wird. Layouts bestehen in der Regel aus der Kopfzeile, der Navigation, Menüelementen und der Fußzeile. Die Kopf- und die Fußzeile enthalten in der Regel Markupbausteine für viele Metadatenelemente sowie Links zu Skripts und Stilelemente. Mithilfe von Layouts können Sie die Markupbausteine in Ihren Ansichten vermeiden.
 
@@ -54,7 +55,7 @@ Verwenden Sie [Layouts](xref:mvc/views/layout), damit die Abschnitte der Webseit
 
 ## <a name="creating-a-view"></a>Erstellen einer Ansicht
 
-Ansichten, die nur für bestimmte Controller erstellt werden, werden im Ordner *Views/[NamedesControllers]* erstellt. Ansichten, die von mehreren Controllern verwendet werden können, werden im Ordner *Views/Shared* gespeichert. Wenn Sie eine Ansicht erstellen möchten, fügen Sie eine neue Datei hinzu, und geben Sie ihr denselben Namen wie der zugehörigen Controlleraktion mit der Erweiterung *.cshtml*. Wenn Sie eine Ansicht erstellen möchten, die mit der Aktion *Hilfe* im *Basis*-Controller übereinstimmt, erstellen Sie eine *About.cshtml*-Datei im Ordner *Views/Home*:
+Ansichten, die nur für bestimmte Controller erstellt werden, werden im Ordner *Views/[NamedesControllers]* erstellt. Ansichten, die von mehreren Controllern verwendet werden können, werden im Ordner *Views/Shared* gespeichert. Wenn Sie eine Ansicht erstellen möchten, fügen Sie eine neue Datei hinzu, und geben Sie ihr denselben Namen wie der zugehörigen Controlleraktion mit der Erweiterung *.cshtml* . Wenn Sie eine Ansicht erstellen möchten, die mit der Aktion *Hilfe* im *Basis* -Controller übereinstimmt, erstellen Sie eine *About.cshtml* -Datei im Ordner *Views/Home* :
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
@@ -70,7 +71,7 @@ Ansichten werden in der Regel von Aktionen als [ViewResult](/dotnet/api/microsof
 
 [!code-csharp[](../../common/samples/WebApplication1/Controllers/HomeController.cs?highlight=5&range=16-21)]
 
-Wenn diese Aktion zurückgegeben wird, wird die im letzten Abschnitt angezeigte *About.cshtml*-Ansicht als die folgende Webseite gerendert:
+Wenn diese Aktion zurückgegeben wird, wird die im letzten Abschnitt angezeigte *About.cshtml* -Ansicht als die folgende Webseite gerendert:
 
 ![Hilfe-Seite in Edge gerendert](overview/_static/about-page.png)
 
@@ -98,7 +99,7 @@ Für die `View`-Hilfsprogrammmethode gibt es einige Überladungen. Sie können b
 
 Wenn eine Aktion eine Ansicht zurückgibt, wird ein Prozess namens *Ansichtsermittlung* ausgelöst. Über diesen Prozess wird auf Grundlage des Ansichtsnamens festgelegt, welche Ansichtsdatei verwendet wird. 
 
-Standardmäßig gibt die `View`-Methode (`return View();`) eine Ansicht zurück, die denselben Namen wie die Aktionsmethode besitzt, über die diese aufgerufen wird. Beispielsweise wird der Name der " *about* "- `ActionResult` Methode des Controllers verwendet, um nach einer Ansichts Datei mit dem Namen " *about. cshtml*" zu suchen. Zuerst sucht die Runtime im Ordner *Views/[NamedesControllers]* nach der Ansicht. Wenn keine passende Ansicht gefunden wird, wird im Ordner *Freigegeben* nach der Ansicht gesucht.
+Standardmäßig gibt die `View`-Methode (`return View();`) eine Ansicht zurück, die denselben Namen wie die Aktionsmethode besitzt, über die diese aufgerufen wird. Beispielsweise wird der Name der " *about* "- `ActionResult` Methode des Controllers verwendet, um nach einer Ansichts Datei mit dem Namen " *about. cshtml* " zu suchen. Zuerst sucht die Runtime im Ordner *Views/[NamedesControllers]* nach der Ansicht. Wenn keine passende Ansicht gefunden wird, wird im Ordner *Freigegeben* nach der Ansicht gesucht.
 
 Es macht keinen Unterschied, ob Sie implizit `ViewResult` mit `return View();` zurückgeben, oder den Ansichtsnamen mit `return View("<ViewName>");` explizit an die `View`-Methode übergeben. In beiden Fällen sucht die Ansichtsermittlung nach einer passenden Ansichtsdatei in diesem Ordner:
 
@@ -111,7 +112,7 @@ Anstelle eines Ansichtsnamens kann auch ein Pfad zu einer Ansichtsdatei verwende
 return View("Views/Home/About.cshtml");
 ```
 
-Sie können auch einen relativen Pfad verwenden, um Ansichten in verschiedenen Verzeichnissen ohne die Erweiterung *.cshtml* anzugeben. In der `HomeController`-Klasse können Sie die Ansicht *Index* in Ihrer *Verwaltungs*-Ansicht mit einem relativen Pfad angeben:
+Sie können auch einen relativen Pfad verwenden, um Ansichten in verschiedenen Verzeichnissen ohne die Erweiterung *.cshtml* anzugeben. In der `HomeController`-Klasse können Sie die Ansicht *Index* in Ihrer *Verwaltungs* -Ansicht mit einem relativen Pfad angeben:
 
 ```csharp
 return View("../Manage/Index");
@@ -181,7 +182,7 @@ public IActionResult Contact()
 }
 ```
 
-Es gibt keine Einschränkungen der Modelltypen, die in einer Ansicht enthalten sein sollten. Es wird empfohlen, Plain Old CLR Object-Ansichtsmodelle (POCO) mit wenigen oder gar keinen definierten Methoden zu verwenden. In der Regel werden Ansichtsmodellklassen weder im Ordner *Modelle* noch in einem separaten *Ansichtsmodelle*-Ordner im Stammverzeichnis der App gespeichert. Bei dem im zuvor genannten Beispiel verwendeten *Adresse*-Ansichtsmodell handelt es sich um ein POCO-Ansichtsmodell, das in einer Datei mit dem Namen *Address.cs* gespeichert ist:
+Es gibt keine Einschränkungen der Modelltypen, die in einer Ansicht enthalten sein sollten. Es wird empfohlen, Plain Old CLR Object-Ansichtsmodelle (POCO) mit wenigen oder gar keinen definierten Methoden zu verwenden. In der Regel werden Ansichtsmodellklassen weder im Ordner *Modelle* noch in einem separaten *Ansichtsmodelle* -Ordner im Stammverzeichnis der App gespeichert. Bei dem im zuvor genannten Beispiel verwendeten *Adresse* -Ansichtsmodell handelt es sich um ein POCO-Ansichtsmodell, das in einer Datei mit dem Namen *Address.cs* gespeichert ist:
 
 ```csharp
 namespace WebApplication1.ViewModels
@@ -205,7 +206,7 @@ Es ist möglich, für die Ansichtsmodelltypen und Unternehmensmodelltypen diesel
 
 `ViewBag`*nicht verfügbar in Razor Seiten.*
 
-Ansichten haben nicht nur Zugriff auf stark typisierte Datensammlungen, sondern auch auf *schwach typisierte* (auch als *lose typisiert* bezeichnet). Im Gegensatz zu starken Typen werden bei *schwachen Typen* (oder *losen Typen*) nicht explizit die Datentypen deklariert, die Sie verwenden. Sie können die Sammlung schwach typisierter Daten verwenden, um kleinere Datenmengen an Controller und Ansichten zu übergeben oder sie ihnen zu entnehmen.
+Ansichten haben nicht nur Zugriff auf stark typisierte Datensammlungen, sondern auch auf *schwach typisierte* (auch als *lose typisiert* bezeichnet). Im Gegensatz zu starken Typen werden bei *schwachen Typen* (oder *losen Typen* ) nicht explizit die Datentypen deklariert, die Sie verwenden. Sie können die Sammlung schwach typisierter Daten verwenden, um kleinere Datenmengen an Controller und Ansichten zu übergeben oder sie ihnen zu entnehmen.
 
 | Übergeben von Daten zwischen...                        | Beispiel                                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -334,7 +335,7 @@ public IActionResult SomeAction()
 
 Da `ViewData` und `ViewBag` beide auf dieselbe zugrunde liegende `ViewData`-Sammlung verweisen, können Sie sowohl `ViewData` als auch `ViewBag` verwenden, und zwischen beiden Elementen wechseln, wenn Sie Werte schreiben und lesen.
 
-Legen Sie oben in einer *About.cshtml*-Ansicht mit `ViewBag` den Titel und mit `ViewData` die Beschreibung fest:
+Legen Sie oben in einer *About.cshtml* -Ansicht mit `ViewBag` den Titel und mit `ViewData` die Beschreibung fest:
 
 ```cshtml
 @{
@@ -344,7 +345,7 @@ Legen Sie oben in einer *About.cshtml*-Ansicht mit `ViewBag` den Titel und mit `
 }
 ```
 
-Lesen Sie die Eigenschaften, aber verwenden Sie `ViewData` und `ViewBag` in umgekehrter Reihenfolge. Rufen Sie in der *_Layout.cshtml*-Datei mithilfe von `ViewData` den Titel und mithilfe von `ViewBag` die Beschreibung ab:
+Lesen Sie die Eigenschaften, aber verwenden Sie `ViewData` und `ViewBag` in umgekehrter Reihenfolge. Rufen Sie in der *_Layout.cshtml* -Datei mithilfe von `ViewData` den Titel und mithilfe von `ViewBag` die Beschreibung ab:
 
 ```cshtml
 <!DOCTYPE html>
@@ -374,11 +375,11 @@ Sie können `ViewData` und `ViewBag` gleichzeitig verwenden und zwischen dem Les
 
 * `ViewData`
   * Wird von [viewdatadictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary)abgeleitet und verfügt daher über Wörterbuch Eigenschaften, die nützlich sein können, z `ContainsKey` `Add` . b.,, `Remove` und `Clear` .
-  * Schlüssel sind Zeichenfolgen im Wörterbuch. Daher sind Leerzeichen erlaubt. Ein Beispiel: `ViewData["Some Key With Whitespace"]`
+  * Schlüssel sind Zeichenfolgen im Wörterbuch. Daher sind Leerzeichen erlaubt. Beispiel: `ViewData["Some Key With Whitespace"]`
   * Jeder Typ, der von `string` abweicht, muss in der Ansicht umgewandelt werden, sodass `ViewData` verwendet werden kann.
 * `ViewBag`
   * Wird von [DynamicViewData](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.internal.dynamicviewdata) abgeleitet. Daher können dynamische Eigenschaften über die Punktnotation (`@ViewBag.SomeKey = <value or object>`) erstellt werden, und es ist keine Umwandlung erforderlich. Über die Syntax von `ViewBag` können Controller und Ansichten schneller hinzugefügt werden.
-  * Es ist einfacher, nach NULL-Werten zu suchen. Ein Beispiel: `@ViewBag.Person?.Name`
+  * Es ist einfacher, nach NULL-Werten zu suchen. Beispiel: `@ViewBag.Person?.Name`
 
 **Empfohlene Verwendung von „ViewData“ und „ViewBag“**
 

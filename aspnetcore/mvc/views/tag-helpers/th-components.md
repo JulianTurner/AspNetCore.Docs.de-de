@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
 ms.date: 06/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/th-components
-ms.openlocfilehash: d3bae9cd5b4a5c7315c795229c7eafbf1e44e22d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 15bddd8ce18546bef7ee7e6ec2e32e369d0858a3
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627584"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060559"
 ---
 # <a name="tag-helper-components-in-aspnet-core"></a>Taghilfsprogrammkomponenten in ASP.NET Core
 
@@ -30,7 +31,7 @@ Von [Scott Addie](https://twitter.com/Scott_Addie) und [Fiyaz Bin Hasan](https:/
 
 Eine Taghilfsprogrammkomponente ist ein Taghilfsprogramm, mit dem Sie HTML-Elemente aus serverseitigem Code bedingt ändern oder hinzufügen können. Dieses Feature ist in ASP.NET Core 2.0 oder höher verfügbar.
 
-ASP.NET Core enthält zwei integrierte Taghilfsprogrammkomponenten: `head` und `body`. Sie befinden sich im <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> -Namespace und können sowohl in MVC als auch auf Razor Seiten verwendet werden. Taghilfsprogrammkomponenten benötigen keine Registrierung bei der App in *_ViewImports.cshtml*.
+ASP.NET Core enthält zwei integrierte Taghilfsprogrammkomponenten: `head` und `body`. Sie befinden sich im <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> -Namespace und können sowohl in MVC als auch auf Razor Seiten verwendet werden. Taghilfsprogrammkomponenten benötigen keine Registrierung bei der App in *_ViewImports.cshtml* .
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
@@ -49,7 +50,7 @@ Im HTML-`<head>`-Element werden CSS-Dateien häufig mit dem HTML-`<link>`-Elemen
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressStyleTagHelperComponent.cs)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * `AddressStyleTagHelperComponent` implementiert <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>. Die Abstraktion:
   * Ermöglicht die Initialisierung der Klasse mit einem <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext>.
@@ -91,7 +92,7 @@ Wenn die taghilfskomponente nicht bei di registriert ist, kann Sie Razor auf ein
 
 [!code-cshtml[](th-components/samples/RazorPagesSample/Pages/Contact.cshtml?name=snippet_ITagHelperComponentManager)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * Die `@inject`-Direktive stellt eine Instanz von `ITagHelperComponentManager` zur Verfügung. Die-Instanz wird einer Variablen mit `manager` dem Namen für Access Downstream in der Razor Datei zugewiesen.
 * Eine Instanz von `AddressTagHelperComponent` wird der Sammlung „Taghilfsprogrammkomponenten“ der App hinzugefügt.
@@ -112,7 +113,7 @@ Die Konstruktorinjektion wird verwendet, um auf eine Instanz von `ITagHelperComp
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Pages/Index.cshtml.cs?name=snippet_IndexModelClass)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * Die Konstruktorinjektion wird verwendet, um auf eine Instanz von `ITagHelperComponentManager` zuzugreifen.
 * Eine Instanz von `AddressTagHelperComponent` wird der Sammlung „Taghilfsprogrammkomponenten“ der App hinzugefügt.
@@ -123,7 +124,7 @@ So erstellen Sie eine benutzerdefinierte Taghilfsprogrammkomponente:
 
 * Erstellen Sie eine öffentliche Klasse, die von <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperComponentTagHelper> ableitet ist.
 * Wenden [`[HtmlTargetElement]`](xref:Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute) Sie ein Attribut auf die Klasse an. Geben Sie den Namen des HTML-Zielelements an.
-* *Optional*: wenden [`[EditorBrowsable(EditorBrowsableState.Never)]`](xref:System.ComponentModel.EditorBrowsableAttribute) Sie ein Attribut auf die Klasse an, um die Anzeige des Typs in IntelliSense zu unterdrücken.
+* *Optional* : wenden [`[EditorBrowsable(EditorBrowsableState.Never)]`](xref:System.ComponentModel.EditorBrowsableAttribute) Sie ein Attribut auf die Klasse an, um die Anzeige des Typs in IntelliSense zu unterdrücken.
 
 Der folgende Code erstellt eine benutzerdefinierte Taghilfsprogrammkomponente, das als Ziel das `<address>`-HTML-Element aufweist:
 

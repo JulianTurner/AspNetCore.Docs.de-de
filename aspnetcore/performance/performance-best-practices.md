@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 01575ec87d2d346da7367523ca5e257d53de4983
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: a3fc398569fafefc0b4634e80433a5d4e0e1b4ff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722617"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061001"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>Bewährte Methoden für die ASP.net Core Leistung
 
@@ -44,13 +45,13 @@ ASP.net Core-apps sollten so entworfen werden, dass viele Anforderungen gleichze
 
 Ein häufiges Leistungsproblem bei ASP.net Core-Apps ist das Blockieren von aufrufen, die asynchron sein könnten. Viele synchrone blockierende Aufrufe führen zu einem [Thread Pool-Hunger](/archive/blogs/vancem/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall) und zu beeinträchtigten Reaktionszeiten.
 
-**Nicht**:
+**Nicht** :
 
 * Blockieren Sie die asynchrone Ausführung durch Aufrufen von " [Task. Wait](/dotnet/api/system.threading.tasks.task.wait) " oder " [Task. Result](/dotnet/api/system.threading.tasks.task-1.result)".
 * Abrufen von Sperren in gemeinsamen Codepfade. ASP.net Core-apps sind am leistungsfähigsten, wenn Sie entwickelt werden, um Code parallel auszuführen.
 * " [Task. Run](/dotnet/api/system.threading.tasks.task.run) " aufzurufen und sofort darauf warten. ASP.net Core bereits app-Code in normalen Thread Pool-Threads ausführt, führt das Aufrufen von "Task. Run" nur zu einer zusätzlichen unnötigen Thread Pool-Zeitplanung. Auch wenn der geplante Code einen Thread blockieren würde, wird dies von Task. Run nicht verhindert.
 
-**Do**Ausführen:
+**Do** Ausführen:
 
 * Asynchrone [Hot-Codepfade](#understand-hot-code-paths) .
 * Aufrufen von Datenzugriff, e/a und langfristigen Operations-APIs, wenn eine asynchrone API verfügbar ist. Verwenden Sie " [Task. Run](/dotnet/api/system.threading.tasks.task.run) " **nicht** , um eine synchrone API asynchron zu machen.
@@ -71,7 +72,7 @@ Der [.net Core-Garbage Collector](/dotnet/standard/garbage-collection/) verwalte
 Empfehlungen:
 
 * Sollten **Sie** große Objekte zwischenspeichern, die häufig verwendet werden. Das Zwischenspeichern von großen Objekten verhindert teure Zuweisungen.
-* Verwenden **Sie einen** [arraypool \<T> ](/dotnet/api/system.buffers.arraypool-1) , um große Arrays zu speichern.
+* Verwenden **Sie einen** [arraypool \<T>](/dotnet/api/system.buffers.arraypool-1) , um große Arrays zu speichern.
 * Weisen **Sie nicht** viele kurzlebige große Objekte in den [Pfaden für heiße Codes](#understand-hot-code-paths)zu.
 
 Arbeitsspeicher Probleme, wie z. b. die vorstehenden, können diagnostiziert werden, indem Garbage Collection (GC)-Statistiken in [perfview](https://github.com/Microsoft/perfview) überprüft und Folgendes überprüft wird:

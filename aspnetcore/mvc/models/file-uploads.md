@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/21/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: 6ff78b26e8e2363cf6c54ebb2a392f390fb2995c
-ms.sourcegitcommit: cd412a44f26cb416ceb348fc0a1ccc9a6e9ca73e
+ms.openlocfilehash: 14561bace565c104d0a9c926cad3105c4865e72a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88720278"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061170"
 ---
 # <a name="upload-files-in-aspnet-core"></a>Hochladen von Dateien in ASP.NET Core
 
@@ -35,7 +36,7 @@ ASP.NET Core unterstützt das Hochladen einer oder mehrerer Dateien über die ge
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Sicherheitsüberlegungen
+## <a name="security-considerations"></a>Sicherheitshinweise
 
 Gehen Sie mit Bedacht vor, wenn Sie Benutzern die Möglichkeit geben, Dateien auf einen Server hochzuladen. Angreifer versuchen möglicherweise Folgendes:
 
@@ -124,7 +125,7 @@ Das Streamen großer Dateien wird im Abschnitt [Hochladen großer Dateien mit St
 
 Zum Hochladen kleiner Dateien können Sie ein mehrteiliges Formular verwenden oder über JavaScript eine POST-Anforderung erstellen.
 
-Das folgende Beispiel veranschaulicht die Verwendung eines Razor pages-Formulars zum Hochladen einer einzelnen Datei (*pages/bufferedsinglefileuploadphysical. cshtml* in der Beispiel-APP):
+Das folgende Beispiel veranschaulicht die Verwendung eines Razor pages-Formulars zum Hochladen einer einzelnen Datei ( *pages/bufferedsinglefileuploadphysical. cshtml* in der Beispiel-APP):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -194,7 +195,7 @@ Das folgende Beispiel ist analog zum vorherigen Beispiel, mit der Ausnahme, dass
 Um den POST-Befehl für das Formular in JavaScript für Clients auszuführen, die [die Fetch-API nicht unterstützen](https://caniuse.com/#feat=fetch), wählen Sie einen der folgenden Ansätze:
 
 * Verwenden Sie Fetch Polyfill (Beispiel: [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Verwenden Sie `XMLHttpRequest`. Beispiel:
+* Verwenden Sie `XMLHttpRequest`. Zum Beispiel:
 
   ```javascript
   <script>
@@ -239,7 +240,7 @@ Auf die einzelnen Dateien, die auf den Server geladen werden, kann über eine [M
 >
 > Bei den bisher vorgestellten Beispielen werden keine Sicherheitsaspekte berücksichtigt. Weitere Informationen finden Sie in den folgenden Abschnitten und in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Sicherheitsüberlegungen](#security-considerations)
+> * [Überlegungen zur Sicherheit](#security-considerations)
 > * [Überprüfung](#validation)
 
 Beim Hochladen von Dateien mit Modellbindung und <xref:Microsoft.AspNetCore.Http.IFormFile> kann die Aktionsmethode Folgendes akzeptieren:
@@ -307,7 +308,7 @@ Der an  übergebene Pfad <xref:System.IO.FileStream> *muss* den Dateinamen entha
 
 Dateien, die über die <xref:Microsoft.AspNetCore.Http.IFormFile>-Technik hochgeladen werden, werden vor der Verarbeitung im Arbeitsspeicher oder auf einem Datenträger des Servers gepuffert. Innerhalb der Aktionsmethode können Sie über einen <xref:System.IO.Stream> auf die <xref:Microsoft.AspNetCore.Http.IFormFile>-Inhalte zugreifen. Zusätzlich zum lokalen Dateisystem können Dateien in einer Netzwerkfreigabe oder einem Dateispeicherdienst gespeichert werden, wie beispielsweise [Azure Blob Storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
-Ein weiteres Beispiel, das mehrere hochzuladende Dateien in einer Schleife durchläuft und sichere Dateinamen verwendet, finden Sie in der Beispiel-App unter *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs*.
+Ein weiteres Beispiel, das mehrere hochzuladende Dateien in einer Schleife durchläuft und sichere Dateinamen verwendet, finden Sie in der Beispiel-App unter *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs* .
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) löst eine <xref:System.IO.IOException> aus, wenn mehr als 65.535 Dateien erstellt werden, ohne alte temporäre Dateien zu löschen. Der Grenzwert von 65.535 Dateien gilt pro Server. Weitere Informationen zu diesem Grenzwert für Windows-Betriebssysteme finden Sie in den Hinweisen in den folgenden Themen:
@@ -410,7 +411,7 @@ Das vorherige Beispiel ähnelt einem Szenario, das in der Beispiel-App veranscha
 >
 > Bei den vorgestellten Beispielen werden keine Sicherheitsaspekte berücksichtigt. Weitere Informationen finden Sie in den folgenden Abschnitten und in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Sicherheitsüberlegungen](#security-considerations)
+> * [Überlegungen zur Sicherheit](#security-considerations)
 > * [Überprüfung](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Hochladen von großen Dateien mittels Streaming
@@ -435,7 +436,7 @@ Die vollständige `StreamingController.UploadDatabase`-Methode für das Streamin
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper.cs* ):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -467,7 +468,7 @@ Das Scannen von Dateien stellt in Szenarien mit hohem Verarbeitungsvolumen hohe 
 
 ### <a name="file-extension-validation"></a>Validierung von Dateierweiterungen
 
-Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Beispiel:
+Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Zum Beispiel:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -533,7 +534,7 @@ Bei vielen Implementierungen muss geprüft werden, ob die Datei existiert. Ander
 
 Begrenzen Sie die Größe hochgeladener Dateien.
 
-In der Beispiel-App ist die Größe der Datei auf 2 MB begrenzt (angegeben in Bytes). Der Grenzwert wird mittels [Konfiguration](xref:fundamentals/configuration/index) in der Datei *appsettings.json* angegeben:
+In der Beispiel-App ist die Größe der Datei auf 2 MB begrenzt (angegeben in Bytes). Der Grenzwert wird durch die [Konfiguration](xref:fundamentals/configuration/index) aus der *appsettings.json* Datei angegeben:
 
 ```json
 {
@@ -570,7 +571,7 @@ if (formFile.Length > _fileSizeLimit)
 
 In nicht- Razor Formularen, die Formulardaten veröffentlichen oder direkt JavaScript verwenden `FormData` , muss der im-Element des Formulars angegebene Name dem `FormData` Namen des Parameters in der Aktion des Controllers entsprechen.
 
-Im folgenden Beispiel:
+Siehe folgendes Beispiel:
 
 * Wenn ein `<input>`-Element verwendet wird, wird das `name`-Attribut auf den Wert `battlePlans` festgelegt:
 
@@ -759,7 +760,7 @@ ASP.NET Core unterstützt das Hochladen einer oder mehrerer Dateien über die ge
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Sicherheitsüberlegungen
+## <a name="security-considerations"></a>Sicherheitshinweise
 
 Gehen Sie mit Bedacht vor, wenn Sie Benutzern die Möglichkeit geben, Dateien auf einen Server hochzuladen. Angreifer versuchen möglicherweise Folgendes:
 
@@ -848,7 +849,7 @@ Das Streamen großer Dateien wird im Abschnitt [Hochladen großer Dateien mit St
 
 Zum Hochladen kleiner Dateien können Sie ein mehrteiliges Formular verwenden oder über JavaScript eine POST-Anforderung erstellen.
 
-Das folgende Beispiel veranschaulicht die Verwendung eines Razor pages-Formulars zum Hochladen einer einzelnen Datei (*pages/bufferedsinglefileuploadphysical. cshtml* in der Beispiel-APP):
+Das folgende Beispiel veranschaulicht die Verwendung eines Razor pages-Formulars zum Hochladen einer einzelnen Datei ( *pages/bufferedsinglefileuploadphysical. cshtml* in der Beispiel-APP):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -918,7 +919,7 @@ Das folgende Beispiel ist analog zum vorherigen Beispiel, mit der Ausnahme, dass
 Um den POST-Befehl für das Formular in JavaScript für Clients auszuführen, die [die Fetch-API nicht unterstützen](https://caniuse.com/#feat=fetch), wählen Sie einen der folgenden Ansätze:
 
 * Verwenden Sie Fetch Polyfill (Beispiel: [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Verwenden Sie `XMLHttpRequest`. Beispiel:
+* Verwenden Sie `XMLHttpRequest`. Zum Beispiel:
 
   ```javascript
   <script>
@@ -963,7 +964,7 @@ Auf die einzelnen Dateien, die auf den Server geladen werden, kann über eine [M
 >
 > Bei den bisher vorgestellten Beispielen werden keine Sicherheitsaspekte berücksichtigt. Weitere Informationen finden Sie in den folgenden Abschnitten und in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Sicherheitsüberlegungen](#security-considerations)
+> * [Überlegungen zur Sicherheit](#security-considerations)
 > * [Überprüfung](#validation)
 
 Beim Hochladen von Dateien mit Modellbindung und <xref:Microsoft.AspNetCore.Http.IFormFile> kann die Aktionsmethode Folgendes akzeptieren:
@@ -1031,7 +1032,7 @@ Der an  übergebene Pfad <xref:System.IO.FileStream> *muss* den Dateinamen entha
 
 Dateien, die über die <xref:Microsoft.AspNetCore.Http.IFormFile>-Technik hochgeladen werden, werden vor der Verarbeitung im Arbeitsspeicher oder auf einem Datenträger des Servers gepuffert. Innerhalb der Aktionsmethode können Sie über einen <xref:System.IO.Stream> auf die <xref:Microsoft.AspNetCore.Http.IFormFile>-Inhalte zugreifen. Zusätzlich zum lokalen Dateisystem können Dateien in einer Netzwerkfreigabe oder einem Dateispeicherdienst gespeichert werden, wie beispielsweise [Azure Blob Storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
-Ein weiteres Beispiel, das mehrere hochzuladende Dateien in einer Schleife durchläuft und sichere Dateinamen verwendet, finden Sie in der Beispiel-App unter *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs*.
+Ein weiteres Beispiel, das mehrere hochzuladende Dateien in einer Schleife durchläuft und sichere Dateinamen verwendet, finden Sie in der Beispiel-App unter *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs* .
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) löst eine <xref:System.IO.IOException> aus, wenn mehr als 65.535 Dateien erstellt werden, ohne alte temporäre Dateien zu löschen. Der Grenzwert von 65.535 Dateien gilt pro Server. Weitere Informationen zu diesem Grenzwert für Windows-Betriebssysteme finden Sie in den Hinweisen in den folgenden Themen:
@@ -1134,7 +1135,7 @@ Das vorherige Beispiel ähnelt einem Szenario, das in der Beispiel-App veranscha
 >
 > Bei den vorgestellten Beispielen werden keine Sicherheitsaspekte berücksichtigt. Weitere Informationen finden Sie in den folgenden Abschnitten und in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Sicherheitsüberlegungen](#security-considerations)
+> * [Überlegungen zur Sicherheit](#security-considerations)
 > * [Überprüfung](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Hochladen von großen Dateien mittels Streaming
@@ -1159,7 +1160,7 @@ Die vollständige `StreamingController.UploadDatabase`-Methode für das Streamin
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper.cs* ):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -1191,7 +1192,7 @@ Das Scannen von Dateien stellt in Szenarien mit hohem Verarbeitungsvolumen hohe 
 
 ### <a name="file-extension-validation"></a>Validierung von Dateierweiterungen
 
-Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Beispiel:
+Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Zum Beispiel:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -1257,7 +1258,7 @@ Bei vielen Implementierungen muss geprüft werden, ob die Datei existiert. Ander
 
 Begrenzen Sie die Größe hochgeladener Dateien.
 
-In der Beispiel-App ist die Größe der Datei auf 2 MB begrenzt (angegeben in Bytes). Der Grenzwert wird mittels [Konfiguration](xref:fundamentals/configuration/index) in der Datei *appsettings.json* angegeben:
+In der Beispiel-App ist die Größe der Datei auf 2 MB begrenzt (angegeben in Bytes). Der Grenzwert wird durch die [Konfiguration](xref:fundamentals/configuration/index) aus der *appsettings.json* Datei angegeben:
 
 ```json
 {
@@ -1294,7 +1295,7 @@ if (formFile.Length > _fileSizeLimit)
 
 In nicht- Razor Formularen, die Formulardaten veröffentlichen oder direkt JavaScript verwenden `FormData` , muss der im-Element des Formulars angegebene Name dem `FormData` Namen des Parameters in der Aktion des Controllers entsprechen.
 
-Im folgenden Beispiel:
+Siehe folgendes Beispiel:
 
 * Wenn ein `<input>`-Element verwendet wird, wird das `name`-Attribut auf den Wert `battlePlans` festgelegt:
 
@@ -1494,7 +1495,7 @@ ASP.NET Core unterstützt das Hochladen einer oder mehrerer Dateien über die ge
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-## <a name="security-considerations"></a>Sicherheitsüberlegungen
+## <a name="security-considerations"></a>Sicherheitshinweise
 
 Gehen Sie mit Bedacht vor, wenn Sie Benutzern die Möglichkeit geben, Dateien auf einen Server hochzuladen. Angreifer versuchen möglicherweise Folgendes:
 
@@ -1583,7 +1584,7 @@ Das Streamen großer Dateien wird im Abschnitt [Hochladen großer Dateien mit St
 
 Zum Hochladen kleiner Dateien können Sie ein mehrteiliges Formular verwenden oder über JavaScript eine POST-Anforderung erstellen.
 
-Das folgende Beispiel veranschaulicht die Verwendung eines Razor pages-Formulars zum Hochladen einer einzelnen Datei (*pages/bufferedsinglefileuploadphysical. cshtml* in der Beispiel-APP):
+Das folgende Beispiel veranschaulicht die Verwendung eines Razor pages-Formulars zum Hochladen einer einzelnen Datei ( *pages/bufferedsinglefileuploadphysical. cshtml* in der Beispiel-APP):
 
 ```cshtml
 <form enctype="multipart/form-data" method="post">
@@ -1653,7 +1654,7 @@ Das folgende Beispiel ist analog zum vorherigen Beispiel, mit der Ausnahme, dass
 Um den POST-Befehl für das Formular in JavaScript für Clients auszuführen, die [die Fetch-API nicht unterstützen](https://caniuse.com/#feat=fetch), wählen Sie einen der folgenden Ansätze:
 
 * Verwenden Sie Fetch Polyfill (Beispiel: [window.fetch polyfill (github/fetch)](https://github.com/github/fetch)).
-* Verwenden Sie `XMLHttpRequest`. Beispiel:
+* Verwenden Sie `XMLHttpRequest`. Zum Beispiel:
 
   ```javascript
   <script>
@@ -1698,7 +1699,7 @@ Auf die einzelnen Dateien, die auf den Server geladen werden, kann über eine [M
 >
 > Bei den bisher vorgestellten Beispielen werden keine Sicherheitsaspekte berücksichtigt. Weitere Informationen finden Sie in den folgenden Abschnitten und in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Sicherheitsüberlegungen](#security-considerations)
+> * [Überlegungen zur Sicherheit](#security-considerations)
 > * [Überprüfung](#validation)
 
 Beim Hochladen von Dateien mit Modellbindung und <xref:Microsoft.AspNetCore.Http.IFormFile> kann die Aktionsmethode Folgendes akzeptieren:
@@ -1766,7 +1767,7 @@ Der an  übergebene Pfad <xref:System.IO.FileStream> *muss* den Dateinamen entha
 
 Dateien, die über die <xref:Microsoft.AspNetCore.Http.IFormFile>-Technik hochgeladen werden, werden vor der Verarbeitung im Arbeitsspeicher oder auf einem Datenträger des Servers gepuffert. Innerhalb der Aktionsmethode können Sie über einen <xref:System.IO.Stream> auf die <xref:Microsoft.AspNetCore.Http.IFormFile>-Inhalte zugreifen. Zusätzlich zum lokalen Dateisystem können Dateien in einer Netzwerkfreigabe oder einem Dateispeicherdienst gespeichert werden, wie beispielsweise [Azure Blob Storage](/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs).
 
-Ein weiteres Beispiel, das mehrere hochzuladende Dateien in einer Schleife durchläuft und sichere Dateinamen verwendet, finden Sie in der Beispiel-App unter *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs*.
+Ein weiteres Beispiel, das mehrere hochzuladende Dateien in einer Schleife durchläuft und sichere Dateinamen verwendet, finden Sie in der Beispiel-App unter *Pages/BufferedMultipleFileUploadPhysical.cshtml.cs* .
 
 > [!WARNING]
 > [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) löst eine <xref:System.IO.IOException> aus, wenn mehr als 65.535 Dateien erstellt werden, ohne alte temporäre Dateien zu löschen. Der Grenzwert von 65.535 Dateien gilt pro Server. Weitere Informationen zu diesem Grenzwert für Windows-Betriebssysteme finden Sie in den Hinweisen in den folgenden Themen:
@@ -1869,7 +1870,7 @@ Das vorherige Beispiel ähnelt einem Szenario, das in der Beispiel-App veranscha
 >
 > Bei den vorgestellten Beispielen werden keine Sicherheitsaspekte berücksichtigt. Weitere Informationen finden Sie in den folgenden Abschnitten und in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
-> * [Sicherheitsüberlegungen](#security-considerations)
+> * [Überlegungen zur Sicherheit](#security-considerations)
 > * [Überprüfung](#validation)
 
 ### <a name="upload-large-files-with-streaming"></a>Hochladen von großen Dateien mittels Streaming
@@ -1894,7 +1895,7 @@ Die vollständige `StreamingController.UploadDatabase`-Methode für das Streamin
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Controllers/StreamingController.cs?name=snippet_UploadDatabase)]
 
-`MultipartRequestHelper` (*Utilities/MultipartRequestHelper.cs*):
+`MultipartRequestHelper` ( *Utilities/MultipartRequestHelper.cs* ):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Utilities/MultipartRequestHelper.cs)]
 
@@ -1926,7 +1927,7 @@ Das Scannen von Dateien stellt in Szenarien mit hohem Verarbeitungsvolumen hohe 
 
 ### <a name="file-extension-validation"></a>Validierung von Dateierweiterungen
 
-Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Beispiel:
+Die Erweiterung der hochgeladenen Datei muss mit einer Liste zulässiger Erweiterungen abgeglichen werden. Zum Beispiel:
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -1992,7 +1993,7 @@ Bei vielen Implementierungen muss geprüft werden, ob die Datei existiert. Ander
 
 Begrenzen Sie die Größe hochgeladener Dateien.
 
-In der Beispiel-App ist die Größe der Datei auf 2 MB begrenzt (angegeben in Bytes). Der Grenzwert wird mittels [Konfiguration](xref:fundamentals/configuration/index) in der Datei *appsettings.json* angegeben:
+In der Beispiel-App ist die Größe der Datei auf 2 MB begrenzt (angegeben in Bytes). Der Grenzwert wird durch die [Konfiguration](xref:fundamentals/configuration/index) aus der *appsettings.json* Datei angegeben:
 
 ```json
 {
@@ -2029,7 +2030,7 @@ if (formFile.Length > _fileSizeLimit)
 
 In nicht- Razor Formularen, die Formulardaten veröffentlichen oder direkt JavaScript verwenden `FormData` , muss der im-Element des Formulars angegebene Name dem `FormData` Namen des Parameters in der Aktion des Controllers entsprechen.
 
-Im folgenden Beispiel:
+Siehe folgendes Beispiel:
 
 * Wenn ein `<input>`-Element verwendet wird, wird das `name`-Attribut auf den Wert `battlePlans` festgelegt:
 

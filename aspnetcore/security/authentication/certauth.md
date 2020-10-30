@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 07/16/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 57d46e34993148943b1e9680a372405be9c80605
-ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
+ms.openlocfilehash: 83525a4c1e87a60b57130c1bba14360c7d03f552
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91424203"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061378"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Konfigurieren der Zertifikat Authentifizierung in ASP.net Core
 
@@ -234,7 +235,7 @@ Konzeptionell ist die Validierung des Zertifikats ein Autorisierungs Problem. Da
 
 ### <a name="kestrel"></a>Kestrel
 
-Konfigurieren Sie in *Program.cs*Kestrel wie folgt:
+Konfigurieren Sie in *Program.cs* Kestrel wie folgt:
 
 ```csharp
 public static void Main(string[] args)

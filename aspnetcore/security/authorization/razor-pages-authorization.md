@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/razor-pages-authorization
-ms.openlocfilehash: b17717e7b3cbaa64d4ff00661f15439728f161d3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 69e1d639aeb55ae64cc54b1cda402ed6bcbb04ab
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634890"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060182"
 ---
 # <a name="no-locrazor-pages-authorization-conventions-in-aspnet-core"></a>Razor Seiten Autorisierungs Konventionen in ASP.net Core
 
@@ -74,7 +75,7 @@ Verwenden Sie die <xref:Microsoft.Extensions.DependencyInjection.PageConventionC
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 ```
 
-Der Seiten Name ist der Pfad der Datei ohne Erweiterung relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Seiten Name für die Datei *Bereiche/ Identity /pages/manage/accounts.cshtml* */Manage/Accounts*.
+Der Seiten Name ist der Pfad der Datei ohne Erweiterung relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Seiten Name für die Datei *Bereiche/ Identity /pages/manage/accounts.cshtml* */Manage/Accounts* .
 
 Verwenden Sie eine [Autorisierungs Richtlinie](xref:security/authorization/policies), wenn Sie eine [Autorisierungs](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*)Richtlinie angeben möchten:
 
@@ -90,7 +91,7 @@ Verwenden Sie die <xref:Microsoft.Extensions.DependencyInjection.PageConventionC
 options.Conventions.AuthorizeAreaFolder("Identity", "/Manage");
 ```
 
-Der Ordner Pfad ist der Pfad des Ordners relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Ordner Pfad für die Dateien unter " *Areas/ Identity /pages/Manage/* " */Manage*.
+Der Ordner Pfad ist der Pfad des Ordners relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Ordner Pfad für die Dateien unter " *Areas/ Identity /pages/Manage/* " */Manage* .
 
 Verwenden Sie eine [Autorisierungs Richtlinie](xref:security/authorization/policies), wenn Sie eine [Autorisierungs](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*)Richtlinie angeben möchten:
 
@@ -186,7 +187,7 @@ Verwenden Sie die <xref:Microsoft.Extensions.DependencyInjection.PageConventionC
 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
 ```
 
-Der Seiten Name ist der Pfad der Datei ohne Erweiterung relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Seiten Name für die Datei *Bereiche/ Identity /pages/manage/accounts.cshtml* */Manage/Accounts*.
+Der Seiten Name ist der Pfad der Datei ohne Erweiterung relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Seiten Name für die Datei *Bereiche/ Identity /pages/manage/accounts.cshtml* */Manage/Accounts* .
 
 Verwenden Sie eine [Autorisierungs Richtlinie](xref:security/authorization/policies), wenn Sie eine [Autorisierungs](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaPage*)Richtlinie angeben möchten:
 
@@ -202,7 +203,7 @@ Verwenden Sie die <xref:Microsoft.Extensions.DependencyInjection.PageConventionC
 options.Conventions.AuthorizeAreaFolder("Identity", "/Manage");
 ```
 
-Der Ordner Pfad ist der Pfad des Ordners relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Ordner Pfad für die Dateien unter " *Areas/ Identity /pages/Manage/* " */Manage*.
+Der Ordner Pfad ist der Pfad des Ordners relativ zum Seiten Stammverzeichnis für den angegebenen Bereich. Beispielsweise ist der Ordner Pfad für die Dateien unter " *Areas/ Identity /pages/Manage/* " */Manage* .
 
 Verwenden Sie eine [Autorisierungs Richtlinie](xref:security/authorization/policies), wenn Sie eine [Autorisierungs](xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizeAreaFolder*)Richtlinie angeben möchten:
 

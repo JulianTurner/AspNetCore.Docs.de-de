@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,22 +18,22 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: bb75d8b7d78c82c9c32605ac645b8895fdfb78e3
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 01fb87205f7855f0995cbcd135b6b01f15835e3b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393651"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060598"
 ---
 # <a name="partial-views-in-aspnet-core"></a>Verwenden von Teilansichten in ASP.NET Core
 
 Von [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) und [Scott Sauber](https://twitter.com/scottsauber)
 
-Eine Teilansicht ist eine [Razor](xref:mvc/views/razor) Markup Datei (*. cshtml*) ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die die HTML-Ausgabe *innerhalb* der gerenderten Ausgabe einer anderen Markup Datei rendert.
+Eine Teilansicht ist eine [Razor](xref:mvc/views/razor) Markup Datei ( *. cshtml* ) ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die die HTML-Ausgabe *innerhalb* der gerenderten Ausgabe einer anderen Markup Datei rendert.
 
 ::: moniker range=">= aspnetcore-2.1"
 
-Der Begriff " *Teilansicht* " wird verwendet, wenn eine MVC-app entwickelt wird, in der Markup Dateien als *Sichten*bezeichnet werden, oder eine Razor pages-APP, bei der Markup Dateien als *Seiten*bezeichnet werden. Dieses Thema verweist generisch auf MVC-Ansichten und Razor Seiten Seiten als *Markup Dateien*.
+Der Begriff " *Teilansicht* " wird verwendet, wenn eine MVC-app entwickelt wird, in der Markup Dateien als *Sichten* bezeichnet werden, oder eine Razor pages-APP, bei der Markup Dateien als *Seiten* bezeichnet werden. Dieses Thema verweist generisch auf MVC-Ansichten und Razor Seiten Seiten als *Markup Dateien* .
 
 ::: moniker-end
 
@@ -69,7 +70,7 @@ Dateinamen von Teilansichten beginnen häufig mit einem Unterstrich (`_`). Diese
 
 ::: moniker range="< aspnetcore-2.0"
 
-Eine Teilansicht ist eine *CSHTML*-Markupdatei, die innerhalb des Ordners *Views* verwaltet wird.
+Eine Teilansicht ist eine *CSHTML* -Markupdatei, die innerhalb des Ordners *Views* verwaltet wird.
 
 <xref:Microsoft.AspNetCore.Mvc.ViewResult> eines Controllers kann eine Ansicht oder eine Teilansicht zurückgeben. Das Verweisen auf und Rendern von Teilansichten wird im Abschnitt [Verweisen auf eine Teilansicht](#reference-a-partial-view) beschrieben.
 
@@ -85,7 +86,7 @@ Dateinamen von Teilansichten beginnen häufig mit einem Unterstrich (`_`). Diese
 
 ### <a name="use-a-partial-view-in-a-no-locrazor-pages-pagemodel"></a>Verwenden einer Teilansicht in Razor Seiten Modellen für Seiten
 
-In ASP.net Core 2,0 oder 2,1 rendert die folgende Handlermethode die Teilansicht * \_ authorpartialrp. cshtml* für die Antwort:
+In ASP.net Core 2,0 oder 2,1 rendert die folgende Handlermethode die Teilansicht *\_ authorpartialrp. cshtml* für die Antwort:
 
 ```csharp
 public IActionResult OnGetPartial() =>
@@ -274,7 +275,7 @@ Für die Ermittlung von Teilansichten gelten die folgenden Konventionen:
 
 * Unterschiedliche Teilansichten mit dem gleichen Dateinamen sind zulässig, wenn sich die Teilansichten in verschiedenen Ordnern befinden.
 * Wenn auf eine Teilansicht über den Namen ohne Dateierweiterung verwiesen wird und die Teilansicht sowohl im Ordner des Aufrufers als auch im Ordner *Shared* vorhanden ist, stellt die Teilansicht im Ordner des Aufrufers die Teilansicht bereit. Wenn die Teilansicht nicht im Ordner des Aufrufers vorhanden ist, wird die Teilansicht aus dem Ordner *Shared* bereitgestellt. Teilansichten im Ordner *Shared* werden als *Freigegebene Teilansichten* oder *Standardteilansichten* bezeichnet.
-* Teilansichten können *verkettet*werden &mdash; . eine partielle Ansicht kann eine andere partielle Sicht aufrufen, wenn ein Zirkel Verweis nicht durch die Aufrufe gebildet wird. Relative Pfade sind immer relativ zur aktuellen Datei, nicht zum Stamm- oder übergeordneten Verzeichnis der Datei.
+* Teilansichten können *verkettet* werden &mdash; . eine partielle Ansicht kann eine andere partielle Sicht aufrufen, wenn ein Zirkel Verweis nicht durch die Aufrufe gebildet wird. Relative Pfade sind immer relativ zur aktuellen Datei, nicht zum Stamm- oder übergeordneten Verzeichnis der Datei.
 
 > [!NOTE]
 > Ein [Razor](xref:mvc/views/razor) `section` , der in einer Teilansicht definiert ist, ist für übergeordnete Markup Dateien nicht sichtbar. Die `section`-Anweisung ist nur für die Teilansicht, in der sie definiert ist, sichtbar.
@@ -299,7 +300,7 @@ Außerdem können Sie ein Modell an eine Teilansicht übergeben. Das Modell kann
 
 **Razor Seiten**
 
-Das folgende Markup in der Beispiel-App stammt von der Seite *Pages/ArticlesRP/ReadRP.cshtml*. Diese Seite enthält zwei Teilansichten. Die zweite Teilansicht übergibt ein Modell und `ViewData` an die Teilansicht. Die `ViewDataDictionary`-Konstruktorüberladung wird verwendet, um ein neues `ViewData`-Wörterbuch zu übergeben, während das vorhandene `ViewData`-Wörterbuch beibehalten wird.
+Das folgende Markup in der Beispiel-App stammt von der Seite *Pages/ArticlesRP/ReadRP.cshtml* . Diese Seite enthält zwei Teilansichten. Die zweite Teilansicht übergibt ein Modell und `ViewData` an die Teilansicht. Die `ViewDataDictionary`-Konstruktorüberladung wird verwendet, um ein neues `ViewData`-Wörterbuch zu übergeben, während das vorhandene `ViewData`-Wörterbuch beibehalten wird.
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Pages/ArticlesRP/ReadRP.cshtml?name=snippet_ReadPartialViewRP&highlight=5,15-20)]
 
@@ -315,7 +316,7 @@ Das folgende Markup in der Beispiel-App stammt von der Seite *Pages/ArticlesRP/R
 
 ::: moniker-end
 
-Das folgende Markup in der Beispiel-App zeigt die Ansicht *Views/Articles/Read.cshtml*. Die Ansicht enthält die zwei Teilansichten. Die zweite Teilansicht übergibt ein Modell und `ViewData` an die Teilansicht. Die `ViewDataDictionary`-Konstruktorüberladung wird verwendet, um ein neues `ViewData`-Wörterbuch zu übergeben, während das vorhandene `ViewData`-Wörterbuch beibehalten wird.
+Das folgende Markup in der Beispiel-App zeigt die Ansicht *Views/Articles/Read.cshtml* . Die Ansicht enthält die zwei Teilansichten. Die zweite Teilansicht übergibt ein Modell und `ViewData` an die Teilansicht. Die `ViewDataDictionary`-Konstruktorüberladung wird verwendet, um ein neues `ViewData`-Wörterbuch zu übergeben, während das vorhandene `ViewData`-Wörterbuch beibehalten wird.
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Articles/Read.cshtml?name=snippet_ReadPartialView&highlight=5,15-20)]
 

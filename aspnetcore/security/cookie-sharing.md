@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: 6ac808d11790ae27e82606b442ff215d95b93e41
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 8f54f2e4894328f8471d5f80c8184839ce47add6
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631367"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059688"
 ---
 # <a name="share-authentication-no-loccookies-among-aspnet-apps"></a>Freigeben von Authentifizierungs- cookie e unter ASP.net-apps
 
@@ -134,7 +135,7 @@ Suchen und ändern Sie den-Befehl an `UseCookieAuthentication` :
 
 Wenn `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier` Sie und nicht festlegen `http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider` , legen <xref:System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier> Sie auf einen Anspruch fest, der eindeutige Benutzer unterscheidet.
 
-*App_Start/Startup.auth.cs*:
+*App_Start/Startup.auth.cs* :
 
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -167,9 +168,9 @@ System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
 ```
 
-Beim Erstellen einer Benutzeridentität muss der Authentifizierungstyp ( `Identity.Application` ) mit dem Typ identisch sein, der in `AuthenticationType` Set with `UseCookieAuthentication` in *App_Start/Startup.auth.cs*definiert ist.
+Beim Erstellen einer Benutzeridentität muss der Authentifizierungstyp ( `Identity.Application` ) mit dem Typ identisch sein, der in `AuthenticationType` Set with `UseCookieAuthentication` in *App_Start/Startup.auth.cs* definiert ist.
 
-*Modelle/ Identity Models.cs*:
+*Modelle/ Identity Models.cs* :
 
 ```csharp
 public class ApplicationUser : IdentityUser

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: e57c5185323305ccbef7960653c9174931e45d75
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: da507974b88c21de22e2c7a56950943207565138
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635397"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060546"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>JsonPatch in ASP.NET Core-Web-API
 
@@ -37,7 +38,7 @@ In diesem Artikel wird erläutert, wie JSON Patch-Anforderungen in einer ASP.NET
 Führen Sie die folgenden Schritte aus, um die JSON-Patchunterstützung in der APP zu aktivieren:
 
 1. Installieren Sie das [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) nuget-Paket.
-1. Aktualisieren Sie die- `Startup.ConfigureServices` Methode des Projekts, um aufzurufen <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Beispiel:
+1. Aktualisieren Sie die- `Startup.ConfigureServices` Methode des Projekts, um aufzurufen <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> . Zum Beispiel:
 
     ```csharp
     services
@@ -67,7 +68,7 @@ Die Methoden PUT und [PATCH](https://tools.ietf.org/html/rfc5789) werden verwend
 
 ## <a name="json-patch"></a>JSON Patch
 
-Mit dem [JSON Patch](https://tools.ietf.org/html/rfc6902)-Format geben Sie an, dass Updates auf eine Ressource angewendet werden sollen. Ein JSON Patch-Dokument verfügt über ein Array von *Vorgängen*. Jeder Vorgang identifiziert eine bestimmte Art von Änderung. Beispiele für solche Änderungen sind das Hinzufügen eines Array Elements oder das Ersetzen eines Eigenschafts Werts.
+Mit dem [JSON Patch](https://tools.ietf.org/html/rfc6902)-Format geben Sie an, dass Updates auf eine Ressource angewendet werden sollen. Ein JSON Patch-Dokument verfügt über ein Array von *Vorgängen* . Jeder Vorgang identifiziert eine bestimmte Art von Änderung. Beispiele für solche Änderungen sind das Hinzufügen eines Array Elements oder das Ersetzen eines Eigenschafts Werts.
 
 Die folgenden JSON-Dokumente stellen z. b. eine Ressource, ein JSON-Patch-Dokument für die Ressource und das Ergebnis der Anwendung der patchvorgänge dar.
 
@@ -117,11 +118,11 @@ Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekt
 
 Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Element des `addresses`-Arrays wäre bei `/addresses/0`. Bis `add` zum Ende eines Arrays verwenden Sie einen Bindestrich ( `-` ) anstelle einer Indexnummer: `/addresses/-` .
 
-### <a name="operations"></a>Operationen (Operations)
+### <a name="operations"></a>Operations
 
 Die folgende Tabelle zeigt unterstützt Vorgänge gemäß der [JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902):
 
-|Vorgang  | Notizen |
+|Vorgang  | Hinweise |
 |-----------|--------------------------------|
 | `add`     | Hinzufügen einer Eigenschaft oder eines Arrayelements. Für vorhandene Eigenschaft: set value.|
 | `remove`  | Entfernen einer Eigenschaft oder eines Arrayelements. |
@@ -279,7 +280,7 @@ Die Methoden PUT und [PATCH](https://tools.ietf.org/html/rfc5789) werden verwend
 
 ## <a name="json-patch"></a>JSON Patch
 
-Mit dem [JSON Patch](https://tools.ietf.org/html/rfc6902)-Format geben Sie an, dass Updates auf eine Ressource angewendet werden sollen. Ein JSON Patch-Dokument verfügt über ein Array von *Vorgängen*. Jeder Vorgang identifiziert eine bestimmte Art von Änderung, z.B. das Hinzufügen eines Arrayelements oder das Ersetzen eines Eigenschaftswerts.
+Mit dem [JSON Patch](https://tools.ietf.org/html/rfc6902)-Format geben Sie an, dass Updates auf eine Ressource angewendet werden sollen. Ein JSON Patch-Dokument verfügt über ein Array von *Vorgängen* . Jeder Vorgang identifiziert eine bestimmte Art von Änderung, z.B. das Hinzufügen eines Arrayelements oder das Ersetzen eines Eigenschaftswerts.
 
 Die folgenden JSON-Dokumente stellen beispielsweise eine Ressource, ein JSON Patch-Dokument für die Ressource und das Ergebnis der Anwendung der Patchvorgänge dar.
 
@@ -329,11 +330,11 @@ Die [path](https://tools.ietf.org/html/rfc6901)-Eigenschaft eines Vorgangsobjekt
 
 Nullbasierte Indizes werden verwendet, um Arrayelemente anzugeben. Das erste Element des `addresses`-Arrays wäre bei `/addresses/0`. Zum `add` ans Ende eines Arrays verwenden Sie einen Bindestrich (-) anstelle einer Indexnummer: `/addresses/-`.
 
-### <a name="operations"></a>Operationen (Operations)
+### <a name="operations"></a>Operations
 
 Die folgende Tabelle zeigt unterstützt Vorgänge gemäß der [JSON Patch-Spezifikation](https://tools.ietf.org/html/rfc6902):
 
-|Vorgang  | Notizen |
+|Vorgang  | Hinweise |
 |-----------|--------------------------------|
 | `add`     | Hinzufügen einer Eigenschaft oder eines Arrayelements. Für vorhandene Eigenschaft: set value.|
 | `remove`  | Entfernen einer Eigenschaft oder eines Arrayelements. |

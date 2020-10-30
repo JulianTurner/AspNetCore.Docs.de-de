@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,20 +18,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/key-management
-ms.openlocfilehash: db718b8d4c305b75ad52054efde6b2d03f6825ed
-ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
+ms.openlocfilehash: 08ec018238d18cd253e793267c5b146df8319485
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/31/2020
-ms.locfileid: "89153531"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060767"
 ---
 # <a name="key-management-extensibility-in-aspnet-core"></a>Erweiterbarkeit der Schlüsselverwaltung in ASP.net Core
 
 Lesen Sie den Abschnitt [Key Management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) vor dem Lesen dieses Abschnitts, da hier einige der grundlegenden Konzepte hinter diesen APIs erläutert werden.
 
-**Warnung**: Typen, die eine der folgenden Schnittstellen implementieren, sollten für mehrere Aufrufer Thread sicher sein.
+**Warnung** : Typen, die eine der folgenden Schnittstellen implementieren, sollten für mehrere Aufrufer Thread sicher sein.
 
-## <a name="key"></a>Key
+## <a name="key"></a>Schlüssel
 
 Die- `IKey` Schnittstelle ist die grundlegende Darstellung eines Schlüssels in Cryptosystem. Der Begriff Key wird hier im abstrakten Sinn verwendet, nicht im literalsinn von "kryptografieschlüsselmaterial". Ein Schlüssel weist die folgenden Eigenschaften auf:
 

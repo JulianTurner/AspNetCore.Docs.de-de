@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/26/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/claimsprincipal-current
-ms.openlocfilehash: 426fd90374a460cb283d0d3ba921e1312fb17940
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3aa0adb299789efbb071cdb934d43832a84cf540
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634071"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059766"
 ---
 # <a name="migrate-from-claimsprincipalcurrent"></a>Migrieren von "ClaimsPrincipal. Current"
 
@@ -36,10 +37,10 @@ Wenn Sie ASP.net Core verwenden, werden die Werte von `ClaimsPrincipal.Current` 
 
 Es gibt mehrere Optionen zum Abrufen der aktuellen authentifizierten Benutzer `ClaimsPrincipal` in ASP.net Core anstelle von `ClaimsPrincipal.Current` :
 
-* **Controllerbase. User**. MVC-Controller können mit Ihrer [User](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.user) -Eigenschaft auf den aktuellen authentifizierten Benutzer zugreifen.
-* **HttpContext. User**. Komponenten mit Zugriff auf die aktuelle `HttpContext` (z. b. Middleware) können die aktuellen Benutzer `ClaimsPrincipal` von " [HttpContext. User](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user)" abrufen.
-* **Übergeben vom**Aufrufer. Bibliotheken ohne Zugriff auf die aktuelle `HttpContext` werden häufig von Controllern oder middlewarekomponenten aufgerufen, und die Identität des aktuellen Benutzers kann als Argument übermittelt werden.
-* **Ihttpcontextaccessor**. Das Projekt, das zu ASP.net Core migriert wird, ist möglicherweise zu groß, um die Identität des aktuellen Benutzers an alle erforderlichen Orte zu übergeben. In solchen Fällen kann [ihttpcontextaccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) als Problem Umgehung verwendet werden. `IHttpContextAccessor` kann auf die aktuelle zugreifen `HttpContext` (sofern vorhanden). Wenn di verwendet wird, finden Sie weitere Informationen unter <xref:fundamentals/httpcontext> . Eine kurzfristige Lösung, um die Identität des aktuellen Benutzers im Code zu erhalten, der noch nicht aktualisiert wurde, um mit der ASP.net Core di-gesteuerten Architektur zu arbeiten, wäre Folgendes:
+* **Controllerbase. User** . MVC-Controller können mit Ihrer [User](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.user) -Eigenschaft auf den aktuellen authentifizierten Benutzer zugreifen.
+* **HttpContext. User** . Komponenten mit Zugriff auf die aktuelle `HttpContext` (z. b. Middleware) können die aktuellen Benutzer `ClaimsPrincipal` von " [HttpContext. User](/dotnet/api/microsoft.aspnetcore.http.httpcontext.user)" abrufen.
+* **Übergeben vom** Aufrufer. Bibliotheken ohne Zugriff auf die aktuelle `HttpContext` werden häufig von Controllern oder middlewarekomponenten aufgerufen, und die Identität des aktuellen Benutzers kann als Argument übermittelt werden.
+* **Ihttpcontextaccessor** . Das Projekt, das zu ASP.net Core migriert wird, ist möglicherweise zu groß, um die Identität des aktuellen Benutzers an alle erforderlichen Orte zu übergeben. In solchen Fällen kann [ihttpcontextaccessor](/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor) als Problem Umgehung verwendet werden. `IHttpContextAccessor` kann auf die aktuelle zugreifen `HttpContext` (sofern vorhanden). Wenn di verwendet wird, finden Sie weitere Informationen unter <xref:fundamentals/httpcontext> . Eine kurzfristige Lösung, um die Identität des aktuellen Benutzers im Code zu erhalten, der noch nicht aktualisiert wurde, um mit der ASP.net Core di-gesteuerten Architektur zu arbeiten, wäre Folgendes:
 
   * Stellen Sie `IHttpContextAccessor` im di-Container durch Aufrufen von [addhttpcontextaccessor](https://github.com/aspnet/Hosting/issues/793) in verfügbar `Startup.ConfigureServices` .
   * Beim Start eine Instanz von erhalten `IHttpContextAccessor` und in einer statischen Variablen speichern. Die-Instanz wird für Code verfügbar gemacht, der zuvor den aktuellen Benutzer aus einer statischen Eigenschaft abgerufen hat.

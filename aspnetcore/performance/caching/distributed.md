@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: 0d27206412a098f4ea749ec10189bf24d2322de1
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: 6d87c8de66bf5600189465b96dee903841106b6f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712479"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061144"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Verteiltes Zwischenspeichern in ASP.net Core
 
@@ -112,7 +113,7 @@ Die Beispiel-App implementiert in <xref:Microsoft.Extensions.Caching.SqlServer.S
 [!code-csharp[](distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (und optional <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> und <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) werden in der Regel außerhalb der Quell Code Verwaltung gespeichert (z. b. durch den [Geheimnis-Manager](xref:security/app-secrets) oder in *appsettings.js*in / *appSettings gespeichert. { Umgebung}. JSON* -Dateien). Die Verbindungs Zeichenfolge kann Anmelde Informationen enthalten, die aus den Quell Code Verwaltungssystemen ausgeschlossen werden sollen.
+> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (und optional <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> und <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) werden in der Regel außerhalb der Quell Code Verwaltung gespeichert (z. b. durch den [Geheimnis-Manager](xref:security/app-secrets) oder in *appsettings.json* / *appSettings gespeichert. { Umgebung}. JSON* -Dateien). Die Verbindungs Zeichenfolge kann Anmelde Informationen enthalten, die aus den Quell Code Verwaltungssystemen ausgeschlossen werden sollen.
 
 ### <a name="distributed-redis-cache"></a>Verteilte redis Cache
 
@@ -155,7 +156,7 @@ Wenn die Beispiel-App gestartet wird, <xref:Microsoft.Extensions.Caching.Distrib
 
 Die Beispiel-APP <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> wird in den eingefügt, `IndexModel` um von der Index Seite verwendet werden zu können.
 
-Jedes Mal, wenn die Index Seite geladen wird, wird der Cache für die zwischengespeicherte Zeit in geprüft `OnGetAsync` . Wenn die zwischengespeicherte Zeit nicht abgelaufen ist, wird die Uhrzeit angezeigt. Wenn 20 Sekunden seit dem letzten Zugriff auf die zwischengespeicherte Zeit (beim letzten Laden dieser Seite) verstrichen sind, wird auf der Seite die *zwischengespeicherte Zeit abgelaufen*angezeigt.
+Jedes Mal, wenn die Index Seite geladen wird, wird der Cache für die zwischengespeicherte Zeit in geprüft `OnGetAsync` . Wenn die zwischengespeicherte Zeit nicht abgelaufen ist, wird die Uhrzeit angezeigt. Wenn 20 Sekunden seit dem letzten Zugriff auf die zwischengespeicherte Zeit (beim letzten Laden dieser Seite) verstrichen sind, wird auf der Seite die *zwischengespeicherte Zeit abgelaufen* angezeigt.
 
 Aktualisieren Sie die zwischengespeicherte Zeit sofort auf die aktuelle Zeit, indem Sie die Schaltfläche **zwischengespeicherte Zeit zurücksetzen** auswählen. Die Schaltfläche löst die `OnPostResetCachedTime` Handlermethode aus.
 
@@ -279,7 +280,7 @@ Die Beispiel-App implementiert in <xref:Microsoft.Extensions.Caching.SqlServer.S
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (und optional <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> und <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) werden in der Regel außerhalb der Quell Code Verwaltung gespeichert (z. b. durch den [Geheimnis-Manager](xref:security/app-secrets) oder in *appsettings.js*in / *appSettings gespeichert. { Umgebung}. JSON* -Dateien). Die Verbindungs Zeichenfolge kann Anmelde Informationen enthalten, die aus den Quell Code Verwaltungssystemen ausgeschlossen werden sollen.
+> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (und optional <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> und <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) werden in der Regel außerhalb der Quell Code Verwaltung gespeichert (z. b. durch den [Geheimnis-Manager](xref:security/app-secrets) oder in *appsettings.json* / *appSettings gespeichert. { Umgebung}. JSON* -Dateien). Die Verbindungs Zeichenfolge kann Anmelde Informationen enthalten, die aus den Quell Code Verwaltungssystemen ausgeschlossen werden sollen.
 
 ### <a name="distributed-redis-cache"></a>Verteilte redis Cache
 
@@ -325,7 +326,7 @@ Wenn die Beispiel-App gestartet wird, <xref:Microsoft.Extensions.Caching.Distrib
 
 Die Beispiel-APP <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> wird in den eingefügt, `IndexModel` um von der Index Seite verwendet werden zu können.
 
-Jedes Mal, wenn die Index Seite geladen wird, wird der Cache für die zwischengespeicherte Zeit in geprüft `OnGetAsync` . Wenn die zwischengespeicherte Zeit nicht abgelaufen ist, wird die Uhrzeit angezeigt. Wenn 20 Sekunden seit dem letzten Zugriff auf die zwischengespeicherte Zeit (beim letzten Laden dieser Seite) verstrichen sind, wird auf der Seite die *zwischengespeicherte Zeit abgelaufen*angezeigt.
+Jedes Mal, wenn die Index Seite geladen wird, wird der Cache für die zwischengespeicherte Zeit in geprüft `OnGetAsync` . Wenn die zwischengespeicherte Zeit nicht abgelaufen ist, wird die Uhrzeit angezeigt. Wenn 20 Sekunden seit dem letzten Zugriff auf die zwischengespeicherte Zeit (beim letzten Laden dieser Seite) verstrichen sind, wird auf der Seite die *zwischengespeicherte Zeit abgelaufen* angezeigt.
 
 Aktualisieren Sie die zwischengespeicherte Zeit sofort auf die aktuelle Zeit, indem Sie die Schaltfläche **zwischengespeicherte Zeit zurücksetzen** auswählen. Die Schaltfläche löst die `OnPostResetCachedTime` Handlermethode aus.
 
@@ -449,7 +450,7 @@ Die Beispiel-App implementiert in <xref:Microsoft.Extensions.Caching.SqlServer.S
 [!code-csharp[](distributed/samples/2.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (und optional <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> und <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) werden in der Regel außerhalb der Quell Code Verwaltung gespeichert (z. b. durch den [Geheimnis-Manager](xref:security/app-secrets) oder in *appsettings.js*in / *appSettings gespeichert. { Umgebung}. JSON* -Dateien). Die Verbindungs Zeichenfolge kann Anmelde Informationen enthalten, die aus den Quell Code Verwaltungssystemen ausgeschlossen werden sollen.
+> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (und optional <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> und <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*> ) werden in der Regel außerhalb der Quell Code Verwaltung gespeichert (z. b. durch den [Geheimnis-Manager](xref:security/app-secrets) oder in *appsettings.json* / *appSettings gespeichert. { Umgebung}. JSON* -Dateien). Die Verbindungs Zeichenfolge kann Anmelde Informationen enthalten, die aus den Quell Code Verwaltungssystemen ausgeschlossen werden sollen.
 
 ### <a name="distributed-redis-cache"></a>Verteilte redis Cache
 
@@ -501,7 +502,7 @@ Wenn die Beispiel-App gestartet wird, <xref:Microsoft.Extensions.Caching.Distrib
 
 Die Beispiel-APP <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> wird in den eingefügt, `IndexModel` um von der Index Seite verwendet werden zu können.
 
-Jedes Mal, wenn die Index Seite geladen wird, wird der Cache für die zwischengespeicherte Zeit in geprüft `OnGetAsync` . Wenn die zwischengespeicherte Zeit nicht abgelaufen ist, wird die Uhrzeit angezeigt. Wenn 20 Sekunden seit dem letzten Zugriff auf die zwischengespeicherte Zeit (beim letzten Laden dieser Seite) verstrichen sind, wird auf der Seite die *zwischengespeicherte Zeit abgelaufen*angezeigt.
+Jedes Mal, wenn die Index Seite geladen wird, wird der Cache für die zwischengespeicherte Zeit in geprüft `OnGetAsync` . Wenn die zwischengespeicherte Zeit nicht abgelaufen ist, wird die Uhrzeit angezeigt. Wenn 20 Sekunden seit dem letzten Zugriff auf die zwischengespeicherte Zeit (beim letzten Laden dieser Seite) verstrichen sind, wird auf der Seite die *zwischengespeicherte Zeit abgelaufen* angezeigt.
 
 Aktualisieren Sie die zwischengespeicherte Zeit sofort auf die aktuelle Zeit, indem Sie die Schaltfläche **zwischengespeicherte Zeit zurücksetzen** auswählen. Die Schaltfläche löst die `OnPostResetCachedTime` Handlermethode aus.
 

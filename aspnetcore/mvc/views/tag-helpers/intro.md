@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 345d20494111b808dac9678637de060169730a53
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 781365d99c6d36d8abaec9681128ba712db8cb88
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865359"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060663"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>Taghilfsprogramme in ASP.NET Core
 
@@ -75,11 +76,11 @@ Der Taghilfsprogrammbereich wird über eine Kombination aus `@addTagHelper`, `@r
 
 ### <a name="addtaghelper-makes-tag-helpers-available"></a>`@addTagHelper` stellt Taghilfsprogramme zur Verfügung.
 
-Wenn Sie eine neue ASP.NET Core-Web-App mit dem Namen *AuthoringTagHelpers* erstellen, wird die folgende *Views/_ViewImports.cshtml*-Datei Ihrem Projekt hinzugefügt:
+Wenn Sie eine neue ASP.NET Core-Web-App mit dem Namen *AuthoringTagHelpers* erstellen, wird die folgende *Views/_ViewImports.cshtml* -Datei Ihrem Projekt hinzugefügt:
 
 [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopy.cshtml?highlight=2&range=2-3)]
 
-Über die `@addTagHelper`-Anweisung werden Taghilfsprogramme in der Ansicht zur Verfügung gestellt. In diesem Fall ist die Ansichts Datei *pages/_ViewImports. cshtml*, die standardmäßig von allen Dateien im Ordner " *pages* " und den Unterordnern geerbt wird. Bereitstellen von taghilfsprogrammen Im obigen Code wird die Platzhalter Syntax (" \* ") verwendet, um anzugeben, dass alle taghilfsprogramme in der angegebenen Assembly (*Microsoft. aspnetcore. MVC. taghilfsprogramme*) für jede Ansichts Datei im Verzeichnis " *views* " oder Unterverzeichnis verfügbar sind. Über den ersten Parameter nach `@addTagHelper` wird das Taghilfsprogramm geladen („\*“ wird für alle Taghilfsprogramme verwendet), und über den zweiten Parameter „Microsoft.AspNetCore.Mvc.TagHelpers“ wird die Assembly angegeben, die die Taghilfsprogramme enthält. Bei *Microsoft.AspNetCore.Mvc.TagHelpers* handelt es sich um die Assembly für die integrierten ASP.NET Core-Taghilfsprogramme.
+Über die `@addTagHelper`-Anweisung werden Taghilfsprogramme in der Ansicht zur Verfügung gestellt. In diesem Fall ist die Ansichts Datei *pages/_ViewImports. cshtml* , die standardmäßig von allen Dateien im Ordner " *pages* " und den Unterordnern geerbt wird. Bereitstellen von taghilfsprogrammen Im obigen Code wird die Platzhalter Syntax (" \* ") verwendet, um anzugeben, dass alle taghilfsprogramme in der angegebenen Assembly ( *Microsoft. aspnetcore. MVC. taghilfsprogramme* ) für jede Ansichts Datei im Verzeichnis " *views* " oder Unterverzeichnis verfügbar sind. Über den ersten Parameter nach `@addTagHelper` wird das Taghilfsprogramm geladen („\*“ wird für alle Taghilfsprogramme verwendet), und über den zweiten Parameter „Microsoft.AspNetCore.Mvc.TagHelpers“ wird die Assembly angegeben, die die Taghilfsprogramme enthält. Bei *Microsoft.AspNetCore.Mvc.TagHelpers* handelt es sich um die Assembly für die integrierten ASP.NET Core-Taghilfsprogramme.
 
 Verwenden Sie folgenden Code, wenn Sie alle Taghilfsprogramme in diesem Projekt zur Verfügung stellen wollen. Dadurch wird eine Assembly mit dem Namen *AuthoringTagHelpers* erstellt:
 
@@ -93,7 +94,7 @@ Wenn Ihr Projekt ein `EmailTagHelper`-Taghilfsprogramm mit einem Standardnamespa
 @addTagHelper AuthoringTagHelpers.TagHelpers.EmailTagHelper, AuthoringTagHelpers
 ```
 
-Wenn Sie einer Ansicht über einen vollqualifizierten Namen ein Taghilfsprogramm hinzufügen möchten, müssen Sie zunächst diesen Namen (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) und dann den Assemblynamen (*AuthoringTagHelpers*) hinzufügen. Die meisten Entwickler verwenden am liebsten die Platzhaltersyntax („\*“). Mithilfe der Platzhaltersyntax können Sie das Platzhalterzeichen „\*“ als Suffix in einem vollqualifizierten Namen einfügen. Beispielsweise können Sie über die folgenden Anweisungen das `EmailTagHelper`-Hilfsprogramm integrieren:
+Wenn Sie einer Ansicht über einen vollqualifizierten Namen ein Taghilfsprogramm hinzufügen möchten, müssen Sie zunächst diesen Namen (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`) und dann den Assemblynamen ( *AuthoringTagHelpers* ) hinzufügen. Die meisten Entwickler verwenden am liebsten die Platzhaltersyntax („\*“). Mithilfe der Platzhaltersyntax können Sie das Platzhalterzeichen „\*“ als Suffix in einem vollqualifizierten Namen einfügen. Beispielsweise können Sie über die folgenden Anweisungen das `EmailTagHelper`-Hilfsprogramm integrieren:
 
 ```cshtml
 @addTagHelper AuthoringTagHelpers.TagHelpers.E*, AuthoringTagHelpers
@@ -106,11 +107,11 @@ Wie bereits erwähnt `@addTagHelper` *_ViewImports* , ist das taghilfsprogramm f
 
 ### <a name="removetaghelper-removes-tag-helpers"></a>Entfernen von Taghilfsprogrammen über `@removeTagHelper`
 
-Das `@removeTagHelper`-Taghilfsprogramm enthält dieselben beiden Parameter wie `@addTagHelper` und entfernt ein bereits zuvor hinzugefügtes Taghilfsprogramm. Wenn z.B. der `@removeTagHelper` auf eine bestimmte Ansicht angewendet wird, wird das angegebene Taghilfsprogramm aus der Ansicht entfernt. Wenn Sie das `@removeTagHelper`-Taghilfsprogramm in einem *Views/Folder/_ViewImports.cshtml*-Ordner verwenden, wird das festgelegte Taghilfsprogramm aus allen Ansichten im *Ordner* entfernt.
+Das `@removeTagHelper`-Taghilfsprogramm enthält dieselben beiden Parameter wie `@addTagHelper` und entfernt ein bereits zuvor hinzugefügtes Taghilfsprogramm. Wenn z.B. der `@removeTagHelper` auf eine bestimmte Ansicht angewendet wird, wird das angegebene Taghilfsprogramm aus der Ansicht entfernt. Wenn Sie das `@removeTagHelper`-Taghilfsprogramm in einem *Views/Folder/_ViewImports.cshtml* -Ordner verwenden, wird das festgelegte Taghilfsprogramm aus allen Ansichten im *Ordner* entfernt.
 
-### <a name="controlling-tag-helper-scope-with-the-_viewimportscshtml-file"></a>Steuern des Taghilfsprogrammbereichs mit der *_ViewImports.cshtml*-Datei
+### <a name="controlling-tag-helper-scope-with-the-_viewimportscshtml-file"></a>Steuern des Taghilfsprogrammbereichs mit der *_ViewImports.cshtml* -Datei
 
-Sie können jedem Ordner eine *_ViewImports.cshtml*-Datei hinzufügen, und die Ansichtsengine wendet die Anweisungen aus dieser Datei und der *Views/_ViewImports.cshtml*-Datei an. Wenn Sie für die *Startseiten*-Ansicht eine leere *Views/Home/_ViewImports.cshtml*-Ansicht hinzufügen, ändert sich nichts, da die *_ViewImports.cshtml*-Datei nur einen Zusatz darstellt. Alle `@addTagHelper`-Anweisungen, die Sie der *Views/Home/_ViewImports.cshtml*-Datei hinzufügen (die nicht in der Standarddatei *Views/_ViewImports.cshtml* enthalten sind) machen diese Taghilfsprogramme nur für Ansichten im *Basis*-Ordner verfügbar.
+Sie können jedem Ordner eine *_ViewImports.cshtml* -Datei hinzufügen, und die Ansichtsengine wendet die Anweisungen aus dieser Datei und der *Views/_ViewImports.cshtml* -Datei an. Wenn Sie für die *Startseiten* -Ansicht eine leere *Views/Home/_ViewImports.cshtml* -Ansicht hinzufügen, ändert sich nichts, da die *_ViewImports.cshtml* -Datei nur einen Zusatz darstellt. Alle `@addTagHelper`-Anweisungen, die Sie der *Views/Home/_ViewImports.cshtml* -Datei hinzufügen (die nicht in der Standarddatei *Views/_ViewImports.cshtml* enthalten sind) machen diese Taghilfsprogramme nur für Ansichten im *Basis* -Ordner verfügbar.
 
 <a name="opt-out"></a>
 
@@ -128,7 +129,7 @@ Sie müssen dieses Zeichen auf das Start- und das Endtag anwenden. (Der Visual S
 
 ### <a name="using-taghelperprefix-to-make-tag-helper-usage-explicit"></a>Verwenden von `@tagHelperPrefix`, um die Verwendung von Taghilfsprogrammen erforderlich zu machen
 
-Mithilfe der `@tagHelperPrefix`-Anweisung können Sie ein Tagpräfix angeben, um Unterstützung für Taghilfsprogramme zu aktivieren und ihre Verwendung explizit erforderlich zu machen. Beispielsweise können Sie das folgende Markup zu der *Views/_ViewImports.cshtml*-Datei hinzufügen:
+Mithilfe der `@tagHelperPrefix`-Anweisung können Sie ein Tagpräfix angeben, um Unterstützung für Taghilfsprogramme zu aktivieren und ihre Verwendung explizit erforderlich zu machen. Beispielsweise können Sie das folgende Markup zu der *Views/_ViewImports.cshtml* -Datei hinzufügen:
 
 ```cshtml
 @tagHelperPrefix th:
@@ -190,7 +191,7 @@ Wenn ein Taghilfsprogrammattribut eingegeben wird, ändern sich die Schriftarten
 
 ![image](intro/_static/labelaspfor2.png)
 
-Sie können die Visual Studio-Verknüpfung *CompleteWord* verwenden ([standardmäßig](/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) STRG+LEERTASTE in doppelten Anführungszeichen (""), und jetzt befinden Sie sich genauso wie in einer C#-Klasse in C#). IntelliSense zeigt alle Methoden und Eigenschaften auf dem Seitenmodell an. Die Methoden und Eigenschaften sind verfügbar, weil der Eigenschaftentyp `ModelExpression` ist. Im nachfolgenden Beispiel wird die `Register`-Ansicht bearbeitet, damit das `RegisterViewModel` verfügbar ist.
+Sie können die Visual Studio-Verknüpfung *CompleteWord* verwenden ( [standardmäßig](/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) STRG+LEERTASTE in doppelten Anführungszeichen (""), und jetzt befinden Sie sich genauso wie in einer C#-Klasse in C#). IntelliSense zeigt alle Methoden und Eigenschaften auf dem Seitenmodell an. Die Methoden und Eigenschaften sind verfügbar, weil der Eigenschaftentyp `ModelExpression` ist. Im nachfolgenden Beispiel wird die `Register`-Ansicht bearbeitet, damit das `RegisterViewModel` verfügbar ist.
 
 ![image](intro/_static/intellemail.png)
 
@@ -244,7 +245,7 @@ vor grauem Hintergrund angezeigt. Ein Großteil des Markups in der Registeransic
 
 Das Markup ist viel deutlicher und kann einfacher gelesen, bearbeitet und verwaltet werden als im Ansatz über das HTML-Hilfsprogramm. Der C#-Code ist auf die mindestens erforderlichen Informationen begrenzt, die der Server benötigt. Der Visual Studio-Editor zeigt Markup an, das von einem Taghilfsprogramm in einer anderen Schriftart angezeigt wird.
 
-Sehen Sie sich die *Email*-Gruppe an:
+Sehen Sie sich die *Email* -Gruppe an:
 
 [!code-cshtml[](intro/sample/Register.cshtml?range=12-18)]
 
@@ -272,7 +273,7 @@ Mithilfe des Visual Studio-Editors können Sie das **gesamte** Markup im Taghilf
 
 ## <a name="customizing-the-tag-helper-element-font"></a>Anpassen der Elementschriftart des Taghilfsprogramms
 
-Sie können die Schriftart und die **Farbgebung unter Extras**  >  **Optionen**  >  **Umgebung**  >  **Schriftarten und Farben**anpassen:
+Sie können die Schriftart und die **Farbgebung unter Extras**  >  **Optionen**  >  **Umgebung**  >  **Schriftarten und Farben** anpassen:
 
 ![image](intro/_static/fontoptions2.png)
 

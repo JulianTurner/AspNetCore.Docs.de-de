@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: 7f1d20687f6dd588e125acf3815815c2bcf0cd04
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 6d2a89ec7c64728bc585ad235293f2277f9a66f7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722682"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061482"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>Speicherverwaltung und Garbage Collection (GC) in ASP.net Core
 
@@ -137,7 +138,7 @@ Das vorangehende Diagramm zeigt Folgendes:
 
 Der .NET Garbage Collector verfügt über zwei verschiedene Modi:
 
-* **Arbeitsstation GC**: für den Desktop optimiert.
+* **Arbeitsstation GC** : für den Desktop optimiert.
 * **Server-GC** Der standardmäßige GC für ASP.net Core-apps. Für den Server optimiert.
 
 Der GC-Modus kann explizit in der Projektdatei oder in der *runtimeconfig.js* Datei der veröffentlichten App festgelegt werden. Das folgende Markup zeigt die Einstellung `ServerGarbageCollection` in der Projektdatei:
@@ -235,7 +236,7 @@ Der gleiche Fehler kann im Benutzercode auftreten, indem eine der folgenden Akti
 
 ### <a name="large-objects-heap"></a>Heap für große Objekte
 
-Häufige Speicher Belegungen/freie Zyklen können den Arbeitsspeicher fragmentieren, insbesondere bei der Zuordnung von großen Arbeitsspeicher Blöcken. Objekte werden in zusammenhängenden Speicherblöcken zugeordnet. Um die Fragmentierung zu verringern, versucht die GC, Sie zu defragmentieren, wenn die GC Speicher freigibt. Dieser Vorgang wird als " **Komprimierung**" bezeichnet. Die Komprimierung umfasst das Verschieben von Objekten. Das Verschieben von großen Objekten führt zu einer Leistungs Einbuße. Aus diesem Grund erstellt der GC eine spezielle Speicher Zone für _große_ Objekte ( [Large Object Heap](/dotnet/standard/garbage-collection/large-object-heap) , Loh). Objekte, die größer als 85.000 Byte sind (etwa 83 KB):
+Häufige Speicher Belegungen/freie Zyklen können den Arbeitsspeicher fragmentieren, insbesondere bei der Zuordnung von großen Arbeitsspeicher Blöcken. Objekte werden in zusammenhängenden Speicherblöcken zugeordnet. Um die Fragmentierung zu verringern, versucht die GC, Sie zu defragmentieren, wenn die GC Speicher freigibt. Dieser Vorgang wird als " **Komprimierung** " bezeichnet. Die Komprimierung umfasst das Verschieben von Objekten. Das Verschieben von großen Objekten führt zu einer Leistungs Einbuße. Aus diesem Grund erstellt der GC eine spezielle Speicher Zone für _große_ Objekte ( [Large Object Heap](/dotnet/standard/garbage-collection/large-object-heap) , Loh). Objekte, die größer als 85.000 Byte sind (etwa 83 KB):
 
 * Auf dem Loh platziert.
 * Nicht komprimiert.
@@ -271,7 +272,7 @@ Das folgende Diagramm zeigt das Speicher Profil des aufrufenden `/api/loh/84975`
 
 ![Vorheriges Diagramm](memory/_static/loh1.png)
 
-Das folgende Diagramm zeigt das Speicher Profil für den Aufruf des `/api/loh/84976` Endpunkts, wobei *nur noch ein Byte*zugeordnet wird:
+Das folgende Diagramm zeigt das Speicher Profil für den Aufruf des `/api/loh/84976` Endpunkts, wobei *nur noch ein Byte* zugeordnet wird:
 
 ![Vorheriges Diagramm](memory/_static/loh2.png)
 
@@ -393,7 +394,7 @@ Im vorangehenden Diagramm erfolgen die Sammlungen der Generation 0 ungefähr ein
 
 Der vorangehende Code kann optimiert werden, indem der `byte` Puffer mithilfe von [arraypool \<T> ](xref:System.Buffers.ArrayPool`1)gebündelt wird. Eine statische-Instanz wird in allen Anforderungen wieder verwendet.
 
-Unterscheidet sich bei diesem Ansatz, dass ein in einem Pool zusammengefasste Objekt von der API zurückgegeben wird. Dies bedeutet Folgendes:
+Unterscheidet sich bei diesem Ansatz, dass ein in einem Pool zusammengefasste Objekt von der API zurückgegeben wird. Dies bedeutet:
 
 * Das-Objekt befindet sich außerhalb des-Steuer Elements, sobald Sie von der-Methode zurückkehren.
 * Das Objekt kann nicht freigegeben werden.

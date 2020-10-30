@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: 140969c80191c9549bc19507b9c4818b88fed0d1
-ms.sourcegitcommit: c026bf76a0e14a5ee68983519a63574c674e9ff7
+ms.openlocfilehash: 286dc3bcc66b86a2a6b7d3cb7b6052bf7b474aff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91636802"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060208"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>Richtlinien basierte Autorisierung in ASP.net Core
 
@@ -122,17 +123,17 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> od
 
 Wenn Sie Seiten verwenden Razor , finden Sie weitere Informationen unter [Anwenden von Richtlinien auf Razor Seiten](#apply-policies-to-razor-pages) in diesem Dokument.
 
-Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Beispiel:
+Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Anwenden von Richtlinien auf Razor Seiten
 
-Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Beispiel:
+Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Richtlinien können ***nicht*** auf Razor seitenhandlerebene angewendet werden, sondern müssen auf die Seite angewendet werden.
+Richtlinien können * **nicht** _ auf Razor seitenhandlerebene angewendet werden, Sie müssen auf die Seite angewendet werden.
 
 Richtlinien können Razor mithilfe einer [Autorisierungs Konvention](xref:security/authorization/razor-pages-authorization)auf Seiten angewendet werden.
 
@@ -142,7 +143,7 @@ Eine Autorisierungs Anforderung ist eine Auflistung von Daten Parametern, die ei
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Services/Requirements/MinimumAgeRequirement.cs?name=snippet_MinimumAgeRequirementClass)]
 
-Wenn eine Autorisierungs Richtlinie mehrere Autorisierungs Anforderungen enthält, müssen alle Anforderungen bestanden werden, damit die Richtlinien Auswertung erfolgreich ist. Anders ausgedrückt: mehrere Autorisierungs Anforderungen, die einer einzelnen Autorisierungs Richtlinie hinzugefügt werden, werden auf der Grundlage von **und** behandelt.
+Wenn eine Autorisierungs Richtlinie mehrere Autorisierungs Anforderungen enthält, müssen alle Anforderungen bestanden werden, damit die Richtlinien Auswertung erfolgreich ist. Anders ausgedrückt: mehrere Autorisierungs Anforderungen, die einer einzelnen Autorisierungs Richtlinie hinzugefügt werden, werden auf Basis von _ *und* * behandelt.
 
 > [!NOTE]
 > Eine Anforderung muss keine Daten oder Eigenschaften haben.
@@ -177,7 +178,7 @@ Der vorangehende Code durchsucht die " [pdingrequirequirements](/dotnet/api/micr
 
 ### <a name="handler-registration"></a>Handlerregistrierung
 
-Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Beispiel:
+Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Zum Beispiel:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=31-32,39-40,42-45, 53-55, 58)]
 
@@ -202,7 +203,7 @@ Wenn ein Handler `context.Succeed` oder aufruft `context.Fail` , werden alle and
 
 ## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Warum sollte ich mehrere Handler für eine Anforderung wünschen?
 
-Wenn Sie evaluieren möchten, können Sie mehrere Handler **für eine einzelne** Anforderung implementieren. Beispielsweise verfügt Microsoft über Türen, die nur mit Schlüsselkarten geöffnet werden. Wenn Sie Ihre Schlüsselkarte zuhause lassen, druckt die Rezeption einen temporären Aufkleber und öffnet die Tür für Sie. In diesem Szenario verfügen Sie über eine einzige Anforderung, *buildingentry*, aber mehrere Handler, die jeweils eine einzelne Anforderung untersuchen.
+Wenn Sie evaluieren möchten, können Sie mehrere Handler **für eine einzelne** Anforderung implementieren. Beispielsweise verfügt Microsoft über Türen, die nur mit Schlüsselkarten geöffnet werden. Wenn Sie Ihre Schlüsselkarte zuhause lassen, druckt die Rezeption einen temporären Aufkleber und öffnet die Tür für Sie. In diesem Szenario verfügen Sie über eine einzige Anforderung, *buildingentry* , aber mehrere Handler, die jeweils eine einzelne Anforderung untersuchen.
 
 *BuildingEntryRequirement.cs*
 
@@ -230,7 +231,7 @@ Die vorherige könnte z. b. `BadgeEntryHandler` wie folgt umgeschrieben werden:
 
 Die `HandleRequirementAsync` Methode, die Sie in einem Autorisierungs Handler implementieren, verfügt über zwei Parameter: einen `AuthorizationHandlerContext` und den, den `TRequirement` Sie behandeln. Frameworks wie MVC oder SignalR können jedes beliebige Objekt der- `Resource` Eigenschaft im hinzufügen `AuthorizationHandlerContext` , um zusätzliche Informationen zu übergeben.
 
-Wenn Sie das Endpunkt Routing verwenden, wird die Autorisierung in der Regel von der Autorisierungs Middleware verarbeitet. In diesem Fall ist die `Resource` Eigenschaft eine Instanz von <xref:Microsoft.AspNetCore.Http.Endpoint> . Der Endpunkt kann verwendet werden, um die zugrunde liegende Ressource zu überprüfen, an die Sie weiterleiten. Beispiel:
+Wenn Sie das Endpunkt Routing verwenden, wird die Autorisierung in der Regel von der Autorisierungs Middleware verarbeitet. In diesem Fall ist die `Resource` Eigenschaft eine Instanz von <xref:Microsoft.AspNetCore.Http.Endpoint> . Der Endpunkt kann verwendet werden, um die zugrunde liegende Ressource zu überprüfen, an die Sie weiterleiten. Zum Beispiel:
 
 ```csharp
 if (context.Resource is Endpoint endpoint)
@@ -358,13 +359,13 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> od
 
 Wenn Sie Seiten verwenden Razor , finden Sie weitere Informationen unter [Anwenden von Richtlinien auf Razor Seiten](#apply-policies-to-razor-pages) in diesem Dokument.
 
-Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Beispiel:
+Richtlinien werden mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Controller angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
 ## <a name="apply-policies-to-no-locrazor-pages"></a>Anwenden von Richtlinien auf Razor Seiten
 
-Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Beispiel:
+Richtlinien werden Razor mithilfe des- `[Authorize]` Attributs mit dem Richtlinien Namen auf Seiten angewendet. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
@@ -411,7 +412,7 @@ Der vorangehende Code durchsucht die " [pdingrequirequirements](/dotnet/api/micr
 
 ### <a name="handler-registration"></a>Handlerregistrierung
 
-Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Beispiel:
+Handler werden während der Konfiguration in der Dienste-Sammlung registriert. Zum Beispiel:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=32-33,48-53,61,62-63,66)]
 
@@ -436,7 +437,7 @@ Wenn ein Handler `context.Succeed` oder aufruft `context.Fail` , werden alle and
 
 ## <a name="why-would-i-want-multiple-handlers-for-a-requirement"></a>Warum sollte ich mehrere Handler für eine Anforderung wünschen?
 
-Wenn Sie evaluieren möchten, können Sie mehrere Handler **für eine einzelne** Anforderung implementieren. Beispielsweise verfügt Microsoft über Türen, die nur mit Schlüsselkarten geöffnet werden. Wenn Sie Ihre Schlüsselkarte zuhause lassen, druckt die Rezeption einen temporären Aufkleber und öffnet die Tür für Sie. In diesem Szenario verfügen Sie über eine einzige Anforderung, *buildingentry*, aber mehrere Handler, die jeweils eine einzelne Anforderung untersuchen.
+Wenn Sie evaluieren möchten, können Sie mehrere Handler **für eine einzelne** Anforderung implementieren. Beispielsweise verfügt Microsoft über Türen, die nur mit Schlüsselkarten geöffnet werden. Wenn Sie Ihre Schlüsselkarte zuhause lassen, druckt die Rezeption einen temporären Aufkleber und öffnet die Tür für Sie. In diesem Szenario verfügen Sie über eine einzige Anforderung, *buildingentry* , aber mehrere Handler, die jeweils eine einzelne Anforderung untersuchen.
 
 *BuildingEntryRequirement.cs*
 

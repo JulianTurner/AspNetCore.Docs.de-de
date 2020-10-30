@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: a7a5260a2446ac3f3be00755ef051e56080a7485
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 111ea7c972778dfd5296d0401c16563aeaa36a63
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634292"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060312"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>Google externe Anmeldung Setup in ASP.NET Core
 
@@ -33,11 +34,11 @@ In diesem Tutorial wird gezeigt, wie Sie es Benutzern mithilfe des auf der [vorh
 ## <a name="create-a-google-api-console-project-and-client-id"></a>Erstellen Sie ein Google API-Konsolen Projekt und eine Client-ID.
 
 * Installieren Sie [Microsoft. aspnetcore. Authentication. Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
-* Navigieren Sie zu [integrieren der Google-Anmeldung in Ihre Web-App](https://developers.google.com/identity/sign-in/web/sign-in) , und wählen Sie **Projekt konfigurieren**aus.
-* Wählen Sie im Dialogfeld **Konfigurieren des OAuth-Clients** den **Webserver**aus.
+* Navigieren Sie zu [integrieren von Google Sign-In in Ihre Web-App](https://developers.google.com/identity/sign-in/web/sign-in) , und wählen Sie **Projekt konfigurieren** aus.
+* Wählen Sie im Dialogfeld **Konfigurieren des OAuth-Clients** den **Webserver** aus.
 * Legen Sie im Textfeld **autorisierte Umleitungs-URIs** den Umleitungs-URI fest. Zum Beispiel, `https://localhost:44312/signin-google`
-* Speichern Sie die **Client-ID** und den **geheimen Client**Schlüssel.
-* Wenn Sie den Standort bereitstellen, registrieren Sie die neue öffentliche URL in der **Google-Konsole**.
+* Speichern Sie die **Client-ID** und den **geheimen Client** Schlüssel.
+* Wenn Sie den Standort bereitstellen, registrieren Sie die neue öffentliche URL in der **Google-Konsole** .
 
 ## <a name="store-the-google-client-id-and-secret"></a>Speichern der Google-Client-ID und des geheimen Schlüssels
 
@@ -65,7 +66,7 @@ Fügen Sie den Google-Dienst hinzu `Startup.ConfigureServices` :
 
 ## <a name="sign-in-with-google"></a>Anmelden mit Google
 
-* Führen Sie die APP aus, und klicken Sie auf **Anmelden**. Eine Option zum Anmelden mit Google wird angezeigt.
+* Führen Sie die APP aus, und klicken Sie auf **Anmelden** . Eine Option zum Anmelden mit Google wird angezeigt.
 * Klicken Sie auf die **Google** -Schaltfläche, die zur Authentifizierung an Google umgeleitet wird.
 * Nachdem Sie Ihre Google-Anmelde Informationen eingegeben haben, werden Sie an die Website zurückgeleitet.
 
@@ -82,7 +83,7 @@ Der URI-Segment `/signin-google` als den standardrückruf des Google-Authentifiz
 ## <a name="troubleshooting"></a>Problembehandlung
 
 * Wenn die Anmeldung nicht funktioniert und Sie keine Fehler erhalten, wechseln Sie in den Entwicklungsmodus, um das Problem zu vereinfachen.
-* Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, wird versucht, die Ergebnisse in *argumumtexception zu authentifizieren: die signinscheme-Option muss angegeben werden*. Die Projektvorlage, die in diesem Tutorial verwendete wird sichergestellt, dass dies geschehen ist.
+* Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, wird versucht, die Ergebnisse in *argumumtexception zu authentifizieren: die signinscheme-Option muss angegeben werden* . Die Projektvorlage, die in diesem Tutorial verwendete wird sichergestellt, dass dies geschehen ist.
 * Wenn die Standortdatenbank nicht erstellt wurde, indem die ursprüngliche Migration anwenden, erhalten Sie *Fehler bei ein Datenbankvorgang beim Verarbeiten der Anforderung* Fehler. Wählen Sie **Migrationen anwenden** aus, um die Datenbank zu erstellen, und aktualisieren Sie die Seite, um den Fehler fortzusetzen.
 
 ## <a name="next-steps"></a>Nächste Schritte

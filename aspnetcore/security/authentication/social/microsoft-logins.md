@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 36341a0e439be57d7da4f787aa6103b92c624e96
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 3161e4f0f735294d69dd51634b424d1ed573e615
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847584"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060299"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>Einrichtung externer Anmelde Informationen für Microsoft-Konto mit ASP.net Core
 
@@ -36,25 +37,25 @@ In diesem Beispiel wird gezeigt, wie Sie es Benutzern mithilfe des Projekts ASP.
 * Fügen Sie dem Projekt das nuget-Paket [Microsoft. aspnetcore. Authentication. microsoftaccount](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.MicrosoftAccount/) hinzu.
 * Navigieren Sie zur Seite " [Azure-Portal-App-Registrierungen](https://go.microsoft.com/fwlink/?linkid=2083908) ", und erstellen Sie eine Microsoft-Konto, oder melden Sie sich an:
 
-Wenn Sie keine Microsoft-Konto haben, wählen Sie **Erstellen**aus. Nachdem Sie sich angemeldet haben, werden Sie auf die Seite **App-Registrierungen** umgeleitet:
+Wenn Sie keine Microsoft-Konto haben, wählen Sie **Erstellen** aus. Nachdem Sie sich angemeldet haben, werden Sie auf die Seite **App-Registrierungen** umgeleitet:
 
 * **Neue Registrierung** auswählen
 * Geben Sie einen **Namen** ein.
-* Wählen Sie eine Option für **unterstützte Konto Typen**aus.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
+* Wählen Sie eine Option für **unterstützte Konto Typen** aus.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
   * Das `MicrosoftAccount` Paket unterstützt standardmäßig App-Registrierungen, die mit "Konten in einem beliebigen Organisations Verzeichnis" oder "Konten in beliebigen Organisations Verzeichnis-und Microsoft-Konten" erstellt wurden.
   * Um andere Optionen zu verwenden, `AuthorizationEndpoint` legen `TokenEndpoint` Sie und Member von `MicrosoftAccountOptions` zum Initialisieren der Microsoft-Konto Authentifizierung für die URLs, die auf der Seite **Endpunkte** der APP-Registrierung angezeigt werden, nach der Erstellung fest (verfügbar, indem Sie auf der Seite **Übersicht** auf Endpunkte klicken).
-* Geben Sie unter **Umleitungs-URI**Ihre Entwicklungs-URL mit angefügt ein `/signin-microsoft` . Beispiel: `https://localhost:5001/signin-microsoft`. Das Microsoft-Authentifizierungsschema, das weiter unten in diesem Beispiel konfiguriert wird, verarbeitet Anforderungen bei der `/signin-microsoft` Route automatisch, um den OAuth-Fluss zu implementieren.
+* Geben Sie unter **Umleitungs-URI** Ihre Entwicklungs-URL mit angefügt ein `/signin-microsoft` . Beispiel: `https://localhost:5001/signin-microsoft`. Das Microsoft-Authentifizierungsschema, das weiter unten in diesem Beispiel konfiguriert wird, verarbeitet Anforderungen bei der `/signin-microsoft` Route automatisch, um den OAuth-Fluss zu implementieren.
 * Wählen Sie **Registrieren** aus.
 
 ### <a name="create-client-secret"></a>Erstellen eines geheimen Clientschlüssels
 
 * Wählen Sie im linken Bereich **Zertifikate und Geheimnisse** aus.
-* Wählen Sie unter geheime **Client**Schlüssel die Option **neuer geheimer Client** Schlüssel
+* Wählen Sie unter geheime **Client** Schlüssel die Option **neuer geheimer Client** Schlüssel
 
   * Fügen Sie eine Beschreibung für den geheimen Client Schlüssel hinzu.
   * Wählen Sie die Schaltfläche **Hinzufügen** aus.
 
-* Kopieren Sie unter geheime **Client**Schlüssel den Wert des geheimen Client Schlüssels.
+* Kopieren Sie unter geheime **Client** Schlüssel den Wert des geheimen Client Schlüssels.
 
 Das URI-Segment `/signin-microsoft` wird als Standard Rückruf des Microsoft-Authentifizierungs Anbieters festgelegt. Sie können den Standard-Rückruf-URI beim Konfigurieren der Microsoft-Authentifizierungs Middleware über die geerbte [remoteauthenticationoptions. callbackpath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) -Eigenschaft der [microsoftaccountoptions](/dotnet/api/microsoft.aspnetcore.authentication.microsoftaccount.microsoftaccountoptions) -Klasse ändern.
 
@@ -84,7 +85,7 @@ Weitere Informationen zu den Konfigurationsoptionen, die von der Microsoft-Konto
 
 ## <a name="sign-in-with-microsoft-account"></a>Bei Microsoft anmelden Konto
 
-Führen Sie die APP aus, und klicken Sie auf **Anmelden**. Eine Option zum Anmelden bei Microsoft wird angezeigt. Wenn Sie auf Microsoft klicken, werden Sie zur Authentifizierung an Microsoft umgeleitet. Nachdem Sie sich mit Ihrem Microsoft-Konto angemeldet haben, werden Sie aufgefordert, der APP den Zugriff auf Ihre Informationen zu gestatten:
+Führen Sie die APP aus, und klicken Sie auf **Anmelden** . Eine Option zum Anmelden bei Microsoft wird angezeigt. Wenn Sie auf Microsoft klicken, werden Sie zur Authentifizierung an Microsoft umgeleitet. Nachdem Sie sich mit Ihrem Microsoft-Konto angemeldet haben, werden Sie aufgefordert, der APP den Zugriff auf Ihre Informationen zu gestatten:
 
 Tippen Sie auf **Ja** , und Sie werden zurück an die Website umgeleitet, auf der Sie Ihre e-Mail festlegen können.
 
@@ -99,7 +100,7 @@ Sie sind jetzt mit Ihren Microsoft-Anmelde Informationen angemeldet:
 * Wenn der Microsoft-Konto Anbieter Sie an eine Anmeldefehler Seite weiterleitet, beachten Sie die Parameter für die Fehler Titel und die Beschreibungs Abfrage Zeichenfolge direkt nach dem `#` (hashtag) im URI.
 
   Obwohl in der Fehlermeldung ein Problem mit der Microsoft-Authentifizierung angezeigt wird, ist die häufigste Ursache, dass ihr Anwendungs-URI mit keinem der für die **Webplattform** angegebenen **Umleitungs-URIs** übereinstimmt.
-* Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, führt der Versuch, sich zu authentifizieren, zu *argumumtexception: die Option "signinscheme" muss angegeben werden*. Die in diesem Beispiel verwendete Projektvorlage stellt sicher, dass dies abgeschlossen ist.
+* Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, führt der Versuch, sich zu authentifizieren, zu *argumumtexception: die Option "signinscheme" muss angegeben werden* . Die in diesem Beispiel verwendete Projektvorlage stellt sicher, dass dies abgeschlossen ist.
 * Wenn die Standortdatenbank nicht durch Anwenden der anfänglichen Migration erstellt wurde, wird *bei der Verarbeitung des Anforderungs Fehlers ein Daten Bank Vorgang* nicht ausgeführt. Tippen Sie auf **Migrations anwenden** , um die Datenbank zu erstellen und zu aktualisieren, um den Fehler zu überschreiten.
 
 ## <a name="next-steps"></a>Nächste Schritte

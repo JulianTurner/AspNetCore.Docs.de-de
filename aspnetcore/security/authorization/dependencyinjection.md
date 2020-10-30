@@ -5,33 +5,34 @@ description: Erfahren Sie, wie Sie Autorisierungs Anforderungs Handler mithilfe 
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
-- ASP.NET Core Identity
-- cookie
-- Cookie
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(appsettings.json):::'
+- ':::no-loc(ASP.NET Core Identity):::'
+- ':::no-loc(cookie):::'
+- ':::no-loc(Cookie):::'
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: security/authorization/dependencyinjection
-ms.openlocfilehash: 4bc7eb38262c8a94a84aacc978737a778bfd71a1
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6598a9c9cfd1e6597fffcc1aa0c53fa493532458
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632563"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060260"
 ---
-# <a name="dependency-injection-in-requirement-handlers-in-aspnet-core"></a><span data-ttu-id="de208-103">Abhängigkeitsinjektion in Anforderungs Handlern in ASP.net Core</span><span class="sxs-lookup"><span data-stu-id="de208-103">Dependency injection in requirement handlers in ASP.NET Core</span></span>
+# <a name="dependency-injection-in-requirement-handlers-in-aspnet-core"></a><span data-ttu-id="04bc8-103">Abhängigkeitsinjektion in Anforderungs Handlern in ASP.net Core</span><span class="sxs-lookup"><span data-stu-id="04bc8-103">Dependency injection in requirement handlers in ASP.NET Core</span></span>
 
 <a name="security-authorization-di"></a>
 
-<span data-ttu-id="de208-104">[Autorisierungs Handler müssen](xref:security/authorization/policies#handler-registration) während der Konfiguration in der Dienst Auflistung registriert werden (mithilfe von [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection)).</span><span class="sxs-lookup"><span data-stu-id="de208-104">[Authorization handlers must be registered](xref:security/authorization/policies#handler-registration) in the service collection during configuration (using [dependency injection](xref:fundamentals/dependency-injection)).</span></span>
+<span data-ttu-id="04bc8-104">[Autorisierungs Handler müssen](xref:security/authorization/policies#handler-registration) während der Konfiguration mithilfe von [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection)in der Dienst Auflistung registriert werden.</span><span class="sxs-lookup"><span data-stu-id="04bc8-104">[Authorization handlers must be registered](xref:security/authorization/policies#handler-registration) in the service collection during configuration using [dependency injection](xref:fundamentals/dependency-injection).</span></span>
 
-<span data-ttu-id="de208-105">Angenommen, Sie hatten ein Repository von Regeln, die Sie innerhalb eines Autorisierungs Handlers auswerten wollten, und dieses Repository wurde in der Dienst Sammlung registriert.</span><span class="sxs-lookup"><span data-stu-id="de208-105">Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection.</span></span> <span data-ttu-id="de208-106">Die Autorisierung wird aufgelöst und in den Konstruktor eingefügt.</span><span class="sxs-lookup"><span data-stu-id="de208-106">Authorization will resolve and inject that into your constructor.</span></span>
+<span data-ttu-id="04bc8-105">Angenommen, Sie hatten ein Repository von Regeln, die Sie innerhalb eines Autorisierungs Handlers auswerten wollten, und dieses Repository wurde in der Dienst Sammlung registriert.</span><span class="sxs-lookup"><span data-stu-id="04bc8-105">Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection.</span></span> <span data-ttu-id="04bc8-106">Die Autorisierung wird aufgelöst und in den Konstruktor eingefügt.</span><span class="sxs-lookup"><span data-stu-id="04bc8-106">Authorization resolves and injects that into the constructor.</span></span>
 
-<span data-ttu-id="de208-107">Wenn Sie z. b. asp verwenden möchten. Die Protokollierungs Infrastruktur von NET, die Sie `ILoggerFactory` in ihren Handler einfügen möchten.</span><span class="sxs-lookup"><span data-stu-id="de208-107">For example, if you wanted to use ASP.NET's logging infrastructure you would want to inject `ILoggerFactory` into your handler.</span></span> <span data-ttu-id="de208-108">Ein solcher Handler könnte wie folgt aussehen:</span><span class="sxs-lookup"><span data-stu-id="de208-108">Such a handler might look like:</span></span>
+<span data-ttu-id="04bc8-107">Beispielsweise zur Verwendung von ASP. Die Protokollierungs Infrastruktur von NET, eingefügt `ILoggerFactory` in den-Handler.</span><span class="sxs-lookup"><span data-stu-id="04bc8-107">For example, to use ASP.NET's logging infrastructure, inject `ILoggerFactory` into the handler.</span></span> <span data-ttu-id="04bc8-108">Ein solcher Handler könnte wie der folgende Code aussehen:</span><span class="sxs-lookup"><span data-stu-id="04bc8-108">Such a handler might look like the following code:</span></span>
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
@@ -52,13 +53,13 @@ public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
    }
    ```
 
-<span data-ttu-id="de208-109">Sie registrieren den Handler wie folgt `services.AddSingleton()` :</span><span class="sxs-lookup"><span data-stu-id="de208-109">You would register the handler with `services.AddSingleton()`:</span></span>
+<span data-ttu-id="04bc8-109">Der vorangehende Handler kann bei jeder [Dienst Lebensdauer](/dotnet/core/extensions/dependency-injection#service-lifetimes)registriert werden.</span><span class="sxs-lookup"><span data-stu-id="04bc8-109">The preceding handler can be registered with any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes).</span></span> <span data-ttu-id="04bc8-110">Der folgende Code verwendet `AddSingleton` , um den vorangehenden Handler zu registrieren:</span><span class="sxs-lookup"><span data-stu-id="04bc8-110">The following code uses `AddSingleton` to register the preceding handler:</span></span>
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
 ```
 
-<span data-ttu-id="de208-110">Eine Instanz des-Handlers wird erstellt, wenn die Anwendung gestartet wird, und di fügt die registrierte `ILoggerFactory` in ihren Konstruktor ein.</span><span class="sxs-lookup"><span data-stu-id="de208-110">An instance of the handler will be created when your application starts, and DI will inject the registered `ILoggerFactory` into your constructor.</span></span>
+<span data-ttu-id="04bc8-111">Eine Instanz des-Handlers wird erstellt, wenn die APP gestartet wird, und di fügt die registrierte `ILoggerFactory` in den Konstruktor ein.</span><span class="sxs-lookup"><span data-stu-id="04bc8-111">An instance of the handler is created when the app starts, and DI injects the registered `ILoggerFactory` into the constructor.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="de208-111">Handler, die Entity Framework verwenden, sollten nicht als Singletons registriert werden.</span><span class="sxs-lookup"><span data-stu-id="de208-111">Handlers that use Entity Framework shouldn't be registered as singletons.</span></span>
+> <span data-ttu-id="04bc8-112">Handler, die Entity Framework verwenden, sollten nicht als Singletons registriert werden.</span><span class="sxs-lookup"><span data-stu-id="04bc8-112">Handlers that use Entity Framework shouldn't be registered as singletons.</span></span>

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: c79dfc64d4311088c3f9ea03aad7570189000e2a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 813dd7837c265c78c584d66dd51bc23399d12fbe
+ms.sourcegitcommit: 5156eab2118584405eb663e1fcd82f8bd7764504
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053318"
+ms.lasthandoff: 10/31/2020
+ms.locfileid: "93141494"
 ---
 # <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a>Gerüst Identity in ASP.net Core Projekten
 
@@ -372,6 +372,14 @@ Nehmen Sie in der Datei *pages/Shared/Layout. cshtml* die folgenden Änderungen 
 
 Einige Identity Optionen sind in " *Bereiche/ Identity / Identity HostingStartup.cs* " konfiguriert. Weitere Informationen finden Sie unter [ihostingstartup](xref:fundamentals/configuration/platform-specific-configuration).
 
+## <a name="standalone-or-hosted-no-locblazor-webassembly-apps"></a>Eigenständige oder gehostete Blazor WebAssembly apps
+
+Client seitige Blazor WebAssembly Apps verwenden Ihre eigenen Identity Benutzeroberflächen Ansätze und können Gerüstbau nicht verwenden ASP.NET Core Identity . Server seitige ASP.net Core-apps von gehosteten Blazor Lösungen können den Razor Seiten/MVC-Anleitungen in diesem Artikel folgen und werden wie jede andere Art von ASP.net Core-App konfiguriert, die unterstützt Identity .
+
+Das Blazor Framework enthält keine Razor Komponenten Versionen von Identity UI-Seiten. Identity UI- Razor Komponenten können Benutzer definiert erstellt oder aus nicht unterstützten Quellen von Drittanbietern abgerufen werden.
+
+Weitere Informationen finden Sie in den [ Blazor Artikeln zu Sicherheit und Identity Artikeln](xref:blazor/security/index).
+
 <a name="full"></a>
 
 ## <a name="create-full-no-locidentity-ui-source"></a>Vollständige Identity Benutzeroberflächen Quelle erstellen
@@ -418,7 +426,7 @@ In diesem Abschnitt wird gezeigt, wie Sie die Registerseite deaktivieren, aber d
 
 So deaktivieren Sie die Benutzerregistrierung:
 
-* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Zum Beispiel:
+* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Beispiel:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -550,7 +558,7 @@ Identitywird in *Areas/ Identity / Identity HostingStartup.cs* konfiguriert. Wei
 
 ### <a name="enable-authentication"></a>Authentifizierung aktivieren
 
-In der- `Configure` Methode der- `Startup` Klasse wird [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) nach folgenden Aktionen aufgerufen `UseStaticFiles` :
+Nennen Sie in der- `Configure` Methode der- `Startup` Klasse <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> nach `UseStaticFiles` :
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
@@ -607,7 +615,7 @@ Identitywird in *Areas/ Identity / Identity HostingStartup.cs* konfiguriert. Wei
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-[UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) nach folgenden Aktionen abrufen `UseStaticFiles` :
+Anrufen <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> nach `UseStaticFiles` :
 
 [!code-csharp[](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
 
@@ -671,7 +679,7 @@ Wenn <xref:Microsoft.AspNetCore.Identity.PasswordOptions> in konfiguriert `Start
 
 So deaktivieren Sie die Benutzerregistrierung:
 
-* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Zum Beispiel:
+* Gerüstbau Identity . Schließen Sie Account. Register, Account. Login und Account. registerconfirmation ein. Beispiel:
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"

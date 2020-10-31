@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: getting-started
-ms.openlocfilehash: afded8890afe3b8f7b1d0b5634fc7764906bc9d7
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: fef5ae525a7c01d0ea7733e990233f413aac61a7
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635007"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057790"
 ---
 # <a name="tutorial-get-started-with-aspnet-core"></a>Tutorial: Erste Schritte mit ASP.NET Core
 
@@ -71,7 +72,7 @@ dotnet dev-certs https --trust
 
 ![Dialogfeld „Sicherheitswarnung“](~/getting-started/_static/cert.png)
 
-Klicken Sie auf **Ja**, wenn Sie zustimmen möchten, dass das Entwicklungszertifikat vertrauenswürdig ist.
+Klicken Sie auf **Ja** , wenn Sie zustimmen möchten, dass das Entwicklungszertifikat vertrauenswürdig ist.
 
 # <a name="macos"></a>[macOS](#tab/macos)
 
@@ -106,7 +107,7 @@ Nachdem die Befehlsshell angibt, dass die App gestartet wurde, müssen Sie zu `h
 
 ## <a name="edit-a-no-locrazor-page"></a>Bearbeiten einer Razor-Seite
 
-Öffnen Sie *Pages/Index.cshtml*, und ändern und speichern Sie die Seite mit dem folgenden hervorgehobenen Markup:
+Öffnen Sie *Pages/Index.cshtml* , und ändern und speichern Sie die Seite mit dem folgenden hervorgehobenen Markup:
 
 [!code-cshtml[](sample/index.cshtml?highlight=9)]
 

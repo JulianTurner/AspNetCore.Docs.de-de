@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: f198cef0cf990dcc2806d3967130db64af47c1d0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6110f51eb5d5ee40d6ce5a5d49ddda3329d1f033
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627831"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055541"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Authentifizierung und Autorisierung in ASP.NET Core Blazor
 
@@ -246,8 +247,8 @@ Nachdem ein Benutzer authentifiziert wurde, werden *Autorisierungsregeln* angewe
 In der Regel wird der Zugriff in Abhängigkeit von folgenden Punkten gewährt oder verweigert:
 
 * Ein Benutzer ist authentifiziert (angemeldet).
-* Ein Benutzer hat eine *Rolle*.
-* Ein Benutzer hat einen *Anspruch*.
+* Ein Benutzer hat eine *Rolle* .
+* Ein Benutzer hat einen *Anspruch* .
 * Ein *Richtlinie* wird erfüllt.
 
 Jedes dieser Konzepte entspricht dem einer ASP.NET Core MVC- oder Razor Pages-App. Weitere Informationen zu ASP.NET Core-Sicherheit finden Sie im Artikel unter [ASP.NET Core-Sicherheit und -Identität](xref:security/index).

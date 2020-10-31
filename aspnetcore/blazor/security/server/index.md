@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: d6d0f6f859dbaef98c6c8a9c53fe9858705cdc0a
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 108fb3a8a24295cad43fd8c83303abd95a7ecd33
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805504"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055476"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Schützen von Blazor Server-Apps von ASP.NET Core
 
@@ -44,7 +45,7 @@ Nachdem Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Vorla
 Ein Dialogfeld wird geöffnet, in dem dieselben Authentifizierungsmechanismen angeboten werden, die auch für andere ASP.NET-Core-Projekte verfügbar sind:
 
 * **Keine Authentifizierung**
-* **Einzelne Benutzerkonten**: Benutzerkonten können wie folgt gespeichert werden:
+* **Einzelne Benutzerkonten** : Benutzerkonten können wie folgt gespeichert werden:
   * Innerhalb der App anhand des Systems [Identity](xref:security/authentication/identity) von ASP.NET Core.
   * Mit [Azure AD B2C](xref:security/authentication/azure-ad-b2c).
 * **Geschäfts-, Schul- oder Unikonten**

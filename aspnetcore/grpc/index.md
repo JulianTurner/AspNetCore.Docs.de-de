@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/20/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/index
-ms.openlocfilehash: 4a2f86d906c7b268b1fb2a63c50a1b8f0dd2b154
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 80f44e3845cc1e3c87d5d657807a318eb65e6c6f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633187"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059896"
 ---
 # <a name="introduction-to-grpc-on-net-core"></a>Einführung in gRPC in .NET Core
 
@@ -46,7 +47,7 @@ gRPC ist für die folgenden Komponenten besonders geeignet:
 
 ## <a name="c-tooling-support-for-proto-files"></a>C#-Toolunterstützung für PROTO-Dateien
 
-gRPC verwendet einen Vertrag zuerst-Ansatz für die API-Entwicklung. Dienste und Nachrichten werden in *\*.proto*-Dateien definiert:
+gRPC verwendet einen Vertrag zuerst-Ansatz für die API-Entwicklung. Dienste und Nachrichten werden in *\*.proto* -Dateien definiert:
 
 ```protobuf
 syntax = "proto3";
@@ -64,10 +65,10 @@ message HelloReply {
 }
 ```
 
-.NET-Typen für Dienste, Clients und Nachrichten werden automatisch generiert, indem *\*.proto*-Dateien in ein Projekt eingeschlossen werden:
+.NET-Typen für Dienste, Clients und Nachrichten werden automatisch generiert, indem *\*.proto* -Dateien in ein Projekt eingeschlossen werden:
 
 * Fügen Sie dem [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)-Paket einen Paketverweis hinzu.
-* Fügen Sie der `<Protobuf>`-Elementgruppe *\*.proto*-Dateien hinzu.
+* Fügen Sie der `<Protobuf>`-Elementgruppe *\*.proto* -Dateien hinzu.
 
 ```xml
 <ItemGroup>
@@ -105,7 +106,7 @@ public class GreeterService : Greeter.GreeterBase
 }
 ```
 
-`GreeterService` erbt vom `GreeterBase`-Typ, der aus dem `Greeter`-Dienst in der *\*.proto*-Datei generiert wird. Der Dienst wird für Clients in *Startup.cs* verfügbar gemacht:
+`GreeterService` erbt vom `GreeterBase`-Typ, der aus dem `Greeter`-Dienst in der *\*.proto* -Datei generiert wird. Der Dienst wird für Clients in *Startup.cs* verfügbar gemacht:
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -118,7 +119,7 @@ Weitere Informationen zu gRPC-Diensten in ASP.NET Core finden Sie unter <xref:gr
 
 ## <a name="call-grpc-services-with-a-net-client"></a>Aufrufen von gRPC-Diensten mithilfe eines .NET-Clients
 
-gRPC-Clients sind konkrete Clienttypen, [die aus *\*.proto*Dateien generiert werden](xref:grpc/basics#generated-c-assets). Der konkrete gRPC-Client verfügt über Methoden, die in den gRPC-Dienst in der *\*.proto*-Datei übersetzt werden.
+gRPC-Clients sind konkrete Clienttypen, [die aus *\*.proto* Dateien generiert werden](xref:grpc/basics#generated-c-assets). Der konkrete gRPC-Client verfügt über Methoden, die in den gRPC-Dienst in der *\*.proto* -Datei übersetzt werden.
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");

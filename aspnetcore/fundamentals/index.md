@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/30/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/index
-ms.openlocfilehash: 8fa44f567906ecf36a9bbaa5076cd36c75c10781
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 25348f8486ec6ccb53ebf527ad4519638dd5f73e
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634877"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059376"
 ---
 # <a name="aspnet-core-fundamentals"></a>ASP.NET Core – Grundlagen
 
@@ -48,7 +49,7 @@ Weitere Informationen finden Sie unter <xref:fundamentals/startup>.
 
 ASP.NET Core umfasst ein integriertes DI-Framework (Dependency Injection), durch das konfigurierte Dienste in einer App bereitgestellt werden. Eine Protokollierungskomponente stellt beispielsweise einen Dienst dar.
 
-wird Code, der Dienste konfiguriert (oder *registriert*) der `Startup.ConfigureServices`-Methode hinzugefügt. Zum Beispiel:
+wird Code, der Dienste konfiguriert (oder *registriert* ) der `Startup.ConfigureServices`-Methode hinzugefügt. Zum Beispiel:
 
 [!code-csharp[](index/samples_snapshot/3.x/ConfigureServices.cs)]
 
@@ -100,7 +101,7 @@ Im folgenden Beispiel wird ein neuer generischer .NET-Host erstellt:
 Mit den Methoden `CreateDefaultBuilder` und `ConfigureWebHostDefaults` wird ein Host mit mehreren Standardoptionen konfiguriert, zum Beispiel:
 
 * Verwenden von [Kestrel](#servers) als Webserver, und aktivieren der Integration von Internetinformationsdiensten.
-* Laden der Konfiguration aus *appsettings.json*, *appsettings.[EnvironmentName].json*, Umgebungsvariablen, Befehlszeilenargumenten und anderen Konfigurationsquellen.
+* Laden der Konfiguration aus *appsettings.json* , *appsettings.[EnvironmentName].json* , Umgebungsvariablen, Befehlszeilenargumenten und anderen Konfigurationsquellen.
 * Senden von Protokollausgaben an die Konsole und Debuggen von Anbietern.
 
 Weitere Informationen finden Sie unter <xref:fundamentals/host/generic-host>.
@@ -135,9 +136,9 @@ Weitere Informationen finden Sie unter <xref:fundamentals/servers/index>.
 
 ## <a name="configuration"></a>Konfiguration
 
-ASP.NET Core bietet ein Konfigurationsframework, das Einstellungen als Name/Wert-Paare aus einer geordneten Menge von Konfigurationsanbietern abruft. Integrierte Konfigurationsanbieter stehen für eine Vielzahl von Quellen zur Verfügung, z. B. für *JSON*-Dateien, *XML*-Dateien, Umgebungsvariablen und Befehlszeilenargumente. Schreiben Sie benutzerdefinierte Konfigurationsanbieter, um andere Quellen zu unterstützen.
+ASP.NET Core bietet ein Konfigurationsframework, das Einstellungen als Name/Wert-Paare aus einer geordneten Menge von Konfigurationsanbietern abruft. Integrierte Konfigurationsanbieter stehen für eine Vielzahl von Quellen zur Verfügung, z. B. für *JSON* -Dateien, *XML* -Dateien, Umgebungsvariablen und Befehlszeilenargumente. Schreiben Sie benutzerdefinierte Konfigurationsanbieter, um andere Quellen zu unterstützen.
 
-ASP.NET Core-Apps werden [standardmäßig](xref:fundamentals/configuration/index#default) zum Lesen aus *appsettings.json*, Umgebungsvariablen, der Befehlszeile und mehr konfiguriert. Wenn die Konfiguration der App geladen wird, überschreiben Werte aus Umgebungsvariablen die Werte von *appsettings.json*.
+ASP.NET Core-Apps werden [standardmäßig](xref:fundamentals/configuration/index#default) zum Lesen aus *appsettings.json* , Umgebungsvariablen, der Befehlszeile und mehr konfiguriert. Wenn die Konfiguration der App geladen wird, überschreiben Werte aus Umgebungsvariablen die Werte von *appsettings.json* .
 
 Die bevorzugte Methode für das Lesen zugehöriger Konfigurationswerte ist die Verwendung des [Optionsmusters](xref:fundamentals/configuration/options). Weitere Informationen finden Sie unter [Binden hierarchischer Konfigurationsdaten mit dem Optionsmuster](xref:fundamentals/configuration/index#optpat).
 
@@ -196,9 +197,9 @@ Weitere Informationen finden Sie unter <xref:fundamentals/error-handling>.
 
 Eine Implementierung von `IHttpClientFactory` ist verfügbar zum Erstellen von `HttpClient`-Instanzen. Die Factory:
 
-* Ein zentraler Ort für das Benennen und Konfigurieren logischer `HttpClient`-Instanzen wird damit geboten. Registrieren und konfigurieren Sie beispielsweise einen *GitHub*-Client für den Zugriff auf GitHub. Registrieren und konfigurieren Sie einen Standardclient für andere Zwecke.
+* Ein zentraler Ort für das Benennen und Konfigurieren logischer `HttpClient`-Instanzen wird damit geboten. Registrieren und konfigurieren Sie beispielsweise einen *GitHub* -Client für den Zugriff auf GitHub. Registrieren und konfigurieren Sie einen Standardclient für andere Zwecke.
 * Unterstützt die Registrierung und Verkettung von mehreren delegierenden Handlern, um eine Pipeline für die Middleware für ausgehende Anforderungen zu erstellen. Dieses Muster ähnelt der eingehenden Middlewarepipeline von ASP.NET Core. Das Muster bietet einen Mechanismus zum Verwalten von übergreifenden Belangen für HTTP-Anforderungen, einschließlich der Zwischenspeicherung, Fehlerbehandlung, Serialisierung und Protokollierung.
-* Integrierbar in *Polly*, eine beliebte Drittanbieter-Bibliothek zur Behandlung vorübergehender Fehler.
+* Integrierbar in *Polly* , eine beliebte Drittanbieter-Bibliothek zur Behandlung vorübergehender Fehler.
 * Das Pooling und die Lebensdauer von zugrunde liegenden `HttpClientHandler`-Instanzen werden verwaltet, um gängige DNS-Probleme zu vermeiden, die bei der manuellen Verwaltung der `HttpClient`-Lebensdauer auftreten.
 * Eine konfigurierbare Protokollierungsfunktion wird über <xref:Microsoft.Extensions.Logging.ILogger> für alle Anforderungen hinzugefügt, die über Clients gesendet werden, die von der Factory erstellt wurden.
 
@@ -208,12 +209,12 @@ Weitere Informationen finden Sie unter <xref:fundamentals/http-requests>.
 
 Der Inhaltsstamm ist der Basispfad für:
 
-* Die ausführbare Datei, die die App hostet ( *.exe*).
-* Kompilierten Assemblys, die die App bilden ( *.dll*).
+* Die ausführbare Datei, die die App hostet ( *.exe* ).
+* Kompilierten Assemblys, die die App bilden ( *.dll* ).
 * Inhaltsdateien, die von der App verwendet werden, z. B.:
-  * Razor-Dateien ( *.cshtml*, *.razor*)
-  * Konfigurationsdateien ( *.json*, *.xml*)
-  * Datendateien ( *.db*)
+  * Razor-Dateien ( *.cshtml* , *.razor* )
+  * Konfigurationsdateien ( *.json* , *.xml* )
+  * Datendateien ( *.db* )
 * Der [Webstamm](#web-root), in der Regel der Ordner *wwwroot*
 
 Während der Entwicklung wird standardmäßig das Stammverzeichnis des Projekts als Inhaltsstamm verwendet. Dieses Verzeichnis ist auch der Basispfad für die Inhaltsdateien der App und den [Webstamm](#web-root). Sie können einen anderen Inhaltsstamm festlegen, indem Sie den entsprechenden Pfad beim [Erstellen des Hosts](#host) festlegen. Weitere Informationen finden Sie unter [Inhaltsstamm](xref:fundamentals/host/generic-host#contentroot).
@@ -222,9 +223,9 @@ Während der Entwicklung wird standardmäßig das Stammverzeichnis des Projekts 
 
 Der Webstamm ist der Basispfad für öffentliche, statische Ressourcendateien, zum Beispiel:
 
-* Stylesheets ( *.css*)
-* JavaScript ( *.js*)
-* Bilder ( *.png*, *.jpg*)
+* Stylesheets ( *.css* )
+* JavaScript ( *.js* )
+* Bilder ( *.png* , *.jpg* )
 
 Statische Dateien werden standardmäßig nur aus dem Webstammverzeichnis und dessen Unterverzeichnissen bereitgestellt. Standardmäßig lautet der Webstammpfad *{Inhaltsstamm}/wwwroot*. Sie können einen anderen Webstamm festlegen, indem Sie den entsprechenden Pfad beim [Erstellen des Hosts](#host) festlegen. Weitere Informationen finden Sie unter [Webstamm](xref:fundamentals/host/generic-host#webroot).
 
@@ -236,7 +237,7 @@ Verhindern Sie das Veröffentlichen von Dateien in *wwwroot* mit dem [\<Content>
 </ItemGroup>
 ```
 
-In Razor-Dateien ( *.cshtml*) verweisen Tilde und Schrägstrich (`~/`) auf den Webstamm. Ein mit `~/` beginnender Pfad wird als *virtueller Pfad* bezeichnet.
+In Razor-Dateien ( *.cshtml* ) verweisen Tilde und Schrägstrich (`~/`) auf den Webstamm. Ein mit `~/` beginnender Pfad wird als *virtueller Pfad* bezeichnet.
 
 Weitere Informationen finden Sie unter <xref:fundamentals/static-files>.
 
@@ -253,7 +254,7 @@ In der `Startup`-Klasse:
 * werden die von der App erforderlichen Dienste konfiguriert.
 * wird die Pipeline zur Anforderungsverarbeitung definiert.
 
-*Dienste* sind Komponenten, die von der App verwendet werden. Eine Protokollierungskomponente stellt beispielsweise einen Dienst dar. wird Code, der Dienste konfiguriert (oder *registriert*) der `Startup.ConfigureServices`-Methode hinzugefügt.
+*Dienste* sind Komponenten, die von der App verwendet werden. Eine Protokollierungskomponente stellt beispielsweise einen Dienst dar. wird Code, der Dienste konfiguriert (oder *registriert* ) der `Startup.ConfigureServices`-Methode hinzugefügt.
 
 Die Pipeline zur Anforderungsverarbeitung besteht aus mehreren *Middlewarekomponenten*. Eine Middleware kann beispielsweise Anforderungen für statische Dateien verarbeiten oder HTTP-Anforderungen zu HTTPS umleiten. Jede Middleware führt asynchrone Operationen in einem `HttpContext` aus und ruft anschließend entweder die nächste Middleware in der Pipeline auf oder beendet die Anforderung. Code zum Konfigurieren der Pipeline zur Anforderungsverarbeitung wird der `Startup.Configure`-Methode hinzugefügt.
 
@@ -310,7 +311,7 @@ Der Code zum Erstellen eines Hosts befindet sich in `Program.Main`:
 Die Methode `CreateDefaultBuilder` konfiguriert einen Host mit häufig verwendeten Optionen wie den folgenden:
 
 * Verwenden von [Kestrel](#servers) als Webserver, und aktivieren der Integration von Internetinformationsdiensten.
-* Laden der Konfiguration aus *appsettings.json*, *appsettings.[EnvironmentName].json*, Umgebungsvariablen, Befehlszeilenargumenten und anderen Konfigurationsquellen.
+* Laden der Konfiguration aus *appsettings.json* , *appsettings.[EnvironmentName].json* , Umgebungsvariablen, Befehlszeilenargumenten und anderen Konfigurationsquellen.
 * Senden von Protokollausgaben an die Konsole und Debuggen von Anbietern.
 
 Weitere Informationen finden Sie unter <xref:fundamentals/host/web-host>.
@@ -374,9 +375,9 @@ Weitere Informationen finden Sie unter <xref:fundamentals/servers/index>.
 
 ## <a name="configuration"></a>Konfiguration
 
-ASP.NET Core bietet ein Konfigurationsframework, das Einstellungen als Name/Wert-Paare aus einer geordneten Menge von Konfigurationsanbietern abruft. Integrierte Konfigurationsanbieter gibt es für zahlreiche Quellen wie *.json*-Dateien, *.xml*-Dateien, Umgebungsvariablen und Befehlszeilenargumente. Sie können auch benutzerdefinierte Konfigurationsanbieter schreiben.
+ASP.NET Core bietet ein Konfigurationsframework, das Einstellungen als Name/Wert-Paare aus einer geordneten Menge von Konfigurationsanbietern abruft. Integrierte Konfigurationsanbieter gibt es für zahlreiche Quellen wie *.json* -Dateien, *.xml* -Dateien, Umgebungsvariablen und Befehlszeilenargumente. Sie können auch benutzerdefinierte Konfigurationsanbieter schreiben.
 
-Zum Beispiel könnten Sie angeben, dass die Konfiguration aus *appsettings.json* und Umgebungsvariablen stammt. Wenn dann der *ConnectionString*-Wert angefordert wird, sucht das Framework zuerst in der *appsettings.json*-Datei. Wenn der Wert sowohl dort als auch in einer Umgebungsvariablen gefunden wird, hat der Wert aus der Umgebungsvariablen Vorrang.
+Zum Beispiel könnten Sie angeben, dass die Konfiguration aus *appsettings.json* und Umgebungsvariablen stammt. Wenn dann der *ConnectionString* -Wert angefordert wird, sucht das Framework zuerst in der *appsettings.json* -Datei. Wenn der Wert sowohl dort als auch in einer Umgebungsvariablen gefunden wird, hat der Wert aus der Umgebungsvariablen Vorrang.
 
 Zum Verwalten von vertraulichen Konfigurationsdaten wie Passwörtern bietet ASP.NET Core ein [Geheimnisverwaltungstool](xref:security/app-secrets). Für Produktionsgeheimnisse empfehlen wir [Azure Key Vault](xref:security/key-vault-configuration).
 
@@ -394,7 +395,7 @@ Weitere Informationen finden Sie unter <xref:fundamentals/configuration/options>
 
 ## <a name="environments"></a>Umgebungen
 
-Ausführungsumgebungen wie *Entwicklung*, *Staging* und *Produktion* sind in ASP.NET Core von besonderer Bedeutung. Um die Umgebung anzugeben, in der eine App ausgeführt wird, stellen Sie die `ASPNETCORE_ENVIRONMENT`-Umgebungsvariable ein. ASP.NET Core liest diese Umgebungsvariable beim Start der App und speichert den Wert in einer `IHostingEnvironment`-Implementierung. Das Umgebungsobjekt ist in der gesamten App mithilfe der Dependency Injection verfügbar.
+Ausführungsumgebungen wie *Entwicklung* , *Staging* und *Produktion* sind in ASP.NET Core von besonderer Bedeutung. Um die Umgebung anzugeben, in der eine App ausgeführt wird, stellen Sie die `ASPNETCORE_ENVIRONMENT`-Umgebungsvariable ein. ASP.NET Core liest diese Umgebungsvariable beim Start der App und speichert den Wert in einer `IHostingEnvironment`-Implementierung. Das Umgebungsobjekt ist in der gesamten App mithilfe der Dependency Injection verfügbar.
 
 Im folgenden Codebeispiel aus der `Startup`-Klasse wird die App so konfiguriert, dass detaillierte Fehlerinformationen nur bereitgestellt werden, wenn die App in der Entwicklung ausgeführt wird:
 
@@ -445,9 +446,9 @@ Weitere Informationen finden Sie unter <xref:fundamentals/error-handling>.
 
 Eine Implementierung von `IHttpClientFactory` ist verfügbar zum Erstellen von `HttpClient`-Instanzen. Die Factory:
 
-* Ein zentraler Ort für das Benennen und Konfigurieren logischer `HttpClient`-Instanzen wird damit geboten. Zum Beispiel kann ein *github*-Client für den Zugriff auf GitHub registriert und konfiguriert werden. Ein Standard-Client kann für andere Zwecke registriert werden.
+* Ein zentraler Ort für das Benennen und Konfigurieren logischer `HttpClient`-Instanzen wird damit geboten. Zum Beispiel kann ein *github* -Client für den Zugriff auf GitHub registriert und konfiguriert werden. Ein Standard-Client kann für andere Zwecke registriert werden.
 * Unterstützt die Registrierung und Verkettung von mehreren delegierenden Handlern, um eine Pipeline für die Middleware für ausgehende Anforderungen zu erstellen. Dieses Muster ähnelt der eingehenden Pipeline für Middleware in ASP.NET Core. Das Muster bietet einen Mechanismus zum Verwalten von übergreifenden Belangen bezüglich HTTP-Anforderungen, einschließlich der Zwischenspeicherung, Fehlerbehandlung, Serialisierung und Protokollierung.
-* Integrierbar in *Polly*, eine beliebte Drittanbieter-Bibliothek zur Behandlung vorübergehender Fehler.
+* Integrierbar in *Polly* , eine beliebte Drittanbieter-Bibliothek zur Behandlung vorübergehender Fehler.
 * Das Pooling und die Lebensdauer von zugrunde liegenden `HttpClientHandler`-Instanzen werden verwaltet, um gängige DNS-Probleme zu vermeiden, die bei der manuellen Verwaltung der `HttpClient`-Lebensdauer auftreten.
 * Eine konfigurierbare Protokollierungsfunktion wird (über `ILogger`) für alle Anforderungen hinzugefügt, die über Clients gesendet werden, die von der Factory erstellt wurden.
 
@@ -457,12 +458,12 @@ Weitere Informationen finden Sie unter <xref:fundamentals/http-requests>.
 
 Der Inhaltsstamm ist der Basispfad zu Folgendem:
 
-* Der ausführbaren Datei ( *.exe*), die die App hostet.
-* Kompilierten Assemblys, die die App bilden ( *.dll*).
+* Der ausführbaren Datei ( *.exe* ), die die App hostet.
+* Kompilierten Assemblys, die die App bilden ( *.dll* ).
 * Inhaltsdateien ohne Code, die von der App verwendet werden, wie z. B.:
-  * Razor-Dateien ( *.cshtml*, *.razor*)
-  * Konfigurationsdateien ( *.json*, *.xml*)
-  * Datendateien ( *.db*)
+  * Razor-Dateien ( *.cshtml* , *.razor* )
+  * Konfigurationsdateien ( *.json* , *.xml* )
+  * Datendateien ( *.db* )
 * [Webstamm](#web-root), in der Regel der veröffentlichte Ordner *wwwroot*.
 
 Entwicklungsphase:
@@ -478,15 +479,15 @@ Ein alternativer Inhaltsstammpfad kann beim [Erstellen des Hosts](#host) angegeb
 
 Der Webstamm ist der Basispfad zu öffentlichen, statischen Ressourcendateien ohne Code, wie z. B.:
 
-* Stylesheets ( *.css*)
-* JavaScript ( *.js*)
-* Bilder ( *.png*, *.jpg*)
+* Stylesheets ( *.css* )
+* JavaScript ( *.js* )
+* Bilder ( *.png* , *.jpg* )
 
 Statische Dateien werden standardmäßig nur aus dem Webstammverzeichnis (samt Unterverzeichnissen) bereitgestellt.
 
 Der Webstammpfad ist standardmäßig auf *{Inhaltsstamm}/wwwroot* festgelegt, doch beim [Erstellen des Hosts](#host) kann ein anderer Webstamm angegeben werden. Weitere Informationen finden Sie unter [Webstamm](xref:fundamentals/host/web-host#web-root).
 
-Verhindern Sie das Veröffentlichen von Dateien in *wwwroot* mit dem [\<Content>-Projektelement](/visualstudio/msbuild/common-msbuild-project-items#content) in der Projektdatei. Im folgenden Beispiel wird verhindert, dass Inhalte im *wwwroot/local*-Verzeichnis und in Unterverzeichnisse veröffentlicht werden:
+Verhindern Sie das Veröffentlichen von Dateien in *wwwroot* mit dem [\<Content>-Projektelement](/visualstudio/msbuild/common-msbuild-project-items#content) in der Projektdatei. Im folgenden Beispiel wird verhindert, dass Inhalte im *wwwroot/local* -Verzeichnis und in Unterverzeichnisse veröffentlicht werden:
 
 ```xml
 <ItemGroup>
@@ -494,7 +495,7 @@ Verhindern Sie das Veröffentlichen von Dateien in *wwwroot* mit dem [\<Content>
 </ItemGroup>
 ```
 
-In Razor-Dateien ( *.cshtml*) zeigen Tilde und Schrägstrich (`~/`) auf den Webstamm. Ein mit `~/` beginnender Pfad wird als *virtueller Pfad* bezeichnet.
+In Razor-Dateien ( *.cshtml* ) zeigen Tilde und Schrägstrich (`~/`) auf den Webstamm. Ein mit `~/` beginnender Pfad wird als *virtueller Pfad* bezeichnet.
 
 Weitere Informationen finden Sie unter <xref:fundamentals/static-files>.
 

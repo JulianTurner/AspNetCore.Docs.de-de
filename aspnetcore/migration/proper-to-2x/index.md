@@ -5,6 +5,7 @@ description: Anweisungen zum Migrieren vorhandener ASP.NET MVC- oder Web-API-App
 ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: f1a5af60f8dce83d9622ed9d2c6bcb4b8fc22b73
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: 059ddc18d0c531efaba8aab916ddbb27b42b5e2c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712492"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053552"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>Migration von ASP.NET zu ASP.NET Core
 
@@ -99,7 +100,7 @@ Anwendungen lesen diese Einstellungen über die `ConfigurationManager.AppSetting
 
 [!code-csharp[](samples/read-webconfig.cs)]
 
-ASP.NET Core kann Konfigurationsdaten der Anwendung in einer beliebigen Datei speichern und diese während des Middleware-Bootstraps laden. Die in Projektvorlagen verwendete Standarddatei ist *appsettings.json*:
+ASP.NET Core kann Konfigurationsdaten der Anwendung in einer beliebigen Datei speichern und diese während des Middleware-Bootstraps laden. Die in Projektvorlagen verwendete Standarddatei ist *appsettings.json* :
 
 [!code-json[](samples/appsettings-sample.json)]
 
@@ -154,7 +155,7 @@ Ein wichtiger Teil der Webentwicklung ist die Möglichkeit, statische, clientsei
 
 Statische Dateien werden in ASP.NET in verschiedenen Verzeichnissen gespeichert. Der Verweis auf die Dateien erfolgt in den Ansichten.
 
-In ASP.NET Core werden statische Dateien im Webstammverzeichnis ( *&lt;content root&gt;/wwwroot*) gespeichert, falls keine anderen Einstellungen vorgenommen wurden. Die Dateien werden über den Aufruf der Erweiterungsmethode `UseStaticFiles` aus `Startup.Configure` in die Anforderungspipeline geladen:
+In ASP.NET Core werden statische Dateien im Webstammverzeichnis ( *&lt;content root&gt;/wwwroot* ) gespeichert, falls keine anderen Einstellungen vorgenommen wurden. Die Dateien werden über den Aufruf der Erweiterungsmethode `UseStaticFiles` aus `Startup.Configure` in die Anforderungspipeline geladen:
 
 [!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
@@ -172,7 +173,7 @@ Beispielsweise kann ein Browser an einem Speicherort wie `http://<app>/images/<i
 
 ## <a name="partial-app-migration"></a>Partielle App-Migration
 
-Ein Ansatz für die partielle App-Migration besteht darin, eine IIS-Unteranwendung zu erstellen und nur bestimmte Routen von ASP.NET 4.x zu ASP.NET Core zu verschieben, wobei die URL-Struktur der App beibehalten wird. Betrachten Sie beispielsweise die URL-Struktur der Anwendung aus der Datei *applicationHost.config*:
+Ein Ansatz für die partielle App-Migration besteht darin, eine IIS-Unteranwendung zu erstellen und nur bestimmte Routen von ASP.NET 4.x zu ASP.NET Core zu verschieben, wobei die URL-Struktur der App beibehalten wird. Betrachten Sie beispielsweise die URL-Struktur der Anwendung aus der Datei *applicationHost.config* :
 
 ```xml
 <sites>
@@ -197,8 +198,8 @@ Verzeichnisstruktur:
 ```
 .
 ├── MainSite
-│   ├── ...
-│   └── Web.config
+│   ├── ...
+│   └── Web.config
 └── NetCoreApi
     ├── ...
     └── web.config

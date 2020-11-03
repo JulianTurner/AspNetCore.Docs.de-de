@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 7565ede55acd936072fc1930918d46808548f287
-ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
+ms.openlocfilehash: 9e744ec6d0f0dd72bded8284e98fd9ce53056b84
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91762346"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057972"
 ---
 # <a name="configuration-in-aspnet-core"></a>Konfiguration in ASP.NET Core
 
@@ -57,8 +58,8 @@ ASP.NET Core-Web-Apps, die mit [dotnet new](/dotnet/core/tools/dotnet-new) oder 
  <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> legt die Standardkonfiguration für die App in der folgenden Reihenfolge fest:
 
 1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource):  Fügt eine vorhandene `IConfiguration` als Quelle hinzu. Im Fall einer Standardkonfiguration wird die [Host](#hvac)-Konfiguration hinzugefügt und als erste Quelle für die _App-_ Konfiguration festgelegt.
-1. [appsettings.json](#appsettingsjson) mithilfe des [JSON-Konfigurationsanbieters](#file-configuration-provider).
-1. *appsettings.* `Environment` *.json* mithilfe des [JSON-Konfigurationsanbieters](#file-configuration-provider). Beispielsweise *appsettings*.***Production***.*json* und *appsettings*.***Development***.*json*.
+1. [appsettings.json](#appsettingsjson) mithilfe des [JSON-Konfigurationsanbieters](#file-configuration-provider)
+1. *appsettings.* `Environment` *.json* mithilfe des [JSON-Konfigurationsanbieters](#file-configuration-provider). Beispielsweise *appsettings*. ***Production**_._json* and *appsettings*.***Development** _._json*.
 1. [App-Geheimnisse](xref:security/app-secrets), wenn die App in der `Development`-Umgebung ausgeführt wird
 1. Umgebungsvariablen, die den [Umgebungsvariablen-Konfigurationsanbieter](#evcp) verwenden
 1. Befehlszeilenargumente, die den [Befehlszeilen-Konfigurationsanbieter](#command-line) verwenden
@@ -71,9 +72,9 @@ Im folgenden Code werden die aktivierten Konfigurationsanbieter in der Reihenfol
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-### <a name="appsettingsjson"></a>appsettings.json
+### appsettings.json
 
-Sehen Sie sich die nachfolgende Datei *appsettings.json* an:
+Betrachten Sie die folgende *appsettings.json* -Datei:
 
 [!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
@@ -84,12 +85,12 @@ Im folgenden Code aus dem [Beispieldownload](https://github.com/dotnet/AspNetCor
 Der Standard-<xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> lädt die Konfiguration in der folgenden Reihenfolge:
 
 1. *appsettings.json*
-1. *appsettings.* `Environment` *.json*: Beispielsweise die Dateien *appsettings*.***Production***.*json* und *appsettings*.***Development***.*json*. Die Umgebungsversion der Datei wird basierend auf [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*) geladen. Weitere Informationen finden Sie unter <xref:fundamentals/environments>.
+1. *appsettings.* `Environment` *.json* : Beispielsweise die Dateien *appsettings*. ***Production**_._json* and *appsettings*.***Development** _._json*. Die Umgebungsversion der Datei wird basierend auf [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*) geladen. Weitere Informationen finden Sie unter <xref:fundamentals/environments>.
 
-*appsettings*.`Environment`.*json*-Werte überschreiben Schlüssel in *appsettings.json*. Standardmäßig sind dies z. B.:
+*appsettings*.`Environment`. *json* -Werte überschreiben Schlüssel in *appsettings.json* . Standardmäßig sind dies z. B.:
 
-* In der Entwicklung überschreibt die *appsettings*.***Development***.*json*-Konfiguration in *appsettings.json* gefundene Werte.
-* In der Produktion überschreibt die *appsettings*.***Production***.*json*-Konfiguration in *appsettings.json* gefundene Werte. Dies ist beispielsweise bei der Bereitstellung der App in Azure der Fall.
+* In der Entwicklung überschreibt die *appsettings*.* **Development** _._json-Konfiguration in *appsettings.json* gefundene Werte.
+* In der Produktion überschreibt die *appsettings*.* **Production** _._json*-Konfiguration in *appsettings.json* gefundene Werte. Dies ist beispielsweise bei der Bereitstellung der App in Azure der Fall.
 
 <a name="optpat"></a>
 
@@ -97,7 +98,7 @@ Der Standard-<xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProv
 
 [!INCLUDE[](~/includes/bind.md)]
 
-Wenn die [Standard](#default)-Konfiguration verwendet wird, werden die Dateien *appsettings.json* und *appsettings.* `Environment` *.json* mit [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75) aktiviert. Änderungen an den Dateien *appsettings.json* und *appsettings.* `Environment` *.json* ***nach*** dem Start der App werden vom [JSON-Konfigurationsanbieter](#jcp) gelesen.
+Wenn die [Standard](#default)-Konfiguration verwendet wird, werden die Dateien *appsettings.json* und *appsettings.* `Environment` *.json* mit [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75) aktiviert. Änderungen an den Dateien *appsettings.json* und *appsettings.* `Environment` *.json* * **nach** dem Start der App werden vom [JSON-Konfigurationsanbieter](#jcp) gelesen.
 
 Weitere Informationen zum Hinzufügen zusätzlicher JSON-Konfigurationsdateien finden Sie unter [JSON-Konfigurationsanbieter](#jcp) in diesem Dokument.
 
@@ -111,7 +112,7 @@ Weitere Informationen zum Hinzufügen zusätzlicher JSON-Konfigurationsdateien f
 
 Richtlinien für Konfigurationsdaten:
 
-* Speichern Sie nie Kennwörter oder andere vertrauliche Daten im Konfigurationsanbietercode oder in Nur-Text-Konfigurationsdateien. Der [Secret Manager](xref:security/app-secrets) kann zum Speichern von Geheimnissen in der Entwicklungsumgebung verwendet werden.
+_ Speichern Sie nie Kennwörter oder andere vertrauliche Daten im Konfigurationsanbietercode oder in Nur-Text-Konfigurationsdateien. Der [Secret Manager](xref:security/app-secrets) kann zum Speichern von Geheimnissen in der Entwicklungsumgebung verwendet werden.
 * Verwenden Sie keine Produktionsgeheimnisse in Entwicklungs- oder Testumgebungen.
 * Geben Sie Geheimnisse außerhalb des Projekts an, damit sie nicht versehentlich in ein Quellcoderepository übernommen werden können.
 
@@ -128,7 +129,7 @@ Weitere Informationen zum Speichern von Kennwörtern oder anderen vertraulichen 
 
 ## <a name="environment-variables"></a>Umgebungsvariablen
 
-Bei Verwendung der [Standard](#default)-Konfiguration lädt der <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> die Konfiguration aus Schlüssel-Wert-Paaren der Umgebungsvariablen, nachdem *appsettings.json*, *appsettings.* `Environment` *.json* und [Secret Manager](xref:security/app-secrets) gelesen wurden. Daher überschreiben aus der Umgebung gelesene Schlüsselwerte Werte, die aus *appsettings.json*, *appsettings.* `Environment` *.json* und Secret Manager gelesen wurden.
+Bei Verwendung der [Standard](#default)-Konfiguration lädt der <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> die Konfiguration aus Schlüssel-Wert-Paaren der Umgebungsvariablen, nachdem *appsettings.json* , *appsettings.* `Environment` *.json* und [Secret Manager](xref:security/app-secrets) gelesen wurden. Daher überschreiben aus der Umgebung gelesene Schlüsselwerte Werte, die aus *appsettings.json* , *appsettings.* `Environment` *.json* und Secret Manager gelesen wurden.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -203,7 +204,7 @@ Umgebungsvariablen, die in der Datei *launchSettings.json* festgelegt sind, übe
 
 Bei Verwendung der [Standard](#default)-Konfiguration lädt der <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> die Konfiguration aus den Schlüssel-Wert-Paaren des Befehlszeilenarguments nach den folgenden Konfigurationsquellen:
 
-* Dateien *appsettings.json* und *appsettings*.`Environment`.*json*.
+* In den Dateien *appsettings.json* und *appsettings*.`Environment`. *json*
 * [App-Geheimnisse (Secret Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Umgebungsvariablen.
 
@@ -267,7 +268,7 @@ Bei Apps, die Switchmappings verwenden, sollten im `CreateDefaultBuilder`-Aufruf
 
 Die Konfigurations-API liest hierarchische Konfigurationsdaten, indem sie die hierarchischen Daten mit einem Trennzeichen in den Konfigurationsschlüsseln vereinfacht.
 
-Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *appsettings.json*:
+Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *appsettings.json* :
 
 [!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
@@ -323,7 +324,7 @@ Konfigurationsquellen werden in der Reihenfolge gelesen, in der ihre Konfigurati
 Eine typische Konfigurationsanbietersequenz ist:
 
 1. *appsettings.json*
-1. *appsettings*.`Environment`.*json*
+1. *appsettings*.`Environment`. *json*
 1. [Secret Manager](xref:security/app-secrets)
 1. Umgebungsvariablen, die den [Umgebungsvariablen-Konfigurationsanbieter](#evcp) verwenden
 1. Befehlszeilenargumente, die den [Befehlszeilen-Konfigurationsanbieter](#command-line-configuration-provider) verwenden
@@ -375,12 +376,12 @@ Mit dem folgenden Code werden alle Konfigurationsanbieter gelöscht und mehrere 
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
 
-Im obigen Code werden Einstellungen in den Dateien *MyIniConfig.ini* und *MyIniConfig*.`Environment`.*ini* überschrieben durch Einstellungen im:
+Im obigen Code werden Einstellungen in den Dateien *MyIniConfig.ini* und *MyIniConfig*.`Environment`. *ini* überschrieben durch Einstellungen im:
 
 * [Umgebungsvariablen-Konfigurationsanbieter](#evcp)
 * [Befehlszeilen-Konfigurationsanbieter](#clcp)
 
-Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *MyIniConfig.ini*:
+Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *MyIniConfig.ini* :
 
 [!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
 
@@ -410,18 +411,18 @@ Der vorangehende Code:
   * `reloadOnChange: true` : Die Datei wird erneut geladen, wenn Änderungen gespeichert werden.
 * Liest die [Standardkonfigurationsanbieter](#default) vor der Datei *MyConfig.json*. Einstellungen in der Datei *MyConfig.json* überschreiben die Einstellung in den Standardkonfigurationsanbietern, einschließlich des [Umgebungsvariablen-Konfigurationsanbieters](#evcp) und des [Befehlszeilen-Konfigurationsanbieters](#clcp).
 
-In der Regel möchten Sie ***nicht***, dass eine benutzerdefinierte JSON-Datei Werte überschreibt, die im [Umgebungsvariablen-Konfigurationsanbieter](#evcp) und im [Befehlszeilen-Konfigurationsanbieter](#clcp) festgelegt sind.
+In der Regel möchten Sie * **nicht** , dass eine benutzerdefinierte JSON-Datei Werte überschreibt, die im [Umgebungsvariablen-Konfigurationsanbieter](#evcp) und im [Befehlszeilen-Konfigurationsanbieter](#clcp) festgelegt sind.
 
 Mit dem folgenden Code werden alle Konfigurationsanbieter gelöscht und mehrere Konfigurationsanbieter hinzugefügt:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
-Im obigen Code gilt für Einstellungen in den Dateien *MyConfig.json* und *MyConfig*.`Environment`.*json*:
+Im obigen Code gilt für Einstellungen in den Dateien _MyConfig.json* und *MyConfig*.`Environment`. *json* :
 
-* Sie überschreiben Einstellungen in den Dateien *appsettings.json* und *appsettings*.`Environment`.*json*.
+* Sie überschreiben Einstellungen in den Dateien *appsettings.json* und *appsettings*.`Environment`. *json*.
 * Sie werden durch Einstellungen im [Umgebungsvariablen-Konfigurationsanbieter](#evcp) und im [Befehlszeilen-Konfigurationsanbieter](#clcp) überschrieben.
 
-Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *MyConfig.json*:
+Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *MyConfig.json* :
 
 [!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
 
@@ -437,12 +438,12 @@ Mit dem folgenden Code werden alle Konfigurationsanbieter gelöscht und mehrere 
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramXML.cs?name=snippet)]
 
-Im obigen Code werden Einstellungen in den Dateien *MyXMLFile.xml* und *MyXMLFile*.`Environment`.*xml* überschrieben durch Einstellungen im:
+Im obigen Code werden Einstellungen in den Dateien *MyXMLFile.xml* und *MyXMLFile*.`Environment`. *xml* überschrieben durch Einstellungen im:
 
 * [Umgebungsvariablen-Konfigurationsanbieter](#evcp)
 * [Befehlszeilen-Konfigurationsanbieter](#clcp)
 
-Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *MyXMLFile.xml*:
+Der [Beispieldownload](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) enthält die folgende Datei *MyXMLFile.xml* :
 
 [!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
 
@@ -527,7 +528,7 @@ Wenn im obigen Code `NumberKey` nicht in der Konfiguration gefunden wird, wird d
 
 ## <a name="getsection-getchildren-and-exists"></a>GetSection, GetChildren und Exists
 
-Beachten Sie für die nachstehenden Beispiele die folgende Datei *MySubsection.json*:
+Beachten Sie für die nachstehenden Beispiele die folgende Datei *MySubsection.json* :
 
 [!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
 
@@ -646,35 +647,35 @@ Der Anbieter weist die folgenden Merkmale auf:
 
 Definieren Sie eine `EFConfigurationValue`-Entität zum Speichern von Konfigurationswerten in der Datenbank.
 
-*Models/EFConfigurationValue.cs*:
+*Models/EFConfigurationValue.cs* :
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Models/EFConfigurationValue.cs?name=snippet1)]
 
 Fügen Sie `EFConfigurationContext` hinzu, um die konfigurierten Werte zu speichern und auf diese zugreifen.
 
-*EFConfigurationProvider/EFConfigurationContext.cs*:
+*EFConfigurationProvider/EFConfigurationContext.cs* :
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
 
 Erstellen Sie eine Klasse, die das <xref:Microsoft.Extensions.Configuration.IConfigurationSource> implementiert.
 
-*EFConfigurationProvider/EFConfigurationSource.cs*:
+*EFConfigurationProvider/EFConfigurationSource.cs* :
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
 Erstellen Sie den benutzerdefinierten Konfigurationsanbieter durch Vererbung von <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. Der Konfigurationsanbieter initialisiert die Datenbank, wenn diese leer ist. Da [Konfigurationsschlüssel die Groß-/Kleinschreibung nicht beachten](#keys), wird das zum Initialisieren der Datenbank verwendete Wörterbuch mit der Vergleichsfunktion, die die Groß-/Kleinschreibung nicht beachtet, erstellt ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
-*EFConfigurationProvider/EFConfigurationProvider.cs*:
+*EFConfigurationProvider/EFConfigurationProvider.cs* :
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
 
 Mit einer `AddEFConfiguration`-Erweiterungsmethode kann die Konfigurationsquelle `ConfigurationBuilder` hinzugefügt werden.
 
-*Extensions/EntityFrameworkExtensions.cs*:
+*Extensions/EntityFrameworkExtensions.cs* :
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
-Der folgende Code veranschaulicht die Verwendung des benutzerdefinierten Anbieters `EFConfigurationProvider` in *Program.cs*:
+Der folgende Code veranschaulicht die Verwendung des benutzerdefinierten Anbieters `EFConfigurationProvider` in *Program.cs* :
 
 [!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
 
@@ -824,7 +825,7 @@ Folgendes gilt für Apps, die den [Webhost](xref:fundamentals/host/web-host) ver
   * Umgebungsvariablen mit dem Präfix `ASPNETCORE_` (zum Beispiel `ASPNETCORE_ENVIRONMENT`) mithilfe des [Umgebungsvariablen-Konfigurationsanbieters](#environment-variables-configuration-provider). Das Präfix (`ASPNETCORE_`) wird beim Laden der Schlüssel-Wert-Paare der Konfiguration entfernt.
   * Befehlszeilenargumente mithilfe des [Befehlszeilen-Konfigurationsanbieters](#command-line-configuration-provider).
 * Die App-Konfiguration wird durch Folgendes festgelegt:
-  * *appsettings.json* mithilfe des [Dateikonfigurationsanbieters](#file-configuration-provider).
+  * *appsettings.json* mithilfe des [Dateikonfigurationsanbieters](#file-configuration-provider)
   * *appsettings.{Umgebung}.json* mithilfe des [Dateikonfigurationsanbieters](#file-configuration-provider).
   * [Geheimnis-Manager](xref:security/app-secrets), wenn die App in der `Development`-Umgebung mit der Einstiegsassembly ausgeführt wird.
   * Umgebungsvariablen mithilfe des [Umgebungsvariablen-Konfigurationsanbieters](#environment-variables-configuration-provider).
@@ -936,7 +937,7 @@ Die folgende Tabelle zeigt die für ASP.NET Core-Apps verfügbaren Konfiguration
 
 | Anbieter | Bereitstellung der Konfiguration über&hellip; |
 | -------- | ----------------------------------- |
-| [Azure Key Vault-Konfigurationsanbieter](xref:security/key-vault-configuration) (Thema *Sicherheit*) | Azure Key Vault |
+| [Azure Key Vault-Konfigurationsanbieter](xref:security/key-vault-configuration) (Thema *Sicherheit* ) | Azure Key Vault |
 | [Azure App Configuration-Anbieter](/azure/azure-app-configuration/quickstart-aspnet-core-app) (Azure-Dokumentation) | Azure App Configuration |
 | [Befehlszeilen-Konfigurationsanbieter](#command-line-configuration-provider) | Befehlszeilenparameter |
 | [Benutzerdefinierter Konfigurationsanbieter](#custom-configuration-provider) | Benutzerdefinierte Quelle |
@@ -944,13 +945,13 @@ Die folgende Tabelle zeigt die für ASP.NET Core-Apps verfügbaren Konfiguration
 | [Dateikonfigurationsanbieter](#file-configuration-provider) | Dateien (INI, JSON, XML) |
 | [Schlüssel-pro-Datei-Konfigurationsanbieter](#key-per-file-configuration-provider) | Verzeichnisdateien |
 | [Speicherkonfigurationsanbieter](#memory-configuration-provider) | In-Memory-Sammlungen |
-| [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) (Thema *Sicherheit*) | Datei im Benutzerprofilverzeichnis |
+| [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) (Thema *Sicherheit* ) | Datei im Benutzerprofilverzeichnis |
 
 Konfigurationsquellen werden beim Start in der Reihenfolge gelesen, in der ihre Konfigurationsanbieter angegeben sind. Die in diesem Thema beschriebenen Konfigurationsanbieter werden in alphabetischer Reihenfolge beschrieben, nicht in der Reihenfolge, in der der Code sie anordnet. Ordnen Sie die Konfigurationsanbieter im Code so an, dass sie den Prioritäten für die zugrunde liegenden Konfigurationsquellen entsprechen, die für die App erforderlich sind.
 
 Eine typische Konfigurationsanbietersequenz ist:
 
-1. Dateien (*appsettings.json*, *appsettings.{Environment}.json*, wobei `{Environment}` die aktuelle Hostingumgebung der App ist)
+1. Dateien ( *appsettings.json* , *appsettings.{Environment}.json* , wobei `{Environment}` die aktuelle Hostingumgebung der App ist)
 1. [Azure Key Vault](xref:security/key-vault-configuration)
 1. [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) (nur Entwicklungsumgebung)
 1. Umgebungsvariablen
@@ -1027,7 +1028,7 @@ Um die Befehlszeilenkonfiguration zu aktivieren, wird die <xref:Microsoft.Extens
 
 `CreateDefaultBuilder` lädt außerdem:
 
-* Optionale Konfiguration aus den Dateien *appsettings.json* und *appsettings.{Environment}.json*.
+* Optionale Konfiguration aus den Dateien *appsettings.json* und *appsettings.{Environment}.json*
 * [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Umgebungsvariablen.
 
@@ -1142,11 +1143,11 @@ Um die Umgebungsvariablenkonfiguration zu aktivieren, rufen Sie die <xref:Micros
 `CreateDefaultBuilder` lädt außerdem:
 
 * App-Konfiguration über Umgebungsvariablen ohne Präfix durch Aufruf von `AddEnvironmentVariables` ohne Präfix.
-* Optionale Konfiguration aus den Dateien *appsettings.json* und *appsettings.{Environment}.json*.
+* Optionale Konfiguration aus den Dateien *appsettings.json* und *appsettings.{Environment}.json*
 * [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Befehlszeilenargumenten
 
-Der Umgebungsvariablen-Konfigurationsanbieter wird aufgerufen, nachdem die Konfiguration aus Benutzergeheimnissen und *appsettings*-Dateien erstellt wurde. Das Aufrufen des Anbieters an dieser Stelle ermöglicht den während der Laufzeit gelesenen Umgebungsvariablen, die von Benutzergeheimnissen und *appsettings*-Dateien festgelegte Konfiguration zu überschreiben.
+Der Umgebungsvariablen-Konfigurationsanbieter wird aufgerufen, nachdem die Konfiguration aus Benutzergeheimnissen und *appsettings* -Dateien erstellt wurde. Das Aufrufen des Anbieters an dieser Stelle ermöglicht den während der Laufzeit gelesenen Umgebungsvariablen, die von Benutzergeheimnissen und *appsettings* -Dateien festgelegte Konfiguration zu überschreiben.
 
 Wenn Sie App-Konfigurationen aus zusätzlichen Umgebungsvariablen bereitstellen müssen, rufen Sie die zusätzlichen Anbieter der App in `ConfigureAppConfiguration` auf, und rufen Sie `AddEnvironmentVariables` mit dem Präfix auf:
 
@@ -1295,8 +1296,8 @@ Um die JSON-Dateikonfiguration zu aktivieren, rufen Sie die <xref:Microsoft.Exte
 
 `AddJsonFile` wird automatisch zweimal aufgerufen, wenn Sie einen neuen Host-Generator mit `CreateDefaultBuilder` initialisieren. Die Methode wird aufgerufen, um die Konfiguration aus folgenden Dateien zu laden:
 
-* *appsettings.json*: Diese Datei wird zuerst gelesen. Die Umgebungsversion der Datei kann die Werte der Datei *appsettings.json* überschreiben.
-* *appsettings.{Environment}.json*: Die Umgebungsversion der Datei wird basierend auf [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*) geladen.
+* *appsettings.json* : Diese Datei wird zuerst gelesen. Die Umgebungsversion der Datei kann die Werte der Datei *appsettings.json* überschreiben.
+* *appsettings.{Environment}.json* : Die Umgebungsversion der Datei wird basierend auf [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*) geladen.
 
 Weitere Informationen finden Sie im Abschnitt [Standardkonfiguration](#default-configuration).
 
@@ -1306,7 +1307,7 @@ Weitere Informationen finden Sie im Abschnitt [Standardkonfiguration](#default-c
 * [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Befehlszeilenargumenten
 
-Der JSON-Konfigurationsanbieter wird zuerst eingerichtet. Daher überschreiben Benutzergeheimnisse, Umgebungsvariablen und Befehlszeilenargumente die von *appsettings*-Dateien festgelegte Konfiguration.
+Der JSON-Konfigurationsanbieter wird zuerst eingerichtet. Daher überschreiben Benutzergeheimnisse, Umgebungsvariablen und Befehlszeilenargumente die von *appsettings* -Dateien festgelegte Konfiguration.
 
 Rufen Sie `ConfigureAppConfiguration` beim Erstellen des Hosts auf, um Konfiguration der App für andere Dateien als *appsettings.json* und *appsettings.{Environment}.json* anzugeben:
 
@@ -1322,7 +1323,7 @@ Rufen Sie `ConfigureAppConfiguration` beim Erstellen des Hosts auf, um Konfigura
 
 Die Beispiel-App nutzt zum Erstellen des Hosts die statische Hilfsmethode `CreateDefaultBuilder`, die zwei Aufrufe von `AddJsonFile` enthält:
 
-* Der erste Aufruf auf `AddJsonFile` lädt die Konfiguration aus *appsettings.json*:
+* Der erste Aufruf auf `AddJsonFile` lädt die Konfiguration aus *appsettings.json* :
 
   [!code-json[](index/samples/2.x/ConfigurationSample/appsettings.json)]
 
@@ -1336,7 +1337,7 @@ Die Beispiel-App nutzt zum Erstellen des Hosts die statische Hilfsmethode `Creat
    1. Öffnen Sie die Datei *Properties/launchSettings.json*.
    1. Ändern Sie im `ConfigurationSample`-Profil den Wert der Umgebungsvariablen `ASPNETCORE_ENVIRONMENT` in `Production`.
    1. Speichern Sie die Datei, und führen Sie die App mit `dotnet run` in einer Befehlsshell aus.
-1. Die Einstellungen in der *appsettings.Development.json*-Datei setzen die Einstellungen in der Datei *appsettings.json* nicht länger außer Kraft. Die Protokollebene für den Schlüssel `Logging:LogLevel:Default` lautet `Warning`.
+1. Die Einstellungen in der *appsettings.Development.json* -Datei setzen die Einstellungen in der Datei *appsettings.json* nicht länger außer Kraft. Die Protokollebene für den Schlüssel `Logging:LogLevel:Default` lautet `Warning`.
 
 ### <a name="xml-configuration-provider"></a>XML-Konfigurationsanbieter
 
@@ -1593,11 +1594,11 @@ Im Falle der Beispieldaten ist `sectionExists``false`, weil in den Konfiguration
 
 <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*> kann ein ganzes POCO-Objektdiagramm binden. Wie beim Binden eines einfachen Objekts werden nur öffentliche Lese-/Schreibeigenschaften gebunden.
 
-Das Beispiel enthält ein `TvShow`-Modell, dessen Objektdiagramm die Klassen `Metadata` und `Actors` enthält (*Models/TvShow.cs*):
+Das Beispiel enthält ein `TvShow`-Modell, dessen Objektdiagramm die Klassen `Metadata` und `Actors` enthält ( *Models/TvShow.cs* ):
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Models/TvShow.cs?name=snippet1)]
 
-Die Beispiel-App verfügt über eine *tvshow.xml*-Datei mit den Konfigurationsdaten:
+Die Beispiel-App verfügt über eine *tvshow.xml* -Datei mit den Konfigurationsdaten:
 
 [!code-xml[](index/samples/2.x/ConfigurationSample/tvshow.xml)]
 
@@ -1669,7 +1670,7 @@ Index &num;3 im gebundenen Objekt enthält die Konfigurationsdaten für den `arr
 
 Das fehlende Konfigurationselement für Index &num;3 kann vor dem Binden an die `ArrayExample`Instanz von jedem Konfigurationsanbieter bereitgestellt werden, der das richtige Schlüssel-Wert-Paar in der Konfiguration erzeugt. Wenn das Beispiel einen zusätzlichen JSON-Konfigurationsanbieter mit dem fehlenden Schlüssel-Wert-Paar enthält, entspricht `ArrayExample.Entries` dem kompletten Konfigurationsarray:
 
-*missing_value.json*:
+*missing_value.json* :
 
 ```json
 {
@@ -1740,35 +1741,35 @@ Der Anbieter weist die folgenden Merkmale auf:
 
 Definieren Sie eine `EFConfigurationValue`-Entität zum Speichern von Konfigurationswerten in der Datenbank.
 
-*Models/EFConfigurationValue.cs*:
+*Models/EFConfigurationValue.cs* :
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Models/EFConfigurationValue.cs?name=snippet1)]
 
 Fügen Sie `EFConfigurationContext` hinzu, um die konfigurierten Werte zu speichern und auf diese zugreifen.
 
-*EFConfigurationProvider/EFConfigurationContext.cs*:
+*EFConfigurationProvider/EFConfigurationContext.cs* :
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
 
 Erstellen Sie eine Klasse, die das <xref:Microsoft.Extensions.Configuration.IConfigurationSource> implementiert.
 
-*EFConfigurationProvider/EFConfigurationSource.cs*:
+*EFConfigurationProvider/EFConfigurationSource.cs* :
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
 Erstellen Sie den benutzerdefinierten Konfigurationsanbieter durch Vererbung von <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. Der Konfigurationsanbieter initialisiert die Datenbank, wenn diese leer ist.
 
-*EFConfigurationProvider/EFConfigurationProvider.cs*:
+*EFConfigurationProvider/EFConfigurationProvider.cs* :
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
 
 Mit einer `AddEFConfiguration`-Erweiterungsmethode kann die Konfigurationsquelle `ConfigurationBuilder` hinzugefügt werden.
 
-*Extensions/EntityFrameworkExtensions.cs*:
+*Extensions/EntityFrameworkExtensions.cs* :
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
-Der folgende Code veranschaulicht die Verwendung des benutzerdefinierten Anbieters `EFConfigurationProvider` in *Program.cs*:
+Der folgende Code veranschaulicht die Verwendung des benutzerdefinierten Anbieters `EFConfigurationProvider` in *Program.cs* :
 
 [!code-csharp[](index/samples/2.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
 

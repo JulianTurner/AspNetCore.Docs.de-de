@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie eine ASP.net Core- SignalR app in Azure App S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/02/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: e00eea81788c9b335691b7e5ffe6a46534c3c492
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 8e6d36fe0b38486f94078b8f9cf12b852da7e0d9
+ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058219"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93234508"
 ---
 # <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a>Veröffentlichen einer ASP.net Core- SignalR app in Azure App Service
 
@@ -47,14 +47,14 @@ In diesem Artikel wird die Veröffentlichung mit den Tools in Visual Studio beha
 
    Geben Sie die in der folgenden Tabelle beschriebenen Informationen in das Dialogfeld **App Service erstellen** ein, und wählen Sie **Erstellen** aus.
 
-   | Element               | Beschreibung |
+   | Element               | BESCHREIBUNG |
    | ------------------ | ----------- |
    | **Name**           | Der eindeutige Name der app. |
    | **Abonnement**   | Azure-Abonnement, das von der APP verwendet wird. |
    | **Ressourcengruppe** | Gruppe verwandter Ressourcen, zu denen die APP gehört. |
    | **Hostingplan**   | Der Tarif für die Web-App. |
 
-1. Wählen Sie in der Dropdown Liste **Abhängigkeiten** hinzufügen den **Azure- SignalR Dienst** aus  >  **Add** :
+1. Wählen Sie im Abschnitt **Dienst Abhängigkeiten** die Option **Azure- SignalR Dienst** aus. Wählen Sie die **+** Schaltfläche aus:
 
    ![Bereich Abhängigkeiten mit der Auswahl von Azure::: NO-LOC (signalr)::: Service in der Dropdown Liste hinzufügen](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: 07b67cd7c267c39b99277114b73642b5caa3e312
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 745703aaa4ceb39c75789bab0bde4564f3d79a30
+ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632836"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92678558"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>Teil 6: Controllermethoden und Ansichten in ASP.NET Core
 
@@ -31,7 +31,7 @@ Für den Anfang ist die Movie-App schon recht ansprechend, doch es gibt Raum fü
 
 ![Indexansicht: „ReleaseDate“ ist ein Wort (ohne Leerzeichen), und bei jedem Veröffentlichungsdatum wird die Uhrzeit 12: 00 Uhr angezeigt](working-with-sql/_static/m55.png)
 
-Öffnen Sie die Datei *Models/Movie.cs*, und fügen Sie die nachfolgend gezeigten markierten Zeilen hinzu:
+Öffnen Sie die Datei *Models/Movie.cs* , und fügen Sie die nachfolgend gezeigten markierten Zeilen hinzu:
 
 [!code-csharp[](start-mvc/sample/MvcMovie22/Models/MovieDateFixed.cs?name=snippet_1&highlight=2,3,12-13,17)]
 
@@ -39,11 +39,11 @@ Im nächsten Tutorial behandeln wir [Datenanmerkungen](/aspnet/mvc/overview/olde
 
 Die Datenanmerkung `[Column(TypeName = "decimal(18, 2)")]` ist erforderlich, damit Entity Framework Core `Price` ordnungsgemäß einer Währung in der Datenbank zuordnen kann. Weitere Informationen finden Sie unter [Datentypen](/ef/core/modeling/relational/data-types).
 
-Navigieren Sie zum `Movies`-Controller, und halten Sie den Mauszeiger über einen **Bearbeiten**-Link, um die Ziel-URL zu sehen.
+Navigieren Sie zum `Movies`-Controller, und halten Sie den Mauszeiger über einen **Bearbeiten** -Link, um die Ziel-URL zu sehen.
 
 ![Browserfenster mit Maus über dem Link „Bearbeiten“ und der angezeigten Link-URL von https://localhost:5001/Movies/Edit/5](~/tutorials/first-mvc-app/controller-methods-views/_static/edit7.png)
 
-Die Links **Bearbeiten**, **Details** und **Löschen** werden mithilfe des MVC Core-Hilfsprogramms für Ankertags in der Datei *Views/Movies/Index.cshtml* generiert.
+Die Links **Bearbeiten** , **Details** und **Löschen** werden mithilfe des MVC Core-Hilfsprogramms für Ankertags in der Datei *Views/Movies/Index.cshtml* generiert.
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexOriginal.cshtml?highlight=1-3&range=46-50)]
 
@@ -57,7 +57,7 @@ Die Links **Bearbeiten**, **Details** und **Löschen** werden mithilfe des MVC C
 </td>
 ```
 
-Erinnern Sie sich an das Format für das [Routing](xref:mvc/controllers/routing) in der Datei *Startup.cs*:
+Erinnern Sie sich an das Format für das [Routing](xref:mvc/controllers/routing) in der Datei *Startup.cs* :
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
@@ -107,7 +107,7 @@ Beachten Sie, dass der zweiten `Edit`-Aktionsmethode das `[HttpPost]`-Attribut v
 
 Das `HttpPost`-Attribut gibt an, dass diese `Edit`-Methode *nur* für `POST`-Anforderungen aufgerufen werden kann. Sie könnten das `[HttpGet]`-Attribut auf die erste Bearbeitungsmethode anwenden, aber dies ist nicht erforderlich, da `[HttpGet]` der Standardwert ist.
 
-Das `ValidateAntiForgeryToken`-Attribut wird verwendet, um [die Fälschung einer Anforderung zu verhindern](xref:security/anti-request-forgery). Es wird einem Fälschungssicherheitstoken zugeordnet, das in der Datei für die Bearbeitungsansicht (*Views/Movies/Edit.cshtml*) generiert wird. Die Datei für die Bearbeitungsansicht generiert das Fälschungssicherheitstoken mit dem [Hilfsprogramm für Formulartags](xref:mvc/views/working-with-forms).
+Das `ValidateAntiForgeryToken`-Attribut wird verwendet, um [die Fälschung einer Anforderung zu verhindern](xref:security/anti-request-forgery). Es wird einem Fälschungssicherheitstoken zugeordnet, das in der Datei für die Bearbeitungsansicht ( *Views/Movies/Edit.cshtml* ) generiert wird. Die Datei für die Bearbeitungsansicht generiert das Fälschungssicherheitstoken mit dem [Hilfsprogramm für Formulartags](xref:mvc/views/working-with-forms).
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
@@ -149,7 +149,7 @@ Die folgende Liste zeigt die `[HttpPost]`-Version der `Edit`-Aktionsmethode.
 
 Das `[ValidateAntiForgeryToken]`-Attribut überprüft das ausgeblendete [XSRF](xref:security/anti-request-forgery)-Token, das vom Generator für Fälschungssicherheitstoken im [Hilfsprogramm für Formulartags](xref:mvc/views/working-with-forms) generiert wurde.
 
-Das [Modellbindungssystem](xref:mvc/models/model-binding) verwendet die übermittelten Formularwerte und erstellt ein `Movie`-Objekt, das als `movie`-Parameter übergeben wird. Die `ModelState.IsValid`-Methode stellt sicher, dass die im Formular übermittelten Daten verwendet werden können, um ein `Movie`-Objekt zu ändern (bearbeiten oder aktualisieren). Wenn die Daten gültig sind, werden sie gespeichert. Die aktualisierten (bearbeiteten) Filmdaten werden in der Datenbank gespeichert, indem die `SaveChangesAsync`-Methode des Datenbankkontexts aufgerufen wird. Nach dem Speichern der Daten leitet der Code den Benutzer an die `Index`-Aktionsmethode der `MoviesController`-Klasse weiter, die die Filmsammlung einschließlich der gerade vorgenommenen Änderungen anzeigt.
+Das [Modellbindungssystem](xref:mvc/models/model-binding) verwendet die übermittelten Formularwerte und erstellt ein `Movie`-Objekt, das als `movie`-Parameter übergeben wird. Die `ModelState.IsValid`-Eigenschaft stellt sicher, dass die im Formular übermittelten Daten verwendet werden können, um ein `Movie`-Objekt zu ändern (zu bearbeiten oder zu aktualisieren). Wenn die Daten gültig sind, werden sie gespeichert. Die aktualisierten (bearbeiteten) Filmdaten werden in der Datenbank gespeichert, indem die `SaveChangesAsync`-Methode des Datenbankkontexts aufgerufen wird. Nach dem Speichern der Daten leitet der Code den Benutzer an die `Index`-Aktionsmethode der `MoviesController`-Klasse weiter, die die Filmsammlung einschließlich der gerade vorgenommenen Änderungen anzeigt.
 
 Bevor das Formular an den Server gesendet wird, überprüft die clientseitige Validierung alle Validierungsregeln der Felder. Sind Validierungsfehler vorhanden, wird eine Fehlermeldung angezeigt, und das Formular wird nicht gesendet. Wenn JavaScript deaktiviert ist, erfolgt keine clientseitige Validierung. Der Server erkennt jedoch, dass die bereitgestellten Werte nicht gültig sind, und die Formularwerte werden wieder mit Fehlermeldungen angezeigt. Später in diesem Tutorial untersuchen wir die [Modellvalidierung](xref:mvc/models/validation) im Detail. Das [Hilfsprogramm für Validierungstags](xref:mvc/views/working-with-forms) in der Ansichtsvorlage *Views/Movies/Edit.cshtml* übernimmt die Anzeige der entsprechenden Fehlermeldungen.
 

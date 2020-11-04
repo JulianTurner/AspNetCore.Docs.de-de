@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 99e0109ea4c2526e9f91a8a4df23c4557e9be83a
-ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
+ms.openlocfilehash: 6f677cc4fc26eb9d50ab6e149b7363079ae756a9
+ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91762307"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92678566"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>Dependency Injection in ASP.NET Core
 
@@ -32,6 +32,8 @@ Von [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.c
 ASP.NET Core unterstützt das Softwareentwurfsmuster Abhängigkeitsinjektion. Damit kann eine [Umkehrung der Steuerung](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) (Inversion of Control, IoC) zwischen Klassen und ihren Abhängigkeiten erreicht werden.
 
 Weitere Informationen zur Abhängigkeitsinjektion innerhalb von MVC-Controllern finden Sie unter <xref:mvc/controllers/dependency-injection>.
+
+Informationen zum Verwenden der Dependency Injection in Konsolen-Apps finden Sie unter [Dependency Injection in .NET](/dotnet/core/extensions/dependency-injection).
 
 Weitere Informationen zur Dependency Injection für Optionen finden Sie unter <xref:fundamentals/configuration/options>.
 
@@ -110,7 +112,7 @@ Die aktualisierte `ConfigureServices`-Methode registriert die neue `IMyDependenc
 
 `MyDependency2` hängt von der <xref:Microsoft.Extensions.Logging.ILogger%601>-Schnittstelle ab, die im Konstruktor angefordert wird. `ILogger<TCategoryName>` ist ein [vom Framework bereitgestellter Dienst](#framework-provided-services).
 
-Die Abhängigkeitsinjektion wird häufig als Verkettung verwendet. Jede angeforderte Abhängigkeit fordert wiederum ihre eigenen Abhängigkeiten an. Der Container löst die Abhängigkeiten im Diagramm auf und gibt den vollständig aufgelösten Dienst zurück. Die gesammelten aufzulösenden Abhängigkeiten werden als *Abhängigkeitsstruktur*, *Abhängigkeitsdiagramm* oder *Objektdiagramm* bezeichnet.
+Die Abhängigkeitsinjektion wird häufig als Verkettung verwendet. Jede angeforderte Abhängigkeit fordert wiederum ihre eigenen Abhängigkeiten an. Der Container löst die Abhängigkeiten im Diagramm auf und gibt den vollständig aufgelösten Dienst zurück. Die gesammelten aufzulösenden Abhängigkeiten werden als *Abhängigkeitsstruktur* , *Abhängigkeitsdiagramm* oder *Objektdiagramm* bezeichnet.
 
 Der Container löst `ILogger<TCategoryName>` unter Verwendung der [(generischen) offenen Typen](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types) auf, wodurch nicht mehr jeder [(generische) konstruierte Typ](/dotnet/csharp/language-reference/language-specification/types#constructed-types) registriert werden muss:
 
@@ -180,9 +182,9 @@ In Apps, die Anforderungen verarbeiten, werden bereichsbezogene Dienste am Ende 
 
 Wenn Sie Entity Framework Core verwenden, registriert die <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>-Erweiterungsmethode standardmäßig `DbContext`-Typen mit einer begrenzten Lebensdauer.
 
-Lösen Sie einen bereichsbezogenen Dienst ***nicht*** über ein Singleton auf. Möglicherweise weist der Dienst bei der Verarbeitung nachfolgender Anforderungen einen falschen Status auf. Folgendes ist zulässig:
+Lösen Sie einen bereichsbezogenen Dienst * **nicht** _ über einen Singleton auf, und achten Sie darauf, dies auch nicht indirekt auszuführen, z. B. über einen vorübergehenden Dienst. Möglicherweise weist der Dienst bei der Verarbeitung nachfolgender Anforderungen einen falschen Status auf. Folgendes ist zulässig:
 
-* das Auflösen eines Singletondiensts aus einem bereichsbezogenen oder temporären Diensts.
+_ Auflösen eines Singletondiensts aus einem bereichsbezogenen oder temporären Dienst
 * das Auflösen eines bereichsbezogenen Diensts aus einem anderen bereichsbezogenen oder temporären Dienst
 
 Standardmäßig wird in der Entwicklungsumgebung eine Ausnahme ausgelöst, wenn ein Dienst von einem anderen Dienst mit längerer Lebensdauer aufgelöst wird. Weitere Informationen finden Sie unter [Bereichsvalidierung](#sv).
@@ -208,7 +210,7 @@ Registrieren Sie Singletondienste mit <xref:Microsoft.Extensions.DependencyInjec
 In Apps, die Anforderungen verarbeiten, werden Singletondienste gelöscht, wenn <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> beim Herunterfahren gelöscht wird. Da der Arbeitsspeicher erst freigegeben wird, wenn die App heruntergefahren wird, müssen Sie den Arbeitsspeicherverbrauch eines Singletons berücksichtigen.
 
 > [!WARNING]
-> Lösen Sie einen bereichsbezogenen Dienst ***nicht*** über ein Singleton auf. Möglicherweise weist der Dienst bei der Verarbeitung nachfolgender Anforderungen einen falschen Status auf. Sie können einen Singletondienst aus einem bereichsbezogenen oder temporären Dienst auflösen.
+> Lösen Sie einen bereichsbezogenen Dienst * **nicht** _ über einen Singleton auf. Möglicherweise weist der Dienst bei der Verarbeitung nachfolgender Anforderungen einen falschen Status auf. Sie können einen Singletondienst aus einem bereichsbezogenen oder temporären Dienst auflösen.
 
 ## <a name="service-registration-methods"></a>Dienstregistrierungsmethoden
 
@@ -226,14 +228,46 @@ Das Framework stellt Erweiterungsmethoden für die Dienstregistrierung bereit, d
 
 Weitere Informationen zum Löschen von Typen finden Sie im Abschnitt [Löschen von Diensten](#disposal-of-services). Es ist üblich, mehrere Implementierungen zu verwenden, [wenn Typen zu Testzecken simuliert werden](xref:test/integration-tests#inject-mock-services).
 
+Das Registrieren eines Diensts mit nur einem Implementierungstyp entspricht dem Registrieren dieses Diensts mit demselben Implementierungs- und Diensttyp. Aus diesem Grund können nicht mehrere Implementierungen eines Diensts mithilfe von Methoden registriert werden, die keinen expliziten Diensttyp erwarten. Solche Methoden können mehrere _Instanzen* eines Diensts registrieren, die dann jedoch alle denselben *Implementierungstyp* aufweisen.
+
+Alle oben genannten Dienstregistrierungsmethoden können zum Registrieren mehrerer Dienstinstanzen desselben Diensttyps verwendet werden. Im folgenden Beispiel wird `AddSingleton` zweimal mit `IMyDependency` als Diensttyp aufgerufen. Mit dem zweiten Aufruf von `AddSingleton` wird der vorhandene Singleton überschrieben, wenn er als `IMyDependency` aufgelöst wurde. Wenn mehrere Dienste über `IEnumerable<IMyDependency>` aufgelöst werden, wird der neue Singleton hinzugefügt und der alte beibehalten. Dienste werden beim Auflösen mit `IEnumerable<{SERVICE}>` in der Reihenfolge angezeigt, in der sie registriert wurden.
+
+```csharp
+services.AddSingleton<IMyDependency, MyDependency>();
+services.AddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+       IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is DifferentDependency);
+
+        var dependencyArray = myDependencies.ToArray();
+        Trace.Assert(dependencyArray[0] is MyDependency);
+        Trace.Assert(dependencyArray[1] is DifferentDependency);
+    }
+}
+```
+
 Das Framework stellt außerdem `TryAdd{LIFETIME}`-Erweiterungsmethoden bereit, die den Dienst nur registrieren, wenn noch keine Implementierung registriert ist.
 
-Im folgenden Beispiel registriert der `AddSingleton`-Aufruf `MyDependency` als Implementierung für `IMyDependency`. Der Aufruf von `TryAddSingleton` hat keine Auswirkung, weil `IMyDependency` bereits eine registrierte Implementierung aufweist:
+Im folgenden Beispiel registriert der `AddSingleton`-Aufruf `MyDependency` als Implementierung für `IMyDependency`. Der Aufruf von `TryAddSingleton` hat keine Auswirkung, da `IMyDependency` bereits eine registrierte Implementierung aufweist.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
 // The following line has no effect:
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+        IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is MyDependency);
+        Trace.Assert(myDependencies.Single() is MyDependency);
+    }
+}
 ```
 
 Weitere Informationen finden Sie unter
@@ -480,7 +514,7 @@ Die Factorymethode des einzelnen Diensts, z. B. das zweite Argument für [AddSi
 
     ![Falscher Code](dependency-injection/_static/bad.png)
 
-  **Richtig**:
+  **Richtig** :
 
   ```csharp
   public class MyClass
@@ -637,7 +671,7 @@ Diese Schnittstelle wird durch einen konkreten Typ (`MyDependency`) implementier
 
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet1)]
 
-`MyDependency` fordert einen <xref:Microsoft.Extensions.Logging.ILogger`1> beim zugehörigen Konstruktor an. Die Abhängigkeitsinjektion wird häufig als Verkettung verwendet. Jede angeforderte Abhängigkeit fordert wiederum ihre eigenen Abhängigkeiten an. Der Container löst die Abhängigkeiten im Diagramm auf und gibt den vollständig aufgelösten Dienst zurück. Die gesammelten aufzulösenden Abhängigkeiten werden als *Abhängigkeitsstruktur*, *Abhängigkeitsdiagramm* oder *Objektdiagramm* bezeichnet.
+`MyDependency` fordert einen <xref:Microsoft.Extensions.Logging.ILogger`1> beim zugehörigen Konstruktor an. Die Abhängigkeitsinjektion wird häufig als Verkettung verwendet. Jede angeforderte Abhängigkeit fordert wiederum ihre eigenen Abhängigkeiten an. Der Container löst die Abhängigkeiten im Diagramm auf und gibt den vollständig aufgelösten Dienst zurück. Die gesammelten aufzulösenden Abhängigkeiten werden als *Abhängigkeitsstruktur* , *Abhängigkeitsdiagramm* oder *Objektdiagramm* bezeichnet.
 
 `IMyDependency` und `ILogger<TCategoryName>` müssen im Dienstcontainer registriert werden. `IMyDependency` ist in `Startup.ConfigureServices` registriert. `ILogger<TCategoryName>` wird von der Protokollierungsabstraktionsinfrastruktur registriert. Es handelt sich also um einen [von einem Framework bereitgestellten Dienst](#framework-provided-services), der standardmäßig vom Framework registriert wird.
 
@@ -780,14 +814,46 @@ Methoden zur Erweiterung der Dienstregistrierung bieten Überladungen, die in be
 
 Weitere Informationen zum Löschen von Typen finden Sie im Abschnitt [Löschen von Diensten](#disposal-of-services). Ein häufiges Szenario für mehrere Implementierungen ist [Typen zu Testzwecken simulieren](xref:test/integration-tests#inject-mock-services).
 
-`TryAdd{LIFETIME}`-Methoden registrieren den Dienst nur, wenn noch keine Implementierung registriert ist.
+Das Registrieren eines Diensts mit nur einem Implementierungstyp entspricht dem Registrieren dieses Diensts mit demselben Implementierungs- und Diensttyp. Aus diesem Grund können nicht mehrere Implementierungen eines Diensts mithilfe von Methoden registriert werden, die keinen expliziten Diensttyp erwarten. Solche Methoden können mehrere *Instanzen* eines Diensts registrieren, die dann jedoch alle denselben *Implementierungstyp* aufweisen.
 
-Im folgenden Beispiel registriert die erste Zeile `MyDependency` für `IMyDependency`. Die zweite Zeile hat keine Auswirkungen, da es für `IMyDependency` bereits eine registrierte Implementierung gibt:
+Alle oben genannten Dienstregistrierungsmethoden können zum Registrieren mehrerer Dienstinstanzen desselben Diensttyps verwendet werden. Im folgenden Beispiel wird `AddSingleton` zweimal mit `IMyDependency` als Diensttyp aufgerufen. Mit dem zweiten Aufruf von `AddSingleton` wird der vorhandene Singleton überschrieben, wenn er als `IMyDependency` aufgelöst wurde. Wenn mehrere Dienste über `IEnumerable<IMyDependency>` aufgelöst werden, wird der neue Singleton hinzugefügt und der alte beibehalten. Dienste werden beim Auflösen mit `IEnumerable<{SERVICE}>` in der Reihenfolge angezeigt, in der sie registriert wurden.
+
+```csharp
+services.AddSingleton<IMyDependency, MyDependency>();
+services.AddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+       IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is DifferentDependency);
+
+        var dependencyArray = myDependencies.ToArray();
+        Trace.Assert(dependencyArray[0] is MyDependency);
+        Trace.Assert(dependencyArray[1] is DifferentDependency);
+    }
+}
+```
+
+Das Framework stellt außerdem `TryAdd{LIFETIME}`-Erweiterungsmethoden bereit, die den Dienst nur registrieren, wenn noch keine Implementierung registriert ist.
+
+Im folgenden Beispiel registriert der `AddSingleton`-Aufruf `MyDependency` als Implementierung für `IMyDependency`. Der Aufruf von `TryAddSingleton` hat keine Auswirkung, da `IMyDependency` bereits eine registrierte Implementierung aufweist.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
 // The following line has no effect:
 services.TryAddSingleton<IMyDependency, DifferentDependency>();
+
+public class MyService
+{
+    public MyService(IMyDependency myDependency, 
+        IEnumberable<IMyDependency> myDependencies)
+    {
+        Trace.Assert(myDependency is MyDependency);
+        Trace.Assert(myDependencies.Single() is MyDependency);
+    }
+}
 ```
 
 Weitere Informationen finden Sie unter:
@@ -1084,7 +1150,7 @@ Die Factorymethode des einzelnen Diensts, z. B. das zweite Argument für [AddSi
 * Vermeiden Sie das Speichern von Daten und die direkte Konfiguration im Dienstcontainer. Der Einkaufswagen eines Benutzers sollte z. B. normalerweise nicht dem Dienstcontainer hinzugefügt werden. Bei der Konfiguration sollte das [Optionsmuster](xref:fundamentals/configuration/options) verwendet werden. Gleichermaßen sollten Sie „Datencontainer“-Objekte vermeiden, die nur vorhanden sind, um den Zugriff auf einige andere Objekte zuzulassen. Das tatsächlich benötige Element sollte besser über Dependency Injection angefordert werden.
 * Vermeiden Sie statischen Zugriff auf Dienste. Vermeiden Sie statische Eingabe von [IApplicationBuilder.ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) zur Verwendung an anderer Stelle.
 
-* Vermeiden Sie die Verwendung des *Dienstlocatormusters*, da dieses [Steuerungsumkehrungsstrategien](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) vermischt.
+* Vermeiden Sie die Verwendung des *Dienstlocatormusters* , da dieses [Steuerungsumkehrungsstrategien](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) vermischt.
   * Rufen Sie beispielsweise nicht <xref:System.IServiceProvider.GetService*> auf, um eine Dienstinstanz zu erhalten, wenn Sie stattdessen Abhängigkeitsinjektion verwenden können:
 
     **Falsch:**
@@ -1102,7 +1168,7 @@ Die Factorymethode des einzelnen Diensts, z. B. das zweite Argument für [AddSi
       }
       ```
    
-    **Richtig**:
+    **Richtig** :
 
     ```csharp
     public class MyClass

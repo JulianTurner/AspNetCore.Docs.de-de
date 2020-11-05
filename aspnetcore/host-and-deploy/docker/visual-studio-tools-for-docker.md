@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
-ms.openlocfilehash: 68ecc4961401211f1304ac4a26fff1b31e4ad7eb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 2cfd200c44290a0931cdeb2f68e99b90c11aa612
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627337"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059818"
 ---
 # <a name="visual-studio-container-tools-with-aspnet-core"></a>Visual Studio-Containertools mit ASP.NET Core
 
@@ -71,15 +72,15 @@ Mit den Containertools von Visual Studio können Sie Docker nicht zu einem vorha
 
 ## <a name="dockerfile-overview"></a>Übersicht über die Dockerfile-Datei
 
-Eine *Dockerfile*-Datei, der wichtigste Bestandteil beim Erstellen eines endgültigen Docker-Images, wird dem Projektstamm hinzugefügt. Verweisen Sie auf einen [Dockerfile-Verweis](https://docs.docker.com/engine/reference/builder/), damit Sie einen Überblick über die darin enthaltenen Befehle erlangen. Diese spezielle *Dockerfile*-Datei verwendet einen [mehrstufigen Build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/), der vier unterschiedlich benannte Buildschritte enthält:
+Eine *Dockerfile* -Datei, der wichtigste Bestandteil beim Erstellen eines endgültigen Docker-Images, wird dem Projektstamm hinzugefügt. Verweisen Sie auf einen [Dockerfile-Verweis](https://docs.docker.com/engine/reference/builder/), damit Sie einen Überblick über die darin enthaltenen Befehle erlangen. Diese spezielle *Dockerfile* -Datei verwendet einen [mehrstufigen Build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/), der vier unterschiedlich benannte Buildschritte enthält:
 
 ::: moniker range=">= aspnetcore-2.1"
 
 [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile.original?highlight=1,6,14,17)]
 
-Die obige *Dockerfile*-Datei basiert auf dem [microsoft/dotnet](https://hub.docker.com/r/microsoft/dotnet/)-Image. Dieses Basisimage enthält die ASP.NET Core-Runtime und NuGet-Pakete. Zur Verbesserung der Startleistung wurden die Pakete mit einem JIT-Compiler (Just-In-Time) übersetzt.
+Die obige *Dockerfile* -Datei basiert auf dem [microsoft/dotnet](https://hub.docker.com/r/microsoft/dotnet/)-Image. Dieses Basisimage enthält die ASP.NET Core-Runtime und NuGet-Pakete. Zur Verbesserung der Startleistung wurden die Pakete mit einem JIT-Compiler (Just-In-Time) übersetzt.
 
-Wenn im neuen Projektdialogfeld das Kontrollkästchen **Configure for HTTPS** (Für HTTPS konfigurieren) aktiviert ist, werden durch die *Dockerfile*-Datei zwei Ports verfügbar gemacht. Ein Port wird für den HTTP-Datenverkehr, der andere für HTTPS verwendet. Wenn dieses Kontrollkästchen nicht aktiviert ist, wird nur der Port 80 für den HTTP-Datenverkehr verfügbar gemacht.
+Wenn im neuen Projektdialogfeld das Kontrollkästchen **Configure for HTTPS** (Für HTTPS konfigurieren) aktiviert ist, werden durch die *Dockerfile* -Datei zwei Ports verfügbar gemacht. Ein Port wird für den HTTP-Datenverkehr, der andere für HTTPS verwendet. Wenn dieses Kontrollkästchen nicht aktiviert ist, wird nur der Port 80 für den HTTP-Datenverkehr verfügbar gemacht.
 
 ::: moniker-end
 
@@ -87,7 +88,7 @@ Wenn im neuen Projektdialogfeld das Kontrollkästchen **Configure for HTTPS** (F
 
 [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.0/HelloDockerTools/Dockerfile?highlight=1,5,13,16)]
 
-Die obige *Dockerfile*-Datei basiert auf dem [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore/)-Image. Dieses Basisimage enthält die ASP.NET Core-NuGet-Pakete, die mit einem JIT-Compiler übersetzt wurden und dadurch die Startleistung verbessern.
+Die obige *Dockerfile* -Datei basiert auf dem [microsoft/aspnetcore](https://hub.docker.com/r/microsoft/aspnetcore/)-Image. Dieses Basisimage enthält die ASP.NET Core-NuGet-Pakete, die mit einem JIT-Compiler übersetzt wurden und dadurch die Startleistung verbessern.
 
 ::: moniker-end
 
@@ -103,7 +104,7 @@ Ab Version 15.8 von Visual Studio 2017 wird eine Orchestrierungslösung erst bei
 
 ### <a name="docker-compose"></a>Docker Compose
 
-Die Containertools von Visual Studio fügen der Projektmappe ein *docker-compose*-Projekt mit den folgenden Dateien hinzu:
+Die Containertools von Visual Studio fügen der Projektmappe ein *docker-compose* -Projekt mit den folgenden Dateien hinzu:
 
 * *docker-compose.dcproj:* Hierbei handelt es sich um die Datei, die das Projekt darstellt. Diese enthält ein `<DockerTargetOS>`-Element, mit dem das zu verwendende Betriebssystem angegeben wird.
 * *.dockerignore:* Diese Datei enthält eine Liste mit Mustern für Dateien und Verzeichnisse, die beim Generieren eines Buildkontexts ausgeschlossen werden sollen.
@@ -118,7 +119,7 @@ In dem zuvor genannten Beispiel generiert `image: hellodockertools` das Image `h
 
 Stellen Sie dem Imagenamen den Benutzernamen für [Docker Hub](https://hub.docker.com/) voran (z.B. `dockerhubusername/hellodockertools`), wenn das Image per Push in die Registrierung übertragen werden soll. Stattdessen können Sie auch den Imagenamen ändern, sodass er die private Registrierungs-URL, die von der Konfiguration abhängig ist (z.B. `privateregistry.domain.com/hellodockertools`) enthält.
 
-Wenn Sie ein anderes Verhalten basierend auf der Buildkonfiguration wünschen (z.B. Debug oder Release), fügen Sie konfigurationsspezifische *docker-compose* Dateien hinzu. Die Dateien sollten entsprechend der Buildkonfiguration benannt werden (z.B. *docker-compose.vs.debug.yml* und *docker-compose.vs.release.yml*) und am gleichen Speicherort wie die Datei *docker-compose-override.yml* gespeichert werden. 
+Wenn Sie ein anderes Verhalten basierend auf der Buildkonfiguration wünschen (z.B. Debug oder Release), fügen Sie konfigurationsspezifische *docker-compose* Dateien hinzu. Die Dateien sollten entsprechend der Buildkonfiguration benannt werden (z.B. *docker-compose.vs.debug.yml* und *docker-compose.vs.release.yml* ) und am gleichen Speicherort wie die Datei *docker-compose-override.yml* gespeichert werden. 
 
 Mithilfe der konfigurationsspezifischen Außerkraftsetzungsdateien können Sie verschiedene Konfigurationseinstellungen (z.B. Umgebungsvariablen oder Einstiegspunkte) für Debug- und Releasebuildkonfigurationen angeben.
 
@@ -136,15 +137,15 @@ Die Ausführung von Linux-Containern auf dem lokalen Entwicklungscluster unter W
 Die Containertools von Visual Studio führen die folgenden Aufgaben aus:
 
 * Ein **Service Fabric-Anwendungsprojekt** mit dem Namen *&lt;Projektname&gt;Application* wird der Projektmappe hinzugefügt.
-* Eine *Dockerfile*-Datei und eine *DOCKERIGNORE*-Datei werden dem ASP.NET Core-Projekt hinzugefügt. Wenn im ASP.NET Core-Projekt bereits eine *Dockerfile*-Datei vorhanden ist, wird diese in *Dockerfile.original* umbenannt. Erstellt wird eine neue *Dockerfile*-Datei, die der folgenden ähnelt:
+* Eine *Dockerfile* -Datei und eine *DOCKERIGNORE* -Datei werden dem ASP.NET Core-Projekt hinzugefügt. Wenn im ASP.NET Core-Projekt bereits eine *Dockerfile* -Datei vorhanden ist, wird diese in *Dockerfile.original* umbenannt. Erstellt wird eine neue *Dockerfile* -Datei, die der folgenden ähnelt:
 
     [!code-dockerfile[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/Dockerfile)]
 
-* Ein `<IsServiceFabricServiceProject>`-Element wird der *CSPROJ*-Datei des ASP.NET Core-Projekts hinzugefügt:
+* Ein `<IsServiceFabricServiceProject>`-Element wird der *CSPROJ* -Datei des ASP.NET Core-Projekts hinzugefügt:
 
     [!code-xml[](visual-studio-tools-for-docker/samples/2.1/HelloDockerTools/HelloDockerTools.csproj?name=snippet_IsServiceFabricServiceProject)]
 
-* Ein *PackageRoot*-Ordner wird dem ASP.NET Core-Projekt hinzugefügt. Der Ordner enthält das Dienstmanifest und die Einstellungen für den neuen Dienst.
+* Ein *PackageRoot* -Ordner wird dem ASP.NET Core-Projekt hinzugefügt. Der Ordner enthält das Dienstmanifest und die Einstellungen für den neuen Dienst.
 
 Weitere Informationen finden Sie unter [Bereitstellen einer .NET-App in einem Windows-Container in Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container).
 
@@ -154,7 +155,7 @@ Wählen Sie in der Symbolleiste im Dropdownmenü „Debuggen“ die Option **Doc
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* Das Tag *2.1-aspnetcore-runtime* des *microsoft/dotnet*-Runtimeimages wird abgerufen (falls das Image noch nicht im Cache vorhanden ist). Das Image installiert die Runtimes für ASP.NET Core und .NET Core sowie die zugehörigen Bibliotheken. Es ist für die Ausführung von ASP.NET Core-Apps in einer Produktionsumgebung optimiert.
+* Das Tag *2.1-aspnetcore-runtime* des *microsoft/dotnet* -Runtimeimages wird abgerufen (falls das Image noch nicht im Cache vorhanden ist). Das Image installiert die Runtimes für ASP.NET Core und .NET Core sowie die zugehörigen Bibliotheken. Es ist für die Ausführung von ASP.NET Core-Apps in einer Produktionsumgebung optimiert.
 * Die Umgebungsvariable `ASPNETCORE_ENVIRONMENT` wird innerhalb des Containers auf `Development` festgelegt.
 * Zwei dynamisch zugewiesene Ports werden verfügbar gemacht, wobei einer für HTTP und der andere für HTTPS verwendet wird. Der Port, der „localhost“ zugewiesen ist, kann mit dem Befehl `docker ps` abgefragt werden.
 * Die App wird in den Container kopiert.
@@ -189,7 +190,7 @@ microsoft/aspnetcore  2.0  c69d39472da9  13 days ago    347MB
 ::: moniker-end
 
 > [!NOTE]
-> Das *dev*-Image enthält keine App-Inhalte, da **Debug**-Konfigurationen durch das Einbinden von Volumes für die iterative Funktionalität sorgen. Verwenden Sie zum Verschieben eines Images die Konfiguration **Release**.
+> Das *dev* -Image enthält keine App-Inhalte, da **Debug** -Konfigurationen durch das Einbinden von Volumes für die iterative Funktionalität sorgen. Verwenden Sie zum Verschieben eines Images die Konfiguration **Release**.
 
 Führen Sie in der Paket-Manager-Konsole den Befehl `docker ps` aus. Beachten Sie, dass die App mithilfe des Containers ausgeführt wird:
 
@@ -242,9 +243,9 @@ Die `microsoft/aspnetcore-build`- und `microsoft/aspnetcore`-Images, die in der 
 ::: moniker-end
 
 > [!NOTE]
-> Der Befehl `docker images` gibt Vermittlerimages mit Repositorynamen und -tags zurück, die als *\<none>* gekennzeichnet sind (oben nicht aufgeführt). Diese unbenannten Images werden von der [mehrstufig erstellten](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) *Dockerfile*-Datei erstellt. Sie verbessern die Effizienz der Erstellung des endgültigen Images. D.h., nur die notwendigen Ebenen werden erneut erstellt, wenn Änderungen auftreten. Wenn die Vermittlerimages nicht mehr benötigt werden, löschen Sie sie über den Befehl [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
+> Der Befehl `docker images` gibt Vermittlerimages mit Repositorynamen und -tags zurück, die als *\<none>* gekennzeichnet sind (oben nicht aufgeführt). Diese unbenannten Images werden von der [mehrstufig erstellten](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) *Dockerfile* -Datei erstellt. Sie verbessern die Effizienz der Erstellung des endgültigen Images. D.h., nur die notwendigen Ebenen werden erneut erstellt, wenn Änderungen auftreten. Wenn die Vermittlerimages nicht mehr benötigt werden, löschen Sie sie über den Befehl [docker rmi](https://docs.docker.com/engine/reference/commandline/rmi/).
 
-Möglicherweise wird angenommen, dass das Produktions- oder Releaseimage im Vergleich zum *dev*-Image kleiner ist. Aufgrund der Volumezuordnung wurden der Debugger und die App über den lokalen Computer und nicht innerhalb des Containers ausgeführt. Im *neusten* Image wurde der benötigte App-Code gepackt, um die App auf einem Hostcomputer auszuführen. Aus diesem Grund ist das Delta die Größe des App-Codes.
+Möglicherweise wird angenommen, dass das Produktions- oder Releaseimage im Vergleich zum *dev* -Image kleiner ist. Aufgrund der Volumezuordnung wurden der Debugger und die App über den lokalen Computer und nicht innerhalb des Containers ausgeführt. Im *neusten* Image wurde der benötigte App-Code gepackt, um die App auf einem Hostcomputer auszuführen. Aus diesem Grund ist das Delta die Größe des App-Codes.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

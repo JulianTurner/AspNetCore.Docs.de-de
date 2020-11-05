@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: 356536a22f11ca5db6cfa9cda79598ec8aa03e18
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f41d0b1d7ba46ef4867e0d160dc61f21042ce403
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625270"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053942"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Aktualisieren verwandter Daten: ASP.NET Core MVC mit EF Core
 
@@ -52,7 +53,7 @@ In diesem Tutorial:
 
 Wenn eine neue Kursentität erstellt wird, muss diese in Beziehung zu einer vorhandenen Abteilung stehen. Um dies zu vereinfachen, enthält der Gerüstcode Controllermethoden und Ansichten zum „Erstellen“ und „Bearbeiten“, die eine Dropdownliste enthalten, aus denen der Fachbereich ausgewählt werden kann. Die Dropdownliste legt die `Course.DepartmentID`-Fremdschlüsseleigenschaft fest. Mehr benötigt Entity Framework nicht, um die `Department`-Navigationseigenschaft mit der passenden Department-Entität zu laden. Verwenden Sie den Gerüstcode, aber nehmen Sie kleine Änderungen vor, um die Fehlerbehandlung hinzuzufügen und die Dropdownliste zu sortieren.
 
-Löschen Sie aus der *CoursesController.cs*-Datei die vier Methoden zum „Erstellen“ und „Bearbeiten“, und ersetzen Sie diese durch den folgenden Code:
+Löschen Sie aus der *CoursesController.cs* -Datei die vier Methoden zum „Erstellen“ und „Bearbeiten“, und ersetzen Sie diese durch den folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_CreateGet)]
 
@@ -88,27 +89,27 @@ Fügen Sie `AsNoTracking`-Aufrufe in die `Details` und zu den HttpGet-Methoden `
 
 ### <a name="modify-the-course-views"></a>Ändern der Kursansichten
 
-Fügen Sie in der *Views/Courses/Create.cshtml*-Datei die Option „Select Department“ (Fachbereich auswählen) zu der Dropdownliste **Department** (Fachbereich) hinzu, ändern Sie den Titel von **DepartmentID** in **Department**, und fügen Sie eine Validierungsmeldung hinzu.
+Fügen Sie in der *Views/Courses/Create.cshtml* -Datei die Option „Select Department“ (Fachbereich auswählen) zu der Dropdownliste **Department** (Fachbereich) hinzu, ändern Sie den Titel von **DepartmentID** in **Department** , und fügen Sie eine Validierungsmeldung hinzu.
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
 
 Nehmen Sie in der Datei *Views/Courses/Edit.cshtml* dieselben Änderungen für das Feld „Department“ (Fachbereich) vor wie in der Datei *Create.cshtml*.
 
-Fügen Sie in der *Views/Courses/Edit.cshtml*-Datei außerdem vor dem Feld **Titel** ein Feld für die Kursnummer hinzu. Da es sich bei der Kursnummer um einen Primärschlüssel handelt, wird dieser zwar angezeigt, kann aber nicht geändert werden.
+Fügen Sie in der *Views/Courses/Edit.cshtml* -Datei außerdem vor dem Feld **Titel** ein Feld für die Kursnummer hinzu. Da es sich bei der Kursnummer um einen Primärschlüssel handelt, wird dieser zwar angezeigt, kann aber nicht geändert werden.
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Edit.cshtml?range=15-18)]
 
 In der Ansicht „Bearbeiten“ ist bereits eine ausgeblendetes Feld (`<input type="hidden">`) für die Kursnummer vorhanden. Wenn Sie ein `<label>`-Taghilfsprogramm hinzufügen, wird trotzdem ein ausgeblendetes Feld benötigt, da dieses nicht dazu beiträgt, dass die Kursnummer in den bereitgestellten Daten vorhanden ist, wenn der Benutzer auf der Seite **Bearbeiten** auf **Speichern** klickt.
 
-Fügen Sie oben in der *Views/Courses/Delete.cshtml*-Datei ein Feld für die Kursnummer hinzu, und ändern Sie „Department ID“ (Fachbereichs-ID) in „Department Name“ (Fachbereichsname).
+Fügen Sie oben in der *Views/Courses/Delete.cshtml* -Datei ein Feld für die Kursnummer hinzu, und ändern Sie „Department ID“ (Fachbereichs-ID) in „Department Name“ (Fachbereichsname).
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Delete.cshtml?highlight=14-19,36)]
 
-Nehmen Sie in der *Views/Courses/Details.cshtml*-Datei dieselben Änderungen wie in der *Delete.cshtml*-Datei vor.
+Nehmen Sie in der *Views/Courses/Details.cshtml* -Datei dieselben Änderungen wie in der *Delete.cshtml* -Datei vor.
 
 ### <a name="test-the-course-pages"></a>Testen der Kursseiten
 
-Führen Sie die App aus, wählen Sie die Registerkarte **Courses** (Kurse) aus, klicken Sie auf **Neu erstellen**, und geben Sie die Daten für einen neuen Kurs ein:
+Führen Sie die App aus, wählen Sie die Registerkarte **Courses** (Kurse) aus, klicken Sie auf **Neu erstellen** , und geben Sie die Daten für einen neuen Kurs ein:
 
 ![Seite „Kurs erstellen“](update-related-data/_static/course-create.png)
 
@@ -132,7 +133,7 @@ Bei der Bearbeitung eines Dozentendatensatzes sollten Sie auch die Bürozuweisun
 
 ### <a name="update-the-instructors-controller"></a>Aktualisieren des Controllers des Dozenten
 
-Ändern Sie in der *InstructorsController.cs*-Datei den Code in der HttpGet-Methode `Edit`, sodass diese die `OfficeAssignment`-Eigenschaft der Instructor-Entität lädt und `AsNoTracking` aufruft:
+Ändern Sie in der *InstructorsController.cs* -Datei den Code in der HttpGet-Methode `Edit`, sodass diese die `OfficeAssignment`-Eigenschaft der Instructor-Entität lädt und `AsNoTracking` aufruft:
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?highlight=8-11&name=snippet_EditGetOA)]
 
@@ -172,11 +173,11 @@ Der Code führt Folgendes aus:
 
 ### <a name="update-the-instructor-edit-view"></a>Aktualisieren der Dozentenansicht „Bearbeiten“
 
-Fügen Sie am Ende vor der Schaltfläche **Speichern** in der *Views/Instructors/Edit.cshtml*-Datei ein neues Feld hinzu, um den Standort des Büros zu bearbeiten:
+Fügen Sie am Ende vor der Schaltfläche **Speichern** in der *Views/Instructors/Edit.cshtml* -Datei ein neues Feld hinzu, um den Standort des Büros zu bearbeiten:
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Edit.cshtml?range=30-34)]
 
-Führen Sie die App aus, klicken Sie erst auf die Registerkarte **Dozenten** und dann für einen Dozenten auf **Bearbeiten**. Ändern Sie den **Standort des Büros**, und klicken Sie auf **Speichern**.
+Führen Sie die App aus, klicken Sie erst auf die Registerkarte **Dozenten** und dann für einen Dozenten auf **Bearbeiten**. Ändern Sie den **Standort des Büros** , und klicken Sie auf **Speichern**.
 
 ![Bearbeitungsseite „Dozent“](update-related-data/_static/instructor-edit-office.png)
 
@@ -194,7 +195,7 @@ Die Benutzeroberfläche, über die Sie ändern können, welchen Kursen ein Dozen
 
 Verwenden Sie eine Ansichtsmodellklasse, um Daten für die Ansicht bereitzustellen, um eine Liste mit Kontrollkästchen zu erstellen.
 
-Erstellen Sie im Ordner *SchoolViewModels* die Datei *AssignedCourseData.cs*, und ersetzen Sie den vorhandenen Code durch den folgenden Code:
+Erstellen Sie im Ordner *SchoolViewModels* die Datei *AssignedCourseData.cs* , und ersetzen Sie den vorhandenen Code durch den folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/AssignedCourseData.cs)]
 
@@ -232,7 +233,7 @@ Wenn das Kontrollkästchen für einen Kurs aktiviert ist, dieser Kurs jedoch nic
 
 ### <a name="update-the-instructor-views"></a>Ausführen eines Updates für die Dozentenseiten
 
-Fügen Sie in der *Views/Instructors/Edit.cshtml*-Datei ein **Kurse**-Feld mit einem Array mit Kontrollkästchen hinzu, indem Sie den folgenden Code direkt nach den `div`-Elementen für das **Büro**-Feld und vor dem `div`-Element für die Schaltfläche **Speichern** einfügen.
+Fügen Sie in der *Views/Instructors/Edit.cshtml* -Datei ein **Kurse** -Feld mit einem Array mit Kontrollkästchen hinzu, indem Sie den folgenden Code direkt nach den `div`-Elementen für das **Büro** -Feld und vor dem `div`-Element für die Schaltfläche **Speichern** einfügen.
 
 <a id="notepad"></a>
 > [!NOTE]
@@ -244,7 +245,7 @@ Dieser Code erstellt eine HTML-Tabelle mit drei Spalten. Jede Spalte enthält ei
 
 Wenn die Kontrollkästchen zu Beginn gerendert werden, verfügen die Kästchen, die für Kurse stehen, die dem Dozenten zugewiesen sind, über aktivierte Attribute, die diese aktivieren (also als aktiviert anzeigen).
 
-Führen Sie die App aus, klicken Sie erst auf die Registerkarte **Dozenten** und dann für einen Dozenten auf **Bearbeiten**, um die Seite **Bearbeiten** anzuzeigen.
+Führen Sie die App aus, klicken Sie erst auf die Registerkarte **Dozenten** und dann für einen Dozenten auf **Bearbeiten** , um die Seite **Bearbeiten** anzuzeigen.
 
 ![Dozentenseite „Edit“ (Bearbeiten) mit Kursen](update-related-data/_static/instructor-edit-courses.png)
 
@@ -267,7 +268,7 @@ Durch diesen Code werden folgende Änderungen vorgenommen:
 
 ## <a name="add-office-location-and-courses-to-create-page"></a>Fügen Sie Bürostandort und Kurse der Seite „Erstellen“ hinzu
 
-Löschen Sie in der *InstructorsController.cs*-Datei die Methoden HttpGet und HttpPost-`Create`, und fügen Sie anschließend stattdessen den folgenden Code ein:
+Löschen Sie in der *InstructorsController.cs* -Datei die Methoden HttpGet und HttpPost-`Create`, und fügen Sie anschließend stattdessen den folgenden Code ein:
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Create&highlight=3-5,12,14-22,29)]
 
@@ -300,7 +301,7 @@ public ICollection<CourseAssignment> CourseAssignments
 
 Wenn Sie die `CourseAssignments`-Eigenschaft auf diese Weise ändern, können Sie den expliziten Code zum Initialisieren der Eigenschaft aus dem Controller entfernen.
 
-Fügen die in der *Views/Instructor/Create.cshtml*-Datei ein Textfeld für den Bürostandort hinzu, und aktivieren Sie Felder für Kurse, bevor Sie auf die Schaltfläche „Übermitteln“ klicken. [Wenn Visual Studio den Code neu formatiert, wenn Sie diesen einfügen, beheben Sie die Formatierung](#notepad) auf dieselbe Weise wie auf der Seite „Bearbeiten“.
+Fügen die in der *Views/Instructor/Create.cshtml* -Datei ein Textfeld für den Bürostandort hinzu, und aktivieren Sie Felder für Kurse, bevor Sie auf die Schaltfläche „Übermitteln“ klicken. [Wenn Visual Studio den Code neu formatiert, wenn Sie diesen einfügen, beheben Sie die Formatierung](#notepad) auf dieselbe Weise wie auf der Seite „Bearbeiten“.
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Create.cshtml?range=29-61)]
 

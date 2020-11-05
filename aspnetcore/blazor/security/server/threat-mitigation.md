@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/05/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: a9bdf68e30d2688d4d7836410a7913794a73fe01
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5c3a002a8e3df030d53c8625597342a68ca0d4b5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626427"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055411"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>Leitfaden zur Bedrohungsabwehr für Blazor Server in ASP.NET Core
 
@@ -248,7 +249,7 @@ Das im vorherigen Beispiel gezeigte Wächtermuster funktioniert, wenn der Hinter
 
 ### <a name="cancel-early-and-avoid-use-after-dispose"></a>Frühes Abbrechen und Vermeiden der Verwendung nach der Entfernung (use-after-dispose)
 
-Zusätzlich zu einem Wächter (Abschnitt [Wächter gegen mehrere Sendungen](#guard-against-multiple-dispatches)) sollten Sie auch ein Abbruchtoken (<xref:System.Threading.CancellationToken>) verwenden, um zeitintensive Vorgänge nach dem Entfernen der Komponente abbrechen zu können. Dieser Ansatz bietet den zusätzlichen Vorteil, dass eine Verwendung nach der Entfernung (*use-after-dispose*) in Komponenten vermieden wird:
+Zusätzlich zu einem Wächter (Abschnitt [Wächter gegen mehrere Sendungen](#guard-against-multiple-dispatches)) sollten Sie auch ein Abbruchtoken (<xref:System.Threading.CancellationToken>) verwenden, um zeitintensive Vorgänge nach dem Entfernen der Komponente abbrechen zu können. Dieser Ansatz bietet den zusätzlichen Vorteil, dass eine Verwendung nach der Entfernung ( *use-after-dispose* ) in Komponenten vermieden wird:
 
 ```razor
 @implements IDisposable
@@ -353,7 +354,7 @@ Zusätzlich zu den vom Framework implementierten Schutzmaßnahmen muss die App v
 * Vertrauen Sie nicht der Eingabe für JS-Interop-Aufrufe zwischen JavaScript und .NET-Methoden (beide Richtungen).
 * Die App ist dafür zuständig, dass die Gültigkeit der Argumente und Ergebnisse überprüft wird, selbst wenn die Argumente oder Ergebnisse korrekt deserialisiert wurden.
 
-Das Risiko von XSS besteht nur, wenn die App Benutzereingaben in die gerenderte Seite einbindet. Blazor Server-Komponenten führen einen Schritt zur Kompilierzeit aus, bei dem Markup in einer `.razor`-Datei in eine prozedurale C#-Logik transformiert wird. Zur Laufzeit erstellt die C#-Logik eine *Renderingstruktur*, die die Elemente, den Text und die untergeordneten Komponenten beschreibt. Diese wird mithilfe mehrerer JavaScript-Anweisungen auf das DOM des Browsers angewendet (oder im Falle von Prerendering in HTML serialisiert):
+Das Risiko von XSS besteht nur, wenn die App Benutzereingaben in die gerenderte Seite einbindet. Blazor Server-Komponenten führen einen Schritt zur Kompilierzeit aus, bei dem Markup in einer `.razor`-Datei in eine prozedurale C#-Logik transformiert wird. Zur Laufzeit erstellt die C#-Logik eine *Renderingstruktur* , die die Elemente, den Text und die untergeordneten Komponenten beschreibt. Diese wird mithilfe mehrerer JavaScript-Anweisungen auf das DOM des Browsers angewendet (oder im Falle von Prerendering in HTML serialisiert):
 
 * Benutzereingaben, die über eine normale Razor-Syntax gerendert werden (z. B. `@someStringValue`) stellen kein XSS-Risiko dar, weil die Razor-Syntax mithilfe von Befehlen, die nur Text schreiben können, dem DOM hinzugefügt wird. Selbst wenn der Wert HTML-Markup enthält, wird er als statischer Text angezeigt. Während des Prerenderings wird die Ausgabe HTML-codiert, wodurch der Inhalt ebenfalls als statischer Text angezeigt wird.
 * Skripttags sind nicht zulässig und sollten in der Komponentenrenderingstruktur der App nicht verwendet werden. Wenn Sie ein Skripttag das Markup einer Komponente aufnehmen, wird ein Kompilierzeitfehler zurückgegeben.

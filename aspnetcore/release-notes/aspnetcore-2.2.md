@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: 085a26d508af5bdce506ab923a3256046b3894ab
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 67581904c686b0f8b6736b751c8e3f1545f6a286
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722487"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059701"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>Neuerungen in ASP.NET Core 2.2
 
@@ -49,7 +50,7 @@ ASP.NET Core 2.2 verwendet ein neues System für das *Endpunktrouting* zum verbe
 Weitere Informationen finden Sie in den folgenden Ressourcen:
 
 * [Endpunktrouting in 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/)
-* [Parameter Transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (Transformatoren für Routenparameter, Abschnitt **Routing**)
+* [Parameter Transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (Transformatoren für Routenparameter, Abschnitt **Routing** )
 * [Unterschiede im Vergleich zu früheren Routingversionen](xref:fundamentals/routing?view=aspnetcore-2.2#differences-from-earlier-versions-of-routing)
 
 ## <a name="health-checks"></a>Integritätsprüfungen
@@ -86,7 +87,7 @@ In früheren Versionen von ASP.NET Core werden Kestrel-Optionen durch Aufrufen v
 
 ## <a name="iis-in-process-hosting"></a>IIS-In-Process-Hosting
 
-In früheren Versionen von ASP.NET Core dient IIS als Reverseproxy. In 2.2 kann das ASP.NET Core-Modul die CoreCLR starten und eine App im IIS-Workerprozess (*w3wp.exe*) hosten. Das In-Process-Hosting verbessert die Leistung und Diagnose beim Ausführen mit IIS.
+In früheren Versionen von ASP.NET Core dient IIS als Reverseproxy. In 2.2 kann das ASP.NET Core-Modul die CoreCLR starten und eine App im IIS-Workerprozess ( *w3wp.exe* ) hosten. Das In-Process-Hosting verbessert die Leistung und Diagnose beim Ausführen mit IIS.
 
 Weitere Informationen finden Sie unter [In-Process-Hosting für IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
 

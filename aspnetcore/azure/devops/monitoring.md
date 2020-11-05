@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 07/10/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/monitor
-ms.openlocfilehash: d5d5189563760cb8a61c188436caa3838e75a31e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 74e789828bf5d54e3457f235657f8ed7086df80d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626908"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056750"
 ---
 # <a name="monitor-and-debug"></a>Überwachen und Debuggen
 
@@ -48,11 +49,11 @@ App Service-Web-Apps können problemlos in Echtzeit überwacht werden. Das Azure
 
     ![Screenshot: Bereich „Übersicht“](./media/monitoring/overview.png)
 
-    * **Http 5xx**: Anzahl serverseitiger Fehler, normalerweise Ausnahmen im ASP.NET Core.
-    * **Eingehende Daten**: Eingehende Daten Ihrer Web-App.
-    * **Ausgehende Daten**: Ausgehende Daten von Ihrer Web-App an Clients.
-    * **Anforderungen**: Anzahl der HTTP-Anforderungen.
-    * **Durchschnittliche Antwortzeit**: Die durchschnittliche Zeit, bis die Web-App auf HTTP-Anforderungen antwortet.
+    * **Http 5xx** : Anzahl serverseitiger Fehler, normalerweise Ausnahmen im ASP.NET Core.
+    * **Eingehende Daten** : Eingehende Daten Ihrer Web-App.
+    * **Ausgehende Daten** : Ausgehende Daten von Ihrer Web-App an Clients.
+    * **Anforderungen** : Anzahl der HTTP-Anforderungen.
+    * **Durchschnittliche Antwortzeit** : Die durchschnittliche Zeit, bis die Web-App auf HTTP-Anforderungen antwortet.
 
     Auf dieser Seite finden Sie auch mehrere Self-Service-Tools für die Problembehandlung und Optimierung.
 
@@ -112,7 +113,7 @@ Für die Web-App werden ASP.NET Core- und Webserver- (App Service-)Protokolle ge
 App- und Webserver-Protokolle können über das Portal in Echtzeit gestreamt werden.
 
 1. Öffnen Sie das [Azure-Portal](https://portal.azure.com), und navigieren Sie zum App Service *mywebapp\<unique_number\>* .
-1. Scrollen Sie im Menü auf der linken Seite nach unten zum Abschnitt **Überwachung**, und wählen Sie **Protokollstream** aus.
+1. Scrollen Sie im Menü auf der linken Seite nach unten zum Abschnitt **Überwachung** , und wählen Sie **Protokollstream** aus.
 
     ![Screenshot: Link zum Protokollstream](./media/monitoring/log-stream.png)
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: b8dd272d673e84b45a39272531385ebfd1d06175
-ms.sourcegitcommit: daa9ccf580df531254da9dce8593441ac963c674
+ms.openlocfilehash: 669ebaf6dcd05561340aefda4a75b6fe1068d207
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91900985"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056191"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
@@ -44,7 +45,7 @@ Verfügbare Szenarien:
 * Beobachten der Werte lokaler Variablen im Fenster *Lokale Variablen*
 * Anzeigen der Aufrufliste einschließlich Aufrufketten zwischen JavaScript und .NET
 
-Folgendes ist derzeit *nicht möglich*:
+Folgendes ist derzeit *nicht möglich* :
 
 * Halt bei Ausnahmefehlern
 * Erreichen von Breakpoints während des App-Starts, bevor der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
@@ -91,10 +92,10 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio:
 1. Drücken Sie <kbd>F5</kbd>, um die App im Debugger auszuführen.
 
    > [!NOTE]
-   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
+   > Das **Starten ohne Debuggen** ( <kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
 1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
-1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
+1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken** , damit der Code bis zum Breakpoint ausgeführt wird.
 1. Sehen Sie sich in Visual Studio den Wert des `currentCount`-Felds im Fenster **Lokale Variablen** an.
 1. Drücken Sie <kbd>F5</kbd>, um die Ausführung fortzusetzen.
 
@@ -167,22 +168,22 @@ Weitere Informationen zur Verwendung eines benutzerdefinierten App-Basispfads f�
 
    Wenn Sie diese Benachrichtigung erhalten, führen Sie die folgenden Schritte aus:
 
-   * Stellen Sie sicher, dass die aktuellste [C# für Visual Studio Code-Erweiterung](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installiert ist. Öffnen Sie zur Überprüfung der installierten Erweiterungen in der Menüleiste die Option **Ansicht** > **Erweiterungen**, oder klicken Sie in der Seitenleiste **Aktivität** auf das Symbol **Erweiterungen**.
-   * Vergewissern Sie sich, dass das JavaScript-Vorschaudebuggen aktiviert ist. Öffnen Sie die Einstellungen über die Menüleiste (**Datei** > **Einstellungen** > **Einstellungen**). Führen Sie mithilfe der Schlüsselwörter `debug preview` eine Suche durch. Vergewissern Sie sich in den Suchergebnissen, dass das Kontrollkästchen **Debuggen > JavaScript: Vorschau verwenden** aktiviert ist. Wenn die Option zum Aktivieren des Vorschaudebuggens nicht vorhanden ist, führen Sie entweder ein Upgrade auf die neueste VS Code-Version durch, oder installieren Sie die [JavaScript-Debuggererweiterung](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code-Versionen 1.46 oder früher).
+   * Stellen Sie sicher, dass die aktuellste [C# für Visual Studio Code-Erweiterung](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installiert ist. Öffnen Sie zur Überprüfung der installierten Erweiterungen in der Menüleiste die Option **Ansicht** > **Erweiterungen** , oder klicken Sie in der Seitenleiste **Aktivität** auf das Symbol **Erweiterungen**.
+   * Vergewissern Sie sich, dass das JavaScript-Vorschaudebuggen aktiviert ist. Öffnen Sie die Einstellungen über die Menüleiste ( **Datei** > **Einstellungen** > **Einstellungen** ). Führen Sie mithilfe der Schlüsselwörter `debug preview` eine Suche durch. Vergewissern Sie sich in den Suchergebnissen, dass das Kontrollkästchen **Debuggen > JavaScript: Vorschau verwenden** aktiviert ist. Wenn die Option zum Aktivieren des Vorschaudebuggens nicht vorhanden ist, führen Sie entweder ein Upgrade auf die neueste VS Code-Version durch, oder installieren Sie die [JavaScript-Debuggererweiterung](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code-Versionen 1.46 oder früher).
    * Laden Sie das Fenster neu.
 
 1. Starten Sie das Debuggen mit der Tastenkombination <kbd>F5</kbd> oder dem Menü Element.
 
    > [!NOTE]
-   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
+   > Das **Starten ohne Debuggen** ( <kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
-1. Wenn Sie dazu aufgefordert werden, wählen Sie die Option **Blazor WebAssembly debuggen**, um das Debuggen zu starten.
+1. Wenn Sie dazu aufgefordert werden, wählen Sie die Option **Blazor WebAssembly debuggen** , um das Debuggen zu starten.
 
 1. Die eigenständige App wird gestartet, und es wird ein Debuggingbrowser geöffnet.
 
 1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
 
-1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
+1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken** , damit der Code bis zum Breakpoint ausgeführt wird.
 
 > [!NOTE]
 > Während App-Starts werden Breakpoints **nicht** erreicht, während der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
@@ -270,7 +271,7 @@ Die Browserkonfiguration verwendet standardmäßig Google Chrome. Wenn Sie Micro
 }
 ```
 
-Im vorherigen Beispiel ist `MyHostedApp.Server.dll` die Assembly der *Server*-App. Der Ordner `.vscode` befindet sich im Projektmappenordner neben den Ordnern `Client`, `Server` und `Shared`.
+Im vorherigen Beispiel ist `MyHostedApp.Server.dll` die Assembly der *Server* -App. Der Ordner `.vscode` befindet sich im Projektmappenordner neben den Ordnern `Client`, `Server` und `Shared`.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
@@ -280,13 +281,13 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio Code für Mac:
 1. Drücken Sie <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>, um die App im Debugger auszuführen.
 
    > [!NOTE]
-   > **Starten ohne Debuggen** (<kbd>&#8997;</kbd>+<kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
+   > **Starten ohne Debuggen** ( <kbd>&#8997;</kbd>+<kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
    > [!IMPORTANT]
    > Google Chrome oder Microsoft Edge muss der für die Debugsitzung ausgewählte Browser sein.
 
 1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
-1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
+1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken** , damit der Code bis zum Breakpoint ausgeführt wird.
 1. Sehen Sie sich in Visual Studio den Wert des `currentCount`-Felds im Fenster **Lokale Variablen** an.
 1. Drücken Sie <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>, um die Ausführung fortzusetzen.
 

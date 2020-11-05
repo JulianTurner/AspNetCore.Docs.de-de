@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/03/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: 40c47da472257862414ba33be582eb19d3f0b29c
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: b3c714ea8e741430df1f70b2df258f1e8f1c7ad5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91754553"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060507"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Veröffentlichen einer ASP.NET Core-App in IIS
 
@@ -75,7 +76,7 @@ Laden Sie den Installer über folgenden Link herunter:
 
 1. Vergewissern Sie sich, dass die Prozessmodellidentität über die richtigen Berechtigungen verfügt.
 
-   Wenn die Standardidentität des App-Pools (**Prozessmodell** >  **Identity** ) von `ApplicationPoolIdentity` in eine andere Identität geändert wird, sollten Sie sicherstellen, dass die neue Identität über die erforderlichen Berechtigungen zum Zugriff auf den Ordner, die Datenbank und andere erforderliche Ressourcen der App verfügt. Der App-Pool benötigt beispielsweise Lese- und Schreibzugriff für Ordner, in denen die App Lese- und Schreibvorgänge für Dateien ausführt.
+   Wenn die Standardidentität des App-Pools ( **Prozessmodell** >  **Identity** ) von `ApplicationPoolIdentity` in eine andere Identität geändert wird, sollten Sie sicherstellen, dass die neue Identität über die erforderlichen Berechtigungen zum Zugriff auf den Ordner, die Datenbank und andere erforderliche Ressourcen der App verfügt. Der App-Pool benötigt beispielsweise Lese- und Schreibzugriff für Ordner, in denen die App Lese- und Schreibvorgänge für Dateien ausführt.
 
 ## <a name="create-an-aspnet-core-no-locrazor-pages-app"></a>Erstellen einer ASP.NET Core Razor Pages-App
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: c3f537ff3b55f295db478cb097bc99023cc71a87
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: 0912b3fbcd0b891deb4985eaa18841c22f4f3264
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326514"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055749"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -289,22 +290,30 @@ Verwenden Sie die folgenden Verfahren für statische Ressourcen:
   <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
   ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker range=">= aspnetcore-5.0"
 
-Auf Komponenten, die für eine Client-App durch eine Klassenbibliothek bereitgestellt werden, wird normal verwiesen. Wenn für Komponenten Stylesheets oder JavaScript-Dateien erforderlich sind, verwenden Sie einen der folgenden Ansätze, um die statischen Ressourcen abzurufen:
+Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
 
-* Die Datei `wwwroot/index.html` der Client-App kann mit den statischen Ressourcen verknüpft werden (`<link>`).
-* Die Komponente kann die [`Link`-Komponente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) des Frameworks verwenden, um die statischen Ressourcen abzurufen.
+* The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
+* The component can use the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) to obtain the static assets.
 
-Die oben aufgeführten Konzepte werden in den folgenden Beispielen gezeigt.
+The preceding approaches are demonstrated in the following examples.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
+-->
+
 Auf Komponenten, die für eine Client-App durch eine Klassenbibliothek bereitgestellt werden, wird normal verwiesen. Wenn für Komponenten Stylesheets oder JavaScript-Dateien erforderlich sind, muss die Datei `wwwroot/index.html` der Client-App die richtigen Links der statischen Ressourcen enthalten. Diese Konzepte werden in den folgenden Beispielen gezeigt.
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 Fügen Sie einer der Client-Apps die folgende `Jeep`-Komponente hinzu. Die `Jeep`-Komponente verwendet:
 
@@ -338,9 +347,11 @@ Fügen Sie einer der Client-Apps die folgende `Jeep`-Komponente hinzu. Die `Jeep
 > [!WARNING]
 > Veröffentlichen Sie **keine** Bilder von Fahrzeugen, es sei denn, Sie sind der Eigentümer der Bilder. Andernfalls riskieren Sie Urheberrechtsverletzungen.
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker range=">= aspnetcore-5.0"
 
-Das Bild `jeep-yj.png` der Bibliothek kann auch der `Component1`-Komponente (`Component1.razor`) der Bibliothek hinzugefügt werden. Wenn Sie die `my-component`-CSS-Klasse auf der Seite der Client-App bereitstellen möchten, verknüpfen Sie das Stylesheet der Bibliothek mithilfe der [`Link`-Komponente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) des Frameworks:
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements):
 
 ```razor
 <div class="my-component">
@@ -358,7 +369,7 @@ Das Bild `jeep-yj.png` der Bibliothek kann auch der `Component1`-Komponente (`Co
 </div>
 ```
 
-Eine Alternative zur Verwendung der [`Link`-Komponente](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) besteht darin, das Stylesheet aus der Datei `wwwroot/index.html` der Client-App zu laden. Bei diesem Ansatz ist das Stylesheet für alle Komponenten in der Client-App verfügbar:
+An alternative to using the [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
 
 ```html
 <head>
@@ -370,6 +381,8 @@ Eine Alternative zur Verwendung der [`Link`-Komponente](xref:blazor/fundamentals
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+-->
 
 Das Bild `jeep-yj.png`der Bibliothek kann auch der `Component1`-Komponente der Bibliothek (`Component1.razor`) hinzugefügt werden:
 
@@ -396,7 +409,11 @@ Die Datei `wwwroot/index.html` der Client-App fordert das Stylesheet der Bibliot
 </head>
 ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 Fügen Sie der `Jeep`-Komponente in der `NavMenu`-Komponente der Client-App (`Shared/NavMenu.razor`) Navigation hinzu:
 

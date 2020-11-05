@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/7/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/iis/advanced
-ms.openlocfilehash: ad2480faeea2f07e51585f5bc6a1c63b3a0b1668
-ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
+ms.openlocfilehash: 9f14929a7d298d6f4d66abcc88665db34fc072bf
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91755159"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058611"
 ---
 # <a name="advanced-configuration-of-the-aspnet-core-module-and-iis"></a>Erweiterte Konfiguration des ASP.NET Core-Moduls und der IIS
 
@@ -150,7 +151,7 @@ Aktivieren Sie die **IIS-Verwaltungskonsole** und die **WWW-Dienste**.
 
 1. Aktivieren Sie das Kontrollkästchen für **WWW-Dienste**.
 
-1. Akzeptieren Sie die Standardfeatures für **WWW-Dienste**, oder passen Sie die IIS-Features an.
+1. Akzeptieren Sie die Standardfeatures für **WWW-Dienste** , oder passen Sie die IIS-Features an.
 
    **Windows-Authentifizierung (optional)**  
    Um die Windows-Authentifizierung zu aktivieren, erweitern Sie die folgenden Knoten: **WWW-Dienste** > **Sicherheit**. Wählen Sie das Feature **Windows-Authentifizierung** aus. Weitere Informationen finden Sie unter [Windows-Authentifizierung `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) und [Konfigurieren der Windows-Authentifizierung](xref:security/authentication/windowsauth).
@@ -172,7 +173,7 @@ Eine ASP.NET Core-App kann als [untergeordnete IIS-Anwendung (untergeordnete App
 
 Statische Assetlinks in der untergeordneten App sollten die Tilde/Schrägstrich-Notation verwenden (`~/`). Die Tilde/Schrägstrich-Notation löst ein [Taghilfsprogramm](xref:mvc/views/tag-helpers/intro) aus, um die Pfadbasis der untergeordneten App dem gerenderten relativen Link voranzustellen. Für eine untergeordnete App unter `/subapp_path` wird ein mit `src="~/image.png"` verknüpftes Bild als `src="/subapp_path/image.png"` gerendert. Die Static File Middleware verarbeitet die Anforderung der statischen Datei nicht. Die Anforderung wird von der Static File Middleware der untergeordneten App verarbeitet.
 
-Wenn das `src`-Attribut eines statischen Objekts auf einen absoluten Pfad festgelegt wird (z.B. `src="/image.png"`), wird der Link ohne die Pfadbasis der untergeordneten App gerendert. Die Middleware für statische Dateien der Stamm-App versucht, das Objekt vom [Webstamm](xref:fundamentals/index#web-root) der Stamm-App aus bereitzustellen, was zu einer *404 Nicht gefunden*-Antwort führt, solange das statische Objekt in der Stamm-App nicht verfügbar ist.
+Wenn das `src`-Attribut eines statischen Objekts auf einen absoluten Pfad festgelegt wird (z.B. `src="/image.png"`), wird der Link ohne die Pfadbasis der untergeordneten App gerendert. Die Middleware für statische Dateien der Stamm-App versucht, das Objekt vom [Webstamm](xref:fundamentals/index#web-root) der Stamm-App aus bereitzustellen, was zu einer *404 Nicht gefunden* -Antwort führt, solange das statische Objekt in der Stamm-App nicht verfügbar ist.
 
 So hosten Sie eine ASP.NET Core-App als untergeordnete App unter einer anderen ASP.NET Core-App:
 

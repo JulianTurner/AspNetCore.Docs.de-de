@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/20/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/request-features
-ms.openlocfilehash: 879b775ba2998ee803708ebf231b5fcd363b811c
-ms.sourcegitcommit: b5ebaf42422205d212e3dade93fcefcf7f16db39
+ms.openlocfilehash: d906474b0fd291cc4a68390f390b2bf538e21eff
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92326431"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053708"
 ---
 # <a name="request-features-in-aspnet-core"></a>Anforderungsfeatures in ASP.NET Core
 
 Von [Steve Smith](https://ardalis.com/)
 
-Die `HttpContext`-API, mit der Anwendungen und Middleware Anforderungen verarbeiten, verfügt über eine zugrunde liegende Abstraktionsebene in Form von sogenannten *Featureschnittstellen* . Jede Featureschnittstelle bietet eine differenzierte Teilmenge der Funktionen, die von `HttpContext` verfügbar gemacht werden. Diese Schnittstellen können vom Server oder der Middleware während der Verarbeitung der Anforderung hinzugefügt, geändert, umschlossen, ersetzt oder sogar entfernt werden, ohne dass der gesamte `HttpContext` erneut implementiert werden muss. Sie können auch verwendet werden, um bei Tests Funktionen zu simulieren.
+Die `HttpContext`-API, mit der Anwendungen und Middleware Anforderungen verarbeiten, verfügt über eine zugrunde liegende Abstraktionsebene in Form von sogenannten *Featureschnittstellen*. Jede Featureschnittstelle bietet eine differenzierte Teilmenge der Funktionen, die von `HttpContext` verfügbar gemacht werden. Diese Schnittstellen können vom Server oder der Middleware während der Verarbeitung der Anforderung hinzugefügt, geändert, umschlossen, ersetzt oder sogar entfernt werden, ohne dass der gesamte `HttpContext` erneut implementiert werden muss. Sie können auch verwendet werden, um bei Tests Funktionen zu simulieren.
 
 ## <a name="feature-collections"></a>Featuresammlung
 

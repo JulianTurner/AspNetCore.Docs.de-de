@@ -5,6 +5,7 @@ description: Dies ist Teil 3 der Tutorialreihe zu Razor Pages.
 ms.author: riande
 ms.date: 08/17/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: 03febbd71df19cd3524d26e229a8bd8798a874b5
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 7d0085e1d444de30ca124ef544668122ab350c93
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865116"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060052"
 ---
 # <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Part 3: Gerüstbau mit Razor Pages in ASP.NET Core
 
@@ -75,7 +76,7 @@ Die `@model`-Anweisung gibt den Typ des Modells an, das an die Razor-Seite weite
 
 ### <a name="the-layout-page"></a>Die Seite „Layout“
 
-Wählen Sie die Menülinks aus ( **RazorMovie**, **Home**, **Datenschutz**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
+Wählen Sie die Menülinks aus ( **RazorMovie** , **Home** , **Datenschutz** ). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
 
 Durch [Layout](xref:mvc/views/layout)-Vorlagen kann das HTML-Containerlayout:
 
@@ -106,7 +107,7 @@ Die Zeile `@*Markup removed for brevity.*@` ist ein Razor-Kommentar. Im Gegensat
 
 ### <a name="update-the-layout"></a>Aktualisieren des Layouts
 
-Ändern Sie das `<title>`-Element in der Datei *Pages/Shared/_Layout.cshtml*, um **Movie** anstelle von **RazorPagesMovie** anzuzeigen.
+Ändern Sie das `<title>`-Element in der Datei *Pages/Shared/_Layout.cshtml* , um **Movie** anstelle von **RazorPagesMovie** anzuzeigen.
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
@@ -139,7 +140,7 @@ Das vorhergehende Markup legt die Layoutdatei für alle Razor-Dateien unter dem 
 
 ### <a name="the-create-page-model"></a>Das Seitenmodell „Create“
 
-Überprüfen Sie das Seitenmodell *Pages/Movies/Create.cshtml.cs*:
+Überprüfen Sie das Seitenmodell *Pages/Movies/Create.cshtml.cs* :
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
@@ -265,7 +266,7 @@ Die `@model`-Anweisung gibt den Typ des Modells an, das an die Razor-Seite weite
 
 ### <a name="the-layout-page"></a>Die Seite „Layout“
 
-Wählen Sie die Menülinks aus ( **RazorMovie**, **Home**, **Datenschutz**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
+Wählen Sie die Menülinks aus ( **RazorMovie** , **Home** , **Datenschutz** ). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Pages/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Pages/Shared/_Layout.cshtml*.
 
 [Layout](xref:mvc/views/layout)-Vorlagen ermöglichen Ihnen, das HTML-Containerlayout Ihrer Website zentral anzugeben und dann auf mehrere Seiten Ihrer Website anzuwenden. Suchen Sie die Zeile `@RenderBody()`. `RenderBody` ist ein Platzhalter, bei dem alle seitenspezifischen Ansichten, die Sie erstellen, von der Layoutseite *umschlossen* angezeigt werden. Wenn Sie beispielsweise den Link **Privacy** auswählen, wird die Ansicht **Pages/Privacy.cshtml** in der `RenderBody`-Methode gerendert.
 
@@ -291,7 +292,7 @@ Die Zeile `@*Markup removed for brevity.*@` ist ein Razor-Kommentar, der in Ihre
 
 ### <a name="update-the-layout"></a>Aktualisieren des Layouts
 
-Ändern Sie das `<title>`-Element in der Datei *Pages/Shared/_Layout.cshtml*, um **Movie** anstelle von **RazorPagesMovie** anzuzeigen.
+Ändern Sie das `<title>`-Element in der Datei *Pages/Shared/_Layout.cshtml* , um **Movie** anstelle von **RazorPagesMovie** anzuzeigen.
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
@@ -324,7 +325,7 @@ Das vorhergehende Markup legt die Layoutdatei für alle Razor-Dateien unter dem 
 
 ### <a name="the-create-page-model"></a>Das Seitenmodell „Create“
 
-Überprüfen Sie das Seitenmodell *Pages/Movies/Create.cshtml.cs*:
+Überprüfen Sie das Seitenmodell *Pages/Movies/Create.cshtml.cs* :
 
 [!code-csharp[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 

@@ -5,6 +5,7 @@ description: Dies ist Teil 9 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/13/2017
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: c6904606cfe82a6c3a375667b2b2fcae0ab31d26
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 340a66c4a561c6e00bf6f38bcf51abc795aa649c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628637"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059090"
 ---
 # <a name="part-9-add-validation-to-an-aspnet-core-mvc-app"></a>Teil 9: Hinzufügen der Validierung zu einer ASP.NET Core MVC-App
 
@@ -44,7 +45,7 @@ Die von MVC und Entity Framework Core Code First angebotene Unterstützung der V
 
 Führen Sie die App aus, und navigieren Sie zum Movies-Controller.
 
-Tippen Sie auf den Link **Neu erstellen**, um einen neuen Film hinzuzufügen. Füllen Sie das Formular mit einigen ungültigen Werten aus. Wenn die clientseitige jQuery-Validierung den Fehler erkennt, wird eine Fehlermeldung angezeigt.
+Tippen Sie auf den Link **Neu erstellen** , um einen neuen Film hinzuzufügen. Füllen Sie das Formular mit einigen ungültigen Werten aus. Wenn die clientseitige jQuery-Validierung den Fehler erkennt, wird eine Fehlermeldung angezeigt.
 
 ![Ansichtsformular „Movie“ mit mehreren clientseitigen jQuery-Validierungsfehlern](~/tutorials/first-mvc-app/validation/_static/val.png)
 
@@ -78,7 +79,7 @@ Nachdem Sie JavaScript deaktiviert haben, senden Sie ungültige Daten, und gehen
 
 ![Während des Debuggens von ungültigen Daten zeigt IntelliSense für „ModelState.IsValid“ an, dass der Wert falsch ist.](~/tutorials/first-mvc-app/validation/_static/ms.png)
 
-Der Teil der *Create.cshtml*-Ansichtsvorlage wird im folgenden Markup gezeigt:
+Der Teil der *Create.cshtml* -Ansichtsvorlage wird im folgenden Markup gezeigt:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/CreateRatingBrevity.html)]
 
@@ -92,7 +93,7 @@ Wenn Sie Validierungslogik ändern müssen, können Sie dies auch an genau einer
 
 ## <a name="using-datatype-attributes"></a>Verwenden von „DataType“-Attributen
 
-Öffnen Sie die Datei *Movie.cs*, und überprüfen Sie die Klasse `Movie`. Der Namespace `System.ComponentModel.DataAnnotations` stellt zusätzlich zu der integrierten Gruppe von Validierungsattributen Formatierungsattribute bereit. Wir haben bereits einen `DataType`-Enumerationswert auf die Felder mit dem Veröffentlichungsdatum und dem Preis angewendet. Der folgende Code zeigt die Eigenschaften `ReleaseDate` und `Price` mit dem entsprechenden `DataType`-Attribut.
+Öffnen Sie die Datei *Movie.cs* , und überprüfen Sie die Klasse `Movie`. Der Namespace `System.ComponentModel.DataAnnotations` stellt zusätzlich zu der integrierten Gruppe von Validierungsattributen Formatierungsattribute bereit. Wir haben bereits einen `DataType`-Enumerationswert auf die Felder mit dem Veröffentlichungsdatum und dem Preis angewendet. Der folgende Code zeigt die Eigenschaften `ReleaseDate` und `Price` mit dem entsprechenden `DataType`-Attribut.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot
-ms.openlocfilehash: 24781e7689a1a238e9d2fa9666fa61a8642135c3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 8e6c640cd775e5d4cbe6e34c1cecc391baf57344
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632134"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059571"
 ---
 # <a name="troubleshoot-and-debug-aspnet-core-projects"></a>Problembehandlung und Debuggen von ASP.NET Core-Projekten
 

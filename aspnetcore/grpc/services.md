@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/25/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/services
-ms.openlocfilehash: c4d37556a3345d275f45c537a40908c5966fe015
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: cc9fc50871cbad1f2ddf63d3c13c3253f24a995b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113620"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058739"
 ---
 # <a name="create-grpc-services-and-methods"></a>Erstellen von gRPC-Diensten und -Methoden
 
@@ -30,15 +31,15 @@ Von [James Newton-King](https://twitter.com/jamesnk)
 
 In diesem Artikel wird erläutert, wie Sie gRPC-Dienste und -Methoden in C# erstellen. Dabei werden folgende Themen behandelt:
 
-* Definieren von Diensten und Methoden in *.proto*-Dateien
+* Definieren von Diensten und Methoden in *.proto* -Dateien
 * Generieren von Code mithilfe von gRPC-C#-Tools
 * Implementieren von gRPC-Diensten und -Methoden
 
 ## <a name="create-new-grpc-services"></a>Erstellen neuer gRPC-Dienste
 
-[gRPC-Dienste mit C#](xref:grpc/basics) haben den Contract-First-Ansatz von gRPC an die API-Entwicklung eingeführt. Dienste und Nachrichten werden in *.proto*-Dateien definiert. C#-Tools generieren dann Code aus den *.proto*-Dateien. Bei serverseitigen Ressourcen wird pro Dienst ein abstrakter Basistyp generiert, zusammen mit Klassen für die einzelnen Nachrichten.
+[gRPC-Dienste mit C#](xref:grpc/basics) haben den Contract-First-Ansatz von gRPC an die API-Entwicklung eingeführt. Dienste und Nachrichten werden in *.proto* -Dateien definiert. C#-Tools generieren dann Code aus den *.proto* -Dateien. Bei serverseitigen Ressourcen wird pro Dienst ein abstrakter Basistyp generiert, zusammen mit Klassen für die einzelnen Nachrichten.
 
-Folgendes trifft für diese *.proto*-Datei zu:
+Folgendes trifft für diese *.proto* -Datei zu:
 
 * Die Datei definiert einen `Greeter`-Dienst.
 * Der `Greeter`-Dienst definiert einen `SayHello`-Aufruf.
@@ -114,7 +115,7 @@ Ein gRPC-Dienst kann verschiedene Methodentypen aufweisen. Das Senden und Empfan
 * Clientstreaming
 * Bidirektionales Streaming
 
-Streamingaufrufe werden mit dem `stream`-Schlüsselwort in der *.proto*-Datei angegeben. `stream` kann für die Anforderungsnachricht, Antwortnachricht oder beides eines Aufrufs verwendet werden.
+Streamingaufrufe werden mit dem `stream`-Schlüsselwort in der *.proto* -Datei angegeben. `stream` kann für die Anforderungsnachricht, Antwortnachricht oder beides eines Aufrufs verwendet werden.
 
 ```protobuf
 syntax = "proto3";

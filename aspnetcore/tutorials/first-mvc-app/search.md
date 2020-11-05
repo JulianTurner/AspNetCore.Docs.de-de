@@ -5,6 +5,7 @@ description: Dies ist Teil 7 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/search
-ms.openlocfilehash: fcb96300c08d9f985cbfe4d3bf055036be7d2eb0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 657072803f59feb99de8b31ddb3a6433d832aa30
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629573"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059623"
 ---
 # <a name="part-7-add-search-to-an-aspnet-core-mvc-app"></a>Teil 7: Hinzufügen der Suche zu einer ASP.NET Core MVC-App
 
@@ -76,7 +77,7 @@ Sie können jedoch von den Benutzern nicht erwarten, dass sie jedes Mal die URL 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,6,8&name=snippet_1stSearch)]
 
-Öffnen Sie die Datei *Views/Movies/Index.cshtml*, und fügen Sie das hervorgehobene `<form>`-Markup hinzu:
+Öffnen Sie die Datei *Views/Movies/Index.cshtml* , und fügen Sie das hervorgehobene `<form>`-Markup hinzu:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
 

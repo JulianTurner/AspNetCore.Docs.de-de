@@ -6,6 +6,7 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc, seodec18, devx-track-azurecli
 ms.date: 10/24/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/deploy-to-app-service
-ms.openlocfilehash: e6d8b4bcbbbe909fde971a8c706287654fcc98ba
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 52c4905ecb3a76f1dd10629f834b2b541b698774
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847623"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052356"
 ---
 # <a name="deploy-an-app-to-app-service"></a>Bereitstellen einer App für App Service
 
@@ -54,7 +55,7 @@ Laden Sie den Code über eine Befehlsshell herunter, erstellen Sie das Projekt u
     git clone https://github.com/Azure-Samples/simple-feed-reader/
     ```
 
-2. Ändern Sie Ihren Arbeitsordner in den *simple-feed-reader*-Ordner, der erstellt wurde.
+2. Ändern Sie Ihren Arbeitsordner in den *simple-feed-reader* -Ordner, der erstellt wurde.
 
     ```console
     cd .\simple-feed-reader\SimpleFeedReader
@@ -140,7 +141,7 @@ Zum Bereitstellen der App müssen Sie eine App Service-[Web-App](/azure/app-serv
     git remote add azure-prod GIT_DEPLOYMENT_URL
     ```
 
-    b. Pushen Sie den lokalen *Masterbranch* zum Remote-*Masterbranch* von *azure-prod*.
+    b. Pushen Sie den lokalen *Masterbranch* zum Remote- *Masterbranch* von *azure-prod*.
 
     ```console
     git push azure-prod master
@@ -158,13 +159,13 @@ Die App wurde bereits von der Befehlsshell aus bereitgestellt. Lassen Sie uns di
 
 1. Öffnen Sie *SimpleFeedReader.sln* in Visual Studio.
 2. Öffnen Sie *Pages\Index.cshtml* im Projektmappen-Explorer. Ändern Sie `<h2>Simple Feed Reader</h2>` in `<h2>Simple Feed Reader - V2</h2>`.
-3. Drücken Sie **STRG** + **UMSCHALT** + **B**, um die App zu erstellen.
+3. Drücken Sie **STRG** + **UMSCHALT** + **B** , um die App zu erstellen.
 4. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das Projekt, und klicken Sie anschließend auf **Veröffentlichen**.
 
     ![Screenshot mit Rechtsklick und anschließendem Veröffentlichen](./media/deploying-to-app-service/publish.png)
 5. Visual Studio kann eine neue App Service-Ressource erstellen, aber dieses Update wird über die bestehende Bereitstellung veröffentlicht. Wählen Sie im Dialogfeld **Veröffentlichungsziel auswählen** die Option **App Service** aus der linken Liste und dann die Option **Vorhandene auswählen** aus. Klicken Sie auf **Veröffentlichen**.
-6. Bestätigen Sie im Dialogfeld **App Service**, dass das Microsoft- oder Organisationskonto, das zum Erstellen Ihres Azure-Abonnements verwendet wurde, oben rechts angezeigt wird. Wenn dies nicht der Fall ist, klicken Sie auf die Dropdownliste und fügen Sie es hinzu.
-7. Bestätigen Sie, dass das richtige Azure-**Abonnement** ausgewählt ist. Wählen Sie für **Ansicht** die Option **Ressourcengruppe** aus. Erweitern Sie die Ressourcengruppe **AzureTutorial**, und wählen Sie dann die vorhandene Web-App aus. Klicken Sie auf **OK**.
+6. Bestätigen Sie im Dialogfeld **App Service** , dass das Microsoft- oder Organisationskonto, das zum Erstellen Ihres Azure-Abonnements verwendet wurde, oben rechts angezeigt wird. Wenn dies nicht der Fall ist, klicken Sie auf die Dropdownliste und fügen Sie es hinzu.
+7. Bestätigen Sie, dass das richtige Azure- **Abonnement** ausgewählt ist. Wählen Sie für **Ansicht** die Option **Ressourcengruppe** aus. Erweitern Sie die Ressourcengruppe **AzureTutorial** , und wählen Sie dann die vorhandene Web-App aus. Klicken Sie auf **OK**.
 
     ![Screenshot mit Dialogfeld zum Veröffentlichen von App Service](./media/deploying-to-app-service/publish-dialog.png)
 
@@ -197,7 +198,7 @@ Bereitstellungsslots unterstützen das Staging von Änderungen, ohne die in der 
     echo Staging web app URL: http://$webappname-staging.azurewebsites.net
     ```
 
-3. Ändern Sie in einem Texteditor oder in Visual Studio erneut *Pages/Index.cshtml*, sodass das Element `<h2>` den Wert `<h2>Simple Feed Reader - V3</h2>` aufweist, und speichern Sie dann die Datei.
+3. Ändern Sie in einem Texteditor oder in Visual Studio erneut *Pages/Index.cshtml* , sodass das Element `<h2>` den Wert `<h2>Simple Feed Reader - V3</h2>` aufweist, und speichern Sie dann die Datei.
 
 4. Committen Sie die Datei an das lokale Git-Repository, indem Sie entweder die Seite **Änderungen** auf der Registerkarte *Team Explorer* von Visual Studio verwenden, oder indem Sie Folgendes über die Befehlsshell des lokalen Computers eingeben:
 
@@ -213,7 +214,7 @@ Bereitstellungsslots unterstützen das Staging von Änderungen, ohne die in der 
     git remote add azure-staging <Git_staging_deployment_URL>
     ```
 
-    b. Pushen Sie den lokalen *Masterbranch* zum Remote-*Masterbranch* von *azure-staging*.
+    b. Pushen Sie den lokalen *Masterbranch* zum Remote- *Masterbranch* von *azure-staging*.
 
     ```console
     git push azure-staging master

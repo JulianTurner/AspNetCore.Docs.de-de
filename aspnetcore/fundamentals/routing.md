@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/1/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: e3dd7168e6974f63fa963d3732bc5df41814c70e
-ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
+ms.openlocfilehash: 5b07a2839daf190d99b2787db70998373d34cd44
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "92491618"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060000"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -96,7 +97,7 @@ Das folgende Beispiel zeigt das Routing mit einer anspruchsvolleren Routenvorlag
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/RouteTemplateStartup.cs?name=snippet)]
 
-Die Zeichenfolge `/hello/{name:alpha}` ist eine **Routenvorlage** . Sie wird verwendet, um zu konfigurieren, wie der Endpunkt abgeglichen wird. In diesem Fall gleicht die Vorlage Folgendes ab:
+Die Zeichenfolge `/hello/{name:alpha}` ist eine **Routenvorlage**. Sie wird verwendet, um zu konfigurieren, wie der Endpunkt abgeglichen wird. In diesem Fall gleicht die Vorlage Folgendes ab:
 
 * Eine URL wie `/hello/Ryan`
 * Alle URL-Pfade, die mit `/hello/` beginnen, gefolgt von einer Sequenz alphabetischer Zeichen.  `:alpha` wendet eine Routeneinschränkung an, die nur alphabetische Zeichen abgleicht. [Routeneinschränkungen](#route-constraint-reference) werden weiter unten in diesem Dokument erläutert.
@@ -229,7 +230,7 @@ Das folgende Codebeispiel zeigt den Unterschied zwischen Middleware und Routing:
 
 [!code-csharp[](routing/samples/3.x/RoutingSample/TerminalMiddlewareStartup.cs?name=snippet)]
 
-Beim in `Approach 1:` gezeigten Stil von Middleware handelt es sich um **Terminalmiddleware** . Sie wird als Terminalmiddleware bezeichnet, da sie einen Abgleich durchgeführt.
+Beim in `Approach 1:` gezeigten Stil von Middleware handelt es sich um **Terminalmiddleware**. Sie wird als Terminalmiddleware bezeichnet, da sie einen Abgleich durchgeführt.
 
 * Der Abgleich im vorangehenden Beispiel ist `Path == "/"` für die Middleware und `Path == "/Movie"` für das Routing.
 * Bei einem erfolgreichen Abgleich führt sie bestimmte Funktionen aus und kehrt zurück, anstatt die `next`-Middleware aufzurufen.
@@ -767,7 +768,7 @@ Denken Sie daran, dass Umgebungswerte Anwendungsentwicklern in allgemeinen Fäll
 
 Aufrufe an `LinkGenerator` oder `IUrlHelper`, die `null` zurückgeben, sind meist dadurch bedingt, dass die Routenwertinvalidierung nicht verstanden wurde. Beheben Sie die Routenwertinvalidierung, indem Sie explizit mehr Routenwerte angeben, um zu prüfen, ob das Problem dadurch gelöst wird.
 
-Bei der Routenwertinvalidierung wird davon ausgegangen, dass das URL-Schema der Anwendung hierarchisch ist, mit einer von links nach rechts gebildeten Hierarchie. Sehen Sie sich die einfache Controllerroutenvorlage `{controller}/{action}/{id?}` an, um ein Gespür dafür zu bekommen, wie dies in der Praxis funktioniert. Durch eine **Änderung** auf einen Wert werden alle rechts angezeigten Routenwerte **ungültig** . Dies spricht für die These von der Hierarchie. Wenn die App einen Umgebungswert für `id` hat und der Vorgang einen anderen Wert für `controller` angibt:
+Bei der Routenwertinvalidierung wird davon ausgegangen, dass das URL-Schema der Anwendung hierarchisch ist, mit einer von links nach rechts gebildeten Hierarchie. Sehen Sie sich die einfache Controllerroutenvorlage `{controller}/{action}/{id?}` an, um ein Gespür dafür zu bekommen, wie dies in der Praxis funktioniert. Durch eine **Änderung** auf einen Wert werden alle rechts angezeigten Routenwerte **ungültig**. Dies spricht für die These von der Hierarchie. Wenn die App einen Umgebungswert für `id` hat und der Vorgang einen anderen Wert für `controller` angibt:
 
 * `id` wird nicht wiederverwendet, weil `{controller}` links von `{id?}` steht.
 
@@ -782,7 +783,7 @@ Dieser Prozess wird zusätzlich durch die vorhandenen Attributrouten und dedizie
 * Gibt es eine Hierarchie für Routenwerte.
 * Werden diese nicht in der Vorlage angezeigt.
 
-Für diese Fälle definiert die URL-Generierung das Konzept der **erforderlichen Werte** . Bei Endpunkten, die von Controllern und Razor Pages erstellt wurden, sind erforderliche Werte angegeben, die eine Routenwertinvalidierung ermöglichen.
+Für diese Fälle definiert die URL-Generierung das Konzept der **erforderlichen Werte**. Bei Endpunkten, die von Controllern und Razor Pages erstellt wurden, sind erforderliche Werte angegeben, die eine Routenwertinvalidierung ermöglichen.
 
 Der Algorithmus der Routenwertinvalidierung im Detail:
 
@@ -1079,7 +1080,7 @@ Wenn der Endpunktdelegat ausgeführt wird, werden die Eigenschaften von [RouteCo
 
 [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) ist ein Wörterbuch mit *Routenwerten* , das aus der Route erstellt wird. Die Werte werden in der Regel durch die Tokenisierung der URL ermittelt und können so verwendet werden, dass Benutzereingaben akzeptiert oder weitere Entscheidungen in der App zum Versenden von Anforderungen getroffen werden.
 
-[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) ist eine Eigenschaftensammlung mit zusätzlichen Daten zur zugeordneten Route. <xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*> werden bereitgestellt, damit sich jeder Route Zustandsdaten zuordnen lassen, sodass in der App später Entscheidungen auf Grundlage der zugeordneten Route getroffen werden können. Diese Werte werden vom Entwickler vorgegeben und beeinflussen das Routingverhalten **in keiner Weise** . Außerdem können im Gegensatz zu [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values), die sich in bzw. aus Zeichenfolgen konvertieren lassen müssen, Werte in [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) einem beliebigen Typ entsprechen.
+[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) ist eine Eigenschaftensammlung mit zusätzlichen Daten zur zugeordneten Route. <xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*> werden bereitgestellt, damit sich jeder Route Zustandsdaten zuordnen lassen, sodass in der App später Entscheidungen auf Grundlage der zugeordneten Route getroffen werden können. Diese Werte werden vom Entwickler vorgegeben und beeinflussen das Routingverhalten **in keiner Weise**. Außerdem können im Gegensatz zu [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values), die sich in bzw. aus Zeichenfolgen konvertieren lassen müssen, Werte in [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) einem beliebigen Typ entsprechen.
 
 [RouteData.Routers](xref:Microsoft.AspNetCore.Routing.RouteData.Routers) ist eine Liste der Routen, die an der Zuordnung der Anforderung beteiligt waren. Routen können in anderen Routen geschachtelt werden. Die <xref:Microsoft.AspNetCore.Routing.RouteData.Routers>-Eigenschaft stellt den Pfad mithilfe der logischen Routenstruktur dar, die zu der Zuordnung geführt hat. Üblicherweise ist das erste Element in <xref:Microsoft.AspNetCore.Routing.RouteData.Routers> die Routensammlung. Dieses sollte zur URL-Generierung verwendet werden. Das letzte Element in <xref:Microsoft.AspNetCore.Routing.RouteData.Routers> ist der Routenhandler, für den eine Zuordnung vorgenommen wurde.
 
@@ -1433,7 +1434,7 @@ Die folgenden Schlüsselwörter sind reservierte Namen und können nicht als Rou
 Routeneinschränkungen werden angewendet, wenn eine Übereinstimmung mit der eingehenden URL gefunden wurde und der URL-Pfad in Routenwerten mit Token versehen wird. In der Regel wird mit Routeneinschränkungen der Routenwert der zugehörigen Vorlage geprüft. Dabei wird bestimmt, ob der Wert gültig ist. Für einige Routeneinschränkungen werden anstelle des Routenwerts andere Daten verwendet, um zu ermitteln, ob das Routing einer Anforderung möglich ist. <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> kann beispielsweise auf der Grundlage des HTTP-Verbs eine Anforderung entweder annehmen oder ablehnen. Einschränkungen werden in Routinganforderungen und bei der Linkgenerierung verwendet.
 
 > [!WARNING]
-> Verwenden Sie keine Einschränkungen für die **Eingabeüberprüfung** . Wenn bei der **Eingabevalidierung** Einschränkungen verwendet werden, lösen ungültige Eingaben den Fehler *404 - Not Found* (404 – Nicht gefunden) aus. Stattdessen sollte jedoch der Fehler *400 - Bad Request* (400 – Fehlerhafte Anforderung) ausgelöst und mit einer entsprechenden Fehlermeldung angezeigt werden. Verwenden Sie Routeneinschränkungen nicht, um Eingaben für eine bestimmte Route zu überprüfen, sondern um ähnlichen Routen zu **unterscheiden** .
+> Verwenden Sie keine Einschränkungen für die **Eingabeüberprüfung**. Wenn bei der **Eingabevalidierung** Einschränkungen verwendet werden, lösen ungültige Eingaben den Fehler *404 - Not Found* (404 – Nicht gefunden) aus. Stattdessen sollte jedoch der Fehler *400 - Bad Request* (400 – Fehlerhafte Anforderung) ausgelöst und mit einer entsprechenden Fehlermeldung angezeigt werden. Verwenden Sie Routeneinschränkungen nicht, um Eingaben für eine bestimmte Route zu überprüfen, sondern um ähnlichen Routen zu **unterscheiden**.
 
 In der folgenden Tabelle werden Beispiele für Routeneinschränkungen und deren zu erwartendes Verhalten beschriebe.
 
@@ -1566,7 +1567,7 @@ Im folgenden Beispiel wird gezeigt, wie Sie einen Link zu einer Route unter Ber�
 
 Die <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath>-Eigenschaft, die am Ende des obigen Beispiels erstellt wird, hat den Wert `/package/create/123`. Das Wörterbuch stellt die Routenwerte von `operation` und `id` aus der Vorlage „Track Package Route“ (`package/{operation}/{id}`) bereit. Weitere Informationen finden Sie im Beispielcode im Abschnitt [Verwenden von Routingmiddleware](#use-routing-middleware) oder in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-Der zweite Parameter für den <xref:Microsoft.AspNetCore.Routing.VirtualPathContext>-Konstruktor ist eine Auflistung von *Umgebungswerten* . Mit diesen lässt sich leicht die Anzahl der Werte einschränken, die ein Entwickler innerhalb eines Anforderungskontexts angeben muss. Die aktuellen Routenwerte der aktuellen Anforderung werden bei der Linkgenerierung als Umgebungswerte behandelt. In einer ASP.NET Core-MVC-App müssen Sie innerhalb der `About`-Aktion von `HomeController` nicht den Controllerroutenwert angeben, um eine Verknüpfung mit der `Index`-Aktion herzustellen, da der Umgebungswert von `Home` verwendet wird.
+Der zweite Parameter für den <xref:Microsoft.AspNetCore.Routing.VirtualPathContext>-Konstruktor ist eine Auflistung von *Umgebungswerten*. Mit diesen lässt sich leicht die Anzahl der Werte einschränken, die ein Entwickler innerhalb eines Anforderungskontexts angeben muss. Die aktuellen Routenwerte der aktuellen Anforderung werden bei der Linkgenerierung als Umgebungswerte behandelt. In einer ASP.NET Core-MVC-App müssen Sie innerhalb der `About`-Aktion von `HomeController` nicht den Controllerroutenwert angeben, um eine Verknüpfung mit der `Index`-Aktion herzustellen, da der Umgebungswert von `Home` verwendet wird.
 
 Umgebungswerte, die mit keinem Parameter übereinstimmen, werden ignoriert. Außerdem werden Umgebungswerte ignoriert, wenn ein explizit angegebener Wert den betreffenden Umgebungswert außer Kraft setzt. Der Abgleich in der URL wird von links nach rechts ausgeführt.
 
@@ -1657,7 +1658,7 @@ Eine Zuordnung, die <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> aufr
 
 [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) ist ein Wörterbuch mit *Routenwerten* , das aus der Route erstellt wird. Die Werte werden in der Regel durch die Tokenisierung der URL ermittelt und können so verwendet werden, dass Benutzereingaben akzeptiert oder weitere Entscheidungen in der App zum Versenden von Anforderungen getroffen werden.
 
-[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) ist eine Eigenschaftensammlung mit zusätzlichen Daten zur zugeordneten Route. <xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*> werden bereitgestellt, damit sich jeder Route Zustandsdaten zuordnen lassen, sodass in der App später Entscheidungen auf Grundlage der zugeordneten Route getroffen werden können. Diese Werte werden vom Entwickler vorgegeben und beeinflussen das Routingverhalten **in keiner Weise** . Außerdem können im Gegensatz zu [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values), die sich in bzw. aus Zeichenfolgen konvertieren lassen müssen, Werte in [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) einem beliebigen Typ entsprechen.
+[RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) ist eine Eigenschaftensammlung mit zusätzlichen Daten zur zugeordneten Route. <xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*> werden bereitgestellt, damit sich jeder Route Zustandsdaten zuordnen lassen, sodass in der App später Entscheidungen auf Grundlage der zugeordneten Route getroffen werden können. Diese Werte werden vom Entwickler vorgegeben und beeinflussen das Routingverhalten **in keiner Weise**. Außerdem können im Gegensatz zu [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values), die sich in bzw. aus Zeichenfolgen konvertieren lassen müssen, Werte in [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) einem beliebigen Typ entsprechen.
 
 [RouteData.Routers](xref:Microsoft.AspNetCore.Routing.RouteData.Routers) ist eine Liste der Routen, die an der Zuordnung der Anforderung beteiligt waren. Routen können in anderen Routen geschachtelt werden. Die <xref:Microsoft.AspNetCore.Routing.RouteData.Routers>-Eigenschaft stellt den Pfad mithilfe der logischen Routenstruktur dar, die zu der Zuordnung geführt hat. Üblicherweise ist das erste Element in <xref:Microsoft.AspNetCore.Routing.RouteData.Routers> die Routensammlung. Dieses sollte zur URL-Generierung verwendet werden. Das letzte Element in <xref:Microsoft.AspNetCore.Routing.RouteData.Routers> ist der Routenhandler, für den eine Zuordnung vorgenommen wurde.
 
@@ -1883,7 +1884,7 @@ Mit Vorlagen lässt sich Routing besonders leicht durchführen. Einschränkungen
 Routeneinschränkungen werden angewendet, wenn eine Übereinstimmung mit der eingehenden URL gefunden wurde und der URL-Pfad in Routenwerten mit Token versehen wird. In der Regel wird mit Routeneinschränkungen der Routenwert der zugehörigen Vorlage geprüft. Dabei wird bestimmt, ob der Wert gültig ist. Für einige Routeneinschränkungen werden anstelle des Routenwerts andere Daten verwendet, um zu ermitteln, ob das Routing einer Anforderung möglich ist. <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> kann beispielsweise auf der Grundlage des HTTP-Verbs eine Anforderung entweder annehmen oder ablehnen. Einschränkungen werden in Routinganforderungen und bei der Linkgenerierung verwendet.
 
 > [!WARNING]
-> Verwenden Sie keine Einschränkungen für die **Eingabeüberprüfung** . Wenn bei der **Eingabevalidierung** Einschränkungen verwendet werden, lösen ungültige Eingaben den Fehler *404 - Not Found* (404 – Nicht gefunden) aus. Stattdessen sollte jedoch der Fehler *400 - Bad Request* (400 – Fehlerhafte Anforderung) ausgelöst und mit einer entsprechenden Fehlermeldung angezeigt werden. Verwenden Sie Routeneinschränkungen nicht, um Eingaben für eine bestimmte Route zu überprüfen, sondern um ähnlichen Routen zu **unterscheiden** .
+> Verwenden Sie keine Einschränkungen für die **Eingabeüberprüfung**. Wenn bei der **Eingabevalidierung** Einschränkungen verwendet werden, lösen ungültige Eingaben den Fehler *404 - Not Found* (404 – Nicht gefunden) aus. Stattdessen sollte jedoch der Fehler *400 - Bad Request* (400 – Fehlerhafte Anforderung) ausgelöst und mit einer entsprechenden Fehlermeldung angezeigt werden. Verwenden Sie Routeneinschränkungen nicht, um Eingaben für eine bestimmte Route zu überprüfen, sondern um ähnlichen Routen zu **unterscheiden**.
 
 In der folgenden Tabelle werden Beispiele für Routeneinschränkungen und deren zu erwartendes Verhalten beschriebe.
 
@@ -1972,7 +1973,7 @@ Im folgenden Beispiel wird gezeigt, wie Sie einen Link zu einer Route unter Ber�
 
 Die <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath>-Eigenschaft, die am Ende des obigen Beispiels erstellt wird, hat den Wert `/package/create/123`. Das Wörterbuch stellt die Routenwerte von `operation` und `id` aus der Vorlage „Track Package Route“ (`package/{operation}/{id}`) bereit. Weitere Informationen finden Sie im Beispielcode im Abschnitt [Verwenden von Routingmiddleware](#use-routing-middleware) oder in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples).
 
-Der zweite Parameter für den <xref:Microsoft.AspNetCore.Routing.VirtualPathContext>-Konstruktor ist eine Auflistung von *Umgebungswerten* . Mit diesen lässt sich leicht die Anzahl der Werte einschränken, die ein Entwickler innerhalb eines Anforderungskontexts angeben muss. Die aktuellen Routenwerte der aktuellen Anforderung werden bei der Linkgenerierung als Umgebungswerte behandelt. In einer ASP.NET Core-MVC-App müssen Sie innerhalb der `About`-Aktion von `HomeController` nicht den Controllerroutenwert angeben, um eine Verknüpfung mit der `Index`-Aktion herzustellen, da der Umgebungswert von `Home` verwendet wird.
+Der zweite Parameter für den <xref:Microsoft.AspNetCore.Routing.VirtualPathContext>-Konstruktor ist eine Auflistung von *Umgebungswerten*. Mit diesen lässt sich leicht die Anzahl der Werte einschränken, die ein Entwickler innerhalb eines Anforderungskontexts angeben muss. Die aktuellen Routenwerte der aktuellen Anforderung werden bei der Linkgenerierung als Umgebungswerte behandelt. In einer ASP.NET Core-MVC-App müssen Sie innerhalb der `About`-Aktion von `HomeController` nicht den Controllerroutenwert angeben, um eine Verknüpfung mit der `Index`-Aktion herzustellen, da der Umgebungswert von `Home` verwendet wird.
 
 Umgebungswerte, die mit keinem Parameter übereinstimmen, werden ignoriert. Außerdem werden Umgebungswerte ignoriert, wenn ein explizit angegebener Wert den betreffenden Umgebungswert außer Kraft setzt. Der Abgleich in der URL wird von links nach rechts ausgeführt.
 

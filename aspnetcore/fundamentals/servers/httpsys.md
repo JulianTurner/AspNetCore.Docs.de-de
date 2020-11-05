@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 8ed9ec3447205107194ffa5c329c0e5ae0fc5553
-ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
+ms.openlocfilehash: ca8aa126a44ea417017f0be0372e818a95ad8413
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/02/2020
-ms.locfileid: "91653970"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053747"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementierung des Http.sys-Webservers in ASP.NET Core
 
@@ -150,8 +151,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -181,7 +182,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -206,7 +207,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -253,7 +254,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe*:
+   Referenzdokumentation für *netsh.exe* :
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
@@ -418,8 +419,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -449,7 +450,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -474,7 +475,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -521,7 +522,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe*:
+   Referenzdokumentation für *netsh.exe* :
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
@@ -671,8 +672,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -702,7 +703,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -727,7 +728,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -774,7 +775,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe*:
+   Referenzdokumentation für *netsh.exe* :
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
@@ -924,8 +925,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -955,7 +956,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -980,7 +981,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -1027,7 +1028,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe*:
+   Referenzdokumentation für *netsh.exe* :
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)

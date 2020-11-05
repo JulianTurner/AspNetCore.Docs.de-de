@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/02/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: f696df0b421e5aab6f50cfaec3ca8edac894cea9
-ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
+ms.openlocfilehash: 7dd11ceb7a7c01ce1042f50595013b7fe7f1cd5c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89379392"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054839"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>Bündelung und Minimierung statischer Ressourcen in ASP.NET Core
 
@@ -83,7 +84,7 @@ Die MVC- und Razor Pages-Projektvorlagen enthalten eine Bündelungs- und Minimie
 
 ::: moniker range="<= aspnetcore-2.0"
 
-In ASP.NET Core 2.0 oder früher enthalten die MVC- und Razor Pages-Projektvorlagen eine Konfigurationsdatei mit dem Namen *bundleconfig.json*, in der die Optionen für jedes Bündel definiert werden:
+In ASP.NET Core 2.0 oder früher enthalten die MVC- und Razor Pages-Projektvorlagen eine Konfigurationsdatei mit dem Namen *bundleconfig.json* , in der die Optionen für jedes Bündel definiert werden:
 
 ::: moniker-end
 
@@ -95,24 +96,24 @@ Fügen Sie ab ASP.NET Core 2.1 dem MVC- oder Razor Pages-Projektstamm eine neue
 
 [!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig.json)]
 
-In der Datei *bundleconfig.json* werden die Optionen für jedes Bündel definiert. Im vorherigen Beispiel wird für die benutzerdefinierten JavaScript- (*wwwroot/js/site.js*) und Stylesheet-Dateien (*wwwroot/css/site.css*) eine einzelne Bündelkonfiguration definiert.
+In der Datei *bundleconfig.json* werden die Optionen für jedes Bündel definiert. Im vorherigen Beispiel wird für die benutzerdefinierten JavaScript- ( *wwwroot/js/site.js* ) und Stylesheet-Dateien ( *wwwroot/css/site.css* ) eine einzelne Bündelkonfiguration definiert.
 
 Zu den Konfigurationsoptionen gehören:
 
 * `outputFileName`: Name der Bündeldatei, die ausgegeben werden soll. Kann einen relativen Pfad der Datei *bundleconfig.json* enthalten. **erforderlich**
-* `inputFiles`: Array von Dateien, die gebündelt werden sollen. Enthält relative Pfade zur Konfigurationsdatei. **Optional**, *ein leerer Wert erzeugt eine leere Ausgabedatei. [Globmuster](https://www.tldp.org/LDP/abs/html/globbingref.html) werden unterstützt.
-* `minify`: Minimierungsoptionen für den Ausgabetyp. **Optional**, *Standardwert: `minify: { enabled: true }`* .
+* `inputFiles`: Array von Dateien, die gebündelt werden sollen. Enthält relative Pfade zur Konfigurationsdatei. **Optional** , *ein leerer Wert erzeugt eine leere Ausgabedatei. [Globmuster](https://www.tldp.org/LDP/abs/html/globbingref.html) werden unterstützt.
+* `minify`: Minimierungsoptionen für den Ausgabetyp. **Optional** , *Standardwert: `minify: { enabled: true }`* .
   * Für jeden Ausgabedateityp stehen Konfigurationsoptionen zur Verfügung.
     * [CSS-Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
     * [JavaScript-Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/JavaScript-Minifier-settings)
     * [HTML-Minifier](https://github.com/madskristensen/BundlerMinifier/wiki)
-* `includeInProject`: Flag, das angibt, ob der Projektdatei generierte Dateien hinzugefügt werden sollen. **Optional**, *Standardwert: FALSE*.
-* `sourceMap`: Flag, das angibt, ob für die Bündeldatei eine Quellzuordnungsdatei generiert werden soll. **Optional**, *Standardwert: FALSE*.
+* `includeInProject`: Flag, das angibt, ob der Projektdatei generierte Dateien hinzugefügt werden sollen. **Optional** , *Standardwert: FALSE*.
+* `sourceMap`: Flag, das angibt, ob für die Bündeldatei eine Quellzuordnungsdatei generiert werden soll. **Optional** , *Standardwert: FALSE*.
 * `sourceMapRootPath`: Stammpfad zum Speichern der generierten Quellzuordnungsdatei.
 
 ## <a name="add-files-to-workflow"></a>Hinzufügen von Dateien zum Workflow
 
-Angenommen, Sie möchten eine zusätzliche *custom.css*-Datei hinzufügen, die etwa folgendermaßen aussieht:
+Angenommen, Sie möchten eine zusätzliche *custom.css* -Datei hinzufügen, die etwa folgendermaßen aussieht:
 
 [!code-css[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/css/custom.css)]
 
@@ -171,7 +172,7 @@ In einigen Fällen erfordert der Workflow für die Bündelung und Minimierung ei
 
 ### <a name="manually-convert-the-bundling-and-minification-workflow-to-use-gulp"></a>Manuelles Konvertieren des Workflows für die Bündelung und Minimierung, um Gulp zu verwenden
 
-Fügen Sie dem Projektstamm eine *package.json*-Datei mit den folgenden `devDependencies` hinzu:
+Fügen Sie dem Projektstamm eine *package.json* -Datei mit den folgenden `devDependencies` hinzu:
 
 > [!WARNING]
 > ECMAScript (ES) 2015/ES6 und höher wird vom `gulp-uglify`-Modul nicht unterstützt. Installieren Sie anstelle von `gulp-uglify` das Plug-In [gulp-terser](https://www.npmjs.com/package/gulp-terser), wenn Sie ES2015/ES6 oder höher verwenden möchten.
@@ -190,7 +191,7 @@ Installieren Sie die Gulp-CLI als globale Abhängigkeit:
 npm i -g gulp-cli
 ```
 
-Kopieren Sie die folgende *gulpfile.js*-Datei in den Projektstamm:
+Kopieren Sie die folgende *gulpfile.js* -Datei in den Projektstamm:
 
 [!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-)]
 

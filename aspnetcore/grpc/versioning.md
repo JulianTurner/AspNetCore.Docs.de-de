@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 01/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/versioning
-ms.openlocfilehash: 0d8c5d953c9d703788a1686bbc800248c46efa48
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 38204b16d041f21221862c566b90a6a9571d26a1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945401"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058700"
 ---
 # <a name="versioning-grpc-services"></a>Versionsverwaltung für gRPC-Dienste
 
@@ -49,27 +50,27 @@ Diese Änderungen sind auf der gRPC-Protokollebene und der .NET-Binärebene kein
 
 * **Hinzufügen eines neuen Diensts**
 * **Hinzufügen einer neuen Methode zu einem Dienst**
-* **Hinzufügen eines Felds zu einer Anforderungsnachricht**: Zu einer Anforderungsnachricht hinzugefügte Felder werden auf dem Server mit dem [Standardwert](https://developers.google.com/protocol-buffers/docs/proto3#default) deserialisiert, wenn sie nicht festgelegt sind. Damit es sich um Non-Breaking Changes handelt, muss der Dienst erfolgreich sein, wenn das neue Feld nicht von älteren Clients festgelegt wird.
-* **Hinzufügen eines Felds zu einer Antwortnachricht**: Zu einer Antwortnachricht hinzugefügte Felder werden in die Sammlung [Unbekannte Felder](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) der Nachricht auf dem Client deserialisiert.
-* **Hinzufügen eines Werts zu einer Enumeration**: Enumerationen werden als numerischer Wert serialisiert. Neue Enumerationswerte werden auf dem Client in den Enumerationswert ohne Enumerationsnamen deserialisiert. Damit es sich um Non-Breaking Changes handelt, müssen ältere Clients ordnungsgemäß ausgeführt werden, wenn sie den neuen Enumerationswert erhalten.
+* **Hinzufügen eines Felds zu einer Anforderungsnachricht** : Zu einer Anforderungsnachricht hinzugefügte Felder werden auf dem Server mit dem [Standardwert](https://developers.google.com/protocol-buffers/docs/proto3#default) deserialisiert, wenn sie nicht festgelegt sind. Damit es sich um Non-Breaking Changes handelt, muss der Dienst erfolgreich sein, wenn das neue Feld nicht von älteren Clients festgelegt wird.
+* **Hinzufügen eines Felds zu einer Antwortnachricht** : Zu einer Antwortnachricht hinzugefügte Felder werden in die Sammlung [Unbekannte Felder](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) der Nachricht auf dem Client deserialisiert.
+* **Hinzufügen eines Werts zu einer Enumeration** : Enumerationen werden als numerischer Wert serialisiert. Neue Enumerationswerte werden auf dem Client in den Enumerationswert ohne Enumerationsnamen deserialisiert. Damit es sich um Non-Breaking Changes handelt, müssen ältere Clients ordnungsgemäß ausgeführt werden, wenn sie den neuen Enumerationswert erhalten.
 
 ### <a name="binary-breaking-changes"></a>Binäre Breaking Changes
 
-Die folgenden Änderungen stellen auf gRPC-Protokollebene Non-Breaking Changes dar, aber der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten *.proto*-Vertrag oder die aktuellste .NET-Clientassembly durchführt. Binärkompatibilität ist wichtig, wenn Sie planen, eine gRPC-Bibliothek in NuGet zu veröffentlichen.
+Die folgenden Änderungen stellen auf gRPC-Protokollebene Non-Breaking Changes dar, aber der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten *.proto* -Vertrag oder die aktuellste .NET-Clientassembly durchführt. Binärkompatibilität ist wichtig, wenn Sie planen, eine gRPC-Bibliothek in NuGet zu veröffentlichen.
 
-* **Entfernen eines Felds**: Werte aus einem entfernten Feld werden in die [unbekannten Felder](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) einer Nachricht deserialisiert. Dies sind keine Breaking Changes des gRPC-Protokolls, aber der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten Vertrag erhält. Es ist wichtig, dass eine entfernte Feldnummer in Zukunft nicht versehentlich wiederverwendet wird. Um sicherzustellen, dass dies nicht passiert, geben Sie gelöschte Feldnummern und Namen in der Nachricht mit dem [reservierten](https://developers.google.com/protocol-buffers/docs/proto3#reserved) Schlüsselwort von Protobuf an.
-* **Umbenennen einer Nachricht**: Nachrichtennamen werden normalerweise nicht über das Netzwerk gesendet, sodass es sich nicht um Breaking Changes des gRPC-Protokolls handelt. Der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten Vertrag erhält. Eine Situation, in der Nachrichtennamen im Netzwerk **gesendet werden**, ist mit [Any](https://developers.google.com/protocol-buffers/docs/proto3#any)-Feldern, wenn der Nachrichtenname zur Identifizierung des Nachrichtentyps verwendet wird.
-* **Ändern von csharp_namespace**: Durch die Änderung von `csharp_namespace` wird der Namespace von generierten .NET-Typen geändert. Dies sind keine Breaking Changes des gRPC-Protokolls, aber der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten Vertrag erhält.
+* **Entfernen eines Felds** : Werte aus einem entfernten Feld werden in die [unbekannten Felder](https://developers.google.com/protocol-buffers/docs/proto3#unknowns) einer Nachricht deserialisiert. Dies sind keine Breaking Changes des gRPC-Protokolls, aber der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten Vertrag erhält. Es ist wichtig, dass eine entfernte Feldnummer in Zukunft nicht versehentlich wiederverwendet wird. Um sicherzustellen, dass dies nicht passiert, geben Sie gelöschte Feldnummern und Namen in der Nachricht mit dem [reservierten](https://developers.google.com/protocol-buffers/docs/proto3#reserved) Schlüsselwort von Protobuf an.
+* **Umbenennen einer Nachricht** : Nachrichtennamen werden normalerweise nicht über das Netzwerk gesendet, sodass es sich nicht um Breaking Changes des gRPC-Protokolls handelt. Der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten Vertrag erhält. Eine Situation, in der Nachrichtennamen im Netzwerk **gesendet werden** , ist mit [Any](https://developers.google.com/protocol-buffers/docs/proto3#any)-Feldern, wenn der Nachrichtenname zur Identifizierung des Nachrichtentyps verwendet wird.
+* **Ändern von csharp_namespace** : Durch die Änderung von `csharp_namespace` wird der Namespace von generierten .NET-Typen geändert. Dies sind keine Breaking Changes des gRPC-Protokolls, aber der Client muss aktualisiert werden, wenn er ein Upgrade auf den aktuellsten Vertrag erhält.
 
 ### <a name="protocol-breaking-changes"></a>Breaking Changes bei Protokollen
 
 Bei den folgenden Punkten handelt es sich um Breaking Changes von Protokollen und um binäre Breaking Changes:
 
-* **Umbenennen eines Felds**: Bei Protobuf-Inhalten werden die Feldnamen nur im generierten Code verwendet. Die Feldnummer wird verwendet, um Felder im Netzwerk zu identifizieren. Die Umbenennung eines Felds ist für Protobuf keine Breaking Change für Protokolle. Wenn ein Server jedoch JSON-Inhalte verwendet, ist die Umbenennung eines Felds eine Breaking Change.
-* **Ändern eines Felddatentyps**: Das Ändern des Datentyps eines Felds in einen [inkompatiblen Typ](https://developers.google.com/protocol-buffers/docs/proto3#updating) führt zu Fehlern bei der Deserialisierung der Nachricht. Selbst wenn der neue Datentyp kompatibel ist, ist es wahrscheinlich, dass der Client aktualisiert werden muss, um den neuen Typ zu unterstützen, wenn er ein Upgrade auf den aktuellsten Vertrag erhält.
-* **Ändern einer Feldnummer**: Bei Protobuf-Nutzlasten wird die Feldnummer zur Identifizierung von Feldern im Netzwerk verwendet.
-* **Umbenennen eines Pakets, Diensts oder einer Methode**: gRPC verwendet den Paket-, Dienst- und Methodennamen zum Erstellen der URL. Der Client erhält vom Server den Status *NICHT IMPLEMENTIERT*.
-* **Entfernen eines Diensts oder einer Methode**: Der Client erhält beim Aufruf der entfernten Methode vom Server den Status *NICHT IMPLEMENTIERT*.
+* **Umbenennen eines Felds** : Bei Protobuf-Inhalten werden die Feldnamen nur im generierten Code verwendet. Die Feldnummer wird verwendet, um Felder im Netzwerk zu identifizieren. Die Umbenennung eines Felds ist für Protobuf keine Breaking Change für Protokolle. Wenn ein Server jedoch JSON-Inhalte verwendet, ist die Umbenennung eines Felds eine Breaking Change.
+* **Ändern eines Felddatentyps** : Das Ändern des Datentyps eines Felds in einen [inkompatiblen Typ](https://developers.google.com/protocol-buffers/docs/proto3#updating) führt zu Fehlern bei der Deserialisierung der Nachricht. Selbst wenn der neue Datentyp kompatibel ist, ist es wahrscheinlich, dass der Client aktualisiert werden muss, um den neuen Typ zu unterstützen, wenn er ein Upgrade auf den aktuellsten Vertrag erhält.
+* **Ändern einer Feldnummer** : Bei Protobuf-Nutzlasten wird die Feldnummer zur Identifizierung von Feldern im Netzwerk verwendet.
+* **Umbenennen eines Pakets, Diensts oder einer Methode** : gRPC verwendet den Paket-, Dienst- und Methodennamen zum Erstellen der URL. Der Client erhält vom Server den Status *NICHT IMPLEMENTIERT*.
+* **Entfernen eines Diensts oder einer Methode** : Der Client erhält beim Aufruf der entfernten Methode vom Server den Status *NICHT IMPLEMENTIERT*.
 
 ### <a name="behavior-breaking-changes"></a>Breaking Changes für Verhalten
 
@@ -84,7 +85,7 @@ Die Verhaltenskompatibilität wird durch Ihren App-spezifischen Code bestimmt.
 
 Die Dienste sollten anstreben, die Abwärtskompatibilität mit alten Clients zu erhalten. Möglicherweise erfordern Änderungen an Ihrer App entsprechende Breaking Changes. Alte Clients zu unterbrechen und zu zwingen, sie zusammen mit Ihrem Dienst zu aktualisieren, ist keine gute Benutzererfahrung. Eine Möglichkeit, die Abwärtskompatibilität aufrechtzuerhalten und gleichzeitig Breaking Changes vorzunehmen, besteht darin, mehrere Versionen eines Diensts zu veröffentlichen.
 
-gRPC unterstützt einen optionalen [Paket](https://developers.google.com/protocol-buffers/docs/proto3#packages)-Spezifizierer, der ähnlich wie ein .NET-Namespace funktioniert. Tatsächlich wird der `package` als .NET-Namespace für generierte .NET-Typen verwendet, wenn `option csharp_namespace` in der *PROTO*-Datei nicht festgelegt ist. Das Paket kann verwendet werden, um eine Versionsnummer für Ihren Dienst und seine Nachrichten anzugeben:
+gRPC unterstützt einen optionalen [Paket](https://developers.google.com/protocol-buffers/docs/proto3#packages)-Spezifizierer, der ähnlich wie ein .NET-Namespace funktioniert. Tatsächlich wird der `package` als .NET-Namespace für generierte .NET-Typen verwendet, wenn `option csharp_namespace` in der *PROTO* -Datei nicht festgelegt ist. Das Paket kann verwendet werden, um eine Versionsnummer für Ihren Dienst und seine Nachrichten anzugeben:
 
 [!code-protobuf[](versioning/sample/greet.v1.proto?highlight=3)]
 
@@ -106,7 +107,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-Das Einbeziehen einer Versionsnummer in den Paketnamen gibt Ihnen die Möglichkeit, eine *v2*-Version Ihres Diensts mit Breaking Changes zu veröffentlichen, während ältere Clients, die die *v1*-Version aufrufen, weiterhin unterstützt werden. Nachdem die Clients aktualisiert wurden, um den *v2*-Dienst zu nutzen, können Sie die alte Version entfernen. Wenn Sie planen, mehrere Versionen eines Diensts zu veröffentlichen:
+Das Einbeziehen einer Versionsnummer in den Paketnamen gibt Ihnen die Möglichkeit, eine *v2* -Version Ihres Diensts mit Breaking Changes zu veröffentlichen, während ältere Clients, die die *v1* -Version aufrufen, weiterhin unterstützt werden. Nachdem die Clients aktualisiert wurden, um den *v2* -Dienst zu nutzen, können Sie die alte Version entfernen. Wenn Sie planen, mehrere Versionen eines Diensts zu veröffentlichen:
 
 * Vermeiden Sie Breaking Changes, wenn dies sinnvoll ist.
 * Aktualisieren Sie die Versionsnummer nur dann, wenn Sie Breaking Changes vornehmen.

@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: 77cfced18edd9db5be21265469b42f32e3de274d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1c97f5d7fbf64c5043e6d2277091b9a477833bf1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625673"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054709"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>Verwenden von LibMan mit ASP.NET Core in Visual Studio
 
@@ -60,8 +61,8 @@ Befolgen Sie diese Schritte, um eine clientseitige Bibliothek zu installieren:
 * Geben Sie den Namen der abzurufenden Bibliothek in das Textfeld **Bibliothek** ein. IntelliSense stellt eine Liste von Bibliotheken zur Verfügung, die mit dem bereitgestellten Text beginnt.
 * Wählen Sie die Bibliothek aus der IntelliSense-Liste aus. Beachten Sie, dass dem Bibliotheksnamen das Symbol `@` und die letzte stabile Version, die dem ausgewählten Anbieter bekannt ist, angefügt ist.
 * Entscheiden Sie, welche Dateien einbezogen werden sollen:
-  * Aktivieren Sie das Optionsfeld **Alle Bibliotheksdateien einbeziehen**, um alle Dateien der Bibliothek einzubeziehen.
-  * Aktivieren Sie das Optionsfeld **Bestimmte Dateien auswählen**, um eine Teilmenge der Dateien der Bibliothek einzubeziehen. Wenn das Optionsfeld aktiviert ist, wird die Dateiauswahlstruktur aktiviert. Aktivieren Sie die Kästchen links neben den Dateinamen, die heruntergeladen werden sollen.
+  * Aktivieren Sie das Optionsfeld **Alle Bibliotheksdateien einbeziehen** , um alle Dateien der Bibliothek einzubeziehen.
+  * Aktivieren Sie das Optionsfeld **Bestimmte Dateien auswählen** , um eine Teilmenge der Dateien der Bibliothek einzubeziehen. Wenn das Optionsfeld aktiviert ist, wird die Dateiauswahlstruktur aktiviert. Aktivieren Sie die Kästchen links neben den Dateinamen, die heruntergeladen werden sollen.
 * Geben Sie den Projektordner für die Speicherung der Dateien im Textfeld **Zielspeicherort** an. Als Empfehlung sollten Sie jede Bibliothek in einem separaten Ordner speichern.
 
   Der vorgeschlagene Ordner **Zielspeicherort** basiert auf dem Speicherort, von dem aus das Dialogfeld gestartet wurde:
@@ -77,10 +78,10 @@ Befolgen Sie diese Schritte, um eine clientseitige Bibliothek zu installieren:
   |------------------------------------------|----------------------|
   |Projektstamm (wenn *wwwroot* vorhanden ist)        |*wwwroot/lib/jquery/* |
   |Projektstamm (wenn *wwwroot* nicht vorhanden ist) |*lib/jquery/*         |
-  |*Pages*-Ordner im Projekt                 |*Pages/jquery/*       |
+  |*Pages* -Ordner im Projekt                 |*Pages/jquery/*       |
 
-* Klicken Sie auf die Schaltfläche **Installieren**, um die Dateien gemäß der Konfiguration in *libman.json* herunterzuladen.
-* Überprüfen Sie den **Bibliotheks-Manager**-Feed des Fensters **Ausgabe** auf Installationsdetails. Zum Beispiel:
+* Klicken Sie auf die Schaltfläche **Installieren** , um die Dateien gemäß der Konfiguration in *libman.json* herunterzuladen.
+* Überprüfen Sie den **Bibliotheks-Manager** -Feed des Fensters **Ausgabe** auf Installationsdetails. Zum Beispiel:
 
   ```console
   Restore operation started...
@@ -95,12 +96,12 @@ Befolgen Sie diese Schritte, um eine clientseitige Bibliothek zu installieren:
 
 ### <a name="manually-configure-libman-manifest-file-entries"></a>Manuelles Konfigurieren von LibMan-Manifestdateieinträgen
 
-Alle LibMan-Vorgänge in Visual Studio basieren auf dem Inhalt des LibMan-Manifests des Projektstamms (*libman.json*). Sie können *libman.json* manuell bearbeiten, um Bibliotheksdateien für das Projekt zu konfigurieren. Visual Studio stellt alle Bibliotheksdateien wieder her, sobald *libman.json* gespeichert wird.
+Alle LibMan-Vorgänge in Visual Studio basieren auf dem Inhalt des LibMan-Manifests des Projektstamms ( *libman.json* ). Sie können *libman.json* manuell bearbeiten, um Bibliotheksdateien für das Projekt zu konfigurieren. Visual Studio stellt alle Bibliotheksdateien wieder her, sobald *libman.json* gespeichert wird.
 
 Es gibt folgende Möglichkeiten, *libman.json* zur Bearbeitung zu öffnen:
 
 * Doppelklicken Sie im **Projektmappen-Explorer** auf die Datei *libman.json*.
-* Klicken Sie mit der rechten Maustaste auf das Projekt im **Projektmappen-Explorer**, und wählen Sie **Clientseitige Bibliotheken verwalten** aus. **&#8224;**
+* Klicken Sie mit der rechten Maustaste auf das Projekt im **Projektmappen-Explorer** , und wählen Sie **Clientseitige Bibliotheken verwalten** aus. **&#8224;**
 * Wählen Sie **Clientseitige Bibliotheken verwalten** im Visual Studio-Menü **Projekt** aus. **&#8224;**
 
 **&#8224;** Wenn die Datei *libman.json* nicht bereits im Projektstamm vorhanden ist, wird sie mit dem Inhalt der Standardelementvorlage erstellt.
@@ -109,7 +110,7 @@ Visual Studio bietet umfangreiche Unterstützung für die JSON-Bearbeitung wie d
 
 Mit der folgenden Manifestdatei ruft LibMan Dateien für die in der `libraries`-Eigenschaft definierte Konfiguration ab. Es folgt eine Erläuterung der in `libraries` definierten Objektliterale:
 
-* Eine Teilmenge von [jQuery](https://jquery.com/) Version 3.3.1 wird vom CDNJS-Anbieter abgerufen. Die Teilmenge ist in der `files`-Eigenschaft&mdash;*jquery.min.js*, *jquery.js* und *jquery.min.map* definiert. Die Dateien werden im Ordner *wwwroot/lib/jquery* des Projekts abgelegt.
+* Eine Teilmenge von [jQuery](https://jquery.com/) Version 3.3.1 wird vom CDNJS-Anbieter abgerufen. Die Teilmenge ist in der `files`-Eigenschaft&mdash;*jquery.min.js* , *jquery.js* und *jquery.min.map* definiert. Die Dateien werden im Ordner *wwwroot/lib/jquery* des Projekts abgelegt.
 * [Bootstrap](https://getbootstrap.com/) Version 4.1.3 wird vollständig abgerufen und im Ordner *wwwroot/lib/bootstrap* abgelegt. Die Eigenschaft `provider` des Objektliterals setzt den Eigenschaftswert `defaultProvider` außer Kraft. LibMan ruft die Bootstrap-Dateien vom unpkg-Anbieter ab.
 * Eine Teilmenge von [Lodash](https://lodash.com/) wurde von einer leitenden Instanz innerhalb der Organisation genehmigt. Die Dateien *lodash.js* und *lodash.min.js* werden aus dem lokalen Dateisystem unter *C:\\temp\\lodash\\* abgerufen. Die Dateien werden in den Ordner *wwwroot/lib/lodash* des Projekts kopiert.
 
@@ -120,7 +121,7 @@ Mit der folgenden Manifestdatei ruft LibMan Dateien für die in der `libraries`-
 
 ## <a name="restore-library-files"></a>Wiederherstellen von Bibliotheksdateien
 
-Zum Wiederherstellen von Bibliotheksdateien in Visual Studio muss eine gültige *libman.json*-Datei im Projektstamm vorhanden sein. Wiederhergestellte Dateien werden im Projekt an dem für jede Bibliothek angegebenen Ort platziert.
+Zum Wiederherstellen von Bibliotheksdateien in Visual Studio muss eine gültige *libman.json* -Datei im Projektstamm vorhanden sein. Wiederhergestellte Dateien werden im Projekt an dem für jede Bibliothek angegebenen Ort platziert.
 
 Bibliotheksdateien können in einem ASP.NET Core-Projekt auf zwei Arten wiederhergestellt werden:
 
@@ -133,13 +134,13 @@ LibMan kann die definierten Bibliotheksdateien im Rahmen des Buildprozesses wied
 
 So aktivieren und testen Sie das Verhalten „Wiederherstellung während des Builds“
 
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf *libman.json*, und wählen Sie im Kontextmenü **Wiederherstellung clientseitiger Bibliotheken bei Builderstellung aktivieren** aus.
-* Klicken Sie auf die Schaltfläche **Ja**, wenn Sie aufgefordert werden, ein NuGet-Paket zu installieren. Das NuGet-Paket [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) wird dem Projekt hinzugefügt:
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf *libman.json* , und wählen Sie im Kontextmenü **Wiederherstellung clientseitiger Bibliotheken bei Builderstellung aktivieren** aus.
+* Klicken Sie auf die Schaltfläche **Ja** , wenn Sie aufgefordert werden, ein NuGet-Paket zu installieren. Das NuGet-Paket [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) wird dem Projekt hinzugefügt:
 
   [!code-xml[](samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
 
 * Erstellen Sie das Projekt, um die Wiederherstellung der LibMan-Datei zu bestätigen. Das `Microsoft.Web.LibraryManager.Build`-Paket fügt ein MSBuild-Target ein, das LibMan während des Buildvorgangs des Projekts ausführt.
-* Überprüfen Sie den **Build**-Feed des Fensters **Ausgabe** auf ein LibMan-Aktivitätsprotokoll:
+* Überprüfen Sie den **Build** -Feed des Fensters **Ausgabe** auf ein LibMan-Aktivitätsprotokoll:
 
   ```console
   1>------ Build started: Project: LibManSample, Configuration: Debug Any CPU ------
@@ -171,7 +172,7 @@ So stellen Sie Bibliotheksdateien manuell wieder her
 Gehen Sie wie folgt vor, während der Wiederherstellungsvorgang ausgeführt wird:
 
 * Das Symbol für das Aufgabenstatuscenter in der Statusleiste von Visual Studio wird animiert und zeigt *Wiederherstellungsvorgang gestartet* an. Wenn Sie auf das Symbol klicken, wird eine QuickInfo mit den bekannten Hintergrundaufgaben geöffnet.
-* Die Nachrichten werden an die Statusleiste und den **Bibliotheks-Manager**-Feed des Fensters **Ausgabe** gesendet. Zum Beispiel:
+* Die Nachrichten werden an die Statusleiste und den **Bibliotheks-Manager** -Feed des Fensters **Ausgabe** gesendet. Zum Beispiel:
 
   ```console
   Restore operation started...
@@ -196,7 +197,7 @@ Der Bereinigungsvorgang löscht keine vollständigen Verzeichnisse, um das unbea
 Während der Bereinigungsvorgang ausgeführt wird:
 
 * Das Symbol für das Aufgabenstatuscenter in der Statusleiste von Visual Studio wird animiert und zeigt *Clientbibliotheksvorgang gestartet* an. Wenn Sie auf das Symbol klicken, wird eine QuickInfo mit den bekannten Hintergrundaufgaben geöffnet.
-* Die Nachrichten werden an die Statusleiste und den **Bibliotheks-Manager**-Feed des Fensters **Ausgabe** gesendet. Zum Beispiel:
+* Die Nachrichten werden an die Statusleiste und den **Bibliotheks-Manager** -Feed des Fensters **Ausgabe** gesendet. Zum Beispiel:
 
 ```console
 Clean libraries operation started...
@@ -216,7 +217,7 @@ So deinstallieren Sie Bibliotheksdateien
 
   ![Kontextmenüoption zum Deinstallieren der Bibliothek](_static/uninstall-menu-option.png)
 
-Alternativ können Sie das LibMan-Manifest (*libman.json*) manuell bearbeiten und speichern. Der [Wiederherstellungsvorgang](#restore-library-files) wird beim Speichern der Datei ausgeführt. Bibliotheksdateien, die nicht mehr in *libman.json* definiert sind, werden aus dem Projekt entfernt.
+Alternativ können Sie das LibMan-Manifest ( *libman.json* ) manuell bearbeiten und speichern. Der [Wiederherstellungsvorgang](#restore-library-files) wird beim Speichern der Datei ausgeführt. Bibliotheksdateien, die nicht mehr in *libman.json* definiert sind, werden aus dem Projekt entfernt.
 
 ## <a name="update-library-version"></a>Aktualisieren der Bibliotheksversion
 

@@ -6,6 +6,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/21/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr
-ms.openlocfilehash: b69d60e7d0e24f6d3c8032b391c98a6cd1589305
-ms.sourcegitcommit: 9c031530d2e652fe422e786bd43392bc500d622f
+ms.openlocfilehash: 59c296f3388e71254badb02fa3ae4279005c359c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/18/2020
-ms.locfileid: "90770180"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93056880"
 ---
 # <a name="tutorial-get-started-with-aspnet-core-no-locsignalr"></a>Tutorial: Erste Schritte mit ASP.NET Core SignalR
 
@@ -65,11 +66,11 @@ Am Ende verfügen Sie über eine funktionierende Chat-App:
 
 * Wählen Sie im Dialogfeld **Neues Projekt erstellen** die Option **ASP.NET Core-Webanwendung** aus, und klicken Sie dann auf **Weiter**.
 
-* Geben Sie im Dialogfeld **Neues Projekt konfigurieren** dem Projekt den Namen *SignalRChat*, und wählen Sie dann **Erstellen** aus.
+* Geben Sie im Dialogfeld **Neues Projekt konfigurieren** dem Projekt den Namen *SignalRChat* , und wählen Sie dann **Erstellen** aus.
 
 * Wählen Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Optionen **.NET Core** und **ASP.NET Core 3.1** aus. 
 
-* Klicken Sie auf **Webanwendung**, um ein Projekt zu erstellen, das Razor Pages verwendet, und wählen Sie dann **Erstellen** aus.
+* Klicken Sie auf **Webanwendung** , um ein Projekt zu erstellen, das Razor Pages verwendet, und wählen Sie dann **Erstellen** aus.
 
   ![Dialogfeld „Neues Projekt“ in Visual Studio](signalr/_static/3.x/signalr-new-project-dialog.png)
 
@@ -92,7 +93,7 @@ Am Ende verfügen Sie über eine funktionierende Chat-App:
 
 * Stellen Sie sicher, dass das **Zielframework** auf **.NET Core 3.1** festgelegt ist, und wählen Sie dann **Weiter** aus.
 
-* Nennen Sie das Projekt *SignalRChat*, und wählen Sie dann **Erstellen** aus.
+* Nennen Sie das Projekt *SignalRChat* , und wählen Sie dann **Erstellen** aus.
 
 ---
 
@@ -108,7 +109,7 @@ Die SignalR-Serverbibliothek ist im freigegebenen ASP.NET Core 3.1-Framework en
 
 * Geben Sie für **Bibliothek**`@microsoft/signalr@latest` ein.
 
-* Klicken Sie auf **Choose specific files** (Spezifische Dateien auswählen), erweitern Sie den Ordner *dist/browser*, und wählen Sie *signalr.js* und *signalr.min.js* aus.
+* Klicken Sie auf **Choose specific files** (Spezifische Dateien auswählen), erweitern Sie den Ordner *dist/browser* , und wählen Sie *signalr.js* und *signalr.min.js* aus.
 
 * Legen Sie *wwwroot/js/signalr/* als **Zielspeicherort** fest, und klicken Sie auf **Installieren**.
 
@@ -178,9 +179,9 @@ Die SignalR-Serverbibliothek ist im freigegebenen ASP.NET Core 3.1-Framework en
 
 Ein *Hub* ist eine Klasse, die als grundlegende Pipeline verwendet wird, mit der Client/Server-Kommunikation verarbeitet wird.
 
-* Erstellen Sie im SignalRChat-Projektordner einen *Hubs*-Ordner.
+* Erstellen Sie im SignalRChat-Projektordner einen *Hubs* -Ordner.
 
-* Erstellen Sie im *Hubs*-Ordner eine *ChatHub.cs*-Datei mit folgendem Code:
+* Erstellen Sie im *Hubs* -Ordner eine *ChatHub.cs* -Datei mit folgendem Code:
 
   [!code-csharp[ChatHub](signalr/sample-snapshot/3.x/ChatHub.cs)]
 
@@ -192,7 +193,7 @@ Ein *Hub* ist eine Klasse, die als grundlegende Pipeline verwendet wird, mit der
 
 Der SignalR-Server muss so konfiguriert werden, dass er SignalR-Anforderungen an SignalR weiterleitet.
 
-* Fügen Sie der *Startup.cs*-Datei den folgenden hervorgehobenen Code zu.
+* Fügen Sie der *Startup.cs* -Datei den folgenden hervorgehobenen Code zu.
 
   [!code-csharp[Startup](signalr/sample-snapshot/3.x/Startup.cs?highlight=11,28,55)]
 
@@ -208,9 +209,9 @@ Der SignalR-Server muss so konfiguriert werden, dass er SignalR-Anforderungen an
 
   * erstellt Textfelder für den Namen und den Nachrichtentext sowie eine Senden-Schaltfläche
   * erstellt eine Liste mit `id="messagesList"` zum Anzeigen von Nachrichten, die vom SignalR-Hub empfangen werden
-  * schließt Skriptverweise auf SignalR sowie den *chat.js*-Anwendungscode ein, den Sie im folgenden Schritt erstellen
+  * schließt Skriptverweise auf SignalR sowie den *chat.js* -Anwendungscode ein, den Sie im folgenden Schritt erstellen
 
-* Erstellen Sie im *wwwroot/js*-Ordner eine *chat.js*-Datei mit folgendem Code:
+* Erstellen Sie im *wwwroot/js* -Ordner eine *chat.js* -Datei mit folgendem Code:
 
   [!code-javascript[chat](signalr/sample-snapshot/3.x/chat.js)]
 
@@ -224,7 +225,7 @@ Der SignalR-Server muss so konfiguriert werden, dass er SignalR-Anforderungen an
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Drücken Sie **STRG+F5**, um die App ohne Debugging zu starten.
+* Drücken Sie **STRG+F5** , um die App ohne Debugging zu starten.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -298,7 +299,7 @@ Am Ende verfügen Sie über eine funktionierende Chat-App: ![SignalR-Beispiel-Ap
 
   ![Dialogfeld „Neues Projekt“ in Visual Studio](signalr/_static/2.x/signalr-new-project-dialog.png)    
 
-* Klicken Sie auf **Webanwendung**, um ein Projekt zu erstellen, das Razor Pages verwendet.   
+* Klicken Sie auf **Webanwendung** , um ein Projekt zu erstellen, das Razor Pages verwendet.   
 
 * Wählen Sie **.NET Core** als Zielframework sowie **ASP.NET Core 2.2** aus, und klicken Sie auf **OK**.    
 
@@ -323,7 +324,7 @@ Am Ende verfügen Sie über eine funktionierende Chat-App: ![SignalR-Beispiel-Ap
 
 * Klicken Sie auf **Weiter**.  
 
-* Nennen Sie das Projekt *SignalRChat*, und wählen Sie dann **Erstellen** aus. 
+* Nennen Sie das Projekt *SignalRChat* , und wählen Sie dann **Erstellen** aus. 
 
 --- 
 
@@ -341,7 +342,7 @@ Die SignalR-Serverbibliothek ist im Metapaket `Microsoft.AspNetCore.App` enthalt
 
   ![Dialogfeld „Clientseitige Bibliothek hinzufügen“: Auswählen der Bibliothek](signalr/_static/2.x/libman1.png)   
 
-* Klicken Sie auf **Choose specific files** (Spezifische Dateien auswählen), erweitern Sie den Ordner *dist/browser*, und wählen Sie *signalr.js* und *signalr.min.js* aus. 
+* Klicken Sie auf **Choose specific files** (Spezifische Dateien auswählen), erweitern Sie den Ordner *dist/browser* , und wählen Sie *signalr.js* und *signalr.min.js* aus. 
 
 * Legen Sie *wwwroot/lib/signalr/* als **Zielspeicherort** fest, und klicken Sie auf **Installieren**.    
 
@@ -411,9 +412,9 @@ Die SignalR-Serverbibliothek ist im Metapaket `Microsoft.AspNetCore.App` enthalt
 
 Ein *Hub* ist eine Klasse, die als grundlegende Pipeline verwendet wird, mit der Client/Server-Kommunikation verarbeitet wird.   
 
-* Erstellen Sie im SignalRChat-Projektordner einen *Hubs*-Ordner.  
+* Erstellen Sie im SignalRChat-Projektordner einen *Hubs* -Ordner.  
 
-* Erstellen Sie im *Hubs*-Ordner eine *ChatHub.cs*-Datei mit folgendem Code: 
+* Erstellen Sie im *Hubs* -Ordner eine *ChatHub.cs* -Datei mit folgendem Code: 
 
   [!code-csharp[Startup](signalr/sample-snapshot/2.x/ChatHub.cs)]   
 
@@ -425,7 +426,7 @@ Ein *Hub* ist eine Klasse, die als grundlegende Pipeline verwendet wird, mit der
 
 Der SignalR-Server muss so konfiguriert werden, dass er SignalR-Anforderungen an SignalR weiterleitet.    
 
-* Fügen Sie der *Startup.cs*-Datei den folgenden hervorgehobenen Code zu.  
+* Fügen Sie der *Startup.cs* -Datei den folgenden hervorgehobenen Code zu.  
 
   [!code-csharp[Startup](signalr/sample-snapshot/2.x/Startup.cs?highlight=7,33,52-55)]  
 
@@ -441,9 +442,9 @@ Der SignalR-Server muss so konfiguriert werden, dass er SignalR-Anforderungen an
 
   * erstellt Textfelder für den Namen und den Nachrichtentext sowie eine Senden-Schaltfläche  
   * erstellt eine Liste mit `id="messagesList"` zum Anzeigen von Nachrichten, die vom SignalR-Hub empfangen werden   
-  * schließt Skriptverweise auf SignalR sowie den *chat.js*-Anwendungscode ein, den Sie im folgenden Schritt erstellen    
+  * schließt Skriptverweise auf SignalR sowie den *chat.js* -Anwendungscode ein, den Sie im folgenden Schritt erstellen    
 
-* Erstellen Sie im *wwwroot/js*-Ordner eine *chat.js*-Datei mit folgendem Code:  
+* Erstellen Sie im *wwwroot/js* -Ordner eine *chat.js* -Datei mit folgendem Code:  
 
   [!code-javascript[Index](signalr/sample-snapshot/2.x/chat.js)]    
 
@@ -457,7 +458,7 @@ Der SignalR-Server muss so konfiguriert werden, dass er SignalR-Anforderungen an
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)   
 
-* Drücken Sie **STRG+F5**, um die App ohne Debugging zu starten.   
+* Drücken Sie **STRG+F5** , um die App ohne Debugging zu starten.   
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code) 
 

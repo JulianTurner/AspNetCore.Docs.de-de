@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.date: 10/24/2018
 ms.custom: devx-track-csharp, mvc, seodec18
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/cicd
-ms.openlocfilehash: 3632f1c4bd419aae08105005de3d81fc2cb9e410
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: eddd7034bf1860fb35cf00eefb7a11a408869700
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625881"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052642"
 ---
 # <a name="continuous-integration-and-deployment"></a>Continuous Integration und Continuous Deployment
 
@@ -42,20 +43,20 @@ In diesem Abschnitt führen Sie die folgenden Aufgaben aus:
 ## <a name="publish-the-apps-code-to-github"></a>Veröffentlichen des App-Codes auf GitHub
 
 1. Öffnen Sie ein Browserfenster, und navigieren Sie zu `https://github.com`.
-1. Klicken Sie in der Kopfzeile auf das Dropdownmenü **+** und dann auf **Neues Repository**:
+1. Klicken Sie in der Kopfzeile auf das Dropdownmenü **+** und dann auf **Neues Repository** :
 
     ![GitHub-Option „Neues Repository“](media/cicd/github-new-repo.png)
 
 1. Klicken Sie im Dropdownmenü **Besitzer** auf Ihr Konto, und geben Sie *simple-feed-reader* in das Textfeld **Repositoryname** ein.
 1. Klicken Sie auf die Schaltfläche **Repository erstellen**.
 1. Öffnen Sie die Befehlsshell Ihres lokalen Computers. Navigieren Sie zu dem Verzeichnis, in dem das Git-Repository *simple-feed-reader* gespeichert ist.
-1. Benennen Sie das vorhandene *origin*-Remoteelement in *upstream* um. Führen Sie den folgenden Befehl aus:
+1. Benennen Sie das vorhandene *origin* -Remoteelement in *upstream* um. Führen Sie den folgenden Befehl aus:
 
     ```console
     git remote rename origin upstream
     ```
 
-1. Fügen Sie ein neues *origin*-Remoteelement hinzu, das auf die Kopie des Repositorys auf GitHub zeigt. Führen Sie den folgenden Befehl aus:
+1. Fügen Sie ein neues *origin* -Remoteelement hinzu, das auf die Kopie des Repositorys auf GitHub zeigt. Führen Sie den folgenden Befehl aus:
 
     ```console
     git remote add origin https://github.com/<GitHub_username>/simple-feed-reader/
@@ -77,24 +78,24 @@ Entfernen Sie die lokale Git-Bereitstellung mit den folgenden Schritten. Azure P
 
     ![Suchbegriff „staging“ in der Web-App](media/cicd/portal-search-box.png)
 
-1. Klicken Sie auf **Bereitstellungscenter**. Ein neues Panel wird angezeigt. Klicken Sie auf **Verbindung trennen**, um die lokale Konfiguration der Git-Quellcodeverwaltung zu entfernen, die im vorherigen Kapitel hinzugefügt wurde. Bestätigen Sie den Entfernungsvorgang, indem Sie auf die Schaltfläche **Ja** klicken.
+1. Klicken Sie auf **Bereitstellungscenter**. Ein neues Panel wird angezeigt. Klicken Sie auf **Verbindung trennen** , um die lokale Konfiguration der Git-Quellcodeverwaltung zu entfernen, die im vorherigen Kapitel hinzugefügt wurde. Bestätigen Sie den Entfernungsvorgang, indem Sie auf die Schaltfläche **Ja** klicken.
 1. Navigieren Sie zum App Service *mywebapp<unique_number>* . Zur Erinnerung: Das Suchfeld des Portals kann verwendet werden, um App Service schnell zu finden.
-1. Klicken Sie auf **Bereitstellungscenter**. Ein neues Panel wird angezeigt. Klicken Sie auf **Verbindung trennen**, um die lokale Konfiguration der Git-Quellcodeverwaltung zu entfernen, die im vorherigen Kapitel hinzugefügt wurde. Bestätigen Sie den Entfernungsvorgang, indem Sie auf die Schaltfläche **Ja** klicken.
+1. Klicken Sie auf **Bereitstellungscenter**. Ein neues Panel wird angezeigt. Klicken Sie auf **Verbindung trennen** , um die lokale Konfiguration der Git-Quellcodeverwaltung zu entfernen, die im vorherigen Kapitel hinzugefügt wurde. Bestätigen Sie den Entfernungsvorgang, indem Sie auf die Schaltfläche **Ja** klicken.
 
 ## <a name="create-an-azure-devops-organization"></a>Erstellen einer Azure DevOps-Organisation
 
 1. Öffnen Sie einen Browser, und navigieren Sie zur Seite für das [Erstellen einer Azure DevOps-Organisation](https://go.microsoft.com/fwlink/?LinkId=307137).
 1. Geben Sie einen eindeutigen Namen in das Textfeld **Wählen Sie einen einprägsamen Namen.** ein, um die URL für den Zugriff auf Ihre Azure DevOps-Organisation zu bilden.
-1. Aktivieren Sie das Optionsfeld **Git**, da der Code in einem GitHub-Repository gehostet wird.
+1. Aktivieren Sie das Optionsfeld **Git** , da der Code in einem GitHub-Repository gehostet wird.
 1. Klicken Sie auf die Schaltfläche **Continue** (Weiter). Nach einer kurzen Wartezeit werden ein Konto und ein Teamprojekt mit dem Namen *MyFirstProject* erstellt.
 
     ![Seite zum Erstellen der Azure DevOps-Organisation](media/cicd/vsts-account-creation.png)
 
-1. Öffnen Sie die Bestätigungs-E-Mail, die anzeigt, dass die Azure DevOps-Organisation und das Projekt verwendet werden können. Klicken Sie auf die Schaltfläche **Starten Sie Ihr Projekt**:
+1. Öffnen Sie die Bestätigungs-E-Mail, die anzeigt, dass die Azure DevOps-Organisation und das Projekt verwendet werden können. Klicken Sie auf die Schaltfläche **Starten Sie Ihr Projekt** :
 
     ![Schaltfläche „Starten Sie Ihr Projekt“](media/cicd/vsts-start-project.png)
 
-1. In einem Browser wird *\<account_name\>.visualstudio.com* geöffnet. Klicken Sie auf den Link *MyFirstProject*, um mit der Konfiguration der DevOps-Pipeline des Projekts zu beginnen.
+1. In einem Browser wird *\<account_name\>.visualstudio.com* geöffnet. Klicken Sie auf den Link *MyFirstProject* , um mit der Konfiguration der DevOps-Pipeline des Projekts zu beginnen.
 
 ## <a name="configure-the-azure-pipelines-pipeline"></a>Konfigurieren der Azure Pipelines-Pipeline
 
@@ -102,11 +103,11 @@ Für den Abschluss des Vorgangs sind drei Schritte erforderlich. Durch die Ausf�
 
 ### <a name="grant-azure-devops-access-to-the-github-repository"></a>Gewähren des Zugriffs auf das GitHub-Repository für Azure DevOps
 
-1. Erweitern **oder erstellen Sie den Code über den Accordion-Bereich eines externen Repositorys**. Klicken Sie auf die Schaltfläche **Build einrichten**:
+1. Erweitern **oder erstellen Sie den Code über den Accordion-Bereich eines externen Repositorys**. Klicken Sie auf die Schaltfläche **Build einrichten** :
 
     ![Schaltfläche „Build einrichten“](media/cicd/vsts-setup-build.png)
 
-1. Klicken Sie im Abschnitt **Quelle auswählen** auf die Option **GitHub**:
+1. Klicken Sie im Abschnitt **Quelle auswählen** auf die Option **GitHub** :
 
     ![Auswählen einer Quelle (GitHub)](media/cicd/vsts-select-source.png)
 
@@ -114,7 +115,7 @@ Für den Abschluss des Vorgangs sind drei Schritte erforderlich. Durch die Ausf�
 
     ![GitHub-Verbindungsname](media/cicd/vsts-repo-authz.png)
 
-1. Wenn für Ihr GitHub-Konto die zweistufige Authentifizierung aktiviert ist, ist ein persönliches Zugriffstoken erforderlich. Klicken Sie in diesem Fall auf den Link **Verwenden Sie zum Autorisieren das persönliche GitHub-Zugriffstoken.** Wenn Sie Hilfe benötigen, finden Sie weitere Informationen in den [offiziellen GitHub-Anweisungen für das Erstellen von persönlichen Zugriffstokens](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). Nur der *repo*-Geltungsbereich wird benötigt. Klicken Sie andernfalls auf die Schaltfläche **Mithilfe von OAuth autorisieren**.
+1. Wenn für Ihr GitHub-Konto die zweistufige Authentifizierung aktiviert ist, ist ein persönliches Zugriffstoken erforderlich. Klicken Sie in diesem Fall auf den Link **Verwenden Sie zum Autorisieren das persönliche GitHub-Zugriffstoken.** Wenn Sie Hilfe benötigen, finden Sie weitere Informationen in den [offiziellen GitHub-Anweisungen für das Erstellen von persönlichen Zugriffstokens](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). Nur der *repo* -Geltungsbereich wird benötigt. Klicken Sie andernfalls auf die Schaltfläche **Mithilfe von OAuth autorisieren**.
 1. Melden Sie sich bei Ihrem GitHub-Konto an, wenn Sie dazu aufgefordert werden. Klicken Sie dann auf „Autorisieren“, um Zugriff auf Ihre Azure DevOps-Organisation zu gewähren. Bei erfolgreicher Ausführung wird ein neuer Dienstendpunkt erstellt.
 1. Klicken Sie neben der Schaltfläche **Repository** auf die Auslassungspunkte (...). Wählen Sie das Repository *<GitHub_username>/simple-feed-reader* aus der Liste aus. Klicken Sie auf die Schaltfläche **Auswählen**.
 1. Klicken Sie im Dropdownmenü **Standardbranch für manuelle und geplante Builds** auf den Branch *master*. Klicken Sie auf die Schaltfläche **Continue** (Weiter). Die Seite für die Vorlagenauswahl wird angezeigt.
@@ -125,15 +126,15 @@ Für den Abschluss des Vorgangs sind drei Schritte erforderlich. Durch die Ausf�
 
     ![Suche nach ASP.NET Core auf der Vorlagenseite](media/cicd/vsts-template-selection.png)
 
-1. Die Suchergebnisse für die Vorlage werden angezeigt. Zeigen Sie mit der Maustaste auf die Vorlage **ASP.NET Core**, und klicken Sie auf die Schaltfläche **Anwenden**.
+1. Die Suchergebnisse für die Vorlage werden angezeigt. Zeigen Sie mit der Maustaste auf die Vorlage **ASP.NET Core** , und klicken Sie auf die Schaltfläche **Anwenden**.
 1. Die Registerkarte **Aufgaben** der Builddefinition wird angezeigt. Klicken Sie auf die Registerkarte **Trigger**.
 1. Aktivieren Sie das Kontrollkästchen **Continuous Integration aktivieren**. Vergewissern Sie sich, dass im Abschnitt **Branchfilter** das Dropdownmenü **Typ** auf *Einschließen* festgelegt ist. Legen Sie das Dropdownmenü **Branchspezifikation** auf *master* fest.
 
     ![Aktivieren der Continuous Integration-Einstellungen](media/cicd/vsts-enable-ci.png)
 
-    Diese Einstellungen bewirken, dass ein Build ausgelöst wird, wenn eine Änderung mithilfe von Push an den *master*-Branch des GitHub-Repositorys übertragen wird. Continuous Integration wird im Abschnitt [Committen von Änderungen auf GitHub und automatisches Bereitstellen in Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) getestet.
+    Diese Einstellungen bewirken, dass ein Build ausgelöst wird, wenn eine Änderung mithilfe von Push an den *master* -Branch des GitHub-Repositorys übertragen wird. Continuous Integration wird im Abschnitt [Committen von Änderungen auf GitHub und automatisches Bereitstellen in Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) getestet.
 
-1. Klicken Sie auf die Schaltfläche **Speichern und in Warteschlange einreihen** und dann auf die Option **Speichern**:
+1. Klicken Sie auf die Schaltfläche **Speichern und in Warteschlange einreihen** und dann auf die Option **Speichern** :
 
     ![Schaltfläche „Speichern“](media/cicd/vsts-save-build.png)
 
@@ -155,7 +156,7 @@ Für den Abschluss des Vorgangs sind drei Schritte erforderlich. Durch die Ausf�
 
     ![Releasepipeline: Suchfeld für Vorlage](media/cicd/vsts-release-template-search.png)
 
-1. Die Suchergebnisse für die Vorlage werden angezeigt. Bewegen Sie den Mauszeiger über die Vorlage **Azure App Service-Bereitstellung mit Slot**, und klicken Sie auf die Schaltfläche **Anwenden**. Die Registerkarte **Pipeline** der Releasepipeline wird angezeigt.
+1. Die Suchergebnisse für die Vorlage werden angezeigt. Bewegen Sie den Mauszeiger über die Vorlage **Azure App Service-Bereitstellung mit Slot** , und klicken Sie auf die Schaltfläche **Anwenden**. Die Registerkarte **Pipeline** der Releasepipeline wird angezeigt.
 
     ![Registerkarte „Pipeline“ der Releasepipeline](media/cicd/vsts-release-definition-pipeline.png)
 
@@ -175,7 +176,7 @@ Für den Abschluss des Vorgangs sind drei Schritte erforderlich. Durch die Ausf�
 
     Wenn diese Option aktiviert ist, wird jedes Mal eine Bereitstellung durchgeführt, wenn ein neuer Build verfügbar ist.
 1. Im rechten Bereich wird das Panel **Continuous Deployment-Trigger** angezeigt. Klicken Sie auf die Umschaltfläche, um das Feature zu aktivieren. Es ist nicht erforderlich, den **Pull Request-Trigger** zu aktivieren.
-1. Klicken Sie im Abschnitt **Build-Branchfilter** auf das Dropdownmenü **Hinzufügen**. Wählen Sie die Option **Build Definition's default branch** (Standardbranch der Builddefinition) aus. Dieser Filter bewirkt, dass das Release nur für einen Build aus dem *master*-Branch des GitHub-Repository ausgelöst wird.
+1. Klicken Sie im Abschnitt **Build-Branchfilter** auf das Dropdownmenü **Hinzufügen**. Wählen Sie die Option **Build Definition's default branch** (Standardbranch der Builddefinition) aus. Dieser Filter bewirkt, dass das Release nur für einen Build aus dem *master* -Branch des GitHub-Repository ausgelöst wird.
 1. Klicken Sie auf die Schaltfläche **Speichern**. Klicken Sie im angezeigten modalen Dialogfeld **Speichern** auf die Schaltfläche **OK**.
 1. Klicken Sie auf das Feld **Umgebung 1**. Auf der rechten Seite wird das Panel **Umgebung** angezeigt. Ändern Sie den Text *Umgebung 1* im Textfeld **Umgebungsname** in *Produktion*.
 
@@ -203,20 +204,20 @@ Für den Abschluss des Vorgangs sind drei Schritte erforderlich. Durch die Ausf�
 
 1. Öffnen Sie *SimpleFeedReader.sln* in Visual Studio.
 1. Öffnen Sie *Pages\Index.cshtml* im Projektmappen-Explorer. Ändern Sie `<h2>Simple Feed Reader - V3</h2>` in `<h2>Simple Feed Reader - V4</h2>`.
-1. Drücken Sie **STRG**+**UMSCHALT**+**B**, um die App zu erstellen.
+1. Drücken Sie **STRG**+**UMSCHALT**+**B** , um die App zu erstellen.
 1. Committen Sie die Datei in das GitHub-Repository. Verwenden Sie entweder die Seite **Änderungen** in der Registerkarte *Team Explorer* von Visual Studio, oder führen Sie mithilfe der Befehlsshell des lokalen Computers Folgendes aus:
 
     ```console
     git commit -a -m "upgraded to V4"
     ```
 
-1. Übertragen Sie die Änderung im *master*-Branch mithilfe von Push an das *origin*-Remoteelement Ihres GitHub-Repositorys:
+1. Übertragen Sie die Änderung im *master* -Branch mithilfe von Push an das *origin* -Remoteelement Ihres GitHub-Repositorys:
 
     ```console
     git push origin master
     ```
 
-    Der Commit wird im *master*-Branch des GitHub-Repositorys angezeigt:
+    Der Commit wird im *master* -Branch des GitHub-Repositorys angezeigt:
 
     ![GitHub-Commit im „master“-Branch](media/cicd/github-commit.png)
 
@@ -236,7 +237,7 @@ Für den Abschluss des Vorgangs sind drei Schritte erforderlich. Durch die Ausf�
 
 ### <a name="build-definition"></a>Builddefinition
 
-Eine Builddefinition mit dem Namen *MyFirstProject-ASP.NET Core-CI* wurde erstellt. Nach Abschluss erstellt der Build eine *ZIP*-Datei einschließlich der zu veröffentlichenden Ressourcen. Die Releasepipeline stellt diese Ressourcen in Azure bereit.
+Eine Builddefinition mit dem Namen *MyFirstProject-ASP.NET Core-CI* wurde erstellt. Nach Abschluss erstellt der Build eine *ZIP* -Datei einschließlich der zu veröffentlichenden Ressourcen. Die Releasepipeline stellt diese Ressourcen in Azure bereit.
 
 Auf der Registerkarte **Aufgaben** der Builddefinition werden die einzelnen Schritte aufgelistet, die verwendet werden. Es gibt fünf Buildaufgaben.
 
@@ -244,13 +245,13 @@ Auf der Registerkarte **Aufgaben** der Builddefinition werden die einzelnen Schr
 
 1. **Wiederherstellen** führt den Befehl `dotnet restore` aus, um die NuGet-Pakete der App wiederherzustellen. Der verwendete Standardpaketfeed ist nuget.org.
 1. **Build** führt den Befehl `dotnet build --configuration release` aus, um den App-Code zu kompilieren. Diese `--configuration`-Option wird verwendet, um eine optimierte Version des Codes zu erstellen, die für die Bereitstellung in einer Produktionsumgebung geeignet ist. Ändern Sie die Variable *BuildConfiguration* auf der Registerkarte **Variablen** der Builddefinition, wenn beispielsweise eine Debugkonfiguration erforderlich ist.
-1. **Testen** führt den `dotnet test --configuration release --logger trx --results-directory <local_path_on_build_agent>`-Befehl aus, um die Komponententests der App auszuführen. Komponententests werden in jedem C#-Projekt ausgeführt, das mit dem `**/*Tests/*.csproj`-Globmuster übereinstimmt. Testergebnisse werden in einer *TRX*-Datei an dem Speicherort gespeichert, der durch die Option `--results-directory` angegeben wird. Wenn ein Test fehlschlägt, schlägt der Build fehl und wird nicht bereitgestellt.
+1. **Testen** führt den `dotnet test --configuration release --logger trx --results-directory <local_path_on_build_agent>`-Befehl aus, um die Komponententests der App auszuführen. Komponententests werden in jedem C#-Projekt ausgeführt, das mit dem `**/*Tests/*.csproj`-Globmuster übereinstimmt. Testergebnisse werden in einer *TRX* -Datei an dem Speicherort gespeichert, der durch die Option `--results-directory` angegeben wird. Wenn ein Test fehlschlägt, schlägt der Build fehl und wird nicht bereitgestellt.
 
     > [!NOTE]
-    > Ändern Sie *SimpleFeedReader.Tests\Services\NewsServiceTests.cs*, um einen der Tests absichtlich zu unterbrechen, um zu überprüfen, ob die Komponententests funktionieren. Ändern Sie beispielsweise in der `Returns_News_Stories_Given_Valid_Uri`-Methode `Assert.True(result.Count > 0);` in `Assert.False(result.Count > 0);` . Committen Sie die Änderung, und übertragen Sie diese mithilfe von Push an GitHub. Der Build wird ausgelöst und schlägt fehl. Der Status der Buildpipeline wird in **failed** (Fehlgeschlagen) geändert. Machen Sie die Änderung rückgängig, committen Sie noch mal, und übertragen Sie sie erneut mithilfe von Push. Der Build ist erfolgreich.
+    > Ändern Sie *SimpleFeedReader.Tests\Services\NewsServiceTests.cs* , um einen der Tests absichtlich zu unterbrechen, um zu überprüfen, ob die Komponententests funktionieren. Ändern Sie beispielsweise in der `Returns_News_Stories_Given_Valid_Uri`-Methode `Assert.True(result.Count > 0);` in `Assert.False(result.Count > 0);` . Committen Sie die Änderung, und übertragen Sie diese mithilfe von Push an GitHub. Der Build wird ausgelöst und schlägt fehl. Der Status der Buildpipeline wird in **failed** (Fehlgeschlagen) geändert. Machen Sie die Änderung rückgängig, committen Sie noch mal, und übertragen Sie sie erneut mithilfe von Push. Der Build ist erfolgreich.
 
-1. **Veröffentlichen** führt den `dotnet publish --configuration release --output <local_path_on_build_agent>`-Befehl aus, um eine *ZIP*-Datei mit den bereitzustellenden Artefakten zu erstellen. Die Option `--output` gibt den Veröffentlichungsort der *ZIP*-Datei an. Dieser Speicherort wird durch Übergeben einer [vordefinierten Variablen](/azure/devops/pipelines/build/variables) namens `$(build.artifactstagingdirectory)` angegeben. Diese Variable wird zu einem lokalen Pfad wie beispielsweise *c:\agent\_work\1\a* auf dem Build-Agent erweitert.
-1. **Artefakt veröffentlichen** veröffentlicht die *ZIP*-Datei, die von der Aufgabe **Veröffentlichen** erstellt wurde. Die Aufgabe akzeptiert den Speicherort der *ZIP*-Datei als Parameter, bei dem es sich um die vordefinierte Variable `$(build.artifactstagingdirectory)` handelt. Die *ZIP*-Datei wird als Ordner namens *drop* veröffentlicht.
+1. **Veröffentlichen** führt den `dotnet publish --configuration release --output <local_path_on_build_agent>`-Befehl aus, um eine *ZIP* -Datei mit den bereitzustellenden Artefakten zu erstellen. Die Option `--output` gibt den Veröffentlichungsort der *ZIP* -Datei an. Dieser Speicherort wird durch Übergeben einer [vordefinierten Variablen](/azure/devops/pipelines/build/variables) namens `$(build.artifactstagingdirectory)` angegeben. Diese Variable wird zu einem lokalen Pfad wie beispielsweise *c:\agent\_work\1\a* auf dem Build-Agent erweitert.
+1. **Artefakt veröffentlichen** veröffentlicht die *ZIP* -Datei, die von der Aufgabe **Veröffentlichen** erstellt wurde. Die Aufgabe akzeptiert den Speicherort der *ZIP* -Datei als Parameter, bei dem es sich um die vordefinierte Variable `$(build.artifactstagingdirectory)` handelt. Die *ZIP* -Datei wird als Ordner namens *drop* veröffentlicht.
 
 Klicken Sie auf den Link **Zusammenfassung** der Builddefinition, um den Verlauf der Builds mit der folgenden Definition anzuzeigen:
 
@@ -260,11 +261,11 @@ Klicken Sie auf der dann angezeigten Seite auf den Link, der der eindeutigen Bui
 
 ![Screenshot mit der Zusammenfassungsseite der Builddefinition](media/cicd/build-definition-completed.png)
 
-Eine Zusammenfassung dieses spezifischen Builds wird angezeigt. Klicken Sie auf die Registerkarte **Artefakte**, und beachten Sie, dass der vom Build erstellte Ordner *drop* aufgeführt wird:
+Eine Zusammenfassung dieses spezifischen Builds wird angezeigt. Klicken Sie auf die Registerkarte **Artefakte** , und beachten Sie, dass der vom Build erstellte Ordner *drop* aufgeführt wird:
 
 ![Screenshot mit den Builddefinitionsartefakten: „drop“-Ordner](media/cicd/build-definition-artifacts.png)
 
-Verwenden Sie die Links **Download** und **Durchsuchen**, um die veröffentlichten Artefakte zu überprüfen.
+Verwenden Sie die Links **Download** und **Durchsuchen** , um die veröffentlichten Artefakte zu überprüfen.
 
 ### <a name="release-pipeline"></a>Releasepipeline
 
@@ -276,7 +277,7 @@ Die beiden Hauptkomponenten der Releasepipeline sind die **Artefakte** und die *
 
 ![Screenshot mit den Releasepipelineartefakten](media/cicd/release-definition-artifacts.png)
 
-Der Wert **Source (Build definition)** (Quelle (Builddefinition)) steht für die Builddefinition, mit der diese Releasepipeline verknüpft ist. Die *ZIP*-Datei, die bei erfolgreicher Ausführung der Builddefinition erstellt wurde, wird für die Umgebung *Produktion* für die Bereitstellung in Azure bereitgestellt. Klicken Sie im Feld für die Umgebung *Produktion* auf den Link *1 phase, 2 tasks* (1 Phase, 2 Aufgaben), um die Aufgaben der Releasepipeline anzuzeigen:
+Der Wert **Source (Build definition)** (Quelle (Builddefinition)) steht für die Builddefinition, mit der diese Releasepipeline verknüpft ist. Die *ZIP* -Datei, die bei erfolgreicher Ausführung der Builddefinition erstellt wurde, wird für die Umgebung *Produktion* für die Bereitstellung in Azure bereitgestellt. Klicken Sie im Feld für die Umgebung *Produktion* auf den Link *1 phase, 2 tasks* (1 Phase, 2 Aufgaben), um die Aufgaben der Releasepipeline anzuzeigen:
 
 ![Screenshot mit den Releasepipelineaufgaben](media/cicd/release-definition-tasks.png)
 
@@ -284,7 +285,7 @@ Die Releasepipeline besteht aus zwei Aufgaben: *Deploy Azure App Service to Slot
 
 ![Screenshot mit der Bereitstellungsaufgabe für die Releasepipeline](media/cicd/release-definition-task1.png)
 
-Das Azure-Abonnement, der Diensttyp, der Name der Web-App, die Ressourcengruppe und der Bereitstellungsslot werden in der Bereitstellungsaufgabe definiert. Das Textfeld **Paket oder Ordner** enthält den Pfad der *ZIP*-Datei, die extrahiert und im *Stagingslot* der Web-App *mywebapp\<unique_number\>* bereitgestellt werden soll.
+Das Azure-Abonnement, der Diensttyp, der Name der Web-App, die Ressourcengruppe und der Bereitstellungsslot werden in der Bereitstellungsaufgabe definiert. Das Textfeld **Paket oder Ordner** enthält den Pfad der *ZIP* -Datei, die extrahiert und im *Stagingslot* der Web-App *mywebapp\<unique_number\>* bereitgestellt werden soll.
 
 Wenn Sie auf die Aufgabe für den Slotaustausch klicken, wird die folgende Aufgabenkonfiguration angezeigt:
 

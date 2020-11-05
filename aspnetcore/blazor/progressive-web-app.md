@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 4f184a1264614b16ce98ba5474aacd60f175bd8a
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: c8ff2fc0f2f4d4e75f535f379ec94ea9de2e3ecb
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865213"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055697"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Erstellen progressiver Webanwendungen mit Blazor WebAssembly für ASP.NET Core
 
@@ -46,7 +47,7 @@ Solche Apps werden aus folgenden Gründen mit dem Wort *progressiv* beschrieben:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Aktivieren Sie das Kontrollkästchen **Progressive Web Application** (Progressive Web-App) beim Erstellen einer neuen **Blazor WebAssembly-App** im Dialogfeld **Neues Projekt erstellen**:
+Aktivieren Sie das Kontrollkästchen **Progressive Web Application** (Progressive Web-App) beim Erstellen einer neuen **Blazor WebAssembly-App** im Dialogfeld **Neues Projekt erstellen** :
 
 ![Ausgewähltes Kontrollkästchen „Progressive Web Application“ im Dialogfeld „Neues Projekt erstellen“ von Visual Studio](progressive-web-app/_static/image1.png)
 
@@ -125,7 +126,7 @@ Sie können den folgenden Ansatz verwenden, um die Logik zwischen den zwei Servi
 
 ### <a name="cache-first-fetch-strategy"></a>Cache-First-Abrufstrategie
 
-Der integrierte Service Worker `service-worker.published.js` löst Anforderungen mit einer *Cache-First*-Strategie auf. Das bedeutet, dass der Service Worker bevorzugt, zwischengespeicherte Inhalte zurückzugeben, unabhängig davon, ob der Benutzer über Netzwerkzugriff verfügt oder ob neuere Inhalte auf dem Server verfügbar sind.
+Der integrierte Service Worker `service-worker.published.js` löst Anforderungen mit einer *Cache-First* -Strategie auf. Das bedeutet, dass der Service Worker bevorzugt, zwischengespeicherte Inhalte zurückzugeben, unabhängig davon, ob der Benutzer über Netzwerkzugriff verfügt oder ob neuere Inhalte auf dem Server verfügbar sind.
 
 Die Cache-First-Strategie hat folgende Vorteile:
 
@@ -154,7 +155,7 @@ Sie können diesen Prozess anpassen, indem Sie die Service Worker-Logik bearbeit
 
 ### <a name="how-requests-are-resolved"></a>Auflösen von Anforderungen
 
-Wie im Abschnitt [Cache-First-Abrufstrategie](#cache-first-fetch-strategy) beschrieben verwendet der Standard-Service Worker eine *Cache-First-Strategie*, d. h., er versucht zwischengespeicherte Inhalte bereitzustellen, wenn diese verfügbar sind. Wenn für eine bestimmte URL kein Inhalt zwischengespeichert ist, z. B., wenn Daten von einer Back-End-API angefordert werden, greif der Service Worker auf eine herkömmliche Netzwerkanforderung zurück. Die Netzwerkanforderung wird erfolgreich durchgeführt, wenn der Server erreichbar ist. Diese Logik ist in der `onFetch`-Funktion in der Datei `service-worker.published.js` implementiert.
+Wie im Abschnitt [Cache-First-Abrufstrategie](#cache-first-fetch-strategy) beschrieben verwendet der Standard-Service Worker eine *Cache-First-Strategie* , d. h., er versucht zwischengespeicherte Inhalte bereitzustellen, wenn diese verfügbar sind. Wenn für eine bestimmte URL kein Inhalt zwischengespeichert ist, z. B., wenn Daten von einer Back-End-API angefordert werden, greif der Service Worker auf eine herkömmliche Netzwerkanforderung zurück. Die Netzwerkanforderung wird erfolgreich durchgeführt, wenn der Server erreichbar ist. Diese Logik ist in der `onFetch`-Funktion in der Datei `service-worker.published.js` implementiert.
 
 Wenn die Razor-Komponenten der App Daten von Back-End-APIs anfordern müssen und Sie ein benutzerfreundliches Verfahren für fehlgeschlagene Anforderungen bei nicht verfügbarer Netzwerkverbindung anbieten möchten, können Sie die Logik innerhalb der App-Komponenten implementieren. Schließen Sie z. B. <xref:System.Net.Http.HttpClient>-Anforderungen in `try/catch` ein.
 
@@ -257,7 +258,7 @@ Wenn Sie Änderungen testen, können Sie einfach auf den im obigen Screenshot ge
 
 Webentwickler erwarten gewohnheitsmäßig, dass Benutzer nur die zuletzt bereitgestellte Version ihrer Web-App ausführen, da dies im herkömmlichen Webverteilungsmodell üblich ist. Eine Offline-First-PWA ähnelt jedoch eher einer nativen mobilen App, bei der die Benutzer nicht unbedingt die neueste Version ausführen.
 
-Wie im Abschnitt [Hintergrundupdates](#background-updates) beschrieben, **verwendet jeder vorhandene Benutzer weiterhin eine vorherige Version, bis sie die App wieder aufrufen**, nachdem Sie ein Update für Ihre App bereitgestellt haben, da das Update im Hintergrund durchgeführt und erst aktiviert wird, wenn der Benutzer die App geschlossen hat. Außerdem ist die vorherige verwendete Version nicht unbedingt die Version, die Sie zuletzt bereitgestellt haben. Je nachdem, wann der Benutzer zuletzt ein Update durchgeführt hat, kann es sich bei der vorherigen Version um eine *beliebige* historische Version handeln.
+Wie im Abschnitt [Hintergrundupdates](#background-updates) beschrieben, **verwendet jeder vorhandene Benutzer weiterhin eine vorherige Version, bis sie die App wieder aufrufen** , nachdem Sie ein Update für Ihre App bereitgestellt haben, da das Update im Hintergrund durchgeführt und erst aktiviert wird, wenn der Benutzer die App geschlossen hat. Außerdem ist die vorherige verwendete Version nicht unbedingt die Version, die Sie zuletzt bereitgestellt haben. Je nachdem, wann der Benutzer zuletzt ein Update durchgeführt hat, kann es sich bei der vorherigen Version um eine *beliebige* historische Version handeln.
 
 Dies kann ein Problem darstellen, wenn die Front-End- und Back-End-Teile der App eine Vereinbarung über das Schema für API-Anforderungen erfordern. Sie dürfen keine API-Schemaänderungen bereitstellen, die nicht abwärtskompatibel sind, solange Sie sich nicht vergewissert haben, dass alle Benutzer ein Upgrade durchgeführt haben. Alternativ müssen Sie die Verwendung nicht kompatibler, alter Versionen der App für Benutzer verhindern. Diese Anforderung gilt auch für native mobile Apps. Wenn Sie einen Breaking Change in Server-APIs bereitstellen, wird die Client-App für Benutzer beschädigt, die noch kein Update durchgeführt haben.
 

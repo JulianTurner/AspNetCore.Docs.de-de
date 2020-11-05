@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/read-related-data
-ms.openlocfilehash: f2b4fd9fb1e328882583536b704d516955343417
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 610a9e9b0007fb468ea9cdae6fadd2e756de4290
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629456"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054058"
 ---
 # <a name="tutorial-read-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Lesen verwandter Daten: ASP.NET Core MVC mit EF Core
 
@@ -74,11 +75,11 @@ Andererseits sind separate Abfragen in einigen Szenarios jedoch effizienter. Eag
 
 Die Kursentität enthält eine Navigationseigenschaft, die die Abteilungsentität der Abteilung enthält, der der Kurs zugewiesen ist. Sie benötigen die Namenseigenschaft der Abteilungsentität in der `Course.Department`-Navigationseigenschaft, um den Namen der zugewiesenen Abteilung in einer Kursliste anzuzeigen.
 
-Erstellen Sie einen Controller mit dem Namen CoursesController für den Kursentitätstyp. Verwenden Sie dieselben Optionen für den **MVC-Controller mit Ansichten unter Verwendung des Entity Framework**-Gerüstbauers, die Sie zuvor für den Studentencontroller verwendet haben, wie in der folgenden Abbildung gezeigt:
+Erstellen Sie einen Controller mit dem Namen CoursesController für den Kursentitätstyp. Verwenden Sie dieselben Optionen für den **MVC-Controller mit Ansichten unter Verwendung des Entity Framework** -Gerüstbauers, die Sie zuvor für den Studentencontroller verwendet haben, wie in der folgenden Abbildung gezeigt:
 
 ![Hinzufügen eines Kursecontrollers](read-related-data/_static/add-courses-controller.png)
 
-Öffnen Sie *CoursesController.cs*, und untersuchen Sie die `Index`-Methode. Der automatische Gerüstbau hat mithilfe der `Include`-Methode ein Eager Loading für die `Department`-Navigationseigenschaft angegeben.
+Öffnen Sie *CoursesController.cs* , und untersuchen Sie die `Index`-Methode. Der automatische Gerüstbau hat mithilfe der `Include`-Methode ein Eager Loading für die `Department`-Navigationseigenschaft angegeben.
 
 Ersetzen Sie die `Index`-Methode durch den folgenden Code, der einen geeigneteren Namen für `IQueryable` verwendet, der Kursentitäten (`courses` anstelle von `schoolContext`) zurückgibt:
 
@@ -122,7 +123,7 @@ Auf dieser Seite werden verwandte Daten auf folgende Weise gelesen und angezeigt
 
 Die Dozentenseite zeigt Daten aus drei verschiedenen Tabellen. Aus diesem Grund erstellen Sie ein Ansichtsmodell, das drei Eigenschaften enthält. Jede enthält Daten für eine der Tabellen.
 
-Erstellen Sie im Ordner *SchoolViewModels* *InstructorIndexData.cs*, und ersetzen Sie den bestehenden Code durch den folgenden Code:
+Erstellen Sie im Ordner *SchoolViewModels* *InstructorIndexData.cs* , und ersetzen Sie den bestehenden Code durch den folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/InstructorIndexData.cs)]
 
@@ -140,7 +141,7 @@ Ersetzen Sie die Indexmethode durch den folgenden Code, um Eager Loading verwand
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_EagerLoading)]
 
-Die Methode akzeptiert optionale Routendaten (`id`) und einen Abfragezeichenfolgenparameter (`courseID`), die die ID-Werte des ausgewählten Dozenten und Kurses bereitstellen. Die Parameter werden durch die **Auswählen**-Links auf der Seite bereitgestellt.
+Die Methode akzeptiert optionale Routendaten (`id`) und einen Abfragezeichenfolgenparameter (`courseID`), die die ID-Werte des ausgewählten Dozenten und Kurses bereitstellen. Die Parameter werden durch die **Auswählen** -Links auf der Seite bereitgestellt.
 
 Der Code erstellt zuerst eine Instanz des Ansichtsmodells und fügt die Dozentenliste ein. Der Code gibt Eager Loading für die `Instructor.OfficeAssignment`- und `Instructor.CourseAssignments`-Navigationseigenschaften an. Innerhalb der `CourseAssignments`-Eigenschaft wird die `Course`-Eigenschaft geladen, und innerhalb dieser werden die `Enrollments`- und `Department`-Eigenschaften geladen, und innerhalb jeder `Enrollment`-Entität wird die `Student`-Eigenschaft geladen.
 
@@ -190,7 +191,7 @@ Sie haben die folgenden Änderungen am bestehenden Code vorgenommen:
 
 * Der Seitenname wurde von **Index** in **Dozenten** geändert.
 
-* Es wurde eine **Office**-Spalte hinzugefügt, die `item.OfficeAssignment.Location` nur anzeigt, wenn `item.OfficeAssignment` nicht gleich null ist. (Da dies eine 1:0..1-Beziehung ist, gibt es möglicherweise keine verwandte OfficeAssignment-Entität.)
+* Es wurde eine **Office** -Spalte hinzugefügt, die `item.OfficeAssignment.Location` nur anzeigt, wenn `item.OfficeAssignment` nicht gleich null ist. (Da dies eine 1:0..1-Beziehung ist, gibt es möglicherweise keine verwandte OfficeAssignment-Entität.)
 
   ```html
   @if (item.OfficeAssignment != null)
@@ -199,7 +200,7 @@ Sie haben die folgenden Änderungen am bestehenden Code vorgenommen:
   }
   ```
 
-* Es wurde eine **Kurse**-Spalte hinzugefügt, die die Kurse eines jeden Dozenten anzeigt. Weitere Informationen finden Sie im Abschnitt [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) (Expliziter Zeilenübergang) des Razor-Syntaxartikels.
+* Es wurde eine **Kurse** -Spalte hinzugefügt, die die Kurse eines jeden Dozenten anzeigt. Weitere Informationen finden Sie im Abschnitt [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) (Expliziter Zeilenübergang) des Razor-Syntaxartikels.
 
 * Es wurde Code hinzugefügt, der `class="success"` dynamisch zum `tr`-Element des ausgewählten Dozenten hinzufügt. Hiermit wird mit einer Bootstrapklasse eine Hintergrundfarbe für die ausgewählte Zeile hinzugefügt.
 
@@ -226,7 +227,7 @@ Fügen Sie in der Datei *Views/Instructors/Index.cshtml* nach dem Schließen des
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
 
-Dieser Code liest die `Courses`-Eigenschaft des Ansichtsmodells, um eine Kursliste anzuzeigen. Er bietet außerdem einen **Auswählen**-Link, der die ID des ausgewählten Kurses an die `Index`-Aktionsmethode sendet.
+Dieser Code liest die `Courses`-Eigenschaft des Ansichtsmodells, um eine Kursliste anzuzeigen. Er bietet außerdem einen **Auswählen** -Link, der die ID des ausgewählten Kurses an die `Index`-Aktionsmethode sendet.
 
 Aktualisieren Sie die Seite. Wählen Sie einen Dozenten aus. Jetzt sehen Sie ein Raster, das die dem Dozenten zugewiesenen Kurse anzeigt. Sie sehen auch den Namen der zugewiesenen Abteilung für jeden Kurs.
 
@@ -250,7 +251,7 @@ Angenommen, Sie haben erwartet, dass Benutzer nur selten Registrierungen für ei
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ExplicitLoading&highlight=23-29)]
 
-Der neue Code löscht die *ThenInclude*-Methodenaufrufe für Registrierungsdaten aus dem Code, der Instructor-Entitäten abruft. Außerdem wird `AsNoTracking` gelöscht.  Wenn ein Dozent und Kurs ausgewählt werden, ruft der hervorgehobene Code Registrierungsentitäten für den ausgewählten Kurs und Studentenentitäten für jede Registrierung ab.
+Der neue Code löscht die *ThenInclude* -Methodenaufrufe für Registrierungsdaten aus dem Code, der Instructor-Entitäten abruft. Außerdem wird `AsNoTracking` gelöscht.  Wenn ein Dozent und Kurs ausgewählt werden, ruft der hervorgehobene Code Registrierungsentitäten für den ausgewählten Kurs und Studentenentitäten für jede Registrierung ab.
 
 Führen Sie die Anwendung aus, navigieren Sie zur Dozentenindexseite, und Sie werden keinen Unterschied in der Anzeige auf der Seite bemerken, obwohl Sie die Abrufart für Daten geändert haben.
 

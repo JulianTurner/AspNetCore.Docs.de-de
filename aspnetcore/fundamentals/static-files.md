@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 6/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 36eeb3532ed5ea6f5f75c20cbe14331ed840a788
-ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
+ms.openlocfilehash: 2e25af03a8a6aaff5b343885711c6ebb68340fac
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/27/2020
-ms.locfileid: "91393937"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057855"
 ---
 # <a name="static-files-in-aspnet-core"></a>Statische Dateien in ASP.NET Core
 
@@ -42,14 +43,14 @@ Die Methode <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> legt das
 
 Der vorangehende Code wurde mit der Web-App-Vorlage erstellt.
 
-Auf statische Dateien kann über einen Pfad relativ zum [Webstammverzeichnis](xref:fundamentals/index#web-root) zugegriffen werden. Die **Webanwendung**-Projektvorlagen verfügen beispielsweise über mehrere Ordner innerhalb des Ordners `wwwroot`:
+Auf statische Dateien kann über einen Pfad relativ zum [Webstammverzeichnis](xref:fundamentals/index#web-root) zugegriffen werden. Die **Webanwendung** -Projektvorlagen verfügen beispielsweise über mehrere Ordner innerhalb des Ordners `wwwroot`:
 
 * `wwwroot`
   * `css`
   * `js`
   * `lib`
 
-Erstellen Sie ggf. den *wwwroot/images*-Ordner, und fügen Sie die Datei *wwwroot/images/MyImage. pg* hinzu. Das URI-Format für den Zugriff auf eine Datei im `images`-Ordner ist `https://<hostname>/images/<image_file_name>`. Beispiel: `https://localhost:5001/images/MyImage.jpg`
+Erstellen Sie ggf. den *wwwroot/images* -Ordner, und fügen Sie die Datei *wwwroot/images/MyImage. pg* hinzu. Das URI-Format für den Zugriff auf eine Datei im `images`-Ordner ist `https://<hostname>/images/<image_file_name>`. Beispiel: `https://localhost:5001/images/MyImage.jpg`
 
 ### <a name="serve-files-in-web-root"></a>Verarbeiten von Dateien im Webstammverzeichnis
 
@@ -57,7 +58,7 @@ Mit den Standard-Webappvorlagen wird die <xref:Owin.StaticFileExtensions.UseStat
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/Startup.cs?name=snippet_Configure&highlight=15)]
 
-Die parameterlose Überladung der Methode `UseStaticFiles` markiert die Dateien im [Webstammverzeichnis](xref:fundamentals/index#web-root) als bereitstellbar. Folgendes Markup verweist auf *wwwroot/images/MyImage.jpg*:
+Die parameterlose Überladung der Methode `UseStaticFiles` markiert die Dateien im [Webstammverzeichnis](xref:fundamentals/index#web-root) als bereitstellbar. Folgendes Markup verweist auf *wwwroot/images/MyImage.jpg* :
 
 ```html
 <img src="~/images/MyImage.jpg" class="img" alt="My image" />
@@ -81,9 +82,9 @@ Erwägen Sie eine Verzeichnishierarchie, bei der sich die bereitzustellenden sta
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupRose.cs?name=snippet_Configure&highlight=15-22)]
 
-Im vorangehenden Code wird die *MyStaticFiles*-Verzeichnishierarchie öffentlich über das URI-Segment *StaticFiles* verfügbar gemacht. Eine Anforderung an `https://<hostname>/StaticFiles/images/red-rose.jpg` dient der *red-rose.jpg*-Datei.
+Im vorangehenden Code wird die *MyStaticFiles* -Verzeichnishierarchie öffentlich über das URI-Segment *StaticFiles* verfügbar gemacht. Eine Anforderung an `https://<hostname>/StaticFiles/images/red-rose.jpg` dient der *red-rose.jpg* -Datei.
 
-Folgendes Markup verweist auf *MyStaticFiles/images/red-rose.jpg*:
+Folgendes Markup verweist auf *MyStaticFiles/images/red-rose.jpg* :
 
 ```html
 <img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose" />
@@ -284,7 +285,7 @@ Bei statischen Dateien wie HTML, CSS, Images und JavaScript handelt es sich um O
 
 ## <a name="serve-static-files"></a>Bereitstellen statischer Dateien
 
-Statische Dateien werden im [Webstammverzeichnis](xref:fundamentals/index#web-root) des Projekts gespeichert. Das Standardverzeichnis lautet *{content root}/wwwroot*, kann jedoch über die Methode <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> geändert werden. Weitere Informationen finden Sie unter [Inhaltsstammverzeichnis](xref:fundamentals/index#content-root) und [Webstammverzeichnis](xref:fundamentals/index#web-root).
+Statische Dateien werden im [Webstammverzeichnis](xref:fundamentals/index#web-root) des Projekts gespeichert. Das Standardverzeichnis lautet *{content root}/wwwroot* , kann jedoch über die Methode <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> geändert werden. Weitere Informationen finden Sie unter [Inhaltsstammverzeichnis](xref:fundamentals/index#content-root) und [Webstammverzeichnis](xref:fundamentals/index#web-root).
 
 Der Web-Host der App muss über das Inhaltsstammverzeichnis informiert werden.
 
@@ -311,7 +312,7 @@ Rufen Sie die <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticF
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?name=snippet_ConfigureMethod&highlight=3)]
 
-Die parameterlose Überladung der Methode `UseStaticFiles` markiert die Dateien im [Webstammverzeichnis](xref:fundamentals/index#web-root) als bereitstellbar. Folgendes Markup verweist auf *wwwroot/images/banner1.svg*:
+Die parameterlose Überladung der Methode `UseStaticFiles` markiert die Dateien im [Webstammverzeichnis](xref:fundamentals/index#web-root) als bereitstellbar. Folgendes Markup verweist auf *wwwroot/images/banner1.svg* :
 
 [!code-cshtml[](static-files/samples/1.x/StaticFilesSample/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
@@ -333,9 +334,9 @@ Erwägen Sie eine Verzeichnishierarchie, bei der sich die bereitzustellenden sta
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
 
-Im vorangehenden Code wird die *MyStaticFiles*-Verzeichnishierarchie öffentlich über das URI-Segment *StaticFiles* verfügbar gemacht. Über eine Anforderung an *http://\<server_address>/StaticFiles/images/banner1.svg* wird die Datei *banner1.svg* bereitgestellt.
+Im vorangehenden Code wird die *MyStaticFiles* -Verzeichnishierarchie öffentlich über das URI-Segment *StaticFiles* verfügbar gemacht. Über eine Anforderung an *http://\<server_address>/StaticFiles/images/banner1.svg* wird die Datei *banner1.svg* bereitgestellt.
 
-Folgendes Markup verweist auf *MyStaticFiles/images/banner1.svg*:
+Folgendes Markup verweist auf *MyStaticFiles/images/banner1.svg* :
 
 [!code-cshtml[](static-files/samples/1.x/StaticFilesSample/Views/Home/Index.cshtml?name=snippet_static_file_outside)]
 
@@ -496,7 +497,7 @@ Bei `UseStaticFiles` und `UseFileServer` zeigt der Dateianbieter standardmäßig
 > [!WARNING]
 > Wenn der statische IIS-Dateihandler aktiviert ist **und** das ASP.NET Core-Modul falsch konfiguriert wurde, werden statische Dateien bereitgestellt. Dies geschieht beispielsweise, wenn die Datei *web.config* nicht bereitgestellt worden ist.
 
-* Platzieren Sie Codedateien (einschließlich *.cs* und *.cshtml*) außerhalb des [Webstammverzeichnisses](xref:fundamentals/index#web-root) des App-Projekts. Aus diesem Grund wird eine logische Trennung zwischen den clientseitigen Inhalten der App und dem serverbasierten Code erschaffen. Dadurch wird verhindert, dass serverseitiger Code aufgedeckt wird.
+* Platzieren Sie Codedateien (einschließlich *.cs* und *.cshtml* ) außerhalb des [Webstammverzeichnisses](xref:fundamentals/index#web-root) des App-Projekts. Aus diesem Grund wird eine logische Trennung zwischen den clientseitigen Inhalten der App und dem serverbasierten Code erschaffen. Dadurch wird verhindert, dass serverseitiger Code aufgedeckt wird.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

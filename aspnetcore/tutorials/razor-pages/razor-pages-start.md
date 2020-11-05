@@ -5,6 +5,7 @@ description: Diese Reihe von Tutorials zeigt, wie Sie Razor Pages in ASP.NET Cor
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: db05b8243b91a936a6ed72b0445e0770d44df014
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ab890b956b1242f183054b7ab4575a59072b4f50
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634578"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060234"
 ---
 # <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>Tutorial: Erste Schritte mit Razor Pages in ASP.NET Core
 
@@ -73,7 +74,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 * Nennen Sie das Projekt **RazorPagesMovie**. Es ist wichtig, den Namen *RazorPagesMovie* zu verwenden, damit die Namespaces übereinstimmen, wenn Sie Code kopieren und einfügen.
   ![neue ASP.NET Core-Webanwendung](razor-pages-start/_static/config.png)
 
-* Klicken Sie in der Dropdownliste nacheinander auf **ASP.NET Core 3.1**, **Webanwendung** und **Erstellen**.
+* Klicken Sie in der Dropdownliste nacheinander auf **ASP.NET Core 3.1** , **Webanwendung** und **Erstellen**.
 
 ![neue ASP.NET Core-Webanwendung](razor-pages-start/_static/3/npx.png)
 
@@ -99,7 +100,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
 * Sobald das OmniSharp-Flammensymbol in der Statusleiste grün angezeigt wird, wird ein Dialogfeld mit folgender Meldung angezeigt: **Die erforderlichen Objekte zum Erstellen und Debuggen sind in "RazorPagesMovie" nicht vorhanden. Sollen sie hinzugefügt werden?** Wählen Sie **Ja**.
 
-  Ein *VSCODE*-Verzeichnis, das die Dateien *launch.json* und *tasks.json* enthält, wird dem Stammverzeichnis des Projekts hinzugefügt.
+  Ein *VSCODE* -Verzeichnis, das die Dateien *launch.json* und *tasks.json* enthält, wird dem Stammverzeichnis des Projekts hinzugefügt.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
@@ -118,7 +119,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
   Klicken Sie auf **Weiter**.
 
-* Nennen Sie das Projekt **RazorPagesMovie**, und klicken Sie auf **Erstellen**.
+* Nennen Sie das Projekt **RazorPagesMovie** , und klicken Sie auf **Erstellen**.
 
   ![Benennen des macOS-Projekts](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -138,8 +139,8 @@ Es folgt eine Übersicht über die Hauptprojektordner und -dateien, mit denen Si
 
 Enthält Razor-Seiten und unterstützende Dateien. Jede Razor-Seite besteht aus einem Dateienpaar:
 
-* Eine *.cshtml*-Datei, die HTML-Markup mit C#-Code in Razor-Syntax enthält
-* Eine *.cshtml.cs*-Datei mit C# Code, in dem Seitenereignisse verarbeitet werden
+* Eine *.cshtml* -Datei, die HTML-Markup mit C#-Code in Razor-Syntax enthält
+* Eine *.cshtml.cs* -Datei mit C# Code, in dem Seitenereignisse verarbeitet werden
 
 Unterstützende Dateien haben Namen, die mit einem Unterstrich beginnen. Zum Beispiel sind in der Datei *_Layout.cshtml* Benutzeroberflächenelemente konfiguriert, die für alle Seiten gelten. Mit dieser Datei werden das Navigationsmenü oben auf der Seite und der Urheberrechtshinweis unten auf der Seite eingerichtet. Weitere Informationen finden Sie unter <xref:mvc/views/layout>.
 
@@ -221,7 +222,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
   ![neue ASP.NET Core-Webanwendung](razor-pages-start/_static/config.png)
 
-* Klicken Sie in der Dropdownliste auf **ASP.NET Core 2.2**, auf **Webanwendung** und anschließend auf **Erstellen**.
+* Klicken Sie in der Dropdownliste auf **ASP.NET Core 2.2** , auf **Webanwendung** und anschließend auf **Erstellen**.
 
 ![neue ASP.NET Core-Webanwendung](razor-pages-start/_static/np_2_2.2.png)
 
@@ -247,7 +248,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
 * Sobald das OmniSharp-Flammensymbol in der Statusleiste grün angezeigt wird, wird ein Dialogfeld mit folgender Meldung angezeigt: **Die erforderlichen Objekte zum Erstellen und Debuggen sind in "RazorPagesMovie" nicht vorhanden. Sollen sie hinzugefügt werden?** Wählen Sie **Ja**.
 
-  Ein *VSCODE*-Verzeichnis, das die Dateien *launch.json* und *tasks.json* enthält, wird dem Stammverzeichnis des Projekts hinzugefügt.
+  Ein *VSCODE* -Verzeichnis, das die Dateien *launch.json* und *tasks.json* enthält, wird dem Stammverzeichnis des Projekts hinzugefügt.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
@@ -264,7 +265,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
   Klicken Sie auf **Weiter**.
 
-* Nennen Sie das Projekt **RazorPagesMovie**, und klicken Sie auf **Erstellen**.
+* Nennen Sie das Projekt **RazorPagesMovie** , und klicken Sie auf **Erstellen**.
 
   ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -296,7 +297,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionsfähige Razor Pages-W
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-* Drücken Sie **STRG+F5**, um die Ausführung ohne den Debugger zu starten.
+* Drücken Sie **STRG+F5** , um die Ausführung ohne den Debugger zu starten.
 
   Visual Studio Code startet [Kestrel](xref:fundamentals/servers/kestrel) und einen Browser und navigiert zu `http://localhost:5001`. Die Adressleiste zeigt `localhost:port#` an, nicht `example.com`. Das liegt daran, dass es sich bei `localhost` um den Standardhostnamen für den lokalen Computer handelt. „Localhost“ dient nur Webanforderungen vom lokalen Computer.
 
@@ -340,8 +341,8 @@ Es folgt eine Übersicht über die Hauptprojektordner und -dateien, mit denen Si
 
 Enthält Razor-Seiten und unterstützende Dateien. Jede Razor-Seite besteht aus einem Dateienpaar:
 
-* Eine *.cshtml*-Datei, die HTML-Markup mit C#-Code in Razor-Syntax enthält
-* Eine *.cshtml.cs*-Datei mit C# Code, in dem Seitenereignisse verarbeitet werden
+* Eine *.cshtml* -Datei, die HTML-Markup mit C#-Code in Razor-Syntax enthält
+* Eine *.cshtml.cs* -Datei mit C# Code, in dem Seitenereignisse verarbeitet werden
 
 Unterstützende Dateien haben Namen, die mit einem Unterstrich beginnen. Zum Beispiel sind in der Datei *_Layout.cshtml* Benutzeroberflächenelemente konfiguriert, die für alle Seiten gelten. Mit dieser Datei werden das Navigationsmenü oben auf der Seite und der Urheberrechtshinweis unten auf der Seite eingerichtet. Weitere Informationen finden Sie unter <xref:mvc/views/layout>.
 

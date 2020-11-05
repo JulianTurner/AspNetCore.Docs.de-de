@@ -5,6 +5,7 @@ description: Dies ist Teil 7 der Tutorialreihe zu Razor Pages und dem Entity Fr
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: 17b200f0ba90035c417c96689798263af16551de
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 3ec88a862697c540a1a98e733c31d76922f81f7c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722818"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060533"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>Teil 7: Razor Pages mit EF Core in ASP.NET Core – Aktualisieren relevanter Daten
 
@@ -155,7 +156,7 @@ Die `AssignedCourseData`-Klasse enthält Daten zur Erstellung der Kontrollkästc
 
 ### <a name="create-an-instructor-page-model-base-class"></a>Erstellen einer Basisklasse für das Seitenmodell „Instructor“
 
-Erstellen Sie die Basisklasse *Pages/Instructors/InstructorCoursesPageModel.cs*:
+Erstellen Sie die Basisklasse *Pages/Instructors/InstructorCoursesPageModel.cs* :
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_All)]
 
@@ -332,7 +333,7 @@ Durch [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqu
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
-Aktualisieren Sie die Methode `OnGetAsync` in der Datei *Pages/Courses/Details.cshtml.cs*:
+Aktualisieren Sie die Methode `OnGetAsync` in der Datei *Pages/Courses/Details.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Details.cshtml.cs?name=snippet)]
 
@@ -399,7 +400,7 @@ Erstellen Sie *SchoolViewModels/AssignedCourseData.cs* mit folgendem Code:
 
 Die `AssignedCourseData`-Klasse enthält Daten zur Erstellung der Kontrollkästchen für durch einen Dozenten zugewiesene Kurse.
 
-Erstellen Sie die Basisklasse *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs*:
+Erstellen Sie die Basisklasse *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/InstructorCoursesPageModel.cshtml.cs)]
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: bc968489a35405c1be0a4ac2e52e6dff4c3af050
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: d51a4a43f585b0a0b7e3aab2c5de1b2d215de494
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009738"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059597"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Problembehandlung bei ASP.NET Core in Azure App Service und IIS
 
@@ -50,7 +51,7 @@ Listet weitere Themen zur Problembehandlung auf.
 
 ## <a name="app-startup-errors"></a>App-Startfehler
 
-In Visual Studio entspricht ein ASP.NET Core-Projekt standardmäßig dem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)-Hosting während des Debuggens. Ein *502.5: Prozessfehler* oder ein *500.30: Startfehler*, der beim lokalen Debuggen auftritt, kann mithilfe der Hinweise in diesem Thema diagnostiziert werden.
+In Visual Studio entspricht ein ASP.NET Core-Projekt standardmäßig dem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)-Hosting während des Debuggens. Ein *502.5: Prozessfehler* oder ein *500.30: Startfehler* , der beim lokalen Debuggen auftritt, kann mithilfe der Hinweise in diesem Thema diagnostiziert werden.
 
 ### <a name="40314-forbidden"></a>403.14 Unzulässig
 
@@ -89,7 +90,7 @@ Der Workerprozess schlägt fehl. Die App wird nicht gestartet.
 
 Beim Laden von Komponenten des [ASP.NET Core-Moduls](xref:host-and-deploy/aspnet-core-module) ist ein unbekannter Fehler aufgetreten. Führen Sie eine der folgenden Aktionen aus:
 
-* Wenden Sie sich an den [Microsoft-Support](https://support.microsoft.com/oas/default.aspx?prid=15832) (über **Entwicklertools** > **ASP.NET Core**).
+* Wenden Sie sich an den [Microsoft-Support](https://support.microsoft.com/oas/default.aspx?prid=15832) (über **Entwicklertools** > **ASP.NET Core** ).
 * Stellen Sie Ihre Frage auf Stack Overflow.
 * Melden Sie das Problem im [GitHub-Repository](https://github.com/dotnet/AspNetCore).
 
@@ -186,7 +187,7 @@ Der Workerprozess schlägt fehl. Die App wird nicht gestartet.
 
 Das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) kann den Workerprozess nicht starten. Die Ursache für einen Fehler beim Starten eines Prozesses kann in der Regel über Einträge im Anwendungsereignisprotokoll und im stdout-Protokoll des ASP.NET Core-Moduls ermittelt werden.
 
-Eine allgemeine Fehlerbedingung ist, dass die App aufgrund einer Version des freigegebenen ASP.NET Core-Frameworks falsch konfiguriert ist, die nicht vorhanden ist. Überprüfen Sie, welche Versionen des freigegebenen ASP.NET Core-Frameworks auf dem Zielcomputer installiert sind. Das *freigegebene Framework* ist der Satz der Assemblys (*DLL*-Dateien), die auf dem Computer installiert werden und auf die ein Metapaket wie `Microsoft.AspNetCore.App` verweist. Der Metapaketverweis kann eine mindestens erforderliche Version angeben. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
+Eine allgemeine Fehlerbedingung ist, dass die App aufgrund einer Version des freigegebenen ASP.NET Core-Frameworks falsch konfiguriert ist, die nicht vorhanden ist. Überprüfen Sie, welche Versionen des freigegebenen ASP.NET Core-Frameworks auf dem Zielcomputer installiert sind. Das *freigegebene Framework* ist der Satz der Assemblys ( *DLL* -Dateien), die auf dem Computer installiert werden und auf die ein Metapaket wie `Microsoft.AspNetCore.App` verweist. Der Metapaketverweis kann eine mindestens erforderliche Version angeben. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
 
 Die Fehlerseite *502.5: Prozessfehler* wird zurückgegeben, wenn ein falsch konfiguriertes Hosting oder eine falsch konfigurierte App bewirkt, dass der Workerprozess fehlschlägt:
 
@@ -198,7 +199,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
-Die App konnte nicht gestartet werden, weil die Assembly der App ( *.dll*) nicht geladen werden konnte.
+Die App konnte nicht gestartet werden, weil die Assembly der App ( *.dll* ) nicht geladen werden konnte.
 
 Dieser Fehler tritt bei einem Bitanzahlkonflikt zwischen der veröffentlichten App und dem w3wp/iisexpress-Prozess auf.
 
@@ -237,7 +238,7 @@ Verwenden Sie das Blatt **Diagnose und Problembehandlung** im Azure-Portal, um a
 Anstatt das Blatt **Diagnose und Problembehandlung** zu verwenden, können Sie die Anwendungsereignisprotokoll-Datei auch direkt mit [Kudu](https://github.com/projectkudu/kudu/wiki) untersuchen:
 
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 1. Öffnen Sie den Ordner **LogFiles**.
 1. Wählen Sie den Bleistift neben der Datei *eventlog.xml* aus.
 1. Untersuchen Sie das Protokoll. Scrollen Sie zum Ende des Protokolls, um die aktuellsten Ereignisse anzuzeigen.
@@ -247,7 +248,7 @@ Anstatt das Blatt **Diagnose und Problembehandlung** zu verwenden, können Sie d
 Viele Startfehler erzeugen keine nützlichen Informationen im Anwendungsereignisprotokoll. Sie können die App in der [Kudu](https://github.com/projectkudu/kudu/wiki)-Remote-Ausführungskonsole ausführen, um den Fehler zu ermitteln:
 
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testen einer 32-Bit-App (x86)
 
@@ -327,21 +328,21 @@ Das Debugprotokoll des ASP.NET Core-Moduls ermöglicht die zusätzliche und ausf
 
 1. Führen Sie einen der folgenden Schritte aus, um das erweiterte Diagnoseprotokoll zu aktivieren:
    * Befolgen Sie den Anweisungen in den [erweiterten Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs), um die App für die erweiterte Diagnoseprotokollierung zu konfigurieren. Stellen Sie die App erneut bereit.
-   * Fügen Sie die in unter [Erweiterte Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) enthaltene `<handlerSettings>`-Klasse für die *web.config*-Datei der Live-App über die Kudu-Konsole hinzu:
+   * Fügen Sie die in unter [Erweiterte Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) enthaltene `<handlerSettings>`-Klasse für die *web.config* -Datei der Live-App über die Kudu-Konsole hinzu:
      1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-     1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
-     1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Bearbeiten Sie die Datei *web.config*, indem Sie auf die Bleistiftschaltfläche klicken. Fügen Sie den Abschnitt `<handlerSettings>` wie in den [erweiterten Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dargestellt hinzu. Klicken Sie auf die Schaltfläche **Speichern**.
+     1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
+     1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Bearbeiten Sie die Datei *web.config* , indem Sie auf die Bleistiftschaltfläche klicken. Fügen Sie den Abschnitt `<handlerSettings>` wie in den [erweiterten Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dargestellt hinzu. Klicken Sie auf die Schaltfläche **Speichern**.
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
-1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Wenn Sie keinen Pfad für die *aspnetcore-debug.log*-Datei angegeben haben, wird die Datei in der Liste aufgeführt. Wenn Sie jedoch einen Pfad angegeben haben, navigieren Sie zum Speicherort der Protokolldatei.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
+1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Wenn Sie keinen Pfad für die *aspnetcore-debug.log* -Datei angegeben haben, wird die Datei in der Liste aufgeführt. Wenn Sie jedoch einen Pfad angegeben haben, navigieren Sie zum Speicherort der Protokolldatei.
 1. Öffnen Sie die Protokolldatei über die Bleistiftschaltfläche neben dem Dateinamen.
 
 Deaktivieren Sie die Debugprotokollierung, wenn die Problembehandlung abgeschlossen ist.
 
 Führen Sie einen der folgenden Schritte aus, um das erweiterte Debugprotokoll zu deaktivieren:
 
-* Entfernen Sie `<handlerSettings>` aus der lokalen *web.config*-Datei, und stellen Sie die App erneut bereit.
-* Verwenden Sie die Kudu-Konsole, um die *web.config*-Datei zu bearbeiten und den Abschnitt `<handlerSettings>` zu entfernen. Speichern Sie die Datei.
+* Entfernen Sie `<handlerSettings>` aus der lokalen *web.config* -Datei, und stellen Sie die App erneut bereit.
+* Verwenden Sie die Kudu-Konsole, um die *web.config* -Datei zu bearbeiten und den Abschnitt `<handlerSettings>` zu entfernen. Speichern Sie die Datei.
 
 Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
 
@@ -367,15 +368,15 @@ Vergewissern Sie sich, dass ASP.NET Core-Erweiterungen installiert sind. Wenn di
 1. Die **ASP.NET Core-Erweiterungen** werden in der Liste angezeigt.
 1. Wenn die Erweiterungen nicht installiert sind, klicken Sie auf **Hinzufügen**.
 1. Wählen Sie die **ASP.NET Core-Erweiterungen** aus der Liste.
-1. Klicken Sie auf **OK**, um die rechtlichen Bedingungen zu akzeptieren.
+1. Klicken Sie auf **OK** , um die rechtlichen Bedingungen zu akzeptieren.
 1. Klicken Sie auf **OK** auf dem Blatt **Erweiterung hinzufügen**.
 1. Mit einer Popup-Informationsmeldung wird die erfolgreiche Installation der Erweiterungen angezeigt.
 
 Wenn die stdout-Protokollierung nicht aktiviert ist, gehen Sie folgendermaßen vor:
 
 1. Wählen Sie im Azure-Portal das Blatt **Erweiterte Tools** im Bereich **ENTWICKLUNGSTOOLS** aus. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
-1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**, und scrollen Sie nach unten, um die Datei *web.config* am Ende der Liste einzublenden.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
+1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot** , und scrollen Sie nach unten, um die Datei *web.config* am Ende der Liste einzublenden.
 1. Klicken Sie auf den Bleistift neben der Datei *web.config*.
 1. Setzen Sie **stdoutLogEnabled** auf `true`, und ändern Sie den Pfad **stdoutLogFile** in: `\\?\%home%\LogFiles\stdout`.
 1. Wählen Sie **Speichern** aus, um die aktualisierte Datei *web.config* zu speichern.
@@ -411,7 +412,7 @@ Weitere Informationen finden Sie im [Abschnitt „Failed request traces“ im Th
 
 Greifen Sie auf das Anwendungsereignisprotokoll zu:
 
-1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige*, und wählen Sie dann die App **Ereignisanzeige** aus.
+1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige* , und wählen Sie dann die App **Ereignisanzeige** aus.
 1. Öffnen Sie unter **Ereignisanzeige** den Knoten **Windows-Protokolle**.
 1. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
 1. Suchen Sie nach Fehlern, die mit der fehlerhaften App im Zusammenhang stehen. Fehler weisen in der Spalte *Quelle* den Wert *IIS AspNetCore-Modul* oder *IIS Express AspNetCore-Modul* auf.
@@ -441,7 +442,7 @@ Wenn es sich bei der App um eine [eigenständige Bereitstellung](/dotnet/core/de
 So aktivieren Sie stdout-Protokolle und zeigen diese an:
 
 1. Navigieren Sie zum Bereitstellungsordner der Website auf dem Hostsystem.
-1. Erstellen Sie den Ordner *logs*, wenn dieser nicht vorhanden ist. Anweisungen zum Aktivieren von MSBuild für die automatische Erstellung des Ordners *logs* in der Bereitstellung finden Sie im Thema [Verzeichnisstruktur](xref:host-and-deploy/directory-structure).
+1. Erstellen Sie den Ordner *logs* , wenn dieser nicht vorhanden ist. Anweisungen zum Aktivieren von MSBuild für die automatische Erstellung des Ordners *logs* in der Bereitstellung finden Sie im Thema [Verzeichnisstruktur](xref:host-and-deploy/directory-structure).
 1. Bearbeiten Sie die Datei *web.config*. Legen Sie **stdoutLogEnabled** auf `true` fest, und ändern Sie den Pfad von **stdoutLogFile** so, dass auf den Ordner *logs* verwiesen wird (Beispiel: `.\logs\stdout`). `stdout` im Pfad ist das Präfix des Protokolldateinamens. Ein Zeitstempel, eine Prozess-ID und eine Dateierweiterung werden bei der Protokollerstellung automatisch hinzugefügt. Mit `stdout` als Präfix des Dateinamens wird eine typische Protokolldatei als *stdout_20180205184032_5412.log* benannt.
 1. Stellen Sie sicher, dass die Identität des Anwendungspools über Schreibberechtigungen für den Ordner *Protokolle* verfügt.
 1. Speichern Sie die aktualisierte Datei *web.config*.
@@ -464,7 +465,7 @@ Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module#
 
 ### <a name="aspnet-core-module-debug-log-iis"></a>Debugprotokoll des ASP.NET Core-Moduls (IIS)
 
-Fügen Sie der *web.config*-Datei der App die folgenden Handlereinstellungen hinzu, um das Debugprotokoll des ASP.NET Core-Moduls zu aktivieren:
+Fügen Sie der *web.config* -Datei der App die folgenden Handlereinstellungen hinzu, um das Debugprotokoll des ASP.NET Core-Moduls zu aktivieren:
 
 ```xml
 <aspNetCore ...>
@@ -615,7 +616,7 @@ Listet weitere Themen zur Problembehandlung auf.
 
 ## <a name="app-startup-errors"></a>App-Startfehler
 
-In Visual Studio entspricht ein ASP.NET Core-Projekt standardmäßig dem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)-Hosting während des Debuggens. Ein *502.5: Prozessfehler* oder ein *500.30: Startfehler*, der beim lokalen Debuggen auftritt, kann mithilfe der Hinweise in diesem Thema diagnostiziert werden.
+In Visual Studio entspricht ein ASP.NET Core-Projekt standardmäßig dem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)-Hosting während des Debuggens. Ein *502.5: Prozessfehler* oder ein *500.30: Startfehler* , der beim lokalen Debuggen auftritt, kann mithilfe der Hinweise in diesem Thema diagnostiziert werden.
 
 ### <a name="40314-forbidden"></a>403.14 Unzulässig
 
@@ -652,7 +653,7 @@ Dieser Fehler tritt im Code der App während des Starts oder bei der Erstellung 
 
 Der Workerprozess schlägt fehl. Die App wird nicht gestartet.
 
-Das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) kann die .NET Core-CLR und den In-Process-Anforderungshandler (*aspnetcorev2_inprocess.dll*) nicht finden. Überprüfen Sie Folgendes:
+Das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) kann die .NET Core-CLR und den In-Process-Anforderungshandler ( *aspnetcorev2_inprocess.dll* ) nicht finden. Überprüfen Sie Folgendes:
 
 * Diese App legt entweder das NuGet-Paket [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) oder das Metapaket [Microsoft.AspNetCore.App](xref:fundamentals/metapackage-app) als Ziel fest.
 * Die Version des freigegebenen ASP.NET Core-Frameworks, die von der App als Ziel festgelegt ist, ist auf dem Zielcomputer installiert.
@@ -669,7 +670,7 @@ Der Workerprozess schlägt fehl. Die App wird nicht gestartet.
 
 Das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) kann den Workerprozess nicht starten. Die Ursache für einen Fehler beim Starten eines Prozesses kann in der Regel über Einträge im Anwendungsereignisprotokoll und im stdout-Protokoll des ASP.NET Core-Moduls ermittelt werden.
 
-Eine allgemeine Fehlerbedingung ist, dass die App aufgrund einer Version des freigegebenen ASP.NET Core-Frameworks falsch konfiguriert ist, die nicht vorhanden ist. Überprüfen Sie, welche Versionen des freigegebenen ASP.NET Core-Frameworks auf dem Zielcomputer installiert sind. Das *freigegebene Framework* ist der Satz der Assemblys (*DLL*-Dateien), die auf dem Computer installiert werden und auf die ein Metapaket wie `Microsoft.AspNetCore.App` verweist. Der Metapaketverweis kann eine mindestens erforderliche Version angeben. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
+Eine allgemeine Fehlerbedingung ist, dass die App aufgrund einer Version des freigegebenen ASP.NET Core-Frameworks falsch konfiguriert ist, die nicht vorhanden ist. Überprüfen Sie, welche Versionen des freigegebenen ASP.NET Core-Frameworks auf dem Zielcomputer installiert sind. Das *freigegebene Framework* ist der Satz der Assemblys ( *DLL* -Dateien), die auf dem Computer installiert werden und auf die ein Metapaket wie `Microsoft.AspNetCore.App` verweist. Der Metapaketverweis kann eine mindestens erforderliche Version angeben. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
 
 Die Fehlerseite *502.5: Prozessfehler* wird zurückgegeben, wenn ein falsch konfiguriertes Hosting oder eine falsch konfigurierte App bewirkt, dass der Workerprozess fehlschlägt:
 
@@ -681,7 +682,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
-Die App konnte nicht gestartet werden, weil die Assembly der App ( *.dll*) nicht geladen werden konnte.
+Die App konnte nicht gestartet werden, weil die Assembly der App ( *.dll* ) nicht geladen werden konnte.
 
 Dieser Fehler tritt bei einem Bitanzahlkonflikt zwischen der veröffentlichten App und dem w3wp/iisexpress-Prozess auf.
 
@@ -720,7 +721,7 @@ Verwenden Sie das Blatt **Diagnose und Problembehandlung** im Azure-Portal, um a
 Anstatt das Blatt **Diagnose und Problembehandlung** zu verwenden, können Sie die Anwendungsereignisprotokoll-Datei auch direkt mit [Kudu](https://github.com/projectkudu/kudu/wiki) untersuchen:
 
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 1. Öffnen Sie den Ordner **LogFiles**.
 1. Wählen Sie den Bleistift neben der Datei *eventlog.xml* aus.
 1. Untersuchen Sie das Protokoll. Scrollen Sie zum Ende des Protokolls, um die aktuellsten Ereignisse anzuzeigen.
@@ -730,7 +731,7 @@ Anstatt das Blatt **Diagnose und Problembehandlung** zu verwenden, können Sie d
 Viele Startfehler erzeugen keine nützlichen Informationen im Anwendungsereignisprotokoll. Sie können die App in der [Kudu](https://github.com/projectkudu/kudu/wiki)-Remote-Ausführungskonsole ausführen, um den Fehler zu ermitteln:
 
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testen einer 32-Bit-App (x86)
 
@@ -796,14 +797,14 @@ Das stdout-Protokoll des ASP.NET Core-Moduls zeichnet häufig nützliche Fehlerm
 1. Wählen Sie **Speichern** aus, um die aktualisierte Datei *web.config* zu speichern.
 1. Führen Sie eine Anforderung an die App aus.
 1. Kehren Sie zum Azure-Portal zurück. Wählen Sie das Blatt **Erweiterte Tools** im Bereich **ENTWICKLUNGSTOOLS** aus. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 1. Wählen Sie den Ordner **LogFiles** aus.
-1. Überprüfen Sie die Spalte **Geändert**, und wählen Sie den Bleistift aus, um das stdout-Protokoll mit dem letzten Änderungsdatum zu bearbeiten.
+1. Überprüfen Sie die Spalte **Geändert** , und wählen Sie den Bleistift aus, um das stdout-Protokoll mit dem letzten Änderungsdatum zu bearbeiten.
 1. Wenn die Protokolldatei geöffnet wird, wird der Fehler angezeigt.
 
 Deaktivieren Sie die stdout-Protokollierung, wenn die Problembehandlung abgeschlossen ist:
 
-1. Kehren Sie in der Kudu-**Diagnosekonsole** zum Pfad **site** > **wwwroot** zurück, um die Datei *web.config* einzublenden. Öffnen Sie die Datei **web.config** erneut, indem Sie den Bleistift auswählen.
+1. Kehren Sie in der Kudu- **Diagnosekonsole** zum Pfad **site** > **wwwroot** zurück, um die Datei *web.config* einzublenden. Öffnen Sie die Datei **web.config** erneut, indem Sie den Bleistift auswählen.
 1. Legen Sie **stdoutLogEnabled** auf `false` fest.
 1. Wählen Sie **Speichern** aus, um die Datei zu speichern.
 
@@ -820,21 +821,21 @@ Das Debugprotokoll des ASP.NET Core-Moduls ermöglicht die zusätzliche und ausf
 
 1. Führen Sie einen der folgenden Schritte aus, um das erweiterte Diagnoseprotokoll zu aktivieren:
    * Befolgen Sie den Anweisungen in den [erweiterten Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs), um die App für die erweiterte Diagnoseprotokollierung zu konfigurieren. Stellen Sie die App erneut bereit.
-   * Fügen Sie die in unter [Erweiterte Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) enthaltene `<handlerSettings>`-Klasse für die *web.config*-Datei der Live-App über die Kudu-Konsole hinzu:
+   * Fügen Sie die in unter [Erweiterte Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) enthaltene `<handlerSettings>`-Klasse für die *web.config* -Datei der Live-App über die Kudu-Konsole hinzu:
      1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-     1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
-     1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Bearbeiten Sie die Datei *web.config*, indem Sie auf die Bleistiftschaltfläche klicken. Fügen Sie den Abschnitt `<handlerSettings>` wie in den [erweiterten Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dargestellt hinzu. Klicken Sie auf die Schaltfläche **Speichern**.
+     1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
+     1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Bearbeiten Sie die Datei *web.config* , indem Sie auf die Bleistiftschaltfläche klicken. Fügen Sie den Abschnitt `<handlerSettings>` wie in den [erweiterten Diagnoseprotokollen](xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs) dargestellt hinzu. Klicken Sie auf die Schaltfläche **Speichern**.
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
-1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Wenn Sie keinen Pfad für die *aspnetcore-debug.log*-Datei angegeben haben, wird die Datei in der Liste aufgeführt. Wenn Sie jedoch einen Pfad angegeben haben, navigieren Sie zum Speicherort der Protokolldatei.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
+1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**. Wenn Sie keinen Pfad für die *aspnetcore-debug.log* -Datei angegeben haben, wird die Datei in der Liste aufgeführt. Wenn Sie jedoch einen Pfad angegeben haben, navigieren Sie zum Speicherort der Protokolldatei.
 1. Öffnen Sie die Protokolldatei über die Bleistiftschaltfläche neben dem Dateinamen.
 
 Deaktivieren Sie die Debugprotokollierung, wenn die Problembehandlung abgeschlossen ist.
 
 Führen Sie einen der folgenden Schritte aus, um das erweiterte Debugprotokoll zu deaktivieren:
 
-* Entfernen Sie `<handlerSettings>` aus der lokalen *web.config*-Datei, und stellen Sie die App erneut bereit.
-* Verwenden Sie die Kudu-Konsole, um die *web.config*-Datei zu bearbeiten und den Abschnitt `<handlerSettings>` zu entfernen. Speichern Sie die Datei.
+* Entfernen Sie `<handlerSettings>` aus der lokalen *web.config* -Datei, und stellen Sie die App erneut bereit.
+* Verwenden Sie die Kudu-Konsole, um die *web.config* -Datei zu bearbeiten und den Abschnitt `<handlerSettings>` zu entfernen. Speichern Sie die Datei.
 
 Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module#enhanced-diagnostic-logs>.
 
@@ -860,15 +861,15 @@ Vergewissern Sie sich, dass ASP.NET Core-Erweiterungen installiert sind. Wenn di
 1. Die **ASP.NET Core-Erweiterungen** werden in der Liste angezeigt.
 1. Wenn die Erweiterungen nicht installiert sind, klicken Sie auf **Hinzufügen**.
 1. Wählen Sie die **ASP.NET Core-Erweiterungen** aus der Liste.
-1. Klicken Sie auf **OK**, um die rechtlichen Bedingungen zu akzeptieren.
+1. Klicken Sie auf **OK** , um die rechtlichen Bedingungen zu akzeptieren.
 1. Klicken Sie auf **OK** auf dem Blatt **Erweiterung hinzufügen**.
 1. Mit einer Popup-Informationsmeldung wird die erfolgreiche Installation der Erweiterungen angezeigt.
 
 Wenn die stdout-Protokollierung nicht aktiviert ist, gehen Sie folgendermaßen vor:
 
 1. Wählen Sie im Azure-Portal das Blatt **Erweiterte Tools** im Bereich **ENTWICKLUNGSTOOLS** aus. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
-1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**, und scrollen Sie nach unten, um die Datei *web.config* am Ende der Liste einzublenden.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
+1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot** , und scrollen Sie nach unten, um die Datei *web.config* am Ende der Liste einzublenden.
 1. Klicken Sie auf den Bleistift neben der Datei *web.config*.
 1. Setzen Sie **stdoutLogEnabled** auf `true`, und ändern Sie den Pfad **stdoutLogFile** in: `\\?\%home%\LogFiles\stdout`.
 1. Wählen Sie **Speichern** aus, um die aktualisierte Datei *web.config* zu speichern.
@@ -904,7 +905,7 @@ Weitere Informationen finden Sie im [Abschnitt „Failed request traces“ im Th
 
 Greifen Sie auf das Anwendungsereignisprotokoll zu:
 
-1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige*, und wählen Sie dann die App **Ereignisanzeige** aus.
+1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige* , und wählen Sie dann die App **Ereignisanzeige** aus.
 1. Öffnen Sie unter **Ereignisanzeige** den Knoten **Windows-Protokolle**.
 1. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
 1. Suchen Sie nach Fehlern, die mit der fehlerhaften App im Zusammenhang stehen. Fehler weisen in der Spalte *Quelle* den Wert *IIS AspNetCore-Modul* oder *IIS Express AspNetCore-Modul* auf.
@@ -934,7 +935,7 @@ Wenn es sich bei der App um eine [eigenständige Bereitstellung](/dotnet/core/de
 So aktivieren Sie stdout-Protokolle und zeigen diese an:
 
 1. Navigieren Sie zum Bereitstellungsordner der Website auf dem Hostsystem.
-1. Erstellen Sie den Ordner *logs*, wenn dieser nicht vorhanden ist. Anweisungen zum Aktivieren von MSBuild für die automatische Erstellung des Ordners *logs* in der Bereitstellung finden Sie im Thema [Verzeichnisstruktur](xref:host-and-deploy/directory-structure).
+1. Erstellen Sie den Ordner *logs* , wenn dieser nicht vorhanden ist. Anweisungen zum Aktivieren von MSBuild für die automatische Erstellung des Ordners *logs* in der Bereitstellung finden Sie im Thema [Verzeichnisstruktur](xref:host-and-deploy/directory-structure).
 1. Bearbeiten Sie die Datei *web.config*. Legen Sie **stdoutLogEnabled** auf `true` fest, und ändern Sie den Pfad von **stdoutLogFile** so, dass auf den Ordner *logs* verwiesen wird (Beispiel: `.\logs\stdout`). `stdout` im Pfad ist das Präfix des Protokolldateinamens. Ein Zeitstempel, eine Prozess-ID und eine Dateierweiterung werden bei der Protokollerstellung automatisch hinzugefügt. Mit `stdout` als Präfix des Dateinamens wird eine typische Protokolldatei als *stdout_20180205184032_5412.log* benannt.
 1. Stellen Sie sicher, dass die Identität des Anwendungspools über Schreibberechtigungen für den Ordner *Protokolle* verfügt.
 1. Speichern Sie die aktualisierte Datei *web.config*.
@@ -957,7 +958,7 @@ Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module#
 
 ### <a name="aspnet-core-module-debug-log-iis"></a>Debugprotokoll des ASP.NET Core-Moduls (IIS)
 
-Fügen Sie der *web.config*-Datei der App die folgenden Handlereinstellungen hinzu, um das Debugprotokoll des ASP.NET Core-Moduls zu aktivieren:
+Fügen Sie der *web.config* -Datei der App die folgenden Handlereinstellungen hinzu, um das Debugprotokoll des ASP.NET Core-Moduls zu aktivieren:
 
 ```xml
 <aspNetCore ...>
@@ -1108,7 +1109,7 @@ Listet weitere Themen zur Problembehandlung auf.
 
 ## <a name="app-startup-errors"></a>App-Startfehler
 
-In Visual Studio entspricht ein ASP.NET Core-Projekt standardmäßig dem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)-Hosting während des Debuggens. Ein *502.5: Prozessfehler*, der beim lokalen Debuggen auftritt, kann mithilfe der Hinweise in diesem Thema diagnostiziert werden.
+In Visual Studio entspricht ein ASP.NET Core-Projekt standardmäßig dem [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)-Hosting während des Debuggens. Ein *502.5: Prozessfehler* , der beim lokalen Debuggen auftritt, kann mithilfe der Hinweise in diesem Thema diagnostiziert werden.
 
 ### <a name="40314-forbidden"></a>403.14 Unzulässig
 
@@ -1147,7 +1148,7 @@ Der Workerprozess schlägt fehl. Die App wird nicht gestartet.
 
 Das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) kann den Workerprozess nicht starten. Die Ursache für einen Fehler beim Starten eines Prozesses kann in der Regel über Einträge im Anwendungsereignisprotokoll und im stdout-Protokoll des ASP.NET Core-Moduls ermittelt werden.
 
-Eine allgemeine Fehlerbedingung ist, dass die App aufgrund einer Version des freigegebenen ASP.NET Core-Frameworks falsch konfiguriert ist, die nicht vorhanden ist. Überprüfen Sie, welche Versionen des freigegebenen ASP.NET Core-Frameworks auf dem Zielcomputer installiert sind. Das *freigegebene Framework* ist der Satz der Assemblys (*DLL*-Dateien), die auf dem Computer installiert werden und auf die ein Metapaket wie `Microsoft.AspNetCore.App` verweist. Der Metapaketverweis kann eine mindestens erforderliche Version angeben. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
+Eine allgemeine Fehlerbedingung ist, dass die App aufgrund einer Version des freigegebenen ASP.NET Core-Frameworks falsch konfiguriert ist, die nicht vorhanden ist. Überprüfen Sie, welche Versionen des freigegebenen ASP.NET Core-Frameworks auf dem Zielcomputer installiert sind. Das *freigegebene Framework* ist der Satz der Assemblys ( *DLL* -Dateien), die auf dem Computer installiert werden und auf die ein Metapaket wie `Microsoft.AspNetCore.App` verweist. Der Metapaketverweis kann eine mindestens erforderliche Version angeben. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
 
 Die Fehlerseite *502.5: Prozessfehler* wird zurückgegeben, wenn ein falsch konfiguriertes Hosting oder eine falsch konfigurierte App bewirkt, dass der Workerprozess fehlschlägt:
 
@@ -1159,7 +1160,7 @@ Source: IIS AspNetCore Module V2
 Failed to start application '/LM/W3SVC/6/ROOT/', ErrorCode '0x800700c1'.
 ```
 
-Die App konnte nicht gestartet werden, weil die Assembly der App ( *.dll*) nicht geladen werden konnte.
+Die App konnte nicht gestartet werden, weil die Assembly der App ( *.dll* ) nicht geladen werden konnte.
 
 Dieser Fehler tritt bei einem Bitanzahlkonflikt zwischen der veröffentlichten App und dem w3wp/iisexpress-Prozess auf.
 
@@ -1198,7 +1199,7 @@ Verwenden Sie das Blatt **Diagnose und Problembehandlung** im Azure-Portal, um a
 Anstatt das Blatt **Diagnose und Problembehandlung** zu verwenden, können Sie die Anwendungsereignisprotokoll-Datei auch direkt mit [Kudu](https://github.com/projectkudu/kudu/wiki) untersuchen:
 
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 1. Öffnen Sie den Ordner **LogFiles**.
 1. Wählen Sie den Bleistift neben der Datei *eventlog.xml* aus.
 1. Untersuchen Sie das Protokoll. Scrollen Sie zum Ende des Protokolls, um die aktuellsten Ereignisse anzuzeigen.
@@ -1208,7 +1209,7 @@ Anstatt das Blatt **Diagnose und Problembehandlung** zu verwenden, können Sie d
 Viele Startfehler erzeugen keine nützlichen Informationen im Anwendungsereignisprotokoll. Sie können die App in der [Kudu](https://github.com/projectkudu/kudu/wiki)-Remote-Ausführungskonsole ausführen, um den Fehler zu ermitteln:
 
 1. Öffnen Sie **Erweiterte Tools** im Bereich **Entwicklungstools**. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 
 #### <a name="test-a-32-bit-x86-app"></a>Testen einer 32-Bit-App (x86)
 
@@ -1274,14 +1275,14 @@ Das stdout-Protokoll des ASP.NET Core-Moduls zeichnet häufig nützliche Fehlerm
 1. Wählen Sie **Speichern** aus, um die aktualisierte Datei *web.config* zu speichern.
 1. Führen Sie eine Anforderung an die App aus.
 1. Kehren Sie zum Azure-Portal zurück. Wählen Sie das Blatt **Erweiterte Tools** im Bereich **ENTWICKLUNGSTOOLS** aus. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
 1. Wählen Sie den Ordner **LogFiles** aus.
-1. Überprüfen Sie die Spalte **Geändert**, und wählen Sie den Bleistift aus, um das stdout-Protokoll mit dem letzten Änderungsdatum zu bearbeiten.
+1. Überprüfen Sie die Spalte **Geändert** , und wählen Sie den Bleistift aus, um das stdout-Protokoll mit dem letzten Änderungsdatum zu bearbeiten.
 1. Wenn die Protokolldatei geöffnet wird, wird der Fehler angezeigt.
 
 Deaktivieren Sie die stdout-Protokollierung, wenn die Problembehandlung abgeschlossen ist:
 
-1. Kehren Sie in der Kudu-**Diagnosekonsole** zum Pfad **site** > **wwwroot** zurück, um die Datei *web.config* einzublenden. Öffnen Sie die Datei **web.config** erneut, indem Sie den Bleistift auswählen.
+1. Kehren Sie in der Kudu- **Diagnosekonsole** zum Pfad **site** > **wwwroot** zurück, um die Datei *web.config* einzublenden. Öffnen Sie die Datei **web.config** erneut, indem Sie den Bleistift auswählen.
 1. Legen Sie **stdoutLogEnabled** auf `false` fest.
 1. Wählen Sie **Speichern** aus, um die Datei zu speichern.
 
@@ -1309,15 +1310,15 @@ Vergewissern Sie sich, dass ASP.NET Core-Erweiterungen installiert sind. Wenn di
 1. Die **ASP.NET Core-Erweiterungen** werden in der Liste angezeigt.
 1. Wenn die Erweiterungen nicht installiert sind, klicken Sie auf **Hinzufügen**.
 1. Wählen Sie die **ASP.NET Core-Erweiterungen** aus der Liste.
-1. Klicken Sie auf **OK**, um die rechtlichen Bedingungen zu akzeptieren.
+1. Klicken Sie auf **OK** , um die rechtlichen Bedingungen zu akzeptieren.
 1. Klicken Sie auf **OK** auf dem Blatt **Erweiterung hinzufügen**.
 1. Mit einer Popup-Informationsmeldung wird die erfolgreiche Installation der Erweiterungen angezeigt.
 
 Wenn die stdout-Protokollierung nicht aktiviert ist, gehen Sie folgendermaßen vor:
 
 1. Wählen Sie im Azure-Portal das Blatt **Erweiterte Tools** im Bereich **ENTWICKLUNGSTOOLS** aus. Klicken Sie auf **Los&rarr;** . Die Kudu-Konsole wird in einer neuen Browserregisterkarte oder in einem neuen Fenster geöffnet.
-1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole**, und wählen Sie **CMD** aus.
-1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot**, und scrollen Sie nach unten, um die Datei *web.config* am Ende der Liste einzublenden.
+1. Öffnen Sie mithilfe der Navigationsleiste am oberen Rand der Seite die **Debugging-Konsole** , und wählen Sie **CMD** aus.
+1. Öffnen Sie die Ordner unter dem Pfad **site** > **wwwroot** , und scrollen Sie nach unten, um die Datei *web.config* am Ende der Liste einzublenden.
 1. Klicken Sie auf den Bleistift neben der Datei *web.config*.
 1. Setzen Sie **stdoutLogEnabled** auf `true`, und ändern Sie den Pfad **stdoutLogFile** in: `\\?\%home%\LogFiles\stdout`.
 1. Wählen Sie **Speichern** aus, um die aktualisierte Datei *web.config* zu speichern.
@@ -1353,7 +1354,7 @@ Weitere Informationen finden Sie im [Abschnitt „Failed request traces“ im Th
 
 Greifen Sie auf das Anwendungsereignisprotokoll zu:
 
-1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige*, und wählen Sie dann die App **Ereignisanzeige** aus.
+1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige* , und wählen Sie dann die App **Ereignisanzeige** aus.
 1. Öffnen Sie unter **Ereignisanzeige** den Knoten **Windows-Protokolle**.
 1. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
 1. Suchen Sie nach Fehlern, die mit der fehlerhaften App im Zusammenhang stehen. Fehler weisen in der Spalte *Quelle* den Wert *IIS AspNetCore-Modul* oder *IIS Express AspNetCore-Modul* auf.
@@ -1383,7 +1384,7 @@ Wenn es sich bei der App um eine [eigenständige Bereitstellung](/dotnet/core/de
 So aktivieren Sie stdout-Protokolle und zeigen diese an:
 
 1. Navigieren Sie zum Bereitstellungsordner der Website auf dem Hostsystem.
-1. Erstellen Sie den Ordner *logs*, wenn dieser nicht vorhanden ist. Anweisungen zum Aktivieren von MSBuild für die automatische Erstellung des Ordners *logs* in der Bereitstellung finden Sie im Thema [Verzeichnisstruktur](xref:host-and-deploy/directory-structure).
+1. Erstellen Sie den Ordner *logs* , wenn dieser nicht vorhanden ist. Anweisungen zum Aktivieren von MSBuild für die automatische Erstellung des Ordners *logs* in der Bereitstellung finden Sie im Thema [Verzeichnisstruktur](xref:host-and-deploy/directory-structure).
 1. Bearbeiten Sie die Datei *web.config*. Legen Sie **stdoutLogEnabled** auf `true` fest, und ändern Sie den Pfad von **stdoutLogFile** so, dass auf den Ordner *logs* verwiesen wird (Beispiel: `.\logs\stdout`). `stdout` im Pfad ist das Präfix des Protokolldateinamens. Ein Zeitstempel, eine Prozess-ID und eine Dateierweiterung werden bei der Protokollerstellung automatisch hinzugefügt. Mit `stdout` als Präfix des Dateinamens wird eine typische Protokolldatei als *stdout_20180205184032_5412.log* benannt.
 1. Stellen Sie sicher, dass die Identität des Anwendungspools über Schreibberechtigungen für den Ordner *Protokolle* verfügt.
 1. Speichern Sie die aktualisierte Datei *web.config*.

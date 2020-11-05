@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: f5efb121b95d84876c9029cf06a96f827137e660
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 951a8ada57ae523f362313426c0279556eb8339b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631446"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050614"
 ---
 # <a name="part-7-add-a-new-field-to-a-no-locrazor-page-in-aspnet-core"></a>Teil 7: Hinzufügen eines neuen Felds zu einer Razor-Seite in ASP.NET Core
 
@@ -46,13 +47,13 @@ Durch die automatische Überprüfung, ob das Schema und das Modell synchron sind
 
 ## <a name="adding-a-rating-property-to-the-movie-model"></a>Hinzufügen einer Rating-Eigenschaft zum Movie-Modell
 
-Öffnen Sie die Datei *Models/Movie.cs*, und fügen Sie eine `Rating`-Eigenschaft hinzu:
+Öffnen Sie die Datei *Models/Movie.cs* , und fügen Sie eine `Rating`-Eigenschaft hinzu:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
 Erstellen Sie die App.
 
-Bearbeiten Sie *Pages/Movies/Index.cshtml*, und fügen ein `Rating`-Feld hinzu:
+Bearbeiten Sie *Pages/Movies/Index.cshtml* , und fügen ein `Rating`-Feld hinzu:
 
 <a name="addrat"></a>
 
@@ -173,13 +174,13 @@ Durch die automatische Überprüfung, ob das Schema und das Modell synchron sind
 
 ## <a name="adding-a-rating-property-to-the-movie-model"></a>Hinzufügen einer Rating-Eigenschaft zum Movie-Modell
 
-Öffnen Sie die Datei *Models/Movie.cs*, und fügen Sie eine `Rating`-Eigenschaft hinzu:
+Öffnen Sie die Datei *Models/Movie.cs* , und fügen Sie eine `Rating`-Eigenschaft hinzu:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
 Erstellen Sie die App.
 
-Bearbeiten Sie *Pages/Movies/Index.cshtml*, und fügen ein `Rating`-Feld hinzu:
+Bearbeiten Sie *Pages/Movies/Index.cshtml* , und fügen ein `Rating`-Feld hinzu:
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/IndexRating.cshtml?highlight=40-42,61-63)]
 
@@ -258,7 +259,7 @@ Eine weitere Möglichkeit ist, die Datenbank zu löschen und Migrationen zu verw
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Löschen Sie die Datenbank, und verwenden Sie Migrationen, um die Datenbank erneut zu erstellen. Um die Datenbank zu löschen, löschen Sie die Datenbankdatei (*MvcMovie.db*). Führen Sie dann den `ef database update`-Befehl aus:
+Löschen Sie die Datenbank, und verwenden Sie Migrationen, um die Datenbank erneut zu erstellen. Um die Datenbank zu löschen, löschen Sie die Datenbankdatei ( *MvcMovie.db* ). Führen Sie dann den `ef database update`-Befehl aus:
 
 ```dotnetcli
 dotnet ef database update

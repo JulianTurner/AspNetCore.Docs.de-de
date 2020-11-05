@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 09/24/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/metapackage-app
-ms.openlocfilehash: d9753a43bdc47b467dcf781c97069edfaa693a8f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 225bb1f55c099a476319191726c5a661f9a4893a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630509"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057803"
 ---
 # <a name="microsoftaspnetcoreapp-for-aspnet-core"></a>Microsoft.AspNetCore.App für ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
- Das freigegebene ASP.NET Core-Framework (`Microsoft.AspNetCore.App`) enthält Assemblys, die von Microsoft entwickelt und unterstützt werden. `Microsoft.AspNetCore.App` wird bei der Installation des [SDK für .NET Core 3.0 oder höher](https://dotnet.microsoft.com/download/dotnet-core/3.0) installiert. Das *freigegebene Framework* ist der Satz von Assemblys (*DLL*-Dateien), die auf dem Computer installiert werden und eine Laufzeitkomponente sowie ein Zielpaket enthalten. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
+ Das freigegebene ASP.NET Core-Framework (`Microsoft.AspNetCore.App`) enthält Assemblys, die von Microsoft entwickelt und unterstützt werden. `Microsoft.AspNetCore.App` wird bei der Installation des [SDK für .NET Core 3.0 oder höher](https://dotnet.microsoft.com/download/dotnet-core/3.0) installiert. Das *freigegebene Framework* ist der Satz von Assemblys ( *DLL* -Dateien), die auf dem Computer installiert werden und eine Laufzeitkomponente sowie ein Zielpaket enthalten. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
 
 * Projekte, die auf das `Microsoft.NET.Sdk.Web` SDK abzielen, verweisen implizit auf das `Microsoft.AspNetCore.App`-Framework.
 
@@ -92,7 +93,7 @@ Das hier angegebene Markup stellt eine typische ASP.NET Core 2.x-Vorlage dar. E
 
 Die implizite Version wird auf `major.minor.0` festgelegt, wenn es sich um Apps für Mobilgeräte handelt. Der Rollforwardmechanismus des freigegebenen Frameworks führt die App auf der neuesten kompatiblen Version der installierten freigegebenen Frameworks aus. Stellen Sie sicher, dass die gleiche Version des freigegebenen Frameworks in allen Umgebungen installiert ist, um zu gewährleisten, dass die gleiche Version bei der Entwicklung, beim Testen und in der Produktion verwendet wird. Bei unabhängigen Apps wird die implizite Versionsnummer auf die Versionsnummer `major.minor.patch` des freigegebenen Frameworks festgelegt, das im installierten SDK zusammengefasst ist.
 
-Das Angeben einer Versionsnummer im `Microsoft.AspNetCore.App`-Verweis garantiert **nicht**, dass diese Version des freigegebenen Frameworks ausgewählt wird. Ein Beispiel: Version 2.2.1 ist angegeben, aber Version 2.2.3 ist installiert. In diesem Fall verwendet die App die Version 2.2.3. Sie können den Rollforward (für „patch“ und/oder „minor“) deaktivieren. Dies wird jedoch nicht empfohlen. Weitere Informationen zum Rollforward des dotnet-Hosts und der Konfiguration seines Verhaltens finden Sie unter [dotnet host roll forward (Rollforward des dotnet-Hosts)](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
+Das Angeben einer Versionsnummer im `Microsoft.AspNetCore.App`-Verweis garantiert **nicht** , dass diese Version des freigegebenen Frameworks ausgewählt wird. Ein Beispiel: Version 2.2.1 ist angegeben, aber Version 2.2.3 ist installiert. In diesem Fall verwendet die App die Version 2.2.3. Sie können den Rollforward (für „patch“ und/oder „minor“) deaktivieren. Dies wird jedoch nicht empfohlen. Weitere Informationen zum Rollforward des dotnet-Hosts und der Konfiguration seines Verhaltens finden Sie unter [dotnet host roll forward (Rollforward des dotnet-Hosts)](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
 
 ::: moniker-end
 

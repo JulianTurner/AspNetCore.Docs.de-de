@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/using-browserlink
-ms.openlocfilehash: ab4ca78fa50768ff66536608a7cf03e73aecf73a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 80f05acab55af973faf08b5db79ea4cbaf896b14
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628819"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054488"
 ---
 # <a name="browser-link-in-aspnet-core"></a>Browserverknüpfung in ASP.NET Core
 
@@ -34,7 +35,7 @@ Browserverknüpfungen sind ein Visual Studio-Feature. Sie stellen einen Kommunik
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Fügen Sie Ihrem Projekt das Paket [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) hinzu. Aktivieren Sie für ASP.NET Core-Projekte mit Razor Pages oder MVC außerdem die Laufzeitkompilierung von Razor-Dateien ( *.cshtml*). Dieser Vorgang wird unter <xref:mvc/views/view-compilation> beschrieben. Razor-Syntaxänderungen werden nur bei aktivierter Laufzeitkompilierung angewendet.
+Fügen Sie Ihrem Projekt das Paket [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) hinzu. Aktivieren Sie für ASP.NET Core-Projekte mit Razor Pages oder MVC außerdem die Laufzeitkompilierung von Razor-Dateien ( *.cshtml* ). Dieser Vorgang wird unter <xref:mvc/views/view-compilation> beschrieben. Razor-Syntaxänderungen werden nur bei aktivierter Laufzeitkompilierung angewendet.
 
 ::: moniker-end
 
@@ -46,7 +47,7 @@ Wenn Sie ein ASP.NET Core 2.0-Projekt in ein ASP.NET Core 2.1-Projekt konverti
 
 ::: moniker range="= aspnetcore-2.0"
 
-In den ASP.NET Core 2.0-Projektvorlagen **Webanwendung**, **Leer** und **Web-API** wird das [Metapaket „Microsoft.AspNetCore.All“](xref:fundamentals/metapackage) verwendet, das einen Paketverweis auf [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) enthält. Daher ist für das Metapaket `Microsoft.AspNetCore.All` keine weitere Aktion erforderlich, um Browserverknüpfungen verwendbar zu machen.
+In den ASP.NET Core 2.0-Projektvorlagen **Webanwendung** , **Leer** und **Web-API** wird das [Metapaket „Microsoft.AspNetCore.All“](xref:fundamentals/metapackage) verwendet, das einen Paketverweis auf [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) enthält. Daher ist für das Metapaket `Microsoft.AspNetCore.All` keine weitere Aktion erforderlich, um Browserverknüpfungen verwendbar zu machen.
 
 ::: moniker-end
 
@@ -91,11 +92,11 @@ Wenn Sie ein ASP.NET Core-Projekt geöffnet haben, zeigt Visual Studio das Symbo
 
 ## <a name="refresh-the-web-app-in-several-browsers-at-once"></a>Aktualisieren einer Web-App in mehreren Browsern gleichzeitig
 
-Wenn Sie einen einzelnen Webbrowser auswählen möchten, der beim Starten des Projekts gestartet werden soll, verwenden Sie das Dropdownmenü im Symbolleisten-Steuerelement **Debugziel**:
+Wenn Sie einen einzelnen Webbrowser auswählen möchten, der beim Starten des Projekts gestartet werden soll, verwenden Sie das Dropdownmenü im Symbolleisten-Steuerelement **Debugziel** :
 
 ![F5-Dropdownmenü](using-browserlink/_static/debug-target-dropdown-menu.png)
 
-Zum gleichzeitigen Öffnen mehrerer Browser klicken Sie in der Dropdownliste auf **Browserauswahl...** . Halten Sie die Taste <kbd>STRG</kbd> gedrückt, um die gewünschten Browser auszuwählen, und klicken Sie dann auf **Durchsuchen**:
+Zum gleichzeitigen Öffnen mehrerer Browser klicken Sie in der Dropdownliste auf **Browserauswahl...** . Halten Sie die Taste <kbd>STRG</kbd> gedrückt, um die gewünschten Browser auszuwählen, und klicken Sie dann auf **Durchsuchen** :
 
 ![Gleichzeitiges Öffnen mehrerer Browser](using-browserlink/_static/open-many-browsers-at-once.png)
 
@@ -115,7 +116,7 @@ Browserverknüpfungen funktionieren auch, wenn Sie Browser außerhalb von Visual
 
 ### <a name="the-browser-link-dashboard"></a>Das Dashboard für Browserverknüpfungen
 
-Öffnen Sie im Featuredropdownmenü das Fenster **Browserlink-Dashboard**, um die Verbindung mit geöffneten Browsern zu verwalten:
+Öffnen Sie im Featuredropdownmenü das Fenster **Browserlink-Dashboard** , um die Verbindung mit geöffneten Browsern zu verwalten:
 
 ![Dashboard für Browserverknüpfungen öffnen](using-browserlink/_static/open-browserlink-dashboard.png)
 

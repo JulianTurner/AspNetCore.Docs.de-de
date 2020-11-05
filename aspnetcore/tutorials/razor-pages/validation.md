@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 86c523c69d3ee85f56bf1a51719a0bd93cbe97fc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 991a0f29c0edc5a220dfde69bd22dc4ed758394d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633551"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060728"
 ---
 # <a name="part-8-add-validation-to-an-aspnet-core-no-locrazor-page"></a>Teil 8: Hinzufügen der Validierung zu einer ASP.NET Core-Razor-Seite
 
@@ -32,7 +33,7 @@ In diesem Abschnitt wird dem Modell `Movie` Validierungslogik hinzugefügt. Die 
 
 ## <a name="validation"></a>Validierung
 
-Ein wesentlicher Grundsatz der Softwareentwicklung heißt [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (**D**on't **R**epeat **Y**ourself, dt. Wiederholen Sie sich nicht). Razor Pages ist für Entwicklungsaufgaben gedacht, bei denen die Funktionalität einmal angegeben und für die gesamte App übernommen wird. DRY kann Sie bei Folgendem unterstützen:
+Ein wesentlicher Grundsatz der Softwareentwicklung heißt [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ( **D** on't **R** epeat **Y** ourself, dt. Wiederholen Sie sich nicht). Razor Pages ist für Entwicklungsaufgaben gedacht, bei denen die Funktionalität einmal angegeben und für die gesamte App übernommen wird. DRY kann Sie bei Folgendem unterstützen:
 
 * Sie können die Codemenge in einer App reduzieren.
 * Der Code wird weniger fehleranfällig und lässt sich leichter testen und verwalten.
@@ -82,7 +83,7 @@ Ein entscheidender Vorteil ist, dass **keine** Codeänderungen auf den Seiten �
 
 Die Formulardaten werden erst an den Server zurückgesendet, wenn auf Clientseite keine Validierungsfehler auftreten. Überprüfen Sie mithilfe von mindestens einem der folgenden Ansätze, ob keine Formulardaten bereitgestellt werden:
 
-* Setzen Sie einen Haltepunkt in der `OnPostAsync`-Methode. Senden Sie das Formular (wählen Sie **Erstellen** oder **Speichern**). Der Haltepunkt wird niemals erreicht.
+* Setzen Sie einen Haltepunkt in der `OnPostAsync`-Methode. Senden Sie das Formular (wählen Sie **Erstellen** oder **Speichern** ). Der Haltepunkt wird niemals erreicht.
 * Verwenden Sie das [Tool Fiddler](https://www.telerik.com/fiddler).
 * Verwenden Sie die Browserentwicklungstools zum Überwachen des Netzwerkdatenverkehrs.
 
@@ -106,7 +107,7 @@ Testen Sie optional die serverseitige Validierung:
   
 Alternativ können Sie [die clientseitige Validierung auf dem Server deaktivieren](xref:mvc/models/validation#disable-client-side-validation).
 
-Der folgende Code zeigt einen Teil der Seite *Create.cshtml*, deren Gerüst Sie zuvor im Tutorial erstellt haben. Sie wird von den Seiten „Erstellen“ und „Bearbeiten“ zum Anzeigen des anfänglichen Formulars und zum erneuten Anzeigen des Formulars bei einem Fehler verwendet.
+Der folgende Code zeigt einen Teil der Seite *Create.cshtml* , deren Gerüst Sie zuvor im Tutorial erstellt haben. Sie wird von den Seiten „Erstellen“ und „Bearbeiten“ zum Anzeigen des anfänglichen Formulars und zum erneuten Anzeigen des Formulars bei einem Fehler verwendet.
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 

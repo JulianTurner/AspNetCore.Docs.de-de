@@ -5,6 +5,7 @@ description: Erfahren Sie, wie Sie Probleme mit der Lokalisierung von ASP.NET Co
 ms.author: riande
 ms.date: 01/24/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/troubleshoot-aspnet-core-localization
-ms.openlocfilehash: 1cb7fb61063bf888819e940476f27c3adafa24de
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 995db4c8c9d0c0f1f77b1fd3665e707975406a7f
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629924"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053617"
 ---
 # <a name="troubleshoot-aspnet-core-localization"></a>Problembehandlung bei der ASP.NET Core-Lokalisierung
 

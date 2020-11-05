@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/crud
-ms.openlocfilehash: c17461f8d1d43335230a967a4b62943c055c06b9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 043fe513f370cf63637733b66ca195e7887faab0
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629209"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054293"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementieren von CRUD-Funktionen – ASP.NET MVC mit EF Core
 
@@ -121,7 +122,7 @@ Führen Sie die App aus, wählen Sie die Registerkarte **Studenten** aus, und kl
 
 ## <a name="update-the-create-page"></a>Aktualisieren der Seite „Create“ (Erstellen)
 
-Bearbeiten Sie die HttpPost-Methode `Create` in *StudentsController.cs*, indem Sie einen Try-Catch-Block hinzufügen und die ID aus dem Attribut `Bind` entfernen.
+Bearbeiten Sie die HttpPost-Methode `Create` in *StudentsController.cs* , indem Sie einen Try-Catch-Block hinzufügen und die ID aus dem Attribut `Bind` entfernen.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=4,6-7,14-21)]
 
@@ -166,7 +167,7 @@ Der Code in der Datei *Views/Students/Create.cshtml* verwendet die Taghilfsprogr
 
 Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Students** aus und klicken auf **Neu erstellen**.
 
-Geben Sie Namen und ein Datum ein. Versuchen Sie ein ungültiges Datum einzugeben, sofern Ihr Browser dies zulässt. (Manche Browser erzwingen die Verwendung einer Datumsauswahl.) Klicken Sie dann auf **Erstellen**, um die Fehlermeldung anzuzeigen.
+Geben Sie Namen und ein Datum ein. Versuchen Sie ein ungültiges Datum einzugeben, sofern Ihr Browser dies zulässt. (Manche Browser erzwingen die Verwendung einer Datumsauswahl.) Klicken Sie dann auf **Erstellen** , um die Fehlermeldung anzuzeigen.
 
 ![Validierungsfehler beim Datum](crud/_static/date-error.png)
 
@@ -174,7 +175,7 @@ Dies ist eine serverseitige Validierung, die Sie standardgemäß erhalten. In ei
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=8)]
 
-Ändern Sie das Datum in einen gültigen Wert und klicken auf **Erstellen**, damit der neue Student auf der Seite **Index** angezeigt wird.
+Ändern Sie das Datum in einen gültigen Wert und klicken auf **Erstellen** , damit der neue Student auf der Seite **Index** angezeigt wird.
 
 ## <a name="update-the-edit-page"></a>Aktualisieren der Seite „Edit“ (Bearbeiten)
 
@@ -210,15 +211,15 @@ Der Datenbankkontext verfolgt, ob die Entitäten im Arbeitsspeicher mit ihren en
 
 Eine Entität kann einen der folgenden Status aufweisen:
 
-* `Added` Die Entität ist noch nicht in der Datenbank vorhanden. Die Methode `SaveChanges` gibt eine INSERT-Anweisung aus.
+* `Added`. Die Entität ist noch nicht in der Datenbank vorhanden. Die Methode `SaveChanges` gibt eine INSERT-Anweisung aus.
 
-* `Unchanged` Die Methode `SaveChanges` muss nichts mit dieser Entität tun. Wenn Sie eine Entität aus der Datenbank lesen, beginnt die Entität mit diesem Status.
+* `Unchanged`. Die Methode `SaveChanges` muss nichts mit dieser Entität tun. Wenn Sie eine Entität aus der Datenbank lesen, beginnt die Entität mit diesem Status.
 
-* `Modified` Einige oder alle Eigenschaftswerte der Entität wurden geändert. Die Methode `SaveChanges` gibt eine UPDATE-Anweisung aus.
+* `Modified`. Einige oder alle Eigenschaftswerte der Entität wurden geändert. Die Methode `SaveChanges` gibt eine UPDATE-Anweisung aus.
 
-* `Deleted` Die Entität wurde zum Löschen markiert. Die Methode `SaveChanges` gibt eine DELETE-Anweisung aus.
+* `Deleted`. Die Entität wurde zum Löschen markiert. Die Methode `SaveChanges` gibt eine DELETE-Anweisung aus.
 
-* `Detached` Die Entität wird nicht vom Datenbankkontext nachverfolgt.
+* `Detached`. Die Entität wird nicht vom Datenbankkontext nachverfolgt.
 
 Statusänderungen werden in einer Desktop-App in der Regel automatisch festgelegt. Sie lesen eine Entität aus und nehmen Änderungen an ihren Eigenschaftswerten vor. Dadurch wird der Entitätsstatus automatisch auf `Modified` festgelegt. Wenn Sie dann `SaveChanges` aufrufen, generiert Entity Framework eine SQL UPDATE-Anweisung, die nur die aktuellen Eigenschaften aktualisiert, an denen Sie Änderungen vorgenommen haben.
 
@@ -272,7 +273,7 @@ Fügen Sie in der Datei *Views/Student/Delete.cshtml* eine Fehlermeldung zwische
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
-Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Students** aus und klicken auf den Link **Löschen**:
+Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Students** aus und klicken auf den Link **Löschen** :
 
 ![Bestätigungsseite „Löschen“](crud/_static/student-delete.png)
 

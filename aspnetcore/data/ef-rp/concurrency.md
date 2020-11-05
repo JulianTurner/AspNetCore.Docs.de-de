@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: 0f0f1a9c70a2d6725cbb68ac62850cf6aa332d36
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 573a509041bfb34faf50a227c451824db03f92ee
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90721839"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053994"
 ---
 # <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>Teil 8: Razor Pages mit EF Core in ASP.NET Core – Parallelität
 
@@ -61,7 +62,7 @@ Bevor Benutzer1 auf **Speichern** klickt, besucht Benutzer2 dieselbe Seite und �
 
 Benutzer1 klickt zuerst auf **Speichern** und sieht, dass die Änderung wirksam wird, da der Browser die Indexseite mit 0 (null) als Budgetbetrag anzeigt.
 
-Benutzer2 klickt auf einer Bearbeitungsseite auf **Speichern**, die weiterhin ein Budget von 350.000 $ anzeigt. Was anschließend geschieht, ist abhängig davon, wie Sie Parallelitätskonflikte handhaben:
+Benutzer2 klickt auf einer Bearbeitungsseite auf **Speichern** , die weiterhin ein Budget von 350.000 $ anzeigt. Was anschließend geschieht, ist abhängig davon, wie Sie Parallelitätskonflikte handhaben:
 
 * Sie können nachverfolgen, welche Eigenschaft ein Benutzer geändert hat und nur die entsprechenden Spalten in der Datenbank aktualisieren.
 
@@ -73,7 +74,7 @@ Benutzer2 klickt auf einer Bearbeitungsseite auf **Speichern**, die weiterhin ei
 
 * Sie können zulassen, dass die Änderungen von Benutzer2 die Änderungen von Benutzer1 überschreiben.
 
-  Das nächste Mal, wenn jemand den englischen Fachbereich durchsucht, wird das Datum 9.1.2013 und der wiederhergestellte Wert von 350.000 $ angezeigt. Dieses Ansatz wird *Client gewinnt*- oder *Last in Wins*-Szenario (Letzter gewinnt) genannt. (Alle Werte des Clients haben Vorrang vor dem Datenspeicher.) Wenn Sie keine Codierung für die Parallelitätsbehandlung durchführen, wird automatisch das „Client gewinnt“-Szenario ausgeführt.
+  Das nächste Mal, wenn jemand den englischen Fachbereich durchsucht, wird das Datum 9.1.2013 und der wiederhergestellte Wert von 350.000 $ angezeigt. Dieses Ansatz wird *Client gewinnt* - oder *Last in Wins* -Szenario (Letzter gewinnt) genannt. (Alle Werte des Clients haben Vorrang vor dem Datenspeicher.) Wenn Sie keine Codierung für die Parallelitätsbehandlung durchführen, wird automatisch das „Client gewinnt“-Szenario ausgeführt.
 
 * Sie können verhindern, dass die Änderungen von Benutzer2 in die Datenbank aufgenommen werden. In der Regel würde die App:
 
@@ -245,7 +246,7 @@ Erstellen Sie das Projekt.
 
 Das Gerüstbautool hat eine `RowVersion`-Spalte für die Index-Seite erstellt, dieses Feld würde jedoch in einer Produktions-App nicht angezeigt werden. In diesem Tutorial wird das letzte Byte der `RowVersion` angezeigt, damit Sie ein besseres Verständnis für die Funktionsweise der Parallelitätsverarbeitung bekommen. Das letzte Byte ist nicht zwingend eindeutig.
 
-Aktualisieren Sie die Seite *Pages\Departments\Index.cshtml*:
+Aktualisieren Sie die Seite *Pages\Departments\Index.cshtml* :
 
 * Ersetzen Sie „Index“ durch „Abteilungen“.
 * Ändern Sie den Code, der `RowVersion` enthält, um nur das letzte Byte des Bytearrays anzuzeigen.
@@ -304,7 +305,7 @@ Der vorangehende Code:
 
 * Führen Sie die Anwendung aus, und wählen Sie „Abteilungen“ aus.
 * Klicken Sie mit der rechten Maustaste auf den Link **Bearbeiten** für den englischen Fachbereich, und klicken Sie auf **In neuer Registerkarte öffnen**.
-* Klicken Sie in der ersten Registerkarte auf den **Bearbeiten**-Link für den englischen Fachbereich.
+* Klicken Sie in der ersten Registerkarte auf den **Bearbeiten** -Link für den englischen Fachbereich.
 
 Beide Registerkarten zeigen die gleichen Informationen an.
 
@@ -340,7 +341,7 @@ Die Seite „Löschen“ erkennt Nebenläufigkeitskonflikte, wenn die Entität g
 
 ### <a name="update-the-delete-page"></a>Aktualisieren der Seite „Delete“ (Löschen)
 
-Aktualisieren Sie die *Pages\Departments\Delete.cshtml*-Datei mithilfe des folgenden Codes:
+Aktualisieren Sie die *Pages\Departments\Delete.cshtml* -Datei mithilfe des folgenden Codes:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
@@ -359,7 +360,7 @@ Erstellen Sie einen Fachbereich zum Testen.
 Öffnen Sie im Testfachbereich zwei Browserinstanzen zum „Löschen“:
 
 * Führen Sie die Anwendung aus, und wählen Sie „Abteilungen“ aus.
-* Klicken Sie mit der rechten Maustaste auf den Link **Löschen** für den Testfachbereich, und klicken Sie auf**In neuer Registerkarte öffnen**.
+* Klicken Sie mit der rechten Maustaste auf den Link **Löschen** für den Testfachbereich, und klicken Sie auf **In neuer Registerkarte öffnen**.
 * Klicken Sie auf den Link **Bearbeiten** für den Testfachbereich.
 
 Beide Registerkarten zeigen die gleichen Informationen an.
@@ -415,7 +416,7 @@ Benutzer1 klickt zuerst auf **Speichern** und sieht die Änderungen, wenn im Bro
 
 ![Budget in 0 (null) geändert](concurrency/_static/budget-zero.png)
 
-Benutzer2 klickt auf einer Bearbeitungsseite auf **Speichern**, die weiterhin ein Budget von 350.000 $ anzeigt. Was daraufhin geschieht ist abhängig davon, wie Sie Nebenläufigkeitskonflikte handhaben.
+Benutzer2 klickt auf einer Bearbeitungsseite auf **Speichern** , die weiterhin ein Budget von 350.000 $ anzeigt. Was daraufhin geschieht ist abhängig davon, wie Sie Nebenläufigkeitskonflikte handhaben.
 
 Die optimistische Nebenläufigkeit umfasst die folgenden Optionen:
 
@@ -429,7 +430,7 @@ Die optimistische Nebenläufigkeit umfasst die folgenden Optionen:
 
 * Sie können zulassen, dass die Änderungen von Benutzer2 die Änderungen von Benutzer1 überschreiben.
 
-  Das nächste Mal, wenn jemand den englischen Fachbereich durchsucht, wird das Datum 9.1.2013 und der wiederhergestellte Wert von 350.000 $ angezeigt. Dieses Ansatz wird *Client gewinnt*- oder *Last in Wins*-Szenario (Letzter gewinnt) genannt. (Alle Werte des Clients haben Vorrang vor dem Datenspeicher.) Wenn Sie keine Codierung für die Parallelitätsbehandlung durchführen, wird automatisch das „Client gewinnt“-Szenario ausgeführt.
+  Das nächste Mal, wenn jemand den englischen Fachbereich durchsucht, wird das Datum 9.1.2013 und der wiederhergestellte Wert von 350.000 $ angezeigt. Dieses Ansatz wird *Client gewinnt* - oder *Last in Wins* -Szenario (Letzter gewinnt) genannt. (Alle Werte des Clients haben Vorrang vor dem Datenspeicher.) Wenn Sie keine Codierung für die Parallelitätsbehandlung durchführen, wird automatisch das „Client gewinnt“-Szenario ausgeführt.
 
 * Sie können verhindern, dass die Änderungen von Benutzer2 in die Datenbank aufgenommen werden. In der Regel würde die App:
 
@@ -600,7 +601,7 @@ Das obenstehende Markup:
 
 * Führen Sie die Anwendung aus, und wählen Sie „Abteilungen“ aus.
 * Klicken Sie mit der rechten Maustaste auf den Link **Bearbeiten** für den englischen Fachbereich, und klicken Sie auf **In neuer Registerkarte öffnen**.
-* Klicken Sie in der ersten Registerkarte auf den **Bearbeiten**-Link für den englischen Fachbereich.
+* Klicken Sie in der ersten Registerkarte auf den **Bearbeiten** -Link für den englischen Fachbereich.
 
 Beide Registerkarten zeigen die gleichen Informationen an.
 
@@ -638,7 +639,7 @@ Die Seite „Löschen“ erkennt Nebenläufigkeitskonflikte, wenn die Entität g
 
 ### <a name="update-the-delete-page"></a>Aktualisieren der Seite „Delete“ (Löschen)
 
-Aktualisieren Sie die *Pages\Departments\Delete.cshtml*-Datei mithilfe des folgenden Codes:
+Aktualisieren Sie die *Pages\Departments\Delete.cshtml* -Datei mithilfe des folgenden Codes:
 
 [!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
@@ -657,7 +658,7 @@ Erstellen Sie einen Fachbereich zum Testen.
 Öffnen Sie im Testfachbereich zwei Browserinstanzen zum „Löschen“:
 
 * Führen Sie die Anwendung aus, und wählen Sie „Abteilungen“ aus.
-* Klicken Sie mit der rechten Maustaste auf den Link **Löschen** für den Testfachbereich, und klicken Sie auf**In neuer Registerkarte öffnen**.
+* Klicken Sie mit der rechten Maustaste auf den Link **Löschen** für den Testfachbereich, und klicken Sie auf **In neuer Registerkarte öffnen**.
 * Klicken Sie auf den Link **Bearbeiten** für den Testfachbereich.
 
 Beide Registerkarten zeigen die gleichen Informationen an.

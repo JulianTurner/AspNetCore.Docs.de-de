@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 3f0e44bb374214328f589c6ca3952c6d7aab88d8
-ms.sourcegitcommit: 9c031530d2e652fe422e786bd43392bc500d622f
+ms.openlocfilehash: 0fb50f07153f5f9953b667fe32062ad24b2bd66d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/18/2020
-ms.locfileid: "90770128"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059948"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Vergleich von gRPC-Diensten mit HTTP-APIs
 
@@ -36,7 +37,7 @@ Die folgende Tabelle bietet einen allgemeinen Vergleich der Features von gRPC un
 
 | Feature          | gRPC                                               | HTTP-APIs mit JSON           |
 | ---------------- | -------------------------------------------------- | ----------------------------- |
-| Vertrag         | Erforderlich ( *.proto*)                                | Optional (OpenAPI)            |
+| Vertrag         | Erforderlich ( *.proto* )                                | Optional (OpenAPI)            |
 | Protokoll         | HTTP/2                                             | HTTP                          |
 | Payload          | [Protobuf (klein, binär)](#performance)           | JSON (groß, für Menschen lesbar)  |
 | Präskriptivität | [Strikte Spezifikation](#strict-specification)      | Locker. Jedes HTTP ist gültig.     |
@@ -62,7 +63,7 @@ HTTP/2 ist nicht exklusiv für GrpC. Viele Anforderungstypen, einschließlich HT
 
 Alle gRPC-Frameworks bieten erstklassige Unterstützung für die Codegenerierung. Eine Kerndatei zur gRPC-Entwicklung ist die [.proto-Datei](https://developers.google.com/protocol-buffers/docs/proto3), die den Vertrag der gRPC-Dienste und -Nachrichten definiert. Aus dieser Datei generieren die gRPC-Frameworks im Code eine Dienstbasisklasse, Nachrichten und einen vollständigen Client.
 
-Durch die Freigabe der *.proto*-Datei zwischen dem Server und dem Client können Nachrichten und Clientcode von Ende zu Ende generiert werden. Die Codegenerierung des Clients verhindert die Duplizierung von Nachrichten auf dem Client und dem Server und erstellt einen stark typisierten Client für Sie. Wenn Sie keinen Client schreiben müssen, sparen Sie bei Anwendungen mit vielen Diensten erheblich an Entwicklungszeit.
+Durch die Freigabe der *.proto* -Datei zwischen dem Server und dem Client können Nachrichten und Clientcode von Ende zu Ende generiert werden. Die Codegenerierung des Clients verhindert die Duplizierung von Nachrichten auf dem Client und dem Server und erstellt einen stark typisierten Client für Sie. Wenn Sie keinen Client schreiben müssen, sparen Sie bei Anwendungen mit vielen Diensten erheblich an Entwicklungszeit.
 
 ### <a name="strict-specification"></a>Strikte Spezifikation
 
@@ -109,7 +110,7 @@ Es gibt zwei gängige Ansätze, um gRPC in Browser-Apps zu integrieren:
 
   .NET Core unterstützt gRPC-Web. Weitere Informationen finden Sie unter <xref:grpc/browser>.
 
-* REST-JSON-Web-APIs können automatisch aus gRPC-Diensten erstellt werden, indem die *PROTO*-Datei mit [HTTP-Metadaten](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) kommentiert wird. Dadurch kann eine App sowohl gRPC- als auch JSON-Web-APIs unterstützen, ohne den Aufwand für die Entwicklung separater Dienste für beides zu verdoppeln.
+* REST-JSON-Web-APIs können automatisch aus gRPC-Diensten erstellt werden, indem die *PROTO* -Datei mit [HTTP-Metadaten](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) kommentiert wird. Dadurch kann eine App sowohl gRPC- als auch JSON-Web-APIs unterstützen, ohne den Aufwand für die Entwicklung separater Dienste für beides zu verdoppeln.
 
   .NET Core bietet experimentelle Unterstützung für das Erstellen von JSON-Web-APIs aus gRPC-Diensten. Weitere Informationen finden Sie unter <xref:grpc/httpapi>.
 
@@ -117,7 +118,7 @@ Es gibt zwei gängige Ansätze, um gRPC in Browser-Apps zu integrieren:
 
 HTTP-API-Anforderungen werden als Text gesendet und können von Menschen gelesen und erstellt werden.
 
-gRPC-Nachrichten werden standardmäßig mit Protobuf codiert. Obwohl Protobuf effizient zu senden und zu empfangen ist, ist sein binäres Format nicht für Menschen lesbar. Protobuf benötigt die in der *.proto*-Datei angegebene Schnittstellenbeschreibung der Nachricht, um sie ordnungsgemäß zu deserialisieren. Zusätzliche Tools sind erforderlich, um die Protobuf-Nutzlasten im Netzwerk zu analysieren und Anforderungen manuell zusammenzustellen.
+gRPC-Nachrichten werden standardmäßig mit Protobuf codiert. Obwohl Protobuf effizient zu senden und zu empfangen ist, ist sein binäres Format nicht für Menschen lesbar. Protobuf benötigt die in der *.proto* -Datei angegebene Schnittstellenbeschreibung der Nachricht, um sie ordnungsgemäß zu deserialisieren. Zusätzliche Tools sind erforderlich, um die Protobuf-Nutzlasten im Netzwerk zu analysieren und Anforderungen manuell zusammenzustellen.
 
 Es gibt Features wie [Serverreflexion](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md) und das [gRPC-Befehlszeilentool](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md), die bei binären Protobuf-Nachrichten helfen. Außerdem unterstützen Protobuf-Nachrichten die [Konvertierung zu und von JSON](https://developers.google.com/protocol-buffers/docs/proto3#json). Die integrierte JSON-Konvertierung bietet eine effiziente Möglichkeit, Protobuf-Nachrichten beim Debuggen in und aus der für Menschen lesbaren Form zu konvertieren.
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/content-security-policy
-ms.openlocfilehash: 09f4cb5ba11feb7d81a410dd3869f9863d104d0e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 66fd41abe4f85071797bacc0a5531bbab35bd227
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627844"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055593"
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a>Erzwingen einer Content Security Policy für ASP.NET Core Blazor
 
@@ -35,7 +36,7 @@ Beim [Cross-Site-Scripting (XSS)](xref:security/cross-site-scripting) handelt es
 * gültige von einer Webseite durchgeführte Aktionen, wobei die URL-Ziele von Formularen angegeben werden
 * gültige Plug-Ins, die geladen werden können
 
-Zum Anwenden einer CSP auf eine App gibt der Entwickler mehrere CSP-*Anweisungen* zur Inhaltssicherheit in mindestens einem `Content-Security-Policy`-Header oder `<meta>`-Tag an.
+Zum Anwenden einer CSP auf eine App gibt der Entwickler mehrere CSP- *Anweisungen* zur Inhaltssicherheit in mindestens einem `Content-Security-Policy`-Header oder `<meta>`-Tag an.
 
 Die Richtlinien werden vom Browser ausgewertet, während eine Seite geladen wird. Der Browser untersucht die Quellen der Seite und bestimmt, ob diese die Anforderungen der Anweisungen zur Inhaltssicherheit erfüllen. Wenn Richtlinienanweisungen für eine Ressource nicht erfüllt werden, lädt der Browser die Ressource nicht. Denken Sie sich beispielsweise eine Richtlinie, die keine Skripts von Drittanbietern zulässt. Wenn eine Seite ein `<script>`-Tag mit Drittanbieterursprung im `src`-Attribut enthält, verhindert der Browser das Laden des Skripts.
 

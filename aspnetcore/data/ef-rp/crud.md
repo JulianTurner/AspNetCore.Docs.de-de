@@ -5,6 +5,7 @@ description: Dies ist Teil 2 der Tutorialreihe zu Razor Pages und dem Entity Fr
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 083214c01dbec6c6f44d6b82f5b514a029e57cbe
-ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
+ms.openlocfilehash: c5b9be64ea30cce7a3178bfbb244ef893e9639d2
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91606732"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053864"
 ---
 # <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Teil 2: Razor Pages mit EF Core in ASP.NET Core – CRUD
 
@@ -346,7 +347,7 @@ Die `OnPostAsync`-Methode ruft die ausgewählte Entität ab und anschließend di
 * Wird die Datenbankausnahme abgefangen.
 * Wird die Methode `OnGetAsync` auf der Seite „Löschen“ mit `saveChangesError=true` aufgerufen.
 
-Fügen Sie der Razor Page „Delete“ (*Pages/Students/Delete.cshtml*) eine Fehlermeldung hinzu:
+Fügen Sie der Razor Page „Delete“ ( *Pages/Students/Delete.cshtml* ) eine Fehlermeldung hinzu:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -404,7 +405,7 @@ Wenn Sie jedoch weitere Entitäten mithilfe von `Include` einschließen möchten
 
 ## <a name="customize-the-details-page"></a>Anpassen der Seite „Details“
 
-Navigieren Sie zur Seite `Pages/Students`. Die Links **Bearbeiten**, **Details** und **Löschen** werden mithilfe des [Anchor-Taghilfsprogramms](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
+Navigieren Sie zur Seite `Pages/Students`. Die Links **Bearbeiten** , **Details** und **Löschen** werden mithilfe des [Anchor-Taghilfsprogramms](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Index1.cshtml?name=snippet)]
 

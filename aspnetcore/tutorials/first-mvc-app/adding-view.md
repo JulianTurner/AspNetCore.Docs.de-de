@@ -5,6 +5,7 @@ description: Dies ist Teil 3 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/04/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-view
-ms.openlocfilehash: 970cc1fe6e0a0e0204ddafec09c15db6fed9aa66
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 078329d1e5dfe41a7713b1e53894a9b09886752d
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629755"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052668"
 ---
 # <a name="part-3-add-a-view-to-an-aspnet-core-mvc-app"></a>Teil 3: Hinzufügen einer Ansicht zu einer ASP.NET Core MVC-App
 
@@ -43,9 +44,9 @@ Der vorangehende Code ruft die Methode<xref:Microsoft.AspNetCore.Mvc.Controller.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views*, und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views* , und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld*, und klicken Sie dann **Hinzufügen > Neues Element**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld* , und klicken Sie dann **Hinzufügen > Neues Element**.
 
 * Im Dialogfeld **Neues Element hinzufügen: MvcMovie**
 
@@ -68,8 +69,8 @@ Fügen Sie die Ansicht `Index` für `HelloWorldController` hinzu.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views*, und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld*, und klicken Sie dann **Hinzufügen > Neue Datei**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views* , und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld* , und klicken Sie dann **Hinzufügen > Neue Datei**.
 * Führen Sie im Dialogfeld **Neue Datei** folgende Aktionen aus:
 
   * Wählen Sie im linken Bereich die Option **ASP .NET Core** aus.
@@ -91,7 +92,7 @@ Navigieren Sie zu `https://localhost:{PORT}/HelloWorld`. Die `Index`-Methode im 
 
 ## <a name="change-views-and-layout-pages"></a>Ändern von Ansichten und Layoutseiten
 
-Wählen Sie die Menülinks aus (**MvcMovie**, **Home**, **Privacy**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Views/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Views/Shared/_Layout.cshtml*.
+Wählen Sie die Menülinks aus ( **MvcMovie** , **Home** , **Privacy** ). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Views/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Views/Shared/_Layout.cshtml*.
 
 [Layout](xref:mvc/views/layout)-Vorlagen ermöglichen Ihnen, das HTML-Containerlayout Ihrer Website zentral anzugeben und dann auf mehrere Seiten Ihrer Website anzuwenden. Suchen Sie die Zeile `@RenderBody()`. `RenderBody` ist ein Platzhalter, bei dem alle ansichtsspezifischen Seiten, die Sie erstellen, von der Layoutseite *umschlossen* angezeigt werden. Wenn Sie beispielsweise den Link **Privacy** auswählen, wird die Ansicht **Views/Home/Privacy.cshtml** in der `RenderBody`-Methode gerendert.
 
@@ -110,13 +111,13 @@ Im obigen Markup wurde das [Anchor-Tag-Hilfsprogramm-Attribut](xref:mvc/views/ta
 
 **Hinweis:** Der `Movies`-Controller wurde nicht implementiert. An diesem Punkt ist der `Movie App`-Link nicht funktionsfähig.
 
-Speichern Sie Ihre Änderungen, und wählen den **Privacy**-Link aus. Wie Sie sehen, wird auf der Browserregisterkarte der Titel **Privacy Policy - Movie App** anstelle des Titels **Privacy Policy - Mvc Movie** angezeigt:
+Speichern Sie Ihre Änderungen, und wählen den **Privacy** -Link aus. Wie Sie sehen, wird auf der Browserregisterkarte der Titel **Privacy Policy - Movie App** anstelle des Titels **Privacy Policy - Mvc Movie** angezeigt:
 
 ![Registerkarte „Privacy“](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
 Wählen Sie den Link **Home** aus, und beachten Sie, dass im Text für den Titel und den Anker ebenfalls **Movie App** angezeigt wird. Wir haben also eine Änderung des Texts und Titels in der Layoutvorlage einmalig vorgenommen, die von der gesamten Website übernommen wird.
 
-Untersuchen Sie die Datei *Views/_ViewStart.cshtml*:
+Untersuchen Sie die Datei *Views/_ViewStart.cshtml* :
 
 ```cshtml
 @{
@@ -126,7 +127,7 @@ Untersuchen Sie die Datei *Views/_ViewStart.cshtml*:
 
 Die Datei *Views/_ViewStart.cshtml* fügt jeder Ansicht die Datei *Views/Shared/_Layout.cshtml* hinzu. Die `Layout`-Eigenschaft kann verwendet werden, um eine andere Layoutansicht festzulegen, oder legen Sie sie auf `null` fest, damit keine Layoutdatei verwendet wird.
 
-Ändern Sie den Titel und das `<h2>`-Element der Ansichtsdatei *Views/HelloWorld/Index.cshtml*:
+Ändern Sie den Titel und das `<h2>`-Element der Ansichtsdatei *Views/HelloWorld/Index.cshtml* :
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
@@ -162,7 +163,7 @@ Das Wörterbuchobjekt `ViewData` enthält Daten, die an die Ansicht übergeben w
 
 Erstellen Sie die Ansichtsvorlage für die Begrüßung namens *Views/HelloWorld/Welcome.cshtml*.
 
-Erstellen Sie eine Schleife in der Ansichtsvorlage *Welcome.cshtml*, die „Hello“ `NumTimes` anzeigt. Ersetzen Sie den Inhalt von *Views/HelloWorld/Welcome.cshtml* durch Folgendes:
+Erstellen Sie eine Schleife in der Ansichtsvorlage *Welcome.cshtml* , die „Hello“ `NumTimes` anzeigt. Ersetzen Sie den Inhalt von *Views/HelloWorld/Welcome.cshtml* durch Folgendes:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
 
@@ -200,9 +201,9 @@ Der vorangehende Code ruft die Methode<xref:Microsoft.AspNetCore.Mvc.Controller.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views*, und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views* , und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld*, und klicken Sie dann **Hinzufügen > Neues Element**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld* , und klicken Sie dann **Hinzufügen > Neues Element**.
 
 * Im Dialogfeld **Neues Element hinzufügen: MvcMovie**
 
@@ -225,8 +226,8 @@ Fügen Sie die Ansicht `Index` für `HelloWorldController` hinzu.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views*, und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld*, und klicken Sie dann **Hinzufügen > Neue Datei**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views* , und klicken Sie dann **Hinzufügen > Neuer Ordner**. Nennen Sie den Ordner *HelloWorld*.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Views/HelloWorld* , und klicken Sie dann **Hinzufügen > Neue Datei**.
 * Führen Sie im Dialogfeld **Neue Datei** folgende Aktionen aus:
 
   * Wählen Sie im linken Bereich **Web** aus.
@@ -248,7 +249,7 @@ Navigieren Sie zu `https://localhost:{PORT}/HelloWorld`. Die `Index`-Methode im 
 
 ## <a name="change-views-and-layout-pages"></a>Ändern von Ansichten und Layoutseiten
 
-Wählen Sie die Menülinks aus (**MvcMovie**, **Home**, **Privacy**). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Views/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Views/Shared/_Layout.cshtml*.
+Wählen Sie die Menülinks aus ( **MvcMovie** , **Home** , **Privacy** ). Auf jeder Seite wird dasselbe Menülayout gezeigt. Das Menülayout wird mithilfe der Datei *Views/Shared/_Layout.cshtml* implementiert. Öffnen Sie die Datei *Views/Shared/_Layout.cshtml*.
 
 [Layout](xref:mvc/views/layout)-Vorlagen ermöglichen Ihnen, das HTML-Containerlayout Ihrer Website zentral anzugeben und dann auf mehrere Seiten Ihrer Website anzuwenden. Suchen Sie die Zeile `@RenderBody()`. `RenderBody` ist ein Platzhalter, bei dem alle ansichtsspezifischen Seiten, die Sie erstellen, von der Layoutseite *umschlossen* angezeigt werden. Wenn Sie beispielsweise den Link **Privacy** auswählen, wird die Ansicht **Views/Home/Privacy.cshtml** in der `RenderBody`-Methode gerendert.
 
@@ -270,13 +271,13 @@ Im obigen Markup wurde das [Anchor-Tag-Hilfsprogramm-Attribut](xref:mvc/views/ta
 
 **Hinweis:** Der `Movies`-Controller wurde nicht implementiert. An diesem Punkt ist der `Movie App`-Link nicht funktionsfähig.
 
-Speichern Sie Ihre Änderungen, und wählen den **Privacy**-Link aus. Wie Sie sehen, wird auf der Browserregisterkarte der Titel **Privacy Policy - Movie App** anstelle des Titels **Privacy Policy - Mvc Movie** angezeigt:
+Speichern Sie Ihre Änderungen, und wählen den **Privacy** -Link aus. Wie Sie sehen, wird auf der Browserregisterkarte der Titel **Privacy Policy - Movie App** anstelle des Titels **Privacy Policy - Mvc Movie** angezeigt:
 
 ![Registerkarte „Privacy“](~/tutorials/first-mvc-app/adding-view/_static/about2.png)
 
 Wählen Sie den Link **Home** aus, und beachten Sie, dass im Text für den Titel und den Anker ebenfalls **Movie App** angezeigt wird. Wir haben also eine Änderung des Texts und Titels in der Layoutvorlage einmalig vorgenommen, die von der gesamten Website übernommen wird.
 
-Untersuchen Sie die Datei *Views/_ViewStart.cshtml*:
+Untersuchen Sie die Datei *Views/_ViewStart.cshtml* :
 
 ```cshtml
 @{
@@ -286,7 +287,7 @@ Untersuchen Sie die Datei *Views/_ViewStart.cshtml*:
 
 Die Datei *Views/_ViewStart.cshtml* fügt jeder Ansicht die Datei *Views/Shared/_Layout.cshtml* hinzu. Die `Layout`-Eigenschaft kann verwendet werden, um eine andere Layoutansicht festzulegen, oder legen Sie sie auf `null` fest, damit keine Layoutdatei verwendet wird.
 
-Ändern Sie den Titel und das `<h2>`-Element der Ansichtsdatei *Views/HelloWorld/Index.cshtml*:
+Ändern Sie den Titel und das `<h2>`-Element der Ansichtsdatei *Views/HelloWorld/Index.cshtml* :
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
@@ -322,7 +323,7 @@ Das Wörterbuchobjekt `ViewData` enthält Daten, die an die Ansicht übergeben w
 
 Erstellen Sie die Ansichtsvorlage für die Begrüßung namens *Views/HelloWorld/Welcome.cshtml*.
 
-Erstellen Sie eine Schleife in der Ansichtsvorlage *Welcome.cshtml*, die „Hello“ `NumTimes` anzeigt. Ersetzen Sie den Inhalt von *Views/HelloWorld/Welcome.cshtml* durch Folgendes:
+Erstellen Sie eine Schleife in der Ansichtsvorlage *Welcome.cshtml* , die „Hello“ `NumTimes` anzeigt. Ersetzen Sie den Inhalt von *Views/HelloWorld/Welcome.cshtml* durch Folgendes:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Welcome.cshtml)]
 

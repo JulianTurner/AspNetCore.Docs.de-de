@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/11/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 0830214029d59d0820ed3c5806267c766314c74f
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 1ec1f699d3beb5dbbc3851d9e3b6b1d3faf64cfd
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009673"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93055671"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-models"></a>Blazor-Hostingmodelle in ASP.NET Core
 
@@ -37,9 +38,9 @@ Das wichtigste Hostingmodell für Blazor wird clientseitig im Browser in WebAsse
 
 ![Blazor WebAssembly: Die Blazor-App wird in einem Benutzeroberflächenthread im Browser ausgeführt.](hosting-models/_static/blazor-webassembly.png)
 
-Verwenden Sie zum Erstellen einer Blazor-App mithilfe des clientseitigen Hostingmodells die **Blazor WebAssembly-App**-Vorlage ([`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new)).
+Verwenden Sie zum Erstellen einer Blazor-App mithilfe des clientseitigen Hostingmodells die **Blazor WebAssembly-App** -Vorlage ( [`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new)).
 
-Nachdem Sie die **Blazor WebAssembly-App**-Vorlage ausgewählt haben, können Sie die App so konfigurieren, dass sie ein ASP.NET Core-Back-End verwendet. Aktivieren Sie hierzu das Kontrollkästchen **In ASP.NET Core gehostet** ([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). Die ASP.NET Core-App stellt Clients die Blazor-App bereit. Eine App mit einem ASP.NET Core-Back-End wird als *gehostete Blazor WebAssembly-App* bezeichnet. Die Blazor WebAssembly-App kann mit dem Server über das Netzwerk mithilfe von API-Aufrufen oder [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>) interagieren.
+Nachdem Sie die **Blazor WebAssembly-App** -Vorlage ausgewählt haben, können Sie die App so konfigurieren, dass sie ein ASP.NET Core-Back-End verwendet. Aktivieren Sie hierzu das Kontrollkästchen **In ASP.NET Core gehostet** ( [`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). Die ASP.NET Core-App stellt Clients die Blazor-App bereit. Eine App mit einem ASP.NET Core-Back-End wird als *gehostete Blazor WebAssembly-App* bezeichnet. Die Blazor WebAssembly-App kann mit dem Server über das Netzwerk mithilfe von API-Aufrufen oder [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>) interagieren.
 
 Das `blazor.webassembly.js`-Skript wird vom Framework und von den Handles bereitgestellt:
 
@@ -68,7 +69,7 @@ Mit dem Blazor Server-Hostingmodell wird die App über eine ASP.NET Core-App auf
 
 ![Der Browser interagiert mit der (in einer ASP.NET Core-App gehosteten) App über eine SignalR-Verbindung auf dem Server.](hosting-models/_static/blazor-server.png)
 
-Verwenden Sie zum Erstellen einer Blazor-App mithilfe des Blazor Server-Hostingmodells die ASP.NET Core- **Blazor Server-App**-Vorlage ([`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new)). Die ASP.NET Core-App hostet die Blazor Server-App und erstellt den SignalR-Endpunkt für Clientverbindungen.
+Verwenden Sie zum Erstellen einer Blazor-App mithilfe des Blazor Server-Hostingmodells die ASP.NET Core- **Blazor Server-App** -Vorlage ( [`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new)). Die ASP.NET Core-App hostet die Blazor Server-App und erstellt den SignalR-Endpunkt für Clientverbindungen.
 
 Die ASP.NET Core-App verweist auf die `Startup`-Klasse der App, um folgende Aktionen durchzuführen:
 
@@ -111,7 +112,7 @@ Eine Blazor-App besteht aus wiederverwendbaren Benutzeroberflächenelementen, di
 * Umwandlung in HTML-Text (während des Prerenderings&dagger;)
 * Verwendung für eine effiziente Aktualisierung des Markups während des regulären Renderings
 
-&dagger;*Prerendering*: Die angeforderte Razor-Komponente wird auf dem Server in statisches HTML kompiliert und an den Client gesendet. Dort erfolgt das Rendering für den Benutzer. Nach dem Herstellen einer Verbindung zwischen Client und Server werden die vorab gerenderten statischen Elemente durch interaktive Elemente ersetzt. Durch Prerendering reagiert die App schneller auf den Benutzer.
+&dagger;*Prerendering* : Die angeforderte Razor-Komponente wird auf dem Server in statisches HTML kompiliert und an den Client gesendet. Dort erfolgt das Rendering für den Benutzer. Nach dem Herstellen einer Verbindung zwischen Client und Server werden die vorab gerenderten statischen Elemente durch interaktive Elemente ersetzt. Durch Prerendering reagiert die App schneller auf den Benutzer.
 
 Eine Aktualisierung der Benutzeroberfläche wird in Blazor ausgelöst durch:
 
@@ -124,7 +125,7 @@ Eine Komponente wird verworfen, sobald sie der Benutzer auf dem Client wieder ve
 
 ### <a name="circuits"></a>Leitungen
 
-Eine Blazor Server-App basiert auf [ASP.NET Core SignalR](xref:signalr/introduction). Jeder Client kommuniziert mit dem Server über mindestens eine SignalR-*Verbindung*. Eine solche Verbindung ist eine Blazor-Abstraktion über SignalR-Verbindungen, die temporäre Netzwerkunterbrechungen tolerieren können. Stellt ein Blazor-Client fest, dass die SignalR-Verbindung unterbrochen ist, versucht er über eine neue SignalR-Verbindung, noch mal eine Verbindung mit dem Server herzustellen.
+Eine Blazor Server-App basiert auf [ASP.NET Core SignalR](xref:signalr/introduction). Jeder Client kommuniziert mit dem Server über mindestens eine SignalR- *Verbindung*. Eine solche Verbindung ist eine Blazor-Abstraktion über SignalR-Verbindungen, die temporäre Netzwerkunterbrechungen tolerieren können. Stellt ein Blazor-Client fest, dass die SignalR-Verbindung unterbrochen ist, versucht er über eine neue SignalR-Verbindung, noch mal eine Verbindung mit dem Server herzustellen.
 
 Jedes Browserfenster (Registerkarte des Browsers oder iframe), das über eine Blazor Server-App verbunden ist, verwendet eine SignalR-Verbindung. Darin besteht ein weiterer wesentlicher Unterschied zu typischen, auf dem Server gerenderten Apps. Bei auf dem Server gerenderten Apps bedeutet das gleichzeitige Öffnen einer App in mehreren Browserfenstern in der Regel keine zusätzlichen Ressourcenanforderungen auf dem Server. In einer Blazor Server-App erfordert jedes Browserfenster eine separate Verbindung und separate Instanzen des Komponentenzustands, die vom Server verwaltet werden müssen.
 

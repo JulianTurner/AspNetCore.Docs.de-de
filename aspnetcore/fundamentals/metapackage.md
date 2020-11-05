@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/25/2018
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/metapackage
-ms.openlocfilehash: 133eee71fcd85a95ac53684c3c6e475a54592967
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b739398c2a440f21c8bdfdc1f4d8e25412358a6a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634565"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060689"
 ---
 # <a name="microsoftaspnetcoreall-metapackage-for-aspnet-core-20"></a>Das Metapaket „Microsoft.AspNetCore.All“ für ASP.NET Core 2.0
 
@@ -38,7 +39,7 @@ Das `Microsoft.AspNetCore.All`-Metapaket ist in ASP.NET Core 3.0 und höher nic
 
 Für dieses Feature ist ASP.NET Core 2.x für .NET Core 2.x erforderlich.
 
-[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) ist ein Metapaket, das auf ein freigegebenes Framework verweist. Ein *freigegebenes Framework*  besteht aus einer Reihe von Assemblys (*DLL*-Dateien), die sich nicht in den Ordnern der App befinden. Das freigegebene Framework muss zum Ausführen der App auf dem Computer installiert sein. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
+[Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) ist ein Metapaket, das auf ein freigegebenes Framework verweist. Ein *freigegebenes Framework*  besteht aus einer Reihe von Assemblys ( *DLL* -Dateien), die sich nicht in den Ordnern der App befinden. Das freigegebene Framework muss zum Ausführen der App auf dem Computer installiert sein. Weitere Informationen finden Sie unter [The shared framework](https://natemcmaster.com/blog/2018/08/29/netcore-primitives-2/) (Das freigegebene Framework).
 
 Das freigegebene Framework, auf das `Microsoft.AspNetCore.All` verweist, enthält:
 
@@ -50,7 +51,7 @@ In dem Paket `Microsoft.AspNetCore.All` sind alle Features von ASP.NET Core 2.x 
 
 Die Versionsnummer des `Microsoft.AspNetCore.All`-Metapakets gibt die erforderlichen Mindestversionen von ASP.NET Core und Entity Framework Core an.
 
-Die folgende *.csproj*-Datei verweist auf das Metapaket `Microsoft.AspNetCore.All` für ASP.NET Core:
+Die folgende *.csproj* -Datei verweist auf das Metapaket `Microsoft.AspNetCore.All` für ASP.NET Core:
 
 [!code-xml[](metapackage/samples/Metapackage.All.Example.csproj?highlight=8)]
 
@@ -62,7 +63,7 @@ In ASP.NET Core 2.1 oder höher können Sie den `Microsoft.AspNetCore.All`-Paket
 
 Die implizite Version wird auf `major.minor.0` festgelegt, wenn es sich um Apps für Mobilgeräte handelt. Der Rollforwardmechanismus des freigegebenen Frameworks führt die App auf der neuesten kompatiblen Version der installierten freigegebenen Frameworks aus. Stellen Sie sicher, dass die gleiche Version des freigegebenen Frameworks in allen Umgebungen installiert ist, um zu gewährleisten, dass die gleiche Version bei der Entwicklung, beim Testen und in der Produktion verwendet wird. Bei unabhängigen Apps wird die implizite Versionsnummer auf die Versionsnummer `major.minor.patch` des freigegebenen Frameworks festgelegt, das im installierten SDK zusammengefasst ist.
 
-Das Angeben einer Versionsnummer im `Microsoft.AspNetCore.All`-Paketverweis garantiert **nicht**, dass diese Version des freigegebenen Frameworks ausgewählt wird. Gehen Sie beispielsweise davon aus, dass „2.1.1“ angegeben, aber „2.1.3“ installiert ist. In diesem Fall verwendet die App Version 2.1.3. Sie können den Rollforward (für „patch“ und/oder „minor“) deaktivieren. Dies wird jedoch nicht empfohlen. Weitere Informationen zum Rollforward des dotnet-Hosts und der Konfiguration seines Verhaltens finden Sie unter [dotnet host roll forward (Rollforward des dotnet-Hosts)](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
+Das Angeben einer Versionsnummer im `Microsoft.AspNetCore.All`-Paketverweis garantiert **nicht** , dass diese Version des freigegebenen Frameworks ausgewählt wird. Gehen Sie beispielsweise davon aus, dass „2.1.1“ angegeben, aber „2.1.3“ installiert ist. In diesem Fall verwendet die App Version 2.1.3. Sie können den Rollforward (für „patch“ und/oder „minor“) deaktivieren. Dies wird jedoch nicht empfohlen. Weitere Informationen zum Rollforward des dotnet-Hosts und der Konfiguration seines Verhaltens finden Sie unter [dotnet host roll forward (Rollforward des dotnet-Hosts)](https://github.com/dotnet/core-setup/blob/master/Documentation/design-docs/roll-forward-on-no-candidate-fx.md).
 
 Das SDK des Projekts muss in der Projektdatei auf `Microsoft.NET.Sdk.Web` festgelegt werden, damit die implizite Versionsverwaltung von `Microsoft.AspNetCore.All` verwendet werden kann. Wenn das SDK `Microsoft.NET.Sdk` festgelegt wird (`<Project Sdk="Microsoft.NET.Sdk">` ganz oben in der Projektdatei), wird die folgende Warnung angezeigt:
 

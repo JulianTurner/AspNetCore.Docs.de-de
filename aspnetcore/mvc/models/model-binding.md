@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: a3be22134246c76b0a809ddb97b33ff97ace9a5b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 49300d32096e577db9b13a0510cc310b91ddb51d
+ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057504"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93365352"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Modellbindung in ASP.NET Core
 
@@ -211,8 +211,8 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Enumeration](xref:System.ComponentModel.EnumConverter)
-* [GUID](xref:System.ComponentModel.GuidConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
@@ -224,7 +224,7 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 
 Ein komplexer Typ muss einen öffentlichen Standardkonstruktor und öffentliche schreibbare Eigenschaften besitzen, die gebunden werden können. Wenn die Modellbindung erfolgt, wird die Klasse mit dem öffentlichen Standardkonstruktor instanziiert. 
 
-Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name* . Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
+Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name*. Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
 
 Beim Binden an einen Parameter ist das Präfix der Name des Parameters. Beim Binden an eine öffentliche Eigenschaft `PageModel` ist das Präfix der Name der öffentlichen Eigenschaft. Einige Attribute besitzen eine Eigenschaft `Prefix`, die es Ihnen gestattet, die Standardverwendung des Parameter- oder Eigenschaftennamens außer Kraft zu setzen.
 
@@ -302,6 +302,27 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 Das- `[Bind]` Attribut kann verwendet werden, um in _create *-Szenarios vor overposting zu schützen. Es funktioniert nicht gut in Bearbeitungsszenarien (edit), weil ausgeschlossene Eigenschaften auf „null“ oder einen Standardwert festgelegt werden, anstatt unverändert zu bleiben. Zum Schutz vor Overposting werden Ansichtsmodelle empfohlen, anstelle des `[Bind]`-Attributs. Weitere Informationen finden Sie unter [Sicherheitshinweis zum Overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
+### <a name="modelbinder-attribute"></a>[Modelbinder]-Attribut
+
+<xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute> kann auf Typen, Eigenschaften oder Parameter angewendet werden. Es ermöglicht die Angabe des Typs des Modell Binders, der zum Binden der spezifischen Instanz oder des Typs verwendet wird. Beispiel:
+
+```C#
+[HttpPost]
+public IActionResult OnPost([ModelBinder(typeof(MyInstructorModelBinder))] Instructor instructor)
+```
+
+Das `[ModelBinder]` -Attribut kann auch verwendet werden, um den Namen einer Eigenschaft oder eines Parameters zu ändern, wenn er Modell gebunden ist:
+
+```C#
+public class Instructor
+{
+    [ModelBinder(Name = "instructor_id")]
+    public string Id { get; set; }
+    
+    public string Name { get; set; }
+}
+```
+
 ### <a name="bindrequired-attribute"></a>[BindRequired]-Attribut
 
 Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter. Bewirkt, dass die Modellbindung einen Modellzustandsfehler hinzufügt, wenn die Bindung für die Eigenschaft eines Modells nicht erfolgen kann. Hier sehen Sie ein Beispiel:
@@ -316,9 +337,9 @@ Kann nur auf Modelleigenschaften angewendet werden, nicht auf Methodenparameter.
 
 [!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
-## <a name="collections"></a>Sammlungen
+## <a name="collections"></a>Auflistungen
 
-Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
+Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
 
 * Angenommen, der zu bindende Parameter ist ein Array namens `selectedCourses`:
 
@@ -363,7 +384,7 @@ Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Ü
 
 ## <a name="dictionaries"></a>Wörterbücher
 
-Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
+Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
 
 * Angenommen, der Zielparameter ist eine `Dictionary<int, string>` mit dem Namen `selectedCourses`:
 
@@ -739,8 +760,8 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
-* [Enumeration](xref:System.ComponentModel.EnumConverter)
-* [GUID](xref:System.ComponentModel.GuidConverter)
+* [Enum](xref:System.ComponentModel.EnumConverter)
+* [Guid](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
@@ -752,7 +773,7 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 
 Ein komplexer Typ muss einen öffentlichen Standardkonstruktor und öffentliche schreibbare Eigenschaften besitzen, die gebunden werden können. Wenn die Modellbindung erfolgt, wird die Klasse mit dem öffentlichen Standardkonstruktor instanziiert. 
 
-Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name* . Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
+Für jede Eigenschaft des komplexen Typs durchsucht die Modellbindung die Quellen für das Namensmuster *prefix.property_name*. Wenn nichts gefunden wird, sucht sie nur nach *property_name* ohne das Präfix.
 
 Beim Binden an einen Parameter ist das Präfix der Name des Parameters. Beim Binden an eine öffentliche Eigenschaft `PageModel` ist das Präfix der Name der öffentlichen Eigenschaft. Einige Attribute besitzen eine Eigenschaft `Prefix`, die es Ihnen gestattet, die Standardverwendung des Parameter- oder Eigenschaftennamens außer Kraft zu setzen.
 
@@ -844,9 +865,9 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 Das `[Bind]`-Attribut kann zum Schutz vor Overposting in *Erstellungs* szenarien (create) verwendet werden. Es funktioniert nicht gut in Bearbeitungsszenarien (edit), weil ausgeschlossene Eigenschaften auf „null“ oder einen Standardwert festgelegt werden, anstatt unverändert zu bleiben. Zum Schutz vor Overposting werden Ansichtsmodelle empfohlen, anstelle des `[Bind]`-Attributs. Weitere Informationen finden Sie unter [Sicherheitshinweis zum Overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
 
-## <a name="collections"></a>Sammlungen
+## <a name="collections"></a>Auflistungen
 
-Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
+Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
 
 * Angenommen, der zu bindende Parameter ist ein Array namens `selectedCourses`:
 
@@ -891,7 +912,7 @@ Bei Zielen, die Sammlungen einfacher Typen sind, sucht die Modellbindung nach Ü
 
 ## <a name="dictionaries"></a>Wörterbücher
 
-Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name* . Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Zum Beispiel:
+Bei `Dictionary`-Zielen sucht die Modellbindung nach Übereinstimmungen mit *parameter_name* oder *property_name*. Wird keine Übereinstimmung gefunden, sucht sie nach einem der unterstützten Formate ohne Präfix. Beispiel:
 
 * Angenommen, der Zielparameter ist eine `Dictionary<int, string>` mit dem Namen `selectedCourses`:
 

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: dd00b9d7faf467857ec1e47f4cfb0296d84e5d3f
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: e52e4aefc18b84f85bea28a9724894eed50ca54a
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847701"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061066"
 ---
 # <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>Teil 6: Razor Pages mit EF Core in ASP.NET Core – Lesen relevanter Daten
 
@@ -57,7 +58,7 @@ Es gibt mehrere Möglichkeiten, mit denen EF Core verwandte Daten in die Navigat
 
   ![Beispiel für separate Abfragen](read-related-data/_static/separate-queries.png)
 
-  **Hinweis**: EF Core korrigiert automatisch Navigationseigenschaften für alle anderen Entitäten, die zuvor in die Kontextinstanz geladen wurden. Auch wenn die Daten für eine Navigationseigenschaft *nicht* explizit eingeschlossen sind, kann die Eigenschaft immer noch aufgefüllt werden, wenn einige oder alle verwandten Entitäten zuvor geladen wurden.
+  **Hinweis** : EF Core korrigiert automatisch Navigationseigenschaften für alle anderen Entitäten, die zuvor in die Kontextinstanz geladen wurden. Auch wenn die Daten für eine Navigationseigenschaft *nicht* explizit eingeschlossen sind, kann die Eigenschaft immer noch aufgefüllt werden, wenn einige oder alle verwandten Entitäten zuvor geladen wurden.
 
 * [Explizites Laden](/ef/core/querying/related-data#explicit-loading). Wenn die Entität zuerst gelesen wird, werden verwandte Daten nicht abgerufen. Es muss Code geschrieben werden, um die verwandten Daten bei Bedarf abzurufen. Explizites Laden mit separaten Abfragen führt zu mehreren Abfragen, die an die Datenbank gesendet werden. Mit explizitem Laden gibt der Code die zu ladenden Navigationseigenschaften an. Verwenden Sie für explizites Laden die `Load`-Methode. Zum Beispiel:
 
@@ -215,7 +216,7 @@ Aktualisieren Sie *Pages/Instructors/Index.cshtml.cs* mit dem folgenden Code:
 
 Die `OnGetAsync`-Methode akzeptiert optional Routendaten für die ID des ausgewählten Dozenten.
 
-Untersuchen Sie die Abfrage in der Datei *Pages/Instructors/Index.cshtml.cs*:
+Untersuchen Sie die Abfrage in der Datei *Pages/Instructors/Index.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Instructors/Index1.cshtml.cs?name=snippet_EagerLoading)]
 
@@ -262,7 +263,7 @@ Durch den vorangehenden Code werden folgende Änderungen vorgenommen:
 
   `https://localhost:5001/Instructors/2`
 
-* Fügt eine **Office**-Spalte hinzu, die `item.OfficeAssignment.Location` nur anzeigt, wenn `item.OfficeAssignment` nicht NULL ist. Da dies eine 1:0..1-Beziehung ist, gibt es möglicherweise keine verwandte OfficeAssignment-Entität.
+* Fügt eine **Office** -Spalte hinzu, die `item.OfficeAssignment.Location` nur anzeigt, wenn `item.OfficeAssignment` nicht NULL ist. Da dies eine 1:0..1-Beziehung ist, gibt es möglicherweise keine verwandte OfficeAssignment-Entität.
 
   ```html
   @if (item.OfficeAssignment != null)
@@ -271,7 +272,7 @@ Durch den vorangehenden Code werden folgende Änderungen vorgenommen:
   }
   ```
 
-* Fügt eine **Courses**-Spalte hinzu, die die Kurse eines jeden Dozenten anzeigt. Weitere Informationen zu dieser Razor-Syntax finden Sie unter [Expliziter Zeilenübergang](xref:mvc/views/razor#explicit-line-transition).
+* Fügt eine **Courses** -Spalte hinzu, die die Kurse eines jeden Dozenten anzeigt. Weitere Informationen zu dieser Razor-Syntax finden Sie unter [Expliziter Zeilenübergang](xref:mvc/views/razor#explicit-line-transition).
 
 * Fügt Code hinzu, der `class="success"` dynamisch zum `tr`-Element des ausgewählten Dozenten und Kurses hinzufügt. Hiermit wird mit einer Bootstrapklasse eine Hintergrundfarbe für die ausgewählte Zeile hinzugefügt.
 
@@ -322,7 +323,7 @@ Aktualisieren Sie *Pages/Instructors/Index.cshtml.cs* mit dem folgenden Code.
 
 [!code-csharp[](intro/samples/cu30/Pages/Instructors/Index.cshtml.cs?highlight=31-35,52-56)]
 
-Der vorangehende Code löscht die *ThenInclude*-Methodenaufrufe für Registrierung und Studentendaten. Wenn ein Kurs ausgewählt ist, ruft der explizit geladene Code Folgendes ab:
+Der vorangehende Code löscht die *ThenInclude* -Methodenaufrufe für Registrierung und Studentendaten. Wenn ein Kurs ausgewählt ist, ruft der explizit geladene Code Folgendes ab:
 
 * Die `Enrollment`-Entitäten für den ausgewählten Kurs.
 * Die `Student`-Entitäten für jede `Enrollment`.
@@ -505,7 +506,7 @@ Ersetzen Sie *Pages/Instructors/Index.cshtml.cs* durch den folgenden Code:
 
 Die `OnGetAsync`-Methode akzeptiert optional Routendaten für die ID des ausgewählten Dozenten.
 
-Untersuchen Sie die Abfrage in der Datei *Pages/Instructors/Index.cshtml.cs*:
+Untersuchen Sie die Abfrage in der Datei *Pages/Instructors/Index.cshtml.cs* :
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/Index1.cshtml.cs?name=snippet_ThenInclude)]
 
@@ -531,7 +532,7 @@ Das oben stehende Markup führt die folgenden Änderungen durch:
   `http://localhost:1234/Instructors/2`
 
 * Der Seitentitel lautet **Dozenten**.
-* Es wurde eine **Office**-Spalte hinzugefügt, die `item.OfficeAssignment.Location` nur anzeigt, wenn `item.OfficeAssignment` nicht gleich 0 (null) ist. Da dies eine 1:0..1-Beziehung ist, gibt es möglicherweise keine verwandte OfficeAssignment-Entität.
+* Es wurde eine **Office** -Spalte hinzugefügt, die `item.OfficeAssignment.Location` nur anzeigt, wenn `item.OfficeAssignment` nicht gleich 0 (null) ist. Da dies eine 1:0..1-Beziehung ist, gibt es möglicherweise keine verwandte OfficeAssignment-Entität.
 
   ```html
   @if (item.OfficeAssignment != null)
@@ -540,7 +541,7 @@ Das oben stehende Markup führt die folgenden Änderungen durch:
   }
   ```
 
-* Es wurde eine **Kurse**-Spalte hinzugefügt, die die Kurse eines jeden Dozenten anzeigt. Weitere Informationen zu dieser Razor-Syntax finden Sie unter [Expliziter Zeilenübergang](xref:mvc/views/razor#explicit-line-transition).
+* Es wurde eine **Kurse** -Spalte hinzugefügt, die die Kurse eines jeden Dozenten anzeigt. Weitere Informationen zu dieser Razor-Syntax finden Sie unter [Expliziter Zeilenübergang](xref:mvc/views/razor#explicit-line-transition).
 
 * Es wurde Code hinzugefügt, der `class="success"` dynamisch zum `tr`-Element des ausgewählten Dozenten hinzufügt. Hiermit wird eine Hintergrundfarbe mit einer Bootstrapklasse für die ausgewählte Zeile hinzugefügt.
 
@@ -642,7 +643,7 @@ Aktualisieren Sie `OnGetAsync` mit dem folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Pages/Instructors/IndexXp.cshtml.cs?name=snippet_OnGetAsync&highlight=9-13,29-35)]
 
-Der vorangehende Code löscht die *ThenInclude*-Methodenaufrufe für Registrierung und Studentendaten. Wenn ein Kurs ausgewählt ist, ruft der hervorgehobene Code Folgendes ab:
+Der vorangehende Code löscht die *ThenInclude* -Methodenaufrufe für Registrierung und Studentendaten. Wenn ein Kurs ausgewählt ist, ruft der hervorgehobene Code Folgendes ab:
 
 * Die `Enrollment`-Entitäten für den ausgewählten Kurs.
 * Die `Student`-Entitäten für jede `Enrollment`.

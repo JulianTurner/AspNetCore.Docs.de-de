@@ -5,6 +5,7 @@ description: Dies ist Teil 2 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: b5ef99d5645e0bbd453d09809a446bf4af38a975
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 11832efa6715f96856665f174d65b094806d2810
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634045"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061287"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Teil 2: Hinzufügen eines Controllers zu einer ASP.NET Core MVC-App
 
@@ -29,13 +30,13 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Das Architekturmodell Model-View-Controller (MVC) trennt eine App in drei Hauptkomponenten: **M**odel (Modell), **V**iew (Ansicht) und **C**ontroller. Das MVC-Muster hilft beim Erstellen von Apps, die einfacher zu testen und zu aktualisieren sind als herkömmliche monolithische Apps. MVC-basierte Apps enthalten Folgendes:
+Das Architekturmodell Model-View-Controller (MVC) trennt eine App in drei Hauptkomponenten: **M** odel (Modell), **V** iew (Ansicht) und **C** ontroller. Das MVC-Muster hilft beim Erstellen von Apps, die einfacher zu testen und zu aktualisieren sind als herkömmliche monolithische Apps. MVC-basierte Apps enthalten Folgendes:
 
-* **M**odelle: Klassen, die die Daten der App darstellen. Die Modellklassen verwenden Validierungslogik zum Erzwingen von Geschäftsregeln für diese Daten. In der Regel wird der Modellstatus von Modellobjekten in einer Datenbank abgerufen und gespeichert. In diesem Tutorial ruft ein `Movie`-Modell Daten aus einer Datenbank ab, stellt sie der Ansicht bereit und aktualisiert sie. Aktualisierte Daten werden in eine Datenbank geschrieben.
+* **M** odelle: Klassen, die die Daten der App darstellen. Die Modellklassen verwenden Validierungslogik zum Erzwingen von Geschäftsregeln für diese Daten. In der Regel wird der Modellstatus von Modellobjekten in einer Datenbank abgerufen und gespeichert. In diesem Tutorial ruft ein `Movie`-Modell Daten aus einer Datenbank ab, stellt sie der Ansicht bereit und aktualisiert sie. Aktualisierte Daten werden in eine Datenbank geschrieben.
 
-* **V**iews (Ansichten): Ansichten sind die Komponenten, die die Benutzeroberfläche der App anzeigen. Im Allgemeinen werden die Modelldaten auf dieser Benutzeroberfläche angezeigt.
+* **V** iews (Ansichten): Ansichten sind die Komponenten, die die Benutzeroberfläche der App anzeigen. Im Allgemeinen werden die Modelldaten auf dieser Benutzeroberfläche angezeigt.
 
-* **C**ontroller: Klassen, die Browseranforderungen verarbeiten. Sie rufen Modelldaten ab und rufen Ansichtsvorlagen auf, die eine Antwort zurückgeben. In einer MVC-Anwendung zeigt die Ansicht nur Informationen. Benutzereingaben und -interaktionen werden vom Controller beantwortet und verarbeitet. Der Controller verarbeitet beispielsweise Routendaten und Werte von Abfragezeichenfolgen, die an das Modell übergeben werden. Das Modell kann diese Werte nutzen, um die Datenbank abzufragen. Beispiel: `https://localhost:5001/Home/Privacy` hat Routendaten von `Home` (Controller) und `Privacy` (für den Controller „Home“ aufzurufende Aktionsmethode). `https://localhost:5001/Movies/Edit/5` ist eine Anforderung zum Bearbeiten des Films mit der ID 5 mithilfe des „movie“-Controllers. Routendaten werden weiter unten im Tutorial erläutert.
+* **C** ontroller: Klassen, die Browseranforderungen verarbeiten. Sie rufen Modelldaten ab und rufen Ansichtsvorlagen auf, die eine Antwort zurückgeben. In einer MVC-Anwendung zeigt die Ansicht nur Informationen. Benutzereingaben und -interaktionen werden vom Controller beantwortet und verarbeitet. Der Controller verarbeitet beispielsweise Routendaten und Werte von Abfragezeichenfolgen, die an das Modell übergeben werden. Das Modell kann diese Werte nutzen, um die Datenbank abzufragen. Beispiel: `https://localhost:5001/Home/Privacy` hat Routendaten von `Home` (Controller) und `Privacy` (für den Controller „Home“ aufzurufende Aktionsmethode). `https://localhost:5001/Movies/Edit/5` ist eine Anforderung zum Bearbeiten des Films mit der ID 5 mithilfe des „movie“-Controllers. Routendaten werden weiter unten im Tutorial erläutert.
 
 Das MVC-Muster hilft Ihnen beim Erstellen von Apps, die deren verschiedenen Aspekte (Eingabelogik, Geschäftslogik und Benutzeroberflächenlogik) trennt und zugleich eine lose Kopplung zwischen diesen Elementen bietet. Das Muster gibt an, wo sich jede Art von Logik in der App befinden soll. Die Benutzeroberflächenlogik ist Teil der Ansicht (view). Die Eingabelogik gehört zum Controller. Die Geschäftslogik gehört zum Modell. Diese Trennung ermöglicht Ihnen das Bewältigen von Komplexität beim Erstellen einer App, da Sie zu einem Zeitpunkt an einem Aspekt der Implementierung arbeiten können, ohne den Code eines anderen zu beeinträchtigen. Sie können beispielsweise am Code der Ansicht unabhängig vom Code für die Geschäftslogik arbeiten.
 
@@ -56,7 +57,7 @@ Wir behandeln diese Konzepte in dieser Tutorialreihe und zeigen Ihnen, wie Sie s
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Wählen Sie das **EXPLORER**-Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei**, und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
+Wählen Sie das **EXPLORER** -Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei** , und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
 
   ![Kontextmenü](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
@@ -97,7 +98,7 @@ Das Routingformat ist in der `Configure`-Methode in der Datei *Startup.cs* festg
 
 Wenn Sie zu der App navigieren und keine URL-Segmente angeben, werden standardmäßig der Controller „Home“ und die Methode „Index“ verwendet, die in der oben hervorgehobenen Vorlagenzeile angegeben ist.
 
-Das erste URL-Segment bestimmt die auszuführende Controllerklasse. Daher wird `localhost:{PORT}/HelloWorld` der **HelloWorld**-Controllerklasse zugeordnet. Der zweite Teil des URL-Segments bestimmt die Aktionsmethode für die Klasse. Daher bewirkt `localhost:{PORT}/HelloWorld/Index` das Ausführen der `Index`-Methode der `HelloWorldController`-Klasse. Beachten Sie, dass Sie nur zu `localhost:{PORT}/HelloWorld` navigieren mussten und die `Index`-Methode standardmäßig aufgerufen wurde. Der Grund hierfür ist, dass `Index` die Standardmethode ist, die für einen Controller aufgerufen wird, wenn der Methodenname nicht explizit angegeben wird. Der dritte Teil des URL-Segments (`id`) ist für Routendaten. Routendaten werden weiter unten im Tutorial erläutert.
+Das erste URL-Segment bestimmt die auszuführende Controllerklasse. Daher wird `localhost:{PORT}/HelloWorld` der **HelloWorld** -Controllerklasse zugeordnet. Der zweite Teil des URL-Segments bestimmt die Aktionsmethode für die Klasse. Daher bewirkt `localhost:{PORT}/HelloWorld/Index` das Ausführen der `Index`-Methode der `HelloWorldController`-Klasse. Beachten Sie, dass Sie nur zu `localhost:{PORT}/HelloWorld` navigieren mussten und die `Index`-Methode standardmäßig aufgerufen wurde. Der Grund hierfür ist, dass `Index` die Standardmethode ist, die für einen Controller aufgerufen wird, wenn der Methodenname nicht explizit angegeben wird. Der dritte Teil des URL-Segments (`id`) ist für Routendaten. Routendaten werden weiter unten im Tutorial erläutert.
 
 Wechseln Sie zu `https://localhost:{PORT}/HelloWorld/Welcome`. Die `Welcome`-Methode wird ausgeführt und gibt die Zeichenfolge `This is the Welcome action method...` zurück. Bei dieser URL ist `HelloWorld` der Controller und `Welcome` die Aktionsmethode. Sie haben den Teil `[Parameters]` der URL noch nicht verwendet.
 
@@ -133,7 +134,7 @@ Dieses Mal hat das dritte URL-Segment mit dem Routenparameter `id` übereingesti
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
-In diesen Beispielen hat der Controller den „VC“-Teil von MVC übernommen, d. h. die Aufgaben von **V**iew und **C**ontroller. Der Controller gibt direkt HTML zurück. Im Allgemeinen sollen Controller nicht direkt HTML zurückgeben, da dies sehr aufwändig zu programmieren und pflegen ist. Stattdessen verwenden Sie in der Regel eine separate Razor-Ansichtsvorlagendatei, um die HTML-Antwort zu generieren. Dies lernen Sie im nächsten Tutorial.
+In diesen Beispielen hat der Controller den „VC“-Teil von MVC übernommen, d. h. die Aufgaben von **V** iew und **C** ontroller. Der Controller gibt direkt HTML zurück. Im Allgemeinen sollen Controller nicht direkt HTML zurückgeben, da dies sehr aufwändig zu programmieren und pflegen ist. Stattdessen verwenden Sie in der Regel eine separate Razor-Ansichtsvorlagendatei, um die HTML-Antwort zu generieren. Dies lernen Sie im nächsten Tutorial.
 
 > [!div class="step-by-step"]
 > [Zurück](start-mvc.md)
@@ -143,13 +144,13 @@ In diesen Beispielen hat der Controller den „VC“-Teil von MVC übernommen, d
 
 ::: moniker range="< aspnetcore-3.0"
 
-Das Architekturmodell Model-View-Controller (MVC) trennt eine App in drei Hauptkomponenten: **M**odel (Modell), **V**iew (Ansicht) und **C**ontroller. Das MVC-Muster hilft beim Erstellen von Apps, die einfacher zu testen und zu aktualisieren sind als herkömmliche monolithische Apps. MVC-basierte Apps enthalten Folgendes:
+Das Architekturmodell Model-View-Controller (MVC) trennt eine App in drei Hauptkomponenten: **M** odel (Modell), **V** iew (Ansicht) und **C** ontroller. Das MVC-Muster hilft beim Erstellen von Apps, die einfacher zu testen und zu aktualisieren sind als herkömmliche monolithische Apps. MVC-basierte Apps enthalten Folgendes:
 
-* **M**odelle: Klassen, die die Daten der App darstellen. Die Modellklassen verwenden Validierungslogik zum Erzwingen von Geschäftsregeln für diese Daten. In der Regel wird der Modellstatus von Modellobjekten in einer Datenbank abgerufen und gespeichert. In diesem Tutorial ruft ein `Movie`-Modell Daten aus einer Datenbank ab, stellt sie der Ansicht bereit und aktualisiert sie. Aktualisierte Daten werden in eine Datenbank geschrieben.
+* **M** odelle: Klassen, die die Daten der App darstellen. Die Modellklassen verwenden Validierungslogik zum Erzwingen von Geschäftsregeln für diese Daten. In der Regel wird der Modellstatus von Modellobjekten in einer Datenbank abgerufen und gespeichert. In diesem Tutorial ruft ein `Movie`-Modell Daten aus einer Datenbank ab, stellt sie der Ansicht bereit und aktualisiert sie. Aktualisierte Daten werden in eine Datenbank geschrieben.
 
-* **V**iews (Ansichten): Ansichten sind die Komponenten, die die Benutzeroberfläche der App anzeigen. Im Allgemeinen werden die Modelldaten auf dieser Benutzeroberfläche angezeigt.
+* **V** iews (Ansichten): Ansichten sind die Komponenten, die die Benutzeroberfläche der App anzeigen. Im Allgemeinen werden die Modelldaten auf dieser Benutzeroberfläche angezeigt.
 
-* **C**ontroller: Klassen, die Browseranforderungen verarbeiten. Sie rufen Modelldaten ab und rufen Ansichtsvorlagen auf, die eine Antwort zurückgeben. In einer MVC-Anwendung zeigt die Ansicht nur Informationen. Benutzereingaben und -interaktionen werden vom Controller beantwortet und verarbeitet. Der Controller verarbeitet beispielsweise Routendaten und Werte von Abfragezeichenfolgen, die an das Modell übergeben werden. Das Modell kann diese Werte nutzen, um die Datenbank abzufragen. Beispiel: `https://localhost:5001/Home/About` hat Routendaten von `Home` (Controller) und `About` (für den Controller „Home“ aufzurufende Aktionsmethode). `https://localhost:5001/Movies/Edit/5` ist eine Anforderung zum Bearbeiten des Films mit der ID 5 mithilfe des „movie“-Controllers. Routendaten werden weiter unten im Tutorial erläutert.
+* **C** ontroller: Klassen, die Browseranforderungen verarbeiten. Sie rufen Modelldaten ab und rufen Ansichtsvorlagen auf, die eine Antwort zurückgeben. In einer MVC-Anwendung zeigt die Ansicht nur Informationen. Benutzereingaben und -interaktionen werden vom Controller beantwortet und verarbeitet. Der Controller verarbeitet beispielsweise Routendaten und Werte von Abfragezeichenfolgen, die an das Modell übergeben werden. Das Modell kann diese Werte nutzen, um die Datenbank abzufragen. Beispiel: `https://localhost:5001/Home/About` hat Routendaten von `Home` (Controller) und `About` (für den Controller „Home“ aufzurufende Aktionsmethode). `https://localhost:5001/Movies/Edit/5` ist eine Anforderung zum Bearbeiten des Films mit der ID 5 mithilfe des „movie“-Controllers. Routendaten werden weiter unten im Tutorial erläutert.
 
 Das MVC-Muster hilft Ihnen beim Erstellen von Apps, die deren verschiedenen Aspekte (Eingabelogik, Geschäftslogik und Benutzeroberflächenlogik) trennt und zugleich eine lose Kopplung zwischen diesen Elementen bietet. Das Muster gibt an, wo sich jede Art von Logik in der App befinden soll. Die Benutzeroberflächenlogik ist Teil der Ansicht (view). Die Eingabelogik gehört zum Controller. Die Geschäftslogik gehört zum Modell. Diese Trennung ermöglicht Ihnen das Bewältigen von Komplexität beim Erstellen einer App, da Sie zu einem Zeitpunkt an einem Aspekt der Implementierung arbeiten können, ohne den Code eines anderen zu beeinträchtigen. Sie können beispielsweise am Code der Ansicht unabhängig vom Code für die Geschäftslogik arbeiten.
 
@@ -170,7 +171,7 @@ Wir behandeln diese Konzepte in dieser Tutorialreihe und zeigen Ihnen, wie Sie s
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Wählen Sie das **EXPLORER**-Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei**, und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
+Wählen Sie das **EXPLORER** -Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei** , und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
 
   ![Kontextmenü](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 

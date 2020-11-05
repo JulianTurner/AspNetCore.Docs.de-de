@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 055e248abfadd9092c173e4630e56ea69517da3b
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 88970b0e53b456467bdc2218a3a6b943bbbf0df5
+ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690584"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93234386"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>Zusätzliche Sicherheitsszenarios für ASP.NET Core Blazor WebAssembly
 
@@ -64,7 +65,7 @@ Der konfigurierte <xref:System.Net.Http.HttpClient> wird verwendet, um autorisie
 
 ```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject HttpClient Client
+@inject HttpClient Http
 
 ...
 
@@ -75,7 +76,7 @@ protected override async Task OnInitializedAsync()
     try
     {
         examples = 
-            await Client.GetFromJsonAsync<ExampleType[]>("ExampleAPIMethod");
+            await Http.GetFromJsonAsync<ExampleType[]>("ExampleAPIMethod");
 
         ...
     }
@@ -190,11 +191,11 @@ using static {APP ASSEMBLY}.Data;
 
 public class WeatherForecastClient
 {
-    private readonly HttpClient client;
+    private readonly HttpClient http;
  
-    public WeatherForecastClient(HttpClient client)
+    public WeatherForecastClient(HttpClient http)
     {
-        this.client = client;
+        this.http = http;
     }
  
     public async Task<WeatherForecast[]> GetForecastAsync()
@@ -203,7 +204,7 @@ public class WeatherForecastClient
 
         try
         {
-            forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+            forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
         }
         catch (AccessTokenNotAvailableException exception)
@@ -410,6 +411,11 @@ Das folgende Beispiel veranschaulicht die Vorgehensweise:
 * Wiederherstellen des vorherigen Zustands nach der Authentifizierung mithilfe des Abfragezeichenfolgenparameters
 
 ```razor
+...
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject IAccessTokenProvider TokenProvider
+...
+
 <EditForm Model="User" @onsubmit="OnSaveAsync">
     <label>User
         <InputText @bind-Value="User.Name" />
@@ -441,12 +447,12 @@ Das folgende Beispiel veranschaulicht die Vorgehensweise:
 
     public async Task OnSaveAsync()
     {
-        var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(Navigation.BaseUri);
+        var http = new HttpClient();
+        http.BaseAddress = new Uri(Navigation.BaseUri);
 
         var resumeUri = Navigation.Uri + $"?state=resumeSavingProfile";
 
-        var tokenResult = await AuthenticationService.RequestAccessToken(
+        var tokenResult = await TokenProvider.RequestAccessToken(
             new AccessTokenRequestOptions
             {
                 ReturnUrl = resumeUri
@@ -454,9 +460,9 @@ Das folgende Beispiel veranschaulicht die Vorgehensweise:
 
         if (tokenResult.TryGetToken(out var token))
         {
-            httpClient.DefaultRequestHeaders.Add("Authorization", 
+            http.DefaultRequestHeaders.Add("Authorization", 
                 $"Bearer {token.Value}");
-            await httpClient.PostAsJsonAsync("Save", User);
+            await http.PostAsJsonAsync("Save", User);
         }
         else
         {

@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/16/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/target-aspnetcore
-ms.openlocfilehash: 571e6c66f60bbc09b902ff9064d2fb1c18c433dc
-ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
+ms.openlocfilehash: c012658a6f48247af60c8bfd56a7d987f6aa8a68
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/26/2020
-ms.locfileid: "88630054"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061508"
 ---
 # <a name="use-aspnet-core-apis-in-a-class-library"></a>Verwenden von ASP.NET Core-APIs in einer Klassenbibliothek
 
@@ -61,7 +62,7 @@ Verwenden Sie zur Unterstützung der Nutzung von Razor-Komponenten sowohl in [Bl
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek** . Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte deaktiviert sein.
+Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek**. Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte deaktiviert sein.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -73,7 +74,7 @@ dotnet new razorclasslib
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek** .
+Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek**.
 
 ---
 
@@ -125,7 +126,7 @@ Die Projektvorlage **Razor-Klassenbibliothek** erfüllt die obigen Voraussetzung
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek** . Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte aktiviert sein.
+Verwenden Sie die Projektvorlage **Razor-Klassenbibliothek**. Das Kontrollkästchen **Seiten und Ansichten unterstützen** sollte aktiviert sein.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 

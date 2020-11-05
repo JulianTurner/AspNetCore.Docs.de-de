@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 11/26/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: b41288bd63267a9aa7035e25ebc8d838eed5d93b
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 4a80e3e82a18e0066c7628c8f40401155538e32b
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690681"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061196"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: Aufrufen einer ASP.NET Core-Web-API mit JavaScript
 
@@ -55,7 +56,7 @@ Ein sehr einfacher `fetch`-Aufruf akzeptiert einen einzelnen Parameter, der die 
 
     [!code-csharp[](first-web-api/samples/3.0/TodoApi/StartupJavaScript.cs?highlight=8-9&name=snippet_configure)]
 
-1. Erstellen Sie im Stammverzeichnis den Ordner *wwwroot* .
+1. Erstellen Sie im Stammverzeichnis den Ordner *wwwroot*.
 
 1. Erstellen Sie einen *js* -Ordner im *wwwroot* -Ordner.
 
@@ -69,7 +70,7 @@ Ein sehr einfacher `fetch`-Aufruf akzeptiert einen einzelnen Parameter, der die 
 
 Möglicherweise ist eine Änderung an den Starteinstellungen des ASP.NET Core-Projekts erforderlich, um die HTML-Seite lokal zu testen:
 
-1. Öffnen Sie *Properties\launchSettings.json* .
+1. Öffnen Sie *Properties\launchSettings.json*.
 1. Entfernen Sie die `launchUrl`-Eigenschaft, um zu erzwingen, dass die App mit *index.html* als Startseite geöffnet wird. Dies ist die Standarddatei des Projekts.
 
 Dieses Beispiel ruft alle CRUD-Methoden der Web-API auf. Im Folgenden werden die Web-API-Aufrufe erläutert.
@@ -101,7 +102,7 @@ Wenn die Web-API den Statuscode „Erfolgreich“ zurückgibt, wird die Funktion
 
 Das Aktualisieren eines To-Do-Elements funktioniert sehr ähnlich wie das Hinzufügen. Allerdings gibt es zwei wesentliche Unterschiede:
 
-* Die Route erhält den eindeutigen Bezeichner des zu aktualisierenden Elements als Suffix. Beispiel: *api/TodoItems/1* .
+* Die Route erhält den eindeutigen Bezeichner des zu aktualisierenden Elements als Suffix. Beispiel: *api/TodoItems/1*.
 * Das HTTP-Aktionsverb ist PUT, wie durch die Option `method` angegeben.
 
 [!code-javascript[](first-web-api/samples/3.0/TodoApi/wwwroot/js/site.js?name=snippet_UpdateItem)]

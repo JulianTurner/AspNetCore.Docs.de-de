@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/platform-specific-configuration
-ms.openlocfilehash: fadd93cf28603653e20ed6c7dceadcabf0dfb9a5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c12487875db69472ee328dfc7a611ee99974c770
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627519"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93061053"
 ---
 # <a name="use-hosting-startup-assemblies-in-aspnet-core"></a>Verwenden von Hostingstartassemblys in ASP.NET Core
 
@@ -112,13 +113,13 @@ Der [Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetc
 
 Die <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*>-Methode der `ServiceKeyInjection`-Klasse verwendet einen <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>, um einer App Erweiterungen hinzuzufügen.
 
-*HostingStartupLibrary/ServiceKeyInjection.cs*:
+*HostingStartupLibrary/ServiceKeyInjection.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupLibrary/ServiceKeyInjection.cs?name=snippet1)]
 
 Die Indexseite der App liest und rendert die Konfigurationswerte für die beiden Schlüssel, die von der Hostingstartassembly der Klassenbibliothek festgelegt werden:
 
-*HostingStartupApp/Pages/Index.cshtml.cs*:
+*HostingStartupApp/Pages/Index.cshtml.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
@@ -127,13 +128,13 @@ Der [Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetc
 * Enthält die Hostingstartklasse `ServiceKeyInjection`, die `IHostingStartup` implementiert. `ServiceKeyInjection` fügt der App-Konfiguration zwei Dienstzeichenfolgen hinzu.
 * Enthält ein `HostingStartup`-Attribut.
 
-*HostingStartupPackage/ServiceKeyInjection.cs*:
+*HostingStartupPackage/ServiceKeyInjection.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupPackage/ServiceKeyInjection.cs?name=snippet1)]
 
 Die Indexseite der App liest und rendert die Konfigurationswerte für die beiden Schlüssel, die von der Hostingstartassembly der Bibliothek festgelegt werden:
 
-*HostingStartupApp/Pages/Index.cshtml.cs*:
+*HostingStartupApp/Pages/Index.cshtml.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
 
@@ -169,7 +170,7 @@ Eine Klasse implementiert `IHostingStartup`. Die <xref:Microsoft.AspNetCore.Host
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
-Die Datei für die Abhängigkeiten ( *.deps.json*) legt beim Erstellen eine `IHostingStartup`-Projekts den `runtime`-Speicherort der Assembly auf den *bin*-Ordner fest:
+Die Datei für die Abhängigkeiten ( *.deps.json* ) legt beim Erstellen eine `IHostingStartup`-Projekts den `runtime`-Speicherort der Assembly auf den *bin* -Ordner fest:
 
 [!code-json[](platform-specific-configuration/samples-snapshot/3.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
@@ -262,7 +263,7 @@ Nach der Erstellung des Hostingstarts wird mithilfe der Manifestprojektdatei und
 dotnet store --manifest {MANIFEST FILE} --runtime {RUNTIME IDENTIFIER} --output {OUTPUT LOCATION} --skip-optimization
 ```
 
-In der Beispiel-App (Projekt *RuntimeStore*) wird der folgende Befehl verwendet:
+In der Beispiel-App (Projekt *RuntimeStore* ) wird der folgende Befehl verwendet:
 
 ```dotnetcli
 dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./deployment/store --skip-optimization
@@ -274,13 +275,13 @@ Damit die Runtime den Laufzeitspeicher ermitteln kann, wird der Speicherort des 
 
 Um die Erweiterung ohne einen Paketverweis auf die Erweiterung zu aktivieren, geben Sie mit `additionalDeps` zusätzliche Abhängigkeiten zur Laufzeit an. `additionalDeps` ermöglicht Ihnen Folgendes:
 
-* Erweitern des App-Bibliotheksdiagramms durch Bereitstellen einer Reihe zusätzlicher *.deps.json*-Dateien, die beim Start mit der App-eigenen *.deps.json*-Datei zusammengeführt werden.
+* Erweitern des App-Bibliotheksdiagramms durch Bereitstellen einer Reihe zusätzlicher *.deps.json* -Dateien, die beim Start mit der App-eigenen *.deps.json* -Datei zusammengeführt werden.
 * Bereitstellen der Hostingstartassembly, sodass sie ermittelt und geladen werden kann
 
 Folgender Ansatz wird zum Generieren der zusätzlichen Abhängigkeitendatei empfohlen:
 
  1. Führen Sie `dotnet publish` für die Manifestdatei des Laufzeitspeichers aus, auf die im vorherigen Abschnitt verwiesen wurde.
- 1. Entfernen Sie den Manifestverweis aus den Bibliotheken und dem Abschnitt `runtime` der daraus resultierenden *.deps.json*-Datei.
+ 1. Entfernen Sie den Manifestverweis aus den Bibliotheken und dem Abschnitt `runtime` der daraus resultierenden *.deps.json* -Datei.
 
 Im Beispielprojekt wird die Eigenschaft `store.manifest/1.0.0` aus den Abschnitten `targets` und `libraries` entfernt:
 
@@ -328,7 +329,7 @@ Im Beispielprojekt wird die Eigenschaft `store.manifest/1.0.0` aus den Abschnitt
 }
 ```
 
-Legen Sie die *.deps.json*-Datei an folgendem Speicherort ab:
+Legen Sie die *.deps.json* -Datei an folgendem Speicherort ab:
 
 ```
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
@@ -339,7 +340,7 @@ Legen Sie die *.deps.json*-Datei an folgendem Speicherort ab:
 * `{SHARED FRAMEWORK VERSION}`: Dies ist die Mindestversion des freigegebenen Frameworks.
 * `{ENHANCEMENT ASSEMBLY NAME}`: Dies ist der Name der Erweiterungsassembly.
 
-In der Beispiel-App (Projekt *RuntimeStore*) wird die zusätzliche Abhängigkeitendatei an folgendem Speicherort abgelegt:
+In der Beispiel-App (Projekt *RuntimeStore* ) wird die zusätzliche Abhängigkeitendatei an folgendem Speicherort abgelegt:
 
 ```
 deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnostics.deps.json
@@ -347,13 +348,13 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/3.0.0/StartupDiagnosti
 
 Damit die Runtime den Speicherort des Laufzeitspeichers ermitteln kann, wir die zusätzliche Abhängigkeitendatei der Umgebungsvariablen `DOTNET_ADDITIONAL_DEPS` hinzugefügt.
 
-In der Beispiel-App (Projekt *RuntimeStore*) wird das Erstellen des Laufzeitspeichers und das Generieren der zusätzlichen Abhängigkeitendatei durch ein [PowerShell](/powershell/scripting/powershell-scripting)-Skript durchgeführt.
+In der Beispiel-App (Projekt *RuntimeStore* ) wird das Erstellen des Laufzeitspeichers und das Generieren der zusätzlichen Abhängigkeitendatei durch ein [PowerShell](/powershell/scripting/powershell-scripting)-Skript durchgeführt.
 
 Beispiele zum Festlegen von Umgebungsvariablen für verschiedene Betriebssysteme finden Sie unter [Use multiple environments (Verwenden mehrerer Umgebungen)](xref:fundamentals/environments).
 
 **Bereitstellung**
 
-Um die Bereitstellung eines Hostingstarts in einer Umgebung mit mehreren Computern zu erleichtern, erstellt die Beispiel-App in der veröffentlichten Ausgabe einen *deployment*-Ordner, der Folgendes enthält:
+Um die Bereitstellung eines Hostingstarts in einer Umgebung mit mehreren Computern zu erleichtern, erstellt die Beispiel-App in der veröffentlichten Ausgabe einen *deployment* -Ordner, der Folgendes enthält:
 
 * Der Laufzeitspeicher des Hostingstarts.
 * Die Abhängigkeitendatei des Hostingstarts.
@@ -363,7 +364,7 @@ Um die Bereitstellung eines Hostingstarts in einer Umgebung mit mehreren Compute
 
 In einem NuGet-Paket kann eine Hostingstarterweiterung bereitgestellt werden. Das Paket enthält ein `HostingStartup`-Attribut. Die vom Paket bereitgestellten Hostingstarttypen werden für die App mit einem der folgenden Verfahren verfügbar gemacht:
 
-* Die Projektdatei der erweiterten App erstellt einen Paketverweis für den Hostingstart in der Projektdatei der App (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json*) eingebunden. Dieses Verfahren gilt für ein in [nuget.org](https://www.nuget.org/) veröffentlichtes Hostingstartassembly-Paket.
+* Die Projektdatei der erweiterten App erstellt einen Paketverweis für den Hostingstart in der Projektdatei der App (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json* ) eingebunden. Dieses Verfahren gilt für ein in [nuget.org](https://www.nuget.org/) veröffentlichtes Hostingstartassembly-Paket.
 * Die Abhängigkeitendatei des Hostingstarts wird für die erweiterte App wie im Abschnitt [Laufzeitspeicher](#runtime-store) beschrieben (ohne Kompilierzeitverweis) verfügbar gemacht.
 
 Weitere Informationen zu NuGet-Paketen und den Laufzeitspeicher finden Sie in den folgenden Themen:
@@ -376,12 +377,12 @@ Weitere Informationen zu NuGet-Paketen und den Laufzeitspeicher finden Sie in de
 
 Eine Hostingstarterweiterung kann durch eine mittels *bin* bereitgestellte Assembly in der erweiterten App bereitgestellt werden. Die von der Assembly bereitgestellten Hostingstarttypen werden für die App mit einem der folgenden Verfahren verfügbar gemacht:
 
-* Die Projektdatei der erweiterten App enthält einen Assemblyverweis auf den Hostingstart (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json*) eingebunden. Dieser Ansatz gilt, wenn das Bereitstellungsszenario erfordert, dass ein Kompilierzeitverweis auf die Assembly des Hostingstarts (*DLL*-Datei) erstellt und die Assembly in eine der beiden Dateien verschoben wird:
+* Die Projektdatei der erweiterten App enthält einen Assemblyverweis auf den Hostingstart (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json* ) eingebunden. Dieser Ansatz gilt, wenn das Bereitstellungsszenario erfordert, dass ein Kompilierzeitverweis auf die Assembly des Hostingstarts ( *DLL* -Datei) erstellt und die Assembly in eine der beiden Dateien verschoben wird:
   * Das verbrauchende Projekt.
   * Einen Speicherort, auf den das verbrauchende Projekt zugreifen kann.
 * Die Abhängigkeitendatei des Hostingstarts wird für die erweiterte App wie im Abschnitt [Laufzeitspeicher](#runtime-store) beschrieben (ohne Kompilierzeitverweis) verfügbar gemacht.
 * Wenn das Ziel .NET Framework ist, kann die Assembly in den Standardladekontext geladen werden, was bei .NET Framework bedeutet, dass sich die Assembly an einem der folgenden Speicherorte befindet:
-  * Anwendungsbasispfad: Dabei handelt es sich um den Ordner *bin*, in dem die ausführbare Datei ( *.exe*) der App gespeichert wird.
+  * Anwendungsbasispfad: Dabei handelt es sich um den Ordner *bin* , in dem die ausführbare Datei ( *.exe* ) der App gespeichert wird.
   * Globaler Assemblycache (GAC): Der GAC speichert Assemblys, die mehrere .NET Framework-Apps gemeinsam nutzen. Weitere Informationen finden Sie unter [Vorgehensweise: Installieren einer Assembly in den globalen Assemblycache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in der .NET Framework-Dokumentation.
 
 ## <a name="sample-code"></a>Beispielcode
@@ -389,9 +390,9 @@ Eine Hostingstarterweiterung kann durch eine mittels *bin* bereitgestellte Assem
 Der [Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([Herunterladen](xref:index#how-to-download-a-sample)) zeigt Szenarios für die Hostingstartimplementierung:
 
 * Zwei Hostingstartassemblys (Klassenbibliotheken) legen zwei Schlüssel-Wert-Paare der Konfiguration im Arbeitsspeicher fest:
-  * NuGet-Paket (*HostingStartupPackage*)
-  * Klassenbibliothek (*HostingStartupLibrary*)
-* Ein Hostingstart wird über eine im Laufzeitspeicher bereitgestellte Assembly (*StartupDiagnostics*) aktiviert. Die Assembly fügt der App zum Start zwei Middlewares hinzu, die Diagnoseinformationen zu folgenden Komponenten bereitstellen:
+  * NuGet-Paket ( *HostingStartupPackage* )
+  * Klassenbibliothek ( *HostingStartupLibrary* )
+* Ein Hostingstart wird über eine im Laufzeitspeicher bereitgestellte Assembly ( *StartupDiagnostics* ) aktiviert. Die Assembly fügt der App zum Start zwei Middlewares hinzu, die Diagnoseinformationen zu folgenden Komponenten bereitstellen:
   * Registrierte Dienste
   * Adresse (Schema, Host, Basispfad, Pfad, Abfragezeichenfolge)
   * Verbindung (Remote-IP, Remoteport, lokale IP, lokaler Port, Clientzertifikat)
@@ -404,7 +405,7 @@ So führen Sie das Beispiel aus:
 
 1. Kompilieren Sie das Paket *HostingStartupPackage* mit dem Befehl [dotnet pack](/dotnet/core/tools/dotnet-pack).
 1. Fügen Sie den Assemblynamen des Pakets *HostingStartupPackage* zur Umgebungsvariablen `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` hinzu.
-1. Kompilieren Sie die App, und führen Sie diese aus. In der erweiterten App ist ein Paketverweis vorhanden (Kompilierzeitverweis). Eine `<PropertyGroup>` in der Projektdatei der App gibt die Ausgabe des Paketprojekts ( *../HostingStartupPackage/bin/Debug*) als Paketquelle an. Dadurch kann die Anwendung das Paket verwenden, ohne das Paket in [nuget.org](https://www.nuget.org/) hochzuladen. Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
+1. Kompilieren Sie die App, und führen Sie diese aus. In der erweiterten App ist ein Paketverweis vorhanden (Kompilierzeitverweis). Eine `<PropertyGroup>` in der Projektdatei der App gibt die Ausgabe des Paketprojekts ( *../HostingStartupPackage/bin/Debug* ) als Paketquelle an. Dadurch kann die Anwendung das Paket verwenden, ohne das Paket in [nuget.org](https://www.nuget.org/) hochzuladen. Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
 
    ```xml
    <PropertyGroup>
@@ -425,7 +426,7 @@ dotnet nuget locals all --clear
 1. Kompilieren Sie die Klassenbibliothek *HostingStartupLibrary* mit dem Befehl [dotnet build](/dotnet/core/tools/dotnet-build).
 1. Fügen Sie der Umgebungsvariablen `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` den Assemblynamen *HostingStartupLibrary* der Klassenbibliothek hinzu.
 1. Stellen Sie die Assembly der Klassenbibliothek mittels *bin* für die App bereit, indem Sie die Datei *HostingStartupLibrary.dll* aus der kompilierten Ausgabe der Klassenbibliothek in den Ordner *bin/Debug* der App kopieren.
-1. Kompilieren Sie die App, und führen Sie diese aus. Eine `<ItemGroup>` in der Projektdatei der App verweist auf die Assembly der Klassenbibliothek ( *.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll*) – Kompilierzeitverweis. Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
+1. Kompilieren Sie die App, und führen Sie diese aus. Eine `<ItemGroup>` in der Projektdatei der App verweist auf die Assembly der Klassenbibliothek ( *.\bin\Debug\netcoreapp3.0\HostingStartupLibrary.dll* ) – Kompilierzeitverweis. Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
 
    ```xml
    <ItemGroup>
@@ -510,13 +511,13 @@ Der [Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetc
 
 Die <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*>-Methode der `ServiceKeyInjection`-Klasse verwendet einen <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>, um einer App Erweiterungen hinzuzufügen.
 
-*HostingStartupLibrary/ServiceKeyInjection.cs*:
+*HostingStartupLibrary/ServiceKeyInjection.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupLibrary/ServiceKeyInjection.cs?name=snippet1)]
 
 Die Indexseite der App liest und rendert die Konfigurationswerte für die beiden Schlüssel, die von der Hostingstartassembly der Klassenbibliothek festgelegt werden:
 
-*HostingStartupApp/Pages/Index.cshtml.cs*:
+*HostingStartupApp/Pages/Index.cshtml.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
@@ -525,13 +526,13 @@ Der [Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetc
 * Enthält die Hostingstartklasse `ServiceKeyInjection`, die `IHostingStartup` implementiert. `ServiceKeyInjection` fügt der App-Konfiguration zwei Dienstzeichenfolgen hinzu.
 * Enthält ein `HostingStartup`-Attribut.
 
-*HostingStartupPackage/ServiceKeyInjection.cs*:
+*HostingStartupPackage/ServiceKeyInjection.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupPackage/ServiceKeyInjection.cs?name=snippet1)]
 
 Die Indexseite der App liest und rendert die Konfigurationswerte für die beiden Schlüssel, die von der Hostingstartassembly der Bibliothek festgelegt werden:
 
-*HostingStartupApp/Pages/Index.cshtml.cs*:
+*HostingStartupApp/Pages/Index.cshtml.cs* :
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
 
@@ -567,7 +568,7 @@ Eine Klasse implementiert `IHostingStartup`. Die <xref:Microsoft.AspNetCore.Host
 
 [!code-csharp[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement.cs?name=snippet2&highlight=3,5)]
 
-Die Datei für die Abhängigkeiten ( *.deps.json*) legt beim Erstellen eine `IHostingStartup`-Projekts den `runtime`-Speicherort der Assembly auf den *bin*-Ordner fest:
+Die Datei für die Abhängigkeiten ( *.deps.json* ) legt beim Erstellen eine `IHostingStartup`-Projekts den `runtime`-Speicherort der Assembly auf den *bin* -Ordner fest:
 
 [!code-json[](platform-specific-configuration/samples-snapshot/2.x/StartupEnhancement1.deps.json?range=2-13&highlight=8)]
 
@@ -648,7 +649,7 @@ Nach der Erstellung des Hostingstarts wird mithilfe der Manifestprojektdatei und
 dotnet store --manifest {MANIFEST FILE} --runtime {RUNTIME IDENTIFIER} --output {OUTPUT LOCATION} --skip-optimization
 ```
 
-In der Beispiel-App (Projekt *RuntimeStore*) wird der folgende Befehl verwendet:
+In der Beispiel-App (Projekt *RuntimeStore* ) wird der folgende Befehl verwendet:
 
 ```dotnetcli
 dotnet store --manifest store.manifest.csproj --runtime win7-x64 --output ./deployment/store --skip-optimization
@@ -660,13 +661,13 @@ Damit die Runtime den Laufzeitspeicher ermitteln kann, wird der Speicherort des 
 
 Um die Erweiterung ohne einen Paketverweis auf die Erweiterung zu aktivieren, geben Sie mit `additionalDeps` zusätzliche Abhängigkeiten zur Laufzeit an. `additionalDeps` ermöglicht Ihnen Folgendes:
 
-* Erweitern des App-Bibliotheksdiagramms durch Bereitstellen einer Reihe zusätzlicher *.deps.json*-Dateien, die beim Start mit der App-eigenen *.deps.json*-Datei zusammengeführt werden.
+* Erweitern des App-Bibliotheksdiagramms durch Bereitstellen einer Reihe zusätzlicher *.deps.json* -Dateien, die beim Start mit der App-eigenen *.deps.json* -Datei zusammengeführt werden.
 * Bereitstellen der Hostingstartassembly, sodass sie ermittelt und geladen werden kann
 
 Folgender Ansatz wird zum Generieren der zusätzlichen Abhängigkeitendatei empfohlen:
 
  1. Führen Sie `dotnet publish` für die Manifestdatei des Laufzeitspeichers aus, auf die im vorherigen Abschnitt verwiesen wurde.
- 1. Entfernen Sie den Manifestverweis aus den Bibliotheken und dem Abschnitt `runtime` der daraus resultierenden *.deps.json*-Datei.
+ 1. Entfernen Sie den Manifestverweis aus den Bibliotheken und dem Abschnitt `runtime` der daraus resultierenden *.deps.json* -Datei.
 
 Im Beispielprojekt wird die Eigenschaft `store.manifest/1.0.0` aus den Abschnitten `targets` und `libraries` entfernt:
 
@@ -714,7 +715,7 @@ Im Beispielprojekt wird die Eigenschaft `store.manifest/1.0.0` aus den Abschnitt
 }
 ```
 
-Legen Sie die *.deps.json*-Datei an folgendem Speicherort ab:
+Legen Sie die *.deps.json* -Datei an folgendem Speicherort ab:
 
 ```
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
@@ -725,7 +726,7 @@ Legen Sie die *.deps.json*-Datei an folgendem Speicherort ab:
 * `{SHARED FRAMEWORK VERSION}`: Dies ist die Mindestversion des freigegebenen Frameworks.
 * `{ENHANCEMENT ASSEMBLY NAME}`: Dies ist der Name der Erweiterungsassembly.
 
-In der Beispiel-App (Projekt *RuntimeStore*) wird die zusätzliche Abhängigkeitendatei an folgendem Speicherort abgelegt:
+In der Beispiel-App (Projekt *RuntimeStore* ) wird die zusätzliche Abhängigkeitendatei an folgendem Speicherort abgelegt:
 
 ```
 deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnostics.deps.json
@@ -733,13 +734,13 @@ deployment/additionalDeps/shared/Microsoft.AspNetCore.App/2.1.0/StartupDiagnosti
 
 Damit die Runtime den Speicherort des Laufzeitspeichers ermitteln kann, wir die zusätzliche Abhängigkeitendatei der Umgebungsvariablen `DOTNET_ADDITIONAL_DEPS` hinzugefügt.
 
-In der Beispiel-App (Projekt *RuntimeStore*) wird das Erstellen des Laufzeitspeichers und das Generieren der zusätzlichen Abhängigkeitendatei durch ein [PowerShell](/powershell/scripting/powershell-scripting)-Skript durchgeführt.
+In der Beispiel-App (Projekt *RuntimeStore* ) wird das Erstellen des Laufzeitspeichers und das Generieren der zusätzlichen Abhängigkeitendatei durch ein [PowerShell](/powershell/scripting/powershell-scripting)-Skript durchgeführt.
 
 Beispiele zum Festlegen von Umgebungsvariablen für verschiedene Betriebssysteme finden Sie unter [Use multiple environments (Verwenden mehrerer Umgebungen)](xref:fundamentals/environments).
 
 **Bereitstellung**
 
-Um die Bereitstellung eines Hostingstarts in einer Umgebung mit mehreren Computern zu erleichtern, erstellt die Beispiel-App in der veröffentlichten Ausgabe einen *deployment*-Ordner, der Folgendes enthält:
+Um die Bereitstellung eines Hostingstarts in einer Umgebung mit mehreren Computern zu erleichtern, erstellt die Beispiel-App in der veröffentlichten Ausgabe einen *deployment* -Ordner, der Folgendes enthält:
 
 * Der Laufzeitspeicher des Hostingstarts.
 * Die Abhängigkeitendatei des Hostingstarts.
@@ -749,7 +750,7 @@ Um die Bereitstellung eines Hostingstarts in einer Umgebung mit mehreren Compute
 
 In einem NuGet-Paket kann eine Hostingstarterweiterung bereitgestellt werden. Das Paket enthält ein `HostingStartup`-Attribut. Die vom Paket bereitgestellten Hostingstarttypen werden für die App mit einem der folgenden Verfahren verfügbar gemacht:
 
-* Die Projektdatei der erweiterten App erstellt einen Paketverweis für den Hostingstart in der Projektdatei der App (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json*) eingebunden. Dieses Verfahren gilt für ein in [nuget.org](https://www.nuget.org/) veröffentlichtes Hostingstartassembly-Paket.
+* Die Projektdatei der erweiterten App erstellt einen Paketverweis für den Hostingstart in der Projektdatei der App (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json* ) eingebunden. Dieses Verfahren gilt für ein in [nuget.org](https://www.nuget.org/) veröffentlichtes Hostingstartassembly-Paket.
 * Die Abhängigkeitendatei des Hostingstarts wird für die erweiterte App wie im Abschnitt [Laufzeitspeicher](#runtime-store) beschrieben (ohne Kompilierzeitverweis) verfügbar gemacht.
 
 Weitere Informationen zu NuGet-Paketen und den Laufzeitspeicher finden Sie in den folgenden Themen:
@@ -762,12 +763,12 @@ Weitere Informationen zu NuGet-Paketen und den Laufzeitspeicher finden Sie in de
 
 Eine Hostingstarterweiterung kann durch eine mittels *bin* bereitgestellte Assembly in der erweiterten App bereitgestellt werden. Die von der Assembly bereitgestellten Hostingstarttypen werden für die App mit einem der folgenden Verfahren verfügbar gemacht:
 
-* Die Projektdatei der erweiterten App enthält einen Assemblyverweis auf den Hostingstart (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json*) eingebunden. Dieser Ansatz gilt, wenn das Bereitstellungsszenario erfordert, dass ein Kompilierzeitverweis auf die Assembly des Hostingstarts (*DLL*-Datei) erstellt und die Assembly in eine der beiden Dateien verschoben wird:
+* Die Projektdatei der erweiterten App enthält einen Assemblyverweis auf den Hostingstart (Kompilierzeitverweis). Wenn ein Kompilierzeitverweis eingerichtet ist, werden die Hostingstartassembly und alle dazu gehörenden Abhängigkeiten in die Abhängigkeitendatei der App ( *.deps.json* ) eingebunden. Dieser Ansatz gilt, wenn das Bereitstellungsszenario erfordert, dass ein Kompilierzeitverweis auf die Assembly des Hostingstarts ( *DLL* -Datei) erstellt und die Assembly in eine der beiden Dateien verschoben wird:
   * Das verbrauchende Projekt.
   * Einen Speicherort, auf den das verbrauchende Projekt zugreifen kann.
 * Die Abhängigkeitendatei des Hostingstarts wird für die erweiterte App wie im Abschnitt [Laufzeitspeicher](#runtime-store) beschrieben (ohne Kompilierzeitverweis) verfügbar gemacht.
 * Wenn das Ziel .NET Framework ist, kann die Assembly in den Standardladekontext geladen werden, was bei .NET Framework bedeutet, dass sich die Assembly an einem der folgenden Speicherorte befindet:
-  * Anwendungsbasispfad: Dabei handelt es sich um den Ordner *bin*, in dem die ausführbare Datei ( *.exe*) der App gespeichert wird.
+  * Anwendungsbasispfad: Dabei handelt es sich um den Ordner *bin* , in dem die ausführbare Datei ( *.exe* ) der App gespeichert wird.
   * Globaler Assemblycache (GAC): Der GAC speichert Assemblys, die mehrere .NET Framework-Apps gemeinsam nutzen. Weitere Informationen finden Sie unter [Vorgehensweise: Installieren einer Assembly in den globalen Assemblycache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in der .NET Framework-Dokumentation.
 
 ## <a name="sample-code"></a>Beispielcode
@@ -775,9 +776,9 @@ Eine Hostingstarterweiterung kann durch eine mittels *bin* bereitgestellte Assem
 Der [Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([Herunterladen](xref:index#how-to-download-a-sample)) zeigt Szenarios für die Hostingstartimplementierung:
 
 * Zwei Hostingstartassemblys (Klassenbibliotheken) legen zwei Schlüssel-Wert-Paare der Konfiguration im Arbeitsspeicher fest:
-  * NuGet-Paket (*HostingStartupPackage*)
-  * Klassenbibliothek (*HostingStartupLibrary*)
-* Ein Hostingstart wird über eine im Laufzeitspeicher bereitgestellte Assembly (*StartupDiagnostics*) aktiviert. Die Assembly fügt der App zum Start zwei Middlewares hinzu, die Diagnoseinformationen zu folgenden Komponenten bereitstellen:
+  * NuGet-Paket ( *HostingStartupPackage* )
+  * Klassenbibliothek ( *HostingStartupLibrary* )
+* Ein Hostingstart wird über eine im Laufzeitspeicher bereitgestellte Assembly ( *StartupDiagnostics* ) aktiviert. Die Assembly fügt der App zum Start zwei Middlewares hinzu, die Diagnoseinformationen zu folgenden Komponenten bereitstellen:
   * Registrierte Dienste
   * Adresse (Schema, Host, Basispfad, Pfad, Abfragezeichenfolge)
   * Verbindung (Remote-IP, Remoteport, lokale IP, lokaler Port, Clientzertifikat)
@@ -790,7 +791,7 @@ So führen Sie das Beispiel aus:
 
 1. Kompilieren Sie das Paket *HostingStartupPackage* mit dem Befehl [dotnet pack](/dotnet/core/tools/dotnet-pack).
 1. Fügen Sie den Assemblynamen des Pakets *HostingStartupPackage* zur Umgebungsvariablen `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` hinzu.
-1. Kompilieren Sie die App, und führen Sie diese aus. In der erweiterten App ist ein Paketverweis vorhanden (Kompilierzeitverweis). Eine `<PropertyGroup>` in der Projektdatei der App gibt die Ausgabe des Paketprojekts ( *../HostingStartupPackage/bin/Debug*) als Paketquelle an. Dadurch kann die Anwendung das Paket verwenden, ohne das Paket in [nuget.org](https://www.nuget.org/) hochzuladen. Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
+1. Kompilieren Sie die App, und führen Sie diese aus. In der erweiterten App ist ein Paketverweis vorhanden (Kompilierzeitverweis). Eine `<PropertyGroup>` in der Projektdatei der App gibt die Ausgabe des Paketprojekts ( *../HostingStartupPackage/bin/Debug* ) als Paketquelle an. Dadurch kann die Anwendung das Paket verwenden, ohne das Paket in [nuget.org](https://www.nuget.org/) hochzuladen. Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
 
    ```xml
    <PropertyGroup>
@@ -811,7 +812,7 @@ dotnet nuget locals all --clear
 1. Kompilieren Sie die Klassenbibliothek *HostingStartupLibrary* mit dem Befehl [dotnet build](/dotnet/core/tools/dotnet-build).
 1. Fügen Sie der Umgebungsvariablen `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES` den Assemblynamen *HostingStartupLibrary* der Klassenbibliothek hinzu.
 1. Stellen Sie die Assembly der Klassenbibliothek mittels *bin* für die App bereit, indem Sie die Datei *HostingStartupLibrary.dll* aus der kompilierten Ausgabe der Klassenbibliothek in den Ordner *bin/Debug* der App kopieren.
-1. Kompilieren Sie die App, und führen Sie diese aus. Eine `<ItemGroup>` in der Projektdatei der App verweist auf die Assembly der Klassenbibliothek ( *.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll*) (Kompilierzeitverweis). Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
+1. Kompilieren Sie die App, und führen Sie diese aus. Eine `<ItemGroup>` in der Projektdatei der App verweist auf die Assembly der Klassenbibliothek ( *.\bin\Debug\netcoreapp2.1\HostingStartupLibrary.dll* ) (Kompilierzeitverweis). Weitere Informationen finden Sie in den Hinweisen in der Projektdatei von HostingStartupApp.
 
    ```xml
    <ItemGroup>

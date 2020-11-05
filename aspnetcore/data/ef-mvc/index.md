@@ -17,30 +17,30 @@ no-loc:
 - ':::no-loc(Razor):::'
 - ':::no-loc(SignalR):::'
 uid: data/ef-mvc/index
-ms.openlocfilehash: d66cd7737b167db274bdb5e252e763190a46743b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 791787612c471e17a886ee05b38dddcabdcceff2
+ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054189"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93365332"
 ---
-# <a name="aspnet-core-mvc-with-ef-core---tutorial-series"></a><span data-ttu-id="858ec-102">ASP.NET Core MVC mit EF-Core: Tutorialreihe</span><span class="sxs-lookup"><span data-stu-id="858ec-102">ASP.NET Core MVC with EF Core - tutorial series</span></span>
+# <a name="aspnet-core-mvc-with-ef-core---tutorial-series"></a><span data-ttu-id="7f4ef-102">ASP.NET Core MVC mit EF-Core: Tutorialreihe</span><span class="sxs-lookup"><span data-stu-id="7f4ef-102">ASP.NET Core MVC with EF Core - tutorial series</span></span>
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-<span data-ttu-id="858ec-103">Dieses Tutorial wurde **nicht** auf ASP.NET Core 3.0 aktualisiert.</span><span class="sxs-lookup"><span data-stu-id="858ec-103">This tutorial has **not** been updated to ASP.NET Core 3.0.</span></span> <span data-ttu-id="858ec-104">Die [:::no-loc(Razor)::: Pages-Version](xref:data/ef-rp/intro) wurde aktualisiert.</span><span class="sxs-lookup"><span data-stu-id="858ec-104">The [:::no-loc(Razor)::: Pages version](xref:data/ef-rp/intro) has been updated.</span></span> <span data-ttu-id="858ec-105">Informationen zum Zeitpunkt des Updates finden Sie in [diesem GitHub-Issue](https://github.com/dotnet/AspNetCore.Docs/issues/13920).</span><span class="sxs-lookup"><span data-stu-id="858ec-105">For information on when this might be updated, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/13920).</span></span>
+<span data-ttu-id="7f4ef-103">Dieses Tutorial wurde **nicht** auf ASP.NET Core 3.0 aktualisiert.</span><span class="sxs-lookup"><span data-stu-id="7f4ef-103">This tutorial has **not** been updated to ASP.NET Core 3.0.</span></span> <span data-ttu-id="7f4ef-104">Die [:::no-loc(Razor)::: Pages-Version](xref:data/ef-rp/intro) wurde aktualisiert.</span><span class="sxs-lookup"><span data-stu-id="7f4ef-104">The [:::no-loc(Razor)::: Pages version](xref:data/ef-rp/intro) has been updated.</span></span>
 
 ::: moniker-end
 
 [!INCLUDE [RP better than MVC](../../includes/RP-EF/rp-over-mvc.md)]
 
-1. [<span data-ttu-id="858ec-106">Erste Schritte</span><span class="sxs-lookup"><span data-stu-id="858ec-106">Get started</span></span>](xref:data/ef-mvc/intro)
-1. [<span data-ttu-id="858ec-107">Create-, Read-, Update- und Delete-Vorgänge (CRUD)</span><span class="sxs-lookup"><span data-stu-id="858ec-107">Create, Read, Update, and Delete operations</span></span>](xref:data/ef-mvc/crud)
-1. [<span data-ttu-id="858ec-108">Sortieren, Filtern, Paginieren und Gruppieren</span><span class="sxs-lookup"><span data-stu-id="858ec-108">Sorting, filtering, paging, and grouping</span></span>](xref:data/ef-mvc/sort-filter-page)
-1. [<span data-ttu-id="858ec-109">Migrationen</span><span class="sxs-lookup"><span data-stu-id="858ec-109">Migrations</span></span>](xref:data/ef-mvc/migrations)
-1. [<span data-ttu-id="858ec-110">Erstellen eines komplexen Datenmodells</span><span class="sxs-lookup"><span data-stu-id="858ec-110">Create a complex data model</span></span>](xref:data/ef-mvc/complex-data-model)
-1. [<span data-ttu-id="858ec-111">Lesen dazugehöriger Daten</span><span class="sxs-lookup"><span data-stu-id="858ec-111">Reading related data</span></span>](xref:data/ef-mvc/read-related-data)
-1. [<span data-ttu-id="858ec-112">Aktualisieren dazugehöriger Daten</span><span class="sxs-lookup"><span data-stu-id="858ec-112">Updating related data</span></span>](xref:data/ef-mvc/update-related-data)
-1. [<span data-ttu-id="858ec-113">Verarbeiten von Nebenläufigkeitskonflikten</span><span class="sxs-lookup"><span data-stu-id="858ec-113">Handle concurrency conflicts</span></span>](xref:data/ef-mvc/concurrency)
-1. [<span data-ttu-id="858ec-114">Vererbung</span><span class="sxs-lookup"><span data-stu-id="858ec-114">Inheritance</span></span>](xref:data/ef-mvc/inheritance)
-1. [<span data-ttu-id="858ec-115">Weiterführende Themen</span><span class="sxs-lookup"><span data-stu-id="858ec-115">Advanced topics</span></span>](xref:data/ef-mvc/advanced)
+1. [<span data-ttu-id="7f4ef-105">Erste Schritte</span><span class="sxs-lookup"><span data-stu-id="7f4ef-105">Get started</span></span>](xref:data/ef-mvc/intro)
+1. [<span data-ttu-id="7f4ef-106">Create-, Read-, Update- und Delete-Vorgänge (CRUD)</span><span class="sxs-lookup"><span data-stu-id="7f4ef-106">Create, Read, Update, and Delete operations</span></span>](xref:data/ef-mvc/crud)
+1. [<span data-ttu-id="7f4ef-107">Sortieren, Filtern, Paginieren und Gruppieren</span><span class="sxs-lookup"><span data-stu-id="7f4ef-107">Sorting, filtering, paging, and grouping</span></span>](xref:data/ef-mvc/sort-filter-page)
+1. [<span data-ttu-id="7f4ef-108">Migrationen</span><span class="sxs-lookup"><span data-stu-id="7f4ef-108">Migrations</span></span>](xref:data/ef-mvc/migrations)
+1. [<span data-ttu-id="7f4ef-109">Erstellen eines komplexen Datenmodells</span><span class="sxs-lookup"><span data-stu-id="7f4ef-109">Create a complex data model</span></span>](xref:data/ef-mvc/complex-data-model)
+1. [<span data-ttu-id="7f4ef-110">Lesen dazugehöriger Daten</span><span class="sxs-lookup"><span data-stu-id="7f4ef-110">Reading related data</span></span>](xref:data/ef-mvc/read-related-data)
+1. [<span data-ttu-id="7f4ef-111">Aktualisieren dazugehöriger Daten</span><span class="sxs-lookup"><span data-stu-id="7f4ef-111">Updating related data</span></span>](xref:data/ef-mvc/update-related-data)
+1. [<span data-ttu-id="7f4ef-112">Verarbeiten von Nebenläufigkeitskonflikten</span><span class="sxs-lookup"><span data-stu-id="7f4ef-112">Handle concurrency conflicts</span></span>](xref:data/ef-mvc/concurrency)
+1. [<span data-ttu-id="7f4ef-113">Vererbung</span><span class="sxs-lookup"><span data-stu-id="7f4ef-113">Inheritance</span></span>](xref:data/ef-mvc/inheritance)
+1. [<span data-ttu-id="7f4ef-114">Weiterführende Themen</span><span class="sxs-lookup"><span data-stu-id="7f4ef-114">Advanced topics</span></span>](xref:data/ef-mvc/advanced)

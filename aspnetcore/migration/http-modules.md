@@ -5,17 +5,17 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: migration/http-modules
 ms.openlocfilehash: 9664f49bd709d2c9e46130773211c339e391d1f6
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -195,9 +195,9 @@ ms.locfileid: "93060702"
 
 2. <span data-ttu-id="3ab71-185">Speichern der Optionswerte</span><span class="sxs-lookup"><span data-stu-id="3ab71-185">Store the option values</span></span>
 
-   <span data-ttu-id="3ab71-186">Mit dem Konfigurationssystem können Sie Optionswerte beliebig speichern.</span><span class="sxs-lookup"><span data-stu-id="3ab71-186">The configuration system allows you to store option values anywhere you want.</span></span> <span data-ttu-id="3ab71-187">Allerdings verwenden die meisten Websites *:::no-loc(appsettings.json):::* , sodass wir diesen Ansatz verwenden:</span><span class="sxs-lookup"><span data-stu-id="3ab71-187">However, most sites use *:::no-loc(appsettings.json):::* , so we'll take that approach:</span></span>
+   <span data-ttu-id="3ab71-186">Mit dem Konfigurationssystem können Sie Optionswerte beliebig speichern.</span><span class="sxs-lookup"><span data-stu-id="3ab71-186">The configuration system allows you to store option values anywhere you want.</span></span> <span data-ttu-id="3ab71-187">Allerdings verwenden die meisten Websites *appsettings.json* , sodass wir diesen Ansatz verwenden:</span><span class="sxs-lookup"><span data-stu-id="3ab71-187">However, most sites use *appsettings.json* , so we'll take that approach:</span></span>
 
-   [!code-json[](http-modules/sample/Asp.Net.Core/:::no-loc(appsettings.json):::?range=1,14-18)]
+   [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,14-18)]
 
    <span data-ttu-id="3ab71-188">*Mymiddlewareoptionssection* hier ist ein Abschnitts Name.</span><span class="sxs-lookup"><span data-stu-id="3ab71-188">*MyMiddlewareOptionsSection* here is a section name.</span></span> <span data-ttu-id="3ab71-189">Er muss nicht mit dem Namen der Options Klasse identisch sein.</span><span class="sxs-lookup"><span data-stu-id="3ab71-189">It doesn't have to be the same as the name of your options class.</span></span>
 
@@ -207,7 +207,7 @@ ms.locfileid: "93060702"
 
     <span data-ttu-id="3ab71-192">Aktualisieren Sie Ihre `Startup` Klasse:</span><span class="sxs-lookup"><span data-stu-id="3ab71-192">Update your `Startup` class:</span></span>
 
-   1. <span data-ttu-id="3ab71-193">Wenn Sie verwenden *:::no-loc(appsettings.json):::* , fügen Sie es dem Konfigurations-Generator im- `Startup` Konstruktor hinzu:</span><span class="sxs-lookup"><span data-stu-id="3ab71-193">If you're using *:::no-loc(appsettings.json):::* , add it to the configuration builder in the `Startup` constructor:</span></span>
+   1. <span data-ttu-id="3ab71-193">Wenn Sie verwenden *appsettings.json* , fügen Sie es dem Konfigurations-Generator im- `Startup` Konstruktor hinzu:</span><span class="sxs-lookup"><span data-stu-id="3ab71-193">If you're using *appsettings.json* , add it to the configuration builder in the `Startup` constructor:</span></span>
 
       [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Ctor&highlight=5-6)]
 
@@ -235,11 +235,11 @@ ms.locfileid: "93060702"
 
 <span data-ttu-id="3ab71-208">Die Lösung besteht darin, die Options Objekte mit den tatsächlichen Options Werten in Ihrer `Startup` Klasse zu erhalten und diese direkt an jede Instanz Ihrer Middleware zu übergeben.</span><span class="sxs-lookup"><span data-stu-id="3ab71-208">The solution is to get the options objects with the actual options values in your `Startup` class and pass those directly to each instance of your middleware.</span></span>
 
-1. <span data-ttu-id="3ab71-209">Fügen Sie einen zweiten Schlüssel hinzu. *:::no-loc(appsettings.json):::*</span><span class="sxs-lookup"><span data-stu-id="3ab71-209">Add a second key to *:::no-loc(appsettings.json):::*</span></span>
+1. <span data-ttu-id="3ab71-209">Fügen Sie einen zweiten Schlüssel hinzu. *appsettings.json*</span><span class="sxs-lookup"><span data-stu-id="3ab71-209">Add a second key to *appsettings.json*</span></span>
 
-   <span data-ttu-id="3ab71-210">Um der Datei einen zweiten Satz von Optionen hinzuzufügen *:::no-loc(appsettings.json):::* , verwenden Sie einen neuen Schlüssel, um ihn eindeutig zu identifizieren:</span><span class="sxs-lookup"><span data-stu-id="3ab71-210">To add a second set of options to the *:::no-loc(appsettings.json):::* file, use a new key to uniquely identify it:</span></span>
+   <span data-ttu-id="3ab71-210">Um der Datei einen zweiten Satz von Optionen hinzuzufügen *appsettings.json* , verwenden Sie einen neuen Schlüssel, um ihn eindeutig zu identifizieren:</span><span class="sxs-lookup"><span data-stu-id="3ab71-210">To add a second set of options to the *appsettings.json* file, use a new key to uniquely identify it:</span></span>
 
-   [!code-json[](http-modules/sample/Asp.Net.Core/:::no-loc(appsettings.json):::?range=1,10-18&highlight=2-5)]
+   [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
 2. <span data-ttu-id="3ab71-211">Rufen Sie Optionswerte ab, und übergeben Sie Sie an die Middleware.</span><span class="sxs-lookup"><span data-stu-id="3ab71-211">Retrieve options values and pass them to middleware.</span></span> <span data-ttu-id="3ab71-212">Die `Use...` Erweiterungsmethode (die die Middleware zur Pipeline hinzufügt) ist ein logischer Speicherort, um die Optionswerte zu übergeben:</span><span class="sxs-lookup"><span data-stu-id="3ab71-212">The `Use...` extension method (which adds your middleware to the pipeline) is a logical place to pass in the option values:</span></span> 
 
@@ -295,9 +295,9 @@ public async Task Invoke(HttpContext context)
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
-<span data-ttu-id="3ab71-233">**HttpContext. Request. :::no-loc(Cookie)::: s** übersetzt in:</span><span class="sxs-lookup"><span data-stu-id="3ab71-233">**HttpContext.Request.:::no-loc(Cookie):::s** translates to:</span></span>
+<span data-ttu-id="3ab71-233">**HttpContext. Request. Cookie s** übersetzt in:</span><span class="sxs-lookup"><span data-stu-id="3ab71-233">**HttpContext.Request.Cookies** translates to:</span></span>
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_:::no-loc(Cookie):::s)]
+[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 
 <span data-ttu-id="3ab71-234">**HttpContext. Request. RequestContext. RouteData** übersetzt in:</span><span class="sxs-lookup"><span data-stu-id="3ab71-234">**HttpContext.Request.RequestContext.RouteData** translates to:</span></span>
 
@@ -378,21 +378,21 @@ public async Task Invoke(HttpContext httpContext)
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetHeaders)]
 
-<span data-ttu-id="3ab71-260">**HttpContext. Response. :::no-loc(Cookie)::: Hymnen**</span><span class="sxs-lookup"><span data-stu-id="3ab71-260">**HttpContext.Response.:::no-loc(Cookie):::s**</span></span>
+<span data-ttu-id="3ab71-260">**HttpContext. Response. Cookie Hymnen**</span><span class="sxs-lookup"><span data-stu-id="3ab71-260">**HttpContext.Response.Cookies**</span></span>
 
-<span data-ttu-id="3ab71-261">:::no-loc(Cookie):::s wechseln zum Browser in einem *Set-Response :::no-loc(Cookie)::: -* Header.</span><span class="sxs-lookup"><span data-stu-id="3ab71-261">:::no-loc(Cookie):::s travel to the browser in a *Set-:::no-loc(Cookie):::* response header.</span></span> <span data-ttu-id="3ab71-262">Daher :::no-loc(cookie)::: erfordert das Senden von s denselben Rückruf wie zum Senden von Antwort Headern:</span><span class="sxs-lookup"><span data-stu-id="3ab71-262">As a result, sending :::no-loc(cookie):::s requires the same callback as used for sending response headers:</span></span>
+<span data-ttu-id="3ab71-261">Cookies wechseln zum Browser in einem *Set-Response Cookie -* Header.</span><span class="sxs-lookup"><span data-stu-id="3ab71-261">Cookies travel to the browser in a *Set-Cookie* response header.</span></span> <span data-ttu-id="3ab71-262">Daher cookie erfordert das Senden von s denselben Rückruf wie zum Senden von Antwort Headern:</span><span class="sxs-lookup"><span data-stu-id="3ab71-262">As a result, sending cookies requires the same callback as used for sending response headers:</span></span>
 
 ```csharp
 public async Task Invoke(HttpContext httpContext)
 {
     // ...
-    httpContext.Response.OnStarting(Set:::no-loc(Cookie):::s, state: httpContext);
+    httpContext.Response.OnStarting(SetCookies, state: httpContext);
     httpContext.Response.OnStarting(SetHeaders, state: httpContext);
 ```
 
-<span data-ttu-id="3ab71-263">Die `Set:::no-loc(Cookie):::s` Rückruf Methode würde wie folgt aussehen:</span><span class="sxs-lookup"><span data-stu-id="3ab71-263">The `Set:::no-loc(Cookie):::s` callback method would look like the following:</span></span>
+<span data-ttu-id="3ab71-263">Die `SetCookies` Rückruf Methode würde wie folgt aussehen:</span><span class="sxs-lookup"><span data-stu-id="3ab71-263">The `SetCookies` callback method would look like the following:</span></span>
 
-[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Set:::no-loc(Cookie):::s)]
+[!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
 ## <a name="additional-resources"></a><span data-ttu-id="3ab71-264">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="3ab71-264">Additional resources</span></span>
 

@@ -5,17 +5,17 @@ description: Dies ist Teil 2 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/first-mvc-app/adding-controller
 ms.openlocfilehash: 11832efa6715f96856665f174d65b094806d2810
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -135,7 +135,7 @@ ms.locfileid: "93061287"
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
-<span data-ttu-id="21b5b-195">In diesen Beispielen hat der Controller den „VC“-Teil von MVC übernommen, d. h. die Aufgaben von **V** iew und **C** ontroller.</span><span class="sxs-lookup"><span data-stu-id="21b5b-195">In these examples the controller has been doing the "VC" portion of MVC - that is, the **V** iew and the **C** ontroller work.</span></span> <span data-ttu-id="21b5b-196">Der Controller gibt direkt HTML zurück.</span><span class="sxs-lookup"><span data-stu-id="21b5b-196">The controller is returning HTML directly.</span></span> <span data-ttu-id="21b5b-197">Im Allgemeinen sollen Controller nicht direkt HTML zurückgeben, da dies sehr aufwändig zu programmieren und pflegen ist.</span><span class="sxs-lookup"><span data-stu-id="21b5b-197">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="21b5b-198">Stattdessen verwenden Sie in der Regel eine separate :::no-loc(Razor):::-Ansichtsvorlagendatei, um die HTML-Antwort zu generieren.</span><span class="sxs-lookup"><span data-stu-id="21b5b-198">Instead you typically use a separate :::no-loc(Razor)::: view template file to generate the HTML response.</span></span> <span data-ttu-id="21b5b-199">Dies lernen Sie im nächsten Tutorial.</span><span class="sxs-lookup"><span data-stu-id="21b5b-199">You do that in the next tutorial.</span></span>
+<span data-ttu-id="21b5b-195">In diesen Beispielen hat der Controller den „VC“-Teil von MVC übernommen, d. h. die Aufgaben von **V** iew und **C** ontroller.</span><span class="sxs-lookup"><span data-stu-id="21b5b-195">In these examples the controller has been doing the "VC" portion of MVC - that is, the **V** iew and the **C** ontroller work.</span></span> <span data-ttu-id="21b5b-196">Der Controller gibt direkt HTML zurück.</span><span class="sxs-lookup"><span data-stu-id="21b5b-196">The controller is returning HTML directly.</span></span> <span data-ttu-id="21b5b-197">Im Allgemeinen sollen Controller nicht direkt HTML zurückgeben, da dies sehr aufwändig zu programmieren und pflegen ist.</span><span class="sxs-lookup"><span data-stu-id="21b5b-197">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="21b5b-198">Stattdessen verwenden Sie in der Regel eine separate Razor-Ansichtsvorlagendatei, um die HTML-Antwort zu generieren.</span><span class="sxs-lookup"><span data-stu-id="21b5b-198">Instead you typically use a separate Razor view template file to generate the HTML response.</span></span> <span data-ttu-id="21b5b-199">Dies lernen Sie im nächsten Tutorial.</span><span class="sxs-lookup"><span data-stu-id="21b5b-199">You do that in the next tutorial.</span></span>
 
 > [!div class="step-by-step"]
 > <span data-ttu-id="21b5b-200">[Zurück](start-mvc.md)
@@ -256,7 +256,7 @@ Remove link for simplified tutorial.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?name=snippet_1&highlight=5)]
 
-<span data-ttu-id="21b5b-291">In diesen Beispielen hat der Controller den „VC“-Teil von MVC übernommen, d. h. die Aufgaben von „View“ (Ansicht) und „Controller“.</span><span class="sxs-lookup"><span data-stu-id="21b5b-291">In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work.</span></span> <span data-ttu-id="21b5b-292">Der Controller gibt direkt HTML zurück.</span><span class="sxs-lookup"><span data-stu-id="21b5b-292">The controller is returning HTML directly.</span></span> <span data-ttu-id="21b5b-293">Im Allgemeinen sollen Controller nicht direkt HTML zurückgeben, da dies sehr aufwändig zu programmieren und pflegen ist.</span><span class="sxs-lookup"><span data-stu-id="21b5b-293">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="21b5b-294">Stattdessen verwenden Sie in der Regel eine separate :::no-loc(Razor):::-Ansichtsvorlagendatei, um die HTML-Antwort zu generieren.</span><span class="sxs-lookup"><span data-stu-id="21b5b-294">Instead you typically use a separate :::no-loc(Razor)::: view template file to help generate the HTML response.</span></span> <span data-ttu-id="21b5b-295">Dies lernen Sie im nächsten Tutorial.</span><span class="sxs-lookup"><span data-stu-id="21b5b-295">You do that in the next tutorial.</span></span>
+<span data-ttu-id="21b5b-291">In diesen Beispielen hat der Controller den „VC“-Teil von MVC übernommen, d. h. die Aufgaben von „View“ (Ansicht) und „Controller“.</span><span class="sxs-lookup"><span data-stu-id="21b5b-291">In these examples the controller has been doing the "VC" portion of MVC - that is, the view and controller work.</span></span> <span data-ttu-id="21b5b-292">Der Controller gibt direkt HTML zurück.</span><span class="sxs-lookup"><span data-stu-id="21b5b-292">The controller is returning HTML directly.</span></span> <span data-ttu-id="21b5b-293">Im Allgemeinen sollen Controller nicht direkt HTML zurückgeben, da dies sehr aufwändig zu programmieren und pflegen ist.</span><span class="sxs-lookup"><span data-stu-id="21b5b-293">Generally you don't want controllers returning HTML directly, since that becomes very cumbersome to code and maintain.</span></span> <span data-ttu-id="21b5b-294">Stattdessen verwenden Sie in der Regel eine separate Razor-Ansichtsvorlagendatei, um die HTML-Antwort zu generieren.</span><span class="sxs-lookup"><span data-stu-id="21b5b-294">Instead you typically use a separate Razor view template file to help generate the HTML response.</span></span> <span data-ttu-id="21b5b-295">Dies lernen Sie im nächsten Tutorial.</span><span class="sxs-lookup"><span data-stu-id="21b5b-295">You do that in the next tutorial.</span></span>
 
 > [!div class="step-by-step"]
 > <span data-ttu-id="21b5b-296">[Zurück](start-mvc.md)

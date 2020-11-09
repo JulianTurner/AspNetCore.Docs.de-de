@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core :::no-loc(Blazor):::-CSS-Isolation
+title: ASP.NET Core Blazor-CSS-Isolation
 author: daveabrock
 description: Erfahren Sie, wie Sie mit der CSS-Isolation den Bereich von CSS auf Ihre Komponenten beschränken können, um Ihr CSS zu vereinfachen und Konflikte mit anderen Komponenten oder Bibliotheken zu vermeiden.
 monikerRange: '>= aspnetcore-5.0'
@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/20/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/components/css-isolation
 ms.openlocfilehash: 628e7dc897912beaae0df792b82958517ac70ca4
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,7 +26,7 @@ ms.contentlocale: de-DE
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93056321"
 ---
-# <a name="aspnet-core-no-locblazor-css-isolation"></a><span data-ttu-id="f09ee-103">ASP.NET Core :::no-loc(Blazor):::-CSS-Isolation</span><span class="sxs-lookup"><span data-stu-id="f09ee-103">ASP.NET Core :::no-loc(Blazor)::: CSS isolation</span></span>
+# <a name="aspnet-core-no-locblazor-css-isolation"></a><span data-ttu-id="f09ee-103">ASP.NET Core Blazor-CSS-Isolation</span><span class="sxs-lookup"><span data-stu-id="f09ee-103">ASP.NET Core Blazor CSS isolation</span></span>
 
 <span data-ttu-id="f09ee-104">Von [Dave Brock](https://twitter.com/daveabrock)</span><span class="sxs-lookup"><span data-stu-id="f09ee-104">By [Dave Brock](https://twitter.com/daveabrock)</span></span>
 
@@ -38,7 +38,7 @@ ms.locfileid: "93056321"
 
 <span data-ttu-id="f09ee-109">Erstellen Sie für eine `MyComponent`-Komponente, die eine Datei `MyComponent.razor` enthält, eine Datei mit dem Namen `MyComponent.razor.css`.</span><span class="sxs-lookup"><span data-stu-id="f09ee-109">For a `MyComponent` component that has a `MyComponent.razor` file, create a file alongside the component called `MyComponent.razor.css`.</span></span> <span data-ttu-id="f09ee-110">Beim `MyComponent`-Wert im Dateinamen von `razor.css` wird **nicht** zwischen Groß- und Kleinschreibung unterschieden.</span><span class="sxs-lookup"><span data-stu-id="f09ee-110">The `MyComponent` value in the `razor.css` filename is **not** case-sensitive.</span></span>
 
-<span data-ttu-id="f09ee-111">Wenn Sie beispielsweise der `Counter`-Komponente in der Standardprojektvorlage :::no-loc(Blazor)::: CSS-Isolation hinzufügen möchten, fügen Sie neben der Datei `Counter.razor` eine neue Datei mit dem Namen `Counter.razor.css` und dann folgenden CSS-Code hinzu:</span><span class="sxs-lookup"><span data-stu-id="f09ee-111">For example to add CSS isolation to the `Counter` component in the default :::no-loc(Blazor)::: project template, add a new file named `Counter.razor.css` alongside the `Counter.razor` file, then add the following CSS:</span></span>
+<span data-ttu-id="f09ee-111">Wenn Sie beispielsweise der `Counter`-Komponente in der Standardprojektvorlage Blazor CSS-Isolation hinzufügen möchten, fügen Sie neben der Datei `Counter.razor` eine neue Datei mit dem Namen `Counter.razor.css` und dann folgenden CSS-Code hinzu:</span><span class="sxs-lookup"><span data-stu-id="f09ee-111">For example to add CSS isolation to the `Counter` component in the default Blazor project template, add a new file named `Counter.razor.css` alongside the `Counter.razor` file, then add the following CSS:</span></span>
 
 ```css
 h1 { 
@@ -50,11 +50,11 @@ h1 {
 <span data-ttu-id="f09ee-112">Die in `Counter.razor.css` definierten Stile werden nur auf die gerenderte Ausgabe der `Counter`-Komponente angewandt.</span><span class="sxs-lookup"><span data-stu-id="f09ee-112">The styles defined in `Counter.razor.css` are only applied to the rendered output of the `Counter` component.</span></span> <span data-ttu-id="f09ee-113">`h1`-CSS-Deklarationen, die an anderer Stelle in der App definiert sind, verursachen keine Konflikte mit `Counter`-Stilen.</span><span class="sxs-lookup"><span data-stu-id="f09ee-113">Any `h1` CSS declarations defined elsewhere in the app don't conflict with `Counter` styles.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="f09ee-114">Damit die Stilisolation auch bei der Bündelung gewährleistet ist, werden `@import` :::no-loc(Razor):::-Blöcke in bereichsbezogenen CSS-Dateien nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="f09ee-114">In order to guarantee style isolation when bundling occurs, `@import` :::no-loc(Razor)::: blocks aren't supported with scoped CSS files.</span></span>
+> <span data-ttu-id="f09ee-114">Damit die Stilisolation auch bei der Bündelung gewährleistet ist, werden `@import` Razor-Blöcke in bereichsbezogenen CSS-Dateien nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="f09ee-114">In order to guarantee style isolation when bundling occurs, `@import` Razor blocks aren't supported with scoped CSS files.</span></span>
 
 ## <a name="css-isolation-bundling"></a><span data-ttu-id="f09ee-115">Bündelung mit CSS-Isolation</span><span class="sxs-lookup"><span data-stu-id="f09ee-115">CSS isolation bundling</span></span>
 
-<span data-ttu-id="f09ee-116">Die CSS-Isolation erfolgt zum Zeitpunkt der Erstellung.</span><span class="sxs-lookup"><span data-stu-id="f09ee-116">CSS isolation occurs at build time.</span></span> <span data-ttu-id="f09ee-117">Während dieses Vorgangs schreibt :::no-loc(Blazor)::: CSS-Selektoren um, damit diese mit dem von der Komponente gerenderten Markup übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="f09ee-117">During this process, :::no-loc(Blazor)::: rewrites CSS selectors to match markup rendered by the component.</span></span> <span data-ttu-id="f09ee-118">Diese umgeschriebenen CSS-Stile werden gebündelt und als statisches Objekt in `{PROJECT NAME}.styles.css` erstellt, wobei der Platzhalter `{PROJECT NAME}` das referenzierte Paket oder der Produktname ist.</span><span class="sxs-lookup"><span data-stu-id="f09ee-118">These rewritten CSS styles are bundled and produced as a static asset at `{PROJECT NAME}.styles.css`, where the placeholder `{PROJECT NAME}` is the referenced package or product name.</span></span>
+<span data-ttu-id="f09ee-116">Die CSS-Isolation erfolgt zum Zeitpunkt der Erstellung.</span><span class="sxs-lookup"><span data-stu-id="f09ee-116">CSS isolation occurs at build time.</span></span> <span data-ttu-id="f09ee-117">Während dieses Vorgangs schreibt Blazor CSS-Selektoren um, damit diese mit dem von der Komponente gerenderten Markup übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="f09ee-117">During this process, Blazor rewrites CSS selectors to match markup rendered by the component.</span></span> <span data-ttu-id="f09ee-118">Diese umgeschriebenen CSS-Stile werden gebündelt und als statisches Objekt in `{PROJECT NAME}.styles.css` erstellt, wobei der Platzhalter `{PROJECT NAME}` das referenzierte Paket oder der Produktname ist.</span><span class="sxs-lookup"><span data-stu-id="f09ee-118">These rewritten CSS styles are bundled and produced as a static asset at `{PROJECT NAME}.styles.css`, where the placeholder `{PROJECT NAME}` is the referenced package or product name.</span></span>
 
 <span data-ttu-id="f09ee-119">Auf diese statischen Dateien wird standardmäßig aus dem Stammpfad der App verwiesen.</span><span class="sxs-lookup"><span data-stu-id="f09ee-119">These static files are referenced from the root path of the app by default.</span></span> <span data-ttu-id="f09ee-120">Die Referenzierung auf die gebündelte Datei in der App erfolgt durch Überprüfen des Verweises im `<head>`-Tag des generierten HTML-Codes:</span><span class="sxs-lookup"><span data-stu-id="f09ee-120">In the app, reference the bundled file by inspecting the reference inside the `<head>` tag of the generated HTML:</span></span>
 
@@ -62,7 +62,7 @@ h1 {
 <link href="MyProjectName.styles.css" rel="stylesheet">
 ```
 
-<span data-ttu-id="f09ee-121">Innerhalb der gebündelten Datei ist jede Komponente einem Bereichsbezeichner zugeordnet.</span><span class="sxs-lookup"><span data-stu-id="f09ee-121">Within the bundled file, each component is associated with a scope identifier.</span></span> <span data-ttu-id="f09ee-122">Für jede formatierte Komponente wird ein HTML-Attribut im Format `b-<10-character-string>` angehängt.</span><span class="sxs-lookup"><span data-stu-id="f09ee-122">For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`.</span></span> <span data-ttu-id="f09ee-123">Der Bezeichner ist für jede App eindeutig.</span><span class="sxs-lookup"><span data-stu-id="f09ee-123">The identifier is unique and different for each app.</span></span> <span data-ttu-id="f09ee-124">In der gerenderten `Counter`-Komponente fügt :::no-loc(Blazor)::: einen Bereichsbezeichner an das `h1`-Element an:</span><span class="sxs-lookup"><span data-stu-id="f09ee-124">In the rendered `Counter` component, :::no-loc(Blazor)::: appends a scope identifier to the `h1` element:</span></span>
+<span data-ttu-id="f09ee-121">Innerhalb der gebündelten Datei ist jede Komponente einem Bereichsbezeichner zugeordnet.</span><span class="sxs-lookup"><span data-stu-id="f09ee-121">Within the bundled file, each component is associated with a scope identifier.</span></span> <span data-ttu-id="f09ee-122">Für jede formatierte Komponente wird ein HTML-Attribut im Format `b-<10-character-string>` angehängt.</span><span class="sxs-lookup"><span data-stu-id="f09ee-122">For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`.</span></span> <span data-ttu-id="f09ee-123">Der Bezeichner ist für jede App eindeutig.</span><span class="sxs-lookup"><span data-stu-id="f09ee-123">The identifier is unique and different for each app.</span></span> <span data-ttu-id="f09ee-124">In der gerenderten `Counter`-Komponente fügt Blazor einen Bereichsbezeichner an das `h1`-Element an:</span><span class="sxs-lookup"><span data-stu-id="f09ee-124">In the rendered `Counter` component, Blazor appends a scope identifier to the `h1` element:</span></span>
 
 ```html
 <h1 b-3xxtam6d07>
@@ -79,7 +79,7 @@ h1[b-3xxtam6d07] {
 
 <span data-ttu-id="f09ee-127">Zum Zeitpunkt der Erstellung wird ein Projektbündel mit der Konvention `{STATIC WEB ASSETS BASE PATH}/MyProject.lib.scp.css` erstellt, wobei der Platzhalter `{STATIC WEB ASSETS BASE PATH}` der statische Basispfad für Webressourcen ist.</span><span class="sxs-lookup"><span data-stu-id="f09ee-127">At build time, a project bundle is created with the convention `{STATIC WEB ASSETS BASE PATH}/MyProject.lib.scp.css`, where the placeholder `{STATIC WEB ASSETS BASE PATH}` is the static web assets base path.</span></span>
 
-<span data-ttu-id="f09ee-128">Wenn andere Projekte verwendet werden, z. B. NuGet-Pakete oder [:::no-loc(Razor):::-Klassenbibliotheken](xref:blazor/components/class-libraries), gilt für die gebündelte Datei Folgendes:</span><span class="sxs-lookup"><span data-stu-id="f09ee-128">If other projects are utilized, such as NuGet packages or [:::no-loc(Razor)::: class libraries](xref:blazor/components/class-libraries), the bundled file:</span></span>
+<span data-ttu-id="f09ee-128">Wenn andere Projekte verwendet werden, z. B. NuGet-Pakete oder [Razor-Klassenbibliotheken](xref:blazor/components/class-libraries), gilt für die gebündelte Datei Folgendes:</span><span class="sxs-lookup"><span data-stu-id="f09ee-128">If other projects are utilized, such as NuGet packages or [Razor class libraries](xref:blazor/components/class-libraries), the bundled file:</span></span>
 
 * <span data-ttu-id="f09ee-129">Verweise auf Stile erfolgen mithilfe von CSS-Importen.</span><span class="sxs-lookup"><span data-stu-id="f09ee-129">References the styles using CSS imports.</span></span>
 * <span data-ttu-id="f09ee-130">Sie wird nicht als statische Webressource der App veröffentlicht, die die Stile verwendet.</span><span class="sxs-lookup"><span data-stu-id="f09ee-130">Isn't published as a static web asset of the app that consumes the styles.</span></span>
@@ -141,7 +141,7 @@ h1[b-3xxtam6d07] {
 
 ## <a name="css-preprocessor-support"></a><span data-ttu-id="f09ee-144">Unterstützung für CSS-Präprozessoren</span><span class="sxs-lookup"><span data-stu-id="f09ee-144">CSS preprocessor support</span></span>
 
-<span data-ttu-id="f09ee-145">CSS-Präprozessoren tragen zur Verbesserung der CSS-Entwicklung bei, indem sie Features wie Variablen, Schachtelung, Module, Mischung und Vererbung nutzen.</span><span class="sxs-lookup"><span data-stu-id="f09ee-145">CSS preprocessors are useful for improving CSS development by utilizing features such as variables, nesting, modules, mixins, and inheritance.</span></span> <span data-ttu-id="f09ee-146">CSS-Isolation unterstützt CSS-Präprozessoren wie Sass oder Less zwar nicht nativ, dennoch können CSS-Präprozessoren nahtlos integriert werden, sofern die Kompilierung des Präprozessors erfolgt, bevor :::no-loc(Blazor)::: die CSS-Selektoren während des Buildprozesses umschreibt.</span><span class="sxs-lookup"><span data-stu-id="f09ee-146">While CSS isolation doesn't natively support CSS preprocessors such as Sass or Less, integrating CSS preprocessors is seamless as long as preprocessor compilation occurs before :::no-loc(Blazor)::: rewrites the CSS selectors during the build process.</span></span> <span data-ttu-id="f09ee-147">Konfigurieren Sie z. B. mithilfe von Visual Studio die vorhandene Präprozessorkompilierung als Aufgabe **Vor Build** im Aufgabenausführungs-Explorer von Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="f09ee-147">Using Visual Studio for example, configure existing preprocessor compilation as a **Before Build** task in the Visual Studio Task Runner Explorer.</span></span>
+<span data-ttu-id="f09ee-145">CSS-Präprozessoren tragen zur Verbesserung der CSS-Entwicklung bei, indem sie Features wie Variablen, Schachtelung, Module, Mischung und Vererbung nutzen.</span><span class="sxs-lookup"><span data-stu-id="f09ee-145">CSS preprocessors are useful for improving CSS development by utilizing features such as variables, nesting, modules, mixins, and inheritance.</span></span> <span data-ttu-id="f09ee-146">CSS-Isolation unterstützt CSS-Präprozessoren wie Sass oder Less zwar nicht nativ, dennoch können CSS-Präprozessoren nahtlos integriert werden, sofern die Kompilierung des Präprozessors erfolgt, bevor Blazor die CSS-Selektoren während des Buildprozesses umschreibt.</span><span class="sxs-lookup"><span data-stu-id="f09ee-146">While CSS isolation doesn't natively support CSS preprocessors such as Sass or Less, integrating CSS preprocessors is seamless as long as preprocessor compilation occurs before Blazor rewrites the CSS selectors during the build process.</span></span> <span data-ttu-id="f09ee-147">Konfigurieren Sie z. B. mithilfe von Visual Studio die vorhandene Präprozessorkompilierung als Aufgabe **Vor Build** im Aufgabenausführungs-Explorer von Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="f09ee-147">Using Visual Studio for example, configure existing preprocessor compilation as a **Before Build** task in the Visual Studio Task Runner Explorer.</span></span>
 
 <span data-ttu-id="f09ee-148">Viele NuGet-Pakete von Drittanbietern (z. B. [Delegat.SassBuilder](https://www.nuget.org/packages/Delegate.SassBuilder)) können die SASS-/SCSS-Dateien am Anfang des Buildprozesses – noch vor der CSS-Isolation – kompilieren, ohne dass eine zusätzliche Konfiguration erforderlich ist.</span><span class="sxs-lookup"><span data-stu-id="f09ee-148">Many third-party NuGet packages, such as [Delegate.SassBuilder](https://www.nuget.org/packages/Delegate.SassBuilder), can compile SASS/SCSS files at the beginning of the build process before CSS isolation occurs, and no additional additional configuration is required.</span></span>
 
@@ -159,7 +159,7 @@ h1[b-3xxtam6d07] {
 </ItemGroup>
 ```
 
-<span data-ttu-id="f09ee-154">Im vorherigen Beispiel ändert der für `MyComponent.:::no-loc(Razor):::.css` generierte CSS-Code seinen Bereichsbezeichner von `b-<10-character-string>` in `my-custom-scope-identifier`.</span><span class="sxs-lookup"><span data-stu-id="f09ee-154">In the preceding example, the CSS generated for `MyComponent.:::no-loc(Razor):::.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.</span></span>
+<span data-ttu-id="f09ee-154">Im vorherigen Beispiel ändert der für `MyComponent.Razor.css` generierte CSS-Code seinen Bereichsbezeichner von `b-<10-character-string>` in `my-custom-scope-identifier`.</span><span class="sxs-lookup"><span data-stu-id="f09ee-154">In the preceding example, the CSS generated for `MyComponent.Razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.</span></span>
 
 ### <a name="change-base-path-for-static-web-assets"></a><span data-ttu-id="f09ee-155">Ändern des Basispfads für statische Webressourcen</span><span class="sxs-lookup"><span data-stu-id="f09ee-155">Change base path for static web assets</span></span>
 
@@ -173,7 +173,7 @@ h1[b-3xxtam6d07] {
 
 ### <a name="disable-automatic-bundling"></a><span data-ttu-id="f09ee-159">Deaktivieren der automatischen Bündelung</span><span class="sxs-lookup"><span data-stu-id="f09ee-159">Disable automatic bundling</span></span>
 
-<span data-ttu-id="f09ee-160">Wenn Sie das Verhalten von :::no-loc(Blazor)::: beim Veröffentlichen und Laden bereichsbezogener Dateien zur Laufzeit ändern möchten, verwenden Sie die `DisableScopedCssBundling`-Eigenschaft.</span><span class="sxs-lookup"><span data-stu-id="f09ee-160">To opt out of how :::no-loc(Blazor)::: publishes and loads scoped files at runtime, use the `DisableScopedCssBundling` property.</span></span> <span data-ttu-id="f09ee-161">Die Verwendung dieser Eigenschaft bedeutet, dass die isolierten CSS-Dateien durch andere Tools oder Prozesse aus dem Verzeichnis `obj` übernommen und zur Laufzeit veröffentlicht und geladen werden:</span><span class="sxs-lookup"><span data-stu-id="f09ee-161">When using this property, it means other tools or processes are responsible for taking the isolated CSS files from the `obj` directory and publishing and loading them at runtime:</span></span>
+<span data-ttu-id="f09ee-160">Wenn Sie das Verhalten von Blazor beim Veröffentlichen und Laden bereichsbezogener Dateien zur Laufzeit ändern möchten, verwenden Sie die `DisableScopedCssBundling`-Eigenschaft.</span><span class="sxs-lookup"><span data-stu-id="f09ee-160">To opt out of how Blazor publishes and loads scoped files at runtime, use the `DisableScopedCssBundling` property.</span></span> <span data-ttu-id="f09ee-161">Die Verwendung dieser Eigenschaft bedeutet, dass die isolierten CSS-Dateien durch andere Tools oder Prozesse aus dem Verzeichnis `obj` übernommen und zur Laufzeit veröffentlicht und geladen werden:</span><span class="sxs-lookup"><span data-stu-id="f09ee-161">When using this property, it means other tools or processes are responsible for taking the isolated CSS files from the `obj` directory and publishing and loading them at runtime:</span></span>
 
 ```xml
 <PropertyGroup>

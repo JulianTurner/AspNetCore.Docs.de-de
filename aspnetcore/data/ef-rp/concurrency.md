@@ -1,22 +1,22 @@
 ---
-title: 'Teil 8: :::no-loc(Razor)::: Pages mit EF Core in ASP.NET Core – Parallelität'
+title: 'Teil 8: Razor Pages mit EF Core in ASP.NET Core – Parallelität'
 author: rick-anderson
-description: 'Dies ist Teil 8 der Tutorialreihe zu :::no-loc(Razor)::: Pages und dem Entity Framework.'
+description: 'Dies ist Teil 8 der Tutorialreihe zu Razor Pages und dem Entity Framework.'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: data/ef-rp/concurrency
 ms.openlocfilehash: 573a509041bfb34faf50a227c451824db03f92ee
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -25,7 +25,7 @@ ms.contentlocale: de-DE
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93053994"
 ---
-# <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a><span data-ttu-id="d8b41-103">Teil 8: :::no-loc(Razor)::: Pages mit EF Core in ASP.NET Core – Parallelität</span><span class="sxs-lookup"><span data-stu-id="d8b41-103">Part 8, :::no-loc(Razor)::: Pages with EF Core in ASP.NET Core - Concurrency</span></span>
+# <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a><span data-ttu-id="d8b41-103">Teil 8: Razor Pages mit EF Core in ASP.NET Core – Parallelität</span><span class="sxs-lookup"><span data-stu-id="d8b41-103">Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency</span></span>
 
 <span data-ttu-id="d8b41-104">Von [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra) und [Jon P Smith](https://twitter.com/thereformedprog)</span><span class="sxs-lookup"><span data-stu-id="d8b41-104">By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and [Jon P Smith](https://twitter.com/thereformedprog)</span></span>
 
@@ -268,7 +268,7 @@ modelBuilder.Entity<Department>()
 
 <span data-ttu-id="d8b41-244">Im hervorgehobenen Code oben:</span><span class="sxs-lookup"><span data-stu-id="d8b41-244">In the preceding highlighted code:</span></span>
 
-* <span data-ttu-id="d8b41-245">Ist der Wert in `Department.RowVersion` der Inhalt der Entität, als diese ursprünglich in der Get-Anforderung für die Edit-Seite abgerufen wurde.</span><span class="sxs-lookup"><span data-stu-id="d8b41-245">The value in `Department.RowVersion` is what was in the entity when it was originally fetched in the Get request for the Edit page.</span></span> <span data-ttu-id="d8b41-246">Der Wert wird für die `OnPost`-Methode durch ein ausgeblendetes Feld auf der :::no-loc(Razor):::-Seite bereitgestellt, das die zu bearbeitende Entität anzeigt.</span><span class="sxs-lookup"><span data-stu-id="d8b41-246">The value is provided to the `OnPost` method by a hidden field in the :::no-loc(Razor)::: page that displays the entity to be edited.</span></span> <span data-ttu-id="d8b41-247">Der Wert des ausgeblendeten Felds wird vom Modellbinder in `Department.RowVersion` kopiert.</span><span class="sxs-lookup"><span data-stu-id="d8b41-247">The hidden field value is copied to `Department.RowVersion` by the model binder.</span></span>
+* <span data-ttu-id="d8b41-245">Ist der Wert in `Department.RowVersion` der Inhalt der Entität, als diese ursprünglich in der Get-Anforderung für die Edit-Seite abgerufen wurde.</span><span class="sxs-lookup"><span data-stu-id="d8b41-245">The value in `Department.RowVersion` is what was in the entity when it was originally fetched in the Get request for the Edit page.</span></span> <span data-ttu-id="d8b41-246">Der Wert wird für die `OnPost`-Methode durch ein ausgeblendetes Feld auf der Razor-Seite bereitgestellt, das die zu bearbeitende Entität anzeigt.</span><span class="sxs-lookup"><span data-stu-id="d8b41-246">The value is provided to the `OnPost` method by a hidden field in the Razor page that displays the entity to be edited.</span></span> <span data-ttu-id="d8b41-247">Der Wert des ausgeblendeten Felds wird vom Modellbinder in `Department.RowVersion` kopiert.</span><span class="sxs-lookup"><span data-stu-id="d8b41-247">The hidden field value is copied to `Department.RowVersion` by the model binder.</span></span>
 * <span data-ttu-id="d8b41-248">`OriginalValue` verwendet EF Core in der Where-Klausel.</span><span class="sxs-lookup"><span data-stu-id="d8b41-248">`OriginalValue` is what EF Core will use in the Where clause.</span></span> <span data-ttu-id="d8b41-249">Bevor die hervorgehobene Codezeile ausgeführt wird, enthält `OriginalValue` den Wert, der in der Datenbank enthalten war, als `FirstOrDefaultAsync` in dieser Methode aufgerufen wurde. Dieser kann sich möglicherweise von dem auf der Edit-Seite angezeigten Wert unterscheiden.</span><span class="sxs-lookup"><span data-stu-id="d8b41-249">Before the highlighted line of code executes, `OriginalValue` has the value that was in the database when `FirstOrDefaultAsync` was called in this method, which might be different from what was displayed on the Edit page.</span></span>
 * <span data-ttu-id="d8b41-250">Der hervorgehobene Code stellt sicher, dass EF Core den ursprünglichen `RowVersion`-Wert aus der angezeigten `Department`-Entität in der Where-Klausel der SQL UPDATE-Anweisung verwendet.</span><span class="sxs-lookup"><span data-stu-id="d8b41-250">The highlighted code makes sure that EF Core uses the original `RowVersion` value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.</span></span>
 
@@ -284,7 +284,7 @@ modelBuilder.Entity<Department>()
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_TryUpdateModel&highlight=28)]
 
-<span data-ttu-id="d8b41-255">Die Anweisung `ModelState.Remove` ist erforderlich, da `ModelState` über den alten `RowVersion`-Wert verfügt.</span><span class="sxs-lookup"><span data-stu-id="d8b41-255">The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value.</span></span> <span data-ttu-id="d8b41-256">In der :::no-loc(Razor):::-Seite hat der Wert `ModelState` Vorrang vor den Modelleigenschaftswerten, wenn beide vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="d8b41-256">In the :::no-loc(Razor)::: Page, the `ModelState` value for a field takes precedence over the model property values when both are present.</span></span>
+<span data-ttu-id="d8b41-255">Die Anweisung `ModelState.Remove` ist erforderlich, da `ModelState` über den alten `RowVersion`-Wert verfügt.</span><span class="sxs-lookup"><span data-stu-id="d8b41-255">The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value.</span></span> <span data-ttu-id="d8b41-256">In der Razor-Seite hat der Wert `ModelState` Vorrang vor den Modelleigenschaftswerten, wenn beide vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="d8b41-256">In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.</span></span>
 
 ### <a name="update-the-edit-page"></a><span data-ttu-id="d8b41-257">Aktualisieren der Seite „Bearbeiten“</span><span class="sxs-lookup"><span data-stu-id="d8b41-257">Update the Edit page</span></span>
 
@@ -580,7 +580,7 @@ dotnet ef database update
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_try&highlight=23)]
 
-<span data-ttu-id="d8b41-443">Die Anweisung `ModelState.Remove` ist erforderlich, da `ModelState` über den alten `RowVersion`-Wert verfügt.</span><span class="sxs-lookup"><span data-stu-id="d8b41-443">The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value.</span></span> <span data-ttu-id="d8b41-444">In der :::no-loc(Razor):::-Seite hat der Wert `ModelState` Vorrang vor den Modelleigenschaftswerten, wenn beide vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="d8b41-444">In the :::no-loc(Razor)::: Page, the `ModelState` value for a field takes precedence over the model property values when both are present.</span></span>
+<span data-ttu-id="d8b41-443">Die Anweisung `ModelState.Remove` ist erforderlich, da `ModelState` über den alten `RowVersion`-Wert verfügt.</span><span class="sxs-lookup"><span data-stu-id="d8b41-443">The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value.</span></span> <span data-ttu-id="d8b41-444">In der Razor-Seite hat der Wert `ModelState` Vorrang vor den Modelleigenschaftswerten, wenn beide vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="d8b41-444">In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.</span></span>
 
 ## <a name="update-the-edit-page"></a><span data-ttu-id="d8b41-445">Aktualisieren der Seite „Bearbeiten“</span><span class="sxs-lookup"><span data-stu-id="d8b41-445">Update the Edit page</span></span>
 

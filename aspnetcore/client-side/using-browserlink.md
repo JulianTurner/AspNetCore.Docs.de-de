@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: client-side/using-browserlink
 ms.openlocfilehash: 80f05acab55af973faf08b5db79ea4cbaf896b14
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -35,7 +35,7 @@ ms.locfileid: "93054488"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="c3776-109">Fügen Sie Ihrem Projekt das Paket [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) hinzu.</span><span class="sxs-lookup"><span data-stu-id="c3776-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="c3776-110">Aktivieren Sie für ASP.NET Core-Projekte mit :::no-loc(Razor)::: Pages oder MVC außerdem die Laufzeitkompilierung von :::no-loc(Razor):::-Dateien ( *.cshtml* ). Dieser Vorgang wird unter <xref:mvc/views/view-compilation> beschrieben.</span><span class="sxs-lookup"><span data-stu-id="c3776-110">For ASP.NET Core :::no-loc(Razor)::: Pages or MVC projects, also enable runtime compilation of :::no-loc(Razor)::: ( *.cshtml* ) files as described in <xref:mvc/views/view-compilation>.</span></span> <span data-ttu-id="c3776-111">:::no-loc(Razor):::-Syntaxänderungen werden nur bei aktivierter Laufzeitkompilierung angewendet.</span><span class="sxs-lookup"><span data-stu-id="c3776-111">:::no-loc(Razor)::: syntax changes are applied only when runtime compilation has been enabled.</span></span>
+<span data-ttu-id="c3776-109">Fügen Sie Ihrem Projekt das Paket [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) hinzu.</span><span class="sxs-lookup"><span data-stu-id="c3776-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="c3776-110">Aktivieren Sie für ASP.NET Core-Projekte mit Razor Pages oder MVC außerdem die Laufzeitkompilierung von Razor-Dateien ( *.cshtml* ). Dieser Vorgang wird unter <xref:mvc/views/view-compilation> beschrieben.</span><span class="sxs-lookup"><span data-stu-id="c3776-110">For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor ( *.cshtml* ) files as described in <xref:mvc/views/view-compilation>.</span></span> <span data-ttu-id="c3776-111">Razor-Syntaxänderungen werden nur bei aktivierter Laufzeitkompilierung angewendet.</span><span class="sxs-lookup"><span data-stu-id="c3776-111">Razor syntax changes are applied only when runtime compilation has been enabled.</span></span>
 
 ::: moniker-end
 
@@ -140,7 +140,7 @@ if (env.IsDevelopment())
 
 ## <a name="how-it-works"></a><span data-ttu-id="c3776-157">Funktionsweise</span><span class="sxs-lookup"><span data-stu-id="c3776-157">How it works</span></span>
 
-<span data-ttu-id="c3776-158">Die Browserverknüpfung erstellt mit [:::no-loc(SignalR):::](xref:signalr/introduction) einen Kommunikationskanal zwischen Visual Studio und dem Browser.</span><span class="sxs-lookup"><span data-stu-id="c3776-158">Browser Link uses [:::no-loc(SignalR):::](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="c3776-159">Wenn die Browserverknüpfung aktiviert ist, fungiert Visual Studio als :::no-loc(SignalR):::-Server, mit dem mehrere Clients (Browser) eine Verbindung herstellen können.</span><span class="sxs-lookup"><span data-stu-id="c3776-159">When Browser Link is enabled, Visual Studio acts as a :::no-loc(SignalR)::: server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="c3776-160">Die Browserverknüpfung registriert auch eine Middlewarekomponente in der Anforderungspipeline von ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="c3776-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="c3776-161">Diese Komponente fügt jeder Seitenanforderung des Servers besondere `<script>`-Verweise hinzu.</span><span class="sxs-lookup"><span data-stu-id="c3776-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="c3776-162">Sie können sich die Skriptverweise anzeigen lassen, indem Sie im Browser auf **Quelltext anzeigen** klicken und zum Ende des `<body>`-Taginhalts scrollen:</span><span class="sxs-lookup"><span data-stu-id="c3776-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
+<span data-ttu-id="c3776-158">Die Browserverknüpfung erstellt mit [SignalR](xref:signalr/introduction) einen Kommunikationskanal zwischen Visual Studio und dem Browser.</span><span class="sxs-lookup"><span data-stu-id="c3776-158">Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="c3776-159">Wenn die Browserverknüpfung aktiviert ist, fungiert Visual Studio als SignalR-Server, mit dem mehrere Clients (Browser) eine Verbindung herstellen können.</span><span class="sxs-lookup"><span data-stu-id="c3776-159">When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="c3776-160">Die Browserverknüpfung registriert auch eine Middlewarekomponente in der Anforderungspipeline von ASP.NET Core.</span><span class="sxs-lookup"><span data-stu-id="c3776-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="c3776-161">Diese Komponente fügt jeder Seitenanforderung des Servers besondere `<script>`-Verweise hinzu.</span><span class="sxs-lookup"><span data-stu-id="c3776-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="c3776-162">Sie können sich die Skriptverweise anzeigen lassen, indem Sie im Browser auf **Quelltext anzeigen** klicken und zum Ende des `<body>`-Taginhalts scrollen:</span><span class="sxs-lookup"><span data-stu-id="c3776-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
 
 ```html
     <!-- Visual Studio Browser Link -->
@@ -154,4 +154,4 @@ if (env.IsDevelopment())
 
 <span data-ttu-id="c3776-163">Ihre Quelldateien werden nicht geändert.</span><span class="sxs-lookup"><span data-stu-id="c3776-163">Your source files aren't modified.</span></span> <span data-ttu-id="c3776-164">Die Middlewarekomponente fügt die Skriptverweise dynamisch ein.</span><span class="sxs-lookup"><span data-stu-id="c3776-164">The middleware component injects the script references dynamically.</span></span>
 
-<span data-ttu-id="c3776-165">Da der browserseitige Code komplett in JavaScript geschrieben ist, funktioniert er in allen Browsern, die :::no-loc(SignalR)::: ohne ein zusätzliches Browser-Plug-In unterstützt.</span><span class="sxs-lookup"><span data-stu-id="c3776-165">Because the browser-side code is all JavaScript, it works on all browsers that :::no-loc(SignalR)::: supports without requiring a browser plug-in.</span></span>
+<span data-ttu-id="c3776-165">Da der browserseitige Code komplett in JavaScript geschrieben ist, funktioniert er in allen Browsern, die SignalR ohne ein zusätzliches Browser-Plug-In unterstützt.</span><span class="sxs-lookup"><span data-stu-id="c3776-165">Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.</span></span>

@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: aspnetcore-3.0
 ms.openlocfilehash: 235daac5c08248ca2052de6b44e66a8162ce23ad
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -29,39 +29,39 @@ ms.locfileid: "93051238"
 
 <span data-ttu-id="e57c8-104">In diesem Artikel werden die wichtigsten Änderungen in ASP.NET Core 3.0 aufgezeigt und Links zur relevanten Dokumentation bereitgestellt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-104">This article highlights the most significant changes in ASP.NET Core 3.0 with links to relevant documentation.</span></span>
 
-## :::no-loc(Blazor):::
+## Blazor
 
-<span data-ttu-id="e57c8-105">:::no-loc(Blazor)::: ist ein Framework in ASP.NET Core zum Erstellen von interaktiven clientseitigen Webbenutzeroberflächen mit .NET:</span><span class="sxs-lookup"><span data-stu-id="e57c8-105">:::no-loc(Blazor)::: is a new framework in ASP.NET Core for building interactive client-side web UI with .NET:</span></span>
+<span data-ttu-id="e57c8-105">Blazor ist ein Framework in ASP.NET Core zum Erstellen von interaktiven clientseitigen Webbenutzeroberflächen mit .NET:</span><span class="sxs-lookup"><span data-stu-id="e57c8-105">Blazor is a new framework in ASP.NET Core for building interactive client-side web UI with .NET:</span></span>
 
 * <span data-ttu-id="e57c8-106">Erstellen Sie umfassende interaktive Benutzeroberflächen mit C# anstatt mit JavaScript.</span><span class="sxs-lookup"><span data-stu-id="e57c8-106">Create rich interactive UIs using C# instead of JavaScript.</span></span>
 * <span data-ttu-id="e57c8-107">Gemeinsames Verwenden von server- und clientseitiger App-Logik, die in .NET geschrieben wurde.</span><span class="sxs-lookup"><span data-stu-id="e57c8-107">Share server-side and client-side app logic written in .NET.</span></span>
 * <span data-ttu-id="e57c8-108">Rendern der Benutzeroberfläche als HTML und CSS für umfassende Browserunterstützung (einschließlich mobiler Browser).</span><span class="sxs-lookup"><span data-stu-id="e57c8-108">Render the UI as HTML and CSS for wide browser support, including mobile browsers.</span></span>
 
-<span data-ttu-id="e57c8-109">Vom :::no-loc(Blazor):::-Framework unterstützte Szenarien:</span><span class="sxs-lookup"><span data-stu-id="e57c8-109">:::no-loc(Blazor)::: framework supported scenarios:</span></span>
+<span data-ttu-id="e57c8-109">Vom Blazor-Framework unterstützte Szenarien:</span><span class="sxs-lookup"><span data-stu-id="e57c8-109">Blazor framework supported scenarios:</span></span>
 
-* <span data-ttu-id="e57c8-110">Wiederverwendbare Benutzeroberflächenkomponenten (:::no-loc(Razor):::-Komponenten)</span><span class="sxs-lookup"><span data-stu-id="e57c8-110">Reusable UI components (:::no-loc(Razor)::: components)</span></span>
+* <span data-ttu-id="e57c8-110">Wiederverwendbare Benutzeroberflächenkomponenten (Razor-Komponenten)</span><span class="sxs-lookup"><span data-stu-id="e57c8-110">Reusable UI components (Razor components)</span></span>
 * <span data-ttu-id="e57c8-111">Clientseitiges Routing</span><span class="sxs-lookup"><span data-stu-id="e57c8-111">Client-side routing</span></span>
 * <span data-ttu-id="e57c8-112">Komponentenlayouts</span><span class="sxs-lookup"><span data-stu-id="e57c8-112">Component layouts</span></span>
 * <span data-ttu-id="e57c8-113">Unterstützung für Abhängigkeitsinjektion</span><span class="sxs-lookup"><span data-stu-id="e57c8-113">Support for dependency injection</span></span>
 * <span data-ttu-id="e57c8-114">Formulare und Überprüfung</span><span class="sxs-lookup"><span data-stu-id="e57c8-114">Forms and validation</span></span>
-* <span data-ttu-id="e57c8-115">Erstellen von Komponentenbibliotheken mit :::no-loc(Razor):::-Klassenbibliotheken</span><span class="sxs-lookup"><span data-stu-id="e57c8-115">Build component libraries with :::no-loc(Razor)::: class libraries</span></span>
+* <span data-ttu-id="e57c8-115">Erstellen von Komponentenbibliotheken mit Razor-Klassenbibliotheken</span><span class="sxs-lookup"><span data-stu-id="e57c8-115">Build component libraries with Razor class libraries</span></span>
 * <span data-ttu-id="e57c8-116">JavaScript-Interoperabilität</span><span class="sxs-lookup"><span data-stu-id="e57c8-116">JavaScript interop</span></span>
 
 <span data-ttu-id="e57c8-117">Weitere Informationen finden Sie unter <xref:blazor/index>.</span><span class="sxs-lookup"><span data-stu-id="e57c8-117">For more information, see <xref:blazor/index>.</span></span>
 
-### :::no-loc(Blazor Server):::
+### Blazor Server
 
-<span data-ttu-id="e57c8-118">:::no-loc(Blazor)::: entkoppelt die Komponentenrenderinglogik von Aktualisierungen der Benutzeroberfläche.</span><span class="sxs-lookup"><span data-stu-id="e57c8-118">:::no-loc(Blazor)::: decouples component rendering logic from how UI updates are applied.</span></span> <span data-ttu-id="e57c8-119">:::no-loc(Blazor Server)::: bietet Unterstützung zum Hosten von :::no-loc(Razor):::-Komponenten in einer ASP.NET Core-App auf dem Server.</span><span class="sxs-lookup"><span data-stu-id="e57c8-119">:::no-loc(Blazor Server)::: provides support for hosting :::no-loc(Razor)::: components on the server in an ASP.NET Core app.</span></span> <span data-ttu-id="e57c8-120">Aktualisierungen der Benutzeroberfläche werden über eine :::no-loc(SignalR):::-Verbindung verarbeitet.</span><span class="sxs-lookup"><span data-stu-id="e57c8-120">UI updates are handled over a :::no-loc(SignalR)::: connection.</span></span> <span data-ttu-id="e57c8-121">:::no-loc(Blazor Server)::: wird in ASP.NET Core 3.0 unterstützt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-121">:::no-loc(Blazor Server)::: is supported in ASP.NET Core 3.0.</span></span>
+<span data-ttu-id="e57c8-118">Blazor entkoppelt die Komponentenrenderinglogik von Aktualisierungen der Benutzeroberfläche.</span><span class="sxs-lookup"><span data-stu-id="e57c8-118">Blazor decouples component rendering logic from how UI updates are applied.</span></span> <span data-ttu-id="e57c8-119">Blazor Server bietet Unterstützung zum Hosten von Razor-Komponenten in einer ASP.NET Core-App auf dem Server.</span><span class="sxs-lookup"><span data-stu-id="e57c8-119">Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app.</span></span> <span data-ttu-id="e57c8-120">Aktualisierungen der Benutzeroberfläche werden über eine SignalR-Verbindung verarbeitet.</span><span class="sxs-lookup"><span data-stu-id="e57c8-120">UI updates are handled over a SignalR connection.</span></span> <span data-ttu-id="e57c8-121">Blazor Server wird in ASP.NET Core 3.0 unterstützt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-121">Blazor Server is supported in ASP.NET Core 3.0.</span></span>
 
-### <a name="no-locblazor-webassembly-preview"></a><span data-ttu-id="e57c8-122">:::no-loc(Blazor WebAssembly)::: (Vorschau)</span><span class="sxs-lookup"><span data-stu-id="e57c8-122">:::no-loc(Blazor WebAssembly)::: (Preview)</span></span>
+### <a name="no-locblazor-webassembly-preview"></a><span data-ttu-id="e57c8-122">Blazor WebAssembly (Vorschau)</span><span class="sxs-lookup"><span data-stu-id="e57c8-122">Blazor WebAssembly (Preview)</span></span>
 
-<span data-ttu-id="e57c8-123">:::no-loc(Blazor):::-Apps können auch mit einer WebAssembly-basierten .NET-Runtime direkt im Browser ausgeführt werden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-123">:::no-loc(Blazor)::: apps can also be run directly in the browser using a WebAssembly-based .NET runtime.</span></span> <span data-ttu-id="e57c8-124">:::no-loc(Blazor WebAssembly)::: befindet sich in der Vorschau und wird in ASP.NET Core 3.0 *nicht* unterstützt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-124">:::no-loc(Blazor WebAssembly)::: is in preview and *not* supported in ASP.NET Core 3.0.</span></span> <span data-ttu-id="e57c8-125">:::no-loc(Blazor WebAssembly)::: wird in einem zukünftigen Release von ASP.NET Core unterstützt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-125">:::no-loc(Blazor WebAssembly)::: will be supported in a future release of ASP.NET Core.</span></span>
+<span data-ttu-id="e57c8-123">Blazor-Apps können auch mit einer WebAssembly-basierten .NET-Runtime direkt im Browser ausgeführt werden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-123">Blazor apps can also be run directly in the browser using a WebAssembly-based .NET runtime.</span></span> <span data-ttu-id="e57c8-124">Blazor WebAssembly befindet sich in der Vorschau und wird in ASP.NET Core 3.0 *nicht* unterstützt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-124">Blazor WebAssembly is in preview and *not* supported in ASP.NET Core 3.0.</span></span> <span data-ttu-id="e57c8-125">Blazor WebAssembly wird in einem zukünftigen Release von ASP.NET Core unterstützt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-125">Blazor WebAssembly will be supported in a future release of ASP.NET Core.</span></span>
 
-### <a name="no-locrazor-components"></a><span data-ttu-id="e57c8-126">:::no-loc(Razor):::-Komponenten</span><span class="sxs-lookup"><span data-stu-id="e57c8-126">:::no-loc(Razor)::: components</span></span>
+### <a name="no-locrazor-components"></a><span data-ttu-id="e57c8-126">Razor-Komponenten</span><span class="sxs-lookup"><span data-stu-id="e57c8-126">Razor components</span></span>
 
-<span data-ttu-id="e57c8-127">:::no-loc(Blazor):::-Apps setzen sich aus Komponenten zusammen.</span><span class="sxs-lookup"><span data-stu-id="e57c8-127">:::no-loc(Blazor)::: apps are built from components.</span></span> <span data-ttu-id="e57c8-128">Komponenten sind eigenständige Elemente einer Benutzeroberfläche, z. B. eine Seite, ein Dialogfeld oder ein Formular.</span><span class="sxs-lookup"><span data-stu-id="e57c8-128">Components are self-contained chunks of user interface (UI), such as a page, dialog, or form.</span></span> <span data-ttu-id="e57c8-129">Komponenten sind normale .NET-Klassen, die die Renderinglogik für die Benutzeroberfläche sowie clientseitige Ereignishandler definieren.</span><span class="sxs-lookup"><span data-stu-id="e57c8-129">Components are normal .NET classes that define UI rendering logic and client-side event handlers.</span></span> <span data-ttu-id="e57c8-130">Damit können Sie umfangreiche interaktive Web-Apps ohne JavaScript erstellen.</span><span class="sxs-lookup"><span data-stu-id="e57c8-130">You can create rich interactive web apps without JavaScript.</span></span>
+<span data-ttu-id="e57c8-127">Blazor-Apps setzen sich aus Komponenten zusammen.</span><span class="sxs-lookup"><span data-stu-id="e57c8-127">Blazor apps are built from components.</span></span> <span data-ttu-id="e57c8-128">Komponenten sind eigenständige Elemente einer Benutzeroberfläche, z. B. eine Seite, ein Dialogfeld oder ein Formular.</span><span class="sxs-lookup"><span data-stu-id="e57c8-128">Components are self-contained chunks of user interface (UI), such as a page, dialog, or form.</span></span> <span data-ttu-id="e57c8-129">Komponenten sind normale .NET-Klassen, die die Renderinglogik für die Benutzeroberfläche sowie clientseitige Ereignishandler definieren.</span><span class="sxs-lookup"><span data-stu-id="e57c8-129">Components are normal .NET classes that define UI rendering logic and client-side event handlers.</span></span> <span data-ttu-id="e57c8-130">Damit können Sie umfangreiche interaktive Web-Apps ohne JavaScript erstellen.</span><span class="sxs-lookup"><span data-stu-id="e57c8-130">You can create rich interactive web apps without JavaScript.</span></span>
 
-<span data-ttu-id="e57c8-131">Komponenten in :::no-loc(Blazor)::: werden üblicherweise mit der :::no-loc(Razor):::-Syntax erstellt, einer natürlichen Mischung aus HTML und C#.</span><span class="sxs-lookup"><span data-stu-id="e57c8-131">Components in :::no-loc(Blazor)::: are typically authored using :::no-loc(Razor)::: syntax, a natural blend of HTML and C#.</span></span> <span data-ttu-id="e57c8-132">:::no-loc(Razor):::-Komponenten ähneln :::no-loc(Razor)::: Pages und MVC-Ansichten dahingehend, dass sie ebenfalls :::no-loc(Razor)::: verwenden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-132">:::no-loc(Razor)::: components are similar to :::no-loc(Razor)::: Pages and MVC views in that they both use :::no-loc(Razor):::.</span></span> <span data-ttu-id="e57c8-133">Im Gegensatz zu Pages und Ansichten, die auf einem Anforderung/Antwort-Modell basieren, werden Komponenten speziell für die Verarbeitung der Benutzeroberflächengestaltung verwendet.</span><span class="sxs-lookup"><span data-stu-id="e57c8-133">Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.</span></span>
+<span data-ttu-id="e57c8-131">Komponenten in Blazor werden üblicherweise mit der Razor-Syntax erstellt, einer natürlichen Mischung aus HTML und C#.</span><span class="sxs-lookup"><span data-stu-id="e57c8-131">Components in Blazor are typically authored using Razor syntax, a natural blend of HTML and C#.</span></span> <span data-ttu-id="e57c8-132">Razor-Komponenten ähneln Razor Pages und MVC-Ansichten dahingehend, dass sie ebenfalls Razor verwenden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-132">Razor components are similar to Razor Pages and MVC views in that they both use Razor.</span></span> <span data-ttu-id="e57c8-133">Im Gegensatz zu Pages und Ansichten, die auf einem Anforderung/Antwort-Modell basieren, werden Komponenten speziell für die Verarbeitung der Benutzeroberflächengestaltung verwendet.</span><span class="sxs-lookup"><span data-stu-id="e57c8-133">Unlike pages and views, which are based on a request-response model, components are used specifically for handling UI composition.</span></span>
 
 ## <a name="grpc"></a><span data-ttu-id="e57c8-134">gRPC</span><span class="sxs-lookup"><span data-stu-id="e57c8-134">gRPC</span></span>
 
@@ -88,11 +88,11 @@ ms.locfileid: "93051238"
 
 <span data-ttu-id="e57c8-151">Weitere Informationen finden Sie unter <xref:grpc/index>.</span><span class="sxs-lookup"><span data-stu-id="e57c8-151">For more information, see <xref:grpc/index>.</span></span>
 
-## :::no-loc(SignalR):::
+## SignalR
 
-<span data-ttu-id="e57c8-152">Anweisungen zur Migration finden Sie unter [Aktualisieren von :::no-loc(SignalR):::-Code](xref:migration/22-to-30#signalr).</span><span class="sxs-lookup"><span data-stu-id="e57c8-152">See [Update :::no-loc(SignalR)::: code](xref:migration/22-to-30#signalr) for migration instructions.</span></span> <span data-ttu-id="e57c8-153">:::no-loc(SignalR)::: verwendet jetzt `System.Text.Json`, um JSON-Nachrichten zu serialisieren bzw. zu deserialisieren.</span><span class="sxs-lookup"><span data-stu-id="e57c8-153">:::no-loc(SignalR)::: now uses `System.Text.Json` to serialize/deserialize JSON messages.</span></span> <span data-ttu-id="e57c8-154">Anleitungen zum Wiederherstellen des `Newtonsoft.Json`-basierten Serialisierungsmoduls finden Sie unter [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) (Wechseln zu Newtonsoft.Json).</span><span class="sxs-lookup"><span data-stu-id="e57c8-154">See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.</span></span>
+<span data-ttu-id="e57c8-152">Anweisungen zur Migration finden Sie unter [Aktualisieren von SignalR-Code](xref:migration/22-to-30#signalr).</span><span class="sxs-lookup"><span data-stu-id="e57c8-152">See [Update SignalR code](xref:migration/22-to-30#signalr) for migration instructions.</span></span> <span data-ttu-id="e57c8-153">SignalR verwendet jetzt `System.Text.Json`, um JSON-Nachrichten zu serialisieren bzw. zu deserialisieren.</span><span class="sxs-lookup"><span data-stu-id="e57c8-153">SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages.</span></span> <span data-ttu-id="e57c8-154">Anleitungen zum Wiederherstellen des `Newtonsoft.Json`-basierten Serialisierungsmoduls finden Sie unter [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) (Wechseln zu Newtonsoft.Json).</span><span class="sxs-lookup"><span data-stu-id="e57c8-154">See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.</span></span>
 
-<span data-ttu-id="e57c8-155">In den JavaScript- und .NET-Clients für :::no-loc(SignalR)::: wurde Unterstützung für eine automatische erneute Verbindungsherstellung hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-155">In the JavaScript and .NET Clients for :::no-loc(SignalR):::, support was added for automatic reconnection.</span></span> <span data-ttu-id="e57c8-156">Standardmäßig versucht der Client sofort, die Verbindung wiederherzustellen, und wiederholt den Versuch nötigenfalls nach 2, 10 und 30 Sekunden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-156">By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary.</span></span> <span data-ttu-id="e57c8-157">Wenn der Client die Verbindung erfolgreich wiederherstellt, erhält er eine neue Verbindungs-ID.</span><span class="sxs-lookup"><span data-stu-id="e57c8-157">If the client successfully reconnects, it receives a new connection ID.</span></span> <span data-ttu-id="e57c8-158">Die automatische erneute Herstellung einer Verbindung kann optional aktiviert werden:</span><span class="sxs-lookup"><span data-stu-id="e57c8-158">Automatic reconnect is opt-in:</span></span>
+<span data-ttu-id="e57c8-155">In den JavaScript- und .NET-Clients für SignalR wurde Unterstützung für eine automatische erneute Verbindungsherstellung hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="e57c8-155">In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection.</span></span> <span data-ttu-id="e57c8-156">Standardmäßig versucht der Client sofort, die Verbindung wiederherzustellen, und wiederholt den Versuch nötigenfalls nach 2, 10 und 30 Sekunden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-156">By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary.</span></span> <span data-ttu-id="e57c8-157">Wenn der Client die Verbindung erfolgreich wiederherstellt, erhält er eine neue Verbindungs-ID.</span><span class="sxs-lookup"><span data-stu-id="e57c8-157">If the client successfully reconnects, it receives a new connection ID.</span></span> <span data-ttu-id="e57c8-158">Die automatische erneute Herstellung einer Verbindung kann optional aktiviert werden:</span><span class="sxs-lookup"><span data-stu-id="e57c8-158">Automatic reconnect is opt-in:</span></span>
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -117,7 +117,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 <span data-ttu-id="e57c8-164">Aktualisieren Sie die App-Benutzeroberfläche während der Verbindungsversuche, um den Benutzer darüber zu informieren, dass versucht wird, erneut eine Verbindung herzustellen.</span><span class="sxs-lookup"><span data-stu-id="e57c8-164">During reconnection attempts, update the app UI to notify the user that the reconnection is being attempted.</span></span>
 
-<span data-ttu-id="e57c8-165">Um bei einer unterbrochenen Verbindung Feedback auf der Benutzeroberfläche bereitstellen zu können, wurde die :::no-loc(SignalR):::-Client-API um die folgenden Ereignishandler ergänzt:</span><span class="sxs-lookup"><span data-stu-id="e57c8-165">To provide UI feedback when the connection is interrupted, the :::no-loc(SignalR)::: client API has been expanded to include the following event handlers:</span></span>
+<span data-ttu-id="e57c8-165">Um bei einer unterbrochenen Verbindung Feedback auf der Benutzeroberfläche bereitstellen zu können, wurde die SignalR-Client-API um die folgenden Ereignishandler ergänzt:</span><span class="sxs-lookup"><span data-stu-id="e57c8-165">To provide UI feedback when the connection is interrupted, the SignalR client API has been expanded to include the following event handlers:</span></span>
 
 * <span data-ttu-id="e57c8-166">`onreconnecting`:  Bietet Entwicklern die Möglichkeit, die Benutzeroberfläche zu deaktivieren oder Benutzer darüber zu informieren, dass die App offline ist.</span><span class="sxs-lookup"><span data-stu-id="e57c8-166">`onreconnecting`:  Gives developers an opportunity to disable UI or to let users know the app is offline.</span></span>
 * <span data-ttu-id="e57c8-167">`onreconnected`: Bietet Entwicklern die Möglichkeit, die Benutzeroberfläche zu aktualisieren, sobald die Verbindung wiederhergestellt wurde.</span><span class="sxs-lookup"><span data-stu-id="e57c8-167">`onreconnected`: Gives developers an opportunity to update the UI once the connection is reestablished.</span></span>
@@ -144,7 +144,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-<span data-ttu-id="e57c8-170">:::no-loc(SignalR)::: 3.0 und höher bietet eine benutzerdefinierte Ressource für Autorisierungshandler, wenn eine Hubmethode eine Autorisierung erfordert.</span><span class="sxs-lookup"><span data-stu-id="e57c8-170">:::no-loc(SignalR)::: 3.0 and later provides a custom resource to authorization handlers when a hub method requires authorization.</span></span> <span data-ttu-id="e57c8-171">Die Ressource ist eine Instanz von `HubInvocationContext`.</span><span class="sxs-lookup"><span data-stu-id="e57c8-171">The resource is an instance of `HubInvocationContext`.</span></span> <span data-ttu-id="e57c8-172">Der `HubInvocationContext` umfasst Folgendes:</span><span class="sxs-lookup"><span data-stu-id="e57c8-172">The `HubInvocationContext` includes the:</span></span>
+<span data-ttu-id="e57c8-170">SignalR 3.0 und höher bietet eine benutzerdefinierte Ressource für Autorisierungshandler, wenn eine Hubmethode eine Autorisierung erfordert.</span><span class="sxs-lookup"><span data-stu-id="e57c8-170">SignalR 3.0 and later provides a custom resource to authorization handlers when a hub method requires authorization.</span></span> <span data-ttu-id="e57c8-171">Die Ressource ist eine Instanz von `HubInvocationContext`.</span><span class="sxs-lookup"><span data-stu-id="e57c8-171">The resource is an instance of `HubInvocationContext`.</span></span> <span data-ttu-id="e57c8-172">Der `HubInvocationContext` umfasst Folgendes:</span><span class="sxs-lookup"><span data-stu-id="e57c8-172">The `HubInvocationContext` includes the:</span></span>
 
 * `HubCallerContext`
 * <span data-ttu-id="e57c8-173">Den Namen der aufgerufenen Hubmethode.</span><span class="sxs-lookup"><span data-stu-id="e57c8-173">Name of the hub method being invoked.</span></span>
@@ -161,12 +161,12 @@ public class DomainRestrictedRequirement :
         DomainRestrictedRequirement requirement,
         HubInvocationContext resource)
     {
-        if (context.User?.:::no-loc(Identity):::?.Name == null)
+        if (context.User?.Identity?.Name == null)
         {
             return Task.CompletedTask;
         }
 
-        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.:::no-loc(Identity):::.Name))
+        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.Identity.Name))
         {
             context.Succeed(requirement);
         }
@@ -234,40 +234,40 @@ services
     });
 ```
 
-<span data-ttu-id="e57c8-192">:::no-loc(SignalR):::-Hubs verwenden [Endpunktrouting](xref:fundamentals/routing).</span><span class="sxs-lookup"><span data-stu-id="e57c8-192">:::no-loc(SignalR)::: hubs use [Endpoint Routing](xref:fundamentals/routing).</span></span> <span data-ttu-id="e57c8-193">Eine :::no-loc(SignalR):::-Hubverbindung wurde zuvor explizit eingerichtet:</span><span class="sxs-lookup"><span data-stu-id="e57c8-193">:::no-loc(SignalR)::: hub connection was previously done explicitly:</span></span>
+<span data-ttu-id="e57c8-192">SignalR-Hubs verwenden [Endpunktrouting](xref:fundamentals/routing).</span><span class="sxs-lookup"><span data-stu-id="e57c8-192">SignalR hubs use [Endpoint Routing](xref:fundamentals/routing).</span></span> <span data-ttu-id="e57c8-193">Eine SignalR-Hubverbindung wurde zuvor explizit eingerichtet:</span><span class="sxs-lookup"><span data-stu-id="e57c8-193">SignalR hub connection was previously done explicitly:</span></span>
 
 ```csharp
-app.Use:::no-loc(SignalR):::(routes =>
+app.UseSignalR(routes =>
 {
     routes.MapHub<ChatHub>("hubs/chat");
 });
 ```
 
-<span data-ttu-id="e57c8-194">In der vorherigen Version mussten Entwickler Controller, :::no-loc(Razor):::-Seiten und Hubs an verschiedenen Orten miteinander verknüpfen.</span><span class="sxs-lookup"><span data-stu-id="e57c8-194">In the previous version, developers needed to wire up controllers, :::no-loc(Razor)::: pages, and hubs in a variety of places.</span></span> <span data-ttu-id="e57c8-195">Explizite Verbindungen führen zu einer Reihe nahezu identischer Routingsegmente:</span><span class="sxs-lookup"><span data-stu-id="e57c8-195">Explicit connection results in a series of nearly-identical routing segments:</span></span>
+<span data-ttu-id="e57c8-194">In der vorherigen Version mussten Entwickler Controller, Razor-Seiten und Hubs an verschiedenen Orten miteinander verknüpfen.</span><span class="sxs-lookup"><span data-stu-id="e57c8-194">In the previous version, developers needed to wire up controllers, Razor pages, and hubs in a variety of places.</span></span> <span data-ttu-id="e57c8-195">Explizite Verbindungen führen zu einer Reihe nahezu identischer Routingsegmente:</span><span class="sxs-lookup"><span data-stu-id="e57c8-195">Explicit connection results in a series of nearly-identical routing segments:</span></span>
 
 ```csharp
-app.Use:::no-loc(SignalR):::(routes =>
+app.UseSignalR(routes =>
 {
     routes.MapHub<ChatHub>("hubs/chat");
 });
 
 app.UseRouting(routes =>
 {
-    routes.Map:::no-loc(Razor):::Pages();
+    routes.MapRazorPages();
 });
 ```
 
-<span data-ttu-id="e57c8-196">:::no-loc(SignalR)::: 3.0-Hubs können per Endpunktrouting weitergeleitet werden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-196">:::no-loc(SignalR)::: 3.0 hubs can be routed via endpoint routing.</span></span> <span data-ttu-id="e57c8-197">Beim Endpunktrouting kann in der Regel das gesamte Routing in `UseRouting` konfiguriert werden:</span><span class="sxs-lookup"><span data-stu-id="e57c8-197">With endpoint routing, typically all routing can be configured in `UseRouting`:</span></span>
+<span data-ttu-id="e57c8-196">SignalR 3.0-Hubs können per Endpunktrouting weitergeleitet werden.</span><span class="sxs-lookup"><span data-stu-id="e57c8-196">SignalR 3.0 hubs can be routed via endpoint routing.</span></span> <span data-ttu-id="e57c8-197">Beim Endpunktrouting kann in der Regel das gesamte Routing in `UseRouting` konfiguriert werden:</span><span class="sxs-lookup"><span data-stu-id="e57c8-197">With endpoint routing, typically all routing can be configured in `UseRouting`:</span></span>
 
 ```csharp
 app.UseRouting(routes =>
 {
-    routes.Map:::no-loc(Razor):::Pages();
+    routes.MapRazorPages();
     routes.MapHub<ChatHub>("hubs/chat");
 });
 ```
 
-<span data-ttu-id="e57c8-198">In ASP.NET Core 3.0 :::no-loc(SignalR)::: wurde Folgendes hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="e57c8-198">ASP.NET Core 3.0 :::no-loc(SignalR)::: added:</span></span>
+<span data-ttu-id="e57c8-198">In ASP.NET Core 3.0 SignalR wurde Folgendes hinzugefügt:</span><span class="sxs-lookup"><span data-stu-id="e57c8-198">ASP.NET Core 3.0 SignalR added:</span></span>
 
 <span data-ttu-id="e57c8-199">Streaming vom Client zum Server.</span><span class="sxs-lookup"><span data-stu-id="e57c8-199">Client-to-server streaming.</span></span> <span data-ttu-id="e57c8-200">Mit dem Streaming vom Client zum Server können serverseitige Methoden Instanzen von `IAsyncEnumerable<T>` oder `ChannelReader<T>` akzeptieren.</span><span class="sxs-lookup"><span data-stu-id="e57c8-200">With client-to-server streaming, server-side methods can take instances of either an `IAsyncEnumerable<T>` or `ChannelReader<T>`.</span></span> <span data-ttu-id="e57c8-201">Im folgenden C#-Beispiel empfängt die `UploadStream`-Methode im Hub einen Zeichenfolgenstream vom Client:</span><span class="sxs-lookup"><span data-stu-id="e57c8-201">In the following C# sample, the `UploadStream` method on the Hub will receive a stream of strings from the client:</span></span>
 
@@ -298,7 +298,7 @@ async IAsyncEnumerable<string> clientStreamData()
 await connection.SendAsync("UploadStream", clientStreamData());
 ```
 
-<span data-ttu-id="e57c8-204">JavaScript-Client-Apps verwenden :::no-loc(SignalR)::: `Subject` (oder [RxJS Subject](https://rxjs.dev/api/index/class/Subject)) für das `stream`-Argument der oben genannten Hubmethode `UploadStream`.</span><span class="sxs-lookup"><span data-stu-id="e57c8-204">JavaScript client apps use the :::no-loc(SignalR)::: `Subject` (or an [RxJS Subject](https://rxjs.dev/api/index/class/Subject)) for the `stream` argument of the `UploadStream` Hub method above.</span></span>
+<span data-ttu-id="e57c8-204">JavaScript-Client-Apps verwenden SignalR `Subject` (oder [RxJS Subject](https://rxjs.dev/api/index/class/Subject)) für das `stream`-Argument der oben genannten Hubmethode `UploadStream`.</span><span class="sxs-lookup"><span data-stu-id="e57c8-204">JavaScript client apps use the SignalR `Subject` (or an [RxJS Subject](https://rxjs.dev/api/index/class/Subject)) for the `stream` argument of the `UploadStream` Hub method above.</span></span>
 
 ```javascript
 let subject = new signalR.Subject();
@@ -324,25 +324,25 @@ subject.complete();
 
 <span data-ttu-id="e57c8-212">Informationen zum Hinzufügen von Json.NET zu ASP.NET Core 3.0 finden Sie unter [Hinzufügen von Newtonsoft.Json-basierter Unterstützung für das JSON-Format](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).</span><span class="sxs-lookup"><span data-stu-id="e57c8-212">To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format support](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support).</span></span>
 
-## <a name="new-no-locrazor-directives"></a><span data-ttu-id="e57c8-213">Neue :::no-loc(Razor):::-Anweisungen</span><span class="sxs-lookup"><span data-stu-id="e57c8-213">New :::no-loc(Razor)::: directives</span></span>
+## <a name="new-no-locrazor-directives"></a><span data-ttu-id="e57c8-213">Neue Razor-Anweisungen</span><span class="sxs-lookup"><span data-stu-id="e57c8-213">New Razor directives</span></span>
 
-<span data-ttu-id="e57c8-214">Die folgende Liste enthält neue :::no-loc(Razor):::-Anweisungen:</span><span class="sxs-lookup"><span data-stu-id="e57c8-214">The following list contains new :::no-loc(Razor)::: directives:</span></span>
+<span data-ttu-id="e57c8-214">Die folgende Liste enthält neue Razor-Anweisungen:</span><span class="sxs-lookup"><span data-stu-id="e57c8-214">The following list contains new Razor directives:</span></span>
 
 * <span data-ttu-id="e57c8-215">[`@attribute`](xref:mvc/views/razor#attribute): die Anweisung `@attribute` wendet das angegebene Attribut auf die Klasse der generierten Seite oder Ansicht an.</span><span class="sxs-lookup"><span data-stu-id="e57c8-215">[`@attribute`](xref:mvc/views/razor#attribute): The `@attribute` directive applies the given attribute to the class of the generated page or view.</span></span> <span data-ttu-id="e57c8-216">Beispielsweise `@attribute [Authorize]`.</span><span class="sxs-lookup"><span data-stu-id="e57c8-216">For example, `@attribute [Authorize]`.</span></span>
 * <span data-ttu-id="e57c8-217">[`@implements`](xref:mvc/views/razor#implements): Die `@implements`-Anweisung implementiert eine Schnittstelle für die generierte Klasse.</span><span class="sxs-lookup"><span data-stu-id="e57c8-217">[`@implements`](xref:mvc/views/razor#implements): The `@implements` directive implements an interface for the generated class.</span></span> <span data-ttu-id="e57c8-218">Beispielsweise `@implements IDisposable`.</span><span class="sxs-lookup"><span data-stu-id="e57c8-218">For example, `@implements IDisposable`.</span></span>
 
-## <a name="no-locidentityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a><span data-ttu-id="e57c8-219">:::no-loc(Identity):::Server4 unterstützt Authentifizierung und Autorisierung für Web-APIs und SPAs.</span><span class="sxs-lookup"><span data-stu-id="e57c8-219">:::no-loc(Identity):::Server4 supports authentication and authorization for web APIs and SPAs</span></span>
+## <a name="no-locidentityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a><span data-ttu-id="e57c8-219">IdentityServer4 unterstützt Authentifizierung und Autorisierung für Web-APIs und SPAs.</span><span class="sxs-lookup"><span data-stu-id="e57c8-219">IdentityServer4 supports authentication and authorization for web APIs and SPAs</span></span>
 
-<span data-ttu-id="e57c8-220">ASP.NET Core 3.0 bietet eine Authentifizierung in Single-Page-Webanwendungen (SPAs) unter Verwendung der Unterstützung für die Web-API-Autorisierung.</span><span class="sxs-lookup"><span data-stu-id="e57c8-220">ASP.NET Core 3.0 offers authentication in Single Page Apps (SPAs) using the support for web API authorization.</span></span> <span data-ttu-id="e57c8-221">:::no-loc(ASP.NET Core Identity)::: zum Authentifizieren und Speichern von Benutzern wird mit [:::no-loc(Identity):::Server4](https://identityserver.io/) zur Implementierung von OpenID Connect kombiniert.</span><span class="sxs-lookup"><span data-stu-id="e57c8-221">:::no-loc(ASP.NET Core Identity)::: for authenticating and storing users is combined with [:::no-loc(Identity):::Server4](https://identityserver.io/) for implementing OpenID Connect.</span></span>
+<span data-ttu-id="e57c8-220">ASP.NET Core 3.0 bietet eine Authentifizierung in Single-Page-Webanwendungen (SPAs) unter Verwendung der Unterstützung für die Web-API-Autorisierung.</span><span class="sxs-lookup"><span data-stu-id="e57c8-220">ASP.NET Core 3.0 offers authentication in Single Page Apps (SPAs) using the support for web API authorization.</span></span> <span data-ttu-id="e57c8-221">ASP.NET Core Identity zum Authentifizieren und Speichern von Benutzern wird mit [IdentityServer4](https://identityserver.io/) zur Implementierung von OpenID Connect kombiniert.</span><span class="sxs-lookup"><span data-stu-id="e57c8-221">ASP.NET Core Identity for authenticating and storing users is combined with [IdentityServer4](https://identityserver.io/) for implementing OpenID Connect.</span></span>
 
-<span data-ttu-id="e57c8-222">:::no-loc(Identity):::Server4 ist ein OpenID Connect- und OAuth 2.0-Framework für ASP.NET Core 3.0.</span><span class="sxs-lookup"><span data-stu-id="e57c8-222">:::no-loc(Identity):::Server4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.0.</span></span> <span data-ttu-id="e57c8-223">Es ermöglicht die folgenden Sicherheitsfunktionen:</span><span class="sxs-lookup"><span data-stu-id="e57c8-223">It enables the following security features:</span></span>
+<span data-ttu-id="e57c8-222">IdentityServer4 ist ein OpenID Connect- und OAuth 2.0-Framework für ASP.NET Core 3.0.</span><span class="sxs-lookup"><span data-stu-id="e57c8-222">IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.0.</span></span> <span data-ttu-id="e57c8-223">Es ermöglicht die folgenden Sicherheitsfunktionen:</span><span class="sxs-lookup"><span data-stu-id="e57c8-223">It enables the following security features:</span></span>
 
 * <span data-ttu-id="e57c8-224">Authentifizierung als Dienst</span><span class="sxs-lookup"><span data-stu-id="e57c8-224">Authentication as a Service (AaaS)</span></span>
 * <span data-ttu-id="e57c8-225">Einmaliges Anmelden und einmaliges Abmelden für mehrere Anwendungstypen</span><span class="sxs-lookup"><span data-stu-id="e57c8-225">Single sign-on/off (SSO) over multiple application types</span></span>
 * <span data-ttu-id="e57c8-226">Zugriffssteuerung für APIs</span><span class="sxs-lookup"><span data-stu-id="e57c8-226">Access control for APIs</span></span>
 * <span data-ttu-id="e57c8-227">Federation Gateway</span><span class="sxs-lookup"><span data-stu-id="e57c8-227">Federation Gateway</span></span>
 
-<span data-ttu-id="e57c8-228">Weitere Informationen finden Sie in der [:::no-loc(Identity):::Server4-Dokumentation](http://docs.identityserver.io/en/latest/index.html) oder unter [Authentifizierung und Autorisierung für SPAs](xref:security/authentication/identity/spa).</span><span class="sxs-lookup"><span data-stu-id="e57c8-228">For more information, see [the :::no-loc(Identity):::Server4 documentation](http://docs.identityserver.io/en/latest/index.html) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).</span></span>
+<span data-ttu-id="e57c8-228">Weitere Informationen finden Sie in der [IdentityServer4-Dokumentation](http://docs.identityserver.io/en/latest/index.html) oder unter [Authentifizierung und Autorisierung für SPAs](xref:security/authentication/identity/spa).</span><span class="sxs-lookup"><span data-stu-id="e57c8-228">For more information, see [the IdentityServer4 documentation](http://docs.identityserver.io/en/latest/index.html) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).</span></span>
 
 ## <a name="certificate-and-kerberos-authentication"></a><span data-ttu-id="e57c8-229">Zertifikat- und Kerberos-Authentifizierung</span><span class="sxs-lookup"><span data-stu-id="e57c8-229">Certificate and Kerberos authentication</span></span>
 
@@ -404,14 +404,14 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="template-changes"></a><span data-ttu-id="e57c8-252">Änderungen an Vorlagen</span><span class="sxs-lookup"><span data-stu-id="e57c8-252">Template changes</span></span>
 
-<span data-ttu-id="e57c8-253">Aus den Vorlagen für Webbenutzeroberflächen (:::no-loc(Razor)::: Pages, MVC mit Controller und Ansichten) wurde Folgendes entfernt:</span><span class="sxs-lookup"><span data-stu-id="e57c8-253">The web UI templates (:::no-loc(Razor)::: Pages, MVC with controller and views) have the following removed:</span></span>
+<span data-ttu-id="e57c8-253">Aus den Vorlagen für Webbenutzeroberflächen (Razor Pages, MVC mit Controller und Ansichten) wurde Folgendes entfernt:</span><span class="sxs-lookup"><span data-stu-id="e57c8-253">The web UI templates (Razor Pages, MVC with controller and views) have the following removed:</span></span>
 
-* <span data-ttu-id="e57c8-254">Die Benutzeroberfläche für die Zustimmung zu :::no-loc(cookie):::s ist nicht mehr enthalten.</span><span class="sxs-lookup"><span data-stu-id="e57c8-254">The :::no-loc(cookie)::: consent UI is no longer included.</span></span> <span data-ttu-id="e57c8-255">Informationen dazu, wie Sie die Zustimmung zu :::no-loc(cookie):::s in einer aus einer ASP.NET Core 3.0-Vorlage generierten App aktivieren, finden Sie unter <xref:security/gdpr>.</span><span class="sxs-lookup"><span data-stu-id="e57c8-255">To enable the :::no-loc(cookie)::: consent feature in an ASP.NET Core 3.0 template-generated app, see <xref:security/gdpr>.</span></span>
+* <span data-ttu-id="e57c8-254">Die Benutzeroberfläche für die Zustimmung zu cookies ist nicht mehr enthalten.</span><span class="sxs-lookup"><span data-stu-id="e57c8-254">The cookie consent UI is no longer included.</span></span> <span data-ttu-id="e57c8-255">Informationen dazu, wie Sie die Zustimmung zu cookies in einer aus einer ASP.NET Core 3.0-Vorlage generierten App aktivieren, finden Sie unter <xref:security/gdpr>.</span><span class="sxs-lookup"><span data-stu-id="e57c8-255">To enable the cookie consent feature in an ASP.NET Core 3.0 template-generated app, see <xref:security/gdpr>.</span></span>
 * <span data-ttu-id="e57c8-256">Skripts und damit zusammenhängende statische Ressourcen werden jetzt als lokale Dateien referenziert, es werden keine CDNs mehr dafür verwendet.</span><span class="sxs-lookup"><span data-stu-id="e57c8-256">Scripts and related static assets are now referenced as local files instead of using CDNs.</span></span> <span data-ttu-id="e57c8-257">Weitere Informationen finden Sie unter [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (aspnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350) (Skripts und damit zusammenhängende statische Ressourcen werden jetzt als lokale Dateien referenziert, es werden keine CDNs basierend auf der aktuellen Umgebung mehr verwendet).</span><span class="sxs-lookup"><span data-stu-id="e57c8-257">For more information, see [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (aspnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).</span></span>
 
 <span data-ttu-id="e57c8-258">Die Angular-Vorlage wurde auf Angular 8 aktualisiert.</span><span class="sxs-lookup"><span data-stu-id="e57c8-258">The Angular template updated to use Angular 8.</span></span>
 
-<span data-ttu-id="e57c8-259">Die Vorlage der :::no-loc(Razor):::-Klassenbibliothek (Razor Class Library, RCL) gilt standardmäßig für die :::no-loc(Razor):::-Komponentenentwicklung.</span><span class="sxs-lookup"><span data-stu-id="e57c8-259">The :::no-loc(Razor)::: class library (RCL) template defaults to :::no-loc(Razor)::: component development by default.</span></span> <span data-ttu-id="e57c8-260">Eine neue Vorlagenoption in Visual Studio bietet Vorlagenunterstützung für Seiten und Ansichten.</span><span class="sxs-lookup"><span data-stu-id="e57c8-260">A new template option in Visual Studio provides template support for pages and views.</span></span> <span data-ttu-id="e57c8-261">Übergeben Sie beim Erstellen einer RCL aus einer Vorlage in einer Befehlsshell die Option `--support-pages-and-views` (`dotnet new razorclasslib --support-pages-and-views`).</span><span class="sxs-lookup"><span data-stu-id="e57c8-261">When creating an RCL from the template in a command shell, pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`).</span></span>
+<span data-ttu-id="e57c8-259">Die Vorlage der Razor-Klassenbibliothek (Razor Class Library, RCL) gilt standardmäßig für die Razor-Komponentenentwicklung.</span><span class="sxs-lookup"><span data-stu-id="e57c8-259">The Razor class library (RCL) template defaults to Razor component development by default.</span></span> <span data-ttu-id="e57c8-260">Eine neue Vorlagenoption in Visual Studio bietet Vorlagenunterstützung für Seiten und Ansichten.</span><span class="sxs-lookup"><span data-stu-id="e57c8-260">A new template option in Visual Studio provides template support for pages and views.</span></span> <span data-ttu-id="e57c8-261">Übergeben Sie beim Erstellen einer RCL aus einer Vorlage in einer Befehlsshell die Option `--support-pages-and-views` (`dotnet new razorclasslib --support-pages-and-views`).</span><span class="sxs-lookup"><span data-stu-id="e57c8-261">When creating an RCL from the template in a command shell, pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`).</span></span>
 
 ## <a name="generic-host"></a><span data-ttu-id="e57c8-262">Generischer Host</span><span class="sxs-lookup"><span data-stu-id="e57c8-262">Generic Host</span></span>
 

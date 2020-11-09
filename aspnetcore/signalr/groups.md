@@ -1,23 +1,23 @@
 ---
-title: 'Verwalten von Benutzern und Gruppen in :::no-loc(SignalR):::'
+title: 'Verwalten von Benutzern und Gruppen in SignalR'
 author: bradygaster
-description: 'Übersicht über ASP.net Core :::no-loc(SignalR)::: Benutzer-und Gruppenverwaltung.'
+description: 'Übersicht über ASP.net Core SignalR Benutzer-und Gruppenverwaltung.'
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 05/17/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: signalr/groups
 ms.openlocfilehash: a86408eaae8d3df32faef79453d9db0cdbd64a78
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,19 +26,19 @@ ms.contentlocale: de-DE
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93050952"
 ---
-# <a name="manage-users-and-groups-in-no-locsignalr"></a><span data-ttu-id="c086a-103">Verwalten von Benutzern und Gruppen in :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="c086a-103">Manage users and groups in :::no-loc(SignalR):::</span></span>
+# <a name="manage-users-and-groups-in-no-locsignalr"></a><span data-ttu-id="c086a-103">Verwalten von Benutzern und Gruppen in SignalR</span><span class="sxs-lookup"><span data-stu-id="c086a-103">Manage users and groups in SignalR</span></span>
 
 <span data-ttu-id="c086a-104">Von [Brennan](https://github.com/BrennanConroy) "a"</span><span class="sxs-lookup"><span data-stu-id="c086a-104">By [Brennan Conroy](https://github.com/BrennanConroy)</span></span>
 
-<span data-ttu-id="c086a-105">:::no-loc(SignalR)::: ermöglicht das Senden von Nachrichten an alle Verbindungen, die einem bestimmten Benutzer zugeordnet sind, sowie an benannte Verbindungs Gruppen.</span><span class="sxs-lookup"><span data-stu-id="c086a-105">:::no-loc(SignalR)::: allows messages to be sent to all connections associated with a specific user, as well as to named groups of connections.</span></span>
+<span data-ttu-id="c086a-105">SignalR ermöglicht das Senden von Nachrichten an alle Verbindungen, die einem bestimmten Benutzer zugeordnet sind, sowie an benannte Verbindungs Gruppen.</span><span class="sxs-lookup"><span data-stu-id="c086a-105">SignalR allows messages to be sent to all connections associated with a specific user, as well as to named groups of connections.</span></span>
 
 <span data-ttu-id="c086a-106">[Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/groups/sample/) [(Vorgehensweise zum Herunterladen)](xref:index#how-to-download-a-sample)</span><span class="sxs-lookup"><span data-stu-id="c086a-106">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/groups/sample/) [(how to download)](xref:index#how-to-download-a-sample)</span></span>
 
-## <a name="users-in-no-locsignalr"></a><span data-ttu-id="c086a-107">Benutzer in :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="c086a-107">Users in :::no-loc(SignalR):::</span></span>
+## <a name="users-in-no-locsignalr"></a><span data-ttu-id="c086a-107">Benutzer in SignalR</span><span class="sxs-lookup"><span data-stu-id="c086a-107">Users in SignalR</span></span>
 
-<span data-ttu-id="c086a-108">Ein einzelner Benutzer in :::no-loc(SignalR)::: kann über mehrere Verbindungen mit einer App verfügen.</span><span class="sxs-lookup"><span data-stu-id="c086a-108">A single user in :::no-loc(SignalR)::: can have multiple connections to an app.</span></span> <span data-ttu-id="c086a-109">Beispielsweise könnte ein Benutzer sowohl auf seinem Desktop als auch auf seinem Telefon verbunden sein.</span><span class="sxs-lookup"><span data-stu-id="c086a-109">For example, a user could be connected on their desktop as well as their phone.</span></span> <span data-ttu-id="c086a-110">Jedes Gerät verfügt über eine separate :::no-loc(SignalR)::: Verbindung, aber alle sind dem gleichen Benutzer zugeordnet.</span><span class="sxs-lookup"><span data-stu-id="c086a-110">Each device has a separate :::no-loc(SignalR)::: connection, but they're all associated with the same user.</span></span> <span data-ttu-id="c086a-111">Wenn eine Nachricht an den Benutzer gesendet wird, erhalten alle Verbindungen, die diesem Benutzer zugeordnet sind, die Nachricht.</span><span class="sxs-lookup"><span data-stu-id="c086a-111">If a message is sent to the user, all of the connections associated with that user receive the message.</span></span> <span data-ttu-id="c086a-112">Der Benutzer Bezeichner für eine Verbindung kann über die- `Context.UserIdentifier` Eigenschaft im Hub aufgerufen werden.</span><span class="sxs-lookup"><span data-stu-id="c086a-112">The user identifier for a connection can be accessed by the `Context.UserIdentifier` property in the hub.</span></span>
+<span data-ttu-id="c086a-108">Ein einzelner Benutzer in SignalR kann über mehrere Verbindungen mit einer App verfügen.</span><span class="sxs-lookup"><span data-stu-id="c086a-108">A single user in SignalR can have multiple connections to an app.</span></span> <span data-ttu-id="c086a-109">Beispielsweise könnte ein Benutzer sowohl auf seinem Desktop als auch auf seinem Telefon verbunden sein.</span><span class="sxs-lookup"><span data-stu-id="c086a-109">For example, a user could be connected on their desktop as well as their phone.</span></span> <span data-ttu-id="c086a-110">Jedes Gerät verfügt über eine separate SignalR Verbindung, aber alle sind dem gleichen Benutzer zugeordnet.</span><span class="sxs-lookup"><span data-stu-id="c086a-110">Each device has a separate SignalR connection, but they're all associated with the same user.</span></span> <span data-ttu-id="c086a-111">Wenn eine Nachricht an den Benutzer gesendet wird, erhalten alle Verbindungen, die diesem Benutzer zugeordnet sind, die Nachricht.</span><span class="sxs-lookup"><span data-stu-id="c086a-111">If a message is sent to the user, all of the connections associated with that user receive the message.</span></span> <span data-ttu-id="c086a-112">Der Benutzer Bezeichner für eine Verbindung kann über die- `Context.UserIdentifier` Eigenschaft im Hub aufgerufen werden.</span><span class="sxs-lookup"><span data-stu-id="c086a-112">The user identifier for a connection can be accessed by the `Context.UserIdentifier` property in the hub.</span></span>
 
-<span data-ttu-id="c086a-113">Standardmäßig :::no-loc(SignalR)::: verwendet die `ClaimTypes.NameIdentifier` aus der, die `ClaimsPrincipal` der Verbindung zugeordnet ist, als Benutzer Bezeichner.</span><span class="sxs-lookup"><span data-stu-id="c086a-113">By default, :::no-loc(SignalR)::: uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier.</span></span> <span data-ttu-id="c086a-114">Informationen zum Anpassen dieses Verhaltens finden Sie unter [Verwenden von Ansprüchen zum Anpassen der Identitäts Behandlung](xref:signalr/authn-and-authz#use-claims-to-customize-identity-handling).</span><span class="sxs-lookup"><span data-stu-id="c086a-114">To customize this behavior, see [Use claims to customize identity handling](xref:signalr/authn-and-authz#use-claims-to-customize-identity-handling).</span></span>
+<span data-ttu-id="c086a-113">Standardmäßig SignalR verwendet die `ClaimTypes.NameIdentifier` aus der, die `ClaimsPrincipal` der Verbindung zugeordnet ist, als Benutzer Bezeichner.</span><span class="sxs-lookup"><span data-stu-id="c086a-113">By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier.</span></span> <span data-ttu-id="c086a-114">Informationen zum Anpassen dieses Verhaltens finden Sie unter [Verwenden von Ansprüchen zum Anpassen der Identitäts Behandlung](xref:signalr/authn-and-authz#use-claims-to-customize-identity-handling).</span><span class="sxs-lookup"><span data-stu-id="c086a-114">To customize this behavior, see [Use claims to customize identity handling](xref:signalr/authn-and-authz#use-claims-to-customize-identity-handling).</span></span>
 
 <span data-ttu-id="c086a-115">Senden Sie eine Nachricht an einen bestimmten Benutzer, indem Sie die Benutzer-ID an die `User` Funktion in einer Hub-Methode übergeben, wie im folgenden Beispiel gezeigt:</span><span class="sxs-lookup"><span data-stu-id="c086a-115">Send a message to a specific user by passing the user identifier to the `User` function in a hub method, as shown in the following example:</span></span>
 
@@ -47,7 +47,7 @@ ms.locfileid: "93050952"
 
 [!code-csharp[Configure service](groups/sample/Hubs/ChatHub.cs?range=29-32)]
 
-## <a name="groups-in-no-locsignalr"></a><span data-ttu-id="c086a-117">Gruppen in :::no-loc(SignalR):::</span><span class="sxs-lookup"><span data-stu-id="c086a-117">Groups in :::no-loc(SignalR):::</span></span>
+## <a name="groups-in-no-locsignalr"></a><span data-ttu-id="c086a-117">Gruppen in SignalR</span><span class="sxs-lookup"><span data-stu-id="c086a-117">Groups in SignalR</span></span>
 
 <span data-ttu-id="c086a-118">Eine Gruppe ist eine Auflistung von Verbindungen, die einem Namen zugeordnet sind.</span><span class="sxs-lookup"><span data-stu-id="c086a-118">A group is a collection of connections associated with a name.</span></span> <span data-ttu-id="c086a-119">Nachrichten können an alle Verbindungen in einer Gruppe gesendet werden.</span><span class="sxs-lookup"><span data-stu-id="c086a-119">Messages can be sent to all connections in a group.</span></span> <span data-ttu-id="c086a-120">Gruppen sind die empfohlene Vorgehensweise zum Senden an eine Verbindung oder mehrere Verbindungen, da die Gruppen von der Anwendung verwaltet werden.</span><span class="sxs-lookup"><span data-stu-id="c086a-120">Groups are the recommended way to send to a connection or multiple connections because the groups are managed by the application.</span></span> <span data-ttu-id="c086a-121">Eine Verbindung kann Mitglied mehrerer Gruppen sein.</span><span class="sxs-lookup"><span data-stu-id="c086a-121">A connection can be a member of multiple groups.</span></span> <span data-ttu-id="c086a-122">Gruppen eignen sich ideal für eine Chat-Anwendung, bei der jeder Raum als Gruppe dargestellt werden kann.</span><span class="sxs-lookup"><span data-stu-id="c086a-122">Groups are ideal for something like a chat application, where each room can be represented as a group.</span></span> <span data-ttu-id="c086a-123">Verbindungen werden über die `AddToGroupAsync` -Methode und die-Methode zu Gruppen hinzugefügt oder aus diesen entfernt `RemoveFromGroupAsync` .</span><span class="sxs-lookup"><span data-stu-id="c086a-123">Connections are added to or removed from groups via the `AddToGroupAsync` and `RemoveFromGroupAsync` methods.</span></span>
 

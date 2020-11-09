@@ -1,22 +1,22 @@
 ---
-title: 'Einführung in :::no-loc(Razor)::: Pages in ASP.NET Core'
+title: 'Einführung in Razor Pages in ASP.NET Core'
 author: Rick-Anderson
-description: 'Erfahren Sie, wie :::no-loc(Razor)::: Pages in ASP.NET Core codierungsseitige Szenarios einfacher und produktiver gestalten als MVC.'
+description: 'Erfahren Sie, wie Razor Pages in ASP.NET Core codierungsseitige Szenarios einfacher und produktiver gestalten als MVC.'
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: razor-pages/index
 ms.openlocfilehash: ff045b24c351c696566dee6046fc4b76f8f88e1a
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -25,17 +25,17 @@ ms.contentlocale: de-DE
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93059142"
 ---
-# <a name="introduction-to-no-locrazor-pages-in-aspnet-core"></a><span data-ttu-id="deb3a-103">Einführung in :::no-loc(Razor)::: Pages in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="deb3a-103">Introduction to :::no-loc(Razor)::: Pages in ASP.NET Core</span></span>
+# <a name="introduction-to-no-locrazor-pages-in-aspnet-core"></a><span data-ttu-id="deb3a-103">Einführung in Razor Pages in ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="deb3a-103">Introduction to Razor Pages in ASP.NET Core</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
 <span data-ttu-id="deb3a-104">Von [Rick Anderson](https://twitter.com/RickAndMSFT) und [Ryan Nowak](https://github.com/rynowak)</span><span class="sxs-lookup"><span data-stu-id="deb3a-104">By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak)</span></span>
 
-<span data-ttu-id="deb3a-105">:::no-loc(Razor)::: Pages kann im Vergleich zu Controllern und Ansichten das Programmieren seitenbasierter Anwendungen vereinfachen und die Produktivität erhöhen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-105">:::no-loc(Razor)::: Pages can make coding page-focused scenarios easier and more productive than using controllers and views.</span></span>
+<span data-ttu-id="deb3a-105">Razor Pages kann im Vergleich zu Controllern und Ansichten das Programmieren seitenbasierter Anwendungen vereinfachen und die Produktivität erhöhen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-105">Razor Pages can make coding page-focused scenarios easier and more productive than using controllers and views.</span></span>
 
 <span data-ttu-id="deb3a-106">Ein Tutorial, in dem der Model-View-Controller-Ansatz verwendet wird, finden Sie unter [Erste Schritte mit ASP.NET Core MVC und Visual Studio](xref:tutorials/first-mvc-app/start-mvc).</span><span class="sxs-lookup"><span data-stu-id="deb3a-106">If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).</span></span>
 
-<span data-ttu-id="deb3a-107">Dieses Dokument bietet eine Einführung in :::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-107">This document provides an introduction to :::no-loc(Razor)::: Pages.</span></span> <span data-ttu-id="deb3a-108">Es handelt sich nicht um ein Schritt-für-Schritt-Tutorial.</span><span class="sxs-lookup"><span data-stu-id="deb3a-108">It's not a step by step tutorial.</span></span> <span data-ttu-id="deb3a-109">Wenn es Ihnen Probleme bereitet, die Ausführungen in einigen Abschnitten nachzuvollziehen, lesen Sie [Erste Schritte mit :::no-loc(Razor)::: Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-109">If you find some of the sections too advanced, see [Get started with :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start).</span></span> <span data-ttu-id="deb3a-110">Eine Übersicht über ASP.NET Core finden Sie unter [Einführung in ASP.NET Core](xref:index).</span><span class="sxs-lookup"><span data-stu-id="deb3a-110">For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).</span></span>
+<span data-ttu-id="deb3a-107">Dieses Dokument bietet eine Einführung in Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-107">This document provides an introduction to Razor Pages.</span></span> <span data-ttu-id="deb3a-108">Es handelt sich nicht um ein Schritt-für-Schritt-Tutorial.</span><span class="sxs-lookup"><span data-stu-id="deb3a-108">It's not a step by step tutorial.</span></span> <span data-ttu-id="deb3a-109">Wenn es Ihnen Probleme bereitet, die Ausführungen in einigen Abschnitten nachzuvollziehen, lesen Sie [Erste Schritte mit Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-109">If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start).</span></span> <span data-ttu-id="deb3a-110">Eine Übersicht über ASP.NET Core finden Sie unter [Einführung in ASP.NET Core](xref:index).</span><span class="sxs-lookup"><span data-stu-id="deb3a-110">For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).</span></span>
 
 ## <a name="prerequisites"></a><span data-ttu-id="deb3a-111">Voraussetzungen</span><span class="sxs-lookup"><span data-stu-id="deb3a-111">Prerequisites</span></span>
 
@@ -55,11 +55,11 @@ ms.locfileid: "93059142"
 
 <a name="rpvs17"></a>
 
-## <a name="create-a-no-locrazor-pages-project"></a><span data-ttu-id="deb3a-115">Erstellen eines :::no-loc(Razor)::: Pages-Projekts</span><span class="sxs-lookup"><span data-stu-id="deb3a-115">Create a :::no-loc(Razor)::: Pages project</span></span>
+## <a name="create-a-no-locrazor-pages-project"></a><span data-ttu-id="deb3a-115">Erstellen eines Razor Pages-Projekts</span><span class="sxs-lookup"><span data-stu-id="deb3a-115">Create a Razor Pages project</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="deb3a-116">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="deb3a-116">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="deb3a-117">Ausführliche Informationen zum Erstellen eines :::no-loc(Razor)::: Pages-Projekts finden Sie unter [Erste Schritte mit :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-117">See [Get started with :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a :::no-loc(Razor)::: Pages project.</span></span>
+<span data-ttu-id="deb3a-117">Ausführliche Informationen zum Erstellen eines Razor Pages-Projekts finden Sie unter [Erste Schritte mit Razor Pages](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-117">See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.</span></span>
 
 # <a name="visual-studio-code"></a>[<span data-ttu-id="deb3a-118">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="deb3a-118">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
@@ -67,33 +67,33 @@ ms.locfileid: "93059142"
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="deb3a-120">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="deb3a-120">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-<span data-ttu-id="deb3a-121">Ausführliche Informationen zum Erstellen eines :::no-loc(Razor)::: Pages-Projekts finden Sie unter [Erste Schritte mit :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-121">See [Get started with :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a :::no-loc(Razor)::: Pages project.</span></span>
+<span data-ttu-id="deb3a-121">Ausführliche Informationen zum Erstellen eines Razor Pages-Projekts finden Sie unter [Erste Schritte mit Razor Pages](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-121">See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.</span></span>
 
 ---
 
-## <a name="no-locrazor-pages"></a><span data-ttu-id="deb3a-122">:::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-122">:::no-loc(Razor)::: Pages</span></span>
+## <a name="no-locrazor-pages"></a><span data-ttu-id="deb3a-122">Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-122">Razor Pages</span></span>
 
-<span data-ttu-id="deb3a-123">:::no-loc(Razor)::: Pages ist in *Startup.cs* aktiviert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-123">:::no-loc(Razor)::: Pages is enabled in *Startup.cs* :</span></span>
+<span data-ttu-id="deb3a-123">Razor Pages ist in *Startup.cs* aktiviert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-123">Razor Pages is enabled in *Startup.cs* :</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesIntro/Startup.cs?name=snippet_Startup&highlight=12,36)]
+[!code-csharp[](index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12,36)]
 
 <span data-ttu-id="deb3a-124">Sehen Sie sich diese einfache Seite an: <a name="OnGet"></a></span><span class="sxs-lookup"><span data-stu-id="deb3a-124">Consider a basic page: <a name="OnGet"></a></span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesIntro/Pages/Index.cshtml?highlight=1)]
+[!code-cshtml[](index/3.0sample/RazorPagesIntro/Pages/Index.cshtml?highlight=1)]
 
-<span data-ttu-id="deb3a-125">Der vorherige Code ähnelt sehr einer [:::no-loc(Razor):::-Ansichtsdatei](xref:tutorials/first-mvc-app/adding-view), die in einer ASP.NET Core-App mit Controllern und Ansichten verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-125">The preceding code looks a lot like a [:::no-loc(Razor)::: view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views.</span></span> <span data-ttu-id="deb3a-126">Der Unterschied besteht in der [`@page`](xref:mvc/views/razor#page)-Anweisung.</span><span class="sxs-lookup"><span data-stu-id="deb3a-126">What makes it different is the [`@page`](xref:mvc/views/razor#page) directive.</span></span> <span data-ttu-id="deb3a-127">`@page` macht die Datei zu einer MVC-Aktion, d.h. dass Anfragen direkt ohne einen Controller verarbeitet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-127">`@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller.</span></span> <span data-ttu-id="deb3a-128">`@page` muss die erste :::no-loc(Razor):::-Anweisung auf einer Seite sein.</span><span class="sxs-lookup"><span data-stu-id="deb3a-128">`@page` must be the first :::no-loc(Razor)::: directive on a page.</span></span> <span data-ttu-id="deb3a-129">`@page` wirkt sich auf das Verhalten aller anderen [:::no-loc(Razor):::](xref:mvc/views/razor)-Konstrukte aus.</span><span class="sxs-lookup"><span data-stu-id="deb3a-129">`@page` affects the behavior of other [:::no-loc(Razor):::](xref:mvc/views/razor) constructs.</span></span> <span data-ttu-id="deb3a-130">:::no-loc(Razor)::: Pages-Dateinamen haben das Suffix *.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-130">:::no-loc(Razor)::: Pages file names have a *.cshtml* suffix.</span></span>
+<span data-ttu-id="deb3a-125">Der vorherige Code ähnelt sehr einer [Razor-Ansichtsdatei](xref:tutorials/first-mvc-app/adding-view), die in einer ASP.NET Core-App mit Controllern und Ansichten verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-125">The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views.</span></span> <span data-ttu-id="deb3a-126">Der Unterschied besteht in der [`@page`](xref:mvc/views/razor#page)-Anweisung.</span><span class="sxs-lookup"><span data-stu-id="deb3a-126">What makes it different is the [`@page`](xref:mvc/views/razor#page) directive.</span></span> <span data-ttu-id="deb3a-127">`@page` macht die Datei zu einer MVC-Aktion, d.h. dass Anfragen direkt ohne einen Controller verarbeitet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-127">`@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller.</span></span> <span data-ttu-id="deb3a-128">`@page` muss die erste Razor-Anweisung auf einer Seite sein.</span><span class="sxs-lookup"><span data-stu-id="deb3a-128">`@page` must be the first Razor directive on a page.</span></span> <span data-ttu-id="deb3a-129">`@page` wirkt sich auf das Verhalten aller anderen [Razor](xref:mvc/views/razor)-Konstrukte aus.</span><span class="sxs-lookup"><span data-stu-id="deb3a-129">`@page` affects the behavior of other [Razor](xref:mvc/views/razor) constructs.</span></span> <span data-ttu-id="deb3a-130">Razor Pages-Dateinamen haben das Suffix *.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-130">Razor Pages file names have a *.cshtml* suffix.</span></span>
 
 <span data-ttu-id="deb3a-131">Eine ähnliche Seite, die die `PageModel`-Klasse verwendet, wird in den folgenden zwei Dateien angezeigt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-131">A similar page, using a `PageModel` class, is shown in the following two files.</span></span> <span data-ttu-id="deb3a-132">Die Datei *Pages/Index2.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-132">The *Pages/Index2.cshtml* file:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesIntro/Pages/Index2.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
 <span data-ttu-id="deb3a-133">Das Seitenmodell *Pages/Index2.cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-133">The *Pages/Index2.cshtml.cs* page model:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesIntro/Pages/Index2.cshtml.cs)]
+[!code-csharp[](index/3.0sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
-<span data-ttu-id="deb3a-134">Die `PageModel`-Klassendatei hat standardmäßig den gleichen Namen wie die Datei mit :::no-loc(Razor)::: Pages, nur dass außerdem *.cs* angefügt wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-134">By convention, the `PageModel` class file has the same name as the :::no-loc(Razor)::: Page file with *.cs* appended.</span></span> <span data-ttu-id="deb3a-135">Die vorherige Datei mit Razor :::no-loc(Razor)::: lautet beispielsweise *Pages/Index2.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-135">For example, the previous :::no-loc(Razor)::: Page is *Pages/Index2.cshtml* .</span></span> <span data-ttu-id="deb3a-136">Die Datei mit der `PageModel`-Klasse heißt *Pages/Index2.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-136">The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs* .</span></span>
+<span data-ttu-id="deb3a-134">Die `PageModel`-Klassendatei hat standardmäßig den gleichen Namen wie die Datei mit Razor Pages, nur dass außerdem *.cs* angefügt wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-134">By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended.</span></span> <span data-ttu-id="deb3a-135">Die vorherige Datei mit Razor Razor lautet beispielsweise *Pages/Index2.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-135">For example, the previous Razor Page is *Pages/Index2.cshtml* .</span></span> <span data-ttu-id="deb3a-136">Die Datei mit der `PageModel`-Klasse heißt *Pages/Index2.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-136">The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs* .</span></span>
 
-<span data-ttu-id="deb3a-137">Die Zuordnungen von URL-Pfaden zu Seiten werden durch den Speicherort der Seite im Dateisystem bestimmt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-137">The associations of URL paths to pages are determined by the page's location in the file system.</span></span> <span data-ttu-id="deb3a-138">Die folgende Tabelle zeigt einen Pfad zu :::no-loc(Razor)::: Pages und die entsprechende URL:</span><span class="sxs-lookup"><span data-stu-id="deb3a-138">The following table shows a :::no-loc(Razor)::: Page path and the matching URL:</span></span>
+<span data-ttu-id="deb3a-137">Die Zuordnungen von URL-Pfaden zu Seiten werden durch den Speicherort der Seite im Dateisystem bestimmt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-137">The associations of URL paths to pages are determined by the page's location in the file system.</span></span> <span data-ttu-id="deb3a-138">Die folgende Tabelle zeigt einen Pfad zu Razor Pages und die entsprechende URL:</span><span class="sxs-lookup"><span data-stu-id="deb3a-138">The following table shows a Razor Page path and the matching URL:</span></span>
 
 | <span data-ttu-id="deb3a-139">Dateiname und Pfad</span><span class="sxs-lookup"><span data-stu-id="deb3a-139">File name and path</span></span>               | <span data-ttu-id="deb3a-140">Entsprechende URL</span><span class="sxs-lookup"><span data-stu-id="deb3a-140">matching URL</span></span> |
 | ----------------- | ------------ |
@@ -104,34 +104,34 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-147">Notizen:</span><span class="sxs-lookup"><span data-stu-id="deb3a-147">Notes:</span></span>
 
-* <span data-ttu-id="deb3a-148">Die Runtime sucht standardmäßig im Ordner *Pages* (Seiten) nach Dateien mit R:::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-148">The runtime looks for :::no-loc(Razor)::: Pages files in the *Pages* folder by default.</span></span>
+* <span data-ttu-id="deb3a-148">Die Runtime sucht standardmäßig im Ordner *Pages* (Seiten) nach Dateien mit RRazor Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-148">The runtime looks for Razor Pages files in the *Pages* folder by default.</span></span>
 * <span data-ttu-id="deb3a-149">Wenn eine Seite nicht in einer URL enthalten ist, ist `Index` die Standardseite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-149">`Index` is the default page when a URL doesn't include a page.</span></span>
 
 ## <a name="write-a-basic-form"></a><span data-ttu-id="deb3a-150">Schreiben eines einfachen Formulars</span><span class="sxs-lookup"><span data-stu-id="deb3a-150">Write a basic form</span></span>
 
-<span data-ttu-id="deb3a-151">:::no-loc(Razor)::: Pages ist darauf ausgelegt, allgemeine Muster, die mit Webbrowsern verwendet werden können, beim Erstellen einer App leichter implementieren zu können.</span><span class="sxs-lookup"><span data-stu-id="deb3a-151">:::no-loc(Razor)::: Pages is designed to make common patterns used with web browsers easy to implement when building an app.</span></span> <span data-ttu-id="deb3a-152">Die [Modellbindung](xref:mvc/models/model-binding), [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) und alle HTML-Hilfsprogramme *funktionieren nur* mit den Eigenschaften, die in einer Klasse der :::no-loc(Razor)::: Pages definiert wurden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-152">[Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a :::no-loc(Razor)::: Page class.</span></span> <span data-ttu-id="deb3a-153">Nehmen wir z.B. eine Seite, die ein allgemeines Kontaktformular für das `Contact`-Modell implementiert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-153">Consider a page that implements a basic "contact us" form for the `Contact` model:</span></span>
+<span data-ttu-id="deb3a-151">Razor Pages ist darauf ausgelegt, allgemeine Muster, die mit Webbrowsern verwendet werden können, beim Erstellen einer App leichter implementieren zu können.</span><span class="sxs-lookup"><span data-stu-id="deb3a-151">Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app.</span></span> <span data-ttu-id="deb3a-152">Die [Modellbindung](xref:mvc/models/model-binding), [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) und alle HTML-Hilfsprogramme *funktionieren nur* mit den Eigenschaften, die in einer Klasse der Razor Pages definiert wurden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-152">[Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class.</span></span> <span data-ttu-id="deb3a-153">Nehmen wir z.B. eine Seite, die ein allgemeines Kontaktformular für das `Contact`-Modell implementiert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-153">Consider a page that implements a basic "contact us" form for the `Contact` model:</span></span>
 
-<span data-ttu-id="deb3a-154">Für die Beispiele in diesem Dokument wird `DbContext` in der Datei [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/:::no-loc(Razor):::PagesContacts/Startup.cs#L23-L24) initialisiert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-154">For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/:::no-loc(Razor):::PagesContacts/Startup.cs#L23-L24) file.</span></span>
+<span data-ttu-id="deb3a-154">Für die Beispiele in diesem Dokument wird `DbContext` in der Datei [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) initialisiert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-154">For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) file.</span></span>
 
 <span data-ttu-id="deb3a-155">Für die In-Memory-Datenbank ist das NuGet-Paket `Microsoft.EntityFrameworkCore.InMemory` erforderlich.</span><span class="sxs-lookup"><span data-stu-id="deb3a-155">The in memory database requires the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Startup.cs?name=snippet)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Startup.cs?name=snippet)]
 
 <span data-ttu-id="deb3a-156">Das Datenmodell:</span><span class="sxs-lookup"><span data-stu-id="deb3a-156">The data model:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Models/Customer.cs)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Models/Customer.cs)]
 
 <span data-ttu-id="deb3a-157">Der db-Kontext:</span><span class="sxs-lookup"><span data-stu-id="deb3a-157">The db context:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Data/CustomerDbContext.cs)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Data/CustomerDbContext.cs)]
 
 <span data-ttu-id="deb3a-158">Die Umgebungsdatei *Pages/Create.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-158">The *Pages/Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
 <span data-ttu-id="deb3a-159">Das Seitenmodell *Pages/Create.cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-159">The *Pages/Create.cshtml.cs* page model:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_ALL)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_ALL)]
 
 <span data-ttu-id="deb3a-160">Die `PageModel` -Klasse heißt standardmäßig `<PageName>Model` und befindet sich im selben Namespace wie die Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-160">By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.</span></span>
 
@@ -142,19 +142,19 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-166">Die Seite verfügt über eine `OnPostAsync`- *Handlermethode* , die bei `POST`-Anforderungen ausgeführt wird (wenn ein Benutzer das Formular sendet).</span><span class="sxs-lookup"><span data-stu-id="deb3a-166">The page has an `OnPostAsync` *handler method* , which runs on `POST` requests (when a user posts the form).</span></span> <span data-ttu-id="deb3a-167">Für alle HTTP-Verben können Handlermethoden hinzugefügt werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-167">Handler methods for any HTTP verb can be added.</span></span> <span data-ttu-id="deb3a-168">Die am häufigsten verwendeten Handler sind:</span><span class="sxs-lookup"><span data-stu-id="deb3a-168">The most common handlers are:</span></span>
 
-* <span data-ttu-id="deb3a-169">`OnGet`, um den für eine Seite erforderlichen Status zu initialisieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-169">`OnGet` to initialize state needed for the page.</span></span> <span data-ttu-id="deb3a-170">Im vorangehenden Code wird die :::no-loc(Razor):::-Seite *CreateModel.cshtml* durch die `OnGet`-Methode dargestellt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-170">In the preceding code, the `OnGet` method displays the *CreateModel.cshtml* :::no-loc(Razor)::: Page.</span></span>
+* <span data-ttu-id="deb3a-169">`OnGet`, um den für eine Seite erforderlichen Status zu initialisieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-169">`OnGet` to initialize state needed for the page.</span></span> <span data-ttu-id="deb3a-170">Im vorangehenden Code wird die Razor-Seite *CreateModel.cshtml* durch die `OnGet`-Methode dargestellt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-170">In the preceding code, the `OnGet` method displays the *CreateModel.cshtml* Razor Page.</span></span>
 * <span data-ttu-id="deb3a-171">`OnPost`, um Formularübermittlungen zu behandeln</span><span class="sxs-lookup"><span data-stu-id="deb3a-171">`OnPost` to handle form submissions.</span></span>
 
-<span data-ttu-id="deb3a-172">Das Namenssuffix `Async` ist optional. Es wird jedoch standardmäßig häufig für asynchrone Funktionen verwendet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-172">The `Async` naming suffix is optional but is often used by convention for asynchronous functions.</span></span> <span data-ttu-id="deb3a-173">Der vorhergehende Code ist typisch für :::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-173">The preceding code is typical for :::no-loc(Razor)::: Pages.</span></span>
+<span data-ttu-id="deb3a-172">Das Namenssuffix `Async` ist optional. Es wird jedoch standardmäßig häufig für asynchrone Funktionen verwendet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-172">The `Async` naming suffix is optional but is often used by convention for asynchronous functions.</span></span> <span data-ttu-id="deb3a-173">Der vorhergehende Code ist typisch für Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-173">The preceding code is typical for Razor Pages.</span></span>
 
 <span data-ttu-id="deb3a-174">Wenn Sie mit ASP.NET-Apps vertraut sind, die Controller und Ansichten verwenden, werden Ihnen folgende Fakten bekannt vorkommen:</span><span class="sxs-lookup"><span data-stu-id="deb3a-174">If you're familiar with ASP.NET apps using controllers and views:</span></span>
 
 * <span data-ttu-id="deb3a-175">Der `OnPostAsync`-Code im vorangehenden Beispiel ähnelt dem typischen Controllercode.</span><span class="sxs-lookup"><span data-stu-id="deb3a-175">The `OnPostAsync` code in the preceding example looks similar to typical controller code.</span></span>
-* <span data-ttu-id="deb3a-176">Die meisten primitiven MVC-Typen wie solche für [Modellbindungen](xref:mvc/models/model-binding), [Validierungen](xref:mvc/models/validation) und Aktionsergebnisse werden in Controllern und :::no-loc(Razor)::: Pages auf dieselbe Weise eingesetzt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-176">Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results work the same with Controllers and :::no-loc(Razor)::: Pages.</span></span> 
+* <span data-ttu-id="deb3a-176">Die meisten primitiven MVC-Typen wie solche für [Modellbindungen](xref:mvc/models/model-binding), [Validierungen](xref:mvc/models/validation) und Aktionsergebnisse werden in Controllern und Razor Pages auf dieselbe Weise eingesetzt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-176">Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results work the same with Controllers and Razor Pages.</span></span> 
 
 <span data-ttu-id="deb3a-177">Die vorherige `OnPostAsync`-Methode:</span><span class="sxs-lookup"><span data-stu-id="deb3a-177">The previous `OnPostAsync` method:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 <span data-ttu-id="deb3a-178">Der grundlegende Ablauf von `OnPostAsync`:</span><span class="sxs-lookup"><span data-stu-id="deb3a-178">The basic flow of `OnPostAsync`:</span></span>
 
@@ -165,17 +165,17 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-183">Die Umgebungsdatei *Pages/Create.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-183">The *Pages/Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
 <span data-ttu-id="deb3a-184">Der von *Pages/Create.cshtml* gerenderte HTML-Code sieht wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="deb3a-184">The rendered HTML from *Pages/Create.cshtml* :</span></span>
 
-[!code-html[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create4.html)]
+[!code-html[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
 <span data-ttu-id="deb3a-185">Im vorherigen Code gilt für die Formularübermittlung mittels POST Folgendes:</span><span class="sxs-lookup"><span data-stu-id="deb3a-185">In the previous code, posting the form:</span></span>
 
 * <span data-ttu-id="deb3a-186">Bei gültigen Daten:</span><span class="sxs-lookup"><span data-stu-id="deb3a-186">With valid data:</span></span>
 
-  * <span data-ttu-id="deb3a-187">Die `OnPostAsync`-Handlermethode ruft die <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageModel.RedirectToPage*>-Hilfsmethode auf.</span><span class="sxs-lookup"><span data-stu-id="deb3a-187">The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageModel.RedirectToPage*> helper method.</span></span> <span data-ttu-id="deb3a-188">`RedirectToPage` gibt eine Instanz von <xref:Microsoft.AspNetCore.Mvc.RedirectToPageResult> zurück.</span><span class="sxs-lookup"><span data-stu-id="deb3a-188">`RedirectToPage` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RedirectToPageResult>.</span></span> <span data-ttu-id="deb3a-189">`RedirectToPage`:</span><span class="sxs-lookup"><span data-stu-id="deb3a-189">`RedirectToPage`:</span></span>
+  * <span data-ttu-id="deb3a-187">Die `OnPostAsync`-Handlermethode ruft die <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*>-Hilfsmethode auf.</span><span class="sxs-lookup"><span data-stu-id="deb3a-187">The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*> helper method.</span></span> <span data-ttu-id="deb3a-188">`RedirectToPage` gibt eine Instanz von <xref:Microsoft.AspNetCore.Mvc.RedirectToPageResult> zurück.</span><span class="sxs-lookup"><span data-stu-id="deb3a-188">`RedirectToPage` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RedirectToPageResult>.</span></span> <span data-ttu-id="deb3a-189">`RedirectToPage`:</span><span class="sxs-lookup"><span data-stu-id="deb3a-189">`RedirectToPage`:</span></span>
 
     * <span data-ttu-id="deb3a-190">ist ein Aktionsergebnis.</span><span class="sxs-lookup"><span data-stu-id="deb3a-190">Is an action result.</span></span>
     * <span data-ttu-id="deb3a-191">ähnelt `RedirectToAction` oder `RedirectToRoute` (wird in Controllern und Ansichten verwendet).</span><span class="sxs-lookup"><span data-stu-id="deb3a-191">Is similar to `RedirectToAction` or `RedirectToRoute` (used in controllers and views).</span></span>
@@ -183,10 +183,10 @@ ms.locfileid: "93059142"
 
 * <span data-ttu-id="deb3a-195">Bei Validierungsfehlern, die an den Server übermittelt werden:</span><span class="sxs-lookup"><span data-stu-id="deb3a-195">With validation errors that are passed to the server:</span></span>
 
-  * <span data-ttu-id="deb3a-196">Die `OnPostAsync`-Handlermethode ruft die <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageBase.Page*>-Hilfsmethode auf.</span><span class="sxs-lookup"><span data-stu-id="deb3a-196">The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageBase.Page*> helper method.</span></span> <span data-ttu-id="deb3a-197">`Page` gibt eine Instanz von <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageResult> zurück.</span><span class="sxs-lookup"><span data-stu-id="deb3a-197">`Page` returns an instance of <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageResult>.</span></span> <span data-ttu-id="deb3a-198">Der Vorgang, bei dem `Page` zurückgegeben wird, ähnelt dem Vorgang, bei dem Aktionen im Controller `View` zurückgeben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-198">Returning `Page` is similar to how actions in controllers return `View`.</span></span> <span data-ttu-id="deb3a-199">`PageResult` ist der Standardrückgabetyp für eine Handlermethode.</span><span class="sxs-lookup"><span data-stu-id="deb3a-199">`PageResult` is the default return type for a handler method.</span></span> <span data-ttu-id="deb3a-200">Eine Handlermethode, die `void` zurückgibt, rendert die Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-200">A handler method that returns `void` renders the page.</span></span>
+  * <span data-ttu-id="deb3a-196">Die `OnPostAsync`-Handlermethode ruft die <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Page*>-Hilfsmethode auf.</span><span class="sxs-lookup"><span data-stu-id="deb3a-196">The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Page*> helper method.</span></span> <span data-ttu-id="deb3a-197">`Page` gibt eine Instanz von <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageResult> zurück.</span><span class="sxs-lookup"><span data-stu-id="deb3a-197">`Page` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageResult>.</span></span> <span data-ttu-id="deb3a-198">Der Vorgang, bei dem `Page` zurückgegeben wird, ähnelt dem Vorgang, bei dem Aktionen im Controller `View` zurückgeben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-198">Returning `Page` is similar to how actions in controllers return `View`.</span></span> <span data-ttu-id="deb3a-199">`PageResult` ist der Standardrückgabetyp für eine Handlermethode.</span><span class="sxs-lookup"><span data-stu-id="deb3a-199">`PageResult` is the default return type for a handler method.</span></span> <span data-ttu-id="deb3a-200">Eine Handlermethode, die `void` zurückgibt, rendert die Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-200">A handler method that returns `void` renders the page.</span></span>
   * <span data-ttu-id="deb3a-201">Wenn im vorangehenden Beispiel das Formular mithilfe von POST übermittelt und dabei kein Wert angegeben wird, gibt [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) „false“ zurück.</span><span class="sxs-lookup"><span data-stu-id="deb3a-201">In the preceding example, posting the form with no value results in [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) returning false.</span></span> <span data-ttu-id="deb3a-202">In diesem Beispiel werden keine Validierungsfehler auf dem Client angezeigt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-202">In this sample, no validation errors are displayed on the client.</span></span> <span data-ttu-id="deb3a-203">Die Verarbeitung von Validierungsfehlern wird weiter unten in diesem Artikel behandelt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-203">Validation error handing is covered later in this document.</span></span>
 
-  [!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
+  [!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
 * <span data-ttu-id="deb3a-204">Bei Validierungsfehlern, die durch eine clientseitige Validierung erkannt werden:</span><span class="sxs-lookup"><span data-stu-id="deb3a-204">With validation errors detected by client side validation:</span></span>
 
@@ -195,17 +195,17 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-207">Die Eigenschaft `Customer` verwendet das [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute)-Attribut, um die Modellbindung zu aktivieren:</span><span class="sxs-lookup"><span data-stu-id="deb3a-207">The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt in to model binding:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
 <span data-ttu-id="deb3a-208">`[BindProperty]` sollte **nicht** in Modellen mit Eigenschaften verwendet werden, die vom Client nicht geändert werden dürfen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-208">`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client.</span></span> <span data-ttu-id="deb3a-209">Weitere Informationen finden Sie unter [Overposting](xref:data/ef-rp/crud#overposting).</span><span class="sxs-lookup"><span data-stu-id="deb3a-209">For more information, see [Overposting](xref:data/ef-rp/crud#overposting).</span></span>
 
-<span data-ttu-id="deb3a-210">:::no-loc(Razor)::: Pages binden Eigenschaften standardmäßig nur an Nicht-`GET`-Verben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-210">:::no-loc(Razor)::: Pages, by default, bind properties only with non-`GET` verbs.</span></span> <span data-ttu-id="deb3a-211">Durch die Bindung an Eigenschaften entfällt das Schreiben von Code, mit dem HTTP-Daten in den Modelltyp konvertiert werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-211">Binding to properties removes the need to writing code to convert HTTP data to the model type.</span></span> <span data-ttu-id="deb3a-212">Die Bindung reduziert den Code mithilfe der gleichen Eigenschaft, um Formularfelder (`<input asp-for="Customer.Name">`) zu rendern und die Eingabe zu akzeptieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-212">Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.</span></span>
+<span data-ttu-id="deb3a-210">Razor Pages binden Eigenschaften standardmäßig nur an Nicht-`GET`-Verben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-210">Razor Pages, by default, bind properties only with non-`GET` verbs.</span></span> <span data-ttu-id="deb3a-211">Durch die Bindung an Eigenschaften entfällt das Schreiben von Code, mit dem HTTP-Daten in den Modelltyp konvertiert werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-211">Binding to properties removes the need to writing code to convert HTTP data to the model type.</span></span> <span data-ttu-id="deb3a-212">Die Bindung reduziert den Code mithilfe der gleichen Eigenschaft, um Formularfelder (`<input asp-for="Customer.Name">`) zu rendern und die Eingabe zu akzeptieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-212">Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.</span></span>
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
 <span data-ttu-id="deb3a-213">Sehen Sie sich die Ansichtsdatei *Pages/Create.cshtml* an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-213">Reviewing the *Pages/Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
 
 * <span data-ttu-id="deb3a-214">Im vorangehenden Code bindet das [Eingabetag-Hilfsprogramm](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />` das HTML-Element `<input>` an den Modellausdruck `Customer.Name`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-214">In the preceding code, the [input tag helper](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />` binds the HTML `<input>` element to the `Customer.Name` model expression.</span></span>
 * <span data-ttu-id="deb3a-215">[`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available) stellt Taghilfsprogramme zur Verfügung.</span><span class="sxs-lookup"><span data-stu-id="deb3a-215">[`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available) makes Tag Helpers available.</span></span>
@@ -214,21 +214,21 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-217">*Index.cshtml* ist die Homepage:</span><span class="sxs-lookup"><span data-stu-id="deb3a-217">*Index.cshtml* is the home page:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Index.cshtml)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml)]
 
 <span data-ttu-id="deb3a-218">Die zugeordnete `PageModel`-Klasse ( *Index.cshtml.cs* ):</span><span class="sxs-lookup"><span data-stu-id="deb3a-218">The associated `PageModel` class ( *Index.cshtml.cs* ):</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
 
 <span data-ttu-id="deb3a-219">Die Datei *Index.cshtml* enthält das folgende Markup:</span><span class="sxs-lookup"><span data-stu-id="deb3a-219">The *Index.cshtml* file contains the following markup:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Index.cshtml?range=21)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=21)]
 
-<span data-ttu-id="deb3a-220">Das [Anchor-Taghilfsprogramm](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `<a /a>` verwendet das `asp-route-{value}`-Attribut, um einen Link zur Bearbeitungsseite zu generieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-220">The `<a /a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page.</span></span> <span data-ttu-id="deb3a-221">Der Link enthält die Routendaten mit der Kontakt-ID.</span><span class="sxs-lookup"><span data-stu-id="deb3a-221">The link contains route data with the contact ID.</span></span> <span data-ttu-id="deb3a-222">Beispielsweise `https://localhost:5001/Edit/1`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-222">For example, `https://localhost:5001/Edit/1`.</span></span> <span data-ttu-id="deb3a-223">[Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) ermöglichen serverseitigem Code das Mitwirken am Erstellen und Rendern von HTML-Elementen in :::no-loc(Razor):::-Dateien.</span><span class="sxs-lookup"><span data-stu-id="deb3a-223">[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in :::no-loc(Razor)::: files.</span></span>
+<span data-ttu-id="deb3a-220">Das [Anchor-Taghilfsprogramm](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `<a /a>` verwendet das `asp-route-{value}`-Attribut, um einen Link zur Bearbeitungsseite zu generieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-220">The `<a /a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page.</span></span> <span data-ttu-id="deb3a-221">Der Link enthält die Routendaten mit der Kontakt-ID.</span><span class="sxs-lookup"><span data-stu-id="deb3a-221">The link contains route data with the contact ID.</span></span> <span data-ttu-id="deb3a-222">Beispielsweise `https://localhost:5001/Edit/1`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-222">For example, `https://localhost:5001/Edit/1`.</span></span> <span data-ttu-id="deb3a-223">[Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) ermöglichen serverseitigem Code das Mitwirken am Erstellen und Rendern von HTML-Elementen in Razor-Dateien.</span><span class="sxs-lookup"><span data-stu-id="deb3a-223">[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.</span></span>
 
 <span data-ttu-id="deb3a-224">Die Datei *Index.cshtml* enthält das Markup zum Erstellen der Schaltfläche „delete“ (Löschen) für jeden Kundenkontakt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-224">The *Index.cshtml* file contains markup to create a delete button for each customer contact:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Index.cshtml?range=22-23)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?range=22-23)]
 
 <span data-ttu-id="deb3a-225">Der gerenderte HTML-Code sieht wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="deb3a-225">The rendered HTML:</span></span>
 
@@ -245,18 +245,18 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-231">Da der `handler` in diesem Beispiel `delete` ist, wird die Handlermethode `OnPostDeleteAsync` verwendet, um die `POST`-Anforderung zu verarbeiten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-231">Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request.</span></span> <span data-ttu-id="deb3a-232">Wenn `asp-page-handler` auf einen anderen Wert (z. B. `remove`) festgelegt wird, wird eine Handlermethode namens `OnPostRemoveAsync` ausgewählt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-232">If the `asp-page-handler` is set to a different value, such as `remove`, a handler method with the name `OnPostRemoveAsync` is selected.</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet2)]
 
 <span data-ttu-id="deb3a-233">Die `OnPostDeleteAsync`-Methode:</span><span class="sxs-lookup"><span data-stu-id="deb3a-233">The `OnPostDeleteAsync` method:</span></span>
 
 * <span data-ttu-id="deb3a-234">ruft die `id` der Abfragezeichenfolge ab.</span><span class="sxs-lookup"><span data-stu-id="deb3a-234">Gets the `id` from the query string.</span></span>
 * <span data-ttu-id="deb3a-235">Fragt mit `FindAsync` die Datenbank nach dem Kundenkontakt ab.</span><span class="sxs-lookup"><span data-stu-id="deb3a-235">Queries the database for the customer contact with `FindAsync`.</span></span>
 * <span data-ttu-id="deb3a-236">Wenn der Kundenkontakt gefunden wird, wird er entfernt, und die Datenbank wird aktualisiert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-236">If the customer contact is found, it's removed and the database is updated.</span></span>
-* <span data-ttu-id="deb3a-237">Ruft <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageModel.RedirectToPage*> auf, um die Stammindexseite (`/Index`) umzuleiten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-237">Calls <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageModel.RedirectToPage*> to redirect to the root Index page (`/Index`).</span></span>
+* <span data-ttu-id="deb3a-237">Ruft <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*> auf, um die Stammindexseite (`/Index`) umzuleiten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-237">Calls <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.RedirectToPage*> to redirect to the root Index page (`/Index`).</span></span>
 
 ### <a name="the-editcshtml-file"></a><span data-ttu-id="deb3a-238">Die Datei „Edit.cshtml“</span><span class="sxs-lookup"><span data-stu-id="deb3a-238">The Edit.cshtml file</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
 
 <span data-ttu-id="deb3a-239">Die erste Zeile enthält die `@page "{id:int}"`-Anweisung.</span><span class="sxs-lookup"><span data-stu-id="deb3a-239">The first line contains the `@page "{id:int}"` directive.</span></span> <span data-ttu-id="deb3a-240">Die Routingbeschränkung `"{id:int}"` weist die Seite an, die Anforderungen für die Seite zu akzeptieren, die `int`-Routingdaten enthalten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-240">The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data.</span></span> <span data-ttu-id="deb3a-241">Wenn eine Anforderung an die Seite bestimmte Routingdaten nicht enthält, die in einen `int` konvertiert werden können, gibt die Runtime einen Fehler vom Typ „HTTP 404: Nicht gefunden“ zurück.</span><span class="sxs-lookup"><span data-stu-id="deb3a-241">If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.</span></span> <span data-ttu-id="deb3a-242">Um die ID optional zu machen, fügen Sie `?` an die Routeneinschränkung an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-242">To make the ID optional, append `?` to the route constraint:</span></span>
 
@@ -266,7 +266,7 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-243">Die Datei *Edit.cshtml.cs* sieht wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="deb3a-243">The *Edit.cshtml.cs* file:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs?name=snippet)]
 
 ## <a name="validation"></a><span data-ttu-id="deb3a-244">Validierung</span><span class="sxs-lookup"><span data-stu-id="deb3a-244">Validation</span></span>
 
@@ -279,11 +279,11 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-250">Sehen Sie sich das `Customer`-Modell an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-250">Consider the `Customer` model:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Models/Customer.cs)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Models/Customer.cs)]
 
 <span data-ttu-id="deb3a-251">Für die folgende Ansichtsdatei *Create.cshtml* gilt Folgendes:</span><span class="sxs-lookup"><span data-stu-id="deb3a-251">Using the following *Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create3.cshtml?highlight=3,8-9,15-99)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=3,8-9,15-99)]
 
 <span data-ttu-id="deb3a-252">Der vorangehende Code:</span><span class="sxs-lookup"><span data-stu-id="deb3a-252">The preceding code:</span></span>
 
@@ -295,7 +295,7 @@ ms.locfileid: "93059142"
 
 * <span data-ttu-id="deb3a-257">wird der folgende HTML-Code generiert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-257">Generates the following HTML:</span></span>
 
-  [!code-html[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create5.html)]
+  [!code-html[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create5.html)]
 
 <span data-ttu-id="deb3a-258">Wenn Sie das Formular „Create“ (Erstellen) ohne einen Wert für den Namen mit POST übermitteln, wird die Fehlermeldung „The Name field is required.“ (Für das Namensfeld muss ein Wert angegeben werden.)</span><span class="sxs-lookup"><span data-stu-id="deb3a-258">Posting the Create form without a name value displays the error message "The Name field is required."</span></span> <span data-ttu-id="deb3a-259">auf dem Formular angezeigt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-259">on the form.</span></span> <span data-ttu-id="deb3a-260">Wenn JavaScript auf dem Client aktiviert ist, zeigt der Browser den Fehler an, ohne dass Daten per POST an den Server gesendet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-260">If JavaScript is enabled on the client, the browser displays the error without posting to the server.</span></span>
 
@@ -306,7 +306,7 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-267">Sehen Sie sich das folgende `Movie`-Modell an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-267">Consider the following `Movie` model:</span></span>
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 <span data-ttu-id="deb3a-268">Die Validierungsattribute geben das Verhalten an, das für die Modelleigenschaften erzwungen werden soll:</span><span class="sxs-lookup"><span data-stu-id="deb3a-268">The validation attributes specify behavior to enforce on the model properties they're applied to:</span></span>
 
@@ -340,51 +340,51 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-290">Normalerweise wird ein `OnHead`-Handler erstellt und für `HEAD`-Anforderungen aufgerufen:</span><span class="sxs-lookup"><span data-stu-id="deb3a-290">Ordinarily, an `OnHead` handler is created and called for `HEAD` requests:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Privacy.cshtml.cs?name=snippet)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Privacy.cshtml.cs?name=snippet)]
 
-<span data-ttu-id="deb3a-291">:::no-loc(Razor)::: Pages ruft den `OnGet`-Handler auf, wenn kein `OnHead`-Handler definiert ist.</span><span class="sxs-lookup"><span data-stu-id="deb3a-291">:::no-loc(Razor)::: Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined.</span></span>
+<span data-ttu-id="deb3a-291">Razor Pages ruft den `OnGet`-Handler auf, wenn kein `OnHead`-Handler definiert ist.</span><span class="sxs-lookup"><span data-stu-id="deb3a-291">Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined.</span></span>
 
 <a name="xsrf"></a>
 
-## <a name="xsrfcsrf-and-no-locrazor-pages"></a><span data-ttu-id="deb3a-292">XSRF/CSRF und :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-292">XSRF/CSRF and :::no-loc(Razor)::: Pages</span></span>
+## <a name="xsrfcsrf-and-no-locrazor-pages"></a><span data-ttu-id="deb3a-292">XSRF/CSRF und Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-292">XSRF/CSRF and Razor Pages</span></span>
 
-<span data-ttu-id="deb3a-293">:::no-loc(Razor)::: Pages wird durch [Validierungsmaßnahmen vor XSRF/CSRF-Angriffen](xref:security/anti-request-forgery) geschützt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-293">:::no-loc(Razor)::: Pages are protected by [Antiforgery validation](xref:security/anti-request-forgery).</span></span> <span data-ttu-id="deb3a-294">Das [Formulartag-Hilfsprogramm](xref:mvc/views/working-with-forms#the-form-tag-helper) injiziert Anti-XSRF/CSRF-Token in HTML-Formularelemente.</span><span class="sxs-lookup"><span data-stu-id="deb3a-294">The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.</span></span>
+<span data-ttu-id="deb3a-293">Razor Pages wird durch [Validierungsmaßnahmen vor XSRF/CSRF-Angriffen](xref:security/anti-request-forgery) geschützt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-293">Razor Pages are protected by [Antiforgery validation](xref:security/anti-request-forgery).</span></span> <span data-ttu-id="deb3a-294">Das [Formulartag-Hilfsprogramm](xref:mvc/views/working-with-forms#the-form-tag-helper) injiziert Anti-XSRF/CSRF-Token in HTML-Formularelemente.</span><span class="sxs-lookup"><span data-stu-id="deb3a-294">The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.</span></span>
 
 <a name="layout"></a>
 
-## <a name="using-layouts-partials-templates-and-tag-helpers-with-no-locrazor-pages"></a><span data-ttu-id="deb3a-295">Verwenden von Layouts, Teilansichten, Vorlagen und Taghilfsprogrammen mit :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-295">Using Layouts, partials, templates, and Tag Helpers with :::no-loc(Razor)::: Pages</span></span>
+## <a name="using-layouts-partials-templates-and-tag-helpers-with-no-locrazor-pages"></a><span data-ttu-id="deb3a-295">Verwenden von Layouts, Teilansichten, Vorlagen und Taghilfsprogrammen mit Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-295">Using Layouts, partials, templates, and Tag Helpers with Razor Pages</span></span>
 
-<span data-ttu-id="deb3a-296">Razor Pages beinhaltet alle Funktionen der :::no-loc(Razor):::-Anzeige-Engine.</span><span class="sxs-lookup"><span data-stu-id="deb3a-296">Pages work with all the capabilities of the :::no-loc(Razor)::: view engine.</span></span> <span data-ttu-id="deb3a-297">Layouts, Teilansichten, Vorlagen, Taghilfsprogramme, *_ViewStart.cshtml* und *_ViewImports.cshtml* funktionieren auf die gleiche Weise wie für herkömmliche :::no-loc(Razor):::-Ansichten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-297">Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml* , and *_ViewImports.cshtml* work in the same way they do for conventional :::no-loc(Razor)::: views.</span></span>
+<span data-ttu-id="deb3a-296">Razor Pages beinhaltet alle Funktionen der Razor-Anzeige-Engine.</span><span class="sxs-lookup"><span data-stu-id="deb3a-296">Pages work with all the capabilities of the Razor view engine.</span></span> <span data-ttu-id="deb3a-297">Layouts, Teilansichten, Vorlagen, Taghilfsprogramme, *_ViewStart.cshtml* und *_ViewImports.cshtml* funktionieren auf die gleiche Weise wie für herkömmliche Razor-Ansichten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-297">Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml* , and *_ViewImports.cshtml* work in the same way they do for conventional Razor views.</span></span>
 
 <span data-ttu-id="deb3a-298">Strukturieren Sie diese Seite mit einigen dieser praktischen Funktionen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-298">Let's declutter this page by taking advantage of some of those capabilities.</span></span>
 
 <span data-ttu-id="deb3a-299">Fügen Sie der *Pages/Shared/_Layout.cshtml* eine [Layoutseite](xref:mvc/views/layout) hinzu:</span><span class="sxs-lookup"><span data-stu-id="deb3a-299">Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml* :</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Shared/_Layout2.cshtml?hightlight=12)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?hightlight=12)]
 
 <span data-ttu-id="deb3a-300">Das [Layout](xref:mvc/views/layout):</span><span class="sxs-lookup"><span data-stu-id="deb3a-300">The [Layout](xref:mvc/views/layout):</span></span>
 
 * <span data-ttu-id="deb3a-301">Steuert das Layout der einzelnen Seiten, es sei denn, das Layout wird für eine Seite deaktiviert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-301">Controls the layout of each page (unless the page opts out of layout).</span></span>
 * <span data-ttu-id="deb3a-302">Importiert HTML-Strukturen, z.B. JavaScript und Stylesheets.</span><span class="sxs-lookup"><span data-stu-id="deb3a-302">Imports HTML structures such as JavaScript and stylesheets.</span></span>
-* <span data-ttu-id="deb3a-303">Der Inhalt der :::no-loc(Razor):::-Seite wird gerendert, wenn `@RenderBody()` aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-303">The contents of the :::no-loc(Razor)::: page are rendered where `@RenderBody()` is called.</span></span>
+* <span data-ttu-id="deb3a-303">Der Inhalt der Razor-Seite wird gerendert, wenn `@RenderBody()` aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-303">The contents of the Razor page are rendered where `@RenderBody()` is called.</span></span>
 
 <span data-ttu-id="deb3a-304">Weitere Informationen finden Sie unter [Layoutseite](xref:mvc/views/layout).</span><span class="sxs-lookup"><span data-stu-id="deb3a-304">For more information, see [layout page](xref:mvc/views/layout).</span></span>
 
 <span data-ttu-id="deb3a-305">Die Eigenschaft [Layout](xref:mvc/views/layout#specifying-a-layout) wird in *Pages/_ViewStart.cshtml* festgelegt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-305">The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml* :</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/_ViewStart.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-<span data-ttu-id="deb3a-306">Das Layout befindet sich im Ordner *Pages/Shared* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-306">The layout is in the *Pages/Shared* folder.</span></span> <span data-ttu-id="deb3a-307">Seiten suchen hierarchisch nach anderen Ansichten (Layouts, Vorlagen oder Teilansichten) und beginnen im gleichen Ordner wie die aktuelle Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-307">Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page.</span></span> <span data-ttu-id="deb3a-308">Ein Layout im Ordner *Pages/Shared* kann von jeder :::no-loc(Razor):::-Seite aus unter dem Ordner *Pages* verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-308">A layout in the *Pages/Shared* folder can be used from any :::no-loc(Razor)::: page under the *Pages* folder.</span></span>
+<span data-ttu-id="deb3a-306">Das Layout befindet sich im Ordner *Pages/Shared* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-306">The layout is in the *Pages/Shared* folder.</span></span> <span data-ttu-id="deb3a-307">Seiten suchen hierarchisch nach anderen Ansichten (Layouts, Vorlagen oder Teilansichten) und beginnen im gleichen Ordner wie die aktuelle Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-307">Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page.</span></span> <span data-ttu-id="deb3a-308">Ein Layout im Ordner *Pages/Shared* kann von jeder Razor-Seite aus unter dem Ordner *Pages* verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-308">A layout in the *Pages/Shared* folder can be used from any Razor page under the *Pages* folder.</span></span>
 
 <span data-ttu-id="deb3a-309">Die Layoutdatei sollte im Ordner *Pages/Shared* gespeichert werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-309">The layout file should go in the *Pages/Shared* folder.</span></span>
 
-<span data-ttu-id="deb3a-310">Wir empfehlen Ihnen, die Layoutdatei **nicht** im Ordner *Views/Shared* (Ansichten/Freigegeben) zu platzieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-310">We recommend you **not** put the layout file in the *Views/Shared* folder.</span></span> <span data-ttu-id="deb3a-311">*Views/Shared* ist ein MVC-Ansichtsmuster.</span><span class="sxs-lookup"><span data-stu-id="deb3a-311">*Views/Shared* is an MVC views pattern.</span></span> <span data-ttu-id="deb3a-312">:::no-loc(Razor)::: Pages basieren auf der Ordnerhierarchie, nicht auf Pfadkonventionen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-312">:::no-loc(Razor)::: Pages are meant to rely on folder hierarchy, not path conventions.</span></span>
+<span data-ttu-id="deb3a-310">Wir empfehlen Ihnen, die Layoutdatei **nicht** im Ordner *Views/Shared* (Ansichten/Freigegeben) zu platzieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-310">We recommend you **not** put the layout file in the *Views/Shared* folder.</span></span> <span data-ttu-id="deb3a-311">*Views/Shared* ist ein MVC-Ansichtsmuster.</span><span class="sxs-lookup"><span data-stu-id="deb3a-311">*Views/Shared* is an MVC views pattern.</span></span> <span data-ttu-id="deb3a-312">Razor Pages basieren auf der Ordnerhierarchie, nicht auf Pfadkonventionen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-312">Razor Pages are meant to rely on folder hierarchy, not path conventions.</span></span>
 
-<span data-ttu-id="deb3a-313">Die Ansichtensuche in einer :::no-loc(Razor)::: Page enthält den Ordner *Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-313">View search from a :::no-loc(Razor)::: Page includes the *Pages* folder.</span></span> <span data-ttu-id="deb3a-314">Die Layouts, Vorlagen und Teilansichten, die mit MVC-Controllern und herkömmlichen :::no-loc(Razor):::-Ansichten verwendet werden, *funktionieren problemlos* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-314">The layouts, templates, and partials used with MVC controllers and conventional :::no-loc(Razor)::: views *just work* .</span></span>
+<span data-ttu-id="deb3a-313">Die Ansichtensuche in einer Razor Page enthält den Ordner *Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-313">View search from a Razor Page includes the *Pages* folder.</span></span> <span data-ttu-id="deb3a-314">Die Layouts, Vorlagen und Teilansichten, die mit MVC-Controllern und herkömmlichen Razor-Ansichten verwendet werden, *funktionieren problemlos* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-314">The layouts, templates, and partials used with MVC controllers and conventional Razor views *just work* .</span></span>
 
 <span data-ttu-id="deb3a-315">Fügen Sie eine Datei *Pages/_ViewImports.cshtml* hinzu:</span><span class="sxs-lookup"><span data-stu-id="deb3a-315">Add a *Pages/_ViewImports.cshtml* file:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/_ViewImports.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
 <span data-ttu-id="deb3a-316">`@namespace` wird weiter unten im Tutorial erläutert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-316">`@namespace` is explained later in the tutorial.</span></span> <span data-ttu-id="deb3a-317">Die `@addTagHelper`-Anweisung bringt die [integrierten Taghilfsprogramme](xref:mvc/views/tag-helpers/builtin-th/Index) zu allen Seiten in der Ordner *Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-317">The `@addTagHelper` directive brings in the [built-in Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/Index) to all the pages in the *Pages* folder.</span></span>
 
@@ -392,7 +392,7 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-318">Die `@namespace`-Anweisung wird wie folgt für eine Seite festgelegt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-318">The `@namespace` directive set on a page:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
+[!code-cshtml[](index/sample/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
 
 <span data-ttu-id="deb3a-319">Die `@namespace`-Anweisung legt den Namespace für die Seite fest.</span><span class="sxs-lookup"><span data-stu-id="deb3a-319">The `@namespace` directive sets the namespace for the page.</span></span> <span data-ttu-id="deb3a-320">Die `@model`-Anweisung muss den Namespace nicht enthalten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-320">The `@model` directive doesn't need to include the namespace.</span></span>
 
@@ -400,27 +400,27 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-323">Die `PageModel`-Klasse in *Pages/Customers/Edit.cshtml.cs* legt den Namespace z.B. explizit fest:</span><span class="sxs-lookup"><span data-stu-id="deb3a-323">For example, the `PageModel` class *Pages/Customers/Edit.cshtml.cs* explicitly sets the namespace:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/Edit.cshtml.cs?name=snippet_namespace)]
+[!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=snippet_namespace)]
 
 <span data-ttu-id="deb3a-324">Die Datei *Pages/_ViewImports.cshtml* legt den folgenden Namespace fest:</span><span class="sxs-lookup"><span data-stu-id="deb3a-324">The *Pages/_ViewImports.cshtml* file sets the following namespace:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
-<span data-ttu-id="deb3a-325">Der generierte Namespace für die :::no-loc(Razor)::: Page *Pages/Customers/Edit.cshtml* ist identisch mit der `PageModel`-Klasse.</span><span class="sxs-lookup"><span data-stu-id="deb3a-325">The generated namespace for the *Pages/Customers/Edit.cshtml* :::no-loc(Razor)::: Page is the same as the `PageModel` class.</span></span>
+<span data-ttu-id="deb3a-325">Der generierte Namespace für die Razor Page *Pages/Customers/Edit.cshtml* ist identisch mit der `PageModel`-Klasse.</span><span class="sxs-lookup"><span data-stu-id="deb3a-325">The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the `PageModel` class.</span></span>
 
-<span data-ttu-id="deb3a-326">`@namespace` *funktioniert auch mit konventionellen :::no-loc(Razor):::-Ansichten.*</span><span class="sxs-lookup"><span data-stu-id="deb3a-326">`@namespace` *also works with conventional :::no-loc(Razor)::: views.*</span></span>
+<span data-ttu-id="deb3a-326">`@namespace` *funktioniert auch mit konventionellen Razor-Ansichten.*</span><span class="sxs-lookup"><span data-stu-id="deb3a-326">`@namespace` *also works with conventional Razor views.*</span></span>
 
 <span data-ttu-id="deb3a-327">Sehen Sie sich die Ansichtsdatei *Pages/Create.cshtml* an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-327">Consider the *Pages/Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
 <span data-ttu-id="deb3a-328">Die aktualisierte Ansichtsdatei *Pages/Create.cshtml* mit *_ViewImports.cshtml* und der vorherigen Layoutdatei sieht wie folgt aus:</span><span class="sxs-lookup"><span data-stu-id="deb3a-328">The updated *Pages/Create.cshtml* view file with *_ViewImports.cshtml* and the preceding layout file:</span></span>
 
-[!code-cshtml[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
+[!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
 
 <span data-ttu-id="deb3a-329">Im vorangehenden Code werden von *_ViewImports.cshtml* der Namespace und die Taghilfsprogramme importiert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-329">In the preceding code, the *_ViewImports.cshtml* imported the namespace and Tag Helpers.</span></span> <span data-ttu-id="deb3a-330">Die JavaScript-Dateien werden von der Layoutdatei importiert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-330">The layout file imported the JavaScript files.</span></span>
 
-<span data-ttu-id="deb3a-331">Das [:::no-loc(Razor)::: Pages-Startprojekt](#rpvs17) enthält die Seite *Pages/_ValidationScriptsPartial.cshtml* , die die clientseitige Validierung bindet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-331">The [:::no-loc(Razor)::: Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml* , which hooks up client-side validation.</span></span>
+<span data-ttu-id="deb3a-331">Das [Razor Pages-Startprojekt](#rpvs17) enthält die Seite *Pages/_ValidationScriptsPartial.cshtml* , die die clientseitige Validierung bindet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-331">The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml* , which hooks up client-side validation.</span></span>
 
 <span data-ttu-id="deb3a-332">Weitere Informationen zu Teilansichten finden Sie unter <xref:mvc/views/partial>.</span><span class="sxs-lookup"><span data-stu-id="deb3a-332">For more information on partial views, see <xref:mvc/views/partial>.</span></span>
 
@@ -430,7 +430,7 @@ ms.locfileid: "93059142"
 
 <span data-ttu-id="deb3a-334">Die zuvor gezeigte `Create`-Seite verwendet `RedirectToPage`:</span><span class="sxs-lookup"><span data-stu-id="deb3a-334">The `Create` page, shown previously, uses `RedirectToPage`:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=28)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=28)]
 
 <span data-ttu-id="deb3a-335">Die App hat die folgende Datei/Ordner-Struktur:</span><span class="sxs-lookup"><span data-stu-id="deb3a-335">The app has the following file/folder structure:</span></span>
 
@@ -467,7 +467,7 @@ ms.locfileid: "93059142"
 | <span data-ttu-id="deb3a-360">RedirectToPage("../Index")</span><span class="sxs-lookup"><span data-stu-id="deb3a-360">RedirectToPage("../Index")</span></span> | <span data-ttu-id="deb3a-361">*Pages/Index*</span><span class="sxs-lookup"><span data-stu-id="deb3a-361">*Pages/Index*</span></span> |
 | <span data-ttu-id="deb3a-362">RedirectToPage("Index")</span><span class="sxs-lookup"><span data-stu-id="deb3a-362">RedirectToPage("Index")</span></span>  | <span data-ttu-id="deb3a-363">*Pages/Customers/Index*</span><span class="sxs-lookup"><span data-stu-id="deb3a-363">*Pages/Customers/Index*</span></span> |
 
-<!-- Test via ~/razor-pages/index/3.0sample/:::no-loc(Razor):::PagesContacts/Pages/Customers/Details.cshtml.cs -->
+<!-- Test via ~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Details.cshtml.cs -->
 
 <span data-ttu-id="deb3a-364">`RedirectToPage("Index")`, `RedirectToPage("./Index")` und `RedirectToPage("../Index")` sind *relative Namen* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-364">`RedirectToPage("Index")`, `RedirectToPage("./Index")`, and `RedirectToPage("../Index")` are *relative names* .</span></span> <span data-ttu-id="deb3a-365">Der `RedirectToPage`-Parameter wird mit dem Pfad der aktuellen Seite *kombiniert* , um den Namen der Zielseite zu berechnen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-365">The `RedirectToPage` parameter is *combined* with the path of the current page to compute the name of the destination page.</span></span>
 
@@ -524,7 +524,7 @@ public class AboutModel : PageModel
 
 <span data-ttu-id="deb3a-383">Im folgenden Code wird der Wert von `Message` mit `TempData` festgelegt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-383">The following code sets the value of `Message` using `TempData`:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,25&name=snippet_Temp)]
+[!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,25&name=snippet_Temp)]
 
 <span data-ttu-id="deb3a-384">Das folgende Markup in der Datei *Pages/Customers/Index.cshtml* zeigt den Wert von `Message` mit `TempData` an.</span><span class="sxs-lookup"><span data-stu-id="deb3a-384">The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.</span></span>
 
@@ -547,17 +547,17 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-388">Die folgende Seite generiert mit dem `asp-page-handler`-Taghilfsprogramm Markup für zwei Handler:</span><span class="sxs-lookup"><span data-stu-id="deb3a-388">The following page generates markup for two handlers using the `asp-page-handler` Tag Helper:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
 <span data-ttu-id="deb3a-389">Das Formular im vorherigen Beispiel hat zwei Sendeschaltflächen, und jede verwendet `FormActionTagHelper`, um an eine andere URL zu übermitteln.</span><span class="sxs-lookup"><span data-stu-id="deb3a-389">The form in the preceding example has two submit buttons, each using the `FormActionTagHelper` to submit to a different URL.</span></span> <span data-ttu-id="deb3a-390">Das `asp-page-handler`-Attribut ist eine Ergänzung für `asp-page`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-390">The `asp-page-handler` attribute is a companion to `asp-page`.</span></span> <span data-ttu-id="deb3a-391">`asp-page-handler` generiert URLs, die als Übermittlungsziel jeweils die durch eine Seite festgelegte Handlermethode verwenden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-391">`asp-page-handler` generates URLs that submit to each of the handler methods defined by a page.</span></span> <span data-ttu-id="deb3a-392">`asp-page` wird nicht angegeben, weil das Beispiel mit der aktuellen Seite verknüpft.</span><span class="sxs-lookup"><span data-stu-id="deb3a-392">`asp-page` isn't specified because the sample is linking to the current page.</span></span>
 
 <span data-ttu-id="deb3a-393">Das Seitenmodell:</span><span class="sxs-lookup"><span data-stu-id="deb3a-393">The page model:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
+[!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
 <span data-ttu-id="deb3a-394">Der vorherige Code verwendet *benannte Handlermethoden* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-394">The preceding code uses *named handler methods* .</span></span> <span data-ttu-id="deb3a-395">Benannte Handlermethoden werden aus dem Text im Namen nach `On<HTTP Verb>` und vor `Async` (falls vorhanden) erstellt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-395">Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present).</span></span> <span data-ttu-id="deb3a-396">Im vorherigen Beispiel sind OnPost **JoinList** Async und OnPost **JoinListUC** Async die Seitenmethoden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-396">In the preceding example, the page methods are OnPost **JoinList** Async and OnPost **JoinListUC** Async.</span></span> <span data-ttu-id="deb3a-397">Wenn Sie *OnPost* und *Async* entfernen, lauten die Handlernamen `JoinList` und `JoinListUC`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-397">With *OnPost* and *Async* removed, the handler names are `JoinList` and `JoinListUC`.</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
 <span data-ttu-id="deb3a-398">Mit dem vorherigen Code lautet der URL-Pfad, der an `OnPostJoinListAsync` übermittelt, `https://localhost:5001/Customers/CreateFATH?handler=JoinList`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-398">Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinList`.</span></span> <span data-ttu-id="deb3a-399">Der URL-Pfad, der an `OnPostJoinListUCAsync` übermittelt, lautet `https://localhost:5001/Customers/CreateFATH?handler=JoinListUC`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-399">The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinListUC`.</span></span>
 
@@ -573,7 +573,7 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-410">Wenn Sie nicht möchten, dass die Abfragezeichenfolge `?handler=JoinList` in der URL enthalten ist, ändern Sie die Route so, dass der Handlername im Pfadteil der URL eingefügt wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-410">If you don't like the query string `?handler=JoinList` in the URL, change the route to put the handler name in the path portion of the URL.</span></span> <span data-ttu-id="deb3a-411">Sie können die Route anpassen, indem Sie nach der `@page`-Anweisung eine Routenvorlage in doppelten Anführungszeichen hinzufügen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-411">The route can be customized by adding a route template enclosed in double quotes after the `@page` directive.</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
 <span data-ttu-id="deb3a-412">Mit dem vorherigen Code lautet der URL-Pfad, der an `OnPostJoinListAsync` übermittelt, `https://localhost:5001/Customers/CreateFATH/JoinList`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-412">Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH/JoinList`.</span></span> <span data-ttu-id="deb3a-413">Der URL-Pfad, der an `OnPostJoinListUCAsync` übermittelt, lautet `https://localhost:5001/Customers/CreateFATH/JoinListUC`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-413">The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH/JoinListUC`.</span></span>
 
@@ -583,30 +583,30 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-416">Die Konfigurationen und Einstellungen in den folgenden Abschnitten sind für die meisten Apps nicht erforderlich.</span><span class="sxs-lookup"><span data-stu-id="deb3a-416">The configuration and settings in following sections is not required by most apps.</span></span>
 
-<span data-ttu-id="deb3a-417">Verwenden Sie die Überladung <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.Add:::no-loc(Razor):::Pages%2A>, die <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.:::no-loc(Razor):::PagesOptions> konfiguriert, um die erweiterten Optionen zu konfigurieren:</span><span class="sxs-lookup"><span data-stu-id="deb3a-417">To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.Add:::no-loc(Razor):::Pages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.:::no-loc(Razor):::PagesOptions>:</span></span>
+<span data-ttu-id="deb3a-417">Verwenden Sie die Überladung <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, die <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> konfiguriert, um die erweiterten Optionen zu konfigurieren:</span><span class="sxs-lookup"><span data-stu-id="deb3a-417">To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/StartupRPoptions.cs?name=snippet)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 
-<span data-ttu-id="deb3a-418">Verwenden Sie <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.:::no-loc(Razor):::PagesOptions>, um das Stammverzeichnis für Seiten festzulegen oder Anwendungsmodellkonventionen für Seiten hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-418">Use the <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.:::no-loc(Razor):::PagesOptions> to set the root directory for pages, or add application model conventions for pages.</span></span> <span data-ttu-id="deb3a-419">Weitere Informationen zu Konventionen finden Sie unter [:::no-loc(Razor)::: Pages-Autorisierungskonventionen](xref:security/authorization/razor-pages-authorization).</span><span class="sxs-lookup"><span data-stu-id="deb3a-419">For more information on conventions, see [:::no-loc(Razor)::: Pages authorization conventions](xref:security/authorization/razor-pages-authorization).</span></span>
+<span data-ttu-id="deb3a-418">Verwenden Sie <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>, um das Stammverzeichnis für Seiten festzulegen oder Anwendungsmodellkonventionen für Seiten hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-418">Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages.</span></span> <span data-ttu-id="deb3a-419">Weitere Informationen zu Konventionen finden Sie unter [Razor Pages-Autorisierungskonventionen](xref:security/authorization/razor-pages-authorization).</span><span class="sxs-lookup"><span data-stu-id="deb3a-419">For more information on conventions, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization).</span></span>
 
-<span data-ttu-id="deb3a-420">Informationen zum Vorkompilieren von Ansichten finden Sie unter [:::no-loc(Razor):::-Ansichtenkompilierung](xref:mvc/views/view-compilation).</span><span class="sxs-lookup"><span data-stu-id="deb3a-420">To precompile views, see [:::no-loc(Razor)::: view compilation](xref:mvc/views/view-compilation).</span></span>
+<span data-ttu-id="deb3a-420">Informationen zum Vorkompilieren von Ansichten finden Sie unter [Razor-Ansichtenkompilierung](xref:mvc/views/view-compilation).</span><span class="sxs-lookup"><span data-stu-id="deb3a-420">To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation).</span></span>
 
-### <a name="specify-that-no-locrazor-pages-are-at-the-content-root"></a><span data-ttu-id="deb3a-421">Festlegen des Inhaltsstammverzeichnisses für :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-421">Specify that :::no-loc(Razor)::: Pages are at the content root</span></span>
+### <a name="specify-that-no-locrazor-pages-are-at-the-content-root"></a><span data-ttu-id="deb3a-421">Festlegen des Inhaltsstammverzeichnisses für Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-421">Specify that Razor Pages are at the content root</span></span>
 
-<span data-ttu-id="deb3a-422">Standardmäßig lautet das Stammverzeichnis für :::no-loc(Razor)::: Pages */Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-422">By default, :::no-loc(Razor)::: Pages are rooted in the */Pages* directory.</span></span> <span data-ttu-id="deb3a-423">Fügen Sie <xref:Microsoft.Extensions.DependencyInjection.Mvc:::no-loc(Razor):::PagesMvcBuilderExtensions.With:::no-loc(Razor):::PagesAtContentRoot*> hinzu, um anzugeben, dass sich Ihre :::no-loc(Razor):::-Seiten im [Inhaltsstammverzeichnis](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) der App befinden:</span><span class="sxs-lookup"><span data-stu-id="deb3a-423">Add <xref:Microsoft.Extensions.DependencyInjection.Mvc:::no-loc(Razor):::PagesMvcBuilderExtensions.With:::no-loc(Razor):::PagesAtContentRoot*> to specify that your :::no-loc(Razor)::: Pages are at the [content root](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:</span></span>
+<span data-ttu-id="deb3a-422">Standardmäßig lautet das Stammverzeichnis für Razor Pages */Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-422">By default, Razor Pages are rooted in the */Pages* directory.</span></span> <span data-ttu-id="deb3a-423">Fügen Sie <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> hinzu, um anzugeben, dass sich Ihre Razor-Seiten im [Inhaltsstammverzeichnis](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) der App befinden:</span><span class="sxs-lookup"><span data-stu-id="deb3a-423">Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot*> to specify that your Razor Pages are at the [content root](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/StartupWith:::no-loc(Razor):::PagesAtContentRoot.cs?name=snippet)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesAtContentRoot.cs?name=snippet)]
 
-### <a name="specify-that-no-locrazor-pages-are-at-a-custom-root-directory"></a><span data-ttu-id="deb3a-424">Festlegen eines benutzerdefinierten Stammverzeichnisses für :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-424">Specify that :::no-loc(Razor)::: Pages are at a custom root directory</span></span>
+### <a name="specify-that-no-locrazor-pages-are-at-a-custom-root-directory"></a><span data-ttu-id="deb3a-424">Festlegen eines benutzerdefinierten Stammverzeichnisses für Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-424">Specify that Razor Pages are at a custom root directory</span></span>
 
-<span data-ttu-id="deb3a-425">Fügen Sie <xref:Microsoft.Extensions.DependencyInjection.Mvc:::no-loc(Razor):::PagesMvcCoreBuilderExtensions.With:::no-loc(Razor):::PagesRoot*> hinzu, um anzugeben, dass sich Ihre :::no-loc(Razor):::-Seiten in einem benutzerdefinierten Stammverzeichnis der App befinden. Geben Sie dabei einen relativen Pfad an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-425">Add <xref:Microsoft.Extensions.DependencyInjection.Mvc:::no-loc(Razor):::PagesMvcCoreBuilderExtensions.With:::no-loc(Razor):::PagesRoot*> to specify that :::no-loc(Razor)::: Pages are at a custom root directory in the app (provide a relative path):</span></span>
+<span data-ttu-id="deb3a-425">Fügen Sie <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderExtensions.WithRazorPagesRoot*> hinzu, um anzugeben, dass sich Ihre Razor-Seiten in einem benutzerdefinierten Stammverzeichnis der App befinden. Geben Sie dabei einen relativen Pfad an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-425">Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderExtensions.WithRazorPagesRoot*> to specify that Razor Pages are at a custom root directory in the app (provide a relative path):</span></span>
 
-[!code-csharp[](index/3.0sample/:::no-loc(Razor):::PagesContacts/StartupWith:::no-loc(Razor):::PagesRoot.cs?name=snippet)]
+[!code-csharp[](index/3.0sample/RazorPagesContacts/StartupWithRazorPagesRoot.cs?name=snippet)]
 
 ## <a name="additional-resources"></a><span data-ttu-id="deb3a-426">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="deb3a-426">Additional resources</span></span>
 
-* <span data-ttu-id="deb3a-427">Lesen Sie auch den Artikel [Erste Schritte mit :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start), der auf dieser Einführung aufbaut.</span><span class="sxs-lookup"><span data-stu-id="deb3a-427">See [Get started with :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.</span></span>
-* [<span data-ttu-id="deb3a-428">Authorize-Attribut und :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-428">Authorize attribute and :::no-loc(Razor)::: Pages</span></span>](xref:security/authorization/simple#aarp)
+* <span data-ttu-id="deb3a-427">Lesen Sie auch den Artikel [Erste Schritte mit Razor Pages](xref:tutorials/razor-pages/razor-pages-start), der auf dieser Einführung aufbaut.</span><span class="sxs-lookup"><span data-stu-id="deb3a-427">See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.</span></span>
+* [<span data-ttu-id="deb3a-428">Authorize-Attribut und Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-428">Authorize attribute and Razor Pages</span></span>](xref:security/authorization/simple#aarp)
 * [<span data-ttu-id="deb3a-429">Herunterladen und Anzeigen des Beispielcodes</span><span class="sxs-lookup"><span data-stu-id="deb3a-429">Download or view sample code</span></span>](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample)
 * <xref:index>
 * <xref:mvc/views/razor>
@@ -624,11 +624,11 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-430">Von [Rick Anderson](https://twitter.com/RickAndMSFT) und [Ryan Nowak](https://github.com/rynowak)</span><span class="sxs-lookup"><span data-stu-id="deb3a-430">By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Ryan Nowak](https://github.com/rynowak)</span></span>
 
-<span data-ttu-id="deb3a-431">:::no-loc(Razor)::: Pages ist ein neuer Bestandteil von ASP.NET Core MVC, mit dem codierungsseitige Szenarios einfacher und produktiver werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-431">:::no-loc(Razor)::: Pages is a new aspect of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.</span></span>
+<span data-ttu-id="deb3a-431">Razor Pages ist ein neuer Bestandteil von ASP.NET Core MVC, mit dem codierungsseitige Szenarios einfacher und produktiver werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-431">Razor Pages is a new aspect of ASP.NET Core MVC that makes coding page-focused scenarios easier and more productive.</span></span>
 
 <span data-ttu-id="deb3a-432">Ein Tutorial, in dem der Model-View-Controller-Ansatz verwendet wird, finden Sie unter [Erste Schritte mit ASP.NET Core MVC und Visual Studio](xref:tutorials/first-mvc-app/start-mvc).</span><span class="sxs-lookup"><span data-stu-id="deb3a-432">If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).</span></span>
 
-<span data-ttu-id="deb3a-433">Dieses Dokument bietet eine Einführung in :::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-433">This document provides an introduction to :::no-loc(Razor)::: Pages.</span></span> <span data-ttu-id="deb3a-434">Es handelt sich nicht um ein Schritt-für-Schritt-Tutorial.</span><span class="sxs-lookup"><span data-stu-id="deb3a-434">It's not a step by step tutorial.</span></span> <span data-ttu-id="deb3a-435">Wenn es Ihnen Probleme bereitet, die Ausführungen in einigen Abschnitten nachzuvollziehen, lesen Sie [Erste Schritte mit :::no-loc(Razor)::: Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-435">If you find some of the sections too advanced, see [Get started with :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start).</span></span> <span data-ttu-id="deb3a-436">Eine Übersicht über ASP.NET Core finden Sie unter [Einführung in ASP.NET Core](xref:index).</span><span class="sxs-lookup"><span data-stu-id="deb3a-436">For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).</span></span>
+<span data-ttu-id="deb3a-433">Dieses Dokument bietet eine Einführung in Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-433">This document provides an introduction to Razor Pages.</span></span> <span data-ttu-id="deb3a-434">Es handelt sich nicht um ein Schritt-für-Schritt-Tutorial.</span><span class="sxs-lookup"><span data-stu-id="deb3a-434">It's not a step by step tutorial.</span></span> <span data-ttu-id="deb3a-435">Wenn es Ihnen Probleme bereitet, die Ausführungen in einigen Abschnitten nachzuvollziehen, lesen Sie [Erste Schritte mit Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-435">If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start).</span></span> <span data-ttu-id="deb3a-436">Eine Übersicht über ASP.NET Core finden Sie unter [Einführung in ASP.NET Core](xref:index).</span><span class="sxs-lookup"><span data-stu-id="deb3a-436">For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).</span></span>
 
 ## <a name="prerequisites"></a><span data-ttu-id="deb3a-437">Voraussetzungen</span><span class="sxs-lookup"><span data-stu-id="deb3a-437">Prerequisites</span></span>
 
@@ -648,11 +648,11 @@ public string Message { get; set; }
 
 <a name="rpvs17"></a>
 
-## <a name="create-a-no-locrazor-pages-project"></a><span data-ttu-id="deb3a-441">Erstellen eines :::no-loc(Razor)::: Pages-Projekts</span><span class="sxs-lookup"><span data-stu-id="deb3a-441">Create a :::no-loc(Razor)::: Pages project</span></span>
+## <a name="create-a-no-locrazor-pages-project"></a><span data-ttu-id="deb3a-441">Erstellen eines Razor Pages-Projekts</span><span class="sxs-lookup"><span data-stu-id="deb3a-441">Create a Razor Pages project</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="deb3a-442">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="deb3a-442">Visual Studio</span></span>](#tab/visual-studio)
 
-<span data-ttu-id="deb3a-443">Ausführliche Informationen zum Erstellen eines :::no-loc(Razor)::: Pages-Projekts finden Sie unter [Erste Schritte mit :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-443">See [Get started with :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a :::no-loc(Razor)::: Pages project.</span></span>
+<span data-ttu-id="deb3a-443">Ausführliche Informationen zum Erstellen eines Razor Pages-Projekts finden Sie unter [Erste Schritte mit Razor Pages](xref:tutorials/razor-pages/razor-pages-start).</span><span class="sxs-lookup"><span data-stu-id="deb3a-443">See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.</span></span>
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="deb3a-444">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="deb3a-444">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
@@ -666,29 +666,29 @@ public string Message { get; set; }
 
 ---
 
-## <a name="no-locrazor-pages"></a><span data-ttu-id="deb3a-449">:::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-449">:::no-loc(Razor)::: Pages</span></span>
+## <a name="no-locrazor-pages"></a><span data-ttu-id="deb3a-449">Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-449">Razor Pages</span></span>
 
-<span data-ttu-id="deb3a-450">:::no-loc(Razor)::: Pages ist in *Startup.cs* aktiviert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-450">:::no-loc(Razor)::: Pages is enabled in *Startup.cs* :</span></span>
+<span data-ttu-id="deb3a-450">Razor Pages ist in *Startup.cs* aktiviert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-450">Razor Pages is enabled in *Startup.cs* :</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesIntro/Startup.cs?name=snippet_Startup)]
+[!code-csharp[](index/sample/RazorPagesIntro/Startup.cs?name=snippet_Startup)]
 
 <span data-ttu-id="deb3a-451">Sehen Sie sich diese einfache Seite an: <a name="OnGet"></a></span><span class="sxs-lookup"><span data-stu-id="deb3a-451">Consider a basic page: <a name="OnGet"></a></span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesIntro/Pages/Index.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesIntro/Pages/Index.cshtml)]
 
-<span data-ttu-id="deb3a-452">Der vorherige Code ähnelt sehr einer [:::no-loc(Razor):::-Ansichtsdatei](xref:tutorials/first-mvc-app/adding-view), die in einer ASP.NET Core-App mit Controllern und Ansichten verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-452">The preceding code looks a lot like a [:::no-loc(Razor)::: view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views.</span></span> <span data-ttu-id="deb3a-453">Der Unterschied besteht in der `@page`-Anweisung.</span><span class="sxs-lookup"><span data-stu-id="deb3a-453">What makes it different is the `@page` directive.</span></span> <span data-ttu-id="deb3a-454">`@page` macht die Datei zu einer MVC-Aktion, d.h. dass Anfragen direkt ohne einen Controller verarbeitet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-454">`@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller.</span></span> <span data-ttu-id="deb3a-455">`@page` muss die erste :::no-loc(Razor):::-Anweisung auf einer Seite sein.</span><span class="sxs-lookup"><span data-stu-id="deb3a-455">`@page` must be the first :::no-loc(Razor)::: directive on a page.</span></span> <span data-ttu-id="deb3a-456">`@page` wirkt sich auf das Verhalten aller anderen :::no-loc(Razor):::-Konstrukte aus.</span><span class="sxs-lookup"><span data-stu-id="deb3a-456">`@page` affects the behavior of other :::no-loc(Razor)::: constructs.</span></span>
+<span data-ttu-id="deb3a-452">Der vorherige Code ähnelt sehr einer [Razor-Ansichtsdatei](xref:tutorials/first-mvc-app/adding-view), die in einer ASP.NET Core-App mit Controllern und Ansichten verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-452">The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views.</span></span> <span data-ttu-id="deb3a-453">Der Unterschied besteht in der `@page`-Anweisung.</span><span class="sxs-lookup"><span data-stu-id="deb3a-453">What makes it different is the `@page` directive.</span></span> <span data-ttu-id="deb3a-454">`@page` macht die Datei zu einer MVC-Aktion, d.h. dass Anfragen direkt ohne einen Controller verarbeitet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-454">`@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller.</span></span> <span data-ttu-id="deb3a-455">`@page` muss die erste Razor-Anweisung auf einer Seite sein.</span><span class="sxs-lookup"><span data-stu-id="deb3a-455">`@page` must be the first Razor directive on a page.</span></span> <span data-ttu-id="deb3a-456">`@page` wirkt sich auf das Verhalten aller anderen Razor-Konstrukte aus.</span><span class="sxs-lookup"><span data-stu-id="deb3a-456">`@page` affects the behavior of other Razor constructs.</span></span>
 
 <span data-ttu-id="deb3a-457">Eine ähnliche Seite, die die `PageModel`-Klasse verwendet, wird in den folgenden zwei Dateien angezeigt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-457">A similar page, using a `PageModel` class, is shown in the following two files.</span></span> <span data-ttu-id="deb3a-458">Die Datei *Pages/Index2.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-458">The *Pages/Index2.cshtml* file:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesIntro/Pages/Index2.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesIntro/Pages/Index2.cshtml)]
 
 <span data-ttu-id="deb3a-459">Das Seitenmodell *Pages/Index2.cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-459">The *Pages/Index2.cshtml.cs* page model:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesIntro/Pages/Index2.cshtml.cs)]
+[!code-csharp[](index/sample/RazorPagesIntro/Pages/Index2.cshtml.cs)]
 
-<span data-ttu-id="deb3a-460">Die `PageModel`-Klassendatei hat standardmäßig den gleichen Namen wie die Datei mit :::no-loc(Razor)::: Pages, nur dass außerdem *.cs* angefügt wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-460">By convention, the `PageModel` class file has the same name as the :::no-loc(Razor)::: Page file with *.cs* appended.</span></span> <span data-ttu-id="deb3a-461">Die vorherige Datei mit Razor :::no-loc(Razor)::: lautet beispielsweise *Pages/Index2.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-461">For example, the previous :::no-loc(Razor)::: Page is *Pages/Index2.cshtml* .</span></span> <span data-ttu-id="deb3a-462">Die Datei mit der `PageModel`-Klasse heißt *Pages/Index2.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-462">The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs* .</span></span>
+<span data-ttu-id="deb3a-460">Die `PageModel`-Klassendatei hat standardmäßig den gleichen Namen wie die Datei mit Razor Pages, nur dass außerdem *.cs* angefügt wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-460">By convention, the `PageModel` class file has the same name as the Razor Page file with *.cs* appended.</span></span> <span data-ttu-id="deb3a-461">Die vorherige Datei mit Razor Razor lautet beispielsweise *Pages/Index2.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-461">For example, the previous Razor Page is *Pages/Index2.cshtml* .</span></span> <span data-ttu-id="deb3a-462">Die Datei mit der `PageModel`-Klasse heißt *Pages/Index2.cshtml.cs* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-462">The file containing the `PageModel` class is named *Pages/Index2.cshtml.cs* .</span></span>
 
-<span data-ttu-id="deb3a-463">Die Zuordnungen von URL-Pfaden zu Seiten werden durch den Speicherort der Seite im Dateisystem bestimmt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-463">The associations of URL paths to pages are determined by the page's location in the file system.</span></span> <span data-ttu-id="deb3a-464">Die folgende Tabelle zeigt einen Pfad zu :::no-loc(Razor)::: Pages und die entsprechende URL:</span><span class="sxs-lookup"><span data-stu-id="deb3a-464">The following table shows a :::no-loc(Razor)::: Page path and the matching URL:</span></span>
+<span data-ttu-id="deb3a-463">Die Zuordnungen von URL-Pfaden zu Seiten werden durch den Speicherort der Seite im Dateisystem bestimmt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-463">The associations of URL paths to pages are determined by the page's location in the file system.</span></span> <span data-ttu-id="deb3a-464">Die folgende Tabelle zeigt einen Pfad zu Razor Pages und die entsprechende URL:</span><span class="sxs-lookup"><span data-stu-id="deb3a-464">The following table shows a Razor Page path and the matching URL:</span></span>
 
 | <span data-ttu-id="deb3a-465">Dateiname und Pfad</span><span class="sxs-lookup"><span data-stu-id="deb3a-465">File name and path</span></span>               | <span data-ttu-id="deb3a-466">Entsprechende URL</span><span class="sxs-lookup"><span data-stu-id="deb3a-466">matching URL</span></span> |
 | ----------------- | ------------ |
@@ -699,32 +699,32 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-473">Notizen:</span><span class="sxs-lookup"><span data-stu-id="deb3a-473">Notes:</span></span>
 
-* <span data-ttu-id="deb3a-474">Die Runtime sucht standardmäßig im Ordner *Pages* (Seiten) nach Dateien mit R:::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-474">The runtime looks for :::no-loc(Razor)::: Pages files in the *Pages* folder by default.</span></span>
+* <span data-ttu-id="deb3a-474">Die Runtime sucht standardmäßig im Ordner *Pages* (Seiten) nach Dateien mit RRazor Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-474">The runtime looks for Razor Pages files in the *Pages* folder by default.</span></span>
 * <span data-ttu-id="deb3a-475">Wenn eine Seite nicht in einer URL enthalten ist, ist `Index` die Standardseite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-475">`Index` is the default page when a URL doesn't include a page.</span></span>
 
 ## <a name="write-a-basic-form"></a><span data-ttu-id="deb3a-476">Schreiben eines einfachen Formulars</span><span class="sxs-lookup"><span data-stu-id="deb3a-476">Write a basic form</span></span>
 
-<span data-ttu-id="deb3a-477">:::no-loc(Razor)::: Pages ist darauf ausgelegt, allgemeine Muster, die mit Webbrowsern verwendet werden können, beim Erstellen einer App leichter implementieren zu können.</span><span class="sxs-lookup"><span data-stu-id="deb3a-477">:::no-loc(Razor)::: Pages is designed to make common patterns used with web browsers easy to implement when building an app.</span></span> <span data-ttu-id="deb3a-478">Die [Modellbindung](xref:mvc/models/model-binding), [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) und alle HTML-Hilfsprogramme *funktionieren nur* mit den Eigenschaften, die in einer Klasse der :::no-loc(Razor)::: Pages definiert wurden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-478">[Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a :::no-loc(Razor)::: Page class.</span></span> <span data-ttu-id="deb3a-479">Nehmen wir z.B. eine Seite, die ein allgemeines Kontaktformular für das `Contact`-Modell implementiert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-479">Consider a page that implements a basic "contact us" form for the `Contact` model:</span></span>
+<span data-ttu-id="deb3a-477">Razor Pages ist darauf ausgelegt, allgemeine Muster, die mit Webbrowsern verwendet werden können, beim Erstellen einer App leichter implementieren zu können.</span><span class="sxs-lookup"><span data-stu-id="deb3a-477">Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app.</span></span> <span data-ttu-id="deb3a-478">Die [Modellbindung](xref:mvc/models/model-binding), [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) und alle HTML-Hilfsprogramme *funktionieren nur* mit den Eigenschaften, die in einer Klasse der Razor Pages definiert wurden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-478">[Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class.</span></span> <span data-ttu-id="deb3a-479">Nehmen wir z.B. eine Seite, die ein allgemeines Kontaktformular für das `Contact`-Modell implementiert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-479">Consider a page that implements a basic "contact us" form for the `Contact` model:</span></span>
 
-<span data-ttu-id="deb3a-480">Für die Beispiele in diesem Dokument wird `DbContext` in der Datei [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/sample/:::no-loc(Razor):::PagesContacts/Startup.cs#L15-L16) initialisiert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-480">For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/sample/:::no-loc(Razor):::PagesContacts/Startup.cs#L15-L16) file.</span></span>
+<span data-ttu-id="deb3a-480">Für die Beispiele in diesem Dokument wird `DbContext` in der Datei [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) initialisiert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-480">For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Startup.cs?highlight=15-16)]
+[!code-csharp[](index/sample/RazorPagesContacts/Startup.cs?highlight=15-16)]
 
 <span data-ttu-id="deb3a-481">Das Datenmodell:</span><span class="sxs-lookup"><span data-stu-id="deb3a-481">The data model:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Data/Customer.cs)]
+[!code-csharp[](index/sample/RazorPagesContacts/Data/Customer.cs)]
 
 <span data-ttu-id="deb3a-482">Der db-Kontext:</span><span class="sxs-lookup"><span data-stu-id="deb3a-482">The db context:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Data/AppDbContext.cs)]
+[!code-csharp[](index/sample/RazorPagesContacts/Data/AppDbContext.cs)]
 
 <span data-ttu-id="deb3a-483">Die Umgebungsdatei *Pages/Create.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-483">The *Pages/Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Create.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Create.cshtml)]
 
 <span data-ttu-id="deb3a-484">Das Seitenmodell *Pages/Create.cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-484">The *Pages/Create.cshtml.cs* page model:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
+[!code-csharp[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_ALL)]
 
 <span data-ttu-id="deb3a-485">Die `PageModel` -Klasse heißt standardmäßig `<PageName>Model` und befindet sich im selben Namespace wie die Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-485">By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.</span></span>
 
@@ -738,7 +738,7 @@ public string Message { get; set; }
 * <span data-ttu-id="deb3a-494">`OnGet`, um den für eine Seite erforderlichen Status zu initialisieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-494">`OnGet` to initialize state needed for the page.</span></span> <span data-ttu-id="deb3a-495">[OnGet](#OnGet)-Beispiel</span><span class="sxs-lookup"><span data-stu-id="deb3a-495">[OnGet](#OnGet) sample.</span></span>
 * <span data-ttu-id="deb3a-496">`OnPost`, um Formularübermittlungen zu behandeln</span><span class="sxs-lookup"><span data-stu-id="deb3a-496">`OnPost` to handle form submissions.</span></span>
 
-<span data-ttu-id="deb3a-497">Das Namenssuffix `Async` ist optional. Es wird jedoch standardmäßig häufig für asynchrone Funktionen verwendet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-497">The `Async` naming suffix is optional but is often used by convention for asynchronous functions.</span></span> <span data-ttu-id="deb3a-498">Der vorhergehende Code ist typisch für :::no-loc(Razor)::: Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-498">The preceding code is typical for :::no-loc(Razor)::: Pages.</span></span>
+<span data-ttu-id="deb3a-497">Das Namenssuffix `Async` ist optional. Es wird jedoch standardmäßig häufig für asynchrone Funktionen verwendet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-497">The `Async` naming suffix is optional but is often used by convention for asynchronous functions.</span></span> <span data-ttu-id="deb3a-498">Der vorhergehende Code ist typisch für Razor Pages.</span><span class="sxs-lookup"><span data-stu-id="deb3a-498">The preceding code is typical for Razor Pages.</span></span>
 
 <span data-ttu-id="deb3a-499">Wenn Sie mit ASP.NET-Apps vertraut sind, die Controller und Ansichten verwenden, werden Ihnen folgende Fakten bekannt vorkommen:</span><span class="sxs-lookup"><span data-stu-id="deb3a-499">If you're familiar with ASP.NET apps using controllers and views:</span></span>
 
@@ -747,7 +747,7 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-502">Die vorherige `OnPostAsync`-Methode:</span><span class="sxs-lookup"><span data-stu-id="deb3a-502">The previous `OnPostAsync` method:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-csharp[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 <span data-ttu-id="deb3a-503">Der grundlegende Ablauf von `OnPostAsync`:</span><span class="sxs-lookup"><span data-stu-id="deb3a-503">The basic flow of `OnPostAsync`:</span></span>
 
@@ -762,29 +762,29 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-518">Die Eigenschaft `Customer` verwendet das `[BindProperty]`-Attribut, um die Modellbindung zu aktivieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-518">The `Customer` property uses `[BindProperty]` attribute to opt in to model binding.</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
+[!code-csharp[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_PageModel&highlight=10-11)]
 
-<span data-ttu-id="deb3a-519">:::no-loc(Razor)::: Pages binden Eigenschaften standardmäßig nur an Nicht-`GET`-Verben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-519">:::no-loc(Razor)::: Pages, by default, bind properties only with non-`GET` verbs.</span></span> <span data-ttu-id="deb3a-520">Durch die Bindung an Eigenschaften können Sie den Umfang von Codes reduzieren, den Sie schreiben müssen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-520">Binding to properties can reduce the amount of code you have to write.</span></span> <span data-ttu-id="deb3a-521">Die Bindung reduziert den Code mithilfe der gleichen Eigenschaft, um Formularfelder (`<input asp-for="Customer.Name">`) zu rendern und die Eingabe zu akzeptieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-521">Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.</span></span>
+<span data-ttu-id="deb3a-519">Razor Pages binden Eigenschaften standardmäßig nur an Nicht-`GET`-Verben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-519">Razor Pages, by default, bind properties only with non-`GET` verbs.</span></span> <span data-ttu-id="deb3a-520">Durch die Bindung an Eigenschaften können Sie den Umfang von Codes reduzieren, den Sie schreiben müssen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-520">Binding to properties can reduce the amount of code you have to write.</span></span> <span data-ttu-id="deb3a-521">Die Bindung reduziert den Code mithilfe der gleichen Eigenschaft, um Formularfelder (`<input asp-for="Customer.Name">`) zu rendern und die Eingabe zu akzeptieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-521">Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.</span></span>
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
 <span data-ttu-id="deb3a-522">Die Startseite ( *Index.cshtml* ):</span><span class="sxs-lookup"><span data-stu-id="deb3a-522">The home page ( *Index.cshtml* ):</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Index.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml)]
 
 <span data-ttu-id="deb3a-523">Die zugeordnete `PageModel`-Klasse ( *Index.cshtml.cs* ):</span><span class="sxs-lookup"><span data-stu-id="deb3a-523">The associated `PageModel` class ( *Index.cshtml.cs* ):</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Index.cshtml.cs)]
+[!code-csharp[](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs)]
 
 <span data-ttu-id="deb3a-524">Die Datei *Index.cshtml* enthält das folgende Markup, um einen Bearbeitungslink für jeden Kontakt zu erstellen:</span><span class="sxs-lookup"><span data-stu-id="deb3a-524">The *Index.cshtml* file contains the following markup to create an edit link for each contact:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Index.cshtml?range=21)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=21)]
 
-<span data-ttu-id="deb3a-525">Das [Anchor-Taghilfsprogramm](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` verwendet das `asp-route-{value}`-Attribut, um einen Link zur Bearbeitungsseite zu generieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-525">The `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page.</span></span> <span data-ttu-id="deb3a-526">Der Link enthält die Routendaten mit der Kontakt-ID.</span><span class="sxs-lookup"><span data-stu-id="deb3a-526">The link contains route data with the contact ID.</span></span> <span data-ttu-id="deb3a-527">Beispielsweise `https://localhost:5001/Edit/1`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-527">For example, `https://localhost:5001/Edit/1`.</span></span> <span data-ttu-id="deb3a-528">[Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) ermöglichen serverseitigem Code das Mitwirken am Erstellen und Rendern von HTML-Elementen in :::no-loc(Razor):::-Dateien.</span><span class="sxs-lookup"><span data-stu-id="deb3a-528">[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in :::no-loc(Razor)::: files.</span></span> <span data-ttu-id="deb3a-529">Taghilfsprogramme werden durch `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` aktiviert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-529">Tag Helpers are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`</span></span>
+<span data-ttu-id="deb3a-525">Das [Anchor-Taghilfsprogramm](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` verwendet das `asp-route-{value}`-Attribut, um einen Link zur Bearbeitungsseite zu generieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-525">The `<a asp-page="./Edit" asp-route-id="@contact.Id">Edit</a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page.</span></span> <span data-ttu-id="deb3a-526">Der Link enthält die Routendaten mit der Kontakt-ID.</span><span class="sxs-lookup"><span data-stu-id="deb3a-526">The link contains route data with the contact ID.</span></span> <span data-ttu-id="deb3a-527">Beispielsweise `https://localhost:5001/Edit/1`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-527">For example, `https://localhost:5001/Edit/1`.</span></span> <span data-ttu-id="deb3a-528">[Taghilfsprogramme](xref:mvc/views/tag-helpers/intro) ermöglichen serverseitigem Code das Mitwirken am Erstellen und Rendern von HTML-Elementen in Razor-Dateien.</span><span class="sxs-lookup"><span data-stu-id="deb3a-528">[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.</span></span> <span data-ttu-id="deb3a-529">Taghilfsprogramme werden durch `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers` aktiviert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-529">Tag Helpers are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`</span></span>
 
 <span data-ttu-id="deb3a-530">Die Datei *Pages/Edit.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-530">The *Pages/Edit.cshtml* file:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Edit.cshtml?highlight=1)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Edit.cshtml?highlight=1)]
 
 <span data-ttu-id="deb3a-531">Die erste Zeile enthält die `@page "{id:int}"`-Anweisung.</span><span class="sxs-lookup"><span data-stu-id="deb3a-531">The first line contains the `@page "{id:int}"` directive.</span></span> <span data-ttu-id="deb3a-532">Die Routingbeschränkung `"{id:int}"` weist die Seite an, die Anforderungen für die Seite zu akzeptieren, die `int`-Routingdaten enthalten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-532">The routing constraint`"{id:int}"` tells the page to accept requests to the page that contain `int` route data.</span></span> <span data-ttu-id="deb3a-533">Wenn eine Anforderung an die Seite bestimmte Routingdaten nicht enthält, die in einen `int` konvertiert werden können, gibt die Runtime einen Fehler vom Typ „HTTP 404: Nicht gefunden“ zurück.</span><span class="sxs-lookup"><span data-stu-id="deb3a-533">If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error.</span></span> <span data-ttu-id="deb3a-534">Um die ID optional zu machen, fügen Sie `?` an die Routeneinschränkung an:</span><span class="sxs-lookup"><span data-stu-id="deb3a-534">To make the ID optional, append `?` to the route constraint:</span></span>
 
@@ -794,11 +794,11 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-535">Die Datei *Pages/Edit.cshtml.cs* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-535">The *Pages/Edit.cshtml.cs* file:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Edit.cshtml.cs)]
+[!code-csharp[](index/sample/RazorPagesContacts/Pages/Edit.cshtml.cs)]
 
 <span data-ttu-id="deb3a-536">Die Datei *index.cshtml* enthält auch Markup zum Erstellen der Schaltfläche „Löschen“ für jeden benutzerdefinierten Kontakt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-536">The *Index.cshtml* file also contains markup to create a delete button for each customer contact:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Index.cshtml?range=22-23)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Index.cshtml?range=22-23)]
 
 <span data-ttu-id="deb3a-537">Wenn die „Löschen“-Schaltfläche in HTML gerendert wird, enthält ihr `formaction`-Element Parameter für Folgendes:</span><span class="sxs-lookup"><span data-stu-id="deb3a-537">When the delete button is rendered in HTML, its `formaction` includes parameters for:</span></span>
 
@@ -815,7 +815,7 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-543">Da der `handler` in diesem Beispiel `delete` ist, wird die Handlermethode `OnPostDeleteAsync` verwendet, um die `POST`-Anforderung zu verarbeiten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-543">Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request.</span></span> <span data-ttu-id="deb3a-544">Wenn `asp-page-handler` auf einen anderen Wert (z. B. `remove`) festgelegt wird, wird eine Handlermethode namens `OnPostRemoveAsync` ausgewählt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-544">If the `asp-page-handler` is set to a different value, such as `remove`, a handler method with the name `OnPostRemoveAsync` is selected.</span></span> <span data-ttu-id="deb3a-545">Im folgenden Code wird der `OnPostDeleteAsync`-Handler definiert:</span><span class="sxs-lookup"><span data-stu-id="deb3a-545">The following code shows the `OnPostDeleteAsync` handler:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Index.cshtml.cs?range=26-37)]
+[!code-csharp[](index/sample/RazorPagesContacts/Pages/Index.cshtml.cs?range=26-37)]
 
 <span data-ttu-id="deb3a-546">Die `OnPostDeleteAsync`-Methode:</span><span class="sxs-lookup"><span data-stu-id="deb3a-546">The `OnPostDeleteAsync` method:</span></span>
 
@@ -845,20 +845,20 @@ public void OnHead()
 }
 ```
 
-<span data-ttu-id="deb3a-561">In ASP.NET Core 2.1 oder höher greift :::no-loc(Razor)::: Pages auf den `OnGet`-Handler zurück, wenn kein `OnHead`-Handler definiert ist.</span><span class="sxs-lookup"><span data-stu-id="deb3a-561">In ASP.NET Core 2.1 or later, :::no-loc(Razor)::: Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined.</span></span> <span data-ttu-id="deb3a-562">Dieses Verhalten wird durch den Aufruf von [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.ConfigureServices` ermöglicht:</span><span class="sxs-lookup"><span data-stu-id="deb3a-562">This behavior is enabled by the call to [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.ConfigureServices`:</span></span>
+<span data-ttu-id="deb3a-561">In ASP.NET Core 2.1 oder höher greift Razor Pages auf den `OnGet`-Handler zurück, wenn kein `OnHead`-Handler definiert ist.</span><span class="sxs-lookup"><span data-stu-id="deb3a-561">In ASP.NET Core 2.1 or later, Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is defined.</span></span> <span data-ttu-id="deb3a-562">Dieses Verhalten wird durch den Aufruf von [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.ConfigureServices` ermöglicht:</span><span class="sxs-lookup"><span data-stu-id="deb3a-562">This behavior is enabled by the call to [SetCompatibilityVersion](xref:mvc/compatibility-version) in `Startup.ConfigureServices`:</span></span>
 
 ```csharp
 services.AddMvc()
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 ```
 
-<span data-ttu-id="deb3a-563">Die Standardvorlagen generieren den `SetCompatibilityVersion`-Aufruf in ASP.NET Core 2.1 und 2.2.</span><span class="sxs-lookup"><span data-stu-id="deb3a-563">The default templates generate the `SetCompatibilityVersion` call in ASP.NET Core 2.1 and 2.2.</span></span> <span data-ttu-id="deb3a-564">Tatsächlich legt `SetCompatibilityVersion` die :::no-loc(Razor)::: Pages-Option `AllowMappingHeadRequestsToGetHandler` auf `true` fest.</span><span class="sxs-lookup"><span data-stu-id="deb3a-564">`SetCompatibilityVersion` effectively sets the :::no-loc(Razor)::: Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.</span></span>
+<span data-ttu-id="deb3a-563">Die Standardvorlagen generieren den `SetCompatibilityVersion`-Aufruf in ASP.NET Core 2.1 und 2.2.</span><span class="sxs-lookup"><span data-stu-id="deb3a-563">The default templates generate the `SetCompatibilityVersion` call in ASP.NET Core 2.1 and 2.2.</span></span> <span data-ttu-id="deb3a-564">Tatsächlich legt `SetCompatibilityVersion` die Razor Pages-Option `AllowMappingHeadRequestsToGetHandler` auf `true` fest.</span><span class="sxs-lookup"><span data-stu-id="deb3a-564">`SetCompatibilityVersion` effectively sets the Razor Pages option `AllowMappingHeadRequestsToGetHandler` to `true`.</span></span>
 
 <span data-ttu-id="deb3a-565">Sie müssen nicht alle Verhalten in `SetCompatibilityVersion` aktivieren, sondern können sich nur *bestimmte* Verhalten aussuchen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-565">Rather than opting in to all behaviors with `SetCompatibilityVersion`, you can explicitly opt in to *specific* behaviors.</span></span> <span data-ttu-id="deb3a-566">Der folgende Code gibt an, dass `HEAD`-Anforderungen dem `OnGet`-Handler zugeordnet werden dürfen:</span><span class="sxs-lookup"><span data-stu-id="deb3a-566">The following code opts in to allowing `HEAD` requests to be mapped to the `OnGet` handler:</span></span>
 
 ```csharp
 services.AddMvc()
-    .Add:::no-loc(Razor):::PagesOptions(options =>
+    .AddRazorPagesOptions(options =>
     {
         options.AllowMappingHeadRequestsToGetHandler = true;
     });
@@ -866,21 +866,21 @@ services.AddMvc()
 
 <a name="xsrf"></a>
 
-## <a name="xsrfcsrf-and-no-locrazor-pages"></a><span data-ttu-id="deb3a-567">XSRF/CSRF und :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-567">XSRF/CSRF and :::no-loc(Razor)::: Pages</span></span>
+## <a name="xsrfcsrf-and-no-locrazor-pages"></a><span data-ttu-id="deb3a-567">XSRF/CSRF und Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-567">XSRF/CSRF and Razor Pages</span></span>
 
-<span data-ttu-id="deb3a-568">Sie müssen keinen Code für die [Antifälschungsvalidierung](xref:security/anti-request-forgery) schreiben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-568">You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery).</span></span> <span data-ttu-id="deb3a-569">Die Generierung und Validierung von Antifälschungstoken ist automatisch in :::no-loc(Razor)::: Pages enthalten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-569">Antiforgery token generation and validation are automatically included in :::no-loc(Razor)::: Pages.</span></span>
+<span data-ttu-id="deb3a-568">Sie müssen keinen Code für die [Antifälschungsvalidierung](xref:security/anti-request-forgery) schreiben.</span><span class="sxs-lookup"><span data-stu-id="deb3a-568">You don't have to write any code for [antiforgery validation](xref:security/anti-request-forgery).</span></span> <span data-ttu-id="deb3a-569">Die Generierung und Validierung von Antifälschungstoken ist automatisch in Razor Pages enthalten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-569">Antiforgery token generation and validation are automatically included in Razor Pages.</span></span>
 
 <a name="layout"></a>
 
-## <a name="using-layouts-partials-templates-and-tag-helpers-with-no-locrazor-pages"></a><span data-ttu-id="deb3a-570">Verwenden von Layouts, Teilansichten, Vorlagen und Taghilfsprogrammen mit :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-570">Using Layouts, partials, templates, and Tag Helpers with :::no-loc(Razor)::: Pages</span></span>
+## <a name="using-layouts-partials-templates-and-tag-helpers-with-no-locrazor-pages"></a><span data-ttu-id="deb3a-570">Verwenden von Layouts, Teilansichten, Vorlagen und Taghilfsprogrammen mit Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-570">Using Layouts, partials, templates, and Tag Helpers with Razor Pages</span></span>
 
-<span data-ttu-id="deb3a-571">Razor Pages beinhaltet alle Funktionen der :::no-loc(Razor):::-Anzeige-Engine.</span><span class="sxs-lookup"><span data-stu-id="deb3a-571">Pages work with all the capabilities of the :::no-loc(Razor)::: view engine.</span></span> <span data-ttu-id="deb3a-572">Layouts, Teilansichten, Vorlagen, Taghilfsprogramme, *_ViewStart.cshtml* , *_ViewImports.cshtml* funktionieren auf die gleiche Weise wie für herkömmliche :::no-loc(Razor):::-Ansichten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-572">Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml* , *_ViewImports.cshtml* work in the same way they do for conventional :::no-loc(Razor)::: views.</span></span>
+<span data-ttu-id="deb3a-571">Razor Pages beinhaltet alle Funktionen der Razor-Anzeige-Engine.</span><span class="sxs-lookup"><span data-stu-id="deb3a-571">Pages work with all the capabilities of the Razor view engine.</span></span> <span data-ttu-id="deb3a-572">Layouts, Teilansichten, Vorlagen, Taghilfsprogramme, *_ViewStart.cshtml* , *_ViewImports.cshtml* funktionieren auf die gleiche Weise wie für herkömmliche Razor-Ansichten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-572">Layouts, partials, templates, Tag Helpers, *_ViewStart.cshtml* , *_ViewImports.cshtml* work in the same way they do for conventional Razor views.</span></span>
 
 <span data-ttu-id="deb3a-573">Strukturieren Sie diese Seite mit einigen dieser praktischen Funktionen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-573">Let's declutter this page by taking advantage of some of those capabilities.</span></span>
 
 <span data-ttu-id="deb3a-574">Fügen Sie der *Pages/Shared/_Layout.cshtml* eine [Layoutseite](xref:mvc/views/layout) hinzu:</span><span class="sxs-lookup"><span data-stu-id="deb3a-574">Add a [layout page](xref:mvc/views/layout) to *Pages/Shared/_Layout.cshtml* :</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/_LayoutSimple.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_LayoutSimple.cshtml)]
 
 <span data-ttu-id="deb3a-575">Das [Layout](xref:mvc/views/layout):</span><span class="sxs-lookup"><span data-stu-id="deb3a-575">The [Layout](xref:mvc/views/layout):</span></span>
 
@@ -891,19 +891,19 @@ services.AddMvc()
 
 <span data-ttu-id="deb3a-579">Die Eigenschaft [Layout](xref:mvc/views/layout#specifying-a-layout) wird in *Pages/_ViewStart.cshtml* festgelegt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-579">The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in *Pages/_ViewStart.cshtml* :</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/_ViewStart.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
-<span data-ttu-id="deb3a-580">Das Layout befindet sich im Ordner *Pages/Shared* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-580">The layout is in the *Pages/Shared* folder.</span></span> <span data-ttu-id="deb3a-581">Seiten suchen hierarchisch nach anderen Ansichten (Layouts, Vorlagen oder Teilansichten) und beginnen im gleichen Ordner wie die aktuelle Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-581">Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page.</span></span> <span data-ttu-id="deb3a-582">Ein Layout im Ordner *Pages/Shared* kann von jeder :::no-loc(Razor):::-Seite aus unter dem Ordner *Pages* verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-582">A layout in the *Pages/Shared* folder can be used from any :::no-loc(Razor)::: page under the *Pages* folder.</span></span>
+<span data-ttu-id="deb3a-580">Das Layout befindet sich im Ordner *Pages/Shared* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-580">The layout is in the *Pages/Shared* folder.</span></span> <span data-ttu-id="deb3a-581">Seiten suchen hierarchisch nach anderen Ansichten (Layouts, Vorlagen oder Teilansichten) und beginnen im gleichen Ordner wie die aktuelle Seite.</span><span class="sxs-lookup"><span data-stu-id="deb3a-581">Pages look for other views (layouts, templates, partials) hierarchically, starting in the same folder as the current page.</span></span> <span data-ttu-id="deb3a-582">Ein Layout im Ordner *Pages/Shared* kann von jeder Razor-Seite aus unter dem Ordner *Pages* verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-582">A layout in the *Pages/Shared* folder can be used from any Razor page under the *Pages* folder.</span></span>
 
 <span data-ttu-id="deb3a-583">Die Layoutdatei sollte im Ordner *Pages/Shared* gespeichert werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-583">The layout file should go in the *Pages/Shared* folder.</span></span>
 
-<span data-ttu-id="deb3a-584">Wir empfehlen Ihnen, die Layoutdatei **nicht** im Ordner *Views/Shared* (Ansichten/Freigegeben) zu platzieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-584">We recommend you **not** put the layout file in the *Views/Shared* folder.</span></span> <span data-ttu-id="deb3a-585">*Views/Shared* ist ein MVC-Ansichtsmuster.</span><span class="sxs-lookup"><span data-stu-id="deb3a-585">*Views/Shared* is an MVC views pattern.</span></span> <span data-ttu-id="deb3a-586">:::no-loc(Razor)::: Pages basieren auf der Ordnerhierarchie, nicht auf Pfadkonventionen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-586">:::no-loc(Razor)::: Pages are meant to rely on folder hierarchy, not path conventions.</span></span>
+<span data-ttu-id="deb3a-584">Wir empfehlen Ihnen, die Layoutdatei **nicht** im Ordner *Views/Shared* (Ansichten/Freigegeben) zu platzieren.</span><span class="sxs-lookup"><span data-stu-id="deb3a-584">We recommend you **not** put the layout file in the *Views/Shared* folder.</span></span> <span data-ttu-id="deb3a-585">*Views/Shared* ist ein MVC-Ansichtsmuster.</span><span class="sxs-lookup"><span data-stu-id="deb3a-585">*Views/Shared* is an MVC views pattern.</span></span> <span data-ttu-id="deb3a-586">Razor Pages basieren auf der Ordnerhierarchie, nicht auf Pfadkonventionen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-586">Razor Pages are meant to rely on folder hierarchy, not path conventions.</span></span>
 
-<span data-ttu-id="deb3a-587">Die Ansichtensuche in einer :::no-loc(Razor)::: Page enthält den Ordner *Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-587">View search from a :::no-loc(Razor)::: Page includes the *Pages* folder.</span></span> <span data-ttu-id="deb3a-588">Die Layouts, Vorlagen und Teilansichten, die Sie mit MVC-Controllern und herkömmlichen :::no-loc(Razor):::-Ansichten verwenden, *funktionieren einfach* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-588">The layouts, templates, and partials you're using with MVC controllers and conventional :::no-loc(Razor)::: views *just work* .</span></span>
+<span data-ttu-id="deb3a-587">Die Ansichtensuche in einer Razor Page enthält den Ordner *Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-587">View search from a Razor Page includes the *Pages* folder.</span></span> <span data-ttu-id="deb3a-588">Die Layouts, Vorlagen und Teilansichten, die Sie mit MVC-Controllern und herkömmlichen Razor-Ansichten verwenden, *funktionieren einfach* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-588">The layouts, templates, and partials you're using with MVC controllers and conventional Razor views *just work* .</span></span>
 
 <span data-ttu-id="deb3a-589">Fügen Sie eine Datei *Pages/_ViewImports.cshtml* hinzu:</span><span class="sxs-lookup"><span data-stu-id="deb3a-589">Add a *Pages/_ViewImports.cshtml* file:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/_ViewImports.cshtml)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
 <span data-ttu-id="deb3a-590">`@namespace` wird weiter unten im Tutorial erläutert.</span><span class="sxs-lookup"><span data-stu-id="deb3a-590">`@namespace` is explained later in the tutorial.</span></span> <span data-ttu-id="deb3a-591">Die `@addTagHelper`-Anweisung bringt die [integrierten Taghilfsprogramme](xref:mvc/views/tag-helpers/builtin-th/Index) zu allen Seiten in der Ordner *Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-591">The `@addTagHelper` directive brings in the [built-in Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/Index) to all the pages in the *Pages* folder.</span></span>
 
@@ -911,7 +911,7 @@ services.AddMvc()
 
 <span data-ttu-id="deb3a-592">Wenn die `@namespace`-Anweisung explizit auf eine Seite angewendet wird:</span><span class="sxs-lookup"><span data-stu-id="deb3a-592">When the `@namespace` directive is used explicitly on a page:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
+[!code-cshtml[](index/sample/RazorPagesIntro/Pages/Customers/Namespace2.cshtml?highlight=2)]
 
 <span data-ttu-id="deb3a-593">Die Anweisung legt den Namespace für die Seite fest.</span><span class="sxs-lookup"><span data-stu-id="deb3a-593">The directive sets the namespace for the page.</span></span> <span data-ttu-id="deb3a-594">Die `@model`-Anweisung muss den Namespace nicht enthalten.</span><span class="sxs-lookup"><span data-stu-id="deb3a-594">The `@model` directive doesn't need to include the namespace.</span></span>
 
@@ -919,25 +919,25 @@ services.AddMvc()
 
 <span data-ttu-id="deb3a-597">Die `PageModel`-Klasse in *Pages/Customers/Edit.cshtml.cs* legt den Namespace z.B. explizit fest:</span><span class="sxs-lookup"><span data-stu-id="deb3a-597">For example, the `PageModel` class *Pages/Customers/Edit.cshtml.cs* explicitly sets the namespace:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/Edit.cshtml.cs?name=snippet_namespace)]
+[!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/Edit.cshtml.cs?name=snippet_namespace)]
 
 <span data-ttu-id="deb3a-598">Die Datei *Pages/_ViewImports.cshtml* legt den folgenden Namespace fest:</span><span class="sxs-lookup"><span data-stu-id="deb3a-598">The *Pages/_ViewImports.cshtml* file sets the following namespace:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/_ViewImports.cshtml?highlight=1)]
 
-<span data-ttu-id="deb3a-599">Der generierte Namespace für die :::no-loc(Razor)::: Page *Pages/Customers/Edit.cshtml* ist identisch mit der `PageModel`-Klasse.</span><span class="sxs-lookup"><span data-stu-id="deb3a-599">The generated namespace for the *Pages/Customers/Edit.cshtml* :::no-loc(Razor)::: Page is the same as the `PageModel` class.</span></span>
+<span data-ttu-id="deb3a-599">Der generierte Namespace für die Razor Page *Pages/Customers/Edit.cshtml* ist identisch mit der `PageModel`-Klasse.</span><span class="sxs-lookup"><span data-stu-id="deb3a-599">The generated namespace for the *Pages/Customers/Edit.cshtml* Razor Page is the same as the `PageModel` class.</span></span>
 
-<span data-ttu-id="deb3a-600">`@namespace` *funktioniert auch mit konventionellen :::no-loc(Razor):::-Ansichten.*</span><span class="sxs-lookup"><span data-stu-id="deb3a-600">`@namespace` *also works with conventional :::no-loc(Razor)::: views.*</span></span>
+<span data-ttu-id="deb3a-600">`@namespace` *funktioniert auch mit konventionellen Razor-Ansichten.*</span><span class="sxs-lookup"><span data-stu-id="deb3a-600">`@namespace` *also works with conventional Razor views.*</span></span>
 
 <span data-ttu-id="deb3a-601">Die ursprüngliche Umgebungsdatei *Pages/Create.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-601">The original *Pages/Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Create.cshtml?highlight=2)]
+[!code-cshtml[](index/sample/RazorPagesContacts/Pages/Create.cshtml?highlight=2)]
 
 <span data-ttu-id="deb3a-602">Die aktualisierte Umgebungsdatei *Pages/Create.cshtml* :</span><span class="sxs-lookup"><span data-stu-id="deb3a-602">The updated *Pages/Create.cshtml* view file:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/Create.cshtml?highlight=2)]
 
-<span data-ttu-id="deb3a-603">Das [:::no-loc(Razor)::: Pages-Startprojekt](#rpvs17) enthält die Seite *Pages/_ValidationScriptsPartial.cshtml* , die die clientseitige Validierung bindet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-603">The [:::no-loc(Razor)::: Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml* , which hooks up client-side validation.</span></span>
+<span data-ttu-id="deb3a-603">Das [Razor Pages-Startprojekt](#rpvs17) enthält die Seite *Pages/_ValidationScriptsPartial.cshtml* , die die clientseitige Validierung bindet.</span><span class="sxs-lookup"><span data-stu-id="deb3a-603">The [Razor Pages starter project](#rpvs17) contains the *Pages/_ValidationScriptsPartial.cshtml* , which hooks up client-side validation.</span></span>
 
 <span data-ttu-id="deb3a-604">Weitere Informationen zu Teilansichten finden Sie unter <xref:mvc/views/partial>.</span><span class="sxs-lookup"><span data-stu-id="deb3a-604">For more information on partial views, see <xref:mvc/views/partial>.</span></span>
 
@@ -947,7 +947,7 @@ services.AddMvc()
 
 <span data-ttu-id="deb3a-606">Die zuvor gezeigte `Create`-Seite verwendet `RedirectToPage`:</span><span class="sxs-lookup"><span data-stu-id="deb3a-606">The `Create` page, shown previously, uses `RedirectToPage`:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)]
+[!code-csharp[](index/sample/RazorPagesContacts/Pages/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=10)]
 
 <span data-ttu-id="deb3a-607">Die App hat die folgende Datei/Ordner-Struktur:</span><span class="sxs-lookup"><span data-stu-id="deb3a-607">The app has the following file/folder structure:</span></span>
 
@@ -991,7 +991,7 @@ RedirectToPage("/Index", new { area = "Services" });
 
 ## <a name="viewdata-attribute"></a><span data-ttu-id="deb3a-640">Attribut „ViewData“</span><span class="sxs-lookup"><span data-stu-id="deb3a-640">ViewData attribute</span></span>
 
-<span data-ttu-id="deb3a-641">Daten können mit [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute) an eine Seite übergeben werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-641">Data can be passed to a page with [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute).</span></span> <span data-ttu-id="deb3a-642">Die Werte der Eigenschaften auf Controllern oder :::no-loc(Razor)::: Pages-Modellen, die mit dem `[ViewData]`-Attribut versehen sind, werden in [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) gespeichert und daraus geladen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-642">Properties on controllers or :::no-loc(Razor)::: Page models with the `[ViewData]` attribute have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).</span></span>
+<span data-ttu-id="deb3a-641">Daten können mit [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute) an eine Seite übergeben werden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-641">Data can be passed to a page with [ViewDataAttribute](/dotnet/api/microsoft.aspnetcore.mvc.viewdataattribute).</span></span> <span data-ttu-id="deb3a-642">Die Werte der Eigenschaften auf Controllern oder Razor Pages-Modellen, die mit dem `[ViewData]`-Attribut versehen sind, werden in [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary) gespeichert und daraus geladen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-642">Properties on controllers or Razor Page models with the `[ViewData]` attribute have their values stored and loaded from the [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary).</span></span>
 
 <span data-ttu-id="deb3a-643">Im folgenden Beispiel enthält das `AboutModel` eine `Title`-Eigenschaft, die mit `[ViewData]` markiert ist.</span><span class="sxs-lookup"><span data-stu-id="deb3a-643">In the following example, the `AboutModel` contains a `Title` property marked with `[ViewData]`.</span></span> <span data-ttu-id="deb3a-644">Die Eigenschaft `Title` wird auf den Titel der Infoseite festgelegt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-644">The `Title` property is set to the title of the About page:</span></span>
 
@@ -1029,7 +1029,7 @@ public class AboutModel : PageModel
 
 <span data-ttu-id="deb3a-652">Im folgenden Code wird der Wert von `Message` mit `TempData` festgelegt:</span><span class="sxs-lookup"><span data-stu-id="deb3a-652">The following code sets the value of `Message` using `TempData`:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,25&name=snippet_Temp)]
+[!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateDot.cshtml.cs?highlight=10-11,25&name=snippet_Temp)]
 
 <span data-ttu-id="deb3a-653">Das folgende Markup in der Datei *Pages/Customers/Index.cshtml* zeigt den Wert von `Message` mit `TempData` an.</span><span class="sxs-lookup"><span data-stu-id="deb3a-653">The following markup in the *Pages/Customers/Index.cshtml* file displays the value of `Message` using `TempData`.</span></span>
 
@@ -1052,19 +1052,19 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-657">Die folgende Seite generiert mit dem `asp-page-handler`-Taghilfsprogramm Markup für zwei Handler:</span><span class="sxs-lookup"><span data-stu-id="deb3a-657">The following page generates markup for two handlers using the `asp-page-handler` Tag Helper:</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?highlight=12-13)]
 
-<!-- Review: the FormActionTagHelper applies to all <form /> elements on a :::no-loc(Razor)::: page, even when there's no `asp-` attribute   -->
+<!-- Review: the FormActionTagHelper applies to all <form /> elements on a Razor page, even when there's no `asp-` attribute   -->
 
 <span data-ttu-id="deb3a-658">Das Formular im vorherigen Beispiel hat zwei Sendeschaltflächen, und jede verwendet `FormActionTagHelper`, um an eine andere URL zu übermitteln.</span><span class="sxs-lookup"><span data-stu-id="deb3a-658">The form in the preceding example has two submit buttons, each using the `FormActionTagHelper` to submit to a different URL.</span></span> <span data-ttu-id="deb3a-659">Das `asp-page-handler`-Attribut ist eine Ergänzung für `asp-page`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-659">The `asp-page-handler` attribute is a companion to `asp-page`.</span></span> <span data-ttu-id="deb3a-660">`asp-page-handler` generiert URLs, die als Übermittlungsziel jeweils die durch eine Seite festgelegte Handlermethode verwenden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-660">`asp-page-handler` generates URLs that submit to each of the handler methods defined by a page.</span></span> <span data-ttu-id="deb3a-661">`asp-page` wird nicht angegeben, weil das Beispiel mit der aktuellen Seite verknüpft.</span><span class="sxs-lookup"><span data-stu-id="deb3a-661">`asp-page` isn't specified because the sample is linking to the current page.</span></span>
 
 <span data-ttu-id="deb3a-662">Das Seitenmodell:</span><span class="sxs-lookup"><span data-stu-id="deb3a-662">The page model:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
+[!code-csharp[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml.cs?highlight=20,32)]
 
 <span data-ttu-id="deb3a-663">Der vorherige Code verwendet *benannte Handlermethoden* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-663">The preceding code uses *named handler methods* .</span></span> <span data-ttu-id="deb3a-664">Benannte Handlermethoden werden aus dem Text im Namen nach `On<HTTP Verb>` und vor `Async` (falls vorhanden) erstellt.</span><span class="sxs-lookup"><span data-stu-id="deb3a-664">Named handler methods are created by taking the text in the name after `On<HTTP Verb>` and before `Async` (if present).</span></span> <span data-ttu-id="deb3a-665">Im vorherigen Beispiel sind OnPost **JoinList** Async und OnPost **JoinListUC** Async die Seitenmethoden.</span><span class="sxs-lookup"><span data-stu-id="deb3a-665">In the preceding example, the page methods are OnPost **JoinList** Async and OnPost **JoinListUC** Async.</span></span> <span data-ttu-id="deb3a-666">Wenn Sie *OnPost* und *Async* entfernen, lauten die Handlernamen `JoinList` und `JoinListUC`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-666">With *OnPost* and *Async* removed, the handler names are `JoinList` and `JoinListUC`.</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateFATH.cshtml?range=12-13)]
 
 <span data-ttu-id="deb3a-667">Mit dem vorherigen Code lautet der URL-Pfad, der an `OnPostJoinListAsync` übermittelt, `https://localhost:5001/Customers/CreateFATH?handler=JoinList`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-667">Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinList`.</span></span> <span data-ttu-id="deb3a-668">Der URL-Pfad, der an `OnPostJoinListUCAsync` übermittelt, lautet `https://localhost:5001/Customers/CreateFATH?handler=JoinListUC`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-668">The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH?handler=JoinListUC`.</span></span>
 
@@ -1080,7 +1080,7 @@ public string Message { get; set; }
 
 <span data-ttu-id="deb3a-679">Wenn Sie nicht möchten, dass die Abfragezeichenfolge `?handler=JoinList` in der URL enthalten ist, ändern Sie die Route so, dass der Handlername im Pfadteil der URL eingefügt wird.</span><span class="sxs-lookup"><span data-stu-id="deb3a-679">If you don't like the query string `?handler=JoinList` in the URL, change the route to put the handler name in the path portion of the URL.</span></span> <span data-ttu-id="deb3a-680">Sie können die Route anpassen, indem Sie nach der `@page`-Anweisung eine Routenvorlage in doppelten Anführungszeichen hinzufügen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-680">The route can be customized by adding a route template enclosed in double quotes after the `@page` directive.</span></span>
 
-[!code-cshtml[](index/sample/:::no-loc(Razor):::PagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
+[!code-cshtml[](index/sample/RazorPagesContacts2/Pages/Customers/CreateRoute.cshtml?highlight=1)]
 
 <span data-ttu-id="deb3a-681">Mit dem vorherigen Code lautet der URL-Pfad, der an `OnPostJoinListAsync` übermittelt, `https://localhost:5001/Customers/CreateFATH/JoinList`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-681">Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH/JoinList`.</span></span> <span data-ttu-id="deb3a-682">Der URL-Pfad, der an `OnPostJoinListUCAsync` übermittelt, lautet `https://localhost:5001/Customers/CreateFATH/JoinListUC`.</span><span class="sxs-lookup"><span data-stu-id="deb3a-682">The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH/JoinListUC`.</span></span>
 
@@ -1088,47 +1088,47 @@ public string Message { get; set; }
 
 ## <a name="configuration-and-settings"></a><span data-ttu-id="deb3a-684">Konfiguration und Einstellungen</span><span class="sxs-lookup"><span data-stu-id="deb3a-684">Configuration and settings</span></span>
 
-<span data-ttu-id="deb3a-685">Um die erweiterten Optionen zu konfigurieren, verwenden Sie die Erweiterungsmethode `Add:::no-loc(Razor):::PagesOptions` auf dem MVC-Generator:</span><span class="sxs-lookup"><span data-stu-id="deb3a-685">To configure advanced options, use the extension method `Add:::no-loc(Razor):::PagesOptions` on the MVC builder:</span></span>
+<span data-ttu-id="deb3a-685">Um die erweiterten Optionen zu konfigurieren, verwenden Sie die Erweiterungsmethode `AddRazorPagesOptions` auf dem MVC-Generator:</span><span class="sxs-lookup"><span data-stu-id="deb3a-685">To configure advanced options, use the extension method `AddRazorPagesOptions` on the MVC builder:</span></span>
 
-[!code-csharp[](index/sample/:::no-loc(Razor):::PagesContacts/StartupAdvanced.cs?name=snippet_1)]
+[!code-csharp[](index/sample/RazorPagesContacts/StartupAdvanced.cs?name=snippet_1)]
 
-<span data-ttu-id="deb3a-686">Derzeit können Sie `:::no-loc(Razor):::PagesOptions` verwenden, um das Stammverzeichnis für Seiten festzulegen oder Anwendungsmodellkonventionen für Seiten hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-686">Currently you can use the `:::no-loc(Razor):::PagesOptions` to set the root directory for pages, or add application model conventions for pages.</span></span> <span data-ttu-id="deb3a-687">Auf diese Weise wird in Zukunft eine höhere Erweiterbarkeit erreicht.</span><span class="sxs-lookup"><span data-stu-id="deb3a-687">We'll enable more extensibility this way in the future.</span></span>
+<span data-ttu-id="deb3a-686">Derzeit können Sie `RazorPagesOptions` verwenden, um das Stammverzeichnis für Seiten festzulegen oder Anwendungsmodellkonventionen für Seiten hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="deb3a-686">Currently you can use the `RazorPagesOptions` to set the root directory for pages, or add application model conventions for pages.</span></span> <span data-ttu-id="deb3a-687">Auf diese Weise wird in Zukunft eine höhere Erweiterbarkeit erreicht.</span><span class="sxs-lookup"><span data-stu-id="deb3a-687">We'll enable more extensibility this way in the future.</span></span>
 
-<span data-ttu-id="deb3a-688">Informationen zum Vorkompilieren von Ansichten finden Sie unter [:::no-loc(Razor):::-Ansichtenkompilierung](xref:mvc/views/view-compilation).</span><span class="sxs-lookup"><span data-stu-id="deb3a-688">To precompile views, see [:::no-loc(Razor)::: view compilation](xref:mvc/views/view-compilation) .</span></span>
+<span data-ttu-id="deb3a-688">Informationen zum Vorkompilieren von Ansichten finden Sie unter [Razor-Ansichtenkompilierung](xref:mvc/views/view-compilation).</span><span class="sxs-lookup"><span data-stu-id="deb3a-688">To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation) .</span></span>
 
 <span data-ttu-id="deb3a-689">[Laden Sie Beispielcode herunter, oder zeigen Sie ihn an](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/sample).</span><span class="sxs-lookup"><span data-stu-id="deb3a-689">[Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/sample).</span></span>
 
-<span data-ttu-id="deb3a-690">Lesen Sie auch den Artikel [Erste Schritte mit :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start), der auf dieser Einführung aufbaut.</span><span class="sxs-lookup"><span data-stu-id="deb3a-690">See [Get started with :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.</span></span>
+<span data-ttu-id="deb3a-690">Lesen Sie auch den Artikel [Erste Schritte mit Razor Pages](xref:tutorials/razor-pages/razor-pages-start), der auf dieser Einführung aufbaut.</span><span class="sxs-lookup"><span data-stu-id="deb3a-690">See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.</span></span>
 
-### <a name="specify-that-no-locrazor-pages-are-at-the-content-root"></a><span data-ttu-id="deb3a-691">Festlegen des Inhaltsstammverzeichnisses für :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-691">Specify that :::no-loc(Razor)::: Pages are at the content root</span></span>
+### <a name="specify-that-no-locrazor-pages-are-at-the-content-root"></a><span data-ttu-id="deb3a-691">Festlegen des Inhaltsstammverzeichnisses für Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-691">Specify that Razor Pages are at the content root</span></span>
 
-<span data-ttu-id="deb3a-692">Standardmäßig lautet das Stammverzeichnis für :::no-loc(Razor)::: Pages */Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-692">By default, :::no-loc(Razor)::: Pages are rooted in the */Pages* directory.</span></span> <span data-ttu-id="deb3a-693">Fügen Sie [ With:::no-loc(Razor):::PagesAtContentRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.withrazorpagesatcontentroot) zu [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) hinzu, um anzugeben, dass sich Ihre :::no-loc(Razor)::: Pages im [Inhaltsstammverzeichnis](xref:fundamentals/index#content-root) ([ContentRootPath](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.contentrootpath)) der App befinden:</span><span class="sxs-lookup"><span data-stu-id="deb3a-693">Add [With:::no-loc(Razor):::PagesAtContentRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.withrazorpagesatcontentroot) to [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) to specify that your :::no-loc(Razor)::: Pages are at the [content root](xref:fundamentals/index#content-root) ([ContentRootPath](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.contentrootpath)) of the app:</span></span>
+<span data-ttu-id="deb3a-692">Standardmäßig lautet das Stammverzeichnis für Razor Pages */Pages* .</span><span class="sxs-lookup"><span data-stu-id="deb3a-692">By default, Razor Pages are rooted in the */Pages* directory.</span></span> <span data-ttu-id="deb3a-693">Fügen Sie [ WithRazorPagesAtContentRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.withrazorpagesatcontentroot) zu [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) hinzu, um anzugeben, dass sich Ihre Razor Pages im [Inhaltsstammverzeichnis](xref:fundamentals/index#content-root) ([ContentRootPath](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.contentrootpath)) der App befinden:</span><span class="sxs-lookup"><span data-stu-id="deb3a-693">Add [WithRazorPagesAtContentRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvcbuilderextensions.withrazorpagesatcontentroot) to [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) to specify that your Razor Pages are at the [content root](xref:fundamentals/index#content-root) ([ContentRootPath](/dotnet/api/microsoft.aspnetcore.hosting.ihostingenvironment.contentrootpath)) of the app:</span></span>
 
 ```csharp
 services.AddMvc()
-    .Add:::no-loc(Razor):::PagesOptions(options =>
+    .AddRazorPagesOptions(options =>
     {
         ...
     })
-    .With:::no-loc(Razor):::PagesAtContentRoot();
+    .WithRazorPagesAtContentRoot();
 ```
 
-### <a name="specify-that-no-locrazor-pages-are-at-a-custom-root-directory"></a><span data-ttu-id="deb3a-694">Festlegen eines benutzerdefinierten Stammverzeichnisses für :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-694">Specify that :::no-loc(Razor)::: Pages are at a custom root directory</span></span>
+### <a name="specify-that-no-locrazor-pages-are-at-a-custom-root-directory"></a><span data-ttu-id="deb3a-694">Festlegen eines benutzerdefinierten Stammverzeichnisses für Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-694">Specify that Razor Pages are at a custom root directory</span></span>
 
-<span data-ttu-id="deb3a-695">Fügen Sie [With:::no-loc(Razor):::PagesRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvccorebuilderextensions.withrazorpagesroot) zu [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) hinzu, um anzugeben, dass Ihre :::no-loc(Razor)::: Pages sich in einem benutzerdefinierten Stammverzeichnis in der App befinden (geben Sie einen relativen Pfad an):</span><span class="sxs-lookup"><span data-stu-id="deb3a-695">Add [With:::no-loc(Razor):::PagesRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvccorebuilderextensions.withrazorpagesroot) to [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) to specify that your :::no-loc(Razor)::: Pages are at a custom root directory in the app (provide a relative path):</span></span>
+<span data-ttu-id="deb3a-695">Fügen Sie [WithRazorPagesRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvccorebuilderextensions.withrazorpagesroot) zu [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) hinzu, um anzugeben, dass Ihre Razor Pages sich in einem benutzerdefinierten Stammverzeichnis in der App befinden (geben Sie einen relativen Pfad an):</span><span class="sxs-lookup"><span data-stu-id="deb3a-695">Add [WithRazorPagesRoot](/dotnet/api/microsoft.extensions.dependencyinjection.mvcrazorpagesmvccorebuilderextensions.withrazorpagesroot) to [AddMvc](/dotnet/api/microsoft.extensions.dependencyinjection.mvcservicecollectionextensions.addmvc#Microsoft_Extensions_DependencyInjection_MvcServiceCollectionExtensions_AddMvc_Microsoft_Extensions_DependencyInjection_IServiceCollection_) to specify that your Razor Pages are at a custom root directory in the app (provide a relative path):</span></span>
 
 ```csharp
 services.AddMvc()
-    .Add:::no-loc(Razor):::PagesOptions(options =>
+    .AddRazorPagesOptions(options =>
     {
         ...
     })
-    .With:::no-loc(Razor):::PagesRoot("/path/to/razor/pages");
+    .WithRazorPagesRoot("/path/to/razor/pages");
 ```
 
 ## <a name="additional-resources"></a><span data-ttu-id="deb3a-696">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="deb3a-696">Additional resources</span></span>
 
-* [<span data-ttu-id="deb3a-697">Authorize-Attribut und :::no-loc(Razor)::: Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-697">Authorize attribute and :::no-loc(Razor)::: Pages</span></span>](xref:security/authorization/simple#aarp)
+* [<span data-ttu-id="deb3a-697">Authorize-Attribut und Razor Pages</span><span class="sxs-lookup"><span data-stu-id="deb3a-697">Authorize attribute and Razor Pages</span></span>](xref:security/authorization/simple#aarp)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>

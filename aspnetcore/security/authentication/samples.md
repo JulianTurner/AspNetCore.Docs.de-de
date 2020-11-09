@@ -5,17 +5,17 @@ description: Enthält Links zu den Authentifizierungs Beispielen im ASP.net Core
 ms.author: riande
 ms.date: 01/31/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/samples
 ms.openlocfilehash: 4153a443748dbff40be19e25fc1c719ee4e39609
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -33,11 +33,11 @@ ms.locfileid: "93060338"
 <span data-ttu-id="d5b46-105">Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die folgenden Authentifizierungs Beispiele im Ordner " *aspnetcore/src/Security/Samples* ":</span><span class="sxs-lookup"><span data-stu-id="d5b46-105">The [ASP.NET Core repository](https://github.com/dotnet/AspNetCore) contains the following authentication samples in the *AspNetCore/src/Security/samples* folder:</span></span>
 
 * [<span data-ttu-id="d5b46-106">Transformation von Ansprüchen</span><span class="sxs-lookup"><span data-stu-id="d5b46-106">Claims transformation</span></span>](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/ClaimsTransformation)
-* <span data-ttu-id="d5b46-107">[:::no-loc(Cookie)::: Genehmigung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/:::no-loc(Cookie):::s)</span><span class="sxs-lookup"><span data-stu-id="d5b46-107">[:::no-loc(Cookie)::: authentication](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/:::no-loc(Cookie):::s)</span></span>
+* <span data-ttu-id="d5b46-107">[Cookie Genehmigung](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Cookies)</span><span class="sxs-lookup"><span data-stu-id="d5b46-107">[Cookie authentication](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Cookies)</span></span>
 * [<span data-ttu-id="d5b46-108">Benutzerdefinierter Richtlinien Anbieter-iauthorizationpolicyprovider</span><span class="sxs-lookup"><span data-stu-id="d5b46-108">Custom policy provider - IAuthorizationPolicyProvider</span></span>](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/CustomPolicyProvider)
 * [<span data-ttu-id="d5b46-109">Dynamische Authentifizierungs Schemas und-Optionen</span><span class="sxs-lookup"><span data-stu-id="d5b46-109">Dynamic authentication schemes and options</span></span>](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/DynamicSchemes)
-* <span data-ttu-id="d5b46-110">[Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/:::no-loc(Identity):::.ExternalClaims)</span><span class="sxs-lookup"><span data-stu-id="d5b46-110">[External claims](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/:::no-loc(Identity):::.ExternalClaims)</span></span>
-* [<span data-ttu-id="d5b46-111">Auswählen zwischen :::no-loc(cookie)::: und einem anderen Authentifizierungsschema basierend auf der Anforderung</span><span class="sxs-lookup"><span data-stu-id="d5b46-111">Selecting between :::no-loc(cookie)::: and another authentication scheme based on the request</span></span>](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/PathSchemeSelection)
+* <span data-ttu-id="d5b46-110">[Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Identity.ExternalClaims)</span><span class="sxs-lookup"><span data-stu-id="d5b46-110">[External claims](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Identity.ExternalClaims)</span></span>
+* [<span data-ttu-id="d5b46-111">Auswählen zwischen cookie und einem anderen Authentifizierungsschema basierend auf der Anforderung</span><span class="sxs-lookup"><span data-stu-id="d5b46-111">Selecting between cookie and another authentication scheme based on the request</span></span>](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/PathSchemeSelection)
 * [<span data-ttu-id="d5b46-112">Schränkt den Zugriff auf statische Dateien ein.</span><span class="sxs-lookup"><span data-stu-id="d5b46-112">Restricts access to static files</span></span>](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/StaticFilesAuth)
 
 ## <a name="run-the-samples"></a><span data-ttu-id="d5b46-113">Ausführen der Beispiele</span><span class="sxs-lookup"><span data-stu-id="d5b46-113">Run the samples</span></span>
@@ -54,11 +54,11 @@ ms.locfileid: "93060338"
 <span data-ttu-id="d5b46-119">Das [ASP.net Core-Repository](https://github.com/dotnet/AspNetCore) enthält die folgenden Authentifizierungs Beispiele im Ordner " *aspnetcore/src/Security/Samples* ":</span><span class="sxs-lookup"><span data-stu-id="d5b46-119">The [ASP.NET Core repository](https://github.com/dotnet/AspNetCore) contains the following authentication samples in the *AspNetCore/src/Security/samples* folder:</span></span>
 
 * [<span data-ttu-id="d5b46-120">Transformation von Ansprüchen</span><span class="sxs-lookup"><span data-stu-id="d5b46-120">Claims transformation</span></span>](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/ClaimsTransformation)
-* <span data-ttu-id="d5b46-121">[:::no-loc(Cookie)::: Genehmigung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/:::no-loc(Cookie):::s)</span><span class="sxs-lookup"><span data-stu-id="d5b46-121">[:::no-loc(Cookie)::: authentication](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/:::no-loc(Cookie):::s)</span></span>
+* <span data-ttu-id="d5b46-121">[Cookie Genehmigung](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Cookies)</span><span class="sxs-lookup"><span data-stu-id="d5b46-121">[Cookie authentication](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Cookies)</span></span>
 * [<span data-ttu-id="d5b46-122">Benutzerdefinierter Richtlinien Anbieter-iauthorizationpolicyprovider</span><span class="sxs-lookup"><span data-stu-id="d5b46-122">Custom policy provider - IAuthorizationPolicyProvider</span></span>](https://github.com/dotnet/AspNetCore/tree/2.1.3/src/Security/samples/CustomPolicyProvider)
 * [<span data-ttu-id="d5b46-123">Dynamische Authentifizierungs Schemas und-Optionen</span><span class="sxs-lookup"><span data-stu-id="d5b46-123">Dynamic authentication schemes and options</span></span>](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/DynamicSchemes)
-* <span data-ttu-id="d5b46-124">[Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/:::no-loc(Identity):::.ExternalClaims)</span><span class="sxs-lookup"><span data-stu-id="d5b46-124">[External claims](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/:::no-loc(Identity):::.ExternalClaims)</span></span>
-* [<span data-ttu-id="d5b46-125">Auswählen zwischen :::no-loc(cookie)::: und einem anderen Authentifizierungsschema basierend auf der Anforderung</span><span class="sxs-lookup"><span data-stu-id="d5b46-125">Selecting between :::no-loc(cookie)::: and another authentication scheme based on the request</span></span>](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/PathSchemeSelection)
+* <span data-ttu-id="d5b46-124">[Externe Ansprüche](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Identity.ExternalClaims)</span><span class="sxs-lookup"><span data-stu-id="d5b46-124">[External claims](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Identity.ExternalClaims)</span></span>
+* [<span data-ttu-id="d5b46-125">Auswählen zwischen cookie und einem anderen Authentifizierungsschema basierend auf der Anforderung</span><span class="sxs-lookup"><span data-stu-id="d5b46-125">Selecting between cookie and another authentication scheme based on the request</span></span>](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/PathSchemeSelection)
 * [<span data-ttu-id="d5b46-126">Schränkt den Zugriff auf statische Dateien ein.</span><span class="sxs-lookup"><span data-stu-id="d5b46-126">Restricts access to static files</span></span>](https://github.com/dotnet/AspNetCore/tree/2.1.3/src/Security/samples/StaticFilesAuth)
 
 ## <a name="run-the-samples"></a><span data-ttu-id="d5b46-127">Ausführen der Beispiele</span><span class="sxs-lookup"><span data-stu-id="d5b46-127">Run the samples</span></span>

@@ -6,17 +6,17 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 05/26/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: grpc/authn-and-authz
 ms.openlocfilehash: 2efed6b76228227f032482346a36f528b3448de2
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -152,7 +152,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
 
 * <span data-ttu-id="dc244-132">Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="dc244-132">Azure Active Directory</span></span>
 * <span data-ttu-id="dc244-133">Clientzertifikat</span><span class="sxs-lookup"><span data-stu-id="dc244-133">Client Certificate</span></span>
-* <span data-ttu-id="dc244-134">:::no-loc(Identity):::Server</span><span class="sxs-lookup"><span data-stu-id="dc244-134">:::no-loc(Identity):::Server</span></span>
+* <span data-ttu-id="dc244-134">IdentityServer</span><span class="sxs-lookup"><span data-stu-id="dc244-134">IdentityServer</span></span>
 * <span data-ttu-id="dc244-135">JWT-Token</span><span class="sxs-lookup"><span data-stu-id="dc244-135">JWT Token</span></span>
 * <span data-ttu-id="dc244-136">OAuth 2.0</span><span class="sxs-lookup"><span data-stu-id="dc244-136">OAuth 2.0</span></span>
 * <span data-ttu-id="dc244-137">OpenID Connect</span><span class="sxs-lookup"><span data-stu-id="dc244-137">OpenID Connect</span></span>

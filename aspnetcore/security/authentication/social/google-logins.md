@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/google-logins
 ms.openlocfilehash: 111ea7c972778dfd5296d0401c16563aeaa36a63
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -83,7 +83,7 @@ ms.locfileid: "93060312"
 ## <a name="troubleshooting"></a><span data-ttu-id="59ab7-132">Problembehandlung</span><span class="sxs-lookup"><span data-stu-id="59ab7-132">Troubleshooting</span></span>
 
 * <span data-ttu-id="59ab7-133">Wenn die Anmeldung nicht funktioniert und Sie keine Fehler erhalten, wechseln Sie in den Entwicklungsmodus, um das Problem zu vereinfachen.</span><span class="sxs-lookup"><span data-stu-id="59ab7-133">If the sign-in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.</span></span>
-* <span data-ttu-id="59ab7-134">Wenn :::no-loc(Identity)::: nicht durch Aufrufen von `services.Add:::no-loc(Identity):::` konfiguriert `ConfigureServices` wird, wird versucht, die Ergebnisse in *argumumtexception zu authentifizieren: die signinscheme-Option muss angegeben werden* .</span><span class="sxs-lookup"><span data-stu-id="59ab7-134">If :::no-loc(Identity)::: isn't configured by calling `services.Add:::no-loc(Identity):::` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided* .</span></span> <span data-ttu-id="59ab7-135">Die Projektvorlage, die in diesem Tutorial verwendete wird sichergestellt, dass dies geschehen ist.</span><span class="sxs-lookup"><span data-stu-id="59ab7-135">The project template used in this tutorial ensures that this is done.</span></span>
+* <span data-ttu-id="59ab7-134">Wenn Identity nicht durch Aufrufen von `services.AddIdentity` konfiguriert `ConfigureServices` wird, wird versucht, die Ergebnisse in *argumumtexception zu authentifizieren: die signinscheme-Option muss angegeben werden* .</span><span class="sxs-lookup"><span data-stu-id="59ab7-134">If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided* .</span></span> <span data-ttu-id="59ab7-135">Die Projektvorlage, die in diesem Tutorial verwendete wird sichergestellt, dass dies geschehen ist.</span><span class="sxs-lookup"><span data-stu-id="59ab7-135">The project template used in this tutorial ensures that this is done.</span></span>
 * <span data-ttu-id="59ab7-136">Wenn die Standortdatenbank nicht erstellt wurde, indem die ursprüngliche Migration anwenden, erhalten Sie *Fehler bei ein Datenbankvorgang beim Verarbeiten der Anforderung* Fehler.</span><span class="sxs-lookup"><span data-stu-id="59ab7-136">If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error.</span></span> <span data-ttu-id="59ab7-137">Wählen Sie **Migrationen anwenden** aus, um die Datenbank zu erstellen, und aktualisieren Sie die Seite, um den Fehler fortzusetzen.</span><span class="sxs-lookup"><span data-stu-id="59ab7-137">Select **Apply Migrations** to create the database, and refresh the page to continue past the error.</span></span>
 
 ## <a name="next-steps"></a><span data-ttu-id="59ab7-138">Nächste Schritte</span><span class="sxs-lookup"><span data-stu-id="59ab7-138">Next steps</span></span>

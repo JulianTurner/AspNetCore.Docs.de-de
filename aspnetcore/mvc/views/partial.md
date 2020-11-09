@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/partial
 ms.openlocfilehash: 01fb87205f7855f0995cbcd135b6b01f15835e3b
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -29,11 +29,11 @@ ms.locfileid: "93060598"
 
 <span data-ttu-id="1805a-104">Von [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) und [Scott Sauber](https://twitter.com/scottsauber)</span><span class="sxs-lookup"><span data-stu-id="1805a-104">By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Scott Sauber](https://twitter.com/scottsauber)</span></span>
 
-<span data-ttu-id="1805a-105">Eine Teilansicht ist eine [:::no-loc(Razor):::](xref:mvc/views/razor) Markup Datei ( *. cshtml* ) ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die die HTML-Ausgabe *innerhalb* der gerenderten Ausgabe einer anderen Markup Datei rendert.</span><span class="sxs-lookup"><span data-stu-id="1805a-105">A partial view is a [:::no-loc(Razor):::](xref:mvc/views/razor) markup file ( *.cshtml* ) without an [`@page`](xref:mvc/views/razor#page) directive that renders HTML output *within* another markup file's rendered output.</span></span>
+<span data-ttu-id="1805a-105">Eine Teilansicht ist eine [Razor](xref:mvc/views/razor) Markup Datei ( *. cshtml* ) ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die die HTML-Ausgabe *innerhalb* der gerenderten Ausgabe einer anderen Markup Datei rendert.</span><span class="sxs-lookup"><span data-stu-id="1805a-105">A partial view is a [Razor](xref:mvc/views/razor) markup file ( *.cshtml* ) without an [`@page`](xref:mvc/views/razor#page) directive that renders HTML output *within* another markup file's rendered output.</span></span>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-<span data-ttu-id="1805a-106">Der Begriff " *Teilansicht* " wird verwendet, wenn eine MVC-app entwickelt wird, in der Markup Dateien als *Sichten* bezeichnet werden, oder eine :::no-loc(Razor)::: pages-APP, bei der Markup Dateien als *Seiten* bezeichnet werden.</span><span class="sxs-lookup"><span data-stu-id="1805a-106">The term *partial view* is used when developing either an MVC app, where markup files are called *views* , or a :::no-loc(Razor)::: Pages app, where markup files are called *pages* .</span></span> <span data-ttu-id="1805a-107">Dieses Thema verweist generisch auf MVC-Ansichten und :::no-loc(Razor)::: Seiten Seiten als *Markup Dateien* .</span><span class="sxs-lookup"><span data-stu-id="1805a-107">This topic generically refers to MVC views and :::no-loc(Razor)::: Pages pages as *markup files* .</span></span>
+<span data-ttu-id="1805a-106">Der Begriff " *Teilansicht* " wird verwendet, wenn eine MVC-app entwickelt wird, in der Markup Dateien als *Sichten* bezeichnet werden, oder eine Razor pages-APP, bei der Markup Dateien als *Seiten* bezeichnet werden.</span><span class="sxs-lookup"><span data-stu-id="1805a-106">The term *partial view* is used when developing either an MVC app, where markup files are called *views* , or a Razor Pages app, where markup files are called *pages* .</span></span> <span data-ttu-id="1805a-107">Dieses Thema verweist generisch auf MVC-Ansichten und Razor Seiten Seiten als *Markup Dateien* .</span><span class="sxs-lookup"><span data-stu-id="1805a-107">This topic generically refers to MVC views and Razor Pages pages as *markup files* .</span></span>
 
 ::: moniker-end
 
@@ -58,9 +58,9 @@ ms.locfileid: "93060598"
 
 ::: moniker range=">= aspnetcore-2.0"
 
-<span data-ttu-id="1805a-122">Eine Teilansicht ist eine *cshtml* -Markup Datei ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die im Ordner *views* (MVC) oder im Ordner *pages* ( :::no-loc(Razor)::: Seiten) beibehalten wird.</span><span class="sxs-lookup"><span data-stu-id="1805a-122">A partial view is a *.cshtml* markup file without an [`@page`](xref:mvc/views/razor#page) directive maintained within the *Views* folder (MVC) or *Pages* folder (:::no-loc(Razor)::: Pages).</span></span>
+<span data-ttu-id="1805a-122">Eine Teilansicht ist eine *cshtml* -Markup Datei ohne eine- [`@page`](xref:mvc/views/razor#page) Direktive, die im Ordner *views* (MVC) oder im Ordner *pages* ( Razor Seiten) beibehalten wird.</span><span class="sxs-lookup"><span data-stu-id="1805a-122">A partial view is a *.cshtml* markup file without an [`@page`](xref:mvc/views/razor#page) directive maintained within the *Views* folder (MVC) or *Pages* folder (Razor Pages).</span></span>
 
-<span data-ttu-id="1805a-123">In ASP.NET Core MVC kann <xref:Microsoft.AspNetCore.Mvc.ViewResult> eines Controllers eine Ansicht oder eine Teilansicht zurückgeben.</span><span class="sxs-lookup"><span data-stu-id="1805a-123">In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view.</span></span> <span data-ttu-id="1805a-124">In :::no-loc(Razor)::: Seiten kann eine <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageModel> eine partielle Ansicht zurückgeben, die als-Objekt dargestellt wird <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> .</span><span class="sxs-lookup"><span data-stu-id="1805a-124">In :::no-loc(Razor)::: Pages, a <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageModel> can return a partial view represented as a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> object.</span></span> <span data-ttu-id="1805a-125">Das Verweisen auf und Rendern von Teilansichten wird im Abschnitt [Verweisen auf eine Teilansicht](#reference-a-partial-view) beschrieben.</span><span class="sxs-lookup"><span data-stu-id="1805a-125">Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.</span></span>
+<span data-ttu-id="1805a-123">In ASP.NET Core MVC kann <xref:Microsoft.AspNetCore.Mvc.ViewResult> eines Controllers eine Ansicht oder eine Teilansicht zurückgeben.</span><span class="sxs-lookup"><span data-stu-id="1805a-123">In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view.</span></span> <span data-ttu-id="1805a-124">In Razor Seiten kann eine <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> eine partielle Ansicht zurückgeben, die als-Objekt dargestellt wird <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> .</span><span class="sxs-lookup"><span data-stu-id="1805a-124">In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a partial view represented as a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> object.</span></span> <span data-ttu-id="1805a-125">Das Verweisen auf und Rendern von Teilansichten wird im Abschnitt [Verweisen auf eine Teilansicht](#reference-a-partial-view) beschrieben.</span><span class="sxs-lookup"><span data-stu-id="1805a-125">Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.</span></span>
 
 <span data-ttu-id="1805a-126">Im Gegensatz zu MVC-Ansichten oder Seitenrendering führt eine Teilansicht *_ViewStart.cshtml* nicht aus.</span><span class="sxs-lookup"><span data-stu-id="1805a-126">Unlike MVC view or page rendering, a partial view doesn't run *_ViewStart.cshtml* .</span></span> <span data-ttu-id="1805a-127">Weitere Informationen zu *_ViewStart.cshtml* finden Sie unter <xref:mvc/views/layout>.</span><span class="sxs-lookup"><span data-stu-id="1805a-127">For more information on *_ViewStart.cshtml* , see <xref:mvc/views/layout>.</span></span>
 
@@ -84,7 +84,7 @@ ms.locfileid: "93060598"
 
 ::: moniker range=">= aspnetcore-2.0"
 
-### <a name="use-a-partial-view-in-a-no-locrazor-pages-pagemodel"></a><span data-ttu-id="1805a-138">Verwenden einer Teilansicht in :::no-loc(Razor)::: Seiten Modellen für Seiten</span><span class="sxs-lookup"><span data-stu-id="1805a-138">Use a partial view in a :::no-loc(Razor)::: Pages PageModel</span></span>
+### <a name="use-a-partial-view-in-a-no-locrazor-pages-pagemodel"></a><span data-ttu-id="1805a-138">Verwenden einer Teilansicht in Razor Seiten Modellen für Seiten</span><span class="sxs-lookup"><span data-stu-id="1805a-138">Use a partial view in a Razor Pages PageModel</span></span>
 
 <span data-ttu-id="1805a-139">In ASP.net Core 2,0 oder 2,1 rendert die folgende Handlermethode die Teilansicht *\_ authorpartialrp. cshtml* für die Antwort:</span><span class="sxs-lookup"><span data-stu-id="1805a-139">In ASP.NET Core 2.0 or 2.1, the following handler method renders the *\_AuthorPartialRP.cshtml* partial view to the response:</span></span>
 
@@ -101,7 +101,7 @@ public IActionResult OnGetPartial() =>
 
 ::: moniker range=">= aspnetcore-2.2"
 
-<span data-ttu-id="1805a-140">In ASP.NET Core 2.2 oder höher kann eine Handlermethode alternativ die <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageBase.Partial*>-Methode aufrufen, um ein `PartialViewResult`-Objekt zu erzeugen:</span><span class="sxs-lookup"><span data-stu-id="1805a-140">In ASP.NET Core 2.2 or later, a handler method can alternatively call the <xref:Microsoft.AspNetCore.Mvc.:::no-loc(Razor):::Pages.PageBase.Partial*> method to produce a `PartialViewResult` object:</span></span>
+<span data-ttu-id="1805a-140">In ASP.NET Core 2.2 oder höher kann eine Handlermethode alternativ die <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*>-Methode aufrufen, um ein `PartialViewResult`-Objekt zu erzeugen:</span><span class="sxs-lookup"><span data-stu-id="1805a-140">In ASP.NET Core 2.2 or later, a handler method can alternatively call the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Partial*> method to produce a `PartialViewResult` object:</span></span>
 
 [!code-csharp[](partial/sample/PartialViewsSample/Pages/DiscoveryRP.cshtml.cs?name=snippet_OnGetPartial)]
 
@@ -149,7 +149,7 @@ public IActionResult OnGetPartial() =>
 
 <span data-ttu-id="1805a-154">Im folgende Beispiel wird aus dem Stammverzeichnis der App auf eine Teilansicht verwiesen.</span><span class="sxs-lookup"><span data-stu-id="1805a-154">The following example references a partial view from the app root.</span></span> <span data-ttu-id="1805a-155">Pfade, die mit einer Tilde und einem Schrägstrich (`~/`) oder einem Schrägstrich (`/`) beginnen, verweisen auf den Stamm der App:</span><span class="sxs-lookup"><span data-stu-id="1805a-155">Paths that start with a tilde-slash (`~/`) or a slash (`/`) refer to the app root:</span></span>
 
-<span data-ttu-id="1805a-156">**:::no-loc(Razor)::: Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-156">**:::no-loc(Razor)::: Pages**</span></span>
+<span data-ttu-id="1805a-156">**Razor Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-156">**Razor Pages**</span></span>
 
 ```cshtml
 <partial name="~/Pages/Folder/_PartialName.cshtml" />
@@ -191,7 +191,7 @@ public IActionResult OnGetPartial() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-<span data-ttu-id="1805a-167">**:::no-loc(Razor)::: Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-167">**:::no-loc(Razor)::: Pages**</span></span>
+<span data-ttu-id="1805a-167">**Razor Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-167">**Razor Pages**</span></span>
 
 ```cshtml
 @await Html.PartialAsync("~/Pages/Folder/_PartialName.cshtml")
@@ -213,7 +213,7 @@ public IActionResult OnGetPartial() =>
 @await Html.PartialAsync("../Account/_LoginPartial.cshtml")
 ```
 
-<span data-ttu-id="1805a-170">Alternativ können Sie eine Teilansicht auch mit <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*> rendern.</span><span class="sxs-lookup"><span data-stu-id="1805a-170">Alternatively, you can render a partial view with <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*>.</span></span> <span data-ttu-id="1805a-171">Diese Methode gibt keinen <xref:Microsoft.AspNetCore.Html.IHtmlContent> zurück.</span><span class="sxs-lookup"><span data-stu-id="1805a-171">This method doesn't return an <xref:Microsoft.AspNetCore.Html.IHtmlContent>.</span></span> <span data-ttu-id="1805a-172">Sie streamt die gerenderte Ausgabe direkt an die Antwort.</span><span class="sxs-lookup"><span data-stu-id="1805a-172">It streams the rendered output directly to the response.</span></span> <span data-ttu-id="1805a-173">Da die Methode kein Ergebnis zurückgibt, muss Sie in einem :::no-loc(Razor)::: Codeblock aufgerufen werden:</span><span class="sxs-lookup"><span data-stu-id="1805a-173">Because the method doesn't return a result, it must be called within a :::no-loc(Razor)::: code block:</span></span>
+<span data-ttu-id="1805a-170">Alternativ können Sie eine Teilansicht auch mit <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*> rendern.</span><span class="sxs-lookup"><span data-stu-id="1805a-170">Alternatively, you can render a partial view with <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartialAsync*>.</span></span> <span data-ttu-id="1805a-171">Diese Methode gibt keinen <xref:Microsoft.AspNetCore.Html.IHtmlContent> zurück.</span><span class="sxs-lookup"><span data-stu-id="1805a-171">This method doesn't return an <xref:Microsoft.AspNetCore.Html.IHtmlContent>.</span></span> <span data-ttu-id="1805a-172">Sie streamt die gerenderte Ausgabe direkt an die Antwort.</span><span class="sxs-lookup"><span data-stu-id="1805a-172">It streams the rendered output directly to the response.</span></span> <span data-ttu-id="1805a-173">Da die Methode kein Ergebnis zurückgibt, muss Sie in einem Razor Codeblock aufgerufen werden:</span><span class="sxs-lookup"><span data-stu-id="1805a-173">Because the method doesn't return a result, it must be called within a Razor code block:</span></span>
 
 [!code-cshtml[](partial/sample/PartialViewsSample/Views/Home/Discovery.cshtml?name=snippet_RenderPartialAsync)]
 
@@ -242,7 +242,7 @@ public IActionResult OnGetPartial() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-<span data-ttu-id="1805a-189">**:::no-loc(Razor)::: Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-189">**:::no-loc(Razor)::: Pages**</span></span>
+<span data-ttu-id="1805a-189">**Razor Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-189">**Razor Pages**</span></span>
 
 1. <span data-ttu-id="1805a-190">Der Ordner der aktuell ausgeführten Seite</span><span class="sxs-lookup"><span data-stu-id="1805a-190">Currently executing page's folder</span></span>
 1. <span data-ttu-id="1805a-191">Der Verzeichnisgraph über dem Ordner der Seite</span><span class="sxs-lookup"><span data-stu-id="1805a-191">Directory graph above the page's folder</span></span>
@@ -278,7 +278,7 @@ public IActionResult OnGetPartial() =>
 * <span data-ttu-id="1805a-198">Teilansichten können *verkettet* werden &mdash; . eine partielle Ansicht kann eine andere partielle Sicht aufrufen, wenn ein Zirkel Verweis nicht durch die Aufrufe gebildet wird.</span><span class="sxs-lookup"><span data-stu-id="1805a-198">Partial views can be *chained*&mdash;a partial view can call another partial view if a circular reference isn't formed by the calls.</span></span> <span data-ttu-id="1805a-199">Relative Pfade sind immer relativ zur aktuellen Datei, nicht zum Stamm- oder übergeordneten Verzeichnis der Datei.</span><span class="sxs-lookup"><span data-stu-id="1805a-199">Relative paths are always relative to the current file, not to the root or parent of the file.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="1805a-200">Ein [:::no-loc(Razor):::](xref:mvc/views/razor) `section` , der in einer Teilansicht definiert ist, ist für übergeordnete Markup Dateien nicht sichtbar.</span><span class="sxs-lookup"><span data-stu-id="1805a-200">A [:::no-loc(Razor):::](xref:mvc/views/razor) `section` defined in a partial view is invisible to parent markup files.</span></span> <span data-ttu-id="1805a-201">Die `section`-Anweisung ist nur für die Teilansicht, in der sie definiert ist, sichtbar.</span><span class="sxs-lookup"><span data-stu-id="1805a-201">The `section` is only visible to the partial view in which it's defined.</span></span>
+> <span data-ttu-id="1805a-200">Ein [Razor](xref:mvc/views/razor) `section` , der in einer Teilansicht definiert ist, ist für übergeordnete Markup Dateien nicht sichtbar.</span><span class="sxs-lookup"><span data-stu-id="1805a-200">A [Razor](xref:mvc/views/razor) `section` defined in a partial view is invisible to parent markup files.</span></span> <span data-ttu-id="1805a-201">Die `section`-Anweisung ist nur für die Teilansicht, in der sie definiert ist, sichtbar.</span><span class="sxs-lookup"><span data-stu-id="1805a-201">The `section` is only visible to the partial view in which it's defined.</span></span>
 
 ## <a name="access-data-from-partial-views"></a><span data-ttu-id="1805a-202">Zugriff auf Daten aus Teilansichten</span><span class="sxs-lookup"><span data-stu-id="1805a-202">Access data from partial views</span></span>
 
@@ -298,7 +298,7 @@ public IActionResult OnGetPartial() =>
 
 ::: moniker range=">= aspnetcore-2.1"
 
-<span data-ttu-id="1805a-210">**:::no-loc(Razor)::: Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-210">**:::no-loc(Razor)::: Pages**</span></span>
+<span data-ttu-id="1805a-210">**Razor Seiten**</span><span class="sxs-lookup"><span data-stu-id="1805a-210">**Razor Pages**</span></span>
 
 <span data-ttu-id="1805a-211">Das folgende Markup in der Beispiel-App stammt von der Seite *Pages/ArticlesRP/ReadRP.cshtml* .</span><span class="sxs-lookup"><span data-stu-id="1805a-211">The following markup in the sample app is from the *Pages/ArticlesRP/ReadRP.cshtml* page.</span></span> <span data-ttu-id="1805a-212">Diese Seite enthält zwei Teilansichten.</span><span class="sxs-lookup"><span data-stu-id="1805a-212">The page contains two partial views.</span></span> <span data-ttu-id="1805a-213">Die zweite Teilansicht übergibt ein Modell und `ViewData` an die Teilansicht.</span><span class="sxs-lookup"><span data-stu-id="1805a-213">The second partial view passes in a model and `ViewData` to the partial view.</span></span> <span data-ttu-id="1805a-214">Die `ViewDataDictionary`-Konstruktorüberladung wird verwendet, um ein neues `ViewData`-Wörterbuch zu übergeben, während das vorhandene `ViewData`-Wörterbuch beibehalten wird.</span><span class="sxs-lookup"><span data-stu-id="1805a-214">The `ViewDataDictionary` constructor overload is used to pass a new `ViewData` dictionary while retaining the existing `ViewData` dictionary.</span></span>
 

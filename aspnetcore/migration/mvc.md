@@ -5,17 +5,17 @@ description: Erfahren Sie, wie Sie mit dem Migrieren eines ASP.NET MVC-Projekts 
 ms.author: wpickett
 ms.date: 06/18/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: migration/mvc
 ms.openlocfilehash: 226ac6da508378c7b3c81779d38dd2e0840f1fed
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -37,7 +37,7 @@ ms.locfileid: "93051512"
 * <span data-ttu-id="5067f-110">Statischer Inhalt.</span><span class="sxs-lookup"><span data-stu-id="5067f-110">Static content.</span></span>
 * <span data-ttu-id="5067f-111">Client seitige Abhängigkeiten.</span><span class="sxs-lookup"><span data-stu-id="5067f-111">Client-side dependencies.</span></span>
 
-<span data-ttu-id="5067f-112">Informationen zum Migrieren von Konfiguration und :::no-loc(Identity)::: Code finden [Sie unter Migrieren der Konfiguration zu ASP.net Core](xref:migration/configuration) und [Migrieren der Authentifizierung und :::no-loc(Identity)::: ASP.net Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="5067f-112">For migrating configuration and :::no-loc(Identity)::: code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity).</span></span>
+<span data-ttu-id="5067f-112">Informationen zum Migrieren von Konfiguration und Identity Code finden [Sie unter Migrieren der Konfiguration zu ASP.net Core](xref:migration/configuration) und [Migrieren der Authentifizierung und Identity ASP.net Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="5067f-112">For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).</span></span>
 
 ## <a name="prerequisites"></a><span data-ttu-id="5067f-113">Voraussetzungen</span><span class="sxs-lookup"><span data-stu-id="5067f-113">Prerequisites</span></span>
 
@@ -101,7 +101,7 @@ ms.locfileid: "93051512"
 1. <span data-ttu-id="5067f-158">Kopieren Sie die Methoden aus ASP.NET MVC `HomeController` , um die neuen ASP.net Core `HomeController` Methoden zu ersetzen.</span><span class="sxs-lookup"><span data-stu-id="5067f-158">Copy the methods from the ASP.NET MVC `HomeController` to replace the new ASP.NET Core `HomeController` methods.</span></span> <span data-ttu-id="5067f-159">Es ist nicht erforderlich, den Rückgabetyp der Aktionsmethoden zu ändern.</span><span class="sxs-lookup"><span data-stu-id="5067f-159">There's no need to change the return type of the action methods.</span></span> <span data-ttu-id="5067f-160">Der Rückgabetyp der Controller Aktionsmethode der integrierten ASP.NET MVC-Vorlage ist <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; in ASP.net Core MVC geben die Aktionsmethoden `IActionResult` stattdessen zurück.</span><span class="sxs-lookup"><span data-stu-id="5067f-160">The ASP.NET MVC built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead.</span></span> <span data-ttu-id="5067f-161">`ActionResult` implementiert `IActionResult`.</span><span class="sxs-lookup"><span data-stu-id="5067f-161">`ActionResult` implements `IActionResult`.</span></span>
 1. <span data-ttu-id="5067f-162">Klicken Sie im ASP.net Core-Projekt mit der rechten Maustaste auf das Verzeichnis *views/Home* , und wählen Sie **Add** > **Vorhandenes Element** hinzufügen aus.</span><span class="sxs-lookup"><span data-stu-id="5067f-162">In the ASP.NET Core project, right-click the *Views/Home* directory, select **Add** > **Existing Item** .</span></span>
 1. <span data-ttu-id="5067f-163">Navigieren Sie im Dialogfeld **Vorhandenes Element hinzufügen** zum Verzeichnis *views/Home* des ASP.NET MVC *"WebApp1"* -Projekts.</span><span class="sxs-lookup"><span data-stu-id="5067f-163">In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.</span></span>
-1. <span data-ttu-id="5067f-164">Wählen Sie die Ansichts Dateien *about. cshtml* , *Contact. cshtml* und *Index. cshtml* aus :::no-loc(Razor)::: , und klicken Sie dann auf **Hinzufügen** , um die vorhandenen Dateien zu ersetzen.</span><span class="sxs-lookup"><span data-stu-id="5067f-164">Select the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* :::no-loc(Razor)::: view files, then select **Add** , replacing the existing files.</span></span>
+1. <span data-ttu-id="5067f-164">Wählen Sie die Ansichts Dateien *about. cshtml* , *Contact. cshtml* und *Index. cshtml* aus Razor , und klicken Sie dann auf **Hinzufügen** , um die vorhandenen Dateien zu ersetzen.</span><span class="sxs-lookup"><span data-stu-id="5067f-164">Select the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* Razor view files, then select **Add** , replacing the existing files.</span></span>
 
 <span data-ttu-id="5067f-165">Weitere Informationen finden Sie unter <xref:mvc/controllers/actions> und <xref:mvc/views/overview>.</span><span class="sxs-lookup"><span data-stu-id="5067f-165">For more information, see <xref:mvc/controllers/actions> and <xref:mvc/views/overview>.</span></span>
 
@@ -203,7 +203,7 @@ ms.locfileid: "93051512"
 * <span data-ttu-id="5067f-222">Statischer Inhalt</span><span class="sxs-lookup"><span data-stu-id="5067f-222">Static content</span></span>
 * <span data-ttu-id="5067f-223">Client seitige Abhängigkeiten.</span><span class="sxs-lookup"><span data-stu-id="5067f-223">Client-side dependencies.</span></span>
 
-<span data-ttu-id="5067f-224">Informationen zum Migrieren von Konfiguration und :::no-loc(Identity)::: Code finden Sie unter <xref:migration/configuration> und <xref:migration/identity> .</span><span class="sxs-lookup"><span data-stu-id="5067f-224">For migrating configuration and :::no-loc(Identity)::: code, see <xref:migration/configuration> and <xref:migration/identity>.</span></span>
+<span data-ttu-id="5067f-224">Informationen zum Migrieren von Konfiguration und Identity Code finden Sie unter <xref:migration/configuration> und <xref:migration/identity> .</span><span class="sxs-lookup"><span data-stu-id="5067f-224">For migrating configuration and Identity code, see <xref:migration/configuration> and <xref:migration/identity>.</span></span>
 
 > [!NOTE]
 > <span data-ttu-id="5067f-225">Die Versionsnummern in den Beispielen sind möglicherweise nicht aktuell, aktualisieren Sie die Projekte entsprechend.</span><span class="sxs-lookup"><span data-stu-id="5067f-225">The version numbers in the samples might not be current, update the projects accordingly.</span></span>
@@ -254,7 +254,7 @@ ms.locfileid: "93051512"
 
 * <span data-ttu-id="5067f-261">Fügen Sie ein *views/Home-* Verzeichnis hinzu.</span><span class="sxs-lookup"><span data-stu-id="5067f-261">Add a *Views/Home* directory.</span></span>
 
-* <span data-ttu-id="5067f-262">Fügen Sie dem Verzeichnis *views/Home* eine **:::no-loc(Razor)::: Ansicht** mit dem Namen *Index. cshtml* hinzu.</span><span class="sxs-lookup"><span data-stu-id="5067f-262">Add a **:::no-loc(Razor)::: View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
+* <span data-ttu-id="5067f-262">Fügen Sie dem Verzeichnis *views/Home* eine **Razor Ansicht** mit dem Namen *Index. cshtml* hinzu.</span><span class="sxs-lookup"><span data-stu-id="5067f-262">Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
 
 ![Dialogfeld „Neues Element hinzufügen“](mvc/_static/view.png)
 
@@ -288,13 +288,13 @@ ms.locfileid: "93051512"
 
 * <span data-ttu-id="5067f-276">Filter</span><span class="sxs-lookup"><span data-stu-id="5067f-276">filters</span></span>
 
-* <span data-ttu-id="5067f-277">Melden Sie sich an/aus :::no-loc(Identity)::: (Dies erfolgt im nächsten Tutorial).</span><span class="sxs-lookup"><span data-stu-id="5067f-277">Log in/out, :::no-loc(Identity)::: (This is done in the next tutorial.)</span></span>
+* <span data-ttu-id="5067f-277">Melden Sie sich an/aus Identity (Dies erfolgt im nächsten Tutorial).</span><span class="sxs-lookup"><span data-stu-id="5067f-277">Log in/out, Identity (This is done in the next tutorial.)</span></span>
 
 ## <a name="controllers-and-views"></a><span data-ttu-id="5067f-278">Controller und Ansichten</span><span class="sxs-lookup"><span data-stu-id="5067f-278">Controllers and views</span></span>
 
 * <span data-ttu-id="5067f-279">Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` .</span><span class="sxs-lookup"><span data-stu-id="5067f-279">Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`.</span></span> <span data-ttu-id="5067f-280">In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; in ASP.net Core MVC geben die Aktionsmethoden `IActionResult` stattdessen zurück.</span><span class="sxs-lookup"><span data-stu-id="5067f-280">In ASP.NET MVC, the built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead.</span></span> <span data-ttu-id="5067f-281">`ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.</span><span class="sxs-lookup"><span data-stu-id="5067f-281">`ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.</span></span>
 
-* <span data-ttu-id="5067f-282">Kopieren Sie die Ansichts Dateien " *about. cshtml* ", " *Contact. cshtml* " und " *Index. cshtml* " :::no-loc(Razor)::: vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.</span><span class="sxs-lookup"><span data-stu-id="5067f-282">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* :::no-loc(Razor)::: view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
+* <span data-ttu-id="5067f-282">Kopieren Sie die Ansichts Dateien " *about. cshtml* ", " *Contact. cshtml* " und " *Index. cshtml* " Razor vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.</span><span class="sxs-lookup"><span data-stu-id="5067f-282">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
 
 ## <a name="test-each-method"></a><span data-ttu-id="5067f-283">Jede Methode testen</span><span class="sxs-lookup"><span data-stu-id="5067f-283">Test each method</span></span>
 
@@ -330,7 +330,7 @@ ms.locfileid: "93051512"
 
 * <span data-ttu-id="5067f-313">Entfernen Sie `@Scripts.Render("~/bundles/modernizr")`.</span><span class="sxs-lookup"><span data-stu-id="5067f-313">Remove `@Scripts.Render("~/bundles/modernizr")`.</span></span>
 
-* <span data-ttu-id="5067f-314">Kommentieren Sie die `@Html.Partial("_LoginPartial")` Zeile aus (umschließen Sie die Zeile mit `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="5067f-314">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="5067f-315">Weitere Informationen finden Sie unter [Migrieren der Authentifizierung und :::no-loc(Identity)::: zu ASP.net Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="5067f-315">For more information, see [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity)</span></span>
+* <span data-ttu-id="5067f-314">Kommentieren Sie die `@Html.Partial("_LoginPartial")` Zeile aus (umschließen Sie die Zeile mit `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="5067f-314">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="5067f-315">Weitere Informationen finden Sie unter [Migrieren der Authentifizierung und Identity zu ASP.net Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="5067f-315">For more information, see [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity)</span></span>
 
 * <span data-ttu-id="5067f-316">Ersetzen Sie dies `@Scripts.Render("~/bundles/jquery")` durch ein- `<script>` Element (siehe unten).</span><span class="sxs-lookup"><span data-stu-id="5067f-316">Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).</span></span>
 
@@ -389,7 +389,7 @@ ms.locfileid: "93051512"
 * <span data-ttu-id="5067f-343">Statischer Inhalt</span><span class="sxs-lookup"><span data-stu-id="5067f-343">Static content</span></span>
 * <span data-ttu-id="5067f-344">Client seitige Abhängigkeiten.</span><span class="sxs-lookup"><span data-stu-id="5067f-344">Client-side dependencies.</span></span>
 
-<span data-ttu-id="5067f-345">Informationen zum Migrieren von Konfiguration und :::no-loc(Identity)::: Code finden [Sie unter Migrieren der Konfiguration zu ASP.net Core](xref:migration/configuration) und [Migrieren der Authentifizierung und :::no-loc(Identity)::: ASP.net Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="5067f-345">For migrating configuration and :::no-loc(Identity)::: code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity).</span></span>
+<span data-ttu-id="5067f-345">Informationen zum Migrieren von Konfiguration und Identity Code finden [Sie unter Migrieren der Konfiguration zu ASP.net Core](xref:migration/configuration) und [Migrieren der Authentifizierung und Identity ASP.net Core](xref:migration/identity).</span><span class="sxs-lookup"><span data-stu-id="5067f-345">For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).</span></span>
 
 > [!NOTE]
 > <span data-ttu-id="5067f-346">Die Versionsnummern in den Beispielen sind möglicherweise nicht aktuell, aktualisieren Sie die Projekte entsprechend.</span><span class="sxs-lookup"><span data-stu-id="5067f-346">The version numbers in the samples might not be current, update the projects accordingly.</span></span>
@@ -440,7 +440,7 @@ ms.locfileid: "93051512"
 
 * <span data-ttu-id="5067f-383">Fügen Sie ein *views/Home-* Verzeichnis hinzu.</span><span class="sxs-lookup"><span data-stu-id="5067f-383">Add a *Views/Home* directory.</span></span>
 
-* <span data-ttu-id="5067f-384">Fügen Sie dem Verzeichnis *views/Home* eine **:::no-loc(Razor)::: Ansicht** mit dem Namen *Index. cshtml* hinzu.</span><span class="sxs-lookup"><span data-stu-id="5067f-384">Add a **:::no-loc(Razor)::: View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
+* <span data-ttu-id="5067f-384">Fügen Sie dem Verzeichnis *views/Home* eine **Razor Ansicht** mit dem Namen *Index. cshtml* hinzu.</span><span class="sxs-lookup"><span data-stu-id="5067f-384">Add a **Razor View** named *Index.cshtml* to the *Views/Home* directory.</span></span>
 
 ![Dialogfeld „Neues Element hinzufügen“](mvc/_static/view.png)
 
@@ -474,13 +474,13 @@ ms.locfileid: "93051512"
 
 * <span data-ttu-id="5067f-398">Filter</span><span class="sxs-lookup"><span data-stu-id="5067f-398">filters</span></span>
 
-* <span data-ttu-id="5067f-399">Melden Sie sich an/aus :::no-loc(Identity)::: (Dies erfolgt im nächsten Tutorial).</span><span class="sxs-lookup"><span data-stu-id="5067f-399">Log in/out, :::no-loc(Identity)::: (This is done in the next tutorial.)</span></span>
+* <span data-ttu-id="5067f-399">Melden Sie sich an/aus Identity (Dies erfolgt im nächsten Tutorial).</span><span class="sxs-lookup"><span data-stu-id="5067f-399">Log in/out, Identity (This is done in the next tutorial.)</span></span>
 
 ## <a name="controllers-and-views"></a><span data-ttu-id="5067f-400">Controller und Ansichten</span><span class="sxs-lookup"><span data-stu-id="5067f-400">Controllers and views</span></span>
 
 * <span data-ttu-id="5067f-401">Kopieren Sie jede Methode aus ASP.NET MVC `HomeController` in die neue `HomeController` .</span><span class="sxs-lookup"><span data-stu-id="5067f-401">Copy each of the methods from the ASP.NET MVC `HomeController` to the new `HomeController`.</span></span> <span data-ttu-id="5067f-402">In ASP.NET MVC lautet der Rückgabetyp der Controller Aktionsmethode der integrierten Vorlage <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ; in ASP.net Core MVC geben die Aktionsmethoden `IActionResult` stattdessen zurück.</span><span class="sxs-lookup"><span data-stu-id="5067f-402">In ASP.NET MVC, the built-in template's controller action method return type is <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2>; in ASP.NET Core MVC, the action methods return `IActionResult` instead.</span></span> <span data-ttu-id="5067f-403">`ActionResult` implementiert `IActionResult` , sodass es nicht erforderlich ist, den Rückgabetyp der Aktionsmethoden zu ändern.</span><span class="sxs-lookup"><span data-stu-id="5067f-403">`ActionResult` implements `IActionResult`, so there's no need to change the return type of the action methods.</span></span>
 
-* <span data-ttu-id="5067f-404">Kopieren Sie die Ansichts Dateien " *about. cshtml* ", " *Contact. cshtml* " und " *Index. cshtml* " :::no-loc(Razor)::: vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.</span><span class="sxs-lookup"><span data-stu-id="5067f-404">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* :::no-loc(Razor)::: view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
+* <span data-ttu-id="5067f-404">Kopieren Sie die Ansichts Dateien " *about. cshtml* ", " *Contact. cshtml* " und " *Index. cshtml* " Razor vom ASP.NET-MVC-Projekt in das ASP.net Core-Projekt.</span><span class="sxs-lookup"><span data-stu-id="5067f-404">Copy the *About.cshtml* , *Contact.cshtml* , and *Index.cshtml* Razor view files from the ASP.NET MVC project to the ASP.NET Core project.</span></span>
 
 ## <a name="test-each-method"></a><span data-ttu-id="5067f-405">Jede Methode testen</span><span class="sxs-lookup"><span data-stu-id="5067f-405">Test each method</span></span>
 
@@ -516,7 +516,7 @@ ms.locfileid: "93051512"
 
 * <span data-ttu-id="5067f-435">Entfernen Sie `@Scripts.Render("~/bundles/modernizr")`.</span><span class="sxs-lookup"><span data-stu-id="5067f-435">Remove `@Scripts.Render("~/bundles/modernizr")`.</span></span>
 
-* <span data-ttu-id="5067f-436">Kommentieren Sie die `@Html.Partial("_LoginPartial")` Zeile aus (umschließen Sie die Zeile mit `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="5067f-436">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="5067f-437">Weitere Informationen finden Sie unter [Migrieren der Authentifizierung und :::no-loc(Identity)::: zu ASP.net Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="5067f-437">For more information, see [Migrate Authentication and :::no-loc(Identity)::: to ASP.NET Core](xref:migration/identity)</span></span>
+* <span data-ttu-id="5067f-436">Kommentieren Sie die `@Html.Partial("_LoginPartial")` Zeile aus (umschließen Sie die Zeile mit `@*...*@` ).</span><span class="sxs-lookup"><span data-stu-id="5067f-436">Comment out the `@Html.Partial("_LoginPartial")` line (surround the line with `@*...*@`).</span></span> <span data-ttu-id="5067f-437">Weitere Informationen finden Sie unter [Migrieren der Authentifizierung und Identity zu ASP.net Core](xref:migration/identity)</span><span class="sxs-lookup"><span data-stu-id="5067f-437">For more information, see [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity)</span></span>
 
 * <span data-ttu-id="5067f-438">Ersetzen Sie dies `@Scripts.Render("~/bundles/jquery")` durch ein- `<script>` Element (siehe unten).</span><span class="sxs-lookup"><span data-stu-id="5067f-438">Replace `@Scripts.Render("~/bundles/jquery")` with a `<script>` element (see below).</span></span>
 

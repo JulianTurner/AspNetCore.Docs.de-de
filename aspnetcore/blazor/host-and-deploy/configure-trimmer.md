@@ -1,23 +1,23 @@
 ---
-title: 'Konfigurieren des Trimmers für ASP.NET Core :::no-loc(Blazor):::'
+title: 'Konfigurieren des Trimmers für ASP.NET Core Blazor'
 author: guardrex
-description: Hier erfahren Sie, wie Sie den IL-Linker (Intermediate Language, Zwischensprache) (Trimmer) beim Erstellen einer :::no-loc(Blazor):::-App steuern.
+description: Hier erfahren Sie, wie Sie den IL-Linker (Intermediate Language, Zwischensprache) (Trimmer) beim Erstellen einer Blazor-App steuern.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/14/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/host-and-deploy/configure-trimmer
 ms.openlocfilehash: 337b188d3c0aeac9c5c635ebca265b9a35c6904d
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -26,11 +26,11 @@ ms.contentlocale: de-DE
 ms.lasthandoff: 10/30/2020
 ms.locfileid: "93055801"
 ---
-# <a name="configure-the-trimmer-for-aspnet-core-no-locblazor"></a><span data-ttu-id="f347d-103">Konfigurieren des Trimmers für ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="f347d-103">Configure the Trimmer for ASP.NET Core :::no-loc(Blazor):::</span></span>
+# <a name="configure-the-trimmer-for-aspnet-core-no-locblazor"></a><span data-ttu-id="f347d-103">Konfigurieren des Trimmers für ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="f347d-103">Configure the Trimmer for ASP.NET Core Blazor</span></span>
 
 <span data-ttu-id="f347d-104">Von [Pranav Krishnamoorthy](https://github.com/pranavkm)</span><span class="sxs-lookup"><span data-stu-id="f347d-104">By [Pranav Krishnamoorthy](https://github.com/pranavkm)</span></span>
 
-<span data-ttu-id="f347d-105">:::no-loc(Blazor WebAssembly)::: führt eine [IL-Kürzung (Intermediate Language, Zwischensprache)](/dotnet/standard/managed-code#intermediate-language--execution) aus, um die Größe der veröffentlichten Ausgabe zu verringern.</span><span class="sxs-lookup"><span data-stu-id="f347d-105">:::no-loc(Blazor WebAssembly)::: performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) trimming to reduce the size of the published output.</span></span>
+<span data-ttu-id="f347d-105">Blazor WebAssembly führt eine [IL-Kürzung (Intermediate Language, Zwischensprache)](/dotnet/standard/managed-code#intermediate-language--execution) aus, um die Größe der veröffentlichten Ausgabe zu verringern.</span><span class="sxs-lookup"><span data-stu-id="f347d-105">Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) trimming to reduce the size of the published output.</span></span>
 
 <span data-ttu-id="f347d-106">Durch das Kürzen einer App wird die Größe optimiert. Dies kann jedoch auch negative Auswirkungen haben.</span><span class="sxs-lookup"><span data-stu-id="f347d-106">Trimming an app optimizes for size but may have detrimental effects.</span></span> <span data-ttu-id="f347d-107">Apps, die Reflektion oder ähnliche dynamische Features verwenden, können beim Kürzen unterbrochen werden, da der Trimmer dieses dynamische Verhalten nicht kennt und nicht ermitteln kann, welche Typen für die Reflektion zur Laufzeit erforderlich sind.</span><span class="sxs-lookup"><span data-stu-id="f347d-107">Apps that use reflection or related dynamic features may break when trimmed because the trimmer doesn't know about dynamic behavior and can't determine in general which types are required for reflection at runtime.</span></span> <span data-ttu-id="f347d-108">Zur Kürzung solcher Apps muss der Trimmer über alle Typen informiert werden, die für die Reflektion im Code und in Paketen oder Frameworks erforderlich sind, von denen die App abhängig ist.</span><span class="sxs-lookup"><span data-stu-id="f347d-108">To trim such apps, the trimmer must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.</span></span>
 

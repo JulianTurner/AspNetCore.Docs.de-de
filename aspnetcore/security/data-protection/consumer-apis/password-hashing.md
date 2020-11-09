@@ -5,17 +5,17 @@ description: Erfahren Sie, wie Sie Kenn Wörter mithilfe der ASP.net Core-Datens
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/data-protection/consumer-apis/password-hashing
 ms.openlocfilehash: a970d44a1ca6b9f3534bddb34b037e7c2fdc5389
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -38,4 +38,4 @@ ms.locfileid: "93051862"
 
 [!code-csharp[](password-hashing/samples/passwordhasher.cs)]
 
-<span data-ttu-id="f6d72-115">Sehen Sie sich den [Quellcode](https://github.com/dotnet/AspNetCore/blob/master/src/:::no-loc(Identity):::/Extensions.Core/src/PasswordHasher.cs) für :::no-loc(ASP.NET Core Identity)::: den `PasswordHasher` Typ für einen realen Anwendungsfall an.</span><span class="sxs-lookup"><span data-stu-id="f6d72-115">See the [source code](https://github.com/dotnet/AspNetCore/blob/master/src/:::no-loc(Identity):::/Extensions.Core/src/PasswordHasher.cs) for :::no-loc(ASP.NET Core Identity):::'s `PasswordHasher` type for a real-world use case.</span></span>
+<span data-ttu-id="f6d72-115">Sehen Sie sich den [Quellcode](https://github.com/dotnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) für ASP.NET Core Identity den `PasswordHasher` Typ für einen realen Anwendungsfall an.</span><span class="sxs-lookup"><span data-stu-id="f6d72-115">See the [source code](https://github.com/dotnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) for ASP.NET Core Identity's `PasswordHasher` type for a real-world use case.</span></span>

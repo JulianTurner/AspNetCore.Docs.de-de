@@ -7,17 +7,17 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 04/06/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ms.openlocfilehash: 124f23caa4a757f63a80dfea627304204ba2cdca
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -36,7 +36,7 @@ ms.locfileid: "93061430"
 
 ## <a name="overview"></a><span data-ttu-id="42709-107">Überblick</span><span class="sxs-lookup"><span data-stu-id="42709-107">Overview</span></span>
 
-<span data-ttu-id="42709-108">Das Hilfsprogramm für partielle Tags wird zum Rendern einer [Teilansicht](xref:mvc/views/partial) in :::no-loc(Razor)::: Seiten und MVC-Apps verwendet.</span><span class="sxs-lookup"><span data-stu-id="42709-108">The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/partial) in :::no-loc(Razor)::: Pages and MVC apps.</span></span> <span data-ttu-id="42709-109">Bedenken Sie dabei Folgendes:</span><span class="sxs-lookup"><span data-stu-id="42709-109">Consider that it:</span></span>
+<span data-ttu-id="42709-108">Das Hilfsprogramm für partielle Tags wird zum Rendern einer [Teilansicht](xref:mvc/views/partial) in Razor Seiten und MVC-Apps verwendet.</span><span class="sxs-lookup"><span data-stu-id="42709-108">The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/partial) in Razor Pages and MVC apps.</span></span> <span data-ttu-id="42709-109">Bedenken Sie dabei Folgendes:</span><span class="sxs-lookup"><span data-stu-id="42709-109">Consider that it:</span></span>
 
 * <span data-ttu-id="42709-110">Das Programm erfordert ASP.NET Core 2.1 oder höher.</span><span class="sxs-lookup"><span data-stu-id="42709-110">Requires ASP.NET Core 2.1 or later.</span></span>
 * <span data-ttu-id="42709-111">Es stellt eine Alternative zur [Syntax des HTML-Hilfsprogramms](xref:mvc/views/partial#reference-a-partial-view) dar.</span><span class="sxs-lookup"><span data-stu-id="42709-111">Is an alternative to [HTML Helper syntax](xref:mvc/views/partial#reference-a-partial-view).</span></span>

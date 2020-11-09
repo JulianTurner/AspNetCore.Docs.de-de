@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: aspnetcore-2.1
 ms.openlocfilehash: 62fc9d866adcf05ff024501db68cce8bb8b11a98
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -29,9 +29,9 @@ ms.locfileid: "93059714"
 
 <span data-ttu-id="02a9e-104">In diesem Artikel werden die wichtigsten Änderungen in ASP.NET Core 2.1 hervorgehoben und Links zu relevanter Dokumentation bereitgestellt.</span><span class="sxs-lookup"><span data-stu-id="02a9e-104">This article highlights the most significant changes in ASP.NET Core 2.1, with links to relevant documentation.</span></span>
 
-## :::no-loc(SignalR):::
+## SignalR
 
-<span data-ttu-id="02a9e-105">:::no-loc(SignalR)::: wurde für ASP.NET Core 2.1 umgeschrieben.</span><span class="sxs-lookup"><span data-stu-id="02a9e-105">:::no-loc(SignalR)::: has been rewritten for ASP.NET Core 2.1.</span></span> <span data-ttu-id="02a9e-106">ASP.NET Core :::no-loc(SignalR)::: bietet eine Reihe von Verbesserungen:</span><span class="sxs-lookup"><span data-stu-id="02a9e-106">ASP.NET Core :::no-loc(SignalR)::: includes a number of improvements:</span></span>
+<span data-ttu-id="02a9e-105">SignalR wurde für ASP.NET Core 2.1 umgeschrieben.</span><span class="sxs-lookup"><span data-stu-id="02a9e-105">SignalR has been rewritten for ASP.NET Core 2.1.</span></span> <span data-ttu-id="02a9e-106">ASP.NET Core SignalR bietet eine Reihe von Verbesserungen:</span><span class="sxs-lookup"><span data-stu-id="02a9e-106">ASP.NET Core SignalR includes a number of improvements:</span></span>
 
 * <span data-ttu-id="02a9e-107">Ein vereinfachtes Modell für horizontale Skalierung.</span><span class="sxs-lookup"><span data-stu-id="02a9e-107">A simplified scale-out model.</span></span>
 * <span data-ttu-id="02a9e-108">Einen neuen JavaScript-Client ohne jQuery-Abhängigkeit.</span><span class="sxs-lookup"><span data-stu-id="02a9e-108">A new JavaScript client with no jQuery dependency.</span></span>
@@ -40,24 +40,24 @@ ms.locfileid: "93059714"
 * <span data-ttu-id="02a9e-111">Ein neues Streaming-Antwortmodell.</span><span class="sxs-lookup"><span data-stu-id="02a9e-111">A new streaming response model.</span></span>
 * <span data-ttu-id="02a9e-112">Unterstützung für Clients basierend auf Bare-WebSockets.</span><span class="sxs-lookup"><span data-stu-id="02a9e-112">Support for clients based on bare WebSockets.</span></span>
 
-<span data-ttu-id="02a9e-113">Weitere Informationen finden Sie unter [ASP.NET Core :::no-loc(SignalR):::](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="02a9e-113">For more information, see [ASP.NET Core :::no-loc(SignalR):::](xref:signalr/introduction).</span></span>
+<span data-ttu-id="02a9e-113">Weitere Informationen finden Sie unter [ASP.NET Core SignalR](xref:signalr/introduction).</span><span class="sxs-lookup"><span data-stu-id="02a9e-113">For more information, see [ASP.NET Core SignalR](xref:signalr/introduction).</span></span>
 
-## <a name="no-locrazor-class-libraries"></a><span data-ttu-id="02a9e-114">:::no-loc(Razor):::-Klassenbibliotheken</span><span class="sxs-lookup"><span data-stu-id="02a9e-114">:::no-loc(Razor)::: class libraries</span></span>
+## <a name="no-locrazor-class-libraries"></a><span data-ttu-id="02a9e-114">Razor-Klassenbibliotheken</span><span class="sxs-lookup"><span data-stu-id="02a9e-114">Razor class libraries</span></span>
 
-<span data-ttu-id="02a9e-115">ASP.NET Core 2.1 erleichtert die Erstellung und Einbeziehung einer :::no-loc(Razor):::-basierten Benutzeroberfläche in einer Bibliothek sowie die mehrere Projekte übergreifende Freigabe.</span><span class="sxs-lookup"><span data-stu-id="02a9e-115">ASP.NET Core 2.1 makes it easier to build and include :::no-loc(Razor):::-based UI in a library and share it across multiple projects.</span></span> <span data-ttu-id="02a9e-116">Mit dem neuen :::no-loc(Razor)::: SDK können :::no-loc(Razor):::-Dateien in einem Klassenbibliotheksprojekt erstellt werden, das in ein NuGet-Paket gepackt werden kann.</span><span class="sxs-lookup"><span data-stu-id="02a9e-116">The new :::no-loc(Razor)::: SDK enables building :::no-loc(Razor)::: files into a class library project that can be packaged into a NuGet package.</span></span> <span data-ttu-id="02a9e-117">Ansichten und Seiten in Bibliotheken werden automatisch ermittelt und können von der App überschrieben werden.</span><span class="sxs-lookup"><span data-stu-id="02a9e-117">Views and pages in libraries are automatically discovered and can be overridden by the app.</span></span> <span data-ttu-id="02a9e-118">Folgen der Integration der :::no-loc(Razor):::-Kompilierung in den Build:</span><span class="sxs-lookup"><span data-stu-id="02a9e-118">By integrating :::no-loc(Razor)::: compilation into the build:</span></span>
+<span data-ttu-id="02a9e-115">ASP.NET Core 2.1 erleichtert die Erstellung und Einbeziehung einer Razor-basierten Benutzeroberfläche in einer Bibliothek sowie die mehrere Projekte übergreifende Freigabe.</span><span class="sxs-lookup"><span data-stu-id="02a9e-115">ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a library and share it across multiple projects.</span></span> <span data-ttu-id="02a9e-116">Mit dem neuen Razor SDK können Razor-Dateien in einem Klassenbibliotheksprojekt erstellt werden, das in ein NuGet-Paket gepackt werden kann.</span><span class="sxs-lookup"><span data-stu-id="02a9e-116">The new Razor SDK enables building Razor files into a class library project that can be packaged into a NuGet package.</span></span> <span data-ttu-id="02a9e-117">Ansichten und Seiten in Bibliotheken werden automatisch ermittelt und können von der App überschrieben werden.</span><span class="sxs-lookup"><span data-stu-id="02a9e-117">Views and pages in libraries are automatically discovered and can be overridden by the app.</span></span> <span data-ttu-id="02a9e-118">Folgen der Integration der Razor-Kompilierung in den Build:</span><span class="sxs-lookup"><span data-stu-id="02a9e-118">By integrating Razor compilation into the build:</span></span>
 
 * <span data-ttu-id="02a9e-119">Die App wird deutlich schneller gestartet.</span><span class="sxs-lookup"><span data-stu-id="02a9e-119">The app startup time is significantly faster.</span></span>
-* <span data-ttu-id="02a9e-120">Schnelle Updates von :::no-loc(Razor):::-Ansichten und -Seiten zur Laufzeit sind weiterhin als Bestandteil eines iterativen Entwicklungsworkflows verfügbar.</span><span class="sxs-lookup"><span data-stu-id="02a9e-120">Fast updates to :::no-loc(Razor)::: views and pages at runtime are still available as part of an iterative development workflow.</span></span>
+* <span data-ttu-id="02a9e-120">Schnelle Updates von Razor-Ansichten und -Seiten zur Laufzeit sind weiterhin als Bestandteil eines iterativen Entwicklungsworkflows verfügbar.</span><span class="sxs-lookup"><span data-stu-id="02a9e-120">Fast updates to Razor views and pages at runtime are still available as part of an iterative development workflow.</span></span>
 
-<span data-ttu-id="02a9e-121">Weitere Informationen finden Sie unter [Erstellen einer wiederverwendbaren Benutzeroberfläche mithilfe des :::no-loc(Razor):::-Klassenbibliotheksprojekts](xref:razor-pages/ui-class).</span><span class="sxs-lookup"><span data-stu-id="02a9e-121">For more information, see [Create reusable UI using the :::no-loc(Razor)::: Class Library project](xref:razor-pages/ui-class).</span></span>
+<span data-ttu-id="02a9e-121">Weitere Informationen finden Sie unter [Erstellen einer wiederverwendbaren Benutzeroberfläche mithilfe des Razor-Klassenbibliotheksprojekts](xref:razor-pages/ui-class).</span><span class="sxs-lookup"><span data-stu-id="02a9e-121">For more information, see [Create reusable UI using the Razor Class Library project](xref:razor-pages/ui-class).</span></span>
 
-## <a name="no-locidentity-ui-library--scaffolding"></a><span data-ttu-id="02a9e-122">Bibliothek und Gerüst der :::no-loc(Identity):::-Benutzeroberfläche</span><span class="sxs-lookup"><span data-stu-id="02a9e-122">:::no-loc(Identity)::: UI library & scaffolding</span></span>
+## <a name="no-locidentity-ui-library--scaffolding"></a><span data-ttu-id="02a9e-122">Bibliothek und Gerüst der Identity-Benutzeroberfläche</span><span class="sxs-lookup"><span data-stu-id="02a9e-122">Identity UI library & scaffolding</span></span>
 
-<span data-ttu-id="02a9e-123">ASP.NET Core 2.1 stellt [:::no-loc(ASP.NET Core Identity):::](xref:security/authentication/identity) als eine [:::no-loc(Razor):::-Klassenbibliothek](xref:razor-pages/ui-class) bereit.</span><span class="sxs-lookup"><span data-stu-id="02a9e-123">ASP.NET Core 2.1 provides [:::no-loc(ASP.NET Core Identity):::](xref:security/authentication/identity) as a [:::no-loc(Razor)::: Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="02a9e-124">Apps, die über :::no-loc(Identity)::: verfügen, können das neue Gerüst :::no-loc(Identity)::: anwenden, um die in der :::no-loc(Identity):::-Klassenbibliothek :::no-loc(Razor)::: enthaltenen Quellcode selektiv hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="02a9e-124">Apps that include :::no-loc(Identity)::: can apply the new :::no-loc(Identity)::: scaffolder to selectively add the source code contained in the :::no-loc(Identity)::: :::no-loc(Razor)::: Class Library (RCL).</span></span> <span data-ttu-id="02a9e-125">Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können.</span><span class="sxs-lookup"><span data-stu-id="02a9e-125">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="02a9e-126">Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren.</span><span class="sxs-lookup"><span data-stu-id="02a9e-126">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="02a9e-127">Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek :::no-loc(Identity):::.</span><span class="sxs-lookup"><span data-stu-id="02a9e-127">Generated code takes precedence over the same code in the :::no-loc(Identity)::: RCL.</span></span>
+<span data-ttu-id="02a9e-123">ASP.NET Core 2.1 stellt [ASP.NET Core Identity](xref:security/authentication/identity) als eine [Razor-Klassenbibliothek](xref:razor-pages/ui-class) bereit.</span><span class="sxs-lookup"><span data-stu-id="02a9e-123">ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="02a9e-124">Apps, die über Identity verfügen, können das neue Gerüst Identity anwenden, um die in der Identity-Klassenbibliothek Razor enthaltenen Quellcode selektiv hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="02a9e-124">Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="02a9e-125">Sie sollten Quellcode generieren, um den Code und das Verhalten ändern zu können.</span><span class="sxs-lookup"><span data-stu-id="02a9e-125">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="02a9e-126">Sie können das Gerüst beispielsweise anweisen, den bei der Registrierung verwendeten Code zu generieren.</span><span class="sxs-lookup"><span data-stu-id="02a9e-126">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="02a9e-127">Generierter Code hat Vorrang vor dem gleichen Code in der Razor-Klassenbibliothek Identity.</span><span class="sxs-lookup"><span data-stu-id="02a9e-127">Generated code takes precedence over the same code in the Identity RCL.</span></span>
 
-<span data-ttu-id="02a9e-128">Apps **ohne** Authentifizierung können das Gerüst :::no-loc(Identity)::: anwenden, um das Paket der Razor-Klassenbibliothek :::no-loc(Identity)::: hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="02a9e-128">Apps that do **not** include authentication can apply the :::no-loc(Identity)::: scaffolder to add the RCL :::no-loc(Identity)::: package.</span></span> <span data-ttu-id="02a9e-129">Sie können Code der Klassenbibliothek :::no-loc(Identity)::: auswählen, der generiert werden soll.</span><span class="sxs-lookup"><span data-stu-id="02a9e-129">You have the option of selecting :::no-loc(Identity)::: code to be generated.</span></span>
+<span data-ttu-id="02a9e-128">Apps **ohne** Authentifizierung können das Gerüst Identity anwenden, um das Paket der Razor-Klassenbibliothek Identity hinzuzufügen.</span><span class="sxs-lookup"><span data-stu-id="02a9e-128">Apps that do **not** include authentication can apply the Identity scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="02a9e-129">Sie können Code der Klassenbibliothek Identity auswählen, der generiert werden soll.</span><span class="sxs-lookup"><span data-stu-id="02a9e-129">You have the option of selecting Identity code to be generated.</span></span>
 
-<span data-ttu-id="02a9e-130">Weitere Informationen finden Sie unter [Gerüst :::no-loc(Identity)::: in ASP.NET Core-Projekten](xref:security/authentication/scaffold-identity).</span><span class="sxs-lookup"><span data-stu-id="02a9e-130">For more information, see [Scaffold :::no-loc(Identity)::: in ASP.NET Core projects](xref:security/authentication/scaffold-identity).</span></span>
+<span data-ttu-id="02a9e-130">Weitere Informationen finden Sie unter [Gerüst Identity in ASP.NET Core-Projekten](xref:security/authentication/scaffold-identity).</span><span class="sxs-lookup"><span data-stu-id="02a9e-130">For more information, see [Scaffold Identity in ASP.NET Core projects](xref:security/authentication/scaffold-identity).</span></span>
 
 ## <a name="https"></a><span data-ttu-id="02a9e-131">HTTPS</span><span class="sxs-lookup"><span data-stu-id="02a9e-131">HTTPS</span></span>
 
@@ -101,11 +101,11 @@ ms.locfileid: "93059714"
 
 ```csharp
 public class BasicTests
-    : IClassFixture<WebApplicationFactory<:::no-loc(Razor):::PagesProject.Startup>>
+    : IClassFixture<WebApplicationFactory<RazorPagesProject.Startup>>
 {
     private readonly HttpClient _client;
 
-    public BasicTests(WebApplicationFactory<:::no-loc(Razor):::PagesProject.Startup> factory)
+    public BasicTests(WebApplicationFactory<RazorPagesProject.Startup> factory)
     {
         _client = factory.CreateClient();
     }
@@ -163,17 +163,17 @@ public class BasicTests
 * <xref:spa/react>
 * <xref:spa/react-with-redux>
 
-## <a name="no-locrazor-pages-search-for-no-locrazor-assets"></a><span data-ttu-id="02a9e-195">:::no-loc(Razor)::: Pages-Suche nach :::no-loc(Razor):::-Objekten</span><span class="sxs-lookup"><span data-stu-id="02a9e-195">:::no-loc(Razor)::: Pages search for :::no-loc(Razor)::: assets</span></span>
+## <a name="no-locrazor-pages-search-for-no-locrazor-assets"></a><span data-ttu-id="02a9e-195">Razor Pages-Suche nach Razor-Objekten</span><span class="sxs-lookup"><span data-stu-id="02a9e-195">Razor Pages search for Razor assets</span></span>
 
-<span data-ttu-id="02a9e-196">In Version 2.1 sucht :::no-loc(Razor)::: Pages in den folgenden Verzeichnissen in der aufgeführten Reihenfolge nach :::no-loc(Razor):::-Objekten (z. B. Layouts und Teilausführungen):</span><span class="sxs-lookup"><span data-stu-id="02a9e-196">In 2.1, :::no-loc(Razor)::: Pages search for :::no-loc(Razor)::: assets (such as layouts and partials) in the following directories in the listed order:</span></span>
+<span data-ttu-id="02a9e-196">In Version 2.1 sucht Razor Pages in den folgenden Verzeichnissen in der aufgeführten Reihenfolge nach Razor-Objekten (z. B. Layouts und Teilausführungen):</span><span class="sxs-lookup"><span data-stu-id="02a9e-196">In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in the following directories in the listed order:</span></span>
 
 1. <span data-ttu-id="02a9e-197">Im aktuellen Ordner „Pages“.</span><span class="sxs-lookup"><span data-stu-id="02a9e-197">Current Pages folder.</span></span>
 1. <span data-ttu-id="02a9e-198">*/Pages/Shared/*</span><span class="sxs-lookup"><span data-stu-id="02a9e-198">*/Pages/Shared/*</span></span>
 1. <span data-ttu-id="02a9e-199">*/Views/Shared/*</span><span class="sxs-lookup"><span data-stu-id="02a9e-199">*/Views/Shared/*</span></span>
 
-## <a name="no-locrazor-pages-in-an-area"></a><span data-ttu-id="02a9e-200">:::no-loc(Razor)::: Pages in einem Bereich</span><span class="sxs-lookup"><span data-stu-id="02a9e-200">:::no-loc(Razor)::: Pages in an area</span></span>
+## <a name="no-locrazor-pages-in-an-area"></a><span data-ttu-id="02a9e-200">Razor Pages in einem Bereich</span><span class="sxs-lookup"><span data-stu-id="02a9e-200">Razor Pages in an area</span></span>
 
-<span data-ttu-id="02a9e-201">:::no-loc(Razor)::: Pages unterstützen jetzt [Bereiche](xref:mvc/controllers/areas).</span><span class="sxs-lookup"><span data-stu-id="02a9e-201">:::no-loc(Razor)::: Pages now support [areas](xref:mvc/controllers/areas).</span></span> <span data-ttu-id="02a9e-202">Erstellen Sie für die Anzeige eines Beispiels für Bereiche eine neue :::no-loc(Razor)::: Pages-Web-App mit individuellen Benutzerkonten.</span><span class="sxs-lookup"><span data-stu-id="02a9e-202">To see an example of areas, create a new :::no-loc(Razor)::: Pages web app with individual user accounts.</span></span> <span data-ttu-id="02a9e-203">Eine :::no-loc(Razor)::: Pages-Web-App mit individuellen Benutzerkonten enthält */Areas/:::no-loc(Identity):::/Pages*.</span><span class="sxs-lookup"><span data-stu-id="02a9e-203">A :::no-loc(Razor)::: Pages web app with individual user accounts includes */Areas/:::no-loc(Identity):::/Pages*.</span></span>
+<span data-ttu-id="02a9e-201">Razor Pages unterstützen jetzt [Bereiche](xref:mvc/controllers/areas).</span><span class="sxs-lookup"><span data-stu-id="02a9e-201">Razor Pages now support [areas](xref:mvc/controllers/areas).</span></span> <span data-ttu-id="02a9e-202">Erstellen Sie für die Anzeige eines Beispiels für Bereiche eine neue Razor Pages-Web-App mit individuellen Benutzerkonten.</span><span class="sxs-lookup"><span data-stu-id="02a9e-202">To see an example of areas, create a new Razor Pages web app with individual user accounts.</span></span> <span data-ttu-id="02a9e-203">Eine Razor Pages-Web-App mit individuellen Benutzerkonten enthält */Areas/Identity/Pages*.</span><span class="sxs-lookup"><span data-stu-id="02a9e-203">A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.</span></span>
 
 ## <a name="mvc-compatibility-version"></a><span data-ttu-id="02a9e-204">MVC-Kompatibilitätsversion</span><span class="sxs-lookup"><span data-stu-id="02a9e-204">MVC compatibility version</span></span>
 

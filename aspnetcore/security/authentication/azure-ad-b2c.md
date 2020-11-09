@@ -6,17 +6,17 @@ ms.author: casoper
 ms.custom: devx-track-csharp, mvc
 ms.date: 01/21/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: security/authentication/azure-ad-b2c
 ms.openlocfilehash: f917bec8f2d929e62bf43494159a63458f135c5f
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -109,16 +109,16 @@ ms.locfileid: "93061391"
 <span data-ttu-id="be365-180">Kehren Sie zum Browserfenster zurück, in dem die B2C-App-Eigenschaften noch geöffnet sind.</span><span class="sxs-lookup"><span data-stu-id="be365-180">Return to the browser window with the B2C app properties still open.</span></span> <span data-ttu-id="be365-181">Ändern Sie die zuvor angegebene temporäre **Antwort-URL** in den aus Visual Studio kopierten Wert.</span><span class="sxs-lookup"><span data-stu-id="be365-181">Change the temporary **Reply URL** specified earlier to the value copied from Visual Studio.</span></span> <span data-ttu-id="be365-182">Wählen Sie am oberen Rand des Fensters die Option **Speichern** aus.</span><span class="sxs-lookup"><span data-stu-id="be365-182">Select **Save** at the top of the window.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="be365-183">Wenn Sie die Antwort-URL nicht kopiert haben, verwenden Sie die HTTPS-Adresse auf der Registerkarte "Debuggen" in den Webprojekt Eigenschaften, und fügen Sie den **callbackpath** -Wert von an *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="be365-183">If you didn't copy the Reply URL, use the HTTPS address from the Debug tab in the web project properties, and append the **CallbackPath** value from *:::no-loc(appsettings.json):::* .</span></span>
+> <span data-ttu-id="be365-183">Wenn Sie die Antwort-URL nicht kopiert haben, verwenden Sie die HTTPS-Adresse auf der Registerkarte "Debuggen" in den Webprojekt Eigenschaften, und fügen Sie den **callbackpath** -Wert von an *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="be365-183">If you didn't copy the Reply URL, use the HTTPS address from the Debug tab in the web project properties, and append the **CallbackPath** value from *appsettings.json* .</span></span>
 
 ## <a name="configure-policies"></a><span data-ttu-id="be365-184">Konfigurieren von Richtlinien</span><span class="sxs-lookup"><span data-stu-id="be365-184">Configure policies</span></span>
 
-<span data-ttu-id="be365-185">Verwenden Sie die Schritte in der Azure AD B2C-Dokumentation, um [eine Registrierungs-oder Anmelde Richtlinie zu erstellen](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), und [Erstellen Sie dann eine Richtlinie zum Zurücksetzen des Kennworts](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions).</span><span class="sxs-lookup"><span data-stu-id="be365-185">Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), and then [create a password reset policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions).</span></span> <span data-ttu-id="be365-186">Verwenden Sie die Beispiel Werte, die in der Dokumentation für **:::no-loc(Identity)::: Anbieter** , Registrierungs **Attribute** und **Anwendungs Ansprüche** bereitgestellt werden.</span><span class="sxs-lookup"><span data-stu-id="be365-186">Use the example values provided in the documentation for **:::no-loc(Identity)::: providers** , **Sign-up attributes** , and **Application claims** .</span></span> <span data-ttu-id="be365-187">Die Verwendung der Schaltfläche **jetzt ausführen** zum Testen der Richtlinien, wie in der Dokumentation beschrieben, ist optional.</span><span class="sxs-lookup"><span data-stu-id="be365-187">Using the **Run now** button to test the policies as described in the documentation is optional.</span></span>
+<span data-ttu-id="be365-185">Verwenden Sie die Schritte in der Azure AD B2C-Dokumentation, um [eine Registrierungs-oder Anmelde Richtlinie zu erstellen](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), und [Erstellen Sie dann eine Richtlinie zum Zurücksetzen des Kennworts](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions).</span><span class="sxs-lookup"><span data-stu-id="be365-185">Use the steps in the Azure AD B2C documentation to [create a sign-up or sign-in policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions), and then [create a password reset policy](/azure/active-directory-b2c/active-directory-b2c-reference-policies#user-flow-versions).</span></span> <span data-ttu-id="be365-186">Verwenden Sie die Beispiel Werte, die in der Dokumentation für **Identity Anbieter** , Registrierungs **Attribute** und **Anwendungs Ansprüche** bereitgestellt werden.</span><span class="sxs-lookup"><span data-stu-id="be365-186">Use the example values provided in the documentation for **Identity providers** , **Sign-up attributes** , and **Application claims** .</span></span> <span data-ttu-id="be365-187">Die Verwendung der Schaltfläche **jetzt ausführen** zum Testen der Richtlinien, wie in der Dokumentation beschrieben, ist optional.</span><span class="sxs-lookup"><span data-stu-id="be365-187">Using the **Run now** button to test the policies as described in the documentation is optional.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="be365-188">Stellen Sie sicher, dass die Richtlinien Namen genau wie in der Dokumentation beschrieben sind, da diese Richtlinien im Dialogfeld " **Authentifizierung ändern** " in Visual Studio verwendet wurden.</span><span class="sxs-lookup"><span data-stu-id="be365-188">Ensure the policy names are exactly as described in the documentation, as those policies were used in the **Change Authentication** dialog in Visual Studio.</span></span> <span data-ttu-id="be365-189">Die Richtlinien Namen können in überprüft werden *:::no-loc(appsettings.json):::* .</span><span class="sxs-lookup"><span data-stu-id="be365-189">The policy names can be verified in *:::no-loc(appsettings.json):::* .</span></span>
+> <span data-ttu-id="be365-188">Stellen Sie sicher, dass die Richtlinien Namen genau wie in der Dokumentation beschrieben sind, da diese Richtlinien im Dialogfeld " **Authentifizierung ändern** " in Visual Studio verwendet wurden.</span><span class="sxs-lookup"><span data-stu-id="be365-188">Ensure the policy names are exactly as described in the documentation, as those policies were used in the **Change Authentication** dialog in Visual Studio.</span></span> <span data-ttu-id="be365-189">Die Richtlinien Namen können in überprüft werden *appsettings.json* .</span><span class="sxs-lookup"><span data-stu-id="be365-189">The policy names can be verified in *appsettings.json* .</span></span>
 
-## <a name="configure-the-underlying-openidconnectoptionsjwtbearerno-loccookie-options"></a><span data-ttu-id="be365-190">Konfigurieren der zugrunde liegenden openidconnectoptions/jwtbearer- :::no-loc(Cookie)::: Optionen</span><span class="sxs-lookup"><span data-stu-id="be365-190">Configure the underlying OpenIdConnectOptions/JwtBearer/:::no-loc(Cookie)::: options</span></span>
+## <a name="configure-the-underlying-openidconnectoptionsjwtbearerno-loccookie-options"></a><span data-ttu-id="be365-190">Konfigurieren der zugrunde liegenden openidconnectoptions/jwtbearer- Cookie Optionen</span><span class="sxs-lookup"><span data-stu-id="be365-190">Configure the underlying OpenIdConnectOptions/JwtBearer/Cookie options</span></span>
 
 <span data-ttu-id="be365-191">Um die zugrunde liegenden Optionen direkt zu konfigurieren, verwenden Sie die entsprechende Schema Konstante in `Startup.ConfigureServices` :</span><span class="sxs-lookup"><span data-stu-id="be365-191">To configure the underlying options directly, use the appropriate scheme constant in `Startup.ConfigureServices`:</span></span>
 
@@ -129,8 +129,8 @@ services.Configure<OpenIdConnectOptions>(
         // Omitted for brevity
     });
 
-services.Configure<:::no-loc(Cookie):::AuthenticationOptions>(
-    AzureAD[B2C]Defaults.:::no-loc(Cookie):::Scheme, options => 
+services.Configure<CookieAuthenticationOptions>(
+    AzureAD[B2C]Defaults.CookieScheme, options => 
     {
         // Omitted for brevity
     });
@@ -144,7 +144,7 @@ services.Configure<JwtBearerOptions>(
 
 ## <a name="run-the-app"></a><span data-ttu-id="be365-192">Ausführen der App</span><span class="sxs-lookup"><span data-stu-id="be365-192">Run the app</span></span>
 
-<span data-ttu-id="be365-193">Drücken Sie in Visual Studio **F5** , um die APP zu erstellen und auszuführen.</span><span class="sxs-lookup"><span data-stu-id="be365-193">In Visual Studio, press **F5** to build and run the app.</span></span> <span data-ttu-id="be365-194">Wählen Sie nach dem Start der Web-App **akzeptieren** aus, um die Verwendung von s zu akzeptieren :::no-loc(cookie)::: (falls Sie dazu aufgefordert werden), und wählen Sie dann **Anmelden** aus.</span><span class="sxs-lookup"><span data-stu-id="be365-194">After the web app launches, select **Accept** to accept the use of :::no-loc(cookie):::s (if prompted), and then select **Sign in** .</span></span>
+<span data-ttu-id="be365-193">Drücken Sie in Visual Studio **F5** , um die APP zu erstellen und auszuführen.</span><span class="sxs-lookup"><span data-stu-id="be365-193">In Visual Studio, press **F5** to build and run the app.</span></span> <span data-ttu-id="be365-194">Wählen Sie nach dem Start der Web-App **akzeptieren** aus, um die Verwendung von s zu akzeptieren cookie (falls Sie dazu aufgefordert werden), und wählen Sie dann **Anmelden** aus.</span><span class="sxs-lookup"><span data-stu-id="be365-194">After the web app launches, select **Accept** to accept the use of cookies (if prompted), and then select **Sign in** .</span></span>
 
 ![Anmelden bei der APP](./azure-ad-b2c/_static/signin.png)
 

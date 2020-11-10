@@ -4,7 +4,7 @@ author: guardrex
 ms.author: riande
 description: Erfahren Sie, wie Sie das taghilfsprogramm ASP.net Core Component zum Rendering von Razor Komponenten in Seiten und Ansichten verwenden.
 ms.custom: mvc
-ms.date: 04/15/2020
+ms.date: 10/29/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,26 +18,75 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
-ms.openlocfilehash: cddbca7f95e4d2143d4632aaa83133bc6210e251
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 8e780de2367f66ad1f5197077d5243e0b85a41dd
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059155"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431042"
 ---
 # <a name="component-tag-helper-in-aspnet-core"></a>Komponententaghilfsprogramm in ASP.net Core
 
 Von [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
 
-Verwenden Sie das [Komponententaghilfsprogramm](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) zum Rendern einer Komponente einer Seite oder Ansicht.
-
 ## <a name="prerequisites"></a>Voraussetzungen
 
-Befolgen Sie die Anweisungen im Abschnitt *Vorbereiten der APP für die Verwendung von Komponenten im Bereich "Seiten und Ansichten* " des <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#prepare-the-app> Artikels.
+Befolgen Sie die Anweisungen im *Konfigurations* Abschnitt für eine der folgenden Optionen:
+
+* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
+* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
 
 ## <a name="component-tag-helper"></a>Komponententaghilfsprogramm
 
-Das folgende komponententaghilfsprogramm rendert die `Counter` Komponente in einer Seite oder Ansicht:
+Verwenden Sie das [komponententaghilfsprogramm](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (Tag), um eine Komponente aus einer Seite oder Sicht zu Rendering `<component>` .
+
+> [!NOTE]
+> Das Integrieren von Razor Komponenten in Razor Seiten und MVC-apps in einer *gehosteten Blazor WebAssembly App* wird in ASP.net Core in .net 5,0 oder höher unterstützt.
+
+<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> konfiguriert folgende Einstellungen für die Komponente:
+
+* Ob die Komponente zuvor für die Seite gerendert wird
+* Ob die Komponente als statische HTML auf der Seite gerendert wird oder ob sie die nötigen Informationen für das Bootstrapping einer Blazor-App über den Benutzer-Agent enthält.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Blazor WebAssembly App-Rendermodi sind in der folgenden Tabelle dargestellt.
+
+| Rendermodus | Beschreibung |
+| ----------- | ----------- |
+| `WebAssembly` | Rendert einen Marker für eine Blazor WebAssembly app, um beim Laden in den Browser eine interaktive Komponente einzubeziehen. Die Komponente wird nicht vorab übernommen. Diese Option erleichtert das Rendering verschiedener Blazor WebAssembly Komponenten auf verschiedenen Seiten. |
+| `WebAssemblyPrerendered` | Gibt die Komponente in statischem HTML-Code aus und umfasst einen Marker für eine Blazor WebAssembly app, der später verwendet wird, um die Komponente beim Laden im Browser interaktiv zu gestalten. |
+
+Blazor Server App-Rendermodi sind in der folgenden Tabelle dargestellt.
+
+| Rendermodus | Beschreibung |
+| ----------- | ----------- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Rendert die Komponente in statisches HTML und fügt einen Marker für eine Blazor Server-App hinzu. Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Rendert einen Marker für eine Blazor Server-App. Die Ausgabe der Komponente ist nicht enthalten. Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Rendert die Komponente in statischen HTML-Code. |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Blazor Server App-Rendermodi sind in der folgenden Tabelle dargestellt.
+
+| Rendermodus | Beschreibung |
+| ----------- | ----------- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Rendert die Komponente in statisches HTML und fügt einen Marker für eine Blazor Server-App hinzu. Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Rendert einen Marker für eine Blazor Server-App. Die Ausgabe der Komponente ist nicht enthalten. Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Rendert die Komponente in statischen HTML-Code. |
+
+::: moniker-end
+
+Zu den zusätzlichen Merkmalen gehören:
+
+* Mehrere komponententaghilfsprogramme, die mehrere Komponenten rendern, Razor sind zulässig.
+* Komponenten können nicht dynamisch gerendert werden, nachdem die APP gestartet wurde.
+* Während Seiten und Ansichten Komponenten verwenden können, ist das Gegenteil nicht der Fall. Komponenten können keine Ansichts-und Seiten spezifischen Funktionen verwenden, wie z. b. partielle Sichten und Abschnitte. Wenn Sie Logik aus einer partiellen Sicht in einer Komponente verwenden möchten, müssen Sie die partielle Sicht Logik in eine Komponente einbeziehen.
+* Das Rendern von Serverkomponenten über eine statische HTML-Seite wird nicht unterstützt.
+
+Das folgende komponententaghilfsprogramm rendert die `Counter` Komponente in einer Seite oder Ansicht in einer- Blazor Server App mit `ServerPrerendered` :
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -48,7 +97,7 @@ Das folgende komponententaghilfsprogramm rendert die `Counter` Komponente in ein
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-Im vorangehenden Beispiel wird davon ausgegangen, dass `Counter` sich die Komponente im *Seiten* Ordner der APP befindet. Der Platzhalter `{APP ASSEMBLY}` ist der Assemblyname der App (z. B. `@using BlazorSample.Pages`).
+Im vorangehenden Beispiel wird davon ausgegangen, dass `Counter` sich die Komponente im *Seiten* Ordner der APP befindet. Der Platzhalter `{APP ASSEMBLY}` ist der AssemblyName der APP (z. b. `@using BlazorSample.Pages` oder `@using BlazorSample.Client.Pages` in einer gehosteten Blazor Lösung).
 
 Mit dem komponententaghilfsprogramm können auch Parameter an Komponenten übergeben werden. Sehen `ColorfulCheckbox` Sie sich die folgende Komponente an, mit der die Farbe und Größe der Kontrollkästchen Bezeichnung festgelegt wird:
 
@@ -102,6 +151,13 @@ Der folgende HTML-Code wird in der Seite oder Sicht gerendert:
 ```
 
 Das übergeben einer Zeichenfolge in Anführungszeichen erfordert einen [expliziten Razor Ausdruck](xref:mvc/views/razor#explicit-razor-expressions), wie `param-Color` im vorherigen Beispiel gezeigt. Das Verarbeitungs Razor Verhalten für einen `string` Typwert gilt nicht für ein- `param-*` Attribut, da es sich bei dem Attribut um einen- `object` Typ handelt.
+
+Alle Parametertypen werden unterstützt, ausgenommen:
+
+* Generische Parameter.
+* Nicht serialisierbare Parameter.
+* Vererbung in Sammlungs Parametern.
+* Parameter, deren Typ außerhalb der Blazor WebAssembly app oder innerhalb einer verzögert geladenen Assembly definiert ist.
 
 Der Parametertyp muss JSON-serialisierbar sein. Dies bedeutet in der Regel, dass der Typ einen Standardkonstruktor und festleg bare Eigenschaften aufweisen muss. Beispielsweise können Sie einen Wert für `Size` und `Color` im vorangehenden Beispiel angeben, da die Typen von `Size` und `Color` primitive Typen ( `int` und `string` ) sind, die vom JSON-Serialisierungsprogramm unterstützt werden.
 
@@ -158,21 +214,6 @@ public class MyClass
 ```
 
 Im vorangehenden Beispiel wird davon ausgegangen, dass `MyComponent` sich die Komponente im frei *gegebenen* Ordner der APP befindet. Der Platzhalter `{APP ASSEMBLY}` ist der AssemblyName der APP (z `@using BlazorSample` `@using BlazorSample.Shared` . b. und). `MyClass` befindet sich im-Namespace der app.
-
-<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> konfiguriert folgende Einstellungen für die Komponente:
-
-* Ob die Komponente zuvor für die Seite gerendert wird
-* Ob die Komponente als statische HTML auf der Seite gerendert wird oder ob sie die nötigen Informationen für das Bootstrapping einer Blazor-App über den Benutzer-Agent enthält.
-
-| Rendermodus | Beschreibung |
-| ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Rendert die Komponente in statisches HTML und fügt einen Marker für eine Blazor Server-App hinzu. Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Rendert einen Marker für eine Blazor Server-App. Die Ausgabe der Komponente ist nicht enthalten. Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Rendert die Komponente in statischen HTML-Code. |
-
-Während Seiten und Ansichten Komponenten verwenden können, ist das Gegenteil nicht der Fall. Komponenten können keine Ansichts-und Seiten spezifischen Funktionen verwenden, wie z. b. partielle Sichten und Abschnitte. Wenn Sie Logik aus einer partiellen Sicht in einer Komponente verwenden möchten, müssen Sie die partielle Sicht Logik in eine Komponente einbeziehen.
-
-Das Rendern von Serverkomponenten über eine statische HTML-Seite wird nicht unterstützt.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

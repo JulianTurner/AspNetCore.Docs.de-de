@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: c55421efa1fd559f462549bfaceb794d4a9c35b8
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4f0e98057c03769a672ef350cc3ec724a4f7e721
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059311"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431056"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Übersicht über ASP.NET Core MVC
 
@@ -72,9 +72,9 @@ ASP.NET Core MVC stellt eine auf Mustern basierte Methode zum Entwickeln dynamis
 Zu ASP.NET Core MVC gehören folgende Elemente:
 
 * [Routing](#routing)
-* [Modellbindung](#model-binding)
-* [Modellvalidierung](#model-validation)
-* [Abhängigkeitsinjektion](../fundamentals/dependency-injection.md)
+* [Modell Bindung](#model-binding)
+* [Modell Validierung](#model-validation)
+* [Dependency Injection](../fundamentals/dependency-injection.md)
 * [Filter](#filters)
 * [Bereiche](#areas)
 * [Web-APIs](#web-apis)
@@ -153,7 +153,7 @@ public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = 
 
 Das Framework verarbeitet Validierungsanforderungsdaten sowohl auf dem Client als auch auf dem Server. Für Modelltypen angegebene Validierungslogik wird den gerenderten Ansichten als unaufdringliche Anmerkungen hinzugefügt und im Browser mit [jQuery Validation](https://jqueryvalidation.org/) erzwungen.
 
-### <a name="dependency-injection"></a>Abhängigkeitsinjektion
+### <a name="dependency-injection"></a>Dependency Injection
 
 ASP.NET Core verfügt über integrierte Unterstützung für [Dependency Injection ( DI)](../fundamentals/dependency-injection.md). In ASP.NET Core MVC können [Controller](controllers/dependency-injection.md) benötigte Dienste über ihre Konstruktoren anfordern. So wird das [Prinzip der expliziten Abhängigkeiten](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) befolgt.
 
@@ -270,4 +270,4 @@ Weitere Informationen finden Sie unter <xref:mvc/compatibility-version>.
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. ( *Wird von Microsoft nicht verwaltet oder unterstützt.* )
-* <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>
+* <xref:blazor/components/prerendering-and-integration>

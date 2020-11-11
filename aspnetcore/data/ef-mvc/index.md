@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/index
-ms.openlocfilehash: 791787612c471e17a886ee05b38dddcabdcceff2
-ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
+ms.openlocfilehash: 544ace059e15db0bbe2c77bd453b96872a998f9a
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93365332"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422547"
 ---
 # <a name="aspnet-core-mvc-with-ef-core---tutorial-series"></a>ASP.NET Core MVC mit EF-Core: Tutorialreihe
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-Dieses Tutorial wurde **nicht** auf ASP.NET Core 3.0 aktualisiert. Die [Razor Pages-Version](xref:data/ef-rp/intro) wurde aktualisiert.
+Dieses Tutorial wurde **nicht** auf ASP.NET Core 3.0 aktualisiert. Es wurde auf ASP.NET Core 5.0 aktualisiert.
 
 ::: moniker-end
 

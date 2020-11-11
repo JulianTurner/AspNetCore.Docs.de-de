@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: 36e8bc494125d0770347ddf32390365d83a91d27
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 6a70183ce4b1a129ef213300473b233a5ef822f9
+ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051745"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94463885"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Schlüsselspeicher Anbieter in ASP.net Core
 
@@ -47,7 +47,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="azure-storage"></a>Azure Storage
 
-Das Paket [Microsoft. aspnetcore. dataprotection. azurestorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/) ermöglicht die Speicherung von Datenschutz Schlüsseln in Azure BLOB Storage. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs- cookie oder CSRF-Schutz auf mehreren Servern freigeben.
+Das Paket [Azure. Extensions. aspnetcore. dataprotection. blosb](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) ermöglicht das Speichern von Datenschutz Schlüsseln in Azure BLOB Storage. Schlüssel können für mehrere Instanzen einer Web-App freigegeben werden. Apps können Authentifizierungs- cookie oder CSRF-Schutz auf mehreren Servern freigeben.
 
 Zum Konfigurieren des Azure BLOB Storage Anbieters müssen Sie eine der [persistkeystoazureblobstorage](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.persistkeystoazureblobstorage) -über Ladungen abrufen.
 
@@ -59,15 +59,12 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Wenn die Web-App als Azure-Dienst ausgeführt wird, können Authentifizierungs Token automatisch mithilfe von [Microsoft. Azure. Services. appauthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/)erstellt werden.
+Wenn die Web-App als Azure-Dienst ausgeführt wird, kann die Verbindungs Zeichenfolge verwendet werden, um sich mithilfe von [Azure. Storage. BLOB](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient)bei Azure Storage zu authentifizieren.
 
 ```csharp
-var tokenProvider = new AzureServiceTokenProvider();
-var token = await tokenProvider.GetAccessTokenAsync("https://storage.azure.com/");
-var credentials = new StorageCredentials(new TokenCredential(token));
-var storageAccount = new CloudStorageAccount(credentials, "mystorageaccount", "core.windows.net", useHttps: true);
-var client = storageAccount.CreateCloudBlobClient();
-var container = client.GetContainerReference("my-key-container");
+string connectionString = "<connection_string>";
+string containerName = "my-key-container";
+BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
 
 // optional - provision the container automatically
 await container.CreateIfNotExistsAsync();
@@ -76,7 +73,11 @@ services.AddDataProtection()
     .PersistKeysToAzureBlobStorage(container, "keys.xml");
 ```
 
-[Weitere Informationen zum Konfigurieren der Dienst-zu-Dienst-Authentifizierung finden Sie unter.](/azure/key-vault/service-to-service-authentication)
+> [!NOTE]
+> Die Verbindungs Zeichenfolge für Ihr Speicherkonto befindet sich im Azure-Portal im Abschnitt "Zugriffsschlüssel" oder durch Ausführen des folgenden CLI-Befehls: 
+> ```bash
+> az storage account show-connection-string --name <account_name> --resource-group <resource_group>
+> ```
 
 ## <a name="redis"></a>Redis
 

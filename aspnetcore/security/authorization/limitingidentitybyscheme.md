@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: 4dc86480d40d8ee40b3c03aa7fd2994e6c15b105
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a5f2dff7b0e0d4f209ba445b2efb6fb261cbaab1
+ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053123"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94464015"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>Autorisieren mit einem bestimmten Schema in ASP.net Core
 
 In einigen Szenarien, z. b. Single-Page-Anwendungen (Spas), ist es üblich, mehrere Authentifizierungsmethoden zu verwenden. Beispielsweise kann die APP die cookie -basierte Authentifizierung für die Anmeldung und die JWT-Träger Authentifizierung für JavaScript-Anforderungen verwenden. In einigen Fällen verfügt die APP möglicherweise über mehrere Instanzen eines Authentifizierungs Handlers. Beispielsweise zwei cookie Handler, bei denen eine eine grundlegende Identität enthält und eine erstellt wird, wenn eine Multi-Factor Authentication (MFA) ausgelöst wurde. MFA kann ausgelöst werden, da der Benutzer einen Vorgang angefordert hat, der zusätzliche Sicherheit erfordert. Weitere Informationen zum Erzwingen von MFA, wenn ein Benutzer eine Ressource anfordert, für die MFA erforderlich ist, finden Sie im Abschnitt "GitHub-Problem [Schutz" mit MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).
 
-Ein Authentifizierungsschema wird benannt, wenn der Authentifizierungsdienst während der Authentifizierung konfiguriert wird. Zum Beispiel:
+Ein Authentifizierungsschema wird benannt, wenn der Authentifizierungsdienst während der Authentifizierung konfiguriert wird. Beispiel:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -54,7 +54,7 @@ Im vorangehenden Code wurden zwei Authentifizierungs Handler hinzugefügt: eine 
 
 ## <a name="selecting-the-scheme-with-the-authorize-attribute"></a>Auswählen des Schemas mit dem Attribut "autorisieren"
 
-Zum Zeitpunkt der Autorisierung gibt die APP den zu verwendenden Handler an. Wählen Sie den Handler aus, mit dem die APP autorisiert werden soll, indem Sie eine durch Trennzeichen getrennte Liste von Authentifizierungs Schemas an übergeben `[Authorize]` . Das- `[Authorize]` Attribut gibt das Authentifizierungsschema oder die zu verwendenden Schemas an, unabhängig davon, ob ein Standard konfiguriert ist. Zum Beispiel:
+Zum Zeitpunkt der Autorisierung gibt die APP den zu verwendenden Handler an. Wählen Sie den Handler aus, mit dem die APP autorisiert werden soll, indem Sie eine durch Trennzeichen getrennte Liste von Authentifizierungs Schemas an übergeben `[Authorize]` . Das- `[Authorize]` Attribut gibt das Authentifizierungsschema oder die zu verwendenden Schemas an, unabhängig davon, ob ein Standard konfiguriert ist. Beispiel:
 
 ```csharp
 [Authorize(AuthenticationSchemes = AuthSchemes)]
@@ -130,7 +130,7 @@ public void ConfigureServices(IServiceCollection services)
 > [!NOTE]
 > Nur eine JWT-Träger Authentifizierung wird mit dem Standard Authentifizierungsschema registriert `JwtBearerDefaults.AuthenticationScheme` . Die zusätzliche Authentifizierung muss mit einem eindeutigen Authentifizierungsschema registriert werden.
 
-Der nächste Schritt besteht darin, die Standard Autorisierungs Richtlinie so zu aktualisieren, dass beide Authentifizierungs Schemas akzeptiert werden. Zum Beispiel:
+Der nächste Schritt besteht darin, die Standard Autorisierungs Richtlinie so zu aktualisieren, dass beide Authentifizierungs Schemas akzeptiert werden. Beispiel:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -152,3 +152,5 @@ public void ConfigureServices(IServiceCollection services)
 Wenn die Standard Autorisierungs Richtlinie überschrieben wird, ist es möglich, das- `[Authorize]` Attribut in Controllern zu verwenden. Der Controller akzeptiert dann Anforderungen mit JWT, die vom ersten oder zweiten Aussteller ausgegeben wurden.
 
 ::: moniker-end
+
+Weitere Informationen zur Verwendung mehrerer Authentifizierungs Schemas finden Sie in [diesem GitHub-Problem](https://github.com/dotnet/aspnetcore/issues/26002) .

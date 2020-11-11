@@ -6,58 +6,59 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/28/2020
 no-loc:
-- ASP.NET Core Identity
-- cookie
-- Cookie
-- Blazor
-- Blazor Server
-- Blazor WebAssembly
-- Identity
-- Let's Encrypt
-- Razor
-- SignalR
+- ':::no-loc(appsettings.json):::'
+- ':::no-loc(ASP.NET Core Identity):::'
+- ':::no-loc(cookie):::'
+- ':::no-loc(Cookie):::'
+- ':::no-loc(Blazor):::'
+- ':::no-loc(Blazor Server):::'
+- ':::no-loc(Blazor WebAssembly):::'
+- ':::no-loc(Identity):::'
+- ":::no-loc(Let's Encrypt):::"
+- ':::no-loc(Razor):::'
+- ':::no-loc(SignalR):::'
 uid: grpc/httpapi
-ms.openlocfilehash: fa4e7489920338344b78874690e64d4080b5a719
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 45e2a1a5e6a9f00294147db769454b78c5b866e5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805582"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059935"
 ---
-# <a name="create-json-web-apis-from-grpc"></a><span data-ttu-id="93eed-103">Erstellen von JSON-Web-APIs über gRPC</span><span class="sxs-lookup"><span data-stu-id="93eed-103">Create JSON Web APIs from gRPC</span></span>
+# <a name="create-json-web-apis-from-grpc"></a><span data-ttu-id="0df62-103">Erstellen von JSON-Web-APIs über gRPC</span><span class="sxs-lookup"><span data-stu-id="0df62-103">Create JSON Web APIs from gRPC</span></span>
 
-<span data-ttu-id="93eed-104">Von [James Newton-King](https://twitter.com/jamesnk)</span><span class="sxs-lookup"><span data-stu-id="93eed-104">By [James Newton-King](https://twitter.com/jamesnk)</span></span>
+<span data-ttu-id="0df62-104">Von [James Newton-King](https://twitter.com/jamesnk)</span><span class="sxs-lookup"><span data-stu-id="0df62-104">By [James Newton-King](https://twitter.com/jamesnk)</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="93eed-105">gRPC HTTP API ist ein experimentelles Projekt, kein veröffentlichtes Produkt.</span><span class="sxs-lookup"><span data-stu-id="93eed-105">gRPC HTTP API is an experimental project, not a committed product.</span></span> <span data-ttu-id="93eed-106">Wir möchten Folgendes:</span><span class="sxs-lookup"><span data-stu-id="93eed-106">We want to:</span></span>
+> <span data-ttu-id="0df62-105">gRPC HTTP API ist ein experimentelles Projekt, kein veröffentlichtes Produkt.</span><span class="sxs-lookup"><span data-stu-id="0df62-105">gRPC HTTP API is an experimental project, not a committed product.</span></span> <span data-ttu-id="0df62-106">Wir möchten Folgendes:</span><span class="sxs-lookup"><span data-stu-id="0df62-106">We want to:</span></span>
 >
-> * <span data-ttu-id="93eed-107">Testen, ob unser Ansatz zum Erstellen von JSON-Web-APIs für gRPC-Dienste funktioniert</span><span class="sxs-lookup"><span data-stu-id="93eed-107">Test that our approach to creating JSON Web APIs for gRPC services works.</span></span>
-> * <span data-ttu-id="93eed-108">Feedback, ob der Ansatz für .NET-Entwickler nützlich ist</span><span class="sxs-lookup"><span data-stu-id="93eed-108">Get feedback on if this approach is useful to .NET developers.</span></span>
+> * <span data-ttu-id="0df62-107">Testen, ob unser Ansatz zum Erstellen von JSON-Web-APIs für gRPC-Dienste funktioniert</span><span class="sxs-lookup"><span data-stu-id="0df62-107">Test that our approach to creating JSON Web APIs for gRPC services works.</span></span>
+> * <span data-ttu-id="0df62-108">Feedback, ob der Ansatz für .NET-Entwickler nützlich ist</span><span class="sxs-lookup"><span data-stu-id="0df62-108">Get feedback on if this approach is useful to .NET developers.</span></span>
 >
-> <span data-ttu-id="93eed-109">Hinterlassen Sie [Feedback](https://github.com/grpc/grpc-dotnet/issues/167), damit wir sicherstellen können, dass Entwickler unser Projekt gern und produktiv nutzen.</span><span class="sxs-lookup"><span data-stu-id="93eed-109">Please [leave feedback](https://github.com/grpc/grpc-dotnet/issues/167) to ensure we build something that developers like and are productive with.</span></span>
+> <span data-ttu-id="0df62-109">Hinterlassen Sie [Feedback](https://github.com/grpc/grpc-dotnet/issues/167), damit wir sicherstellen können, dass Entwickler unser Projekt gern und produktiv nutzen.</span><span class="sxs-lookup"><span data-stu-id="0df62-109">Please [leave feedback](https://github.com/grpc/grpc-dotnet/issues/167) to ensure we build something that developers like and are productive with.</span></span>
 
-<span data-ttu-id="93eed-110">gRPC ist eine moderne Kommunikationsmethode zwischen Apps.</span><span class="sxs-lookup"><span data-stu-id="93eed-110">gRPC is a modern way to communicate between apps.</span></span> <span data-ttu-id="93eed-111">gRPC verwendet HTTP/2, Streaming, Protobuf und Nachrichtenverträge, um leistungsstarke Echtzeitdienste zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="93eed-111">gRPC uses HTTP/2, streaming, Protobuf and message contracts to create high-performance, real-time services.</span></span>
+<span data-ttu-id="0df62-110">gRPC ist eine moderne Kommunikationsmethode zwischen Apps.</span><span class="sxs-lookup"><span data-stu-id="0df62-110">gRPC is a modern way to communicate between apps.</span></span> <span data-ttu-id="0df62-111">gRPC verwendet HTTP/2, Streaming, Protobuf und Nachrichtenverträge, um leistungsstarke Echtzeitdienste zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="0df62-111">gRPC uses HTTP/2, streaming, Protobuf and message contracts to create high-performance, real-time services.</span></span>
 
-<span data-ttu-id="93eed-112">Eine Einschränkung von gRPC ist jedoch, dass nicht jede Plattform kompatibel ist.</span><span class="sxs-lookup"><span data-stu-id="93eed-112">One limitation with gRPC is not every platform can use it.</span></span> <span data-ttu-id="93eed-113">Browser unterstützen HTTP/2 nicht vollständig, sodass REST und JSON die primären Methoden sind, um Daten in Browser-Apps zu übertragen.</span><span class="sxs-lookup"><span data-stu-id="93eed-113">Browsers don't fully support HTTP/2, making REST and JSON the primary way to get data into browser apps.</span></span> <span data-ttu-id="93eed-114">Trotz der Vorteile von gRPC sind REST und JSON für moderne Apps wichtig.</span><span class="sxs-lookup"><span data-stu-id="93eed-114">Even with the benefits that gRPC brings, REST and JSON have an important place in modern apps.</span></span> <span data-ttu-id="93eed-115">Wenn Sie gRPC- ***und*** JSON-Web-APIs entwickeln, steigt der Aufwand für die App-Entwicklung.</span><span class="sxs-lookup"><span data-stu-id="93eed-115">Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.</span></span>
+<span data-ttu-id="0df62-112">Eine Einschränkung von gRPC ist jedoch, dass nicht jede Plattform kompatibel ist.</span><span class="sxs-lookup"><span data-stu-id="0df62-112">One limitation with gRPC is not every platform can use it.</span></span> <span data-ttu-id="0df62-113">Browser unterstützen HTTP/2 nicht vollständig, sodass REST und JSON die primären Methoden sind, um Daten in Browser-Apps zu übertragen.</span><span class="sxs-lookup"><span data-stu-id="0df62-113">Browsers don't fully support HTTP/2, making REST and JSON the primary way to get data into browser apps.</span></span> <span data-ttu-id="0df62-114">Trotz der Vorteile von gRPC sind REST und JSON für moderne Apps wichtig.</span><span class="sxs-lookup"><span data-stu-id="0df62-114">Even with the benefits that gRPC brings, REST and JSON have an important place in modern apps.</span></span> <span data-ttu-id="0df62-115">Wenn Sie gRPC- **und** JSON-Web-APIs entwickeln, steigt der Aufwand für die App-Entwicklung.</span><span class="sxs-lookup"><span data-stu-id="0df62-115">Building gRPC \* **and** _ JSON Web APIs adds unwanted overhead to app development.</span></span>
 
-<span data-ttu-id="93eed-116">In diesem Dokument wird erläutert, wie JSON-Web-APIs mithilfe von gRPC-Diensten erstellt werden.</span><span class="sxs-lookup"><span data-stu-id="93eed-116">This document discusses how to create JSON Web APIs using gRPC services.</span></span>
+<span data-ttu-id="0df62-116">In diesem Dokument wird erläutert, wie JSON-Web-APIs mithilfe von gRPC-Diensten erstellt werden.</span><span class="sxs-lookup"><span data-stu-id="0df62-116">This document discusses how to create JSON Web APIs using gRPC services.</span></span>
 
-## <a name="grpc-http-api"></a><span data-ttu-id="93eed-117">gRPC HTTP API</span><span class="sxs-lookup"><span data-stu-id="93eed-117">gRPC HTTP API</span></span>
+## <a name="grpc-http-api"></a><span data-ttu-id="0df62-117">gRPC HTTP API</span><span class="sxs-lookup"><span data-stu-id="0df62-117">gRPC HTTP API</span></span>
 
-<span data-ttu-id="93eed-118">gRPC HTTP API ist eine experimentelle Erweiterung für ASP.NET Core, die RESTful-JSON-APIs für gRPC-Dienste erstellt.</span><span class="sxs-lookup"><span data-stu-id="93eed-118">gRPC HTTP API is an experimental extension for ASP.NET Core that creates RESTful JSON APIs for gRPC services.</span></span> <span data-ttu-id="93eed-119">Nach der Konfiguration ermöglicht gRPC HTTP API es Apps, gRPC-Dienste mit gängigen HTTP-Konzepten aufzurufen:</span><span class="sxs-lookup"><span data-stu-id="93eed-119">Once configured, gRPC HTTP API allows apps to call gRPC services with familiar HTTP concepts:</span></span>
+<span data-ttu-id="0df62-118">gRPC HTTP API ist eine experimentelle Erweiterung für ASP.NET Core, die RESTful-JSON-APIs für gRPC-Dienste erstellt.</span><span class="sxs-lookup"><span data-stu-id="0df62-118">gRPC HTTP API is an experimental extension for ASP.NET Core that creates RESTful JSON APIs for gRPC services.</span></span> <span data-ttu-id="0df62-119">Nach der Konfiguration ermöglicht gRPC HTTP API es Apps, gRPC-Dienste mit gängigen HTTP-Konzepten aufzurufen:</span><span class="sxs-lookup"><span data-stu-id="0df62-119">Once configured, gRPC HTTP API allows apps to call gRPC services with familiar HTTP concepts:</span></span>
 
-* <span data-ttu-id="93eed-120">HTTP-Verben</span><span class="sxs-lookup"><span data-stu-id="93eed-120">HTTP verbs</span></span>
-* <span data-ttu-id="93eed-121">URL-Parameterbindung</span><span class="sxs-lookup"><span data-stu-id="93eed-121">URL parameter binding</span></span>
-* <span data-ttu-id="93eed-122">JSON-Anforderungen und -Antworten</span><span class="sxs-lookup"><span data-stu-id="93eed-122">JSON requests/responses</span></span>
+<span data-ttu-id="0df62-120">HTTP-Verben</span><span class="sxs-lookup"><span data-stu-id="0df62-120">_ HTTP verbs</span></span>
+* <span data-ttu-id="0df62-121">URL-Parameterbindung</span><span class="sxs-lookup"><span data-stu-id="0df62-121">URL parameter binding</span></span>
+* <span data-ttu-id="0df62-122">JSON-Anforderungen und -Antworten</span><span class="sxs-lookup"><span data-stu-id="0df62-122">JSON requests/responses</span></span>
 
-<span data-ttu-id="93eed-123">gRPC kann weiterhin zum Aufrufen von Diensten verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="93eed-123">gRPC can still be used to call services.</span></span>
+<span data-ttu-id="0df62-123">gRPC kann weiterhin zum Aufrufen von Diensten verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="0df62-123">gRPC can still be used to call services.</span></span>
 
-### <a name="usage"></a><span data-ttu-id="93eed-124">Verwendung</span><span class="sxs-lookup"><span data-stu-id="93eed-124">Usage</span></span>
+### <a name="usage"></a><span data-ttu-id="0df62-124">Verwendung</span><span class="sxs-lookup"><span data-stu-id="0df62-124">Usage</span></span>
 
-1. <span data-ttu-id="93eed-125">Fügen Sie [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi) einen Paketverweis hinzu.</span><span class="sxs-lookup"><span data-stu-id="93eed-125">Add a package reference to [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi).</span></span>
-1. <span data-ttu-id="93eed-126">Registrieren Sie Dienste mit `AddGrpcHttpApi` in *Startup.cs*.</span><span class="sxs-lookup"><span data-stu-id="93eed-126">Register services in *Startup.cs* with `AddGrpcHttpApi`.</span></span>
-1. <span data-ttu-id="93eed-127">Fügen Sie die Dateien [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) und [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) zu Ihrem Projekt hinzu.</span><span class="sxs-lookup"><span data-stu-id="93eed-127">Add [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.</span></span>
-1. <span data-ttu-id="93eed-128">Kommentieren Sie die gRPC-Methoden in Ihren *PROTO*-Dateien mit HTTP-Bindungen und -Routen:</span><span class="sxs-lookup"><span data-stu-id="93eed-128">Annotate gRPC methods in your *.proto* files with HTTP bindings and routes:</span></span>
+1. <span data-ttu-id="0df62-125">Fügen Sie [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi) einen Paketverweis hinzu.</span><span class="sxs-lookup"><span data-stu-id="0df62-125">Add a package reference to [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi).</span></span>
+1. <span data-ttu-id="0df62-126">Registrieren Sie Dienste mit `AddGrpcHttpApi` in *Startup.cs*.</span><span class="sxs-lookup"><span data-stu-id="0df62-126">Register services in *Startup.cs* with `AddGrpcHttpApi`.</span></span>
+1. <span data-ttu-id="0df62-127">Fügen Sie die Dateien [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) und [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) zu Ihrem Projekt hinzu.</span><span class="sxs-lookup"><span data-stu-id="0df62-127">Add [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.</span></span>
+1. <span data-ttu-id="0df62-128">Kommentieren Sie die gRPC-Methoden in Ihren *PROTO* -Dateien mit HTTP-Bindungen und -Routen:</span><span class="sxs-lookup"><span data-stu-id="0df62-128">Annotate gRPC methods in your *.proto* files with HTTP bindings and routes:</span></span>
 
 ```protobuf
 syntax = "proto3";
@@ -83,12 +84,12 @@ message HelloReply {
 }
 ```
 
-<span data-ttu-id="93eed-129">Die gRPC-Methode `SayHello` kann jetzt als gRPC, Protobuf und HTTP-API aufgerufen werden:</span><span class="sxs-lookup"><span data-stu-id="93eed-129">The `SayHello` gRPC method can now be invoked as gRPC+Protobuf and as an HTTP API:</span></span>
+<span data-ttu-id="0df62-129">Die gRPC-Methode `SayHello` kann jetzt als gRPC, Protobuf und HTTP-API aufgerufen werden:</span><span class="sxs-lookup"><span data-stu-id="0df62-129">The `SayHello` gRPC method can now be invoked as gRPC+Protobuf and as an HTTP API:</span></span>
 
-* <span data-ttu-id="93eed-130">Anforderung: `HTTP/1.1 GET /v1/greeter/world`</span><span class="sxs-lookup"><span data-stu-id="93eed-130">Request: `HTTP/1.1 GET /v1/greeter/world`</span></span>
-* <span data-ttu-id="93eed-131">Antwort: `{ "message": "Hello world" }`</span><span class="sxs-lookup"><span data-stu-id="93eed-131">Response: `{ "message": "Hello world" }`</span></span>
+* <span data-ttu-id="0df62-130">Anforderung: `HTTP/1.1 GET /v1/greeter/world`</span><span class="sxs-lookup"><span data-stu-id="0df62-130">Request: `HTTP/1.1 GET /v1/greeter/world`</span></span>
+* <span data-ttu-id="0df62-131">Antwort: `{ "message": "Hello world" }`</span><span class="sxs-lookup"><span data-stu-id="0df62-131">Response: `{ "message": "Hello world" }`</span></span>
 
-<span data-ttu-id="93eed-132">Aus den Serverprotokollen geht hervor, dass der HTTP-Aufruf von einem gRPC-Dienst ausgeführt wird.</span><span class="sxs-lookup"><span data-stu-id="93eed-132">Server logs show that the HTTP call is executed by a gRPC service.</span></span> <span data-ttu-id="93eed-133">gRPC HTTP API ordnet die eingehende HTTP-Anforderung einer gRPC-Nachricht zu und konvertiert die Antwortnachricht anschließend in JSON.</span><span class="sxs-lookup"><span data-stu-id="93eed-133">gRPC HTTP API maps the incoming HTTP request to a gRPC message, and then converts the response message to JSON.</span></span>
+<span data-ttu-id="0df62-132">Aus den Serverprotokollen geht hervor, dass der HTTP-Aufruf von einem gRPC-Dienst ausgeführt wird.</span><span class="sxs-lookup"><span data-stu-id="0df62-132">Server logs show that the HTTP call is executed by a gRPC service.</span></span> <span data-ttu-id="0df62-133">gRPC HTTP API ordnet die eingehende HTTP-Anforderung einer gRPC-Nachricht zu und konvertiert die Antwortnachricht anschließend in JSON.</span><span class="sxs-lookup"><span data-stu-id="0df62-133">gRPC HTTP API maps the incoming HTTP request to a gRPC message, and then converts the response message to JSON.</span></span>
 
 ```
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
@@ -103,16 +104,16 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 1.996ms 200 application/json
 ```
 
-<span data-ttu-id="93eed-134">Das ist ein einfaches Beispiel.</span><span class="sxs-lookup"><span data-stu-id="93eed-134">This is a basic example.</span></span> <span data-ttu-id="93eed-135">Weitere Anpassungsoptionen finden Sie unter [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule).</span><span class="sxs-lookup"><span data-stu-id="93eed-135">See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.</span></span>
+<span data-ttu-id="0df62-134">Das ist ein einfaches Beispiel.</span><span class="sxs-lookup"><span data-stu-id="0df62-134">This is a basic example.</span></span> <span data-ttu-id="0df62-135">Weitere Anpassungsoptionen finden Sie unter [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule).</span><span class="sxs-lookup"><span data-stu-id="0df62-135">See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.</span></span>
 
-### <a name="grpc-http-api-vs-grpc-web"></a><span data-ttu-id="93eed-136">gRPC HTTP API und gRPC-Web im Vergleich</span><span class="sxs-lookup"><span data-stu-id="93eed-136">gRPC HTTP API vs gRPC-Web</span></span>
+### <a name="grpc-http-api-vs-grpc-web"></a><span data-ttu-id="0df62-136">gRPC HTTP API und gRPC-Web im Vergleich</span><span class="sxs-lookup"><span data-stu-id="0df62-136">gRPC HTTP API vs gRPC-Web</span></span>
 
-<span data-ttu-id="93eed-137">gRPC HTTP API und gRPC-Web ermöglichen es, gRPC-Dienste über einen Browser aufzurufen.</span><span class="sxs-lookup"><span data-stu-id="93eed-137">Both gRPC HTTP API and gRPC-Web allow gRPC services to be called from a browser.</span></span> <span data-ttu-id="93eed-138">Die Vorgehensweise unterscheidet sich jedoch:</span><span class="sxs-lookup"><span data-stu-id="93eed-138">However, the way each does this is different:</span></span>
+<span data-ttu-id="0df62-137">gRPC HTTP API und gRPC-Web ermöglichen es, gRPC-Dienste über einen Browser aufzurufen.</span><span class="sxs-lookup"><span data-stu-id="0df62-137">Both gRPC HTTP API and gRPC-Web allow gRPC services to be called from a browser.</span></span> <span data-ttu-id="0df62-138">Die Vorgehensweise unterscheidet sich jedoch:</span><span class="sxs-lookup"><span data-stu-id="0df62-138">However, the way each does this is different:</span></span>
 
-* <span data-ttu-id="93eed-139">Mit gRPC-Web können Browser-Apps gRPC-Dienste mithilfe des gRPC-Web-Client und Protobuf über den Browser aufrufen.</span><span class="sxs-lookup"><span data-stu-id="93eed-139">gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf.</span></span> <span data-ttu-id="93eed-140">gRPC-Web setzt voraus, dass die Browser-App einen gRPC-Client generiert, und hat den Vorteil, dass kleine, schnelle Protobuf-Nachrichten gesendet werden.</span><span class="sxs-lookup"><span data-stu-id="93eed-140">gRPC-Web requires the browser app generate a gRPC client, and has the advantage of sending small, fast Protobuf messages.</span></span>
-* <span data-ttu-id="93eed-141">gRPC HTTP API ermöglicht es Browser-Apps, gRPC-Dienste so aufzurufen, als wären es RESTful-APIs mit JSON.</span><span class="sxs-lookup"><span data-stu-id="93eed-141">gRPC HTTP API allows browser apps to call gRPC services as if they were RESTful APIs with JSON.</span></span> <span data-ttu-id="93eed-142">Die Browser-App muss keinen gRPC-Client generieren und benötigt keine Informationen zu gRPC.</span><span class="sxs-lookup"><span data-stu-id="93eed-142">The browser app doesn't need to generate a gRPC client or know anything about gRPC.</span></span>
+* <span data-ttu-id="0df62-139">Mit gRPC-Web können Browser-Apps gRPC-Dienste mithilfe des gRPC-Web-Client und Protobuf über den Browser aufrufen.</span><span class="sxs-lookup"><span data-stu-id="0df62-139">gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf.</span></span> <span data-ttu-id="0df62-140">gRPC-Web setzt voraus, dass die Browser-App einen gRPC-Client generiert, und hat den Vorteil, dass kleine, schnelle Protobuf-Nachrichten gesendet werden.</span><span class="sxs-lookup"><span data-stu-id="0df62-140">gRPC-Web requires the browser app generate a gRPC client, and has the advantage of sending small, fast Protobuf messages.</span></span>
+* <span data-ttu-id="0df62-141">gRPC HTTP API ermöglicht es Browser-Apps, gRPC-Dienste so aufzurufen, als wären es RESTful-APIs mit JSON.</span><span class="sxs-lookup"><span data-stu-id="0df62-141">gRPC HTTP API allows browser apps to call gRPC services as if they were RESTful APIs with JSON.</span></span> <span data-ttu-id="0df62-142">Die Browser-App muss keinen gRPC-Client generieren und benötigt keine Informationen zu gRPC.</span><span class="sxs-lookup"><span data-stu-id="0df62-142">The browser app doesn't need to generate a gRPC client or know anything about gRPC.</span></span>
 
-<span data-ttu-id="93eed-143">Für gRPC HTTP API wird kein Client generiert.</span><span class="sxs-lookup"><span data-stu-id="93eed-143">No generated client is created for gRPC HTTP API.</span></span> <span data-ttu-id="93eed-144">Der vorherige `Greeter`-Dienst kann mithilfe von JavaScript-APIs für den Browser aufgerufen werden:</span><span class="sxs-lookup"><span data-stu-id="93eed-144">The previous `Greeter` service can be called using browser JavaScript APIs:</span></span>
+<span data-ttu-id="0df62-143">Für gRPC HTTP API wird kein Client generiert.</span><span class="sxs-lookup"><span data-stu-id="0df62-143">No generated client is created for gRPC HTTP API.</span></span> <span data-ttu-id="0df62-144">Der vorherige `Greeter`-Dienst kann mithilfe von JavaScript-APIs für den Browser aufgerufen werden:</span><span class="sxs-lookup"><span data-stu-id="0df62-144">The previous `Greeter` service can be called using browser JavaScript APIs:</span></span>
 
 ```javascript
 var name = nameInput.value;
@@ -124,21 +125,21 @@ fetch("/v1/greeter/" + name).then(function (response) {
 });
 ```
 
-### <a name="experimental-status"></a><span data-ttu-id="93eed-145">Experimenteller Status</span><span class="sxs-lookup"><span data-stu-id="93eed-145">Experimental status</span></span>
+### <a name="experimental-status"></a><span data-ttu-id="0df62-145">Experimenteller Status</span><span class="sxs-lookup"><span data-stu-id="0df62-145">Experimental status</span></span>
 
-<span data-ttu-id="93eed-146">gRPC HTTP API ist ein Experiment.</span><span class="sxs-lookup"><span data-stu-id="93eed-146">gRPC HTTP API is an experiment.</span></span> <span data-ttu-id="93eed-147">Es ist nicht fertiggestellt und wird nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="93eed-147">It is not complete and it is not supported.</span></span> <span data-ttu-id="93eed-148">Diese Technologie und die Möglichkeiten, die sie App-Entwicklern bietet, um schnell und gleichzeitig gRPC- und JSON-Dienste zu erstellen, sind für uns interessant.</span><span class="sxs-lookup"><span data-stu-id="93eed-148">We're interested in this technology, and the ability it gives app developers to quickly create gRPC and JSON services at the same time.</span></span> <span data-ttu-id="93eed-149">Es kann jedoch nicht garantiert werden, dass gRPC HTTP API fertiggestellt wird.</span><span class="sxs-lookup"><span data-stu-id="93eed-149">There is no commitment to completing the gRPC HTTP API.</span></span>
+<span data-ttu-id="0df62-146">gRPC HTTP API ist ein Experiment.</span><span class="sxs-lookup"><span data-stu-id="0df62-146">gRPC HTTP API is an experiment.</span></span> <span data-ttu-id="0df62-147">Es ist nicht fertiggestellt und wird nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="0df62-147">It is not complete and it is not supported.</span></span> <span data-ttu-id="0df62-148">Diese Technologie und die Möglichkeiten, die sie App-Entwicklern bietet, um schnell und gleichzeitig gRPC- und JSON-Dienste zu erstellen, sind für uns interessant.</span><span class="sxs-lookup"><span data-stu-id="0df62-148">We're interested in this technology, and the ability it gives app developers to quickly create gRPC and JSON services at the same time.</span></span> <span data-ttu-id="0df62-149">Es kann jedoch nicht garantiert werden, dass gRPC HTTP API fertiggestellt wird.</span><span class="sxs-lookup"><span data-stu-id="0df62-149">There is no commitment to completing the gRPC HTTP API.</span></span>
 
-<span data-ttu-id="93eed-150">Das Interesse der Entwickler an gRPC HTTP API soll gemessen werden.</span><span class="sxs-lookup"><span data-stu-id="93eed-150">We want to gauge developer interest in gRPC HTTP API.</span></span> <span data-ttu-id="93eed-151">[Senden Sie uns Feedback](https://github.com/grpc/grpc-dotnet/issues/167), wenn gRPC HTTP API für Sie interessant ist.</span><span class="sxs-lookup"><span data-stu-id="93eed-151">If gRPC HTTP API is interesting to you then please [give feedback](https://github.com/grpc/grpc-dotnet/issues/167).</span></span>
+<span data-ttu-id="0df62-150">Das Interesse der Entwickler an gRPC HTTP API soll gemessen werden.</span><span class="sxs-lookup"><span data-stu-id="0df62-150">We want to gauge developer interest in gRPC HTTP API.</span></span> <span data-ttu-id="0df62-151">[Senden Sie uns Feedback](https://github.com/grpc/grpc-dotnet/issues/167), wenn gRPC HTTP API für Sie interessant ist.</span><span class="sxs-lookup"><span data-stu-id="0df62-151">If gRPC HTTP API is interesting to you then please [give feedback](https://github.com/grpc/grpc-dotnet/issues/167).</span></span>
 
-## <a name="grpc-gateway"></a><span data-ttu-id="93eed-152">grpc-gateway</span><span class="sxs-lookup"><span data-stu-id="93eed-152">grpc-gateway</span></span>
+## <a name="grpc-gateway"></a><span data-ttu-id="0df62-152">grpc-gateway</span><span class="sxs-lookup"><span data-stu-id="0df62-152">grpc-gateway</span></span>
 
-<span data-ttu-id="93eed-153">[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) ist eine weitere Technologie zum Erstellen von RESTful-JSON-APIs über gRPC-Dienste.</span><span class="sxs-lookup"><span data-stu-id="93eed-153">[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) is another technology for creating RESTful JSON APIs from gRPC services.</span></span> <span data-ttu-id="93eed-154">Es werden die gleichen *PROTO*-Anmerkungen verwendet, um HTTP-Konzepte gRPC-Diensten zuzuordnen.</span><span class="sxs-lookup"><span data-stu-id="93eed-154">It uses the same *.proto* annotations to map HTTP concepts to gRPC services.</span></span>
+<span data-ttu-id="0df62-153">[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) ist eine weitere Technologie zum Erstellen von RESTful-JSON-APIs über gRPC-Dienste.</span><span class="sxs-lookup"><span data-stu-id="0df62-153">[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) is another technology for creating RESTful JSON APIs from gRPC services.</span></span> <span data-ttu-id="0df62-154">Es werden die gleichen *PROTO* -Anmerkungen verwendet, um HTTP-Konzepte gRPC-Diensten zuzuordnen.</span><span class="sxs-lookup"><span data-stu-id="0df62-154">It uses the same *.proto* annotations to map HTTP concepts to gRPC services.</span></span>
 
-<span data-ttu-id="93eed-155">Der größte Unterschied zwischen grpc-gateway und gRPC HTTP API besteht darin, dass grpc-gateway die Codegenerierung zum Erstellen eines Reverseproxyservers verwendet.</span><span class="sxs-lookup"><span data-stu-id="93eed-155">The biggest difference between grpc-gateway and gRPC HTTP API is grpc-gateway uses code generation to create a reverse-proxy server.</span></span> <span data-ttu-id="93eed-156">Der Reverseproxy übersetzt RESTful-Aufrufe in gRPC und sendet diese dann an den gRPC-Dienst.</span><span class="sxs-lookup"><span data-stu-id="93eed-156">The reverse-proxy translates RESTful calls into gRPC and then sends them on to the gRPC service.</span></span>
+<span data-ttu-id="0df62-155">Der größte Unterschied zwischen grpc-gateway und gRPC HTTP API besteht darin, dass grpc-gateway die Codegenerierung zum Erstellen eines Reverseproxyservers verwendet.</span><span class="sxs-lookup"><span data-stu-id="0df62-155">The biggest difference between grpc-gateway and gRPC HTTP API is grpc-gateway uses code generation to create a reverse-proxy server.</span></span> <span data-ttu-id="0df62-156">Der Reverseproxy übersetzt RESTful-Aufrufe in gRPC und sendet diese dann an den gRPC-Dienst.</span><span class="sxs-lookup"><span data-stu-id="0df62-156">The reverse-proxy translates RESTful calls into gRPC and then sends them on to the gRPC service.</span></span>
 
-<span data-ttu-id="93eed-157">Weitere Informationen zur Installation und Verwendung von grpc-gateway finden Sie in der [Dokumentation](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).</span><span class="sxs-lookup"><span data-stu-id="93eed-157">For installation and usage of grpc-gateway, see the [grpc-gateway documentation](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).</span></span>
+<span data-ttu-id="0df62-157">Weitere Informationen zur Installation und Verwendung von grpc-gateway finden Sie in der [Dokumentation](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).</span><span class="sxs-lookup"><span data-stu-id="0df62-157">For installation and usage of grpc-gateway, see the [grpc-gateway documentation](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="93eed-158">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="93eed-158">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="0df62-158">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="0df62-158">Additional resources</span></span>
 
-* [<span data-ttu-id="93eed-159">Dokumentation zu google.api.HttpRule</span><span class="sxs-lookup"><span data-stu-id="93eed-159">google.api.HttpRule documentation</span></span>](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
+* [<span data-ttu-id="0df62-159">Dokumentation zu google.api.HttpRule</span><span class="sxs-lookup"><span data-stu-id="0df62-159">google.api.HttpRule documentation</span></span>](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
 * <xref:grpc/browser>

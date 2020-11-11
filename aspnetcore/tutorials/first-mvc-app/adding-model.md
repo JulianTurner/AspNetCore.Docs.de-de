@@ -5,6 +5,7 @@ description: Dies ist Teil 4 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 01/13/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,22 +17,22 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: ddd517ef8fbf8cb4bb8765cb3caab4724c0205f0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 428d153cd94c882db16484a3009c86d1f9593538
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631965"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050900"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Teil 4: Hinzufügen eines Modells zu einer ASP.NET Core MVC-App
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT) und [Tom Dykstra](https://github.com/tdykstra)
 
-In diesem Abschnitt fügen Sie die Klassen für die Verwaltung von Filmen in einer Datenbank hinzu. Diese Klassen bilden den „**M**odell“-Teil der **M**VC-App.
+In diesem Abschnitt fügen Sie die Klassen für die Verwaltung von Filmen in einer Datenbank hinzu. Diese Klassen bilden den „ **M** odell“-Teil der **M** VC-App.
 
 Verwenden Sie diese Klassen mit [Entity Framework Core](/ef/core) (EF Core), um mit einer Datenbank zu arbeiten. EF Core ist ein ORM-Framework (Objektrelationales Mapping, ORM), das den Datenzugriffscode vereinfacht, den Sie schreiben müssen.
 
-Die Modellklassen, die Sie erstellen, werden als POCO-Klassen (von **P**lain **O**ld **C**LR **O**bjects) bezeichnet, da sie nicht über eine Abhängigkeit von EF Core verfügen. Sie definieren lediglich die Eigenschaften der Daten, die in der Datenbank gespeichert werden.
+Die Modellklassen, die Sie erstellen, werden als POCO-Klassen (von **P** lain **O** ld **C** LR **O** bjects) bezeichnet, da sie nicht über eine Abhängigkeit von EF Core verfügen. Sie definieren lediglich die Eigenschaften der Daten, die in der Datenbank gespeichert werden.
 
 In diesem Tutorial schreiben Sie zuerst die Modellklassen. Anschließend erstellt EF Core die Datenbank.
 
@@ -41,7 +42,7 @@ In diesem Tutorial schreiben Sie zuerst die Modellklassen. Anschließend erstell
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*>**Hinzufügen** > **Klasse**. Nennen Sie die Datei *Movie.cs*.
+Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* > **Hinzufügen** > **Klasse**. Nennen Sie die Datei *Movie.cs*.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -90,7 +91,7 @@ Mit dem vorangehenden Befehl wird der EF Core SQL Server-Anbieter hinzugefügt. 
 
 Wählen Sie im Menü **Projekt** die Option **NuGet-Pakete verwalten** aus.
 
-Geben Sie in das Feld **Suchen** in der oberen rechten Ecke `Microsoft.EntityFrameworkCore.SQLite` ein, und drücken Sie die **EINGABETASTE**, um zu suchen. Wählen Sie das entsprechende NuGet-Paket aus, und klicken Sie auf die Schaltfläche **Paket hinzufügen**.
+Geben Sie in das Feld **Suchen** in der oberen rechten Ecke `Microsoft.EntityFrameworkCore.SQLite` ein, und drücken Sie die **EINGABETASTE** , um zu suchen. Wählen Sie das entsprechende NuGet-Paket aus, und klicken Sie auf die Schaltfläche **Paket hinzufügen**.
 
 ![NuGet-Paket für Entity Framework Core hinzufügen](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
@@ -145,13 +146,13 @@ Fügen Sie folgenden hervorgehobenen Code in `Startup.ConfigureServices` hinzu:
 
 ---
 
-Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.
+Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json* -Datei.
 
 <a name="cs"></a>
 
 ## <a name="add-a-database-connection-string"></a>Hinzufügen einer Datenbank-Verbindungszeichenfolge
 
-Fügen Sie der Datei *appsettings.json* eine Verbindungszeichenfolge hinzu:
+Fügen Sie in der *appsettings.json* -Datei eine Verbindungszeichenfolge hinzu:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -179,7 +180,7 @@ Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller mi
 
 ![Dialogfeld „Gerüst hinzufügen“](adding-model/_static/add_scaffold21.png)
 
-Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:
+Bearbeiten Sie das Dialogfeld **Controller hinzufügen** :
 
 * **Modellklasse:** *Movie (MvcMovie.Models)*
 * **Datenkontextklasse:** *MvcMovieContext (MvcMovie.Data)*
@@ -192,14 +193,14 @@ Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:
 
 Visual Studio erstellt Folgendes:
 
-* Einen Movies-Controller (*Controllers/MoviesController.cs*)
-* Razor-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ (*Views/Movies/\*.cshtml*)
+* Einen Movies-Controller ( *Controllers/MoviesController.cs* )
+* Razor-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ ( *Views/Movies/\*.cshtml* )
 
 Die automatische Erstellung dieser Dateien wird als *Gerüstbau* bezeichnet.
 
 ### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code) 
 
-* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
 
 * Exportieren Sie unter Linux den Pfad des Gerüstbautools:
 
@@ -217,7 +218,7 @@ Die automatische Erstellung dieser Dateien wird als *Gerüstbau* bezeichnet.
 
 ### <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
 
 * Führen Sie den folgenden Befehl aus:
 
@@ -273,7 +274,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-* `ef migrations add InitialCreate`: Generiert eine Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*. Das `InitialCreate`-Argument ist der Migrationsname. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt. Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas. Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs*) angegeben ist.
+* `ef migrations add InitialCreate`: Generiert eine Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*. Das `InitialCreate`-Argument ist der Migrationsname. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt. Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas. Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs* ) angegeben ist.
 
 * `ef database update`: Aktualisiert die Datenbank auf die neueste Migration, die der vorherige Befehl erstellt hat. Der Befehl führt die `Up`-Methode in der Datei *Migrations/{zeitstempel}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.
 
@@ -281,7 +282,7 @@ dotnet ef database update
 
 ### <a name="the-initialcreate-class"></a>Die InitialCreate-Klasse
 
-Untersuchen Sie die Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*:
+Untersuchen Sie die Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs* :
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
@@ -321,7 +322,7 @@ Die `Up`-Methode erstellt die Movie-Tabelle und konfiguriert `Id` als Primärsch
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Öffnen Sie die Datei *Controllers/MoviesController.cs*, und überprüfen Sie den Konstruktor:
+Öffnen Sie die Datei *Controllers/MoviesController.cs* , und überprüfen Sie den Konstruktor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
 
@@ -353,7 +354,7 @@ Weiter oben in diesem Tutorial haben Sie gesehen, wie ein Controller mithilfe de
 
 MVC bietet außerdem die Möglichkeit, stark typisierte Modellobjekte an eine Ansicht zu übergeben. Dieser stark typisierte Ansatz ermöglicht eine Überprüfung Ihres Codes zur Kompilierzeit. Der Gerüstbaumechnismus hat diesen Ansatz (d.h. das Übergeben eines stark typisierten Modells) mit der `MoviesController`-Klasse und Ansichten genutzt.
 
-Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs*:
+Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs* :
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
@@ -382,7 +383,7 @@ Wenn ein Film gefunden wird, wird eine Instanz des `Movie`-Modells an die Ansich
 return View(movie);
 ```
 
-Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml*:
+Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml* :
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 
@@ -427,7 +428,7 @@ Da das `Model`-Objekt stark typisiert ist (als ein `IEnumerable<Movie>`-Objekt),
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*>**Hinzufügen** > **Klasse**. Nennen Sie die Klasse **Movie**.
+Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* > **Hinzufügen** > **Klasse**. Nennen Sie die Klasse **Movie**.
 
 [!INCLUDE [model 1b](~/includes/mvc-intro/model1b.md)]
 
@@ -454,7 +455,7 @@ Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller mi
 
 ![Dialogfeld „Gerüst hinzufügen“](adding-model/_static/add_scaffold21.png)
 
-Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:
+Bearbeiten Sie das Dialogfeld **Controller hinzufügen** :
 
 * **Modellklasse:** *Movie (MvcMovie.Models)*
 * **Datenkontextklasse:** Wählen Sie das Symbol **+** aus, und fügen Sie den Standardtyp **MvcMovie.Models.MvcMovieContext** hinzu.
@@ -469,9 +470,9 @@ Bearbeiten Sie das Dialogfeld **Controller hinzufügen**:
 
 Visual Studio erstellt Folgendes:
 
-* Eine Entity Framework Core-[Datenbankkontext-Klasse](xref:data/ef-mvc/intro#create-the-database-context) (*Data/MvcMovieContext.cs*)
-* Einen Movies-Controller (*Controllers/MoviesController.cs*)
-* Razor-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ (*Views/Movies/\*.cshtml*)
+* Eine Entity Framework Core- [Datenbankkontext-Klasse](xref:data/ef-mvc/intro#create-the-database-context) ( *Data/MvcMovieContext.cs* )
+* Einen Movies-Controller ( *Controllers/MoviesController.cs* )
+* Razor-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ ( *Views/Movies/\*.cshtml* )
 
 Die automatische Erstellung des Datenbankkontexts und der [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Aktionsmethoden (create, read, update and delete – Erstellen, Lesen, Aktualisieren und Löschen) und Ansichten wird als *Gerüstbau* bezeichnet.
 
@@ -480,7 +481,7 @@ Die automatische Erstellung des Datenbankkontexts und der [CRUD](https://wikiped
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
 * Installieren Sie das Gerüstbautool:
 
   ```dotnetcli
@@ -505,7 +506,7 @@ Die automatische Erstellung des Datenbankkontexts und der [CRUD](https://wikiped
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
 * Installieren Sie das Gerüstbautool:
 
   ```dotnetcli
@@ -584,7 +585,7 @@ In diesem Abschnitt werden die folgenden Aufgaben ausgeführt:
 
 Mit dem Befehl `ef migrations add InitialCreate` wird Code generiert, um das anfängliche Datenbankschema zu erstellen.
 
-Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs*) angegeben ist. Das `InitialCreate`-Argument ist der Migrationsname. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.
+Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs* ) angegeben ist. Das `InitialCreate`-Argument ist der Migrationsname. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt.
 
 ---
 
@@ -606,7 +607,7 @@ Der `MvcMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update, 
 
 Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge. In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle. Entitäten entsprechen Zeilen in Tabellen.
 
-Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.
+Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json* -Datei.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -645,7 +646,7 @@ Der oberhalb hervorgehobene Code zeigt den Filmdatenbankkontext, der dem [Abhän
 * `services.AddDbContext<MvcMovieContext>(options =>` gibt die zu verwendende Datenbank und die Verbindungszeichenfolge an.
 * `=>` ist ein [Lambdaoperator](/dotnet/articles/csharp/language-reference/operators/lambda-operator).
 
-Öffnen Sie die Datei *Controllers/MoviesController.cs*, und überprüfen Sie den Konstruktor:
+Öffnen Sie die Datei *Controllers/MoviesController.cs* , und überprüfen Sie den Konstruktor:
 
 <!-- l.. Make copy of Movies controller because we comment out the initial index method and update it later  -->
 
@@ -662,7 +663,7 @@ Weiter oben in diesem Tutorial haben Sie gesehen, wie ein Controller mithilfe de
 
 MVC bietet außerdem die Möglichkeit, stark typisierte Modellobjekte an eine Ansicht zu übergeben. Dieser stark typisierte Ansatz ermöglicht eine bessere Überprüfung Ihres Codes zur Kompilierzeit. Der Gerüstbaumechnismus hat diesen Ansatz (d.h. das Übergeben eines stark typisierten Modells) mit der `MoviesController`-Klasse und Ansichten genutzt, als die Methoden und Ansichten erstellt wurden.
 
-Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs*:
+Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs* :
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
@@ -691,7 +692,7 @@ Wenn ein Film gefunden wird, wird eine Instanz des `Movie`-Modells an die Ansich
 return View(movie);
    ```
 
-Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml*:
+Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml* :
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
 

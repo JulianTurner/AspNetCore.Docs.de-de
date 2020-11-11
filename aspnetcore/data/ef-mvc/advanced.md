@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/advanced
-ms.openlocfilehash: 9f02165f54d3cd3328496710dc92ebc86c4640d6
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 386be395399bf4131e4b6c8cac8221f994e8b7c5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626830"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93054384"
 ---
 # <a name="tutorial-learn-about-advanced-scenarios---aspnet-mvc-with-ef-core"></a>Tutorial: Erfahren Sie mehr über erweiterte Szenarien: ASP.NET MVC mit EF Core
 
@@ -102,9 +103,9 @@ Wenn der Controller eine HttpGet-Anforderung verarbeitet, wird nichts in `ViewDa
 
 Wenn auf die Schaltfläche **Aktualisieren** geklickt wird, wird die HttpPost-Methode aufgerufen, und der Multiplikator hat den Wert in das Textfeld eingegeben. Der Code führt dann das SQL aus, das Kurse aktualisiert und die Anzahl der betroffenen Zeilen an die Ansicht in `ViewData` zurückgibt. Wenn die Ansicht einen `RowsAffected`-Wert erhält, zeigt sie die Anzahl der aktualisierten Zeilen an.
 
-Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Ansichten/Kurse*, und klicken Sie anschließend auf **Hinzufügen > Neues Element**.
+Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Ansichten/Kurse* , und klicken Sie anschließend auf **Hinzufügen > Neues Element**.
 
-Klicken Sie im Dialogfeld **Neues Element hinzufügen** unter **Installiert** im linken Bereich auf **ASP.NET Core**, klicken Sie auf **RazorRazor-Ansicht**, und nennen Sie die neue Ansicht *UpdateCourseCredits.cshtml*.
+Klicken Sie im Dialogfeld **Neues Element hinzufügen** unter **Installiert** im linken Bereich auf **ASP.NET Core** , klicken Sie auf **RazorRazor-Ansicht** , und nennen Sie die neue Ansicht *UpdateCourseCredits.cshtml*.
 
 Ersetzen Sie in *Views/Courses/UpdateCourseCredits.cshtml* den Vorlagencode durch den folgenden Code:
 
@@ -118,7 +119,7 @@ Klicken Sie auf **Aktualisieren**. Die Anzahl der betroffenen Zeilen wird angeze
 
 ![Seite zum Aktualisieren der Credits für Kurse, betroffene Zeilen](advanced/_static/update-credits-rows-affected.png)
 
-Klicken Sie auf **Zurück zur Liste**, um die Kursliste mit der geänderte Anzahl von Credits anzuzeigen.
+Klicken Sie auf **Zurück zur Liste** , um die Kursliste mit der geänderte Anzahl von Credits anzuzeigen.
 
 Beachten Sie, dass der Produktionscode sicherstellen würde, dass Aktualisierungen immer zu gültigen Daten führen. Der hier dargestellte vereinfachte Code könnte die Anzahl der Credits so verändern, dass sie Zahlen größer als fünf ergeben. (Die `Credits`-Eigenschaft verfügt über ein `[Range(0, 5)]`-Attribut.) Die Updateabfrage würde funktionieren, aber die ungültigen Daten könnten zu unerwarteten Ergebnissen in anderen Teilen des Systems führen, die davon ausgehen, dass die Anzahl der Credits fünf oder weniger beträgt.
 
@@ -128,11 +129,11 @@ Weitere Informationen zu unformatierten SQL-Abfragen finden Sie unter [Unformati
 
 Manchmal ist es hilfreich, die tatsächlichen SQL-Abfragen anzuzeigen, die an die Datenbank gesendet werden. Die integrierte Protokollfunktion für ASP.NET Core wird automatisch von EF Core verwendet, um Protokolle zu schreiben, die SQL für Abfragen und Updates enthalten. In diesem Abschnitt sehen Sie einige Beispiele für die SQL-Protokollierung.
 
-Öffnen Sie *StudentsController.cs*, und legen Sie in der `Details`-Methode einen Haltepunkt auf der `if (student == null)`-Anweisung fest.
+Öffnen Sie *StudentsController.cs* , und legen Sie in der `Details`-Methode einen Haltepunkt auf der `if (student == null)`-Anweisung fest.
 
 Führen Sie die Anwendung im Debugmodus aus. Wechseln Sie zur Detailseite für Studenten.
 
-Wechseln Sie zum **Ausgabe**-Fenster, zeigen Sie die Debugausgabe an, und Sie sehen die Abfrage:
+Wechseln Sie zum **Ausgabe** -Fenster, zeigen Sie die Debugausgabe an, und Sie sehen die Abfrage:
 
 ```
 Microsoft.EntityFrameworkCore.Database.Command:Information: Executed DbCommand (56ms) [Parameters=[@__id_0='?'], CommandType='Text', CommandTimeout='30']
@@ -158,7 +159,7 @@ Sie sehen hier etwas, das Sie möglicherweise überrascht: SQL wählt bis zu zwe
 * Wenn die Abfrage mehrere Zeilen zurückgibt, gibt die Methode 0 (null) zurück.
 * Um zu bestimmen, ob die Abfrage mehrere Zeilen zurückgeben würde, muss EF überprüfen, ob mindestens zwei zurückgegeben werden.
 
-Beachten Sie, dass Sie nicht den Debugmodus verwenden und an einem Haltepunkt anhalten müssen, um die Protokollierungsausgabe im **Ausgabe**-Fenster anzuzeigen. Es ist einfach praktisch, die Protokollierung an dem Punkt zu anzuhalten, an dem Sie die Ausgabe ansehen möchten. Wenn Sie dies nicht tun, wird die Protokollierung fortgesetzt, und Sie müssen scrollen, bis Sie die für Sie interessanten Stellen finden.
+Beachten Sie, dass Sie nicht den Debugmodus verwenden und an einem Haltepunkt anhalten müssen, um die Protokollierungsausgabe im **Ausgabe** -Fenster anzuzeigen. Es ist einfach praktisch, die Protokollierung an dem Punkt zu anzuhalten, an dem Sie die Ausgabe ansehen möchten. Wenn Sie dies nicht tun, wird die Protokollierung fortgesetzt, und Sie müssen scrollen, bis Sie die für Sie interessanten Stellen finden.
 
 ## <a name="create-an-abstraction-layer"></a>Erstellen einer Abstraktionsschicht
 
@@ -240,9 +241,9 @@ Führen Sie den `migrations remove`-Befehl aus, speichern Sie Ihre Codeänderung
 
 Es ist möglich, dass andere Fehler auftreten, wenn Schemaänderungen in einer Datenbank durchgeführt werden, die vorhandene Daten enthält. Wenn Sie Migrationsfehler erhalten, die Sie nicht beheben können, können Sie den Datenbanknamen in der Verbindungszeichenfolge ändern oder die Datenbank löschen. Mit einer neuen Datenbank gibt es keine zu migrierenden Daten, und der Update-Database-Befehl wird wahrscheinlich ohne Fehler abgeschlossen werden.
 
-Der einfachste Ansatz besteht in der Neubenennung der Datenbank in *appsettings.json*. Das nächste Mal, wenn Sie `database update` ausführen, wird eine neue Datenbank erstellt.
+Der einfachste Ansatz besteht in der Neubenennung der Datenbank in *appsettings.json* . Das nächste Mal, wenn Sie `database update` ausführen, wird eine neue Datenbank erstellt.
 
-Zum Löschen einer Datenbank im SSOX, klicken Sie mit der rechten Maustaste auf die Datenbank. Klicken Sie auf **Löschen**, wählen Sie dann im Dialogfeld **Datenbank löschen** **Bestehende Verbindungen schließen** aus, und klicken Sie auf **OK**.
+Zum Löschen einer Datenbank im SSOX, klicken Sie mit der rechten Maustaste auf die Datenbank. Klicken Sie auf **Löschen** , wählen Sie dann im Dialogfeld **Datenbank löschen** **Bestehende Verbindungen schließen** aus, und klicken Sie auf **OK**.
 
 Führen Sie zum Löschen einer Datenbank mithilfe der CLI den `database drop`-CLI-Befehl aus:
 
@@ -254,7 +255,7 @@ dotnet ef database drop
 
 Fehlermeldung:
 
-> Ein netzwerkbezogener oder instanzspezifischer Fehler beim Herstellen einer Verbindung mit SQL Server. Der Server wurde nicht gefunden oder es konnte nicht auf ihn zugegriffen werden. Stellen Sie sicher, dass der Instanzname richtig und SQL Server so konfiguriert ist, das Remoteverbindungen zulässig sind. (Anbieter: SQL-Netzwerkschnittstellen, Fehler: 26: Fehler beim Suchen des angegebenen Servers/der angegebenen Instanz)
+> Ein netzwerkbezogener oder instanzspezifischer Fehler beim Herstellen einer Verbindung mit SQL Server. Der Server wurde nicht gefunden, oder auf ihn kann nicht zugegriffen werden. Stellen Sie sicher, dass der Instanzname richtig und SQL Server so konfiguriert ist, das Remoteverbindungen zulässig sind. (Anbieter: SQL-Netzwerkschnittstellen, Fehler: 26: Fehler beim Suchen des angegebenen Servers/der angegebenen Instanz)
 
 Projektmappe:
 

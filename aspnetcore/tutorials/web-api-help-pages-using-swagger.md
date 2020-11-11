@@ -1,11 +1,12 @@
 ---
-title: ASP.NET Core-Web-API-Hilfeseiten mit Swagger/OpenAPI
+title: ASP.NET Core-Web-API-Dokumentation mit Swagger/OpenAPI
 author: RicoSuter
 description: Dieses Tutorial enthält eine exemplarische Vorgehensweise für das Hinzufügen von Swagger, um Dokumentationen und Hilfeseiten für eine Web-API-App zu generieren.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 10/29/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,32 +18,39 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-help-pages-using-swagger
-ms.openlocfilehash: c40aede044c78122a9057613f0eece9acf84df7b
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e5442c88048cf41e289fb476b4082cb6029b1b75
+ms.sourcegitcommit: 0d40fc4932531ce13fc4ee9432144584e03c2f1c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633993"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93062453"
 ---
-# <a name="aspnet-core-web-api-help-pages-with-swagger--openapi"></a>ASP.NET Core-Web-API-Hilfeseiten mit Swagger/OpenAPI
+# <a name="aspnet-core-web-api-documentation-with-swagger--openapi"></a>ASP.NET Core-Web-API-Dokumentation mit Swagger/OpenAPI
 
 Von [Christoph Nienaber](https://twitter.com/zuckerthoben) und [Rico Suter](https://blog.rsuter.com/)
 
-Beim Verwenden einer Web-API ist es für einen Entwickler oft nicht einfach, die zahlreichen verschiedenen Methoden zu verstehen. Das Generieren von nützlichen Dokumentationen und Hilfeseiten für Web-APIs kann ein Problem darstellen. Dieses lässt sich mit [Swagger](https://swagger.io/) lösen – auch als [OpenAPI](https://www.openapis.org/) bekannt. Das Programm bietet Vorteile wie die interaktive Dokumentation, die Generierung von Client SDKs und die Erkennbarkeit von APIs.
+Bei Swagger (OpenAPI) handelt es sich um eine sprachunabhängige Spezifikation für das Beschreiben von REST-APIs. Sowohl Computer als auch Menschen können so die Funktionen der REST-API verstehen, ohne Direktzugriff auf den Quellcode zu benötigen. Die Hauptziele sind die folgenden:
 
-In diesem Artikel werden die Swagger-Implementierungen [Swashbuckle.AspNetCore](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) und [NSwag](https://github.com/RicoSuter/NSwag) von .NET veranschaulicht:
+* Minimieren des Arbeitsaufwands, der zum Verbinden von getrennten Diensten erforderlich ist
+* Verringern des Zeitaufwands, der für die genaue Dokumentation eines Diensts erforderlich ist
 
-* **Swashbuckle.AspNetCore** ist ein Open Source-Projekt zum Generieren von Swagger-Dokumenten für Web-APIs von ASP.NET Core.
+Die zwei OpenAPI-Hauptimplementierungen für .NET sind [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) und [NSwag](https://github.com/RicoSuter/NSwag). Weitere Informationen finden Sie in den folgenden Artikeln:
 
-* **NSwag** ist ein weiteres Open-Source-Projekt zum Generieren von Swagger-Dokumenten und Integrieren von [Swagger-Benutzeroberfläche](https://swagger.io/swagger-ui/) oder [ReDoc](https://github.com/Rebilly/ReDoc) in ASP.NET Core-Web-APIs. Außerdem bietet NSwag Verfahren, um C#- und TypeScript-Clientcode für Ihre API zu generieren.
+* [Erste Schritte mit Swashbuckle und ASP.NET Core](xref:tutorials/get-started-with-swashbuckle)
+* [Erste Schritte mit NSwag und ASP.NET Core](xref:tutorials/get-started-with-nswag)
 
-## <a name="what-is-swagger--openapi"></a>Was ist Swagger bzw. OpenAPI?
+## <a name="openapi-vs-swagger"></a>OpenApi vs. Swagger
 
-Bei Swagger handelt es sich um eine sprachunabhängige Spezifikation für das Beschreiben von [REST-APIs](https://en.wikipedia.org/wiki/Representational_state_transfer). Das Swagger-Projekt wurde an die [OpenAPI Initiative](https://www.openapis.org/) übergeben. Dort wird es nun als „OpenAPI“ bezeichnet. Beide Namen werden austauschbar verwendet, jedoch wird „OpenAPI“ bevorzugt. Dadurch können Computer und Benutzer die Funktionen eines Diensts ohne direkten Zugriff auf die Implementierung (Quellcode, Netzwerkzugriff, Dokumentation) nachvollziehen. Ein Ziel besteht im Minimieren des Arbeitsaufwands, der zum Verbinden von getrennten Diensten erforderlich ist. Ein weiteres Ziel besteht darin, den Zeitaufwand zu verringern, der für die genaue Dokumentation eines Diensts erforderlich ist.
+Das Swagger-Projekt wurde 2015 an die OpenAPI-Initiative übergeben. Dort wird es nun als „OpenAPI“ bezeichnet. Beide Namen können austauschbar verwendet werden. OpenAPI bezieht sich jedoch auf die Spezifikation. Swagger bezieht sich auf die Familie der Open-Source- und kommerziellen Produkte von SmartBear, die die OpenAPI-Spezifikation verwenden. Verwandte Open-Source-Produkte wie [OpenAPIGenerator](https://github.com/OpenAPITools/openapi-generator) gehören auch zur Swagger-Familie, obwohl sie nicht von SmartBear veröffentlicht wurden.
+
+Kurz gesagt:
+
+* OpenAPI ist eine Spezifikation.
+* Swagger ist ein Tool, das die OpenAPI-Spezifikation verwendet. Beispiele sind OpenAPIGenerator und SwaggerUI.
 
 ## <a name="openapi-specification-openapijson"></a>OpenAPI-Spezifikation (openapi.json)
 
-Im Zentrum des OpenAPI-Flows steht die Spezifikation – diese ist standardmäßig ein Dokument namens *openapi.json*. Je nachdem, welchen Dienst Sie verwenden, wird dieses Dokument von der OpenAPI-Toolkette oder von einer Drittanbieterimplementierung dieser Kette generiert. Es beschreibt die Funktionen Ihrer API und wie auf diese mit HTTP zugegriffen werden kann. Es führt die Swagger-Benutzeroberfläche aus und wird von der Toolkette verwendet, um die Ermittlung und die Generierung von Clientcode zu aktivieren. Hier finden Sie ein Beispiel der OpenAPI-Spezifikation, das aus Gründen der Übersichtlichkeit reduziert wurde:
+Die OpenAPI-Spezifikation ist ein Dokument, in dem die Funktionen Ihrer API beschrieben werden. Das Dokument basiert auf der XML-Datei und den Attributanmerkungen innerhalb der Controller und Modelle. Es handelt sich dabei um den Hauptteil des OpenAPI-Flows, und dieser wird für die Steuerung von Tools wie SwaggerUI verwendet. Standardmäßig lautet der Name *openapi.json*. Hier finden Sie ein Beispiel der OpenAPI-Spezifikation, das aus Gründen der Übersichtlichkeit reduziert wurde:
 
 ```json
 {

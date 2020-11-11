@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/14/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/entity-framework-6
-ms.openlocfilehash: 64d420d7076f1da453ee423cc4a3732eeb47b221
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: 086418c161677f585b08ed360555c93d8575e701
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876697"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059454"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core und Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
@@ -49,13 +50,13 @@ Damit Sie Entity Framework 6 verwenden können, muss Ihr Projekt mit .NET Framew
 
 Die empfohlene Methode zum Verwenden von Entity Framework 6 in einer ASP.NET Core-Anwendung besteht darin, den Kontext von Entity Framework 6 und die Modellklassen in einem Klassenbibliotheksprojekt einzufügen, das das .NET-Framework anzielt. Fügen Sie einen Verweis vom ASP.NET Core-Projekt zur Klassenbibliothek hinzu. Weitere Informationen finden Sie im Beispiel [Visual Studio-Projektmappe mit Entity Framework 6 und ASP.NET Core-Projekten](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/sample/).  
 
-Sie können den Kontext von Entity Framework 6 nicht in ASP.NET Core-Projekte einfügen, da diese nicht alle Funktionalitäten unterstützen, die für Entity Framework 6-Befehle (wie *Enable-Migrations*) erforderlich sind.    
+Sie können den Kontext von Entity Framework 6 nicht in ASP.NET Core-Projekte einfügen, da diese nicht alle Funktionalitäten unterstützen, die für Entity Framework 6-Befehle (wie *Enable-Migrations* ) erforderlich sind.    
 
 Unabhängig vom Projekttyp, in dem Sie den Kontext von Entity Framework 6 platzieren, funktionieren nur Entity Framework 6-Befehlszeilentools mit diesem Kontext. `Scaffold-DbContext` ist beispielsweise nur in Entity Framework Core verfügbar. Wenn Sie bei einer Datenbank das Reverse Engineering (Zurückentwicklung) in ein Entity Framework 6-Modell durchführen müssen, finden Sie weitere Informationen unter <https://docs.microsoft.com/ef/ef6/modeling/code-first/workflows/existing-database>.    
 
 ## <a name="reference-full-framework-and-ef6-in-the-aspnet-core-project"></a>Verweisen auf das vollständige Framework und auf Entity Framework 6 in einem ASP.NET Core-Projekt 
 
-Das ASP.NET Core-Projekt muss .NET-Framework anzielen und auf das Entity Framework 6 verweisen. Die *CSPROJ*-Datei Ihres ASP.NET Core-Projekts ähnelt beispielsweise folgendem Beispiel (nur die relevanten Teile der Datei werden dargestellt).    
+Das ASP.NET Core-Projekt muss .NET-Framework anzielen und auf das Entity Framework 6 verweisen. Die *CSPROJ* -Datei Ihres ASP.NET Core-Projekts ähnelt beispielsweise folgendem Beispiel (nur die relevanten Teile der Datei werden dargestellt).    
 
 [!code-xml[](entity-framework-6/sample/MVCCore/MVCCore.csproj?range=3-9&highlight=2)]   
 
@@ -106,7 +107,7 @@ Dieses Beispiel kann von Grund auf neu erstellt werden, indem Sie folgende Schri
 
 * Registrieren Sie im Core-Projekt in der Datei *Startup.cs* den Kontext für DI.    
 
-* Fügen Sie im Core-Projekt in der Datei *appsettings.json* die Verbindungszeichenfolge hinzu.    
+* Fügen Sie im Core-Projekt in *appsettings.json* die Verbindungszeichenfolge hinzu.  
 
 * Fügen Sie im Core-Projekt einen Controller und Ansichten hinzu, um zu überprüfen, dass Daten gelesen und geschrieben werden können. (Beachten Sie, dass der ASP.NET Core MVC-Gerüstbau nicht mit dem Entity Framework 6-Kontext funktioniert, auf den durch die Klassenbibliothek verwiesen wird.)
 

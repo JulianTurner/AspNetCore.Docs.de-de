@@ -5,6 +5,7 @@ description: Dies ist Teil 2 der Tutorialreihe zu Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 4099873142b99afb7f0659dfd9a4fde8bec3081d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 84198760cf8302d379c7630b65641e65b66d72a2
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633772"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93050926"
 ---
 # <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Teil 2: Hinzufügen eines Modells zu einer Razor Pages-App in ASP.NET Core
 
@@ -58,13 +59,13 @@ Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*. Wählen Sie **Hi
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie im Lösungspad mit der rechten Maustaste auf das Projekt **RazorPagesMovie**, und wählen Sie dann **Hinzufügen** > **Neuer Ordner...** aus. Geben Sie dem Ordner den Namen *Modelle*.
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und klicken Sie auf **Hinzufügen** > **Neue Datei...** .
+* Klicken Sie im Lösungspad mit der rechten Maustaste auf das Projekt **RazorPagesMovie** , und wählen Sie dann **Hinzufügen** > **Neuer Ordner...** aus. Geben Sie dem Ordner den Namen *Modelle*.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* , und klicken Sie auf **Hinzufügen** > **Neue Datei...** .
 * Führen Sie im Dialogfeld **Neue Datei** folgende Aktionen aus:
 
   * Klicken Sie im linken Bereich auf **Allgemein**.
   * Klicken Sie im mittleren Bereich auf **Leere Klasse**.
-  * Geben Sie der Klasse den Namen **Film**, und wählen sie **Neu** aus.
+  * Geben Sie der Klasse den Namen **Film** , und wählen sie **Neu** aus.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
 
@@ -78,7 +79,7 @@ In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt. Mit dem Tool 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Erstellen Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies* :
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Pages* > **Hinzufügen** > **Neuer Ordner**.
 * Geben Sie dem Ordner den Namen *Movies*
@@ -94,7 +95,7 @@ Klicken Sie im Dialogfeld **Gerüst hinzufügen** auf **Razor-Seiten mithilfe de
 Vervollständigen Sie das Dialogfeld **Add Razor Pages using Entity Framework (CRUD)** (Razor-Seiten mithilfe des Entity Frameworks (CRUD) hinzufügen):
 
 * Wählen Sie in der Dropdownliste **Modellklasse** den Eintrag **Film (RazorPagesMovie.Models)** aus.
-* Klicken Sie in der Zeile **Datenkontextklasse** auf das Pluszeichen **+** , und ändern Sie den generierten Namen von RazorPagesMovie.**Models**.RazorPagesMovieContext in RazorPagesMovie.**Data**.RazorPagesMovieContext. [Dieses Änderung](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) ist nicht erforderlich. Sie erstellt die Datenbank-Kontextklasse mit dem korrekten Namespace.
+* Klicken Sie in der Zeile **Datenkontextklasse** auf das Pluszeichen **+** , und ändern Sie den generierten Namen von RazorPagesMovie. **Models**.RazorPagesMovieContext in RazorPagesMovie. **Data**.RazorPagesMovieContext. [Dieses Änderung](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) ist nicht erforderlich. Sie erstellt die Datenbank-Kontextklasse mit dem korrekten Namespace.
 * Wählen Sie **Hinzufügen** aus.
 
 ![Abbildung der vorherigen Anweisungen.](model/_static/3/arp.png)
@@ -106,20 +107,20 @@ Die Datei *appsettings.json* wird mit der Verbindungszeichenfolge aktualisiert, 
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
 * Installieren Sie das Gerüstbautool:
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
    ```
 
-* **Für Windows**: Führen Sie den folgenden Befehl aus:
+* **Für Windows** : Führen Sie den folgenden Befehl aus:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **Für MacOS und Linux**: Führen Sie den folgenden Befehl aus:
+* **Für MacOS und Linux** : Führen Sie den folgenden Befehl aus:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
@@ -132,7 +133,7 @@ Die Datei *appsettings.json* wird mit der Verbindungszeichenfolge aktualisiert, 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-Erstellen Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies* :
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Pages* > **Hinzufügen** > **Neuer Ordner**.
 * Geben Sie dem Ordner den Namen *Movies*
@@ -148,7 +149,7 @@ Klicken Sie im Dialogfeld **Add New Scaffolding** (Neuen Gerüstbau hinzufügen)
 Vervollständigen Sie das Dialogfeld **Add Razor Pages using Entity Framework (CRUD)** (Razor-Seiten mithilfe des Entity Frameworks (CRUD) hinzufügen):
 
 * Wählen Sie in der Dropdownliste **Modellklasse** den Eintrag **Film (RazorPagesMovie.Models)** aus, oder geben Sie diesen ein.
-* Geben Sie in der Zeile **Datenkontextklasse** den Namen der neuen Klasse ein: RazorPagesMovie.**Data**.RazorPagesMovieContext. [Dieses Änderung](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) ist nicht erforderlich. Sie erstellt die Datenbank-Kontextklasse mit dem korrekten Namespace.
+* Geben Sie in der Zeile **Datenkontextklasse** den Namen der neuen Klasse ein: RazorPagesMovie. **Data**.RazorPagesMovieContext. [Dieses Änderung](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) ist nicht erforderlich. Sie erstellt die Datenbank-Kontextklasse mit dem korrekten Namespace.
 * Wählen Sie **Hinzufügen** aus.
 
 ![Abbildung der vorherigen Anweisungen.](model/_static/arpMac.png)
@@ -173,7 +174,7 @@ Der vorangehende Befehl fügt die Entity Framework Core-Tools für die .NET Core
 
 Der Gerüstprozess erstellt und ändert folgende Dateien:
 
-* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
+* *Pages/Movies* : „Create“, „Delete“, „Details“, „Edit“ und „Index“.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Aktualisiert
@@ -186,7 +187,7 @@ Die erstellten und aktualisierten Daten werden im nächsten Abschnitt erläutert
 
 Der Gerüstprozess erstellt und ändert folgende Dateien:
 
-* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
+* *Pages/Movies* : „Create“, „Delete“, „Details“, „Edit“ und „Index“.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Aktualisiert
@@ -199,7 +200,7 @@ Die erstellten und aktualisierten Daten werden im nächsten Abschnitt erläutert
 
 Der Gerüstbauprozess erstellt die folgenden Dateien:
 
-* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
+* *Pages/Movies* : „Create“, „Delete“, „Details“, „Edit“ und „Index“.
 
 Die erstellten Daten werden im nächsten Abschnitt erläutert.
 
@@ -263,7 +264,7 @@ Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, U
 
 Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge. In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle. Entitäten entsprechen Zeilen in Tabellen.
 
-Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.
+Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json* -Datei.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -339,13 +340,13 @@ Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*. Wählen Sie **Hi
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das Projekt **RazorPagesMovie**, und wählen Sie dann **Hinzufügen** > **Neuer Ordner** aus. Geben Sie dem Ordner den Namen *Modelle*.
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle*, und klicken Sie auf **Hinzufügen** > **Neue Datei**.
+* Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das Projekt **RazorPagesMovie** , und wählen Sie dann **Hinzufügen** > **Neuer Ordner** aus. Geben Sie dem Ordner den Namen *Modelle*.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* , und klicken Sie auf **Hinzufügen** > **Neue Datei**.
 * Führen Sie im Dialogfeld **Neue Datei** folgende Aktionen aus:
 
   * Klicken Sie im linken Bereich auf **Allgemein**.
   * Klicken Sie im mittleren Bereich auf **Leere Klasse**.
-  * Geben Sie der Klasse den Namen **Film**, und wählen sie **Neu** aus.
+  * Geben Sie der Klasse den Namen **Film** , und wählen sie **Neu** aus.
 
 [!INCLUDE [model 1b](~/includes/RP/model1b.md)]
 
@@ -359,7 +360,7 @@ In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt. Mit dem Tool 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Erstellen Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies* :
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Pages* > **Hinzufügen** > **Neuer Ordner**.
 * Geben Sie dem Ordner den Namen *Movies*
@@ -391,15 +392,15 @@ Die Datei *appsettings.json* wird mit der Verbindungszeichenfolge aktualisiert, 
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs*, *Startup.cs*, und *CSPROJ*).
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
 
-* **Für Windows**: Führen Sie den folgenden Befehl aus:
+* **Für Windows** : Führen Sie den folgenden Befehl aus:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
-* **Für MacOS und Linux**: Führen Sie den folgenden Befehl aus:
+* **Für MacOS und Linux** : Führen Sie den folgenden Befehl aus:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
@@ -409,7 +410,7 @@ Die Datei *appsettings.json* wird mit der Verbindungszeichenfolge aktualisiert, 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-Erstellen Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies* :
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Pages* > **Hinzufügen** > **Neuer Ordner**.
 * Geben Sie dem Ordner den Namen *Movies*
@@ -438,7 +439,7 @@ Der Gerüstprozess erstellt und ändert folgende Dateien:
 
 ### <a name="files-created"></a>Erstellte Dateien
 
-* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
+* *Pages/Movies* : „Create“, „Delete“, „Details“, „Edit“ und „Index“.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="file-updated"></a>Datei aktualisiert
@@ -469,7 +470,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-Mit dem Befehl `Add-Migration` wird Code generiert, um das anfängliche Datenbankschema zu erstellen. Das Schema basiert auf dem Modell in `DbContext` (in der Datei *RazorPagesMovieContext.cs*). Das Argument `InitialCreate` wird verwendet, um die Migration zu benennen. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name verwendet, der die Migration beschreibt. Weitere Informationen finden Sie unter <xref:data/ef-mvc/migrations>.
+Mit dem Befehl `Add-Migration` wird Code generiert, um das anfängliche Datenbankschema zu erstellen. Das Schema basiert auf dem Modell in `DbContext` (in der Datei *RazorPagesMovieContext.cs* ). Das Argument `InitialCreate` wird verwendet, um die Migration zu benennen. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name verwendet, der die Migration beschreibt. Weitere Informationen finden Sie unter <xref:data/ef-mvc/migrations>.
 
 Der Befehl `Update-Database` führt die Methode `Up` in der Datei *Migrations/\<time-stamp>_InitialCreate.cs* aus. Die Methode `Up` erstellt die Datenbank.
 
@@ -483,7 +484,7 @@ Der Befehl `Update-Database` führt die Methode `Up` in der Datei *Migrations/\<
 
 ---
 > [!NOTE]
-> Mit den vorherigen Befehlen wird die folgende Warnung erstellt: „*Für die Spalte „Preis“ mit Dezimalwerten beim Entitätstyp „Movie“ wurde kein Typ angegeben. Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen. Geben Sie den Spaltentyp von SQL-Server an, der durch „HasColumnType()“ sämtliche Werte unterstützen kann.* “ Sie können diese Warnung ignorieren, sie wird in einem zukünftigen Tutorial korrigiert.
+> Mit den vorherigen Befehlen wird die folgende Warnung erstellt: „ *Für die Spalte „Preis“ mit Dezimalwerten beim Entitätstyp „Movie“ wurde kein Typ angegeben. Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen. Geben Sie den Spaltentyp von SQL-Server an, der durch „HasColumnType()“ sämtliche Werte unterstützen kann.* “ Sie können diese Warnung ignorieren, sie wird in einem zukünftigen Tutorial korrigiert.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -503,7 +504,7 @@ Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, U
 
 Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge. In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle. Entitäten entsprechen Zeilen in Tabellen.
 
-Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json*-Datei.
+Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json* -Datei.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 

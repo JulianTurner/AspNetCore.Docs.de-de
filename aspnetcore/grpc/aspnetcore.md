@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/aspnetcore
-ms.openlocfilehash: 11237c93832e095abb03d761773d213dfa336052
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b120aa4ab6922445f2c53f3b1cb3bd5c159d8a84
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633889"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057829"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>gRPC-Dienste mit ASP.NET Core
 
@@ -66,7 +67,7 @@ gRPC erfordert das Paket [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.A
 
 ### <a name="configure-grpc"></a>Konfigurieren von gRPC
 
-In *Startup.cs*:
+In *Startup.cs* :
 
 * gRPC wird mit der Methode `AddGrpc` aktiviert.
 * Jeder gRPC-Dienst wird der Routingpipeline durch die `MapGrpcService`-Methode hinzugefügt.
@@ -93,7 +94,7 @@ Kestrel [unterstützt HTTP/2](xref:fundamentals/servers/kestrel#http2-support) a
 
 Die für gRPC verwendeten Kestrel-Endpunkte sollten mit TLS gesichert werden. In der Entwicklung wird ein mit TLS gesicherter Endpunkt automatisch bei `https://localhost:5001` erstellt, wenn das ASP.NET Core-Entwicklungszertifikat vorhanden ist. Es ist keine Konfiguration erforderlich. Ein `https`-Präfix prüft, ob der Kestrel-Endpunkt TLS verwendet.
 
-In der Produktion muss TLS explizit konfiguriert sein. Im folgenden *appsettings.json*-Beispiel wird ein mit TLS gesicherter HTTP/2-Endpunkt bereitgestellt:
+In der Produktion muss TLS explizit konfiguriert sein. Im folgenden *appsettings.json* -Beispiel wird ein mit TLS gesicherter HTTP/2-Endpunkt bereitgestellt:
 
 [!code-json[](~/grpc/aspnetcore/sample/appsettings.json?highlight=4)]
 

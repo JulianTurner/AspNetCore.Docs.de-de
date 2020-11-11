@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/07/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/change-tokens
-ms.openlocfilehash: 891cce975c5852b0192fd7ff22b21060d1dac8ac
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f20d44c7767b284f727ce19a46224dae0cf6a5e1
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634916"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93053773"
 ---
 # <a name="detect-changes-with-change-tokens-in-aspnet-core"></a>Erkennen von Änderungen mit Änderungstoken in ASP.NET Core
 
@@ -66,7 +67,7 @@ Die Überladung [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TSta
 
 ## <a name="monitor-for-configuration-changes"></a>Überwachen von Konfigurationsänderungen
 
-ASP.NET Core-Vorlagen verwenden standardmäßig [JSON-Konfigurationsdateien](xref:fundamentals/configuration/index#json-configuration-provider) (*appsettings.json*, *appsettings.Development.json* und *appsettings.Production.json*), um Konfigurationseinstellungen der Anwendungen zu laden.
+ASP.NET Core-Vorlagen verwenden standardmäßig [JSON-Konfigurationsdateien](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* und *appsettings.Production.json* ), um Konfigurationseinstellungen der Anwendungen zu laden.
 
 Diese Dateien werden mithilfe der [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*)-Erweiterungsmethode für <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> konfiguriert, die einen `reloadOnChange`-Parameter akzeptiert. `reloadOnChange` gibt an, ob Konfigurationen auf Dateiänderungen neu geladen werden soll. Diese Einstellung wird in der <xref:Microsoft.Extensions.Hosting.Host>-Hilfsmethode <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> verwendet:
 
@@ -80,11 +81,11 @@ Die dateibasierte Konfiguration wird durch <xref:Microsoft.Extensions.Configurat
 
 `IFileMonitor` wird standardmäßig von einem <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> bereitgestellt, der zum Überwachen auf Konfigurationsdateiänderungen <xref:System.IO.FileSystemWatcher> verwendet.
 
-Die Beispielanwendung veranschaulicht zwei Implementierungen für die Überwachung von Konfigurationsänderungen. Wenn sich eine beliebige der *appsettings*-Dateien ändert, führen beide Dateiüberwachungsimplementierungen benutzerdefinierten Code aus – die Beispiel-App gibt eine Meldung an die Konsole aus.
+Die Beispielanwendung veranschaulicht zwei Implementierungen für die Überwachung von Konfigurationsänderungen. Wenn sich eine beliebige der *appsettings* -Dateien ändert, führen beide Dateiüberwachungsimplementierungen benutzerdefinierten Code aus – die Beispiel-App gibt eine Meldung an die Konsole aus.
 
 Der `FileSystemWatcher` einer Konfigurationsdatei kann mehrere Tokenrückrufe für eine einzelne Dateikonfigurationsänderung auslösen. Um sicherzustellen, dass der benutzerdefinierte Code bei Auslösung mehrerer Tokenrückrufe nur einmal ausgeführt wird, überprüft die Beispielimplementierung Dateihashes. Das Beispiel verwendet SHA1-Dateihashing. Eine Wiederholung wird mit einem exponentiellen Backoff implementiert. Die Wiederholung ist vorhanden, weil Dateisperren auftreten können, die vorübergehend das Berechnen eines neuen Hashs für eine der Dateien verhindern.
 
-*Utilities/Utilities.cs*:
+*Utilities/Utilities.cs* :
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -100,7 +101,7 @@ In `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Startup.cs?name=snippet3)]
 
-Der `state` des Rückrufs wird zur Übergabe an die `IWebHostEnvironment` verwendet. Dies ist hilfreich, um die richtige *appsettings*-Konfigurationsdatei anzugeben, die überwacht werden soll (in der Entwicklungsumgebung beispielsweise *appsettings.Development.json*). Dateihashes werden verwendet, um zu verhindern, dass die `WriteConsole`-Anweisung mehrere Male ausgeführt wird. Dies liegt an mehreren Tokenrückrufen, wenn die Konfigurationsdatei nur einmal geändert wurde.
+Der `state` des Rückrufs wird zur Übergabe an die `IWebHostEnvironment` verwendet. Dies ist hilfreich, um die richtige *appsettings* -Konfigurationsdatei anzugeben, die überwacht werden soll (in der Entwicklungsumgebung beispielsweise *appsettings.Development.json* ). Dateihashes werden verwendet, um zu verhindern, dass die `WriteConsole`-Anweisung mehrere Male ausgeführt wird. Dies liegt an mehreren Tokenrückrufen, wenn die Konfigurationsdatei nur einmal geändert wurde.
 
 Dieses System wird so lange ausgeführt, wie die Anwendung ausgeführt wird. Es kann nicht vom Benutzer deaktiviert werden.
 
@@ -114,7 +115,7 @@ Das Beispiel implementiert:
 
 In diesem Beispiel wird eine `IConfigurationMonitor`-Schnittstelle eingerichtet.
 
-*Extensions/ConfigurationMonitor.cs*:
+*Extensions/ConfigurationMonitor.cs* :
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -140,7 +141,7 @@ Eine `ConfigurationMonitor`-Instanz wird in `Startup.ConfigureServices` als Dien
 
 Die Indexseite bietet das Benutzer Kontrolle über die Konfigurationsüberwachung. Die `IConfigurationMonitor`-Instanz wird in das `IndexModel` eingefügt.
 
-*Pages/Index.cshtml.cs*:
+*Pages/Index.cshtml.cs* :
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -152,7 +153,7 @@ Wenn `OnPostStartMonitoring` ausgelöst wird, wird die Überwachung aktiviert, u
 
 Die Überwachung wird über Schaltflächen in der Benutzeroberfläche aktiviert und deaktiviert.
 
-*Pages/Index.cshtml*:
+*Pages/Index.cshtml* :
 
 [!code-cshtml[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -169,11 +170,11 @@ Das Beispiel verwendet `GetFileContent`, um:
 * Dateiinhalt zurückzugeben.
 * Einen Wiederholungsalgorithmus mit exponentiellem Backoff zu implementieren, um Fälle abzudecken, in denen eine Dateisperre vorübergehend das Lesen einer Datei verhindert.
 
-*Utilities/Utilities.cs*:
+*Utilities/Utilities.cs* :
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-Ein `FileService` wird erstellt, um die zwischengespeicherten Dateisuchvorgänge zu behandeln. Der `GetFileContent`-Methodenaufruf des Diensts versucht, den Dateiinhalt aus dem speicherinternen Cache abzurufen und ihn an den Aufrufer zurückzugeben (*Services/FileService.cs*).
+Ein `FileService` wird erstellt, um die zwischengespeicherten Dateisuchvorgänge zu behandeln. Der `GetFileContent`-Methodenaufruf des Diensts versucht, den Dateiinhalt aus dem speicherinternen Cache abzurufen und ihn an den Aufrufer zurückzugeben ( *Services/FileService.cs* ).
 
 Wenn mithilfe des Cacheschlüssels zwischengespeicherte Inhalte nicht gefunden werden, werden folgende Aktionen durchgeführt:
 
@@ -193,7 +194,7 @@ In `Startup.ConfigureServices`:
 
 Das Seitenmodell lädt mithilfe des Diensts den Inhalt der Datei.
 
-In der `OnGet`-Methode auf der Indexseite (*Pages/Index.cshtml.cs*):
+In der `OnGet`-Methode auf der Indexseite ( *Pages/Index.cshtml.cs* ):
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 
@@ -264,7 +265,7 @@ Die Überladung [ChangeToken.OnChange\<TState>(Func\<IChangeToken>, Action\<TSta
 
 ## <a name="monitor-for-configuration-changes"></a>Überwachen von Konfigurationsänderungen
 
-ASP.NET Core-Vorlagen verwenden standardmäßig [JSON-Konfigurationsdateien](xref:fundamentals/configuration/index#json-configuration-provider) (*appsettings.json*, *appsettings.Development.json* und *appsettings.Production.json*), um Konfigurationseinstellungen der Anwendungen zu laden.
+ASP.NET Core-Vorlagen verwenden standardmäßig [JSON-Konfigurationsdateien](xref:fundamentals/configuration/index#json-configuration-provider) ( *appsettings.json* , *appsettings.Development.json* und *appsettings.Production.json* ), um Konfigurationseinstellungen der Anwendungen zu laden.
 
 Diese Dateien werden mithilfe der [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*)-Erweiterungsmethode für <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> konfiguriert, die einen `reloadOnChange`-Parameter akzeptiert. `reloadOnChange` gibt an, ob Konfigurationen auf Dateiänderungen neu geladen werden soll. Diese Einstellung wird in der <xref:Microsoft.AspNetCore.WebHost>-Hilfsmethode <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> verwendet:
 
@@ -278,11 +279,11 @@ Die dateibasierte Konfiguration wird durch <xref:Microsoft.Extensions.Configurat
 
 `IFileMonitor` wird standardmäßig von einem <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> bereitgestellt, der zum Überwachen auf Konfigurationsdateiänderungen <xref:System.IO.FileSystemWatcher> verwendet.
 
-Die Beispielanwendung veranschaulicht zwei Implementierungen für die Überwachung von Konfigurationsänderungen. Wenn sich eine beliebige der *appsettings*-Dateien ändert, führen beide Dateiüberwachungsimplementierungen benutzerdefinierten Code aus – die Beispiel-App gibt eine Meldung an die Konsole aus.
+Die Beispielanwendung veranschaulicht zwei Implementierungen für die Überwachung von Konfigurationsänderungen. Wenn sich eine beliebige der *appsettings* -Dateien ändert, führen beide Dateiüberwachungsimplementierungen benutzerdefinierten Code aus – die Beispiel-App gibt eine Meldung an die Konsole aus.
 
 Der `FileSystemWatcher` einer Konfigurationsdatei kann mehrere Tokenrückrufe für eine einzelne Dateikonfigurationsänderung auslösen. Um sicherzustellen, dass der benutzerdefinierte Code bei Auslösung mehrerer Tokenrückrufe nur einmal ausgeführt wird, überprüft die Beispielimplementierung Dateihashes. Das Beispiel verwendet SHA1-Dateihashing. Eine Wiederholung wird mit einem exponentiellen Backoff implementiert. Die Wiederholung ist vorhanden, weil Dateisperren auftreten können, die vorübergehend das Berechnen eines neuen Hashs für eine der Dateien verhindern.
 
-*Utilities/Utilities.cs*:
+*Utilities/Utilities.cs* :
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet1)]
 
@@ -298,7 +299,7 @@ In `Startup.Configure`:
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Startup.cs?name=snippet3)]
 
-Der `state` des Rückrufs wird zur Übergabe an die `IHostingEnvironment` verwendet. Dies ist hilfreich, um die richtige *appsettings*-Konfigurationsdatei anzugeben, die überwacht werden soll (in der Entwicklungsumgebung beispielsweise *appsettings.Development.json*). Dateihashes werden verwendet, um zu verhindern, dass die `WriteConsole`-Anweisung mehrere Male ausgeführt wird. Dies liegt an mehreren Tokenrückrufen, wenn die Konfigurationsdatei nur einmal geändert wurde.
+Der `state` des Rückrufs wird zur Übergabe an die `IHostingEnvironment` verwendet. Dies ist hilfreich, um die richtige *appsettings* -Konfigurationsdatei anzugeben, die überwacht werden soll (in der Entwicklungsumgebung beispielsweise *appsettings.Development.json* ). Dateihashes werden verwendet, um zu verhindern, dass die `WriteConsole`-Anweisung mehrere Male ausgeführt wird. Dies liegt an mehreren Tokenrückrufen, wenn die Konfigurationsdatei nur einmal geändert wurde.
 
 Dieses System wird so lange ausgeführt, wie die Anwendung ausgeführt wird. Es kann nicht vom Benutzer deaktiviert werden.
 
@@ -312,7 +313,7 @@ Das Beispiel implementiert:
 
 In diesem Beispiel wird eine `IConfigurationMonitor`-Schnittstelle eingerichtet.
 
-*Extensions/ConfigurationMonitor.cs*:
+*Extensions/ConfigurationMonitor.cs* :
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Extensions/ConfigurationMonitor.cs?name=snippet1)]
 
@@ -338,7 +339,7 @@ Eine `ConfigurationMonitor`-Instanz wird in `Startup.ConfigureServices` als Dien
 
 Die Indexseite bietet das Benutzer Kontrolle über die Konfigurationsüberwachung. Die `IConfigurationMonitor`-Instanz wird in das `IndexModel` eingefügt.
 
-*Pages/Index.cshtml.cs*:
+*Pages/Index.cshtml.cs* :
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet1)]
 
@@ -350,7 +351,7 @@ Wenn `OnPostStartMonitoring` ausgelöst wird, wird die Überwachung aktiviert, u
 
 Die Überwachung wird über Schaltflächen in der Benutzeroberfläche aktiviert und deaktiviert.
 
-*Pages/Index.cshtml*:
+*Pages/Index.cshtml* :
 
 [!code-cshtml[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml?name=snippet_Buttons)]
 
@@ -367,11 +368,11 @@ Das Beispiel verwendet `GetFileContent`, um:
 * Dateiinhalt zurückzugeben.
 * Einen Wiederholungsalgorithmus mit exponentiellem Backoff zu implementieren, um Fälle abzudecken, in denen eine Dateisperre vorübergehend das Lesen einer Datei verhindert.
 
-*Utilities/Utilities.cs*:
+*Utilities/Utilities.cs* :
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Utilities/Utilities.cs?name=snippet2)]
 
-Ein `FileService` wird erstellt, um die zwischengespeicherten Dateisuchvorgänge zu behandeln. Der `GetFileContent`-Methodenaufruf des Diensts versucht, den Dateiinhalt aus dem speicherinternen Cache abzurufen und ihn an den Aufrufer zurückzugeben (*Services/FileService.cs*).
+Ein `FileService` wird erstellt, um die zwischengespeicherten Dateisuchvorgänge zu behandeln. Der `GetFileContent`-Methodenaufruf des Diensts versucht, den Dateiinhalt aus dem speicherinternen Cache abzurufen und ihn an den Aufrufer zurückzugeben ( *Services/FileService.cs* ).
 
 Wenn mithilfe des Cacheschlüssels zwischengespeicherte Inhalte nicht gefunden werden, werden folgende Aktionen durchgeführt:
 
@@ -391,7 +392,7 @@ In `Startup.ConfigureServices`:
 
 Das Seitenmodell lädt mithilfe des Diensts den Inhalt der Datei.
 
-In der `OnGet`-Methode auf der Indexseite (*Pages/Index.cshtml.cs*):
+In der `OnGet`-Methode auf der Indexseite ( *Pages/Index.cshtml.cs* ):
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Pages/Index.cshtml.cs?name=snippet3)]
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: da7f50b27e447b86bd8a06851b767488d51b7050
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: c8174c7e253a596d02dbc6cec183453b3723bc24
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592890"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060468"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Fehlerbehandlung in ASP.NET Core
 
@@ -45,11 +46,11 @@ Der vorangehende hervorgehobene Code aktiviert die Seite mit Ausnahmen für Entw
 
 Die Vorlagen platzieren <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> am Anfang der Middlewarepipeline, sodass die in der nachfolgenden Middleware ausgelösten Ausnahmen abgefangen werden.
 
-Der vorangehende Code aktiviert die Seite mit Ausnahmen für Entwickler ***nur*** dann, wenn die App in der Entwicklungsumgebung ausgeführt wird. Bei Ausführung der App in der Produktionsumgebung sollten keine detaillierten Informationen zu den Ausnahmen öffentlich angezeigt werden. Weitere Informationen zum Konfigurieren der Umgebungen finden Sie unter <xref:fundamentals/environments>.
+Der vorangehende Code aktiviert die Seite mit Ausnahmen für Entwickler **nur** dann, wenn die App in der Entwicklungsumgebung ausgeführt wird. Bei Ausführung der App in der Produktionsumgebung sollten keine detaillierten Informationen zu den Ausnahmen öffentlich angezeigt werden. Weitere Informationen zum Konfigurieren der Umgebungen finden Sie unter <xref:fundamentals/environments>.
 
 Die Seite mit Ausnahmen für Entwickler enthält die folgenden Informationen zu der Ausnahme und der Anforderung:
 
-* Stapelüberwachung
+Stapelüberwachung
 * Abfragezeichenfolgeparameter, sofern vorhanden
 * Cookies, sofern vorhanden
 * Header
@@ -65,7 +66,7 @@ Im folgenden Beispiel fügt <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerE
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml*) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält die Aktionsmethode `Error` und die Ansicht „Error“ im Home-Controller.
+Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml* ) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält die Aktionsmethode `Error` und die Ansicht „Error“ im Home-Controller.
 
 Markieren Sie die Aktionsmethode für die Fehlerbehandlung nicht mit HTTP-Methodenattributen wie `HttpGet`. Durch explizite Verben könnte bei einigen Anforderungen verhindert werden, dass diese Aktionsmethode zum Einsatz kommt. Lassen Sie den anonymen Zugriff auf die Methode zu, wenn nicht authentifizierten Benutzern die Fehleransicht angezeigt werden soll.
 
@@ -313,7 +314,7 @@ Im folgenden Beispiel fügt <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerE
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml*) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält eine Fehleraktionsmethode und die Ansicht „Fehler“ im Home-Controller.
+Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml* ) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält eine Fehleraktionsmethode und die Ansicht „Fehler“ im Home-Controller.
 
 Markieren Sie die Aktionsmethode für die Fehlerbehandlung nicht mit HTTP-Methodenattributen wie `HttpGet`. Durch explizite Verben könnte bei einigen Anforderungen verhindert werden, dass diese Methode zum Einsatz kommt. Lassen Sie den anonymen Zugriff auf die Methode zu, wenn nicht authentifizierten Benutzern die Fehleransicht angezeigt werden soll.
 

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/12/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/middleware
-ms.openlocfilehash: 1a5259f65261fb95fcfaa59df3f04da14d3f1ae3
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: 2dd5fa127af4432c612bb654d50eb4147aea6868
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102864"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93051433"
 ---
 # <a name="test-aspnet-core-middleware"></a>Testen von ASP.NET Core-Middleware
 
@@ -67,7 +68,7 @@ Senden Sie eine Anforderung mit <xref:System.Net.Http.HttpClient>:
 
 Bestätigen Sie das Ergebnis. Machen Sie zunächst eine Assertion, die das Gegenteil des von Ihnen erwarteten Ergebnisses darstellt. Ein erster Lauf mit einer falsch-positiven Assertion bestätigt, dass der Test fehlschlägt, wenn die Middleware einwandfrei funktioniert. Führen Sie den Test aus, und bestätigen Sie, dass der Test fehlschlägt.
 
-Im folgenden Beispiel sollte die Middleware den Statuscode 404 (*Nicht gefunden*) zurückgeben, wenn der Stammendpunkt angefordert wird. Führen Sie den ersten Testlauf mit `Assert.NotEqual( ... );` durch, der fehlschlagen sollte:
+Im folgenden Beispiel sollte die Middleware den Statuscode 404 ( *Nicht gefunden* ) zurückgeben, wenn der Stammendpunkt angefordert wird. Führen Sie den ersten Testlauf mit `Assert.NotEqual( ... );` durch, der fehlschlagen sollte:
 
 [!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=22)]
 
@@ -135,14 +136,14 @@ Wie im früheren Beispiel, das auf eine Antwort des Typs *404 – nicht gefunden
 TestServer:
 
 * Wurde erstellt, um Serververhalten zum Testen von Middleware zu replizieren.
-* Versucht ***nicht***, alle <xref:System.Net.Http.HttpClient>-Verhalten zu replizieren.
-* Es wird versucht, dem Client so viel Kontrolle über den Server wie möglich zu geben, mit weitestgehendem Einblick in die Vorgänge auf dem Server. Beispielsweise können Ausnahmen ausgelöst werden, die normalerweise nicht von `HttpClient` ausgelöst werden, um den Serverzustand direkt zu kommunizieren.
+* Hierbei wird **nicht** versucht, das gesamte <xref:System.Net.Http.HttpClient>-Verhalten zu replizieren.
+Es wird versucht, dem Client so viel Kontrolle über den Server wie möglich zu geben, mit weitestgehendem Einblick in die Vorgänge auf dem Server. Beispielsweise können Ausnahmen ausgelöst werden, die normalerweise nicht von `HttpClient` ausgelöst werden, um den Serverzustand direkt zu kommunizieren.
 * Standardmäßig werden einige transportspezifische Header nicht festgelegt, da diese in der Regel für Middleware nicht relevant sind. Weitere Informationen finden Sie im nächsten Abschnitt.
 
 ### <a name="content-length-and-transfer-encoding-headers"></a>Content-Length- und Transfer-Encoding-Header
 
-TestServer legt ***keine*** transportbezogenen Anforderungs- oder Antwortheader wie [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) oder [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding) fest. In Anwendungen sollten Abhängigkeiten von diesen Headern vermieden werden, weil ihre Verwendung je nach Client, Szenario und Protokoll variiert. Wenn `Content-Length` und `Transfer-Encoding` erforderlich sind, um ein bestimmtes Szenario zu testen, können sie im Test angegeben werden, wenn <xref:System.Net.Http.HttpRequestMessage> oder <xref:Microsoft.AspNetCore.Http.HttpContext> verfasst wird. Weitere Informationen finden Sie in den folgenden GitHub-Issues:
+TestServer legt **keine** transportbezogenen Anforderungs- oder Antwortheader wie [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) oder [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding) fest. In Anwendungen sollten Abhängigkeiten von diesen Headern vermieden werden, weil ihre Verwendung je nach Client, Szenario und Protokoll variiert. Wenn `Content-Length` und `Transfer-Encoding` erforderlich sind, um ein bestimmtes Szenario zu testen, können sie im Test angegeben werden, wenn <xref:System.Net.Http.HttpRequestMessage> oder <xref:Microsoft.AspNetCore.Http.HttpContext> verfasst wird. Weitere Informationen finden Sie in den folgenden GitHub-Issues:
 
-* [dotnet/aspnetcore#21677](https://github.com/dotnet/aspnetcore/issues/21677)
+[dotnet/aspnetcore#21677](https://github.com/dotnet/aspnetcore/issues/21677)
 * [dotnet/aspnetcore#18463](https://github.com/dotnet/aspnetcore/issues/18463)
 * [dotnet/aspnetcore#13273](https://github.com/dotnet/aspnetcore/issues/13273)

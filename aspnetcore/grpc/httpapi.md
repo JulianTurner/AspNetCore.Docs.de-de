@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/28/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: fa4e7489920338344b78874690e64d4080b5a719
-ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
+ms.openlocfilehash: 45e2a1a5e6a9f00294147db769454b78c5b866e5
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91805582"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059935"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Erstellen von JSON-Web-APIs über gRPC
 
@@ -38,7 +39,7 @@ Von [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC ist eine moderne Kommunikationsmethode zwischen Apps. gRPC verwendet HTTP/2, Streaming, Protobuf und Nachrichtenverträge, um leistungsstarke Echtzeitdienste zu erstellen.
 
-Eine Einschränkung von gRPC ist jedoch, dass nicht jede Plattform kompatibel ist. Browser unterstützen HTTP/2 nicht vollständig, sodass REST und JSON die primären Methoden sind, um Daten in Browser-Apps zu übertragen. Trotz der Vorteile von gRPC sind REST und JSON für moderne Apps wichtig. Wenn Sie gRPC- ***und*** JSON-Web-APIs entwickeln, steigt der Aufwand für die App-Entwicklung.
+Eine Einschränkung von gRPC ist jedoch, dass nicht jede Plattform kompatibel ist. Browser unterstützen HTTP/2 nicht vollständig, sodass REST und JSON die primären Methoden sind, um Daten in Browser-Apps zu übertragen. Trotz der Vorteile von gRPC sind REST und JSON für moderne Apps wichtig. Wenn Sie gRPC- **und** JSON-Web-APIs entwickeln, steigt der Aufwand für die App-Entwicklung.
 
 In diesem Dokument wird erläutert, wie JSON-Web-APIs mithilfe von gRPC-Diensten erstellt werden.
 
@@ -46,7 +47,7 @@ In diesem Dokument wird erläutert, wie JSON-Web-APIs mithilfe von gRPC-Diensten
 
 gRPC HTTP API ist eine experimentelle Erweiterung für ASP.NET Core, die RESTful-JSON-APIs für gRPC-Dienste erstellt. Nach der Konfiguration ermöglicht gRPC HTTP API es Apps, gRPC-Dienste mit gängigen HTTP-Konzepten aufzurufen:
 
-* HTTP-Verben
+HTTP-Verben
 * URL-Parameterbindung
 * JSON-Anforderungen und -Antworten
 
@@ -57,7 +58,7 @@ gRPC kann weiterhin zum Aufrufen von Diensten verwendet werden.
 1. Fügen Sie [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi) einen Paketverweis hinzu.
 1. Registrieren Sie Dienste mit `AddGrpcHttpApi` in *Startup.cs*.
 1. Fügen Sie die Dateien [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) und [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) zu Ihrem Projekt hinzu.
-1. Kommentieren Sie die gRPC-Methoden in Ihren *PROTO*-Dateien mit HTTP-Bindungen und -Routen:
+1. Kommentieren Sie die gRPC-Methoden in Ihren *PROTO* -Dateien mit HTTP-Bindungen und -Routen:
 
 ```protobuf
 syntax = "proto3";
@@ -132,7 +133,7 @@ Das Interesse der Entwickler an gRPC HTTP API soll gemessen werden. [Senden Sie 
 
 ## <a name="grpc-gateway"></a>grpc-gateway
 
-[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) ist eine weitere Technologie zum Erstellen von RESTful-JSON-APIs über gRPC-Dienste. Es werden die gleichen *PROTO*-Anmerkungen verwendet, um HTTP-Konzepte gRPC-Diensten zuzuordnen.
+[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) ist eine weitere Technologie zum Erstellen von RESTful-JSON-APIs über gRPC-Dienste. Es werden die gleichen *PROTO* -Anmerkungen verwendet, um HTTP-Konzepte gRPC-Diensten zuzuordnen.
 
 Der größte Unterschied zwischen grpc-gateway und gRPC HTTP API besteht darin, dass grpc-gateway die Codegenerierung zum Erstellen eines Reverseproxyservers verwendet. Der Reverseproxy übersetzt RESTful-Aufrufe in gRPC und sendet diese dann an den gRPC-Dienst.
 

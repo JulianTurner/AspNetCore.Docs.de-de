@@ -5,6 +5,7 @@ description: Dies ist Teil 4 der Tutorialreihe zu Razor Pages.
 ms.author: riande
 ms.date: 7/22/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: d2e18782411b1801c74fa33ba1b31bad9662f3b2
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d592cf7d8a96a7e4ec2e53418843a186488951be
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627116"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93058154"
 ---
 # <a name="part-4-with-a-database-and-aspnet-core"></a>Teil 4: Arbeiten mit einer Datenbank und ASP.NET Core
 
@@ -108,13 +109,13 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Hinzufügen des Initialisierers des Seedings
 
-Ändern Sie in der *Program.cs*-Datei die `Main`-Methode, um die folgenden Vorgänge auszuführen:
+Ändern Sie in der *Program.cs* -Datei die `Main`-Methode, um die folgenden Vorgänge auszuführen:
 
 * Rufen Sie eine Datenbankkontextinstanz aus dem Dependency Injection-Container ab.
 * Rufen Sie die Seedmethode auf, indem Sie den Kontext an diese übergeben.
 * Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist.
 
-Der folgende Code zeigt die aktualisierte *Program.cs*-Datei.
+Der folgende Code zeigt die aktualisierte *Program.cs* -Datei.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
@@ -252,13 +253,13 @@ if (context.Movie.Any())
 
 ### <a name="add-the-seed-initializer"></a>Hinzufügen des Initialisierers des Seedings
 
-Ändern Sie in der *Program.cs*-Datei die `Main`-Methode, um die folgenden Vorgänge auszuführen:
+Ändern Sie in der *Program.cs* -Datei die `Main`-Methode, um die folgenden Vorgänge auszuführen:
 
 * Rufen Sie eine Datenbankkontextinstanz aus dem Dependency Injection-Container ab.
 * Rufen Sie die Seedmethode auf, indem Sie den Kontext an diese übergeben.
 * Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist.
 
-Der folgende Code zeigt die aktualisierte *Program.cs*-Datei.
+Der folgende Code zeigt die aktualisierte *Program.cs* -Datei.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Program.cs)]
 

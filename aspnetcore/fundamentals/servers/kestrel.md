@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/04/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel
-ms.openlocfilehash: 50bf2a60f14238c9b71fe90a64c284da202bff59
-ms.sourcegitcommit: d5ecad1103306fac8d5468128d3e24e529f1472c
+ms.openlocfilehash: 56ac6635639eed93a84f47fc915c7013c6ed2381
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "92491599"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93052330"
 ---
 # <a name="kestrel-web-server-implementation-in-aspnet-core"></a>Implementierung des Webservers Kestrel in ASP.NET Core
 
@@ -527,7 +528,7 @@ Kestrel überwacht `http://localhost:5000` und `https://localhost:5001` (wenn ei
 
 `CreateDefaultBuilder` ruft `Configure(context.Configuration.GetSection("Kestrel"))` standardmäßig zum Laden der Kestrel-Konfiguration auf. Ein Standardkonfigurationsschema für HTTPS-App-Einstellungen ist für Kestrel verfügbar. Konfigurieren Sie mehrere Endpunkte, einschließlich der zu verwendenden URLs und Zertifikate aus einer Datei auf dem Datenträger oder einem Zertifikatspeicher.
 
-Die Vorgehensweise im folgenden *appsettings.json* -Beispiel:
+Im folgenden Beispiel für *appsettings.json* gilt:
 
 * Legen Sie **AllowInvalid** auf `true` fest, um die Verwendung von ungültigen Zertifikaten zu erlauben (z.B. selbstsignierte Zertifikate).
 * Jeder HTTPS-Endpunkt, der kein Zertifikat angibt (im folgenden Beispiel **HttpsDefaultCert** ), greift auf das unter **Zertifikate** > **Standard** festgelegte Zertifikat oder das Entwicklungszertifikat zurück.
@@ -1001,7 +1002,7 @@ Verwenden Sie Middleware zum Filtern von Hosts, um dieses Problem zu umgehen. Di
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Die Middleware zum Filtern von Hosts ist standardmäßig deaktiviert. Wenn Sie die Middleware aktivieren möchten, definieren Sie einen `AllowedHosts`-Schlüssel in *appsettings.json*/*appsettings.\<EnvironmentName>.json*. Der Wert ist eine durch Semikolons getrennte Liste von Hostnamen ohne Portnummern:
+Die Middleware zum Filtern von Hosts ist standardmäßig deaktiviert. Wenn Sie die Middleware aktivieren möchten, definieren Sie einen `AllowedHosts`-Schlüssel in *appsettings.json* /*appsettings.\<EnvironmentName>json*. Der Wert ist eine durch Semikolons getrennte Liste von Hostnamen ohne Portnummern:
 
 *appsettings.json* :
 
@@ -1515,7 +1516,7 @@ Kestrel überwacht `http://localhost:5000` und `https://localhost:5001` (wenn ei
 
 `CreateDefaultBuilder` ruft `Configure(context.Configuration.GetSection("Kestrel"))` standardmäßig zum Laden der Kestrel-Konfiguration auf. Ein Standardkonfigurationsschema für HTTPS-App-Einstellungen ist für Kestrel verfügbar. Konfigurieren Sie mehrere Endpunkte, einschließlich der zu verwendenden URLs und Zertifikate aus einer Datei auf dem Datenträger oder einem Zertifikatspeicher.
 
-Die Vorgehensweise im folgenden *appsettings.json* -Beispiel:
+Im folgenden Beispiel für *appsettings.json* gilt:
 
 * Legen Sie **AllowInvalid** auf `true` fest, um die Verwendung von ungültigen Zertifikaten zu erlauben (z.B. selbstsignierte Zertifikate).
 * Jeder HTTPS-Endpunkt, der kein Zertifikat angibt (im folgenden Beispiel **HttpsDefaultCert** ), greift auf das unter **Zertifikate** > **Standard** festgelegte Zertifikat oder das Entwicklungszertifikat zurück.
@@ -1952,7 +1953,7 @@ Verwenden Sie Middleware zum Filtern von Hosts, um dieses Problem zu umgehen. Mi
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Die Middleware zum Filtern von Hosts ist standardmäßig deaktiviert. Wenn Sie die Middleware aktivieren möchten, definieren Sie einen `AllowedHosts`-Schlüssel in *appsettings.json*/*appsettings.\<EnvironmentName>.json*. Der Wert ist eine durch Semikolons getrennte Liste von Hostnamen ohne Portnummern:
+Die Middleware zum Filtern von Hosts ist standardmäßig deaktiviert. Wenn Sie die Middleware aktivieren möchten, definieren Sie einen `AllowedHosts`-Schlüssel in *appsettings.json* /*appsettings.\<EnvironmentName>json*. Der Wert ist eine durch Semikolons getrennte Liste von Hostnamen ohne Portnummern:
 
 *appsettings.json* :
 
@@ -2379,7 +2380,7 @@ Kestrel überwacht `http://localhost:5000` und `https://localhost:5001` (wenn ei
 
 `CreateDefaultBuilder` ruft `Configure(context.Configuration.GetSection("Kestrel"))` standardmäßig zum Laden der Kestrel-Konfiguration auf. Ein Standardkonfigurationsschema für HTTPS-App-Einstellungen ist für Kestrel verfügbar. Konfigurieren Sie mehrere Endpunkte, einschließlich der zu verwendenden URLs und Zertifikate aus einer Datei auf dem Datenträger oder einem Zertifikatspeicher.
 
-Die Vorgehensweise im folgenden *appsettings.json* -Beispiel:
+Im folgenden Beispiel für *appsettings.json* gilt:
 
 * Legen Sie **AllowInvalid** auf `true` fest, um die Verwendung von ungültigen Zertifikaten zu erlauben (z.B. selbstsignierte Zertifikate).
 * Jeder HTTPS-Endpunkt, der kein Zertifikat angibt (im folgenden Beispiel **HttpsDefaultCert** ), greift auf das unter **Zertifikate** > **Standard** festgelegte Zertifikat oder das Entwicklungszertifikat zurück.
@@ -2742,7 +2743,7 @@ Verwenden Sie Middleware zum Filtern von Hosts, um dieses Problem zu umgehen. Mi
 
 [!code-csharp[](kestrel/samples-snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
-Die Middleware zum Filtern von Hosts ist standardmäßig deaktiviert. Wenn Sie die Middleware aktivieren möchten, definieren Sie einen `AllowedHosts`-Schlüssel in *appsettings.json*/*appsettings.\<EnvironmentName>.json*. Der Wert ist eine durch Semikolons getrennte Liste von Hostnamen ohne Portnummern:
+Die Middleware zum Filtern von Hosts ist standardmäßig deaktiviert. Wenn Sie die Middleware aktivieren möchten, definieren Sie einen `AllowedHosts`-Schlüssel in *appsettings.json* /*appsettings.\<EnvironmentName>json*. Der Wert ist eine durch Semikolons getrennte Liste von Hostnamen ohne Portnummern:
 
 *appsettings.json* :
 

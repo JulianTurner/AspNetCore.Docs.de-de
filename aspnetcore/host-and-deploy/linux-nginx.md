@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/09/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-nginx
-ms.openlocfilehash: 63227f068926c4158ac8162fdc1ac11399fd65cb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 916bb1f761ce99b2296c84e1653e55fffa04f83c
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633785"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057686"
 ---
 # <a name="host-aspnet-core-on-linux-with-nginx"></a>Hosten von ASP.NET Core unter Linux mit Nginx
 
@@ -50,7 +51,7 @@ In diesem Leitfaden:
    1. Besuchen Sie die [.NET Core-Downloadseite](https://dotnet.microsoft.com/download/dotnet-core).
    1. Wählen Sie die neueste Version von .NET Core aus, die keine Vorschauversion ist.
    1. Laden Sie die neueste Runtime aus der Tabelle unter **Run apps - Runtime** (App-Ausführung – Runtime) herunter, bei der es sich nicht um eine Vorschauversion handelt.
-   1. Klicken Sie auf den Link zu den **Anweisungen zum Linux-Paket-Manager**, und führen Sie die Ubuntu-Anweisungen zu Ihrer Version von Ubuntu aus.
+   1. Klicken Sie auf den Link zu den **Anweisungen zum Linux-Paket-Manager** , und führen Sie die Ubuntu-Anweisungen zu Ihrer Version von Ubuntu aus.
 1. Eine vorhandene ASP.NET Core-App.
 
 Starten Sie die vom Server gehosteten ASP.NET Core-Apps zu einem beliebigen Zeitpunkt nach dem Upgrade des freigegebenen Frameworks neu.
@@ -64,7 +65,7 @@ Wenn die App lokal ausgeführt wird und nicht so konfiguriert wurde, dass sie si
 * Konfigurieren der App, sodass diese sichere lokale Verbindungen verarbeitet. Weitere Informationen finden Sie im Abschnitt [HTTPS-Konfiguration](#https-configuration).
 * Entfernen Sie `https://localhost:5001` (falls vorhanden) aus der `applicationUrl`-Eigenschaft in der Datei *Properties/launchSettings.json*.
 
-Führen Sie [dotnet publish](/dotnet/core/tools/dotnet-publish) in der Entwicklungsumgebung aus, um eine App in ein Verzeichnis zu packen (z.B. *bin/Release/&lt;target_framework_moniker&gt;/publish*), das auf dem Server ausgeführt werden kann:
+Führen Sie [dotnet publish](/dotnet/core/tools/dotnet-publish) in der Entwicklungsumgebung aus, um eine App in ein Verzeichnis zu packen (z.B. *bin/Release/&lt;target_framework_moniker&gt;/publish* ), das auf dem Server ausgeführt werden kann:
 
 ```dotnetcli
 dotnet publish --configuration Release
@@ -72,7 +73,7 @@ dotnet publish --configuration Release
 
 Die App kann auch als eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) veröffentlicht werden, wenn Sie die .NET Core-Runtime nicht auf dem Server verwalten möchten.
 
-Kopieren Sie die ASP.NET Core-App auf den Server, indem Sie ein beliebiges Tool verwenden, das in den Workflow der Organisation integriert ist (z.B. SCP oder SFTP). Web-Apps befinden sich üblicherweise im Verzeichnis *var* (z.B. *var/www/helloapp*).
+Kopieren Sie die ASP.NET Core-App auf den Server, indem Sie ein beliebiges Tool verwenden, das in den Workflow der Organisation integriert ist (z.B. SCP oder SFTP). Web-Apps befinden sich üblicherweise im Verzeichnis *var* (z.B. *var/www/helloapp* ).
 
 > [!NOTE]
 > In einem Szenario für die Bereitstellung in der Produktion übernimmt ein Continuous Integration-Workflow die Veröffentlichung der App und das Kopieren der Objekte auf den Server.
@@ -127,7 +128,7 @@ Weitere Informationen finden Sie unter <xref:host-and-deploy/proxy-load-balancer
 
 ### <a name="install-nginx"></a>Installieren von Nginx
 
-Verwenden Sie `apt-get` zum Installieren von Nginx. Das Installationsprogramm erstellt ein *systemd*-Initialisierungsskript, das Nginx beim Systemstart als Dämon ausführt. Befolgen Sie die Installationsanleitungen für Ubuntu auf [NGINX: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+Verwenden Sie `apt-get` zum Installieren von Nginx. Das Installationsprogramm erstellt ein *systemd* -Initialisierungsskript, das Nginx beim Systemstart als Dämon ausführt. Befolgen Sie die Installationsanleitungen für Ubuntu auf [NGINX: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
 
 > [!NOTE]
 > Wenn optionale Nginx-Module benötigt werden, kann die Erstellung von Nginx aus der Quelle erforderlich sein.
@@ -142,7 +143,7 @@ Stellen Sie sicher, dass ein Browser die Standardangebotsseite für Nginx anzeig
 
 ### <a name="configure-nginx"></a>Konfigurieren von Nginx
 
-Ändern Sie */etc/nginx/sites-available/default*, um Nginx als Reverseproxy für die Weiterleitung von Anforderungen zu Ihrer ASP.NET Core-App zu konfigurieren. Öffnen Sie die Datei in einem Text-Editor und ersetzen Sie den Inhalt durch den Folgendes:
+Ändern Sie */etc/nginx/sites-available/default* , um Nginx als Reverseproxy für die Weiterleitung von Anforderungen zu Ihrer ASP.NET Core-App zu konfigurieren. Öffnen Sie die Datei in einem Text-Editor und ersetzen Sie den Inhalt durch den Folgendes:
 
 ```nginx
 server {
@@ -161,7 +162,7 @@ server {
 }
 ```
 
-Wenn es sich bei der App um eine Blazor Server-App handelt, die auf SignalR-Websockets basiert, finden Sie unter <xref:blazor/host-and-deploy/server#linux-with-nginx> weitere Informationen dazu, wie Sie den `Connection`-Header festlegen.
+Wenn es sich bei der App um eine SignalR- oder Blazor Server-App handelt, finden Sie jeweils unter <xref:signalr/scale#linux-with-nginx> und <xref:blazor/host-and-deploy/server#linux-with-nginx> weitere Informationen.
 
 Wenn keine Übereinstimmung mit `server_name` gefunden wird, verwendet Nginx den Standardserver. Wenn kein Server definiert ist, ist der erste Server in der Konfigurationsdatei der Standardserver. Als bewährte Methode gilt, einen bestimmten Standardserver hinzuzufügen, der den Statuscode 444 in Ihrer Konfigurationsdatei zurückgibt. Im Folgenden wird ein Beispiel für eine Standardserverkonfiguration aufgeführt:
 
@@ -225,7 +226,7 @@ WantedBy=multi-user.target
 
 Im vorherigen Beispiel wird der Benutzer, der den Dienst verwaltet, durch die Option `User` angegeben. Der Benutzer (`www-data`) muss vorhanden und der ordnungsgemäße Besitzer der App-Dateien sein.
 
-Verwenden Sie `TimeoutStopSec`, um die Dauer der Wartezeit bis zum Herunterfahren der App zu konfigurieren, nachdem diese das anfängliche Interruptsignal empfangen hat. Wenn die App in diesem Zeitraum nicht heruntergefahren wird, wird SIGKILL ausgegeben, um die App zu beenden. Geben Sie den Wert als einheitenlose Sekunden (z.B. `150`), einen Zeitspannenwert (z.B. `2min 30s`) oder `infinity` an, um das Timeout zu deaktivieren. `TimeoutStopSec` ist standardmäßig der Wert `DefaultTimeoutStopSec` in der Manager-Konfigurationsdatei (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). Das Standardtimeout für die meisten Distributionen beträgt 90 Sekunden.
+Verwenden Sie `TimeoutStopSec`, um die Dauer der Wartezeit bis zum Herunterfahren der App zu konfigurieren, nachdem diese das anfängliche Interruptsignal empfangen hat. Wenn die App in diesem Zeitraum nicht heruntergefahren wird, wird SIGKILL ausgegeben, um die App zu beenden. Geben Sie den Wert als einheitenlose Sekunden (z.B. `150`), einen Zeitspannenwert (z.B. `2min 30s`) oder `infinity` an, um das Timeout zu deaktivieren. `TimeoutStopSec` ist standardmäßig der Wert `DefaultTimeoutStopSec` in der Manager-Konfigurationsdatei ( *systemd-system.conf* , *system.conf.d* , *systemd-user.conf* , *user.conf.d* ). Das Standardtimeout für die meisten Distributionen beträgt 90 Sekunden.
 
 ```
 # The default value is 90 seconds for most distributions.
@@ -356,7 +357,7 @@ sudo ufw enable
 
 #### <a name="change-the-nginx-response-name"></a>Ändern des Namens der Nginx-Antwort
 
-Bearbeiten Sie *src/http/ngx_http_header_filter_module.c*:
+Bearbeiten Sie *src/http/ngx_http_header_filter_module.c* :
 
 ```
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
@@ -371,18 +372,18 @@ Konfigurieren Sie den Server mit zusätzlichen erforderlichen Modulen. Erwägen 
 
 **Konfigurieren der App für sichere (HTTPS) lokale Verbindungen**
 
-Der [dotnet run](/dotnet/core/tools/dotnet-run)-Befehl verwendet die *Properties/launchSettings.json*-Datei der App, die die App so konfiguriert, dass diese an den URLs lauscht, die von der `applicationUrl`-Eigenschaft bereitgestellt werden, z. B. `https://localhost:5001;http://localhost:5000`.
+Der [dotnet run](/dotnet/core/tools/dotnet-run)-Befehl verwendet die *Properties/launchSettings.json* -Datei der App, die die App so konfiguriert, dass diese an den URLs lauscht, die von der `applicationUrl`-Eigenschaft bereitgestellt werden, z. B. `https://localhost:5001;http://localhost:5000`.
 
 Konfigurieren Sie mithilfe eines der folgenden Ansätze die App so, dass sie bei der Entwicklung für den Befehl `dotnet run` oder die Entwicklungsumgebung (F5 oder STRG+F5 in Visual Studio Code) ein Zertifikat verwendet:
 
-* [Ersetzen des Standardzertifikats aus der Konfiguration](xref:fundamentals/servers/kestrel#configuration) (*Empfohlen*)
+* [Ersetzen des Standardzertifikats aus der Konfiguration](xref:fundamentals/servers/kestrel#configuration) ( *Empfohlen* )
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
 
 **Konfigurieren des Reverseproxys für sichere (HTTPS) Clientverbindungen**
 
 * Konfigurieren Sie den Server, damit dieser für den HTTPS-Datenverkehr an Port `443` empfangsbereit ist, indem Sie ein gültiges Zertifikat angeben, das von einer vertrauenswürdigen Zertifizierungsstelle (Certificate Authority, CA) ausgestellt wurde.
 
-* Stärken Sie Ihre Sicherheit, indem Sie einige der in der folgenden Datei ( */etc/nginx/nginx.conf*) dargestellten Methoden verwenden. Die Beispiele schließen das Auswählen einer stärkeren Verschlüsselung und das Weiterleiten allen Datenverkehrs über HTTP auf HTTPS ein.
+* Stärken Sie Ihre Sicherheit, indem Sie einige der in der folgenden Datei ( */etc/nginx/nginx.conf* ) dargestellten Methoden verwenden. Die Beispiele schließen das Auswählen einer stärkeren Verschlüsselung und das Weiterleiten allen Datenverkehrs über HTTP auf HTTPS ein.
 
 * Durch das Hinzufügen eines `HTTP Strict-Transport-Security`-Headers (HSTS) wird sichergestellt, dass alle nachfolgenden Anforderungen vom Client über HTTPS erfolgen.
 
@@ -404,11 +405,11 @@ Bearbeiten Sie die Konfigurationsdatei */etc/nginx/nginx.conf*. Das Beispiel ent
 
 #### <a name="secure-nginx-from-clickjacking"></a>Sichern von Nginx vor Clickjacking
 
-[Clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), auch bekannt als *UI Redress-Angriff*, ist ein böswilliger Angriff, bei dem ein Websitebesucher dazu verleitet wird, auf einen Link oder eine Schaltfläche zu klicken, der bzw. die sich auf einer anderen Seite als der aktuell besuchten Seite befindet. Verwenden Sie `X-FRAME-OPTIONS` zum Sichern der Website.
+[Clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), auch bekannt als *UI Redress-Angriff* , ist ein böswilliger Angriff, bei dem ein Websitebesucher dazu verleitet wird, auf einen Link oder eine Schaltfläche zu klicken, der bzw. die sich auf einer anderen Seite als der aktuell besuchten Seite befindet. Verwenden Sie `X-FRAME-OPTIONS` zum Sichern der Website.
 
 So wehren Sie Clickjacking-Angriffe ab:
 
-1. Bearbeiten Sie die Datei *nginx.conf*:
+1. Bearbeiten Sie die Datei *nginx.conf* :
 
    ```bash
    sudo nano /etc/nginx/nginx.conf
@@ -422,7 +423,7 @@ So wehren Sie Clickjacking-Angriffe ab:
 
 Dieser Header hindert die meisten Browser an der MIME-Ermittlung einer Antwort vom deklarierten Inhaltstyp weg, da der Header den Browser anweist, den Inhaltstyp der Antwort nicht zu überschreiben. Durch die Option `nosniff` wird der Inhalt vom Browser als „text/html“ gerendert, wenn der Server sagt, dass es sich bei diesem um „text/html“ handelt.
 
-Bearbeiten Sie die Datei *nginx.conf*:
+Bearbeiten Sie die Datei *nginx.conf* :
 
 ```bash
 sudo nano /etc/nginx/nginx.conf

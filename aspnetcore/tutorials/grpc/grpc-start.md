@@ -3,8 +3,9 @@ title: Erstellen eines .NET Core-gRPC-Clients und -Servers in ASP.NET Core
 author: juntaoluo
 description: In diesem Tutorial erfahren Sie, wie Sie einen gRPC-Dienst und -Client in ASP.NET Core erstellen können. Dabei erfahren Sie, wie Sie ein gRPC-Dienstprojekt erstellen, eine PROTO-Datei bearbeiten und einen Duplexstreamaufruf hinzufügen.
 ms.author: johluo
-ms.date: 04/08/2020
+ms.date: 10/23/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: fbfd37b8f796990ff035f7fffeb906e23a8739d4
-ms.sourcegitcommit: c06a5bf419541d17595af30e4cf6f2787c21855e
+ms.openlocfilehash: 9388a2f814008ebb50171f85b8baccf6dadfac27
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92678587"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057023"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>Tutorial: Erstellen eines gRPC-Clients und -Servers in ASP.NET Core
 
@@ -63,7 +64,7 @@ In diesem Tutorial:
 * Starten Sie Visual Studio, und wählen Sie **Neues Projekt erstellen** aus. Alternativ dazu können Sie auch im Visual Studio-Menü **Datei** auf **Neu** > **Projekt** klicken.
 * Wählen Sie im Dialogfeld **Neues Projekt erstellen** die Option **gRPC-Dienst** aus, und klicken Sie auf **Weiter** :
 
-  ![Dialogfeld „Neues Projekt erstellen“](~/tutorials/grpc/grpc-start/static/cnp.png)
+  ![Dialogfeld „Neues Projekt erstellen“ in Visual Studio](~/tutorials/grpc/grpc-start/static/cnp.png)
 
 * Nennen Sie das Projekt **GrpcGreeter**. Es ist wichtig, den Namen *GrpcGreeter* zu verwenden, damit die Namespaces übereinstimmen, wenn Sie Code kopieren und einfügen.
 * Wählen Sie **Erstellen** aus.
@@ -74,7 +75,7 @@ In diesem Tutorial:
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Öffnen Sie das [integrierte Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Wechseln Sie mit `cd` zu einem Ordner, der das Projekt enthalten soll.
+* Ändern Sie die Verzeichnisse (mit `cd`) in einen Ordner für das Projekt.
 * Führen Sie die folgenden Befehle aus:
 
   ```dotnetcli
@@ -93,7 +94,7 @@ In diesem Tutorial:
 * Starten Sie Visual Studio für Mac, und wählen Sie **Neues Projekt erstellen** aus. Alternativ dazu können Sie auch im Visual Studio-Menü **Datei** auf **Neu** > **Projekt** klicken.
 * Wählen Sie im Dialogfeld **Neues Projekt erstellen** die Option **Web und Konsole** > **App** > **gRPC-Dienst** und dann **Weiter** aus:
 
-  ![Dialogfeld „Neues Projekt erstellen“](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
+  ![Dialogfeld „Neues Projekt erstellen“ unter macOS](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
 
 * Wählen Sie **.NET Core 3.1** als Zielframework aus, und klicken Sie auf **Weiter**.
 * Nennen Sie das Projekt **GrpcGreeter**. Es ist wichtig, den Namen *GrpcGreeter* zu verwenden, damit die Namespaces übereinstimmen, wenn Sie Code kopieren und einfügen.
@@ -141,7 +142,7 @@ info: Microsoft.Hosting.Lifetime[0]
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Öffnen Sie das [integrierte Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Wechseln Sie mit `cd` zu einem Ordner, der das Projekt enthalten soll.
+* Ändern Sie die Verzeichnisse (mit `cd`) in einen Ordner für das Projekt.
 * Führen Sie die folgenden Befehle aus:
 
   ```dotnetcli
@@ -199,10 +200,10 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-* Klicken Sie im **Lösungspad** mit der rechten Maustaste auf das Projekt **GrpcGreeterClient** , und wählen Sie **NuGet-Pakete verwalten** aus.
+* Klicken Sie im **Lösungspad** mit der rechten Maustaste auf das Projekt **GrpcGreeterClient** , und klicken Sie auf **Manage NuGet Packages** (NuGet-Pakete verwalten).
 * Geben Sie **Grpc.Net.Client** in das Suchfeld ein.
-* Wählen Sie das Paket **Grpc.Net.Client** im Ergebnisbereich aus, und wählen Sie **Paket hinzufügen** aus.
-* Klicken Sie im Dialogfeld **Lizenzbedingungen annehmen** auf die Schaltfläche **Zustimmen**.
+* Wählen Sie das Paket **Grpc.Net.Client** im Ergebnisbereich aus, und klicken Sie auf **Paket hinzufügen**.
+* Klicken Sie im Dialogfeld **Accept License** (Lizenzbedingungen annehmen) auf **Akzeptieren**.
 * Führen Sie diese Aktionen auch für `Google.Protobuf` und `Grpc.Tools` durch.
 
 ---

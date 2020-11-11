@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/file-providers
-ms.openlocfilehash: 30c28e7bd4cd9c926b157f5a7b9e6688bd5b9b9a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 16e5ead9898125c804da4d60322510474201d897
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634604"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93059441"
 ---
 # <a name="file-providers-in-aspnet-core"></a>Dateianbieter in ASP.NET Core
 
@@ -114,7 +115,7 @@ Verwenden Sie [Globmuster](#glob-patterns), um eine oder mehr Dateien anzugeben,
 
 Die Beispiel-App *FileProviderSample* erstellt einen `ManifestEmbeddedFileProvider` und übergibt die aktuell ausgeführte Assembly an den Konstruktor.
 
-*Startup.cs*:
+*Startup.cs* :
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -153,7 +154,7 @@ Das resultierende Änderungstoken stellt Folgendes zur Verfügung:
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: Eine Eigenschaft, die überprüft werden kann, um festzustellen, ob eine Änderung vorgenommen wurde.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: Diese Methode wird aufgerufen, wenn Änderungen an der angegebenen Pfadzeichenfolge erkannt werden. Jedes Änderungstoken ruft nur seine zugeordneten Rückrufe als Antwort auf eine einzelne Änderung auf. Zur Aktivierung einer konstanten Überwachung verwenden Sie eine <xref:System.Threading.Tasks.TaskCompletionSource`1> (wie unten dargestellt), oder erstellen Sie `IChangeToken`-Instanzen nach Änderungen neu.
 
-Die Beispiel-App *WatchConsole* schreibt eine Nachricht, wenn eine *TXT*-Datei im Verzeichnis *TextFiles* geändert wird:
+Die Beispiel-App *WatchConsole* schreibt eine Nachricht, wenn eine *TXT* -Datei im Verzeichnis *TextFiles* geändert wird:
 
 [!code-csharp[](file-providers/samples/3.x/WatchConsole/Program.cs?name=snippet1)]
 
@@ -174,9 +175,9 @@ Die folgende Tabelle enthält gängige Beispiele für Globmuster.
 |Muster  |Beschreibung  |
 |---------|---------|
 |`directory/file.txt`|Entspricht einer bestimmten Datei in einem bestimmten Verzeichnis.|
-|`directory/*.txt`|Entspricht allen Dateien mit *.txt*-Erweiterung in einem bestimmten Verzeichnis.|
-|`directory/*/appsettings.json`|Vergleicht alle *appsettings.json*-Dateien in Verzeichnissen, die auf der nächsttieferen Ebene unter dem Ordner *directory* befinden.|
-|`directory/**/*.txt`|Vergleicht alle Dateien mit der Erweiterung *.txt*, die innerhalb des Ordners *directory* ermittelt werden.|
+|`directory/*.txt`|Entspricht allen Dateien mit *.txt* -Erweiterung in einem bestimmten Verzeichnis.|
+|`directory/*/appsettings.json`|Dieses Muster entspricht allen *appsettings.json* -Dateien in Verzeichnissen auf der nächsttieferen Ebene des *directory* -Ordners.|
+|`directory/**/*.txt`|Vergleicht alle Dateien mit der Erweiterung *.txt* , die innerhalb des Ordners *directory* ermittelt werden.|
 
 ::: moniker-end
 
@@ -261,7 +262,7 @@ Verwenden Sie [Globmuster](#glob-patterns), um eine oder mehr Dateien anzugeben,
 
 Die Beispiel-App erstellt einen `ManifestEmbeddedFileProvider` und übergibt die aktuell ausgeführte Assembly an den Konstruktor.
 
-*Startup.cs*:
+*Startup.cs* :
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -295,7 +296,7 @@ Die [IFileProvider.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: Eine Eigenschaft, die überprüft werden kann, um festzustellen, ob eine Änderung vorgenommen wurde.
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: Diese Methode wird aufgerufen, wenn Änderungen an der angegebenen Pfadzeichenfolge erkannt werden. Jedes Änderungstoken ruft nur seine zugeordneten Rückrufe als Antwort auf eine einzelne Änderung auf. Zur Aktivierung einer konstanten Überwachung verwenden Sie eine <xref:System.Threading.Tasks.TaskCompletionSource`1> (wie unten dargestellt), oder erstellen Sie `IChangeToken`-Instanzen nach Änderungen neu.
 
-In der Beispiel-App wird die *WatchConsole*-Konsolen-App konfiguriert, damit sie bei einer Änderung einer Textdatei eine Meldung anzeigt:
+In der Beispiel-App wird die *WatchConsole* -Konsolen-App konfiguriert, damit sie bei einer Änderung einer Textdatei eine Meldung anzeigt:
 
 [!code-csharp[](file-providers/samples/2.x/WatchConsole/Program.cs?name=snippet1&highlight=1-2,16,19-20)]
 
@@ -317,12 +318,12 @@ Dateisystempfade verwenden Platzhaltermuster namens *Globmuster*. Geben Sie Grup
 Entspricht einer bestimmten Datei in einem bestimmten Verzeichnis.
 
 **`directory/*.txt`**  
-Entspricht allen Dateien mit *.txt*-Erweiterung in einem bestimmten Verzeichnis.
+Entspricht allen Dateien mit *.txt* -Erweiterung in einem bestimmten Verzeichnis.
 
 **`directory/*/appsettings.json`**  
-Entspricht allen `appsettings.json`-Dateien in Verzeichnissen auf der nächsttieferen Ebene des *directory*-Ordners.
+Entspricht allen `appsettings.json`-Dateien in Verzeichnissen auf der nächsttieferen Ebene des *directory* -Ordners.
 
 **`directory/**/*.txt`**  
-Entspricht allen Dateien mit *.txt*-Erweiterung, die an einer beliebigen Stelle unter dem *directory*-Ordner gefunden werden.
+Entspricht allen Dateien mit *.txt* -Erweiterung, die an einer beliebigen Stelle unter dem *directory* -Ordner gefunden werden.
 
 ::: moniker-end

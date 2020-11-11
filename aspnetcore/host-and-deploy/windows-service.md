@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/windows-service
-ms.openlocfilehash: d4df10f9450ca956d7b1a4297caa63cdd0caf23e
-ms.sourcegitcommit: ecae2aa432628b9181d1fa11037c231c7dd56c9e
+ms.openlocfilehash: 31a738e7aa8779171dfa09a5678d7240b8f62343
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92113750"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93057231"
 ---
 # <a name="host-aspnet-core-in-a-windows-service"></a>Hosten von ASP.NET Core in einem Windows-Dienst
 
@@ -58,10 +59,10 @@ Beim Erstellen des Hosts wird `IHostBuilder.UseWindowsService` aufgerufen. Wenn 
 * Ermöglicht die Protokollierung zum Ereignisprotokoll:
   * Der Anwendungsname wird als Standardname für die Quelle verwendet.
   * Für eine App basierend auf einer ASP.NET Core-Vorlage, die `CreateDefaultBuilder` zur Erstellung des Hosts aufruft, lautet die Standardprotokollebene *Warnung* oder höher.
-  * Setzen Sie die Standardprotokollebene mit dem `Logging:EventLog:LogLevel:Default`-Schlüssel in *appsettings.json*/*appsettings.{Environment}.json* oder einem anderen Konfigurationsanbieter außer Kraft.
+  * Überschreiben Sie die Standardprotokollebene mit dem `Logging:EventLog:LogLevel:Default`-Schlüssel in *appsettings.json* /*appsettings.{Environment}.json* oder einem anderen Konfigurationsanbieter.
   * Nur Administratoren können neue Ereignisquellen erstellen. Wenn keine Ereignisquellen mithilfe des Anwendungsnamens erstellt werden können, wird in der *Anwendungsquelle* eine Warnung protokolliert, und die Ereignisprotokolle werden deaktiviert.
 
-In `CreateHostBuilder` von *Program.cs*:
+In `CreateHostBuilder` von *Program.cs* :
 
 ```csharp
 Host.CreateDefaultBuilder(args)
@@ -96,9 +97,9 @@ Geben Sie das Worker-SDK in der Projektdatei an, wenn der Dienst nur Hintergrund
 
 ### <a name="framework-dependent-deployment-fdd"></a>Frameworkabhängige Bereitstellung (Framework-dependent deployment, FDD)
 
-Eine Framework-abhängige Bereitstellung (Framework-Dependent Deployment, FDD) benötigt eine gemeinsame systemweite Version von .NET Core auf dem Zielsystem. Wenn das FDD-Szenario gemäß der Anleitung in diesem Artikel übernommen wird, erzeugt das SDK eine ausführbare Datei ( *.exe*). Diese wird als *frameworkabhängige ausführbare Datei* bezeichnet.
+Eine Framework-abhängige Bereitstellung (Framework-Dependent Deployment, FDD) benötigt eine gemeinsame systemweite Version von .NET Core auf dem Zielsystem. Wenn das FDD-Szenario gemäß der Anleitung in diesem Artikel übernommen wird, erzeugt das SDK eine ausführbare Datei ( *.exe* ). Diese wird als *frameworkabhängige ausführbare Datei* bezeichnet.
 
-Bei Verwendung des [Web-SDK](#sdk) ist eine *web.config*-Datei, die normalerweise erstellt wird, wenn Sie eine ASP.NET Core-App veröffentlichen, für eine Windows Services-App nicht erforderlich. Um die Erstellung der *web.config*-Datei zu deaktivieren, fügen Sie die auf `true` festgelegte `<IsTransformWebConfigDisabled>`-Eigenschaft hinzu.
+Bei Verwendung des [Web-SDK](#sdk) ist eine *web.config* -Datei, die normalerweise erstellt wird, wenn Sie eine ASP.NET Core-App veröffentlichen, für eine Windows Services-App nicht erforderlich. Um die Erstellung der *web.config* -Datei zu deaktivieren, fügen Sie die auf `true` festgelegte `<IsTransformWebConfigDisabled>`-Eigenschaft hinzu.
 
 ```xml
 <PropertyGroup>
@@ -153,13 +154,13 @@ Eine alternative Methode zum Verwalten von Benutzern bei Verwendung von Active D
 Gehen Sie wie folgt vor, um Rechte zum *Anmelden als Dienst* für das Benutzerkonto eines Diensts einzurichten:
 
 1. Öffnen Sie den Editor für lokale Sicherheitsrichtlinien, indem Sie die Datei *secpol.msc* ausführen.
-1. Erweitern Sie den Knoten **Lokale Richtlinien**, und klicken Sie auf **Zuweisen von Benutzerrechten**.
+1. Erweitern Sie den Knoten **Lokale Richtlinien** , und klicken Sie auf **Zuweisen von Benutzerrechten**.
 1. Öffnen Sie die Richtlinie **Anmelden als Dienst**.
 1. Wählen Sie **Benutzer oder Gruppe hinzufügen** aus.
 1. Geben Sie den Objektnamen (das Benutzerkonto) an. Dafür gibt es zwei Möglichkeiten:
-   1. Geben Sie die Bezeichnung des Benutzerkontos (`{DOMAIN OR COMPUTER NAME\USER}`) in das Feld für den Objektnamen ein, und klicken Sie auf **OK**, um den Benutzer der Richtlinie hinzuzufügen.
-   1. Wählen Sie **Erweitert** aus. Klicken Sie auf **Find Now** (Suche starten). Wählen Sie das betreffende Benutzerkonto aus der Liste aus. Klicken Sie auf **OK**. Klicken Sie erneut auf **OK**, um den Benutzer zur Richtlinie hinzuzufügen.
-1. Klicken Sie auf **OK** oder auf **Anwenden**, um die Änderungen zu übernehmen.
+   1. Geben Sie die Bezeichnung des Benutzerkontos (`{DOMAIN OR COMPUTER NAME\USER}`) in das Feld für den Objektnamen ein, und klicken Sie auf **OK** , um den Benutzer der Richtlinie hinzuzufügen.
+   1. Wählen Sie **Erweitert** aus. Klicken Sie auf **Find Now** (Suche starten). Wählen Sie das betreffende Benutzerkonto aus der Liste aus. Klicken Sie auf **OK**. Klicken Sie erneut auf **OK** , um den Benutzer zur Richtlinie hinzuzufügen.
+1. Klicken Sie auf **OK** oder auf **Anwenden** , um die Änderungen zu übernehmen.
 
 ## <a name="create-and-manage-the-windows-service"></a>Erstellen und Verwalten des Windows-Diensts
 
@@ -253,7 +254,7 @@ Verwenden Sie [IHostEnvironment.ContentRootPath](xref:Microsoft.Extensions.Hosti
 
 Wenn die App als Dienst ausgeführt wird, [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory) durch <xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService*> für <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> festgelegt.
 
-Die Standardeinstellungsdateien *appsettings.json* und *appsettings.{Environment}.json* der App, werden über das Inhaltsstammverzeichnis der App geladen, indem [CreateDefaultBuilder](xref:fundamentals/host/generic-host#set-up-a-host) während der Hosterstellung aufgerufen wird.
+Die Standardeinstellungsdateien *appsettings.json* und *appsettings.{Environment}.json* der App werden über das Inhaltsstammverzeichnis der App geladen, indem [CreateDefaultBuilder während der Hosterstellung](xref:fundamentals/host/generic-host#set-up-a-host) aufgerufen wird.
 
 Für andere Einstellungsdateien, die in <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*> durch Entwicklercode geladen werden, muss <xref:Microsoft.Extensions.Configuration.FileConfigurationExtensions.SetBasePath*> nicht aufgerufen werden. Im folgenden Beispiel ist die Datei *custom_settings.json* im Inhaltsstammverzeichnis der App enthalten und wird geladen, ohne das ein Basispfad explizit festgelegt wird:
 
@@ -286,9 +287,9 @@ Informationen zur Problembehandlung für Windows-Dienstanwendungen finden Sie un
 
 So greifen Sie auf die System- und Anwendungsereignisprotokolle zu:
 
-1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige*, und wählen Sie dann die App **Ereignisanzeige** aus.
+1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige* , und wählen Sie dann die App **Ereignisanzeige** aus.
 1. Öffnen Sie unter **Ereignisanzeige** den Knoten **Windows-Protokolle**.
-1. Klicken Sie auf **System**, um das Systemereignisprotokoll zu öffnen. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
+1. Klicken Sie auf **System** , um das Systemereignisprotokoll zu öffnen. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
 1. Suchen Sie nach Fehlern, die mit der fehlerhaften App im Zusammenhang stehen.
 
 ### <a name="run-the-app-at-a-command-prompt"></a>Ausführen der App in einer Eingabeaufforderung
@@ -372,7 +373,7 @@ Um bei der Ausführung außerhalb eines Dienstes zu testen und zu debuggen, füg
 
 Da der [Anbieter der Befehlszeilenkonfiguration](xref:fundamentals/configuration/index#command-line-configuration-provider) Name/Wert-Paare für Befehlszeilenargumente benötigt, wird der Parameter `--console` aus den Argumenten entfernt, bevor <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> diese empfängt.
 
-Um das Windows-Ereignisprotokoll zu schreiben, fügen Sie den EventLog-Anbieter zu <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*> hinzu. Legen Sie den Protokollierungsgrad mit dem `Logging:LogLevel:Default`-Schlüssel in der *appsettings.Production.json*-Datei fest.
+Um das Windows-Ereignisprotokoll zu schreiben, fügen Sie den EventLog-Anbieter zu <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*> hinzu. Legen Sie den Protokollierungsgrad mit dem `Logging:LogLevel:Default`-Schlüssel in der *appsettings.Production.json* -Datei fest.
 
 Im folgenden Beispiel aus der Beispiel-App wird `RunAsCustomService` anstelle von <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> aufgerufen, um Ereignisse in Bezug auf die Lebensdauer innerhalb der App zu verarbeiten. Weitere Informationen finden Sie im Abschnitt [Behandeln von Start- und Stopereignissen](#handle-starting-and-stopping-events).
 
@@ -398,11 +399,11 @@ Geben Sie das Worker-SDK in der Projektdatei an, wenn der Dienst nur Hintergrund
 
 ### <a name="framework-dependent-deployment-fdd"></a>Frameworkabhängige Bereitstellung (Framework-dependent deployment, FDD)
 
-Eine Framework-abhängige Bereitstellung (Framework-Dependent Deployment, FDD) benötigt eine gemeinsame systemweite Version von .NET Core auf dem Zielsystem. Wenn das FDD-Szenario gemäß der Anleitung in diesem Artikel übernommen wird, erzeugt das SDK eine ausführbare Datei ( *.exe*). Diese wird als *frameworkabhängige ausführbare Datei* bezeichnet.
+Eine Framework-abhängige Bereitstellung (Framework-Dependent Deployment, FDD) benötigt eine gemeinsame systemweite Version von .NET Core auf dem Zielsystem. Wenn das FDD-Szenario gemäß der Anleitung in diesem Artikel übernommen wird, erzeugt das SDK eine ausführbare Datei ( *.exe* ). Diese wird als *frameworkabhängige ausführbare Datei* bezeichnet.
 
-Der [Runtimebezeichner](/dotnet/core/rid-catalog) (Runtime Identifier, RID) für Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) enthält das Zielframework. Im folgenden Beispiel wird die RID auf `win7-x64` festgelegt. Die `<SelfContained>`-Eigenschaft ist auf `false` festgelegt. Diese Eigenschaften geben dem SDK die Anweisung, eine ausführbare Datei ( *.exe*) für Windows sowie eine App zu generieren, die vom freigegebenen .NET Core-Framework abhängig ist.
+Der [Runtimebezeichner](/dotnet/core/rid-catalog) (Runtime Identifier, RID) für Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) enthält das Zielframework. Im folgenden Beispiel wird die RID auf `win7-x64` festgelegt. Die `<SelfContained>`-Eigenschaft ist auf `false` festgelegt. Diese Eigenschaften geben dem SDK die Anweisung, eine ausführbare Datei ( *.exe* ) für Windows sowie eine App zu generieren, die vom freigegebenen .NET Core-Framework abhängig ist.
 
-Eine *web.config*-Datei, die normalerweise erstellt wird, wenn Sie eine ASP.NET Core-App veröffentlichen, ist für eine Windows Services-App nicht erforderlich. Um die Erstellung der *web.config*-Datei zu deaktivieren, fügen Sie die auf `true` festgelegte `<IsTransformWebConfigDisabled>`-Eigenschaft hinzu.
+Eine *web.config* -Datei, die normalerweise erstellt wird, wenn Sie eine ASP.NET Core-App veröffentlichen, ist für eine Windows Services-App nicht erforderlich. Um die Erstellung der *web.config* -Datei zu deaktivieren, fügen Sie die auf `true` festgelegte `<IsTransformWebConfigDisabled>`-Eigenschaft hinzu.
 
 ```xml
 <PropertyGroup>
@@ -465,13 +466,13 @@ Eine alternative Methode zum Verwalten von Benutzern bei Verwendung von Active D
 Gehen Sie wie folgt vor, um Rechte zum *Anmelden als Dienst* für das Benutzerkonto eines Diensts einzurichten:
 
 1. Öffnen Sie den Editor für lokale Sicherheitsrichtlinien, indem Sie die Datei *secpol.msc* ausführen.
-1. Erweitern Sie den Knoten **Lokale Richtlinien**, und klicken Sie auf **Zuweisen von Benutzerrechten**.
+1. Erweitern Sie den Knoten **Lokale Richtlinien** , und klicken Sie auf **Zuweisen von Benutzerrechten**.
 1. Öffnen Sie die Richtlinie **Anmelden als Dienst**.
 1. Wählen Sie **Benutzer oder Gruppe hinzufügen** aus.
 1. Geben Sie den Objektnamen (das Benutzerkonto) an. Dafür gibt es zwei Möglichkeiten:
-   1. Geben Sie die Bezeichnung des Benutzerkontos (`{DOMAIN OR COMPUTER NAME\USER}`) in das Feld für den Objektnamen ein, und klicken Sie auf **OK**, um den Benutzer der Richtlinie hinzuzufügen.
-   1. Wählen Sie **Erweitert** aus. Klicken Sie auf **Find Now** (Suche starten). Wählen Sie das betreffende Benutzerkonto aus der Liste aus. Klicken Sie auf **OK**. Klicken Sie erneut auf **OK**, um den Benutzer zur Richtlinie hinzuzufügen.
-1. Klicken Sie auf **OK** oder auf **Anwenden**, um die Änderungen zu übernehmen.
+   1. Geben Sie die Bezeichnung des Benutzerkontos (`{DOMAIN OR COMPUTER NAME\USER}`) in das Feld für den Objektnamen ein, und klicken Sie auf **OK** , um den Benutzer der Richtlinie hinzuzufügen.
+   1. Wählen Sie **Erweitert** aus. Klicken Sie auf **Find Now** (Suche starten). Wählen Sie das betreffende Benutzerkonto aus der Liste aus. Klicken Sie auf **OK**. Klicken Sie erneut auf **OK** , um den Benutzer zur Richtlinie hinzuzufügen.
+1. Klicken Sie auf **OK** oder auf **Anwenden** , um die Änderungen zu übernehmen.
 
 ## <a name="create-and-manage-the-windows-service"></a>Erstellen und Verwalten des Windows-Diensts
 
@@ -620,9 +621,9 @@ Informationen zur Problembehandlung für Windows-Dienstanwendungen finden Sie un
 
 So greifen Sie auf die System- und Anwendungsereignisprotokolle zu:
 
-1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige*, und wählen Sie dann die App **Ereignisanzeige** aus.
+1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige* , und wählen Sie dann die App **Ereignisanzeige** aus.
 1. Öffnen Sie unter **Ereignisanzeige** den Knoten **Windows-Protokolle**.
-1. Klicken Sie auf **System**, um das Systemereignisprotokoll zu öffnen. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
+1. Klicken Sie auf **System** , um das Systemereignisprotokoll zu öffnen. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
 1. Suchen Sie nach Fehlern, die mit der fehlerhaften App im Zusammenhang stehen.
 
 ### <a name="run-the-app-at-a-command-prompt"></a>Ausführen der App in einer Eingabeaufforderung
@@ -706,7 +707,7 @@ Um bei der Ausführung außerhalb eines Dienstes zu testen und zu debuggen, füg
 
 Da der [Anbieter der Befehlszeilenkonfiguration](xref:fundamentals/configuration/index#command-line-configuration-provider) Name/Wert-Paare für Befehlszeilenargumente benötigt, wird der Parameter `--console` aus den Argumenten entfernt, bevor <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> diese empfängt.
 
-Um das Windows-Ereignisprotokoll zu schreiben, fügen Sie den EventLog-Anbieter zu <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*> hinzu. Legen Sie den Protokollierungsgrad mit dem `Logging:LogLevel:Default`-Schlüssel in der *appsettings.Production.json*-Datei fest.
+Um das Windows-Ereignisprotokoll zu schreiben, fügen Sie den EventLog-Anbieter zu <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureLogging*> hinzu. Legen Sie den Protokollierungsgrad mit dem `Logging:LogLevel:Default`-Schlüssel in der *appsettings.Production.json* -Datei fest.
 
 Im folgenden Beispiel aus der Beispiel-App wird `RunAsCustomService` anstelle von <xref:Microsoft.AspNetCore.Hosting.WindowsServices.WebHostWindowsServiceExtensions.RunAsService*> aufgerufen, um Ereignisse in Bezug auf die Lebensdauer innerhalb der App zu verarbeiten. Weitere Informationen finden Sie im Abschnitt [Behandeln von Start- und Stopereignissen](#handle-starting-and-stopping-events).
 
@@ -732,13 +733,13 @@ Geben Sie das Worker-SDK in der Projektdatei an, wenn der Dienst nur Hintergrund
 
 ### <a name="framework-dependent-deployment-fdd"></a>Frameworkabhängige Bereitstellung (Framework-dependent deployment, FDD)
 
-Eine Framework-abhängige Bereitstellung (Framework-Dependent Deployment, FDD) benötigt eine gemeinsame systemweite Version von .NET Core auf dem Zielsystem. Wenn das FDD-Szenario gemäß der Anleitung in diesem Artikel übernommen wird, erzeugt das SDK eine ausführbare Datei ( *.exe*). Diese wird als *frameworkabhängige ausführbare Datei* bezeichnet.
+Eine Framework-abhängige Bereitstellung (Framework-Dependent Deployment, FDD) benötigt eine gemeinsame systemweite Version von .NET Core auf dem Zielsystem. Wenn das FDD-Szenario gemäß der Anleitung in diesem Artikel übernommen wird, erzeugt das SDK eine ausführbare Datei ( *.exe* ). Diese wird als *frameworkabhängige ausführbare Datei* bezeichnet.
 
-Der [Runtimebezeichner](/dotnet/core/rid-catalog) (Runtime Identifier, RID) für Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) enthält das Zielframework. Im folgenden Beispiel wird die RID auf `win7-x64` festgelegt. Die `<SelfContained>`-Eigenschaft ist auf `false` festgelegt. Diese Eigenschaften geben dem SDK die Anweisung, eine ausführbare Datei ( *.exe*) für Windows sowie eine App zu generieren, die vom freigegebenen .NET Core-Framework abhängig ist.
+Der [Runtimebezeichner](/dotnet/core/rid-catalog) (Runtime Identifier, RID) für Windows ([\<RuntimeIdentifier>](/dotnet/core/tools/csproj#runtimeidentifier)) enthält das Zielframework. Im folgenden Beispiel wird die RID auf `win7-x64` festgelegt. Die `<SelfContained>`-Eigenschaft ist auf `false` festgelegt. Diese Eigenschaften geben dem SDK die Anweisung, eine ausführbare Datei ( *.exe* ) für Windows sowie eine App zu generieren, die vom freigegebenen .NET Core-Framework abhängig ist.
 
-Die `<UseAppHost>`-Eigenschaft ist auf `true` festgelegt. Diese Eigenschaft stellt für den Dienst einen Aktivierungspfad (eine ausführbare Datei, *EXE*) für eine frameworkabhängige Bereitstellung bereit.
+Die `<UseAppHost>`-Eigenschaft ist auf `true` festgelegt. Diese Eigenschaft stellt für den Dienst einen Aktivierungspfad (eine ausführbare Datei, *EXE* ) für eine frameworkabhängige Bereitstellung bereit.
 
-Eine *web.config*-Datei, die normalerweise erstellt wird, wenn Sie eine ASP.NET Core-App veröffentlichen, ist für eine Windows Services-App nicht erforderlich. Um die Erstellung der *web.config*-Datei zu deaktivieren, fügen Sie die auf `true` festgelegte `<IsTransformWebConfigDisabled>`-Eigenschaft hinzu.
+Eine *web.config* -Datei, die normalerweise erstellt wird, wenn Sie eine ASP.NET Core-App veröffentlichen, ist für eine Windows Services-App nicht erforderlich. Um die Erstellung der *web.config* -Datei zu deaktivieren, fügen Sie die auf `true` festgelegte `<IsTransformWebConfigDisabled>`-Eigenschaft hinzu.
 
 ```xml
 <PropertyGroup>
@@ -802,13 +803,13 @@ Eine alternative Methode zum Verwalten von Benutzern bei Verwendung von Active D
 Gehen Sie wie folgt vor, um Rechte zum *Anmelden als Dienst* für das Benutzerkonto eines Diensts einzurichten:
 
 1. Öffnen Sie den Editor für lokale Sicherheitsrichtlinien, indem Sie die Datei *secpol.msc* ausführen.
-1. Erweitern Sie den Knoten **Lokale Richtlinien**, und klicken Sie auf **Zuweisen von Benutzerrechten**.
+1. Erweitern Sie den Knoten **Lokale Richtlinien** , und klicken Sie auf **Zuweisen von Benutzerrechten**.
 1. Öffnen Sie die Richtlinie **Anmelden als Dienst**.
 1. Wählen Sie **Benutzer oder Gruppe hinzufügen** aus.
 1. Geben Sie den Objektnamen (das Benutzerkonto) an. Dafür gibt es zwei Möglichkeiten:
-   1. Geben Sie die Bezeichnung des Benutzerkontos (`{DOMAIN OR COMPUTER NAME\USER}`) in das Feld für den Objektnamen ein, und klicken Sie auf **OK**, um den Benutzer der Richtlinie hinzuzufügen.
-   1. Wählen Sie **Erweitert** aus. Klicken Sie auf **Find Now** (Suche starten). Wählen Sie das betreffende Benutzerkonto aus der Liste aus. Klicken Sie auf **OK**. Klicken Sie erneut auf **OK**, um den Benutzer zur Richtlinie hinzuzufügen.
-1. Klicken Sie auf **OK** oder auf **Anwenden**, um die Änderungen zu übernehmen.
+   1. Geben Sie die Bezeichnung des Benutzerkontos (`{DOMAIN OR COMPUTER NAME\USER}`) in das Feld für den Objektnamen ein, und klicken Sie auf **OK** , um den Benutzer der Richtlinie hinzuzufügen.
+   1. Wählen Sie **Erweitert** aus. Klicken Sie auf **Find Now** (Suche starten). Wählen Sie das betreffende Benutzerkonto aus der Liste aus. Klicken Sie auf **OK**. Klicken Sie erneut auf **OK** , um den Benutzer zur Richtlinie hinzuzufügen.
+1. Klicken Sie auf **OK** oder auf **Anwenden** , um die Änderungen zu übernehmen.
 
 ## <a name="create-and-manage-the-windows-service"></a>Erstellen und Verwalten des Windows-Diensts
 
@@ -957,9 +958,9 @@ Informationen zur Problembehandlung für Windows-Dienstanwendungen finden Sie un
 
 So greifen Sie auf die System- und Anwendungsereignisprotokolle zu:
 
-1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige*, und wählen Sie dann die App **Ereignisanzeige** aus.
+1. Öffnen Sie das Startmenü, suchen Sie nach der *Ereignisanzeige* , und wählen Sie dann die App **Ereignisanzeige** aus.
 1. Öffnen Sie unter **Ereignisanzeige** den Knoten **Windows-Protokolle**.
-1. Klicken Sie auf **System**, um das Systemereignisprotokoll zu öffnen. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
+1. Klicken Sie auf **System** , um das Systemereignisprotokoll zu öffnen. Wählen Sie **Anwendung** aus, um das Anwendungsereignisprotokoll zu öffnen.
 1. Suchen Sie nach Fehlern, die mit der fehlerhaften App im Zusammenhang stehen.
 
 ### <a name="run-the-app-at-a-command-prompt"></a>Ausführen der App in einer Eingabeaufforderung

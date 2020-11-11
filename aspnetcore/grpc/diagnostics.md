@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 7d2da20d04b93ebcd16fb58a4b74b5b67d37bd72
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 1f25ae76e5a480e5e6f247e4ac78d06dd4e778e9
+ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722922"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93060442"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Protokollierung und Diagnosen in gRPC für .NET
 
@@ -45,7 +46,7 @@ gRPC-Dienste und der gRPC-Client schreiben Protokolle mithilfe der [.NET Core-Pr
 
 Da gRPC-Dienste bei ASP.NET Core gehostet werden, wird das ASP.NET Core-Protokollierungssystem verwendet. In der Standardkonfiguration werden für gRPC nur wenige Informationen protokolliert, das kann jedoch konfiguriert werden. In der Dokumentation zur [ASP.NET Core-Protokollierung](xref:fundamentals/logging/index#configuration) finden Sie weitere Informationen zum Konfigurieren der ASP.NET Core-Protokollierung.
 
-gRPC fügt Protokolle unter der `Grpc`-Kategorie hinzu. Wenn Sie in gRPC detaillierte Protokolle aktivieren möchten, konfigurieren Sie die `Grpc`-Präfixe auf die `Debug`-Ebene in Ihrer *appsettings.json*-Datei, indem Sie die folgenden Elemente im `LogLevel`-Unterbereich in `Logging` hinzufügen:
+gRPC fügt Protokolle unter der `Grpc`-Kategorie hinzu. Wenn Sie in gRPC detaillierte Protokolle aktivieren möchten, konfigurieren Sie die `Grpc`-Präfixe für die `Debug`-Ebene in Ihrer Datei *appsettings.json* , indem Sie die folgenden Elemente im `LogLevel`-Unterbereich in `Logging` hinzufügen:
 
 [!code-json[](diagnostics/sample/logging-config.json?highlight=7)]
 
@@ -222,7 +223,7 @@ Press p to pause, r to resume, q to quit.
 
 Eine andere Möglichkeit, gRPC-Metriken zu überwachen, ist es, Indikatoren mithilfe des [Microsoft.ApplicationInsights.EventCounterCollector-Pakets](/azure/azure-monitor/app/eventcounters) von Application Insights zu sammeln. Sobald Application Insights eingerichtet ist, werden allgemeine .NET-Indikatoren zur Laufzeit gesammelt. Indikatoren von gRPC werden nicht standardmäßig gesammelt, aber Application Insights kann so [angepasst werden, dass zusätzliche Indikatoren eingeschlossen](/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected) werden.
 
-Geben Sie die gRPC-Indikatoren, die gesammelt werden sollen, für Application Insights in *Startup.cs*:
+Geben Sie die gRPC-Indikatoren, die gesammelt werden sollen, für Application Insights in *Startup.cs* :
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;

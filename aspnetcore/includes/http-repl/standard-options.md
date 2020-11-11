@@ -9,10 +9,6 @@
   * `{header}={value}`
   * `{header}:{value}`
 
-* `--response`
-
-  Gibt eine Datei an, in die die gesamte HTTP-Antwort (inklusive Header und Text) geschrieben werden soll. Beispiel: `--response "C:\response.txt"`. Wenn die Datei nicht vorhanden ist, wird sie erstellt.
-
 * `--response:body`
 
   Gibt eine Datei an, in die der HTTP-Antworttext geschrieben werden soll. Beispiel: `--response:body "C:\response.json"`. Wenn die Datei nicht vorhanden ist, wird sie erstellt.

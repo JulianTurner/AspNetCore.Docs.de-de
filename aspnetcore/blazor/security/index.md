@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 6110f51eb5d5ee40d6ce5a5d49ddda3329d1f033
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a333c189e81a9f44e94deb6b37097f1a8b19a0f9
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055541"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430925"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Authentifizierung und Autorisierung in ASP.NET Core Blazor
 
@@ -39,7 +39,7 @@ Es gibt jeweils unterschiedliche Sicherheitsszenarien für Blazor Server- und Bl
 
 Blazor WebAssembly-Apps werden auf dem Client ausgeführt. Die Autorisierung wird *nur* verwendet, um zu bestimmen, welche UI-Optionen angezeigt werden. Da clientseitige Prüfungen von einem Benutzer geändert oder umgangen werden können, kann eine Blazor WebAssembly-App keine Autorisierungszugriffsregeln durchsetzen.
 
-[Autorisierungskonventionen von Razor Pages](xref:security/authorization/razor-pages-authorization) gelten nicht für routingfähige Razor-Komponenten. Wenn eine nicht routingfähige Razor-Komponente [auf einer Seite eingebettet](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#render-components-from-a-page-or-view) wird, wirken sich die Autorisierungskonventionen der Seite indirekt auf die Razor-Komponenten sowie auf den Rest des Seiteninhalts aus.
+[Autorisierungskonventionen von Razor Pages](xref:security/authorization/razor-pages-authorization) gelten nicht für routingfähige Razor-Komponenten. Wenn eine nicht routingfähige Razor-Komponente [auf einer Seite eingebettet](xref:blazor/components/prerendering-and-integration) wird, wirken sich die Autorisierungskonventionen der Seite indirekt auf die Razor-Komponenten sowie auf den Rest des Seiteninhalts aus.
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Identity.SignInManager%601> und <xref:Microsoft.AspNetCore.Identity.UserManager%601> werden in Razor-Komponenten nicht unterstützt.
@@ -247,8 +247,8 @@ Nachdem ein Benutzer authentifiziert wurde, werden *Autorisierungsregeln* angewe
 In der Regel wird der Zugriff in Abhängigkeit von folgenden Punkten gewährt oder verweigert:
 
 * Ein Benutzer ist authentifiziert (angemeldet).
-* Ein Benutzer hat eine *Rolle* .
-* Ein Benutzer hat einen *Anspruch* .
+* Ein Benutzer hat eine *Rolle*.
+* Ein Benutzer hat einen *Anspruch*.
 * Ein *Richtlinie* wird erfüllt.
 
 Jedes dieser Konzepte entspricht dem einer ASP.NET Core MVC- oder Razor Pages-App. Weitere Informationen zu ASP.NET Core-Sicherheit finden Sie im Artikel unter [ASP.NET Core-Sicherheit und -Identität](xref:security/index).

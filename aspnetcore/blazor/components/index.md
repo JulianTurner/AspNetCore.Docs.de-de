@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie Razor-Komponenten erstellen und verwenden, Da
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/19/2020
+ms.date: 11/09/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: d30f40945a3b2799dfc2d9391bba37eee1bfdc18
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0f02bc3a92b9f62eb0e3efea0cd780ad6d09bef5
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056269"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431003"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -628,12 +628,26 @@ Stellen Sie sicher, dass die für [`@key`][5] verwendeten Werte nicht kollidiere
 
 ## <a name="overwritten-parameters"></a>Überschriebene Parameter
 
-Es werden neue Parameterwerte bereitgestellt, mit denen in der Regel vorhandene Parameter überschrieben werden, wenn die übergeordnete Komponente wiederholt gerendert wird.
+Das Blazor-Framework erzwingt im Allgemeinen eine sichere Parameterzuordnung von über- und untergeordneten Elementen:
 
-Angenommen, die folgende `Expander`-Komponente:
+* Parameter werden nicht unerwartet überschrieben.
+* Nebeneffekte werden minimiert. Beispielsweise werden zusätzliche Rendervorgänge vermieden, da Sie zu unendlichen Renderingschleifen führen können.
 
-* rendert untergeordneten Inhalt.
-* schaltet die Anzeige von untergeordnetem Inhalt mit einem Komponentenparameter um.
+Eine untergeordnete Komponente empfängt neue Parameterwerte, die möglicherweise vorhandene Werte überschreiben, wenn die übergeordnete Komponente erneut gerendert wird. Das versehentliches Überschreiben von Parameterwerten in einer untergeordneten Komponente tritt häufig auf, wenn die Komponente mit mindestens einem datengebundenen Parameter entwickelt wird und der Entwickler direkt in einen Parameter im untergeordneten Element schreibt:
+
+* Die untergeordnete Komponente wird mit mindestens einem Parameterwert aus der übergeordneten Komponente gerendert.
+* Das untergeordnete Element schreibt direkt in den Wert eines Parameters.
+* Die übergeordnete Komponente wird erneut gerendert und überschreibt den Wert des Parameters des untergeordneten Elements.
+
+Das Potenzial, Parameterwerte zu überschreiben, gilt auch für Eigenschaftensetter der untergeordneten Komponente.
+
+**Unsere allgemeine Richtlinie besagt, dass keine Komponenten erstellt werden sollen, die direkt in ihre eigenen Parameter schreiben.**
+
+Angenommen, die folgende fehlerhafte `Expander`-Komponente:
+
+* Rendert untergeordneten Inhalt.
+* Schaltet die Anzeige von untergeordnetem Inhalt mit einem Komponentenparameter (`Expanded`) um.
+* Die Komponente schreibt direkt in den `Expanded`-Parameter, der das Problem mit überschriebenen Parametern veranschaulicht, das vermieden werden sollte.
 
 ```razor
 <div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
@@ -685,7 +699,7 @@ Die folgende überarbeitete `Expander`-Komponente:
 
 * akzeptiert den Wert des `Expanded`-Komponentenparameters aus der übergeordneten Komponente.
 * weist den Wert des Komponentenparameters einem *privaten Feld* (`expanded`) im [OnInitialized-Ereignis](xref:blazor/components/lifecycle#component-initialization-methods) zu.
-* verwendet das private Feld, um seinen internen Umschaltungszustand beizubehalten.
+* Verwendet das private Feld, um den internen Umschaltzustand zu verwalten. Dies veranschaulicht, wie das direkte Schreiben in einen Parameter vermieden wird.
 
 ```razor
 <div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
@@ -719,6 +733,8 @@ Die folgende überarbeitete `Expander`-Komponente:
     }
 }
 ```
+
+Weitere Informationen finden Sie unter [Bidirektionaler Blazor-Bindungsfehler (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599). 
 
 ## <a name="apply-an-attribute"></a>Hinzufügen eines Attributs
 

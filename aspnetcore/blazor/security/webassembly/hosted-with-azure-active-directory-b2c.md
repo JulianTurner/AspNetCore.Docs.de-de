@@ -5,8 +5,9 @@ description: In diesem Artikel erfahren Sie, wie Sie eine gehostete ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 11/02/2020
 no-loc:
+- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -18,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
-ms.openlocfilehash: 1a58e19ecaf816ddfb724b9a575d35c801cebd04
-ms.sourcegitcommit: 2e3a967331b2c69f585dd61e9ad5c09763615b44
+ms.openlocfilehash: 8727fa52acbcf59549c326bd5106e5dfe23c36be
+ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92690560"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93234490"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-azure-active-directory-b2c"></a>Sichern einer gehosteten ASP.NET Core Blazor WebAssembly-App mit Azure Active Directory B2C
 
@@ -139,16 +140,18 @@ Ersetzen Sie die Platzhalter im folgenden Befehl durch die zuvor notierten Infor
 dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho -o {APP NAME} -ssp "{SIGN UP OR SIGN IN POLICY}"
 ```
 
-| Platzhalter                   | Name im Azure-Portal                                     | Beispiel                                      |
-| ----------------------------- | ----------------------------------------------------- | -------------------------------------------- |
-| `{AAD B2C INSTANCE}`          | Instanz                                              | `https://contoso.b2clogin.com/`              |
-| `{APP NAME}`                  | &mdash;                                               | `BlazorSample`                               |
-| `{CLIENT APP CLIENT ID}`      | Anwendungs-ID (Client-ID) für die *`Client`* -App        | `4369008b-21fa-427c-abaa-9b53bf58e538`       |
-| `{DEFAULT SCOPE}`             | Bereichsname                                            | `API.Access`                                 |
-| `{SERVER API APP CLIENT ID}`  | Anwendungs-ID (Client-ID) für die *Server-API-App*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd`       |
-| `{SERVER API APP ID URI}`     | Anwendungs-ID-URI                                    | `api://41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SIGN UP OR SIGN IN POLICY}` | Benutzerflow für die Registrierung oder Anmeldung                             | `B2C_1_signupsignin1`                        |
-| `{TENANT DOMAIN}`             | Primäre, Herausgeber- oder Mandantendomäne                       | `contoso.onmicrosoft.com`                    |
+| Platzhalter                   | Name im Azure-Portal                                     | Beispiel                                        |
+| ----------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
+| `{AAD B2C INSTANCE}`          | Instanz                                              | `https://contoso.b2clogin.com/`                |
+| `{APP NAME}`                  | &mdash;                                               | `BlazorSample`                                 |
+| `{CLIENT APP CLIENT ID}`      | Anwendungs-ID (Client-ID) für die *`Client`* -App        | `4369008b-21fa-427c-abaa-9b53bf58e538`         |
+| `{DEFAULT SCOPE}`             | Bereichsname                                            | `API.Access`                                   |
+| `{SERVER API APP CLIENT ID}`  | Anwendungs-ID (Client-ID) für die *Server-API-App*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd`         |
+| `{SERVER API APP ID URI}`     | Anwendungs-ID-URI&dagger;                            | `41451fa7-82d9-4673-8fa5-69eff5a761fd`&dagger; |
+| `{SIGN UP OR SIGN IN POLICY}` | Benutzerflow für die Registrierung oder Anmeldung                             | `B2C_1_signupsignin1`                          |
+| `{TENANT DOMAIN}`             | Primäre, Herausgeber- oder Mandantendomäne                       | `contoso.onmicrosoft.com`                      |
+
+&dagger;Die Blazor WebAssembly-Vorlage fügt dem App-ID-URI-Argument, das im Befehl `dotnet new` übergeben wird, automatisch ein `api://`-Schema hinzu. Wenn Sie den App-ID-URI für den Platzhalter `{SERVER API APP ID URI}` bereitstellen und das Schema `api://` lautet, entfernen Sie das Schema (`api://`) aus dem Argument. Dies wird anhand des Beispielwerts in der obigen Tabelle gezeigt. Wenn der App-ID-URI ein benutzerdefinierter Wert ist oder ein anderes Schema aufweist (z. B. `https://` für eine nicht vertrauenswürdige Herausgeberdomäne wie `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`), müssen Sie den Standard-URI für den Geltungsbereich manuell aktualisieren und das Schema `api://` entfernen, nachdem die *`Client`* -App von der Vorlage erstellt wurde. Weitere Informationen finden Sie im Hinweis im Abschnitt [Geltungsbereiche von Zugriffstoken](#access-token-scopes). Die Blazor WebAssembly-Vorlage wird möglicherweise in einer zukünftigen Version von ASP.NET Core geändert werden, um diese Szenarios zu beheben. Weitere Informationen finden Sie unter [Doppeltes Schema für den App-ID-URI in Blazor WASM-Vorlage (gehostet, Einzelorganisation) (dotnet/aspnetcore #27417)](https://github.com/dotnet/aspnetcore/issues/27417).
 
 Der mit der Option `-o|--output` angegebene Ausgabespeicherort erstellt einen Projektordner, sofern kein solcher vorhanden ist, und wird Teil des Namens der App.
 
@@ -353,6 +356,29 @@ builder.Services.AddMsalAuthentication(options =>
     options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
+
+> [!NOTE]
+> Die Blazor WebAssembly-Vorlage fügt dem App-ID-URI-Argument, das im `dotnet new`-Befehl übergeben wird, automatisch ein `api://`-Schema hinzu. Wenn eine App aus der Blazor-Projektvorlage generiert wird, überprüfen Sie, ob der Wert des Bereichs für das Standardzugriffstoken entweder den richtigen URI-Wert für die App-ID verwendet, den Sie im Azure-Portal bereitgestellt haben, oder einen Wert mit **einem** der folgenden Formate:
+>
+> * Wenn die Domäne des Herausgebers des Verzeichnisses als **vertrauenswürdig** gilt, weist der Bereich des Standardzugriffstoken in der Regel einen Wert ähnlich des folgenden Beispiels auf. Dabei ist `API.Access` der Name des Standardbereichs:
+>
+>   ```csharp
+>   options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>       "api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
+>   ```
+>
+>   Überprüfen Sie, ob der Wert ein doppeltes Schema aufweist (`api://api://...`). Wenn ein doppeltes Schema vorhanden ist, entfernen Sie das erste `api://`-Schema aus dem Wert.
+>
+> * Wenn die Domäne des Herausgebers des Verzeichnisses als **nicht vertrauenswürdig** gilt, weist der Bereich des Standardzugriffstoken in der Regel einen Wert ähnlich des folgenden Beispiels auf. Dabei ist `API.Access` der Name des Standardbereichs:
+>
+>   ```csharp
+>   options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>       "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
+>   ```
+>
+>   Überprüfen Sie, ob der Wert ein zusätzliches `api://`-Schema aufweist (`api://https://contoso.onmicrosoft.com/...`). Wenn ein zusätzliches `api://`-Schema vorhanden ist, entfernen Sie das erste `api://`-Schema aus dem Wert.
+>
+> Die Blazor WebAssembly-Vorlage wird möglicherweise in einer zukünftigen Version von ASP.NET Core geändert werden, um diese Szenarios zu beheben. Weitere Informationen finden Sie unter [Doppeltes Schema für den App-ID-URI in Blazor WASM-Vorlage (gehostet, Einzelorganisation) (dotnet/aspnetcore #27417)](https://github.com/dotnet/aspnetcore/issues/27417).
 
 Geben Sie zusätzliche Bereiche mit `AdditionalScopesToConsent` an:
 

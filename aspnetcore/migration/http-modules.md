@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 9664f49bd709d2c9e46130773211c339e391d1f6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4abba1d4304bf537bd96623527c851d9d15774a4
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060702"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94508161"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>Migrieren von HTTP-Handlern und Modulen zu ASP.net Core Middleware
 
@@ -141,7 +141,7 @@ Konvertieren Sie diese, indem [Sie die neue Middleware](xref:fundamentals/middle
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
-Die genaue Position in der Pipeline, an der Sie die neue Middleware einfügen, hängt von dem Ereignis ab, das als Modul ( `BeginRequest` , `EndRequest` usw.) behandelt wurde, und der Reihenfolge in der Liste der Module in *Web.config* .
+Die genaue Position in der Pipeline, an der Sie die neue Middleware einfügen, hängt von dem Ereignis ab, das als Modul ( `BeginRequest` , `EndRequest` usw.) behandelt wurde, und der Reihenfolge in der Liste der Module in *Web.config*.
 
 Wie bereits erwähnt, gibt es keinen Anwendungslebenszyklus in ASP.net Core und die Reihenfolge, in der die Antworten von der Middleware verarbeitet werden, unterscheidet sich von der von Modulen verwendeten Reihenfolge. Dies könnte dazu führen, dass Ihre Bestell Entscheidung schwieriger wird.
 
@@ -357,7 +357,7 @@ Gibt Ihnen eine eindeutige ID für jede Anforderung. Sehr nützlich, um in Ihre 
 
 **HttpContext. Response. TransmitFile**
 
-Die Einrichtung einer Datei wird unter [Middleware und Anforderungs Features](xref:fundamentals/request-features#middleware-and-request-features)erläutert.
+Die Einrichtung einer Datei wird in erläutert <xref:fundamentals/request-features> .
 
 **HttpContext. Response. Headers**
 

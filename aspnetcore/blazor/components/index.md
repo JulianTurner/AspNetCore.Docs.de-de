@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 0f02bc3a92b9f62eb0e3efea0cd780ad6d09bef5
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: d78076eb29d6d09756e408b388fcf12b4b6460f6
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431003"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507940"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -258,7 +258,7 @@ Komponenten können *Komponentenparameter* enthalten, die mithilfe öffentlicher
 
 `Components/ChildComponent.razor`:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
 Im folgenden Beispiel aus der Beispiel-App legt der `ParentComponent` den Wert der `Title`-Eigenschaft von `ChildComponent` fest.
 
@@ -277,7 +277,7 @@ Im folgenden Beispiel enthält `ChildComponent` eine `ChildContent`-Eigenschaft,
 
 `Components/ChildComponent.razor`:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > Die Eigenschaft, die den Inhalt von <xref:Microsoft.AspNetCore.Components.RenderFragment> empfängt, muss gemäß der Konvention `ChildContent` benannt werden.

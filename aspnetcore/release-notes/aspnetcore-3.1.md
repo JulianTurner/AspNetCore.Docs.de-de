@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 15240df978d9389af08030521adaf491f81d3a77
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: dd012a2104f574865ed577ab3c0e81dc9cc9596d
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051173"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94431016"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>Neuerungen in ASP.NET Core 3.1
 
@@ -52,7 +52,7 @@ So können Sie eine `Counter`-Komponente beispielsweise mit einem Inkrement vora
     param-IncrementAmount="10" />
 ```
 
-Weitere Informationen finden Sie unter [Integrieren von Komponenten in Razor-Seiten und MVC-Apps](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
+Weitere Informationen finden Sie unter [Integrieren von Komponenten in Razor-Seiten und MVC-Apps](xref:blazor/components/prerendering-and-integration).
 
 ## <a name="support-for-shared-queues-in-httpsys"></a>Unterstützung für freigegebene Warteschlangen in HTTP.sys
 

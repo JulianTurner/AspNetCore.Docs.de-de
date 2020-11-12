@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-model
-ms.openlocfilehash: 428d153cd94c882db16484a3009c86d1f9593538
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fa1d79bed56f17afe69697a7e24ec200e6a0ab22
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93050900"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422759"
 ---
 # <a name="part-4-add-a-model-to-an-aspnet-core-mvc-app"></a>Teil 4: Hinzufügen eines Modells zu einer ASP.NET Core MVC-App
 
@@ -36,7 +36,393 @@ Die Modellklassen, die Sie erstellen, werden als POCO-Klassen (von **P** lain **
 
 In diesem Tutorial schreiben Sie zuerst die Modellklassen. Anschließend erstellt EF Core die Datenbank.
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="add-a-data-model-class"></a>Hinzufügen einer Datenmodellklasse
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* > **Hinzufügen** > **Klasse**. Nennen Sie die Datei *Movie.cs*.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+Fügen Sie dem Ordner *Models* eine Datei mit dem Namen *Movie.cs* hinzu.
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
+
+Klicken Sie mit der rechten Maustaste auf den Ordner *Modelle* > **Hinzufügen** > **Neue Klasse** > **Leere Klasse**. Nennen Sie die Datei *Movie.cs*.
+
+---
+
+Aktualisieren Sie die Datei *Movie.cs* mit dem folgenden Code:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
+
+Die `Movie`-Klasse enthält ein `Id`-Feld, das von der Datenbank für den Primärschlüssel benötigt wird.
+
+Das <xref:System.ComponentModel.DataAnnotations.DataType>-Attribut für `ReleaseDate` gibt den Typ der Daten (`Date`) an. Mit diesem Attribut:
+
+* Es ist nicht erforderlich, dass der Benutzer Zeitinformationen in das Datumsfeld eingibt.
+* Nur das Datum wird angezeigt, keine Zeitinformationen.
+
+[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) werden in einem späteren Tutorial behandelt.
+
+## <a name="add-nuget-packages"></a>Hinzufügen von NuGet-Paketen
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.
+
+![PMC-Menü](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
+
+Führen Sie den folgenden Befehl in der PMC aus:
+
+```powershell
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+```
+
+Mit dem vorangehenden Befehl wird der EF Core SQL Server-Anbieter hinzugefügt. Das Anbieterpaket installiert das EF Core-Paket als Abhängigkeit. Weitere Pakete werden im weiteren Verlauf des Tutorials automatisch im Gerüstbauschritt installiert.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-5.md)]
+
+# <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
+
+Wählen Sie im Menü **Projekt** die Option **NuGet-Pakete verwalten** aus.
+
+Geben Sie in das Feld **Suchen** in der oberen rechten Ecke `Microsoft.EntityFrameworkCore.SQLite` ein, und drücken Sie die **EINGABETASTE** , um zu suchen. Wählen Sie das entsprechende NuGet-Paket aus, und klicken Sie auf die Schaltfläche **Paket hinzufügen**.
+
+![NuGet-Paket für Entity Framework Core hinzufügen](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
+
+Das Dialogfeld **Projekte auswählen** wird angezeigt, und das Projekt `MvcMovie` ist ausgewählt. Klicken Sie auf die Schaltfläche **OK**.
+
+Ein Dialogfeld **Zustimmen zur Lizenz** wird angezeigt. Überprüfen Sie die Lizenzen nach Wunsch, und klicken Sie dann auf die Schaltfläche **Akzeptieren**.
+
+Wiederholen Sie die Schritte oben, um die folgenden NuGet-Pakete zu installieren:
+
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+* `Microsoft.EntityFrameworkCore.Design`
+
+---
+
+<a name="dc"></a>
+
+## <a name="create-a-database-context-class"></a>Erstellen einer Datenbankkontextklasse
+
+Eine Datenbankkontextklasse ist erforderlich, um EF Core-Funktionalität (Erstellen, Lesen, Aktualisieren, Löschen) für das `Movie`-Modell zu koordinieren. Der Datenbankkontext wird von [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) abgeleitet und gibt die Entitäten an, die im Datenmodell enthalten sein sollen.
+
+Erstellen Sie einen Ordner *Data*.
+
+Fügen Sie eine Datei *Data/MvcMovieContext.cs* mit dem folgenden Code hinzu: 
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
+
+Der vorangehende Code erstellt eine [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1)-Eigenschaft für die Entitätsmenge. In der Terminologie von Entity Framework entspricht eine Entitätenmenge in der Regel einer Datenbanktabelle. Entitäten entsprechen Zeilen in Tabellen.
+
+<a name="reg"></a>
+
+## <a name="register-the-database-context"></a>Registrieren des Datenbankkontexts
+
+ASP.NET Core wird mit [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) (Dependency Injection, DI) erstellt. Dienste (z.B. der EF Core-Datenbankkontext) müssen über DI beim Anwendungsstart registriert werden. Komponenten, die diese Dienste erfordern (z. B. Razor Pages), werden von diesen Diensten über Konstruktorparameter bereitgestellt. Der Konstruktorcode, der eine Datenbankkontext-Instanz abruft, wird später in diesem Tutorial erläutert. In diesem Abschnitt registrieren Sie den Datenbankkontext mit dem DI-Container.
+
+Fügen Sie am Anfang der Datei *Startup.cs* die folgenden `using`-Anweisungen ein.
+
+```csharp
+using MvcMovie.Data;
+using Microsoft.EntityFrameworkCore;
+```
+
+Fügen Sie folgenden hervorgehobenen Code in `Startup.ConfigureServices` hinzu:
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=6-7)]
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=6-7)]
+
+---
+
+Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie eine Methode auf einem [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions)-Objekt aufrufen. Für die lokale Entwicklung liest das [ASP.NET Core-Konfigurationssystem](xref:fundamentals/configuration/index) die Verbindungszeichenfolge aus der *appsettings.json* -Datei.
+
+<a name="cs"></a>
+
+## <a name="add-a-database-connection-string"></a>Hinzufügen einer Datenbank-Verbindungszeichenfolge
+
+Fügen Sie in der *appsettings.json* -Datei eine Verbindungszeichenfolge hinzu:
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-12)]
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
+
+---
+
+Erstellen Sie das Projekt, um zu ermitteln, ob Compilerfehler vorliegen.
+
+## <a name="scaffold-movie-pages"></a>Gerüstbau der Movie-Seiten
+
+Verwenden Sie das Tool für den Gerüstbau, um CRUD-Seiten („Create“ (Erstellen), „Read“ (Lesen), „Update“ (Aktualisieren) und „Delete“ (Löschen)) für das Movie-Modell zu erstellen.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Klicken Sie im *Projektmappen-Explorer* mit der rechten Maustaste auf den Ordner **Controllers** und anschließend auf **Hinzufügen > Neues Gerüstelement**.
+
+![Screenshot für oben genannten Schritt](adding-model/_static/add_controller21.png)
+
+Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller mit Ansichten unter Verwendung von Entity Framework > Hinzufügen** aus.
+
+![Dialogfeld „Gerüst hinzufügen“](adding-model/_static/add_scaffold21.png)
+
+Bearbeiten Sie das Dialogfeld **Controller hinzufügen** :
+
+* **Modellklasse:** *Movie (MvcMovie.Models)*
+* **Datenkontextklasse:** *MvcMovieContext (MvcMovie.Data)*
+
+![Datenkontext hinzufügen](adding-model/_static/dc5.png)
+
+* **Ansichten:** Belassen Sie den Standardwert der einzelnen Optionen aktiviert.
+* **Controllername:** Übernehmen Sie den Standardnamen *MoviesController*.
+* Wählen Sie **Hinzufügen** aus.
+
+Visual Studio erstellt Folgendes:
+
+* Einen Movies-Controller ( *Controllers/MoviesController.cs* )
+* Razor-Ansichtsdateien für die Seiten „Erstellen“, „Löschen“, „Details“ „Bearbeiten“ und „Index“ ( *Views/Movies/\*.cshtml* )
+
+Die automatische Erstellung dieser Dateien wird als *Gerüstbau* bezeichnet.
+
+### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code) 
+
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
+
+* Exportieren Sie unter Linux den Pfad des Gerüstbautools:
+
+  ```console
+  export PATH=$HOME/.dotnet/tools:$PATH
+  ```
+
+* Führen Sie den folgenden Befehl aus:
+
+  ```dotnetcli
+  dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  ```
+
+  [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+
+### <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
+
+* Öffnen Sie ein Befehlsfenster im Projektverzeichnis (das Verzeichnis mit den Dateien *Program.cs* , *Startup.cs* , und *CSPROJ* ).
+
+* Führen Sie den folgenden Befehl aus:
+
+  ```dotnetcli
+  dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+  ```
+
+  [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+
+---
+
+<!-- End of tabs                  -->
+
+Sie können die Gerüstbauseiten noch nicht verwenden, da die Datenbank nicht vorhanden ist. Wenn Sie die App ausführen und auf den Link **Movie App** klicken, erhalten Sie eine Fehlermeldung des Typs *Datenbank kann nicht geöffnet werden* oder *Keine solche Tabelle vorhanden: Movie*.
+
+<a name="migration"></a>
+
+## <a name="initial-migration"></a>Anfängliche Migration
+
+Verwenden Sie das Feature [Migrations](xref:data/ef-mvc/migrations) von EF Core, um die Datenbank zu erstellen. Migrations sind eine Reihe von Tools, mit denen Sie eine Datenbank erstellen und aktualisieren können, damit die Ihrem Datenmodell entspricht.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Wählen Sie im Menü **Tools** **NuGet-Paket-Manager** > **Paket-Manager-Konsole** (PMC) aus.
+
+Geben Sie in der PMC die folgenden Befehle ein:
+
+```powershell
+Add-Migration InitialCreate
+Update-Database
+```
+
+* `Add-Migration InitialCreate`: Generiert die Migrationsdatei *Migrations/{timestamp}_InitialCreate.cs*. Das `InitialCreate`-Argument ist der Migrationsname. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt. Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas. Das Datenbankschema basiert auf dem Modell, das in der Klasse `MvcMovieContext` angegeben ist.
+
+* `Update-Database`: Aktualisiert die Datenbank auf die neueste Migration, die der vorherige Befehl erstellt hat. Der Befehl führt die `Up`-Methode in der Datei *Migrations/{zeitstempel}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.
+
+  Der Befehl zum Aktualisieren der Datenbank generiert folgende Warnung: 
+
+  > No type was specified for the decimal column 'Price' on entity type 'Movie'. Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (Für die Spalte „Price“ mit Dezimalwerten für den Entitätstyp „Movie“ wurde kein Typ angegeben. Dadurch werden Werte automatisch abgeschnitten, falls diese nicht der Standardgenauigkeit und -skalierung entsprechen. Geben Sie den Spaltentyp von SQL-Server explizit an, der durch „ForHasColumnType()“ sämtliche Werte unterstützen kann.)
+
+  Sie können diese Warnung ignorieren, sie wird in einem späteren Tutorial behoben.
+
+[!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
+
+Führen Sie die folgenden .NET Core-CLI-Befehle aus:
+
+```dotnetcli
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+* `ef migrations add InitialCreate`: Generiert eine Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs*. Das `InitialCreate`-Argument ist der Migrationsname. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name ausgewählt, der die Migration beschreibt. Da dies die erste Migration ist, enthält die generierte Klasse Code zum Erstellen des Datenbankschemas. Das Datenbankschema basiert auf dem Modell, das in der `MvcMovieContext`-Klasse (in der Datei *Data/MvcMovieContext.cs* ) angegeben ist.
+
+* `ef database update`: Aktualisiert die Datenbank auf die neueste Migration, die der vorherige Befehl erstellt hat. Der Befehl führt die `Up`-Methode in der Datei *Migrations/{zeitstempel}_InitialCreate.cs* aus, mit der die Datenbank erstellt wird.
+
+---
+
+### <a name="the-initialcreate-class"></a>Die InitialCreate-Klasse
+
+Untersuchen Sie die Migrationsdatei *Migrations/{zeitstempel}_InitialCreate.cs* :
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
+
+Die `Up`-Methode erstellt die Movie-Tabelle und konfiguriert `Id` als Primärschlüssel. Die `Down`-Methode macht die von der `Up`-Migration vorgenommenen Schemaänderungen rückgängig.
+
+<a name="test"></a>
+
+## <a name="test-the-app"></a>Testen der App
+
+* Führen Sie die APP aus, und klicken Sie auf den Link **Movie App**.
+
+  Wenn eine Ausnahme auftritt, die der folgenden ähnelt:
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+  ```console
+  SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
+  ```
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
+
+  ```console
+  SqliteException: SQLite Error 1: 'no such table: Movie'.
+  ```
+
+---
+  Sie haben möglicherweise den [Migrationsschritt](#migration) ausgelassen.
+
+* Testen Sie die Seite **Create** (Erstellen). Geben Sie die Daten ein, und senden Sie sie.
+
+  > [!NOTE]
+  > Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben. Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden. Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
+
+* Testen Sie die Seiten **Edit** (Bearbeiten), **Details** und **Delete** (Löschen).
+
+## <a name="dependency-injection-in-the-controller"></a>Abhängigkeitsinjektion im Controller
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+Öffnen Sie die Datei *Controllers/MoviesController.cs* , und überprüfen Sie den Konstruktor:
+
+<!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
+
+Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller. Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.
+
+# <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
+
+Der Konstruktor verwendet die [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) zum Einfügen des Datenbankkontexts (`MvcMovieContext`) in den Controller. Der Datenbankkontext wird in den einzelnen [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Methoden im Controller verwendet.
+
+### <a name="use-sqlite-for-development-sql-server-for-production"></a>Verwenden von SQLite für die Entwicklung und von SQL Server für die Produktion
+
+Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die Entwicklung bereit. Der folgende Code zeigt das Injizieren von <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> in Startup. `IWebHostEnvironment` wird eingefügt, sodass `ConfigureServices` SQLite bei der Entwicklung und SQL Server für die Produktion verwenden kann.
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=5,10,16-28)]
+
+---
+<!-- end of tabs --->
+
+<a name="strongly-typed-models-keyword-label"></a>
+<a name="strongly-typed-models-and-the--keyword"></a>
+
+## <a name="strongly-typed-models-and-the-model-keyword"></a>Stark typisierte Modelle und das Schlüsselwort @model
+
+Weiter oben in diesem Tutorial haben Sie gesehen, wie ein Controller mithilfe des Wörterbuchs `ViewData` Daten oder Objekte an eine Ansicht übergeben kann. Das Wörterbuch `ViewData` ist ein dynamisches Objekt, das eine praktische Möglichkeit zur späten Bindung bietet, um Informationen an eine Ansicht zu übergeben.
+
+MVC bietet außerdem die Möglichkeit, stark typisierte Modellobjekte an eine Ansicht zu übergeben. Dieser stark typisierte Ansatz ermöglicht eine Überprüfung Ihres Codes zur Kompilierzeit. Der Gerüstbaumechnismus hat diesen Ansatz (d.h. das Übergeben eines stark typisierten Modells) mit der `MoviesController`-Klasse und Ansichten genutzt.
+
+Untersuchen Sie die generierte `Details`-Methode in der Datei *Controllers/MoviesController.cs* :
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
+
+Der `id`-Parameter wird im Allgemeinen als Routendaten übergeben. `https://localhost:5001/movies/details/1` legt beispielsweise Folgendes fest:
+
+* Den Controller auf den Controller `movies` (das erste URL-Segment).
+* Die Aktion auf `details` (das zweite URL-Segment).
+* Die ID auf 1 (das letzte URL-Segment).
+
+Sie können die `id` auch mithilfe einer Abfragezeichenfolge übergeben:
+
+`https://localhost:5001/movies/details?id=1`
+
+Der `id`-Parameter wird als [Nullable-Typ](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) für den Fall definiert, dass kein ID-Wert angegeben wird.
+
+Ein [Lambdaausdruck](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) wird an `FirstOrDefaultAsync` übergeben, um Filmentitäten auszuwählen, die mit den Routendaten oder dem Wert der Abfragezeichenfolge übereinstimmen.
+
+```csharp
+var movie = await _context.Movie
+    .FirstOrDefaultAsync(m => m.Id == id);
+```
+
+Wenn ein Film gefunden wird, wird eine Instanz des `Movie`-Modells an die Ansicht `Details` übergeben:
+
+```csharp
+return View(movie);
+```
+
+Untersuchen Sie den Inhalt der Datei *Views/Movies/Details.cshtml* :
+
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/DetailsOriginal.cshtml)]
+
+Die `@model`-Anweisung am Anfang der Ansichtsdatei gibt den Typ des Objekts an, den die Ansicht erwartet. Beim Erstellen des Movie-Controllers wurde die folgende `@model`-Anweisung eingeschlossen:
+
+```cshtml
+@model MvcMovie.Models.Movie
+```
+
+Diese `@model`-Anweisung ermöglicht den Zugriff auf den Film, den der Controller an die Ansicht übergeben hat. Das `Model`-Objekt ist stark typisiert. In der Ansicht *Details.cshtml* übergibt der Code jedes Filmfeld an die HTML-Hilfsprogramme `DisplayNameFor` und `DisplayFor` mit dem stark typisierten `Model`-Objekt. Die Methoden `Create` und `Edit` und Ansichten übergeben außerdem ein `Movie`-Modelobjekt.
+
+Überprüfen Sie die Datei *Index.cshtml* und die `Index`-Methode im „Movies“-Controller. Beachten Sie, wie der Code beim Aufrufen der `View`-Methode ein `List`-Objekt erstellt. Der Code übergibt diese Liste `Movies` aus der Aktionsmethode `Index` an die Ansicht:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_index)]
+
+Als der Movies-Controller erstellt wurde, hat der Gerüstbau automatisch die folgende `@model`-Anweisung am Anfang der Datei *Index.cshtml* hinzugefügt:
+
+<!-- Copy Index.cshtml to IndexOriginal.cshtml -->
+
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?range=1)]
+
+Diese `@model`-Direktive ermöglicht Ihnen den Zugriff auf die Liste der Filme, die der Controller an die Ansicht übergeben hat, indem ein stark typisiertes `Model`-Objekt verwendet wird. In der Ansicht *Index.cshtml* durchläuft der Code z.B. die Filme mithilfe einer `foreach`-Anweisung für das stark typisierte `Model`-Objekt:
+
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
+
+Da das `Model`-Objekt stark typisiert ist (als ein `IEnumerable<Movie>`-Objekt), wird jedes Element in der Schleife als `Movie` typisiert. Neben anderen Vorteilen bedeutet dies, dass Sie eine Überprüfung des Codes zur Kompilierzeit erhalten.
+
+## <a name="additional-resources"></a>Zusätzliche Ressourcen
+
+* [Taghilfsprogramme](xref:mvc/views/tag-helpers/intro)
+* [Globalisierung und Lokalisierung](xref:fundamentals/localization)
+
+> [!div class="step-by-step"]
+> [Vorheriges Tutorial: Hinzufügen einer Ansicht](adding-view.md)
+> [Nächstes Tutorial: Arbeiten mit SQL](working-with-sql.md)
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 ## <a name="add-a-data-model-class"></a>Hinzufügen einer Datenmodellklasse
 

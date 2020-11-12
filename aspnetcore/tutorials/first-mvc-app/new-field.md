@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: d2b3b22a94e3119712e331565cc74ffa60ada726
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 84e344aabc9171020c0117d55eaf1a95e6b768db
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93050705"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422534"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Teil 8: Hinzufügen eines neuen Felds zu einer ASP.NET Core MVC-App
 
@@ -43,7 +43,7 @@ Wird EF Code First verwendet, um eine Datenbank automatisch zu erstellen, geht C
 
 Fügen Sie eine `Rating`-Eigenschaft zu *Models/Movie.cs* hinzu:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?name=snippet)]
 
 Erstellen der App
 
@@ -73,7 +73,17 @@ Aktualisieren Sie die Ansichtsvorlagen, um die neue `Rating`-Eigenschaft in der 
 
 Bearbeiten Sie die Datei */Views/Movies/Index.cshtml* , und fügen Sie das Feld `Rating` hinzu:
 
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Views/Movies/Index.cshtml?highlight=28-49&range=12-51)]
+
+::: moniker-end
 
 Aktualisieren Sie die Datei */Views/Movies/Create.cshtml* mit dem Feld `Rating`.
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: e61c76b5d53ad7646961632d00b047ecd2d9e477
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9462b73ad67394e79de08e7d2b13bf6a3145a04e
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055606"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507966"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>Blazor-Layouts in ASP.NET Core
 
@@ -41,13 +41,23 @@ Zum Umwandeln einer *Komponente* in ein *Layout* muss die Komponente:
 
 Das folgende Codebeispiel zeigt die Razor-Vorlage einer Layoutkomponente (`MainLayout.razor`). Das Layout erbt <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> und legt `@Body` zwischen der Navigationsleiste und der Fußzeile fest:
 
-[!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
+[!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor)]
 
 ## <a name="mainlayout-component"></a>`MainLayout`-Komponente
 
 In einer App, die auf einer der Blazor-Projektvorlagen basiert, befindet sich die Komponente `MainLayout` (`MainLayout.razor`) im Ordner `Shared` der App:
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](./common/samples/5.x/BlazorWebAssemblySample/Shared/MainLayout.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!code-razor[](./common/samples/3.x/BlazorWebAssemblySample/Shared/MainLayout.razor)]
+
+::: moniker-end
 
 ## <a name="default-layout"></a>Standardlayout
 
@@ -110,7 +120,7 @@ Schließlich enthält das `MasterLayout` in der Datei `MasterLayout.razor` die a
 
 ## <a name="share-a-no-locrazor-pages-layout-with-integrated-components"></a>Freigeben eines Razor Pages-Layouts mit integrierten Komponenten
 
-Wenn routingfähige Komponenten in eine Razor Pages-App integriert werden, kann das freigegebene Layout der App mit den Komponenten verwendet werden. Weitere Informationen finden Sie unter <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
+Wenn routingfähige Komponenten in eine Razor Pages-App integriert werden, kann das freigegebene Layout der App mit den Komponenten verwendet werden. Weitere Informationen finden Sie unter <xref:blazor/components/prerendering-and-integration>.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

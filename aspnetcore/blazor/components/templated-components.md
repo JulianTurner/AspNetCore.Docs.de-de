@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/templated-components
-ms.openlocfilehash: ee38040a1edc8db43b8d5bf0202fd519b153ea04
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f818a0b7f1ba6d4dd6affeeba785c5e288568dd8
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056243"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507953"
 ---
 # <a name="aspnet-core-no-locblazor-templated-components"></a>ASP.NET Core-Komponentenvorlagen in Blazor
 
@@ -43,7 +43,7 @@ Eine Komponentenvorlage wird definiert, indem mindestens ein Komponentenparamete
 
 `TableTemplate`-Komponente (`TableTemplate.razor`):
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
 Bei der Verwendung einer Komponentenvorlage werden die Vorlagenparameter mithilfe eines untergeordneten Elements angegeben, das mit den Namen der Parameter übereinstimmt (`TableHeader` und `RowTemplate` im folgenden Beispiel):
 
@@ -122,7 +122,7 @@ Alternativ können Sie das `Context`-Attribut im Komponentenelement angeben. Das
 
 Komponentenvorlagen haben oft einen generischen Typ. Eine generische `ListViewTemplate`-Komponente (`ListViewTemplate.razor`) kann beispielsweise verwendet werden, um `IEnumerable<T>`-Werte zu rendern. Verwenden Sie die [`@typeparam`](xref:mvc/views/razor#typeparam)-Direktive, um Typenparameter anzugeben, um eine generische Komponente zu definieren:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
 Bei der Verwendung einer Komponente mit generischem Typ, wird der Typparameter wenn möglich abgeleitet:
 

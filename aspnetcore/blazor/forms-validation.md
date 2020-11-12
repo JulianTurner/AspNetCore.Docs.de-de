@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: cd613b2b76b8e876786988fdcefc0e7275d3bf53
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fe232b40a2255732dd375cc266937576d5b2d5d9
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056061"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94507823"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Blazor-Formulare und -Validierung in ASP.NET Core
 
@@ -71,7 +71,7 @@ Im vorherigen Beispiel:
 
 * Das Formular validiert Benutzereingaben im `name`-Feld mithilfe der im `ExampleModel`-Typ definierten Validierung. Das Modell wird im `@code`-Block der Komponente erstellt und in einem privaten Feld (`exampleModel`) gespeichert. Das Feld wird dem `Model`-Attribut des `<EditForm>`-Elements zugewiesen.
 * Der `@bind-Value` der <xref:Microsoft.AspNetCore.Components.Forms.InputText>-Komponente bindet Folgendes:
-  * Die Modelleigenschaft (`exampleModel.Name`) an die `Value`-Eigenschaft der <xref:Microsoft.AspNetCore.Components.Forms.InputText>-Komponente. Weitere Informationen zur Eigenschaftenbindung finden Sie unter <xref:blazor/components/data-binding#parent-to-child-binding-with-component-parameters>.
+  * Die Modelleigenschaft (`exampleModel.Name`) an die `Value`-Eigenschaft der <xref:Microsoft.AspNetCore.Components.Forms.InputText>-Komponente. Weitere Informationen zur Eigenschaftenbindung finden Sie unter <xref:blazor/components/data-binding#binding-with-component-parameters>.
   * Den Delegat eines Änderungsereignisses an die `ValueChanged`-Eigenschaft der <xref:Microsoft.AspNetCore.Components.Forms.InputText>-Komponente.
 * Die <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>-[Validierungskomponente](#validator-components) fügt Validierungsunterstützung mithilfe von Datenanmerkungen hinzu.
 * Die <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>-Komponente fasst Validierungsnachrichten zusammen.

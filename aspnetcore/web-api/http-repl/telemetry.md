@@ -1,10 +1,10 @@
 ---
-title: HTTP-repl-Telemetrie
+title: Httprepl-Telemetrie
 author: scottaddie
-description: Erfahren Sie mehr über die von der http-repl gesammelten Telemetriedaten.
+description: Erfahren Sie mehr über die Telemetriedaten, die von httprepl gesammelt werden.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,30 +18,32 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl/telemetry
-ms.openlocfilehash: 8590959e43c2dda69090acb358e740b271426a44
-ms.sourcegitcommit: fb72e9c1ae5b279817f1fb4b46a52170449b6f30
+ms.openlocfilehash: 5ff22753f566c494e51dae67c8c4f6371211be78
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94502003"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550607"
 ---
-# <a name="http-repl-telemetry"></a>HTTP-repl-Telemetrie
+# <a name="httprepl-telemetry"></a>Httprepl-Telemetrie
 
-Die [http-Read-eval-Print-Schleife (repl)](xref:web-api/http-repl) enthält eine telemetriefunktion, mit der Verwendungs Daten erfasst werden. Es ist wichtig, dass das http-repl-Team versteht, wie das Tool verwendet wird, um es zu verbessern.
+[Httprepl](xref:web-api/http-repl) enthält eine telemetriefunktion, mit der Verwendungs Daten erfasst werden. Es ist wichtig, dass das httprepl-Team versteht, wie das Tool verwendet wird, um es zu verbessern.
 
 ## <a name="how-to-opt-out"></a>Deaktivierung der Telemetriefunktion
 
-Die http-repl-telemetriefunktion ist standardmäßig aktiviert. Sie können das Telemetriefeature deaktivieren, indem Sie die Umgebungsvariable `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` auf `1` oder `true` festlegen.
+Die httprepl-telemetriefunktion ist standardmäßig aktiviert. Sie können das Telemetriefeature deaktivieren, indem Sie die Umgebungsvariable `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` auf `1` oder `true` festlegen.
 
 ## <a name="disclosure"></a>Offenlegung
 
-Httprepl zeigt Text an, der dem folgenden ähnelt, wenn Sie das Tool zum ersten Mal ausführen. Der Text kann abhängig von der Version des Tools, das Sie ausführen, leicht abweichen. Über diese erste Ausführung benachrichtigt Microsoft Sie über die Datensammlung.
+Die httprepl zeigt Text an, der dem folgenden ähnelt, wenn Sie das Tool zum ersten Mal ausführen. Der Text kann abhängig von der Version des Tools, das Sie ausführen, leicht abweichen. Über diese erste Ausführung benachrichtigt Microsoft Sie über die Datensammlung.
 
 ```console
 Telemetry
 ---------
-The .NET Core tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
+The .NET tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
 ```
+
+Legen Sie die `DOTNET_HTTPREPL_SKIP_FIRST_TIME_EXPERIENCE` Umgebungsvariable auf oder fest, um den Text der "ersten Testlauf" zu unterdrücken `1` `true` .
 
 ## <a name="data-points"></a>Datenpunkte
 
@@ -68,7 +70,7 @@ Die telemetriefunktion sammelt die folgenden Daten.
 | >= 5,0        | Gibt an, ob das Tool in einem Container ausgeführt wird. |
 | >= 5,0        | Hash Media Access Control (Mac)-Adresse: ein kryptografischer (SHA256) Hashwert und eine eindeutige ID für einen Computer. |
 | >= 5,0        | Kernelversion |
-| >= 5,0        | HTTP-repl-Version. |
+| >= 5,0        | Httprepl-Version. |
 | >= 5,0        | Gibt an, ob das Tool mit-,-oder-Argumenten gestartet wurde `help` `run` `connect` . Tatsächliche Argument Werte werden nicht erfasst. |
 | >= 5,0        | Der Befehl wurde aufgerufen (z `get` . b.), und ob er erfolgreich war. |
 | >= 5,0        | Für den- `connect` Befehl, ob die- `root` ,-oder- `base` `openapi` Argumente angegeben wurden. Tatsächliche Argument Werte werden nicht erfasst. |

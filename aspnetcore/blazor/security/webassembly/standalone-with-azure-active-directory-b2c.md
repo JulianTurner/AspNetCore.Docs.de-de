@@ -1,23 +1,23 @@
 ---
-title: Sichern einer eigenständigen :::no-loc(Blazor WebAssembly):::-App in ASP.NET Core mit Azure Active Directory B2C
+title: Sichern einer eigenständigen Blazor WebAssembly-App in ASP.NET Core mit Azure Active Directory B2C
 author: guardrex
-description: In diesem Artikel erfahren Sie, wie Sie eine eigenständige :::no-loc(Blazor WebAssembly):::-App in ASP.NET Core mit Azure Active Directory B2C sichern.
+description: In diesem Artikel erfahren Sie, wie Sie eine eigenständige Blazor WebAssembly-App in ASP.NET Core mit Azure Active Directory B2C sichern.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ms.openlocfilehash: 14eda03419e22538e17b7b4d6fa697d61cb384c8
 ms.sourcegitcommit: 45aa1c24c3fdeb939121e856282b00bdcf00ea55
@@ -26,11 +26,11 @@ ms.contentlocale: de-DE
 ms.lasthandoff: 11/04/2020
 ms.locfileid: "93343705"
 ---
-# <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a><span data-ttu-id="7fc7d-103">Sichern einer eigenständigen :::no-loc(Blazor WebAssembly):::-App in ASP.NET Core mit Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="7fc7d-103">Secure an ASP.NET Core :::no-loc(Blazor WebAssembly)::: standalone app with Azure Active Directory B2C</span></span>
+# <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory-b2c"></a><span data-ttu-id="7fc7d-103">Sichern einer eigenständigen Blazor WebAssembly-App in ASP.NET Core mit Azure Active Directory B2C</span><span class="sxs-lookup"><span data-stu-id="7fc7d-103">Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory B2C</span></span>
 
 <span data-ttu-id="7fc7d-104">Von [Javier Calvarro Nelson](https://github.com/javiercn) und [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="7fc7d-104">By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="7fc7d-105">In diesem Artikel wird beschrieben, wie Sie eine [eigenständige :::no-loc(Blazor WebAssembly):::-App](xref:blazor/hosting-models#blazor-webassembly) erstellen, die [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) für die Authentifizierung verwendet.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-105">This article covers how to create a [standalone :::no-loc(Blazor WebAssembly)::: app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.</span></span>
+<span data-ttu-id="7fc7d-105">In diesem Artikel wird beschrieben, wie Sie eine [eigenständige Blazor WebAssembly-App](xref:blazor/hosting-models#blazor-webassembly) erstellen, die [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) für die Authentifizierung verwendet.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-105">This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.</span></span>
 
 <span data-ttu-id="7fc7d-106">Erstellen Sie einen Mandanten, oder identifizieren Sie einen vorhandenen B2C-Mandanten für die App, die im Azure-Portal verwendet werden soll. Befolgen Sie hierzu die Anweisungen im Tutorial [Erstellen eines Azure Active Directory B2C-Mandanten](/azure/active-directory-b2c/tutorial-create-tenant).</span><span class="sxs-lookup"><span data-stu-id="7fc7d-106">Create a tenant or identify an existing B2C tenant for the app to use in the Azure portal by following the guidance in the [Create an AAD B2C tenant (Azure documentation)](/azure/active-directory-b2c/tutorial-create-tenant) article.</span></span>
 
@@ -44,7 +44,7 @@ ms.locfileid: "93343705"
 ::: moniker range=">= aspnetcore-5.0"
 
 1. <span data-ttu-id="7fc7d-111">Wählen Sie unter **Azure Active Directory** > **App-Registrierungen** die Option **Neue Registrierung** aus.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-111">In **Azure Active Directory** > **App registrations** , select **New registration**.</span></span>
-1. <span data-ttu-id="7fc7d-112">Geben Sie einen **Namen** für die App an (z. B. **:::no-loc(Blazor)::: Standalone AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7fc7d-112">Provide a **Name** for the app (for example, **:::no-loc(Blazor)::: Standalone AAD B2C** ).</span></span>
+1. <span data-ttu-id="7fc7d-112">Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7fc7d-112">Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C** ).</span></span>
 1. <span data-ttu-id="7fc7d-113">Wählen Sie für **Unterstützte Kontotypen** die Option für mehrere Mandanten aus: **Konten in einem beliebigen Organisationsverzeichnis oder ein beliebiger Identitätsanbieter Wählen Sie diese Option aus, um Benutzer bei Azure AD B2C zu authentifizieren.**</span><span class="sxs-lookup"><span data-stu-id="7fc7d-113">For **Supported account types** , select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**</span></span>
 1. <span data-ttu-id="7fc7d-114">Treffen Sie für **Umleitungs-URI** die Dropdownauswahl **Single-Page-Anwendung (SPA)** , und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-114">Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`.</span></span> <span data-ttu-id="7fc7d-115">Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-115">The default port for an app running on Kestrel is 5001.</span></span> <span data-ttu-id="7fc7d-116">Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-116">If the app is run on a different Kestrel port, use the app's port.</span></span> <span data-ttu-id="7fc7d-117">Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-117">For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel.</span></span> <span data-ttu-id="7fc7d-118">Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-118">Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI.</span></span> <span data-ttu-id="7fc7d-119">Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-119">A remark appears later in this topic to remind IIS Express users to update the redirect URI.</span></span>
 1. <span data-ttu-id="7fc7d-120">Vergewissern Sie sich, dass die Option **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen** aktiviert ist.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-120">Confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is selected.</span></span>
@@ -64,7 +64,7 @@ ms.locfileid: "93343705"
 ::: moniker range="< aspnetcore-5.0"
 
 1. <span data-ttu-id="7fc7d-128">Wählen Sie unter **Azure Active Directory** > **App-Registrierungen** die Option **Neue Registrierung** aus.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-128">In **Azure Active Directory** > **App registrations** , select **New registration**.</span></span>
-1. <span data-ttu-id="7fc7d-129">Geben Sie einen **Namen** für die App an (z. B. **:::no-loc(Blazor)::: Standalone AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7fc7d-129">Provide a **Name** for the app (for example, **:::no-loc(Blazor)::: Standalone AAD B2C** ).</span></span>
+1. <span data-ttu-id="7fc7d-129">Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD B2C** ).</span><span class="sxs-lookup"><span data-stu-id="7fc7d-129">Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C** ).</span></span>
 1. <span data-ttu-id="7fc7d-130">Wählen Sie für **Unterstützte Kontotypen** die Option für mehrere Mandanten aus: **Konten in einem beliebigen Organisationsverzeichnis oder ein beliebiger Identitätsanbieter Wählen Sie diese Option aus, um Benutzer bei Azure AD B2C zu authentifizieren.**</span><span class="sxs-lookup"><span data-stu-id="7fc7d-130">For **Supported account types** , select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**</span></span>
 1. <span data-ttu-id="7fc7d-131">Belassen Sie die Dropdownauswahl für **Umleitungs-URI** auf **Web** , und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-131">Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`.</span></span> <span data-ttu-id="7fc7d-132">Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-132">The default port for an app running on Kestrel is 5001.</span></span> <span data-ttu-id="7fc7d-133">Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-133">If the app is run on a different Kestrel port, use the app's port.</span></span> <span data-ttu-id="7fc7d-134">Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-134">For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel.</span></span> <span data-ttu-id="7fc7d-135">Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-135">Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI.</span></span> <span data-ttu-id="7fc7d-136">Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-136">A remark appears later in this topic to remind IIS Express users to update the redirect URI.</span></span>
 1. <span data-ttu-id="7fc7d-137">Vergewissern Sie sich, dass die Option **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen** aktiviert ist.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-137">Confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is selected.</span></span>
@@ -85,7 +85,7 @@ ms.locfileid: "93343705"
 
 [<span data-ttu-id="7fc7d-146">Erstellen Sie einen Benutzerflow für die Registrierung und Anmeldung</span><span class="sxs-lookup"><span data-stu-id="7fc7d-146">Create a sign-up and sign-in user flow</span></span>](/azure/active-directory-b2c/tutorial-create-user-flows)
 
-<span data-ttu-id="7fc7d-147">Wählen Sie mindestens das Benutzerattribut **Anwendungsansprüche** > **Anzeigename** aus, um `context.User.:::no-loc(Identity):::.Name` in der `LoginDisplay`-Komponente (`Shared/LoginDisplay.razor`) auszufüllen.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-147">At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.:::no-loc(Identity):::.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).</span></span>
+<span data-ttu-id="7fc7d-147">Wählen Sie mindestens das Benutzerattribut **Anwendungsansprüche** > **Anzeigename** aus, um `context.User.Identity.Name` in der `LoginDisplay`-Komponente (`Shared/LoginDisplay.razor`) auszufüllen.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-147">At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).</span></span>
 
 <span data-ttu-id="7fc7d-148">Notieren Sie sich den Namen des für die App erstellten Benutzerflows für die Registrierung und Anmeldung (z. B. `B2C_1_signupsignin`).</span><span class="sxs-lookup"><span data-stu-id="7fc7d-148">Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).</span></span>
 
@@ -98,7 +98,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | <span data-ttu-id="7fc7d-150">Platzhalter</span><span class="sxs-lookup"><span data-stu-id="7fc7d-150">Placeholder</span></span>                   | <span data-ttu-id="7fc7d-151">Name im Azure-Portal</span><span class="sxs-lookup"><span data-stu-id="7fc7d-151">Azure portal name</span></span>               | <span data-ttu-id="7fc7d-152">Beispiel</span><span class="sxs-lookup"><span data-stu-id="7fc7d-152">Example</span></span>                                |
 | ----------------------------- | ------------------------------- | -------------------------------------- |
 | `{AAD B2C INSTANCE}`          | <span data-ttu-id="7fc7d-153">Instanz</span><span class="sxs-lookup"><span data-stu-id="7fc7d-153">Instance</span></span>                        | `https://contoso.b2clogin.com/`        |
-| `{APP NAME}`                  | &mdash;                         | `:::no-loc(Blazor):::Sample`                         |
+| `{APP NAME}`                  | &mdash;                         | `BlazorSample`                         |
 | `{CLIENT ID}`                 | <span data-ttu-id="7fc7d-154">Anwendungs-ID (Client)</span><span class="sxs-lookup"><span data-stu-id="7fc7d-154">Application (client) ID</span></span>         | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 | `{SIGN UP OR SIGN IN POLICY}` | <span data-ttu-id="7fc7d-155">Benutzerflow für die Registrierung oder Anmeldung</span><span class="sxs-lookup"><span data-stu-id="7fc7d-155">Sign-up/sign-in user flow</span></span>       | `B2C_1_signupsignin1`                  |
 | `{TENANT DOMAIN}`             | <span data-ttu-id="7fc7d-156">Primäre, Herausgeber- oder Mandantendomäne</span><span class="sxs-lookup"><span data-stu-id="7fc7d-156">Primary/Publisher/Tenant domain</span></span> | `contoso.onmicrosoft.com`              |
@@ -142,7 +142,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 
 ## <a name="authentication-service-support"></a><span data-ttu-id="7fc7d-173">Unterstützung für Authentifizierungsdienste</span><span class="sxs-lookup"><span data-stu-id="7fc7d-173">Authentication service support</span></span>
 
-<span data-ttu-id="7fc7d-174">Die Unterstützung für die Authentifizierung von Benutzern wird im Dienstcontainer mit der vom Paket [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) bereitgestellten <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>-Erweiterungsmethode registriert.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-174">Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package.</span></span> <span data-ttu-id="7fc7d-175">Diese Methode richtet alle Dienste ein, die erforderlich sind, damit die App mit dem Identitätsanbieter interagiert.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-175">This method sets up all of the services required for the app to interact with the :::no-loc(Identity)::: Provider (IP).</span></span>
+<span data-ttu-id="7fc7d-174">Die Unterstützung für die Authentifizierung von Benutzern wird im Dienstcontainer mit der vom Paket [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) bereitgestellten <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>-Erweiterungsmethode registriert.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-174">Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package.</span></span> <span data-ttu-id="7fc7d-175">Diese Methode richtet alle Dienste ein, die erforderlich sind, damit die App mit dem Identitätsanbieter interagiert.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-175">This method sets up all of the services required for the app to interact with the Identity Provider (IP).</span></span>
 
 <span data-ttu-id="7fc7d-176">`Program.cs`:</span><span class="sxs-lookup"><span data-stu-id="7fc7d-176">`Program.cs`:</span></span>
 
@@ -155,7 +155,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 <span data-ttu-id="7fc7d-177">Die <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>-Methode akzeptiert einen Rückruf zum Konfigurieren der für die Authentifizierung der App erforderlichen Parameter.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-177">The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app.</span></span> <span data-ttu-id="7fc7d-178">Die zum Konfigurieren der App erforderlichen Werte können von der AAD-Konfiguration beim Registrieren der App abgerufen werden.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-178">The values required for configuring the app can be obtained from the AAD configuration when you register the app.</span></span>
 
-<span data-ttu-id="7fc7d-179">Die Konfiguration wird durch die Datei `wwwroot/:::no-loc(appsettings.json):::` bereitgestellt:</span><span class="sxs-lookup"><span data-stu-id="7fc7d-179">Configuration is supplied by the `wwwroot/:::no-loc(appsettings.json):::` file:</span></span>
+<span data-ttu-id="7fc7d-179">Die Konfiguration wird durch die Datei `wwwroot/appsettings.json` bereitgestellt:</span><span class="sxs-lookup"><span data-stu-id="7fc7d-179">Configuration is supplied by the `wwwroot/appsettings.json` file:</span></span>
 
 ```json
 {
@@ -181,7 +181,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 ## <a name="access-token-scopes"></a><span data-ttu-id="7fc7d-181">Zugriffstokenbereiche</span><span class="sxs-lookup"><span data-stu-id="7fc7d-181">Access token scopes</span></span>
 
-<span data-ttu-id="7fc7d-182">Die :::no-loc(Blazor WebAssembly):::-Vorlage konfiguriert die App nicht automatisch so, dass diese ein Zugriffstoken für eine sichere API anfordert.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-182">The :::no-loc(Blazor WebAssembly)::: template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="7fc7d-183">Zum Bereitstellen eines Zugriffstokens als Teil des Anmeldeflows fügen Sie den Bereich den Standard-Zugriffstokenbereichen von <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions> hinzu:</span><span class="sxs-lookup"><span data-stu-id="7fc7d-183">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span></span>
+<span data-ttu-id="7fc7d-182">Die Blazor WebAssembly-Vorlage konfiguriert die App nicht automatisch so, dass diese ein Zugriffstoken für eine sichere API anfordert.</span><span class="sxs-lookup"><span data-stu-id="7fc7d-182">The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API.</span></span> <span data-ttu-id="7fc7d-183">Zum Bereitstellen eines Zugriffstokens als Teil des Anmeldeflows fügen Sie den Bereich den Standard-Zugriffstokenbereichen von <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions> hinzu:</span><span class="sxs-lookup"><span data-stu-id="7fc7d-183">To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions>:</span></span>
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>

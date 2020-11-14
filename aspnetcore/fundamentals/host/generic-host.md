@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/17/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/host/generic-host
 ms.openlocfilehash: 3e44932c302713132a37534b97fffdd91acce2c7
 ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
@@ -114,7 +114,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
   * <span data-ttu-id="d8f60-132">Umgebungsvariablen mit dem Präfix `DOTNET_`.</span><span class="sxs-lookup"><span data-stu-id="d8f60-132">Environment variables prefixed with `DOTNET_`.</span></span>
   * <span data-ttu-id="d8f60-133">Befehlszeilenargumenten</span><span class="sxs-lookup"><span data-stu-id="d8f60-133">Command-line arguments.</span></span>
 * <span data-ttu-id="d8f60-134">Lädt App-Konfiguration aus:</span><span class="sxs-lookup"><span data-stu-id="d8f60-134">Loads app configuration from:</span></span>
-  * <span data-ttu-id="d8f60-135">*:::no-loc(appsettings.json):::*.</span><span class="sxs-lookup"><span data-stu-id="d8f60-135">*:::no-loc(appsettings.json):::*.</span></span>
+  * <span data-ttu-id="d8f60-135">*appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="d8f60-135">*appsettings.json*.</span></span>
   * <span data-ttu-id="d8f60-136">*appsettings.{Environment}.json*</span><span class="sxs-lookup"><span data-stu-id="d8f60-136">*appsettings.{Environment}.json*.</span></span>
   * <span data-ttu-id="d8f60-137">[Geheimnis-Manager](xref:security/app-secrets), wenn die App in der `Development`-Umgebung ausgeführt wird</span><span class="sxs-lookup"><span data-stu-id="d8f60-137">[Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.</span></span>
   * <span data-ttu-id="d8f60-138">Umgebungsvariablen.</span><span class="sxs-lookup"><span data-stu-id="d8f60-138">Environment variables.</span></span>
@@ -271,7 +271,7 @@ Host.CreateDefaultBuilder(args)
 
 ### <a name="disable-app-configuration-reload-on-change"></a><span data-ttu-id="d8f60-244">Deaktivieren des Neuladens der App-Konfiguration bei Änderungen</span><span class="sxs-lookup"><span data-stu-id="d8f60-244">Disable app configuration reload on change</span></span>
 
-<span data-ttu-id="d8f60-245">Die Dateien *:::no-loc(appsettings.json):::* und *appsettings.{Environment}.json* werden [standardmäßig](xref:fundamentals/configuration/index#default) neu geladen, wenn die Datei geändert wird.</span><span class="sxs-lookup"><span data-stu-id="d8f60-245">By [default](xref:fundamentals/configuration/index#default), *:::no-loc(appsettings.json):::* and *appsettings.{Environment}.json* are reloaded when the file changes.</span></span> <span data-ttu-id="d8f60-246">Zum Deaktivieren dieses Verhaltens in ASP.NET Core 5.0 oder höher müssen Sie den Schlüssel `hostBuilder:reloadConfigOnChange` auf `false` festlegen.</span><span class="sxs-lookup"><span data-stu-id="d8f60-246">To disable this reload behavior in ASP.NET Core 5.0 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.</span></span>
+<span data-ttu-id="d8f60-245">Die Dateien *appsettings.json* und *appsettings.{Environment}.json* werden [standardmäßig](xref:fundamentals/configuration/index#default) neu geladen, wenn die Datei geändert wird.</span><span class="sxs-lookup"><span data-stu-id="d8f60-245">By [default](xref:fundamentals/configuration/index#default), *appsettings.json* and *appsettings.{Environment}.json* are reloaded when the file changes.</span></span> <span data-ttu-id="d8f60-246">Zum Deaktivieren dieses Verhaltens in ASP.NET Core 5.0 oder höher müssen Sie den Schlüssel `hostBuilder:reloadConfigOnChange` auf `false` festlegen.</span><span class="sxs-lookup"><span data-stu-id="d8f60-246">To disable this reload behavior in ASP.NET Core 5.0 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.</span></span>
 
 <span data-ttu-id="d8f60-247">**Schlüssel** : `hostBuilder:reloadConfigOnChange`</span><span class="sxs-lookup"><span data-stu-id="d8f60-247">**Key** : `hostBuilder:reloadConfigOnChange`</span></span>  
 <span data-ttu-id="d8f60-248">**Typ:** `bool` (`true` oder `1`)</span><span class="sxs-lookup"><span data-stu-id="d8f60-248">**Type** : `bool` (`true` or `1`)</span></span>  
@@ -617,7 +617,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
   * <span data-ttu-id="d8f60-399">Umgebungsvariablen mit dem Präfix `DOTNET_`.</span><span class="sxs-lookup"><span data-stu-id="d8f60-399">Environment variables prefixed with `DOTNET_`.</span></span>
   * <span data-ttu-id="d8f60-400">Befehlszeilenargumenten</span><span class="sxs-lookup"><span data-stu-id="d8f60-400">Command-line arguments.</span></span>
 * <span data-ttu-id="d8f60-401">Lädt App-Konfiguration aus:</span><span class="sxs-lookup"><span data-stu-id="d8f60-401">Loads app configuration from:</span></span>
-  * <span data-ttu-id="d8f60-402">*:::no-loc(appsettings.json):::*.</span><span class="sxs-lookup"><span data-stu-id="d8f60-402">*:::no-loc(appsettings.json):::*.</span></span>
+  * <span data-ttu-id="d8f60-402">*appsettings.json*.</span><span class="sxs-lookup"><span data-stu-id="d8f60-402">*appsettings.json*.</span></span>
   * <span data-ttu-id="d8f60-403">*appsettings.{Environment}.json*</span><span class="sxs-lookup"><span data-stu-id="d8f60-403">*appsettings.{Environment}.json*.</span></span>
   * <span data-ttu-id="d8f60-404">[Geheimnis-Manager](xref:security/app-secrets), wenn die App in der `Development`-Umgebung ausgeführt wird</span><span class="sxs-lookup"><span data-stu-id="d8f60-404">[Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.</span></span>
   * <span data-ttu-id="d8f60-405">Umgebungsvariablen.</span><span class="sxs-lookup"><span data-stu-id="d8f60-405">Environment variables.</span></span>
@@ -1175,9 +1175,9 @@ var host = new HostBuilder()
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureAppConfiguration)]
 
-<span data-ttu-id="d8f60-729">*:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="d8f60-729">*:::no-loc(appsettings.json):::* :</span></span>
+<span data-ttu-id="d8f60-729">*appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="d8f60-729">*appsettings.json* :</span></span>
 
-[!code-json[](generic-host/samples/2.x/GenericHostSample/:::no-loc(appsettings.json):::)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/appsettings.json)]
 
 <span data-ttu-id="d8f60-730">*appsettings.Development.json* :</span><span class="sxs-lookup"><span data-stu-id="d8f60-730">*appsettings.Development.json* :</span></span>
 

@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: fundamentals/logging/loggermessage
 ms.openlocfilehash: 0224e768bd0e016eac5165dc4d9745f4b0867094
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -155,9 +155,9 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 
 <span data-ttu-id="f4573-168">Die Beispiel-App verfügt über die Schaltfläche **Clear all** (Alles löschen) zum Löschen aller Zitate in der Datenbank.</span><span class="sxs-lookup"><span data-stu-id="f4573-168">The sample app has a **Clear All** button for deleting all of the quotes in the database.</span></span> <span data-ttu-id="f4573-169">Die Zitate werden nacheinander entfernt und gelöscht.</span><span class="sxs-lookup"><span data-stu-id="f4573-169">The quotes are deleted by removing them one at a time.</span></span> <span data-ttu-id="f4573-170">Bei jedem Zitatlöschvorgang wird die `QuoteDeleted`-Methode in der Protokollierung aufgerufen.</span><span class="sxs-lookup"><span data-stu-id="f4573-170">Each time a quote is deleted, the `QuoteDeleted` method is called on the logger.</span></span> <span data-ttu-id="f4573-171">Diesen Protokollmeldung wird ein Protokollbereich hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="f4573-171">A log scope is added to these log messages.</span></span>
 
-<span data-ttu-id="f4573-172">Aktivieren Sie `IncludeScopes` in den Optionen der Konsolenprotokollierung von *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="f4573-172">Enable `IncludeScopes` in the console logger section of *:::no-loc(appsettings.json):::* :</span></span>
+<span data-ttu-id="f4573-172">Aktivieren Sie `IncludeScopes` in den Optionen der Konsolenprotokollierung von *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="f4573-172">Enable `IncludeScopes` in the console logger section of *appsettings.json* :</span></span>
 
-[!code-json[](loggermessage/samples/3.x/LoggerMessageSample/:::no-loc(appsettings.json):::?highlight=3-5)]
+[!code-json[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 <span data-ttu-id="f4573-173">Fügen Sie zum Erstellen eines Protokollbereichs ein Feld hinzu, dass einen <xref:System.Func%601>-Delegaten für den Bereich enthält.</span><span class="sxs-lookup"><span data-stu-id="f4573-173">To create a log scope, add a field to hold a <xref:System.Func%601> delegate for the scope.</span></span> <span data-ttu-id="f4573-174">Die Beispiel-App erstellt ein Feld mit dem Namen `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):</span><span class="sxs-lookup"><span data-stu-id="f4573-174">The sample app creates a field called `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):</span></span>
 
@@ -323,9 +323,9 @@ Parameter name: entity
 
 <span data-ttu-id="f4573-248">Die Beispiel-App verfügt über die Schaltfläche **Clear all** (Alles löschen) zum Löschen aller Zitate in der Datenbank.</span><span class="sxs-lookup"><span data-stu-id="f4573-248">The sample app has a **Clear All** button for deleting all of the quotes in the database.</span></span> <span data-ttu-id="f4573-249">Die Zitate werden nacheinander entfernt und gelöscht.</span><span class="sxs-lookup"><span data-stu-id="f4573-249">The quotes are deleted by removing them one at a time.</span></span> <span data-ttu-id="f4573-250">Bei jedem Zitatlöschvorgang wird die `QuoteDeleted`-Methode in der Protokollierung aufgerufen.</span><span class="sxs-lookup"><span data-stu-id="f4573-250">Each time a quote is deleted, the `QuoteDeleted` method is called on the logger.</span></span> <span data-ttu-id="f4573-251">Diesen Protokollmeldung wird ein Protokollbereich hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="f4573-251">A log scope is added to these log messages.</span></span>
 
-<span data-ttu-id="f4573-252">Aktivieren Sie `IncludeScopes` in den Optionen der Konsolenprotokollierung von *:::no-loc(appsettings.json):::* :</span><span class="sxs-lookup"><span data-stu-id="f4573-252">Enable `IncludeScopes` in the console logger section of *:::no-loc(appsettings.json):::* :</span></span>
+<span data-ttu-id="f4573-252">Aktivieren Sie `IncludeScopes` in den Optionen der Konsolenprotokollierung von *appsettings.json* :</span><span class="sxs-lookup"><span data-stu-id="f4573-252">Enable `IncludeScopes` in the console logger section of *appsettings.json* :</span></span>
 
-[!code-json[](loggermessage/samples/2.x/LoggerMessageSample/:::no-loc(appsettings.json):::?highlight=3-5)]
+[!code-json[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 <span data-ttu-id="f4573-253">Fügen Sie zum Erstellen eines Protokollbereichs ein Feld hinzu, dass einen <xref:System.Func%601>-Delegaten für den Bereich enthält.</span><span class="sxs-lookup"><span data-stu-id="f4573-253">To create a log scope, add a field to hold a <xref:System.Func%601> delegate for the scope.</span></span> <span data-ttu-id="f4573-254">Die Beispiel-App erstellt ein Feld mit dem Namen `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):</span><span class="sxs-lookup"><span data-stu-id="f4573-254">The sample app creates a field called `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):</span></span>
 

@@ -7,17 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/22/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: host-and-deploy/health-checks
 ms.openlocfilehash: 32b7a4c6722ba45ba998f9430f5d6da6ddca53f9
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -52,7 +52,7 @@ ms.locfileid: "93058661"
 
 <span data-ttu-id="9f31c-123">Die Beispiel-App stellt Startcode bereit, um die Integritätsprüfungen für verschiedene Szenarien zu veranschaulichen.</span><span class="sxs-lookup"><span data-stu-id="9f31c-123">The sample app provides startup code to demonstrate health checks for several scenarios.</span></span> <span data-ttu-id="9f31c-124">Das Szenario [Datenbanktest](#database-probe) überprüft die Integrität einer Datenbankverbindung mithilfe von [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks).</span><span class="sxs-lookup"><span data-stu-id="9f31c-124">The [database probe](#database-probe) scenario checks the health of a database connection using [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks).</span></span> <span data-ttu-id="9f31c-125">Das Szenario [DbContext-Test](#entity-framework-core-dbcontext-probe) überprüft eine Datenbank mithilfe eines EF Core-`DbContext`-Elements.</span><span class="sxs-lookup"><span data-stu-id="9f31c-125">The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario checks a database using an EF Core `DbContext`.</span></span> <span data-ttu-id="9f31c-126">Für ein Erkunden der Datenbankszenarios gilt für die Beispiel-App:</span><span class="sxs-lookup"><span data-stu-id="9f31c-126">To explore the database scenarios, the sample app:</span></span>
 
-* <span data-ttu-id="9f31c-127">Sie erstellt eine Datenbank und stellt deren Verbindungszeichenfolge in der *:::no-loc(appsettings.json):::* -Datei bereit.</span><span class="sxs-lookup"><span data-stu-id="9f31c-127">Creates a database and provides its connection string in the *:::no-loc(appsettings.json):::* file.</span></span>
+* <span data-ttu-id="9f31c-127">Sie erstellt eine Datenbank und stellt deren Verbindungszeichenfolge in der *appsettings.json* -Datei bereit.</span><span class="sxs-lookup"><span data-stu-id="9f31c-127">Creates a database and provides its connection string in the *appsettings.json* file.</span></span>
 * <span data-ttu-id="9f31c-128">Sie hat die folgenden Paketverweise in ihrer Projektdatei:</span><span class="sxs-lookup"><span data-stu-id="9f31c-128">Has the following package references in its project file:</span></span>
   * [<span data-ttu-id="9f31c-129">AspNetCore.HealthChecks.SqlServer</span><span class="sxs-lookup"><span data-stu-id="9f31c-129">AspNetCore.HealthChecks.SqlServer</span></span>](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/)
   * [<span data-ttu-id="9f31c-130">Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore</span><span class="sxs-lookup"><span data-stu-id="9f31c-130">Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore</span></span>](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/)
@@ -349,9 +349,9 @@ app.UseEndpoints(endpoints =>
 
 <span data-ttu-id="9f31c-225">Fügen Sie einen Paketverweis auf [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/) hinzu.</span><span class="sxs-lookup"><span data-stu-id="9f31c-225">Include a package reference to [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).</span></span>
 
-<span data-ttu-id="9f31c-226">Geben Sie in der *:::no-loc(appsettings.json):::* -Datei der App eine gültige Zeichenfolge für die Datenbankverbindung an.</span><span class="sxs-lookup"><span data-stu-id="9f31c-226">Supply a valid database connection string in the *:::no-loc(appsettings.json):::* file of the sample app.</span></span> <span data-ttu-id="9f31c-227">Die App verwendet eine SQL Server-Datenbank namens `HealthCheckSample`:</span><span class="sxs-lookup"><span data-stu-id="9f31c-227">The app uses a SQL Server database named `HealthCheckSample`:</span></span>
+<span data-ttu-id="9f31c-226">Geben Sie in der *appsettings.json* -Datei der App eine gültige Zeichenfolge für die Datenbankverbindung an.</span><span class="sxs-lookup"><span data-stu-id="9f31c-226">Supply a valid database connection string in the *appsettings.json* file of the sample app.</span></span> <span data-ttu-id="9f31c-227">Die App verwendet eine SQL Server-Datenbank namens `HealthCheckSample`:</span><span class="sxs-lookup"><span data-stu-id="9f31c-227">The app uses a SQL Server database named `HealthCheckSample`:</span></span>
 
-[!code-json[](health-checks/samples/3.x/HealthChecksSample/:::no-loc(appsettings.json):::?highlight=3)]
+[!code-json[](health-checks/samples/3.x/HealthChecksSample/appsettings.json?highlight=3)]
 
 <span data-ttu-id="9f31c-228">Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`.</span><span class="sxs-lookup"><span data-stu-id="9f31c-228">Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`.</span></span> <span data-ttu-id="9f31c-229">Die Beispiel-App ruft die `AddSqlServer`-Methode mit der Verbindungszeichenfolge der Datenbank ( *DbHealthStartup.cs* ) auf:</span><span class="sxs-lookup"><span data-stu-id="9f31c-229">The sample app calls the `AddSqlServer` method with the database's connection string ( *DbHealthStartup.cs* ):</span></span>
 
@@ -791,7 +791,7 @@ app.MapWhen(
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.Map:::no-loc(Razor):::Pages();
+    endpoints.MapRazorPages();
 });
 ```
 
@@ -821,7 +821,7 @@ app.UseEndpoints(endpoints =>
 
 <span data-ttu-id="9f31c-402">Die Beispiel-App stellt Startcode bereit, um die Integritätsprüfungen für verschiedene Szenarien zu veranschaulichen.</span><span class="sxs-lookup"><span data-stu-id="9f31c-402">The sample app provides startup code to demonstrate health checks for several scenarios.</span></span> <span data-ttu-id="9f31c-403">Das Szenario [Datenbanktest](#database-probe) überprüft die Integrität einer Datenbankverbindung mithilfe von [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks).</span><span class="sxs-lookup"><span data-stu-id="9f31c-403">The [database probe](#database-probe) scenario checks the health of a database connection using [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks).</span></span> <span data-ttu-id="9f31c-404">Das Szenario [DbContext-Test](#entity-framework-core-dbcontext-probe) überprüft eine Datenbank mithilfe eines EF Core-`DbContext`-Elements.</span><span class="sxs-lookup"><span data-stu-id="9f31c-404">The [DbContext probe](#entity-framework-core-dbcontext-probe) scenario checks a database using an EF Core `DbContext`.</span></span> <span data-ttu-id="9f31c-405">Für ein Erkunden der Datenbankszenarios gilt für die Beispiel-App:</span><span class="sxs-lookup"><span data-stu-id="9f31c-405">To explore the database scenarios, the sample app:</span></span>
 
-* <span data-ttu-id="9f31c-406">Sie erstellt eine Datenbank und stellt deren Verbindungszeichenfolge in der *:::no-loc(appsettings.json):::* -Datei bereit.</span><span class="sxs-lookup"><span data-stu-id="9f31c-406">Creates a database and provides its connection string in the *:::no-loc(appsettings.json):::* file.</span></span>
+* <span data-ttu-id="9f31c-406">Sie erstellt eine Datenbank und stellt deren Verbindungszeichenfolge in der *appsettings.json* -Datei bereit.</span><span class="sxs-lookup"><span data-stu-id="9f31c-406">Creates a database and provides its connection string in the *appsettings.json* file.</span></span>
 * <span data-ttu-id="9f31c-407">Sie hat die folgenden Paketverweise in ihrer Projektdatei:</span><span class="sxs-lookup"><span data-stu-id="9f31c-407">Has the following package references in its project file:</span></span>
   * [<span data-ttu-id="9f31c-408">AspNetCore.HealthChecks.SqlServer</span><span class="sxs-lookup"><span data-stu-id="9f31c-408">AspNetCore.HealthChecks.SqlServer</span></span>](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/)
   * [<span data-ttu-id="9f31c-409">Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore</span><span class="sxs-lookup"><span data-stu-id="9f31c-409">Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore</span></span>](https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore/)
@@ -1068,9 +1068,9 @@ private static Task WriteResponse(HttpContext httpContext, HealthReport result)
 
 <span data-ttu-id="9f31c-484">Fügen Sie einen Paketverweis auf [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/) hinzu.</span><span class="sxs-lookup"><span data-stu-id="9f31c-484">Include a package reference to [AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer/).</span></span>
 
-<span data-ttu-id="9f31c-485">Geben Sie in der *:::no-loc(appsettings.json):::* -Datei der App eine gültige Zeichenfolge für die Datenbankverbindung an.</span><span class="sxs-lookup"><span data-stu-id="9f31c-485">Supply a valid database connection string in the *:::no-loc(appsettings.json):::* file of the sample app.</span></span> <span data-ttu-id="9f31c-486">Die App verwendet eine SQL Server-Datenbank namens `HealthCheckSample`:</span><span class="sxs-lookup"><span data-stu-id="9f31c-486">The app uses a SQL Server database named `HealthCheckSample`:</span></span>
+<span data-ttu-id="9f31c-485">Geben Sie in der *appsettings.json* -Datei der App eine gültige Zeichenfolge für die Datenbankverbindung an.</span><span class="sxs-lookup"><span data-stu-id="9f31c-485">Supply a valid database connection string in the *appsettings.json* file of the sample app.</span></span> <span data-ttu-id="9f31c-486">Die App verwendet eine SQL Server-Datenbank namens `HealthCheckSample`:</span><span class="sxs-lookup"><span data-stu-id="9f31c-486">The app uses a SQL Server database named `HealthCheckSample`:</span></span>
 
-[!code-json[](health-checks/samples/2.x/HealthChecksSample/:::no-loc(appsettings.json):::?highlight=3)]
+[!code-json[](health-checks/samples/2.x/HealthChecksSample/appsettings.json?highlight=3)]
 
 <span data-ttu-id="9f31c-487">Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`.</span><span class="sxs-lookup"><span data-stu-id="9f31c-487">Register health check services with <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`.</span></span> <span data-ttu-id="9f31c-488">Die Beispiel-App ruft die `AddSqlServer`-Methode mit der Verbindungszeichenfolge der Datenbank ( *DbHealthStartup.cs* ) auf:</span><span class="sxs-lookup"><span data-stu-id="9f31c-488">The sample app calls the `AddSqlServer` method with the database's connection string ( *DbHealthStartup.cs* ):</span></span>
 

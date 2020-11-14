@@ -5,17 +5,17 @@ description: Dies ist Teil 3 der Tutorialreihe zu ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/04/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/first-mvc-app/adding-view
 ms.openlocfilehash: 56f39643ccd69c6508148374033208eb3b2f25ab
 ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
@@ -30,9 +30,9 @@ ms.locfileid: "94422716"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="f0ead-105">In diesem Abschnitt ändern Sie die `HelloWorldController`-Klasse so, dass [:::no-loc(Razor):::](xref:mvc/views/razor)-Ansichtsdateien verwendet werden, um den Prozess des Generierens von HTML-Antworten für einen Client sauber zu kapseln.</span><span class="sxs-lookup"><span data-stu-id="f0ead-105">In this section you modify the `HelloWorldController` class to use [:::no-loc(Razor):::](xref:mvc/views/razor) view files to cleanly encapsulate the process of generating HTML responses to a client.</span></span>
+<span data-ttu-id="f0ead-105">In diesem Abschnitt ändern Sie die `HelloWorldController`-Klasse so, dass [Razor](xref:mvc/views/razor)-Ansichtsdateien verwendet werden, um den Prozess des Generierens von HTML-Antworten für einen Client sauber zu kapseln.</span><span class="sxs-lookup"><span data-stu-id="f0ead-105">In this section you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files to cleanly encapsulate the process of generating HTML responses to a client.</span></span>
 
-<span data-ttu-id="f0ead-106">Sie erstellen mithilfe von :::no-loc(Razor)::: eine Ansichtsvorlagendatei.</span><span class="sxs-lookup"><span data-stu-id="f0ead-106">You create a view template file using :::no-loc(Razor):::.</span></span> <span data-ttu-id="f0ead-107">:::no-loc(Razor):::-basierte Ansichtsvorlagen haben die Dateinamenerweiterung *.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f0ead-107">:::no-loc(Razor):::-based view templates have a *.cshtml* file extension.</span></span> <span data-ttu-id="f0ead-108">Sie bieten eine elegante Möglichkeit zum Erstellen einer HTML-Ausgabe mit C#.</span><span class="sxs-lookup"><span data-stu-id="f0ead-108">They provide an elegant way to create HTML output with C#.</span></span>
+<span data-ttu-id="f0ead-106">Sie erstellen mithilfe von Razor eine Ansichtsvorlagendatei.</span><span class="sxs-lookup"><span data-stu-id="f0ead-106">You create a view template file using Razor.</span></span> <span data-ttu-id="f0ead-107">Razor-basierte Ansichtsvorlagen haben die Dateinamenerweiterung *.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f0ead-107">Razor-based view templates have a *.cshtml* file extension.</span></span> <span data-ttu-id="f0ead-108">Sie bieten eine elegante Möglichkeit zum Erstellen einer HTML-Ausgabe mit C#.</span><span class="sxs-lookup"><span data-stu-id="f0ead-108">They provide an elegant way to create HTML output with C#.</span></span>
 
 <span data-ttu-id="f0ead-109">Derzeit gibt die `Index`-Methode eine Zeichenfolge mit der Meldung zurück, die in der Controllerklasse hartcodiert ist.</span><span class="sxs-lookup"><span data-stu-id="f0ead-109">Currently the `Index` method returns a string with a message that's hard-coded in the controller class.</span></span> <span data-ttu-id="f0ead-110">Ersetzen Sie in der `HelloWorldController`-Klasse die `Index`-Methode durch den folgenden Code:</span><span class="sxs-lookup"><span data-stu-id="f0ead-110">In the `HelloWorldController` class, replace the `Index` method with the following code:</span></span>
 
@@ -52,7 +52,7 @@ ms.locfileid: "94422716"
 
   * <span data-ttu-id="f0ead-119">Geben Sie in das Suchfeld rechts oben *Ansicht* ein.</span><span class="sxs-lookup"><span data-stu-id="f0ead-119">In the search box in the upper-right, enter *view*</span></span>
 
-  * <span data-ttu-id="f0ead-120">Klicken Sie auf **:::no-loc(Razor):::-Ansicht**.</span><span class="sxs-lookup"><span data-stu-id="f0ead-120">Select **:::no-loc(Razor)::: View**</span></span>
+  * <span data-ttu-id="f0ead-120">Klicken Sie auf **Razor-Ansicht**.</span><span class="sxs-lookup"><span data-stu-id="f0ead-120">Select **Razor View**</span></span>
 
   * <span data-ttu-id="f0ead-121">Übernehmen Sie den im Feld **Name** stehenden Wert *Index.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f0ead-121">Keep the **Name** box value, *Index.cshtml*.</span></span>
 
@@ -82,7 +82,7 @@ ms.locfileid: "94422716"
 
 ---
 
-<span data-ttu-id="f0ead-137">Ersetzen Sie den Inhalt der :::no-loc(Razor):::-Ansichtsdatei *Views/HelloWorld/Index.cshtml* durch Folgendes:</span><span class="sxs-lookup"><span data-stu-id="f0ead-137">Replace the contents of the *Views/HelloWorld/Index.cshtml* :::no-loc(Razor)::: view file with the following:</span></span>
+<span data-ttu-id="f0ead-137">Ersetzen Sie den Inhalt der Razor-Ansichtsdatei *Views/HelloWorld/Index.cshtml* durch Folgendes:</span><span class="sxs-lookup"><span data-stu-id="f0ead-137">Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:</span></span>
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
@@ -200,9 +200,9 @@ ms.locfileid: "94422716"
 
 ::: moniker range="< aspnetcore-3.0"
 
-<span data-ttu-id="f0ead-219">In diesem Abschnitt ändern Sie die `HelloWorldController`-Klasse so, dass [:::no-loc(Razor):::](xref:mvc/views/razor)-Ansichtsdateien verwendet werden, um den Prozess des Generierens von HTML-Antworten für einen Client sauber zu kapseln.</span><span class="sxs-lookup"><span data-stu-id="f0ead-219">In this section you modify the `HelloWorldController` class to use [:::no-loc(Razor):::](xref:mvc/views/razor) view files to cleanly encapsulate the process of generating HTML responses to a client.</span></span>
+<span data-ttu-id="f0ead-219">In diesem Abschnitt ändern Sie die `HelloWorldController`-Klasse so, dass [Razor](xref:mvc/views/razor)-Ansichtsdateien verwendet werden, um den Prozess des Generierens von HTML-Antworten für einen Client sauber zu kapseln.</span><span class="sxs-lookup"><span data-stu-id="f0ead-219">In this section you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files to cleanly encapsulate the process of generating HTML responses to a client.</span></span>
 
-<span data-ttu-id="f0ead-220">Sie erstellen mithilfe von :::no-loc(Razor)::: eine Ansichtsvorlagendatei.</span><span class="sxs-lookup"><span data-stu-id="f0ead-220">You create a view template file using :::no-loc(Razor):::.</span></span> <span data-ttu-id="f0ead-221">:::no-loc(Razor):::-basierte Ansichtsvorlagen haben die Dateinamenerweiterung *.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f0ead-221">:::no-loc(Razor):::-based view templates have a *.cshtml* file extension.</span></span> <span data-ttu-id="f0ead-222">Sie bieten eine elegante Möglichkeit zum Erstellen einer HTML-Ausgabe mit C#.</span><span class="sxs-lookup"><span data-stu-id="f0ead-222">They provide an elegant way to create HTML output with C#.</span></span>
+<span data-ttu-id="f0ead-220">Sie erstellen mithilfe von Razor eine Ansichtsvorlagendatei.</span><span class="sxs-lookup"><span data-stu-id="f0ead-220">You create a view template file using Razor.</span></span> <span data-ttu-id="f0ead-221">Razor-basierte Ansichtsvorlagen haben die Dateinamenerweiterung *.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f0ead-221">Razor-based view templates have a *.cshtml* file extension.</span></span> <span data-ttu-id="f0ead-222">Sie bieten eine elegante Möglichkeit zum Erstellen einer HTML-Ausgabe mit C#.</span><span class="sxs-lookup"><span data-stu-id="f0ead-222">They provide an elegant way to create HTML output with C#.</span></span>
 
 <span data-ttu-id="f0ead-223">Derzeit gibt die `Index`-Methode eine Zeichenfolge mit der Meldung zurück, die in der Controllerklasse hartcodiert ist.</span><span class="sxs-lookup"><span data-stu-id="f0ead-223">Currently the `Index` method returns a string with a message that's hard-coded in the controller class.</span></span> <span data-ttu-id="f0ead-224">Ersetzen Sie in der `HelloWorldController`-Klasse die `Index`-Methode durch den folgenden Code:</span><span class="sxs-lookup"><span data-stu-id="f0ead-224">In the `HelloWorldController` class, replace the `Index` method with the following code:</span></span>
 
@@ -222,7 +222,7 @@ ms.locfileid: "94422716"
 
   * <span data-ttu-id="f0ead-233">Geben Sie in das Suchfeld rechts oben *Ansicht* ein.</span><span class="sxs-lookup"><span data-stu-id="f0ead-233">In the search box in the upper-right, enter *view*</span></span>
 
-  * <span data-ttu-id="f0ead-234">Klicken Sie auf **:::no-loc(Razor):::-Ansicht**.</span><span class="sxs-lookup"><span data-stu-id="f0ead-234">Select **:::no-loc(Razor)::: View**</span></span>
+  * <span data-ttu-id="f0ead-234">Klicken Sie auf **Razor-Ansicht**.</span><span class="sxs-lookup"><span data-stu-id="f0ead-234">Select **Razor View**</span></span>
 
   * <span data-ttu-id="f0ead-235">Übernehmen Sie den im Feld **Name** stehenden Wert *Index.cshtml*.</span><span class="sxs-lookup"><span data-stu-id="f0ead-235">Keep the **Name** box value, *Index.cshtml*.</span></span>
 
@@ -252,7 +252,7 @@ ms.locfileid: "94422716"
 
 ---
 
-<span data-ttu-id="f0ead-251">Ersetzen Sie den Inhalt der :::no-loc(Razor):::-Ansichtsdatei *Views/HelloWorld/Index.cshtml* durch Folgendes:</span><span class="sxs-lookup"><span data-stu-id="f0ead-251">Replace the contents of the *Views/HelloWorld/Index.cshtml* :::no-loc(Razor)::: view file with the following:</span></span>
+<span data-ttu-id="f0ead-251">Ersetzen Sie den Inhalt der Razor-Ansichtsdatei *Views/HelloWorld/Index.cshtml* durch Folgendes:</span><span class="sxs-lookup"><span data-stu-id="f0ead-251">Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with the following:</span></span>
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 

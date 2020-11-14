@@ -1,21 +1,21 @@
 ---
 title: 'Teil 4: Arbeiten mit einer Datenbank und ASP.NET Core'
 author: rick-anderson
-description: 'Dies ist Teil 4 der Tutorialreihe zu :::no-loc(Razor)::: Pages.'
+description: 'Dies ist Teil 4 der Tutorialreihe zu Razor Pages.'
 ms.author: riande
 ms.date: 7/22/2019
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: tutorials/razor-pages/sql
 ms.openlocfilehash: d592cf7d8a96a7e4ec2e53418843a186488951be
 ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
@@ -32,29 +32,29 @@ ms.locfileid: "93058154"
 
 [!INCLUDE[](~/includes/rp/download.md)]
 
-<span data-ttu-id="6f04e-105">Das `:::no-loc(Razor):::PagesMovieContext`-Objekt übernimmt die Aufgabe der Herstellung der Verbindung mit der Datenbank und Zuordnung von `Movie`-Objekten zu Datensätzen in der Datenbank.</span><span class="sxs-lookup"><span data-stu-id="6f04e-105">The `:::no-loc(Razor):::PagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records.</span></span> <span data-ttu-id="6f04e-106">Der Datenbankkontext wird beim Container [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) in der `ConfigureServices`-Methode in *Startup.cs* registriert:</span><span class="sxs-lookup"><span data-stu-id="6f04e-106">The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs* :</span></span>
+<span data-ttu-id="6f04e-105">Das `RazorPagesMovieContext`-Objekt übernimmt die Aufgabe der Herstellung der Verbindung mit der Datenbank und Zuordnung von `Movie`-Objekten zu Datensätzen in der Datenbank.</span><span class="sxs-lookup"><span data-stu-id="6f04e-105">The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records.</span></span> <span data-ttu-id="6f04e-106">Der Datenbankkontext wird beim Container [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) in der `ConfigureServices`-Methode in *Startup.cs* registriert:</span><span class="sxs-lookup"><span data-stu-id="6f04e-106">The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs* :</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="6f04e-107">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6f04e-107">Visual Studio</span></span>](#tab/visual-studio)
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="6f04e-108">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="6f04e-108">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 ---
 
-<span data-ttu-id="6f04e-109">Das ASP.NET Core-[Konfigurationssystem](xref:fundamentals/configuration/index) liest die `ConnectionString`.</span><span class="sxs-lookup"><span data-stu-id="6f04e-109">The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`.</span></span> <span data-ttu-id="6f04e-110">Für die lokale Entwicklung wird die Verbindungszeichenfolge aus der Datei *:::no-loc(appsettings.json):::* abgerufen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-110">For local development, it gets the connection string from the *:::no-loc(appsettings.json):::* file.</span></span>
+<span data-ttu-id="6f04e-109">Das ASP.NET Core-[Konfigurationssystem](xref:fundamentals/configuration/index) liest die `ConnectionString`.</span><span class="sxs-lookup"><span data-stu-id="6f04e-109">The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`.</span></span> <span data-ttu-id="6f04e-110">Für die lokale Entwicklung wird die Verbindungszeichenfolge aus der Datei *appsettings.json* abgerufen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-110">For local development, it gets the connection string from the *appsettings.json* file.</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="6f04e-111">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6f04e-111">Visual Studio</span></span>](#tab/visual-studio)
 
 <span data-ttu-id="6f04e-112">Der Name-Wert für die Datenbank (`Database={Database name}`) ist für den generierten Code anders.</span><span class="sxs-lookup"><span data-stu-id="6f04e-112">The name value for the database (`Database={Database name}`) will be different for your generated code.</span></span> <span data-ttu-id="6f04e-113">Beim Name-Wert handelt es sich um einen beliebigen Wert.</span><span class="sxs-lookup"><span data-stu-id="6f04e-113">The name value is arbitrary.</span></span>
 
-[!code-json[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/:::no-loc(appsettings.json):::?highlight=10-12)]
+[!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="6f04e-114">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="6f04e-114">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie/appsettings_SQLite.json?highlight=8-10)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
 ---
 
@@ -94,7 +94,7 @@ ms.locfileid: "93058154"
 
 <span data-ttu-id="6f04e-133">Erstellen Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:</span><span class="sxs-lookup"><span data-stu-id="6f04e-133">Create a new class named `SeedData` in the *Models* folder with the following code:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
 <span data-ttu-id="6f04e-134">Wenn in der Datenbank Filme vorhanden sind, wird der Initialisierer des Seedings zurückgegeben, und es werden keine Filme hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="6f04e-134">If there are any movies in the DB, the seed initializer returns and no movies are added.</span></span>
 
@@ -117,11 +117,11 @@ if (context.Movie.Any())
 
 <span data-ttu-id="6f04e-140">Der folgende Code zeigt die aktualisierte *Program.cs* -Datei.</span><span class="sxs-lookup"><span data-stu-id="6f04e-140">The following code shows the updated *Program.cs* file.</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie30/Program.cs)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
 
 <span data-ttu-id="6f04e-141">Die folgende Ausnahme tritt auf, wenn `Update-Database` nicht ausgeführt wurde:</span><span class="sxs-lookup"><span data-stu-id="6f04e-141">The following exception occurs when `Update-Database` has not been run:</span></span>
 
-> `SqlException: Cannot open database ":::no-loc(Razor):::PagesMovieContext-" requested by the login. The login failed.`
+> `SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed.`
 > `Login failed for user 'user name'.`
 
 ### <a name="test-the-app"></a><span data-ttu-id="6f04e-142">Testen der App</span><span class="sxs-lookup"><span data-stu-id="6f04e-142">Test the app</span></span>
@@ -153,8 +153,8 @@ if (context.Movie.Any())
 ## <a name="additional-resources"></a><span data-ttu-id="6f04e-159">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="6f04e-159">Additional resources</span></span>
 
 > [!div class="step-by-step"]
-> <span data-ttu-id="6f04e-160">[Zurück: Gerüstbau mit :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)
-> [Weiter: Updating the pages (Aktualisieren der Seiten)](xref:tutorials/razor-pages/da1)</span><span class="sxs-lookup"><span data-stu-id="6f04e-160">[Previous: Scaffolded :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)
+> <span data-ttu-id="6f04e-160">[Zurück: Gerüstbau mit Razor Pages](xref:tutorials/razor-pages/page)
+> [Weiter: Updating the pages (Aktualisieren der Seiten)](xref:tutorials/razor-pages/da1)</span><span class="sxs-lookup"><span data-stu-id="6f04e-160">[Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 [Next: Updating the pages](xref:tutorials/razor-pages/da1)</span></span>
 
 ::: moniker-end
@@ -163,38 +163,38 @@ if (context.Movie.Any())
 
 [!INCLUDE[](~/includes/rp/download.md)]
 
-<span data-ttu-id="6f04e-161">Das `:::no-loc(Razor):::PagesMovieContext`-Objekt übernimmt die Aufgabe der Herstellung der Verbindung mit der Datenbank und Zuordnung von `Movie`-Objekten zu Datensätzen in der Datenbank.</span><span class="sxs-lookup"><span data-stu-id="6f04e-161">The `:::no-loc(Razor):::PagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records.</span></span> <span data-ttu-id="6f04e-162">Der Datenbankkontext wird beim Container [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) in der `ConfigureServices`-Methode in *Startup.cs* registriert:</span><span class="sxs-lookup"><span data-stu-id="6f04e-162">The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs* :</span></span>
+<span data-ttu-id="6f04e-161">Das `RazorPagesMovieContext`-Objekt übernimmt die Aufgabe der Herstellung der Verbindung mit der Datenbank und Zuordnung von `Movie`-Objekten zu Datensätzen in der Datenbank.</span><span class="sxs-lookup"><span data-stu-id="6f04e-161">The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records.</span></span> <span data-ttu-id="6f04e-162">Der Datenbankkontext wird beim Container [Abhängigkeitsinjektion](xref:fundamentals/dependency-injection) in der `ConfigureServices`-Methode in *Startup.cs* registriert:</span><span class="sxs-lookup"><span data-stu-id="6f04e-162">The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs* :</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="6f04e-163">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6f04e-163">Visual Studio</span></span>](#tab/visual-studio)
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[<span data-ttu-id="6f04e-164">Visual Studio Code / Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="6f04e-164">Visual Studio Code / Visual Studio for Mac</span></span>](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 ---
 
 <span data-ttu-id="6f04e-165">Weitere Informationen über die in `ConfigureServices` verwendeten Methoden finden Sie unter:</span><span class="sxs-lookup"><span data-stu-id="6f04e-165">For more information on the methods used in `ConfigureServices`, see:</span></span>
 
-* <span data-ttu-id="6f04e-166">[Unterstützung für die Datenschutz-Grundverordnung (DSGVO) in ASP.NET Core](xref:security/gdpr) für `:::no-loc(Cookie):::PolicyOptions`.</span><span class="sxs-lookup"><span data-stu-id="6f04e-166">[EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `:::no-loc(Cookie):::PolicyOptions`.</span></span>
+* <span data-ttu-id="6f04e-166">[Unterstützung für die Datenschutz-Grundverordnung (DSGVO) in ASP.NET Core](xref:security/gdpr) für `CookiePolicyOptions`.</span><span class="sxs-lookup"><span data-stu-id="6f04e-166">[EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `CookiePolicyOptions`.</span></span>
 * [<span data-ttu-id="6f04e-167">SetCompatibilityVersion</span><span class="sxs-lookup"><span data-stu-id="6f04e-167">SetCompatibilityVersion</span></span>](xref:mvc/compatibility-version)
 
-<span data-ttu-id="6f04e-168">Das ASP.NET Core-[Konfigurationssystem](xref:fundamentals/configuration/index) liest die `ConnectionString`.</span><span class="sxs-lookup"><span data-stu-id="6f04e-168">The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`.</span></span> <span data-ttu-id="6f04e-169">Für die lokale Entwicklung wird die Verbindungszeichenfolge aus der Datei *:::no-loc(appsettings.json):::* abgerufen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-169">For local development, it gets the connection string from the *:::no-loc(appsettings.json):::* file.</span></span>
+<span data-ttu-id="6f04e-168">Das ASP.NET Core-[Konfigurationssystem](xref:fundamentals/configuration/index) liest die `ConnectionString`.</span><span class="sxs-lookup"><span data-stu-id="6f04e-168">The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`.</span></span> <span data-ttu-id="6f04e-169">Für die lokale Entwicklung wird die Verbindungszeichenfolge aus der Datei *appsettings.json* abgerufen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-169">For local development, it gets the connection string from the *appsettings.json* file.</span></span>
 
 # <a name="visual-studio"></a>[<span data-ttu-id="6f04e-170">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="6f04e-170">Visual Studio</span></span>](#tab/visual-studio)
 
 <span data-ttu-id="6f04e-171">Der Name-Wert für die Datenbank (`Database={Database name}`) ist für den generierten Code anders.</span><span class="sxs-lookup"><span data-stu-id="6f04e-171">The name value for the database (`Database={Database name}`) will be different for your generated code.</span></span> <span data-ttu-id="6f04e-172">Beim Name-Wert handelt es sich um einen beliebigen Wert.</span><span class="sxs-lookup"><span data-stu-id="6f04e-172">The name value is arbitrary.</span></span>
 
-[!code-json[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/:::no-loc(appsettings.json):::)]
+[!code-json[](razor-pages-start/sample/RazorPagesMovie22/appsettings.json)]
 
 # <a name="visual-studio-code"></a>[<span data-ttu-id="6f04e-173">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="6f04e-173">Visual Studio Code</span></span>](#tab/visual-studio-code)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie/appsettings_SQLite.json?highlight=8-10)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
 # <a name="visual-studio-for-mac"></a>[<span data-ttu-id="6f04e-174">Visual Studio für Mac</span><span class="sxs-lookup"><span data-stu-id="6f04e-174">Visual Studio for Mac</span></span>](#tab/visual-studio-mac)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/:::no-loc(Razor):::PagesMovie/appsettings_SQLite.json?highlight=8-10)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 
 ---
 
@@ -239,7 +239,7 @@ if (context.Movie.Any())
 
 <span data-ttu-id="6f04e-194">Erstellen Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:</span><span class="sxs-lookup"><span data-stu-id="6f04e-194">Create a new class named `SeedData` in the *Models* folder with the following code:</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
 <span data-ttu-id="6f04e-195">Wenn in der Datenbank Filme vorhanden sind, wird der Initialisierer des Seedings zurückgegeben, und es werden keine Filme hinzugefügt.</span><span class="sxs-lookup"><span data-stu-id="6f04e-195">If there are any movies in the DB, the seed initializer returns and no movies are added.</span></span>
 
@@ -262,11 +262,11 @@ if (context.Movie.Any())
 
 <span data-ttu-id="6f04e-201">Der folgende Code zeigt die aktualisierte *Program.cs* -Datei.</span><span class="sxs-lookup"><span data-stu-id="6f04e-201">The following code shows the updated *Program.cs* file.</span></span>
 
-[!code-csharp[](razor-pages-start/sample/:::no-loc(Razor):::PagesMovie22/Program.cs)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Program.cs)]
 
 <span data-ttu-id="6f04e-202">Eine Produktions-App würde `Database.Migrate` nicht aufrufen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-202">A production app would not call `Database.Migrate`.</span></span> <span data-ttu-id="6f04e-203">Es wird zum vorangehenden Code hinzugefügt, um die folgende Ausnahme zu verhindern, wenn `Update-Database` nicht ausgeführt wurde:</span><span class="sxs-lookup"><span data-stu-id="6f04e-203">It's added to the preceding code to prevent the following exception when `Update-Database` has not been run:</span></span>
 
-<span data-ttu-id="6f04e-204">SqlException: Die bei der Anmeldung angeforderte Datenbank „:::no-loc(Razor):::PagesMovieContext-21“ kann nicht geöffnet werden.</span><span class="sxs-lookup"><span data-stu-id="6f04e-204">SqlException: Cannot open database ":::no-loc(Razor):::PagesMovieContext-21" requested by the login.</span></span> <span data-ttu-id="6f04e-205">Die Anmeldung ist fehlgeschlagen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-205">The login failed.</span></span>
+<span data-ttu-id="6f04e-204">SqlException: Die bei der Anmeldung angeforderte Datenbank „RazorPagesMovieContext-21“ kann nicht geöffnet werden.</span><span class="sxs-lookup"><span data-stu-id="6f04e-204">SqlException: Cannot open database "RazorPagesMovieContext-21" requested by the login.</span></span> <span data-ttu-id="6f04e-205">Die Anmeldung ist fehlgeschlagen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-205">The login failed.</span></span>
 <span data-ttu-id="6f04e-206">Die Anmeldung des Benutzers „Benutzername“ ist fehlgeschlagen.</span><span class="sxs-lookup"><span data-stu-id="6f04e-206">Login failed for user 'user name'.</span></span>
 
 ### <a name="test-the-app"></a><span data-ttu-id="6f04e-207">Testen der App</span><span class="sxs-lookup"><span data-stu-id="6f04e-207">Test the app</span></span>
@@ -310,8 +310,8 @@ if (context.Movie.Any())
 * [<span data-ttu-id="6f04e-231">Dieses Tutorial auf YouTube</span><span class="sxs-lookup"><span data-stu-id="6f04e-231">YouTube version of this tutorial</span></span>](https://youtu.be/A_5ff11sDHY)
 
 > [!div class="step-by-step"]
-> <span data-ttu-id="6f04e-232">[Zurück: Gerüstbau mit :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)
-> [Weiter: Updating the pages (Aktualisieren der Seiten)](xref:tutorials/razor-pages/da1)</span><span class="sxs-lookup"><span data-stu-id="6f04e-232">[Previous: Scaffolded :::no-loc(Razor)::: Pages](xref:tutorials/razor-pages/page)
+> <span data-ttu-id="6f04e-232">[Zurück: Gerüstbau mit Razor Pages](xref:tutorials/razor-pages/page)
+> [Weiter: Updating the pages (Aktualisieren der Seiten)](xref:tutorials/razor-pages/da1)</span><span class="sxs-lookup"><span data-stu-id="6f04e-232">[Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
 [Next: Updating the pages](xref:tutorials/razor-pages/da1)</span></span>
 
 ::: moniker-end

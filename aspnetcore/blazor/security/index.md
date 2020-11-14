@@ -1,23 +1,23 @@
 ---
-title: 'Authentifizierung und Autorisierung in ASP.NET Core :::no-loc(Blazor):::'
+title: 'Authentifizierung und Autorisierung in ASP.NET Core Blazor'
 author: guardrex
-description: 'Lernen Sie die Szenarien für die Authentifizierung und Autorisierung in :::no-loc(Blazor)::: kennen.'
+description: 'Lernen Sie die Szenarien für die Authentifizierung und Autorisierung in Blazor kennen.'
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- ':::no-loc(appsettings.json):::'
-- ':::no-loc(ASP.NET Core Identity):::'
-- ':::no-loc(cookie):::'
-- ':::no-loc(Cookie):::'
-- ':::no-loc(Blazor):::'
-- ':::no-loc(Blazor Server):::'
-- ':::no-loc(Blazor WebAssembly):::'
-- ':::no-loc(Identity):::'
-- ":::no-loc(Let's Encrypt):::"
-- ':::no-loc(Razor):::'
-- ':::no-loc(SignalR):::'
+- 'appsettings.json'
+- 'ASP.NET Core Identity'
+- 'cookie'
+- 'Cookie'
+- 'Blazor'
+- 'Blazor Server'
+- 'Blazor WebAssembly'
+- 'Identity'
+- "Let's Encrypt"
+- 'Razor'
+- 'SignalR'
 uid: blazor/security/index
 ms.openlocfilehash: a333c189e81a9f44e94deb6b37097f1a8b19a0f9
 ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
@@ -26,31 +26,31 @@ ms.contentlocale: de-DE
 ms.lasthandoff: 11/10/2020
 ms.locfileid: "94430925"
 ---
-# <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a><span data-ttu-id="ae4ae-103">Authentifizierung und Autorisierung in ASP.NET Core :::no-loc(Blazor):::</span><span class="sxs-lookup"><span data-stu-id="ae4ae-103">ASP.NET Core :::no-loc(Blazor)::: authentication and authorization</span></span>
+# <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a><span data-ttu-id="ae4ae-103">Authentifizierung und Autorisierung in ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="ae4ae-103">ASP.NET Core Blazor authentication and authorization</span></span>
 
 <span data-ttu-id="ae4ae-104">Von [Steve Sanderson](https://github.com/SteveSandersonMS) und [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="ae4ae-104">By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="ae4ae-105">ASP.NET Core unterstützt die Konfiguration und Verwaltung der Sicherheit in :::no-loc(Blazor):::-Apps.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-105">ASP.NET Core supports the configuration and management of security in :::no-loc(Blazor)::: apps.</span></span>
+<span data-ttu-id="ae4ae-105">ASP.NET Core unterstützt die Konfiguration und Verwaltung der Sicherheit in Blazor-Apps.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-105">ASP.NET Core supports the configuration and management of security in Blazor apps.</span></span>
 
-<span data-ttu-id="ae4ae-106">Es gibt jeweils unterschiedliche Sicherheitsszenarien für :::no-loc(Blazor Server):::- und :::no-loc(Blazor WebAssembly):::-Apps.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-106">Security scenarios differ between :::no-loc(Blazor Server)::: and :::no-loc(Blazor WebAssembly)::: apps.</span></span> <span data-ttu-id="ae4ae-107">Da :::no-loc(Blazor Server):::-Apps auf dem Server ausgeführt werden, kann durch Autorisierungsprüfungen Folgendes bestimmt werden:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-107">Because :::no-loc(Blazor Server)::: apps run on the server, authorization checks are able to determine:</span></span>
+<span data-ttu-id="ae4ae-106">Es gibt jeweils unterschiedliche Sicherheitsszenarien für Blazor Server- und Blazor WebAssembly-Apps.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-106">Security scenarios differ between Blazor Server and Blazor WebAssembly apps.</span></span> <span data-ttu-id="ae4ae-107">Da Blazor Server-Apps auf dem Server ausgeführt werden, kann durch Autorisierungsprüfungen Folgendes bestimmt werden:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-107">Because Blazor Server apps run on the server, authorization checks are able to determine:</span></span>
 
 * <span data-ttu-id="ae4ae-108">Die UI-Optionen, die einem Benutzer angezeigt werden (z.B., welche Menüeinträge für einen Benutzer verfügbar sind).</span><span class="sxs-lookup"><span data-stu-id="ae4ae-108">The UI options presented to a user (for example, which menu entries are available to a user).</span></span>
 * <span data-ttu-id="ae4ae-109">Zugriffsregeln für Bereiche und Komponenten der App.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-109">Access rules for areas of the app and components.</span></span>
 
-<span data-ttu-id="ae4ae-110">:::no-loc(Blazor WebAssembly):::-Apps werden auf dem Client ausgeführt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-110">:::no-loc(Blazor WebAssembly)::: apps run on the client.</span></span> <span data-ttu-id="ae4ae-111">Die Autorisierung wird *nur* verwendet, um zu bestimmen, welche UI-Optionen angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-111">Authorization is *only* used to determine which UI options to show.</span></span> <span data-ttu-id="ae4ae-112">Da clientseitige Prüfungen von einem Benutzer geändert oder umgangen werden können, kann eine :::no-loc(Blazor WebAssembly):::-App keine Autorisierungszugriffsregeln durchsetzen.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-112">Since client-side checks can be modified or bypassed by a user, a :::no-loc(Blazor WebAssembly)::: app can't enforce authorization access rules.</span></span>
+<span data-ttu-id="ae4ae-110">Blazor WebAssembly-Apps werden auf dem Client ausgeführt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-110">Blazor WebAssembly apps run on the client.</span></span> <span data-ttu-id="ae4ae-111">Die Autorisierung wird *nur* verwendet, um zu bestimmen, welche UI-Optionen angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-111">Authorization is *only* used to determine which UI options to show.</span></span> <span data-ttu-id="ae4ae-112">Da clientseitige Prüfungen von einem Benutzer geändert oder umgangen werden können, kann eine Blazor WebAssembly-App keine Autorisierungszugriffsregeln durchsetzen.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-112">Since client-side checks can be modified or bypassed by a user, a Blazor WebAssembly app can't enforce authorization access rules.</span></span>
 
-<span data-ttu-id="ae4ae-113">[Autorisierungskonventionen von :::no-loc(Razor)::: Pages](xref:security/authorization/razor-pages-authorization) gelten nicht für routingfähige :::no-loc(Razor):::-Komponenten.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-113">[:::no-loc(Razor)::: Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable :::no-loc(Razor)::: components.</span></span> <span data-ttu-id="ae4ae-114">Wenn eine nicht routingfähige :::no-loc(Razor):::-Komponente [auf einer Seite eingebettet](xref:blazor/components/prerendering-and-integration) wird, wirken sich die Autorisierungskonventionen der Seite indirekt auf die :::no-loc(Razor):::-Komponenten sowie auf den Rest des Seiteninhalts aus.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-114">If a non-routable :::no-loc(Razor)::: component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the :::no-loc(Razor)::: component along with the rest of the page's content.</span></span>
+<span data-ttu-id="ae4ae-113">[Autorisierungskonventionen von Razor Pages](xref:security/authorization/razor-pages-authorization) gelten nicht für routingfähige Razor-Komponenten.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-113">[Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components.</span></span> <span data-ttu-id="ae4ae-114">Wenn eine nicht routingfähige Razor-Komponente [auf einer Seite eingebettet](xref:blazor/components/prerendering-and-integration) wird, wirken sich die Autorisierungskonventionen der Seite indirekt auf die Razor-Komponenten sowie auf den Rest des Seiteninhalts aus.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-114">If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ae4ae-115"><xref:Microsoft.AspNetCore.:::no-loc(Identity):::.SignInManager%601> und <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.UserManager%601> werden in :::no-loc(Razor):::-Komponenten nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-115"><xref:Microsoft.AspNetCore.:::no-loc(Identity):::.SignInManager%601> and <xref:Microsoft.AspNetCore.:::no-loc(Identity):::.UserManager%601> aren't supported in :::no-loc(Razor)::: components.</span></span>
+> <span data-ttu-id="ae4ae-115"><xref:Microsoft.AspNetCore.Identity.SignInManager%601> und <xref:Microsoft.AspNetCore.Identity.UserManager%601> werden in Razor-Komponenten nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-115"><xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components.</span></span>
 
 ## <a name="authentication"></a><span data-ttu-id="ae4ae-116">Authentifizierung</span><span class="sxs-lookup"><span data-stu-id="ae4ae-116">Authentication</span></span>
 
-<span data-ttu-id="ae4ae-117">:::no-loc(Blazor)::: verwendet die vorhandenen ASP.NET Core-Authentifizierungsmechanismen, um die Identität des Benutzers festzustellen.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-117">:::no-loc(Blazor)::: uses the existing ASP.NET Core authentication mechanisms to establish the user's identity.</span></span> <span data-ttu-id="ae4ae-118">Der genaue Mechanismus hängt davon ab, wie die :::no-loc(Blazor):::-App gehostet wird – über :::no-loc(Blazor WebAssembly)::: oder :::no-loc(Blazor Server):::.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-118">The exact mechanism depends on how the :::no-loc(Blazor)::: app is hosted, :::no-loc(Blazor WebAssembly)::: or :::no-loc(Blazor Server):::.</span></span>
+<span data-ttu-id="ae4ae-117">Blazor verwendet die vorhandenen ASP.NET Core-Authentifizierungsmechanismen, um die Identität des Benutzers festzustellen.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-117">Blazor uses the existing ASP.NET Core authentication mechanisms to establish the user's identity.</span></span> <span data-ttu-id="ae4ae-118">Der genaue Mechanismus hängt davon ab, wie die Blazor-App gehostet wird – über Blazor WebAssembly oder Blazor Server.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-118">The exact mechanism depends on how the Blazor app is hosted, Blazor WebAssembly or Blazor Server.</span></span>
 
-### <a name="no-locblazor-webassembly-authentication"></a><span data-ttu-id="ae4ae-119">Authentifizierung per :::no-loc(Blazor WebAssembly):::</span><span class="sxs-lookup"><span data-stu-id="ae4ae-119">:::no-loc(Blazor WebAssembly)::: authentication</span></span>
+### <a name="no-locblazor-webassembly-authentication"></a><span data-ttu-id="ae4ae-119">Authentifizierung per Blazor WebAssembly</span><span class="sxs-lookup"><span data-stu-id="ae4ae-119">Blazor WebAssembly authentication</span></span>
 
-<span data-ttu-id="ae4ae-120">In den :::no-loc(Blazor WebAssembly):::-Apps können Authentifizierungsprüfungen umgangen werden, da der gesamte clientseitige Code von Benutzern geändert werden kann.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-120">In :::no-loc(Blazor WebAssembly)::: apps, authentication checks can be bypassed because all client-side code can be modified by users.</span></span> <span data-ttu-id="ae4ae-121">Dasselbe gilt für alle clientseitigen App-Technologien, einschließlich JavaScript SPA-Frameworks oder native Apps für jedes Betriebssystem.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-121">The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.</span></span>
+<span data-ttu-id="ae4ae-120">In den Blazor WebAssembly-Apps können Authentifizierungsprüfungen umgangen werden, da der gesamte clientseitige Code von Benutzern geändert werden kann.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-120">In Blazor WebAssembly apps, authentication checks can be bypassed because all client-side code can be modified by users.</span></span> <span data-ttu-id="ae4ae-121">Dasselbe gilt für alle clientseitigen App-Technologien, einschließlich JavaScript SPA-Frameworks oder native Apps für jedes Betriebssystem.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-121">The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.</span></span>
 
 <span data-ttu-id="ae4ae-122">Fügen Sie Folgendes hinzu:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-122">Add the following:</span></span>
 
@@ -61,11 +61,11 @@ ms.locfileid: "94430925"
 
 <span data-ttu-id="ae4ae-126">Weitere Informationen zur Erstellung von Apps und Konfigurationen finden Sie unter <xref:blazor/security/webassembly/index>.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-126">For more information on creating apps and configuration, see <xref:blazor/security/webassembly/index>.</span></span>
 
-### <a name="no-locblazor-server-authentication"></a><span data-ttu-id="ae4ae-127">Authentifizierung per :::no-loc(Blazor Server):::</span><span class="sxs-lookup"><span data-stu-id="ae4ae-127">:::no-loc(Blazor Server)::: authentication</span></span>
+### <a name="no-locblazor-server-authentication"></a><span data-ttu-id="ae4ae-127">Authentifizierung per Blazor Server</span><span class="sxs-lookup"><span data-stu-id="ae4ae-127">Blazor Server authentication</span></span>
 
-<span data-ttu-id="ae4ae-128">:::no-loc(Blazor Server):::-Apps funktionieren über eine Echtzeitverbindung, die mit :::no-loc(SignalR)::: erstellt wurde.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-128">:::no-loc(Blazor Server)::: apps operate over a real-time connection that's created using :::no-loc(SignalR):::.</span></span> <span data-ttu-id="ae4ae-129">Die [Authentifizierung in :::no-loc(SignalR):::-basierten Apps wird verarbeitet](xref:signalr/authn-and-authz), wenn die Verbindung hergestellt wird.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-129">[Authentication in :::no-loc(SignalR):::-based apps](xref:signalr/authn-and-authz) is handled when the connection is established.</span></span> <span data-ttu-id="ae4ae-130">Die Authentifizierung kann auf einem :::no-loc(cookie)::: oder einem anderen Bearertoken basieren.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-130">Authentication can be based on a :::no-loc(cookie)::: or some other bearer token.</span></span>
+<span data-ttu-id="ae4ae-128">Blazor Server-Apps funktionieren über eine Echtzeitverbindung, die mit SignalR erstellt wurde.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-128">Blazor Server apps operate over a real-time connection that's created using SignalR.</span></span> <span data-ttu-id="ae4ae-129">Die [Authentifizierung in SignalR-basierten Apps wird verarbeitet](xref:signalr/authn-and-authz), wenn die Verbindung hergestellt wird.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-129">[Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established.</span></span> <span data-ttu-id="ae4ae-130">Die Authentifizierung kann auf einem cookie oder einem anderen Bearertoken basieren.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-130">Authentication can be based on a cookie or some other bearer token.</span></span>
 
-<span data-ttu-id="ae4ae-131">Der integrierte Dienst <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> für :::no-loc(Blazor Server):::-Apps ruft die Daten zum Authentifizierungsstatus von der ASP. NET Core-Eigenschaft `HttpContext.User` ab.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-131">The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for :::no-loc(Blazor Server)::: apps obtains authentication state data from ASP.NET Core's `HttpContext.User`.</span></span> <span data-ttu-id="ae4ae-132">Auf diese Weise lässt sich der Authentifizierungsstatus in bestehende Authentifizierungsmechanismen von ASP.NET Core integrieren.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-132">This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.</span></span>
+<span data-ttu-id="ae4ae-131">Der integrierte Dienst <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> für Blazor Server-Apps ruft die Daten zum Authentifizierungsstatus von der ASP. NET Core-Eigenschaft `HttpContext.User` ab.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-131">The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`.</span></span> <span data-ttu-id="ae4ae-132">Auf diese Weise lässt sich der Authentifizierungsstatus in bestehende Authentifizierungsmechanismen von ASP.NET Core integrieren.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-132">This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.</span></span>
 
 <span data-ttu-id="ae4ae-133">Weitere Informationen zur Erstellung von Apps und Konfigurationen finden Sie unter <xref:blazor/security/server/index>.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-133">For more information on creating apps and configuration, see <xref:blazor/security/server/index>.</span></span>
 
@@ -111,9 +111,9 @@ ms.locfileid: "94430925"
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         var user = authState.User;
 
-        if (user.:::no-loc(Identity):::.IsAuthenticated)
+        if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.:::no-loc(Identity):::.Name} is authenticated.";
+            _authMessage = $"{user.Identity.Name} is authenticated.";
             _claims = user.Claims;
             _surnameMessage = 
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
@@ -126,7 +126,7 @@ ms.locfileid: "94430925"
 }
 ```
 
-<span data-ttu-id="ae4ae-140">Wenn `user.:::no-loc(Identity):::.IsAuthenticated` den Wert `true` hat und da der Benutzer ein <xref:System.Security.Claims.ClaimsPrincipal> ist, können Ansprüche aufgezählt und die Mitgliedschaft in Rollen ausgewertet werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-140">If `user.:::no-loc(Identity):::.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.</span></span>
+<span data-ttu-id="ae4ae-140">Wenn `user.Identity.IsAuthenticated` den Wert `true` hat und da der Benutzer ein <xref:System.Security.Claims.ClaimsPrincipal> ist, können Ansprüche aufgezählt und die Mitgliedschaft in Rollen ausgewertet werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-140">If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.</span></span>
 
 <span data-ttu-id="ae4ae-141">Weitere Informationen zur Dependency Injection (DI) und den Diensten finden Sie unter <xref:blazor/fundamentals/dependency-injection> und <xref:fundamentals/dependency-injection>.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-141">For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>.</span></span>
 
@@ -143,7 +143,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 {
     public override Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        var identity = new Claims:::no-loc(Identity):::(new[]
+        var identity = new ClaimsIdentity(new[]
         {
             new Claim(ClaimTypes.Name, "mrfibuli"),
         }, "Fake authentication type");
@@ -155,7 +155,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 }
 ```
 
-<span data-ttu-id="ae4ae-144">In einer :::no-loc(Blazor WebAssembly):::-App ist der Dienst `CustomAuthStateProvider` in `Main` von `Program.cs` registriert:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-144">In a :::no-loc(Blazor WebAssembly)::: app, the `CustomAuthStateProvider` service is registered in `Main` of `Program.cs`:</span></span>
+<span data-ttu-id="ae4ae-144">In einer Blazor WebAssembly-App ist der Dienst `CustomAuthStateProvider` in `Main` von `Program.cs` registriert:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-144">In a Blazor WebAssembly app, the `CustomAuthStateProvider` service is registered in `Main` of `Program.cs`:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -165,7 +165,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 ```
 
-<span data-ttu-id="ae4ae-145">In einer :::no-loc(Blazor Server):::-App ist der `CustomAuthStateProvider`-Dienst in `Startup.ConfigureServices` registriert:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-145">In a :::no-loc(Blazor Server)::: app, the `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices`:</span></span>
+<span data-ttu-id="ae4ae-145">In einer Blazor Server-App ist der `CustomAuthStateProvider`-Dienst in `Startup.ConfigureServices` registriert:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-145">In a Blazor Server app, the `CustomAuthStateProvider` service is registered in `Startup.ConfigureServices`:</span></span>
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -199,9 +199,9 @@ services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
         var authState = await authenticationStateTask;
         var user = authState.User;
 
-        if (user.:::no-loc(Identity):::.IsAuthenticated)
+        if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.:::no-loc(Identity):::.Name} is authenticated.";
+            _authMessage = $"{user.Identity.Name} is authenticated.";
         }
         else
         {
@@ -211,7 +211,7 @@ services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 }
 ```
 
-<span data-ttu-id="ae4ae-149">Wenn `user.:::no-loc(Identity):::.IsAuthenticated` den Wert `true` hat, können Ansprüche aufgezählt und die Mitgliedschaft in Rollen ausgewertet werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-149">If `user.:::no-loc(Identity):::.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.</span></span>
+<span data-ttu-id="ae4ae-149">Wenn `user.Identity.IsAuthenticated` den Wert `true` hat, können Ansprüche aufgezählt und die Mitgliedschaft in Rollen ausgewertet werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-149">If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.</span></span>
 
 <span data-ttu-id="ae4ae-150">Richten Sie den kaskadierenden Parameter `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` mit den Komponenten <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> und <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> in der `App`-Komponente (`App.razor`) ein:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-150">Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter using the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components in the `App` component (`App.razor`):</span></span>
 
@@ -231,14 +231,14 @@ services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 </CascadingAuthenticationState>
 ```
 
-<span data-ttu-id="ae4ae-151">Fügen Sie in einer :::no-loc(Blazor WebAssembly):::-App Dienste für Optionen und für die Autorisierung in `Program.Main` hinzu:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-151">In a :::no-loc(Blazor WebAssembly)::: App, add services for options and authorization to `Program.Main`:</span></span>
+<span data-ttu-id="ae4ae-151">Fügen Sie in einer Blazor WebAssembly-App Dienste für Optionen und für die Autorisierung in `Program.Main` hinzu:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-151">In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:</span></span>
 
 ```csharp
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 ```
 
-<span data-ttu-id="ae4ae-152">In einer :::no-loc(Blazor Server):::-App sind Dienste für Optionen und die Autorisierung bereits vorhanden. Es ist also keine weitere Aktion erforderlich.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-152">In a :::no-loc(Blazor Server)::: app, services for options and authorization are already present, so no further action is required.</span></span>
+<span data-ttu-id="ae4ae-152">In einer Blazor Server-App sind Dienste für Optionen und die Autorisierung bereits vorhanden. Es ist also keine weitere Aktion erforderlich.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-152">In a Blazor Server app, services for options and authorization are already present, so no further action is required.</span></span>
 
 ## <a name="authorization"></a><span data-ttu-id="ae4ae-153">Autorisierung</span><span class="sxs-lookup"><span data-stu-id="ae4ae-153">Authorization</span></span>
 
@@ -251,7 +251,7 @@ builder.Services.AddAuthorizationCore();
 * <span data-ttu-id="ae4ae-158">Ein Benutzer hat einen *Anspruch*.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-158">A user has a *claim*.</span></span>
 * <span data-ttu-id="ae4ae-159">Ein *Richtlinie* wird erfüllt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-159">A *policy* is satisfied.</span></span>
 
-<span data-ttu-id="ae4ae-160">Jedes dieser Konzepte entspricht dem einer ASP.NET Core MVC- oder :::no-loc(Razor)::: Pages-App.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-160">Each of these concepts is the same as in an ASP.NET Core MVC or :::no-loc(Razor)::: Pages app.</span></span> <span data-ttu-id="ae4ae-161">Weitere Informationen zu ASP.NET Core-Sicherheit finden Sie im Artikel unter [ASP.NET Core-Sicherheit und -Identität](xref:security/index).</span><span class="sxs-lookup"><span data-stu-id="ae4ae-161">For more information on ASP.NET Core security, see the articles under [ASP.NET Core Security and :::no-loc(Identity):::](xref:security/index).</span></span>
+<span data-ttu-id="ae4ae-160">Jedes dieser Konzepte entspricht dem einer ASP.NET Core MVC- oder Razor Pages-App.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-160">Each of these concepts is the same as in an ASP.NET Core MVC or Razor Pages app.</span></span> <span data-ttu-id="ae4ae-161">Weitere Informationen zu ASP.NET Core-Sicherheit finden Sie im Artikel unter [ASP.NET Core-Sicherheit und -Identität](xref:security/index).</span><span class="sxs-lookup"><span data-stu-id="ae4ae-161">For more information on ASP.NET Core security, see the articles under [ASP.NET Core Security and Identity](xref:security/index).</span></span>
 
 ## <a name="authorizeview-component"></a><span data-ttu-id="ae4ae-162">AuthorizeView-Komponente</span><span class="sxs-lookup"><span data-stu-id="ae4ae-162">AuthorizeView component</span></span>
 
@@ -261,7 +261,7 @@ builder.Services.AddAuthorizationCore();
 
 ```razor
 <AuthorizeView>
-    <h1>Hello, @context.User.:::no-loc(Identity):::.Name!</h1>
+    <h1>Hello, @context.User.Identity.Name!</h1>
     <p>You can only see this content if you're authenticated.</p>
 </AuthorizeView>
 ```
@@ -271,7 +271,7 @@ builder.Services.AddAuthorizationCore();
 ```razor
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.:::no-loc(Identity):::.Name!</h1>
+        <h1>Hello, @context.User.Identity.Name!</h1>
         <p>You can only see this content if you're authenticated.</p>
     </Authorized>
     <NotAuthorized>
@@ -316,20 +316,20 @@ builder.Services.AddAuthorizationCore();
 
 <span data-ttu-id="ae4ae-179">Die anspruchsbasierte Autorisierung ist ein Sonderfall der richtlinienbasierten Autorisierung.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-179">Claims-based authorization is a special case of policy-based authorization.</span></span> <span data-ttu-id="ae4ae-180">Beispielsweise können Sie eine Richtlinie definieren, die vom Benutzer einen bestimmten Anspruch erfordert.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-180">For example, you can define a policy that requires users to have a certain claim.</span></span> <span data-ttu-id="ae4ae-181">Weitere Informationen finden Sie unter <xref:security/authorization/policies>.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-181">For more information, see <xref:security/authorization/policies>.</span></span>
 
-<span data-ttu-id="ae4ae-182">Diese APIs können entweder in :::no-loc(Blazor Server):::- oder in :::no-loc(Blazor WebAssembly):::-Apps verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-182">These APIs can be used in either :::no-loc(Blazor Server)::: or :::no-loc(Blazor WebAssembly)::: apps.</span></span>
+<span data-ttu-id="ae4ae-182">Diese APIs können entweder in Blazor Server- oder in Blazor WebAssembly-Apps verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-182">These APIs can be used in either Blazor Server or Blazor WebAssembly apps.</span></span>
 
 <span data-ttu-id="ae4ae-183">Wenn weder <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> noch <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> angegeben wird, verwendet <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> die Standardrichtlinie.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-183">If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> nor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> is specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses the default policy.</span></span>
 
 ### <a name="content-displayed-during-asynchronous-authentication"></a><span data-ttu-id="ae4ae-184">Während der asynchronen Authentifizierung angezeigter Inhalt</span><span class="sxs-lookup"><span data-stu-id="ae4ae-184">Content displayed during asynchronous authentication</span></span>
 
-<span data-ttu-id="ae4ae-185">Bei :::no-loc(Blazor)::: kann der Authentifizierungsstatus *asynchron* bestimmt werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-185">:::no-loc(Blazor)::: allows for authentication state to be determined *asynchronously*.</span></span> <span data-ttu-id="ae4ae-186">Das primäre Szenario für diesen Ansatz sind :::no-loc(Blazor WebAssembly):::-Apps, die eine Anforderung zur Authentifizierung an einen externen Endpunkt stellen.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-186">The primary scenario for this approach is in :::no-loc(Blazor WebAssembly)::: apps that make a request to an external endpoint for authentication.</span></span>
+<span data-ttu-id="ae4ae-185">Bei Blazor kann der Authentifizierungsstatus *asynchron* bestimmt werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-185">Blazor allows for authentication state to be determined *asynchronously*.</span></span> <span data-ttu-id="ae4ae-186">Das primäre Szenario für diesen Ansatz sind Blazor WebAssembly-Apps, die eine Anforderung zur Authentifizierung an einen externen Endpunkt stellen.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-186">The primary scenario for this approach is in Blazor WebAssembly apps that make a request to an external endpoint for authentication.</span></span>
 
 <span data-ttu-id="ae4ae-187">Während der Authentifizierung zeigt <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> standardmäßig keine Inhalte an.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-187">While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> displays no content by default.</span></span> <span data-ttu-id="ae4ae-188">Wenden Sie das `<Authorizing>`-Tag an, um während der Authentifizierung Inhalte anzuzeigen:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-188">To display content while authentication occurs, use the `<Authorizing>` tag:</span></span>
 
 ```razor
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.:::no-loc(Identity):::.Name!</h1>
+        <h1>Hello, @context.User.Identity.Name!</h1>
         <p>You can only see this content if you're authenticated.</p>
     </Authorized>
     <Authorizing>
@@ -339,11 +339,11 @@ builder.Services.AddAuthorizationCore();
 </AuthorizeView>
 ```
 
-<span data-ttu-id="ae4ae-189">Dieser Ansatz gilt in der Regel nicht für :::no-loc(Blazor Server):::-Apps.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-189">This approach isn't normally applicable to :::no-loc(Blazor Server)::: apps.</span></span> <span data-ttu-id="ae4ae-190">:::no-loc(Blazor Server):::-Apps kennen den Authentifizierungsstatus, sobald der Status hergestellt ist.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-190">:::no-loc(Blazor Server)::: apps know the authentication state as soon as the state is established.</span></span> <span data-ttu-id="ae4ae-191"><xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing>-Inhalte können zwar in der <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>-Komponente einer :::no-loc(Blazor Server):::-App bereitgestellt werden, aber der Inhalt wird nie angezeigt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-191"><xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing> content can be provided in a :::no-loc(Blazor Server)::: app's <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, but the content is never displayed.</span></span>
+<span data-ttu-id="ae4ae-189">Dieser Ansatz gilt in der Regel nicht für Blazor Server-Apps.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-189">This approach isn't normally applicable to Blazor Server apps.</span></span> <span data-ttu-id="ae4ae-190">Blazor Server-Apps kennen den Authentifizierungsstatus, sobald der Status hergestellt ist.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-190">Blazor Server apps know the authentication state as soon as the state is established.</span></span> <span data-ttu-id="ae4ae-191"><xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing>-Inhalte können zwar in der <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>-Komponente einer Blazor Server-App bereitgestellt werden, aber der Inhalt wird nie angezeigt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-191"><xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.Authorizing> content can be provided in a Blazor Server app's <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component, but the content is never displayed.</span></span>
 
 ## <a name="authorize-attribute"></a><span data-ttu-id="ae4ae-192">[Authorize]-Attribut</span><span class="sxs-lookup"><span data-stu-id="ae4ae-192">[Authorize] attribute</span></span>
 
-<span data-ttu-id="ae4ae-193">Das Attribut [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) kann in :::no-loc(Razor):::-Komponenten verwendet werden:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-193">The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute can be used in :::no-loc(Razor)::: components:</span></span>
+<span data-ttu-id="ae4ae-193">Das Attribut [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) kann in Razor-Komponenten verwendet werden:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-193">The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute can be used in Razor components:</span></span>
 
 ```razor
 @page "/"
@@ -353,7 +353,7 @@ You can only see this if you're signed in.
 ```
 
 > [!IMPORTANT]
-> <span data-ttu-id="ae4ae-194">Verwenden Sie nur [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) für `@page`-Komponenten, die über den :::no-loc(Blazor):::-Router erreicht werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-194">Only use [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `@page` components reached via the :::no-loc(Blazor)::: Router.</span></span> <span data-ttu-id="ae4ae-195">Die Autorisierung wird nur als Aspekt des Routings und *nicht* für untergeordnete Komponenten durchgeführt, die innerhalb einer Seite gerendert werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-195">Authorization is only performed as an aspect of routing and *not* for child components rendered within a page.</span></span> <span data-ttu-id="ae4ae-196">Um die Anzeige von bestimmten Teilen innerhalb einer Seite zu autorisieren, verwenden Sie stattdessen <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-196">To authorize the display of specific parts within a page, use <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> instead.</span></span>
+> <span data-ttu-id="ae4ae-194">Verwenden Sie nur [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) für `@page`-Komponenten, die über den Blazor-Router erreicht werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-194">Only use [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `@page` components reached via the Blazor Router.</span></span> <span data-ttu-id="ae4ae-195">Die Autorisierung wird nur als Aspekt des Routings und *nicht* für untergeordnete Komponenten durchgeführt, die innerhalb einer Seite gerendert werden.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-195">Authorization is only performed as an aspect of routing and *not* for child components rendered within a page.</span></span> <span data-ttu-id="ae4ae-196">Um die Anzeige von bestimmten Teilen innerhalb einer Seite zu autorisieren, verwenden Sie stattdessen <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-196">To authorize the display of specific parts within a page, use <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> instead.</span></span>
 
 <span data-ttu-id="ae4ae-197">Das [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Attribut unterstützt auch die rollenbasierte oder die richtlinienbasierte Autorisierung.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-197">The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute also supports role-based or policy-based authorization.</span></span> <span data-ttu-id="ae4ae-198">Verwenden Sie für die rollenbasierte Autorisierung den <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles>-Parameter:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-198">For role-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> parameter:</span></span>
 
@@ -386,7 +386,7 @@ You can only see this if you're signed in.
 * <span data-ttu-id="ae4ae-206">Der Benutzer eine [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Bedingung nicht erfüllt, die für die Komponente angewendet wird.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-206">The user fails an [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) condition applied to the component.</span></span> <span data-ttu-id="ae4ae-207">Das [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Attribut wird im Abschnitt [`[Authorize]`-Attribut](#authorize-attribute) behandelt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-207">The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is covered in the [`[Authorize]` attribute](#authorize-attribute) section.</span></span>
 * <span data-ttu-id="ae4ae-208">Die Asynchrone Authentifizierung ausgeführt wird.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-208">Asynchronous authentication is in progress.</span></span>
 
-<span data-ttu-id="ae4ae-209">In der Standardprojektvorlage für :::no-loc(Blazor Server)::: zeigt die Komponente `App` (`App.razor`), wie benutzerdefinierte Inhalte festgelegt werden können:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-209">In the default :::no-loc(Blazor Server)::: project template, the `App` component (`App.razor`) demonstrates how to set custom content:</span></span>
+<span data-ttu-id="ae4ae-209">In der Standardprojektvorlage für Blazor Server zeigt die Komponente `App` (`App.razor`), wie benutzerdefinierte Inhalte festgelegt werden können:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-209">In the default Blazor Server project template, the `App` component (`App.razor`) demonstrates how to set custom content:</span></span>
 
 ```razor
 <CascadingAuthenticationState>
@@ -445,7 +445,7 @@ Not authorized.
     {
         var user = (await authenticationStateTask).User;
 
-        if (user.:::no-loc(Identity):::.IsAuthenticated)
+        if (user.Identity.IsAuthenticated)
         {
             // Perform an action only available to authenticated (signed-in) users.
         }
@@ -466,7 +466,7 @@ Not authorized.
 ```
 
 > [!NOTE]
-> <span data-ttu-id="ae4ae-218">Fügen Sie in einer Komponente einer <xref:Microsoft.AspNetCore.Components.Authorization>-App die Namespaces :::no-loc(Blazor WebAssembly)::: und <xref:Microsoft.AspNetCore.Authorization> hinzu:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-218">In a :::no-loc(Blazor WebAssembly)::: app component, add the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces:</span></span>
+> <span data-ttu-id="ae4ae-218">Fügen Sie in einer Komponente einer <xref:Microsoft.AspNetCore.Components.Authorization>-App die Namespaces Blazor WebAssembly und <xref:Microsoft.AspNetCore.Authorization> hinzu:</span><span class="sxs-lookup"><span data-stu-id="ae4ae-218">In a Blazor WebAssembly app component, add the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces:</span></span>
 >
 > ```razor
 > @using Microsoft.AspNetCore.Authorization
@@ -483,7 +483,7 @@ Not authorized.
 
 * <span data-ttu-id="ae4ae-223">**Für `authenticationStateTask` wird ein `null`** -Wert empfangen.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-223">**`null` value is received for `authenticationStateTask`**</span></span>
 
-<span data-ttu-id="ae4ae-224">Wahrscheinlich wurde das Projekt nicht mit einer :::no-loc(Blazor Server):::-Vorlage mit aktivierter Authentifizierung erstellt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-224">It's likely that the project wasn't created using a :::no-loc(Blazor Server)::: template with authentication enabled.</span></span> <span data-ttu-id="ae4ae-225">Umschließen Sie einen Teil der Benutzeroberflächenstruktur wie folgt mit `<CascadingAuthenticationState>`, z. B. in der Komponente `App` (`App.razor`):</span><span class="sxs-lookup"><span data-stu-id="ae4ae-225">Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example in the `App` component (`App.razor`) as follows:</span></span>
+<span data-ttu-id="ae4ae-224">Wahrscheinlich wurde das Projekt nicht mit einer Blazor Server-Vorlage mit aktivierter Authentifizierung erstellt.</span><span class="sxs-lookup"><span data-stu-id="ae4ae-224">It's likely that the project wasn't created using a Blazor Server template with authentication enabled.</span></span> <span data-ttu-id="ae4ae-225">Umschließen Sie einen Teil der Benutzeroberflächenstruktur wie folgt mit `<CascadingAuthenticationState>`, z. B. in der Komponente `App` (`App.razor`):</span><span class="sxs-lookup"><span data-stu-id="ae4ae-225">Wrap a `<CascadingAuthenticationState>` around some part of the UI tree, for example in the `App` component (`App.razor`) as follows:</span></span>
 
 ```razor
 <CascadingAuthenticationState>
@@ -499,4 +499,4 @@ Not authorized.
 
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
-* <span data-ttu-id="ae4ae-228">[Nützliche Ressourcen für :::no-loc(Blazor):::: Authentifizierung](https://github.com/AdrienTorris/awesome-blazor#authentication) – Beispiellinks für die Community</span><span class="sxs-lookup"><span data-stu-id="ae4ae-228">[Awesome :::no-loc(Blazor):::: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links</span></span>
+* <span data-ttu-id="ae4ae-228">[Nützliche Ressourcen für Blazor: Authentifizierung](https://github.com/AdrienTorris/awesome-blazor#authentication) – Beispiellinks für die Community</span><span class="sxs-lookup"><span data-stu-id="ae4ae-228">[Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links</span></span>

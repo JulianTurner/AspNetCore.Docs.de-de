@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hub-filters
-ms.openlocfilehash: 5a4cb5122080b72875ac11cf2e682162d017d7b9
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9b131d8ec13204525f39263afaf506e336373a7c
+ms.sourcegitcommit: 827e8be18cebbcc09b467c089e17fa6f5e430cb2
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052720"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94634573"
 ---
 # <a name="use-hub-filters-in-aspnet-core-no-locsignalr"></a>Verwenden von Hub-Filtern in ASP.net Core SignalR
 
@@ -99,8 +99,8 @@ public class CustomFilter : IHubFilter
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Exception calling '{invocationContext.HubMethodName}'");
-            throw ex;
+            Console.WriteLine($"Exception calling '{invocationContext.HubMethodName}': {ex}");
+            throw;
         }
     }
 
@@ -197,7 +197,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
 
 `HubInvocationContext`Enthält Informationen für den aktuellen hubmethoden Aufruf.
 
-| Eigenschaft | Beschreibung | Typ |
+| Eigenschaft | BESCHREIBUNG | type |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Enthält Informationen über die Verbindung. | `HubCallerContext` |
 | `Hub` | Die Instanz des Hubs, der für diesen hubmethoden Aufruf verwendet wird. | `Hub` |
@@ -210,7 +210,7 @@ Nehmen Sie für dieses Beispiel an, dass eine `LanguageFilterAttribute` Klasse d
 
 Der `HubLifetimeContext` enthält Informationen für die `OnConnectedAsync` `OnDisconnectedAsync` hubmethoden und.
 
-| Eigenschaft | Beschreibung | Typ |
+| Eigenschaft | BESCHREIBUNG | type |
 | ------ | ------ | ----------- |
 | `Context ` | `HubCallerContext`Enthält Informationen über die Verbindung. | `HubCallerContext` |
 | `Hub` | Die Instanz des Hubs, der für diesen hubmethoden Aufruf verwendet wird. | `Hub` |

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 669ebaf6dcd05561340aefda4a75b6fe1068d207
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 990882c03ddc14c664aa8da0518fb36087199aca
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056191"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550516"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
@@ -45,10 +45,11 @@ Verfügbare Szenarien:
 * Beobachten der Werte lokaler Variablen im Fenster *Lokale Variablen*
 * Anzeigen der Aufrufliste einschließlich Aufrufketten zwischen JavaScript und .NET
 
-Folgendes ist derzeit *nicht möglich* :
+Folgendes ist derzeit *nicht möglich*:
 
 * Halt bei Ausnahmefehlern
 * Erreichen von Breakpoints während des App-Starts, bevor der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
+* Debuggen Sie in nicht lokalen Szenarien (z. B. [Windows-Subsystem für Linux (WSL)](/windows/wsl/) oder [Visual Studio Codespaces](/visualstudio/codespaces/overview/what-is-vsonline)).
 
 ## <a name="prerequisites"></a>Voraussetzungen
 
@@ -56,6 +57,8 @@ Zum Debuggen ist einer der folgenden Browser erforderlich:
 
 * Google Chrome (Version 70 oder höher) (Standard)
 * Microsoft Edge (Version 80 oder höher)
+
+Stellen Sie sicher, dass Firewalls oder Proxys die Kommunikation mit dem Debugproxy (`NodeJS`-Prozess) nicht blockieren. Weitere Informationen finden Sie im Abschnitt [Firewallkonfiguration](#firewall-configuration).
 
 Für Visual Studio für Mac ist die Version 8.8 (Build 1532) oder höher erforderlich:
 
@@ -92,10 +95,10 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio:
 1. Drücken Sie <kbd>F5</kbd>, um die App im Debugger auszuführen.
 
    > [!NOTE]
-   > Das **Starten ohne Debuggen** ( <kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
+   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
 1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
-1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken** , damit der Code bis zum Breakpoint ausgeführt wird.
+1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
 1. Sehen Sie sich in Visual Studio den Wert des `currentCount`-Felds im Fenster **Lokale Variablen** an.
 1. Drücken Sie <kbd>F5</kbd>, um die Ausführung fortzusetzen.
 
@@ -168,22 +171,22 @@ Weitere Informationen zur Verwendung eines benutzerdefinierten App-Basispfads f�
 
    Wenn Sie diese Benachrichtigung erhalten, führen Sie die folgenden Schritte aus:
 
-   * Stellen Sie sicher, dass die aktuellste [C# für Visual Studio Code-Erweiterung](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installiert ist. Öffnen Sie zur Überprüfung der installierten Erweiterungen in der Menüleiste die Option **Ansicht** > **Erweiterungen** , oder klicken Sie in der Seitenleiste **Aktivität** auf das Symbol **Erweiterungen**.
-   * Vergewissern Sie sich, dass das JavaScript-Vorschaudebuggen aktiviert ist. Öffnen Sie die Einstellungen über die Menüleiste ( **Datei** > **Einstellungen** > **Einstellungen** ). Führen Sie mithilfe der Schlüsselwörter `debug preview` eine Suche durch. Vergewissern Sie sich in den Suchergebnissen, dass das Kontrollkästchen **Debuggen > JavaScript: Vorschau verwenden** aktiviert ist. Wenn die Option zum Aktivieren des Vorschaudebuggens nicht vorhanden ist, führen Sie entweder ein Upgrade auf die neueste VS Code-Version durch, oder installieren Sie die [JavaScript-Debuggererweiterung](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code-Versionen 1.46 oder früher).
+   * Stellen Sie sicher, dass die aktuellste [C# für Visual Studio Code-Erweiterung](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installiert ist. Öffnen Sie zur Überprüfung der installierten Erweiterungen in der Menüleiste die Option **Ansicht** > **Erweiterungen**, oder klicken Sie in der Seitenleiste **Aktivität** auf das Symbol **Erweiterungen**.
+   * Vergewissern Sie sich, dass das JavaScript-Vorschaudebuggen aktiviert ist. Öffnen Sie die Einstellungen über die Menüleiste (**Datei** > **Einstellungen** > **Einstellungen**). Führen Sie mithilfe der Schlüsselwörter `debug preview` eine Suche durch. Vergewissern Sie sich in den Suchergebnissen, dass das Kontrollkästchen **Debuggen > JavaScript: Vorschau verwenden** aktiviert ist. Wenn die Option zum Aktivieren des Vorschaudebuggens nicht vorhanden ist, führen Sie entweder ein Upgrade auf die neueste VS Code-Version durch, oder installieren Sie die [JavaScript-Debuggererweiterung](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code-Versionen 1.46 oder früher).
    * Laden Sie das Fenster neu.
 
 1. Starten Sie das Debuggen mit der Tastenkombination <kbd>F5</kbd> oder dem Menü Element.
 
    > [!NOTE]
-   > Das **Starten ohne Debuggen** ( <kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
+   > Das **Starten ohne Debuggen** (<kbd>STRG</kbd>+<kbd>F5</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
-1. Wenn Sie dazu aufgefordert werden, wählen Sie die Option **Blazor WebAssembly debuggen** , um das Debuggen zu starten.
+1. Wenn Sie dazu aufgefordert werden, wählen Sie die Option **Blazor WebAssembly debuggen**, um das Debuggen zu starten.
 
 1. Die eigenständige App wird gestartet, und es wird ein Debuggingbrowser geöffnet.
 
 1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
 
-1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken** , damit der Code bis zum Breakpoint ausgeführt wird.
+1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
 
 > [!NOTE]
 > Während App-Starts werden Breakpoints **nicht** erreicht, während der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
@@ -271,7 +274,7 @@ Die Browserkonfiguration verwendet standardmäßig Google Chrome. Wenn Sie Micro
 }
 ```
 
-Im vorherigen Beispiel ist `MyHostedApp.Server.dll` die Assembly der *Server* -App. Der Ordner `.vscode` befindet sich im Projektmappenordner neben den Ordnern `Client`, `Server` und `Shared`.
+Im vorherigen Beispiel ist `MyHostedApp.Server.dll` die Assembly der *Server*-App. Der Ordner `.vscode` befindet sich im Projektmappenordner neben den Ordnern `Client`, `Server` und `Shared`.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
@@ -281,13 +284,13 @@ So debuggen Sie eine Blazor WebAssembly-App in Visual Studio Code für Mac:
 1. Drücken Sie <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>, um die App im Debugger auszuführen.
 
    > [!NOTE]
-   > **Starten ohne Debuggen** ( <kbd>&#8997;</kbd>+<kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
+   > **Starten ohne Debuggen** (<kbd>&#8997;</kbd>+<kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>) wird nicht unterstützt. Wenn die App in der Debugkonfiguration ausgeführt wird, führt der Debugmehraufwand immer zu einer geringen Leistungsminderung.
 
    > [!IMPORTANT]
    > Google Chrome oder Microsoft Edge muss der für die Debugsitzung ausgewählte Browser sein.
 
 1. Legen Sie in der `*Client*`-App einen Breakpoint für die `currentCount++;`-Zeile in `Pages/Counter.razor` fest.
-1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken** , damit der Code bis zum Breakpoint ausgeführt wird.
+1. Navigieren Sie im Browser zur `Counter`-Seite, und klicken Sie auf die Schaltfläche **Hier klicken**, damit der Code bis zum Breakpoint ausgeführt wird.
 1. Sehen Sie sich in Visual Studio den Wert des `currentCount`-Felds im Fenster **Lokale Variablen** an.
 1. Drücken Sie <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>, um die Ausführung fortzusetzen.
 
@@ -339,6 +342,23 @@ Blazor bietet einen Debugproxy, der das [Chrome DevTools-Protokoll](https://chro
 
 Browserquellzuordnungen ermöglichen es dem Browser, kompilierte Dateien zu ihren ursprünglichen Quelldateien zurück zuzuordnen und sie werden häufig für clientseitiges Debuggen verwendet. Allerdings ordnet Blazor C# derzeit nicht direkt zu JavaScript/WASM zu. Stattdessen übernimmt Blazor die IL-Interpretation innerhalb des Browsers, sodass Quellzuordnungen nicht relevant sind.
 
+## <a name="firewall-configuration"></a>Firewallkonfiguration
+
+Wenn eine Firewall die Kommunikation mit dem Debugproxy blockiert, erstellen Sie eine Firewallausnahmeregel, die die Kommunikation zwischen Browser und `NodeJS`-Prozess zulässt.
+
+> [!WARNING]
+> Änderungen an einer Firewallkonfiguration müssen umsichtig erfolgen, damit keine Sicherheitsrisiken entstehen. Setzen Sie Sicherheitsleitlinien sorgfältig um, befolgen Sie bewährte Methoden, und beachten Sie die Warnungen des Herstellers der Firewall.
+>
+> Für das Zulassen einer offenen Kommunikation mit dem `NodeJS`-Prozess gilt Folgendes:
+>
+> * Öffnet den Node-Server für jede beliebige Verbindung abhängig von den Fähigkeiten und der Konfiguration der Firewall.
+> * Kann abhängig von Ihrem Netzwerk riskant sein.
+> * **Wird nur auf Entwicklercomputern empfohlen.**
+>
+> Lassen Sie nach Möglichkeit eine offene Kommunikation mit dem `NodeJS`-Prozess  **nur in vertrauenswürdigen oder privaten Netzwerken** zu.
+
+Eine Anleitung zur Konfiguration der [Windows-Firewall](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) finden Sie unter [Erstellen einer Regel für eingehende Programme oder Dienste](/windows/security/threat-protection/windows-firewall/create-an-inbound-program-or-service-rule). Weitere Informationen finden Sie unter [Windows Defender-Firewall mit erweiterter Sicherheit](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) und zugehörigen Artikeln in der Dokumentation zur Windows-Firewall.
+
 ## <a name="troubleshoot"></a>Problembehandlung
 
 Wenn Sie auf Fehler stoßen, könnten die folgenden Tipps helfen:
@@ -349,6 +369,7 @@ Wenn Sie auf Fehler stoßen, könnten die folgenden Tipps helfen:
 * Wenn Ihre Umgebung einen HTTP-Proxy verwendet, sorgen Sie dafür, dass `localhost` in den Umgehungseinstellungen des Proxys eingeschlossen ist. Dies können Sie tun, indem Sie die `NO_PROXY`-Umgebungsvariable an einem der beiden folgenden Orte festlegen:
   * Die `launchSettings.json`-Datei für das Projekt
   * Auf Ebene der Umgebungsvariablen für Benutzer oder System, damit sie auf alle Apps angewendet wird. Wenn Sie eine Umgebungsvariable verwenden, starten Sie Visual Studio neu, damit die Änderungen übernommen werden.
+* Stellen Sie sicher, dass Firewalls oder Proxys die Kommunikation mit dem Debugproxy (`NodeJS`-Prozess) nicht blockieren. Weitere Informationen finden Sie im Abschnitt [Firewallkonfiguration](#firewall-configuration).
 
 ### <a name="breakpoints-in-oninitializedasync-not-hit"></a>In `OnInitialized{Async}` nicht verwendete Breakpoints
 

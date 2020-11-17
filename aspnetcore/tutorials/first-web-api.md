@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: fc41dd13e7d027d9630cd596162f9b5fd2ef9e2b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ab06f2d347d7f05e9c72a85e0c6e0fbc67fe48a7
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058492"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550711"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Erstellen einer Web-API mit ASP.NET Core
 
@@ -83,7 +83,7 @@ Das folgende Diagramm zeigt den Entwurf der App.
 
 * Klicken Sie im Menü **Datei** auf **Neu** > **Projekt**.
 * Wählen Sie die Vorlage **ASP.NET Core-Webanwendung** aus, und klicken Sie auf **Weiter**.
-* Geben Sie dem Projekt den Namen *TodoApi* , und klicken Sie auf **Erstellen**.
+* Geben Sie dem Projekt den Namen *TodoApi*, und klicken Sie auf **Erstellen**.
 * Vergewissern Sie sich, dass im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Optionen **.NET Core** und **ASP.NET Core 5.0** ausgewählt sind. Wählen Sie die Vorlage **API** aus, und klicken Sie auf **Erstellen**.
 
 ![VS-Dialogfeld „Neues Projekt“](first-web-api/_static/5/vs.png)
@@ -119,7 +119,7 @@ Das folgende Diagramm zeigt den Entwurf der App.
 
   ![Auswählen von macOS-API-Vorlagen](first-web-api-mac/_static/api_template.png)
 
-* Wählen Sie im Dialogfeld **Neue ASP.NET Core-Web-API konfigurieren** die neueste .NET Core 3.x-Version als **Zielframework** aus. Klicken Sie auf **Weiter**.
+* Wählen Sie im Dialogfeld **Neue ASP.NET Core-Web-API konfigurieren** die neueste .NET Core 5.x-Version als **Zielframework** aus. Klicken Sie auf **Weiter**.
 
 * Geben Sie für **Projektname** *TodoApi* ein, und wählen Sie dann **Erstellen** aus.
 
@@ -174,7 +174,7 @@ Die Swagger-Seite `/swagger/index.html` wird angezeigt. Wählen Sie **GET** > **
 -->
 Swagger wird verwendet, um hilfreiche Dokumentation und Hilfeseiten für Web-APIs zu generieren. Dieses Tutorial konzentriert sich auf die Erstellung einer Web-API. Weitere Informationen zu Swagger finden Sie unter <xref:tutorials/web-api-help-pages-using-swagger>.
 
-Kopieren Sie die **Anforderungs-URL** , und fügen Sie sie im Browser ein: `https://localhost:<port>/WeatherForecast`
+Kopieren Sie die **Anforderungs-URL**, und fügen Sie sie im Browser ein: `https://localhost:<port>/WeatherForecast`
 
 Der zurückgegebene JSON-Code sieht in etwa wie folgt aus:
 
@@ -231,7 +231,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 * Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Models* .
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem* , und wählen Sie **Hinzufügen** aus.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem*, und wählen Sie **Hinzufügen** aus.
 
 * Ersetzen Sie den Vorlagencode durch Folgendes:
 
@@ -249,7 +249,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Neue Datei** > **Allgemein** > **Leere Klasse** aus.
 
-* Nennen Sie die Klasse *TodoItem* , und klicken Sie dann auf **Neu**.
+* Nennen Sie die Klasse *TodoItem*, und klicken Sie dann auf **Neu**.
 
 * Ersetzen Sie den Vorlagencode durch Folgendes:
 
@@ -273,17 +273,17 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 * Wählen Sie die Registerkarte **Durchsuchen** aus, und geben Sie dann Folgendes in das Suchfeld ein: **Microsoft.
 **EntityFrameworkCore.SqlServer**.
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
-* Aktivieren Sie das Kontrollkästchen **Vorabversion einschließen** , damit die Version 5.0 RC verfügbar ist. 
+* Aktivieren Sie das Kontrollkästchen **Vorabversion einschließen**, damit die Version 5.0 RC verfügbar ist. 
 * Wählen Sie im linken Bereich **Microsoft.EntityFrameworkCore.SqlServer** aus.
 * Aktivieren Sie das Kontrollkästchen **Projekt** im rechten Bereich, und klicken Sie dann auf **Installieren**.
-* Verwenden Sie die Anweisungen oben zum Hinzuzufügen des **Microsoft.EntityFrameworkCore.InMemory** -NuGet-Pakets.
+* Verwenden Sie die Anweisungen oben zum Hinzuzufügen des **Microsoft.EntityFrameworkCore.InMemory**-NuGet-Pakets.
 
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Update this image at RTM -->
 ![NuGet-Paket-Manager](first-web-api/_static/5/vsNuGet.png)
 
 ## <a name="add-the-todocontext-database-context"></a>Hinzufügen des TodoContext-Datenbankkontexts
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext* , und klicken Sie auf **Hinzufügen**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext*, und klicken Sie auf **Hinzufügen**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -379,7 +379,7 @@ Dieses Tutorial verwendet Postman zum Testen der Web-API.
 * Starten Sie die Web-App.
 * Starten Sie Postman.
 * Deaktivieren Sie **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
-  * Deaktivieren Sie auf der Registerkarte **General** (Allgemein) unter File > Settings ( **Datei** > **Einstellungen** ) **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
+  * Deaktivieren Sie auf der Registerkarte **General** (Allgemein) unter File > Settings (**Datei** > **Einstellungen**) **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
     > [!WARNING]
     > Aktivieren Sie die Verifizierung des SSL-Zertifikats wieder, nachdem Sie den Controller getestet haben.
 
@@ -463,7 +463,7 @@ Das Attribut [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) gibt 
 
   [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
 
-* Ersetzen Sie `[controller]` durch den Namen des Controllers, bei dem es sich standardmäßig um den Namen der Controller-Klasse ohne das Suffix „Controller“ handelt. In diesem Beispiel ist der Klassenname des Controllers „ **TodoItems** Controller“. Der Controllername lautet also „TodoItems“. Beim ASP.NET Core-[Routing](xref:mvc/controllers/routing) wird die Groß-/Kleinschreibung nicht beachtet.
+* Ersetzen Sie `[controller]` durch den Namen des Controllers, bei dem es sich standardmäßig um den Namen der Controller-Klasse ohne das Suffix „Controller“ handelt. In diesem Beispiel ist der Klassenname des Controllers „**TodoItems** Controller“. Der Controllername lautet also „TodoItems“. Beim ASP.NET Core-[Routing](xref:mvc/controllers/routing) wird die Groß-/Kleinschreibung nicht beachtet.
 * Wenn das `[HttpGet]`-Attribut eine Routenvorlage (z. B. `[HttpGet("products")]`) hat, fügen Sie diese an den Pfad an. In diesem Beispiel wird keine Vorlage verwendet. Weitere Informationen finden Sie unter [Attributrouting mit Http[Verb]-Attributen](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In der folgenden `GetTodoItem`-Methode ist `"{id}"` eine Platzhaltervariable für den eindeutigen Bezeichner des To-do-Elements. Wenn `GetTodoItem` aufgerufen wird, wird der Wert von `"{id}"` in der URL der Methode in ihrem Parameter `id` bereitgestellt.
@@ -609,7 +609,7 @@ Das folgende Diagramm zeigt den Entwurf der App.
 
 * Klicken Sie im Menü **Datei** auf **Neu** > **Projekt**.
 * Wählen Sie die Vorlage **ASP.NET Core-Webanwendung** aus, und klicken Sie auf **Weiter**.
-* Geben Sie dem Projekt den Namen *TodoApi* , und klicken Sie auf **Erstellen**.
+* Geben Sie dem Projekt den Namen *TodoApi*, und klicken Sie auf **Erstellen**.
 * Vergewissern Sie sich, dass im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Optionen **.NET Core** und **ASP.NET Core 3.1** ausgewählt sind. Wählen Sie die Vorlage **API** aus, und klicken Sie auf **Erstellen**.
 
 ![VS-Dialogfeld „Neues Projekt“](first-web-api/_static/vs3.png)
@@ -727,7 +727,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 * Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Models* .
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem* , und wählen Sie **Hinzufügen** aus.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem*, und wählen Sie **Hinzufügen** aus.
 
 * Ersetzen Sie den Vorlagencode durch den folgenden Code:
 
@@ -745,7 +745,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Neue Datei** > **Allgemein** > **Leere Klasse** aus.
 
-* Nennen Sie die Klasse *TodoItem* , und klicken Sie dann auf **Neu**.
+* Nennen Sie die Klasse *TodoItem*, und klicken Sie dann auf **Neu**.
 
 * Ersetzen Sie den Vorlagencode durch den folgenden Code:
 
@@ -766,16 +766,16 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 ### <a name="add-nuget-packages"></a>Hinzufügen von NuGet-Paketen
 
 * Klicken Sie im Menü **Extras** auf **NuGet-Paket-Manager > NuGet-Pakete für Projektmappe verwalten...** .
-* Klicken Sie auf die Registerkarte **Durchsuchen** , und geben Sie dann **Microsoft.EntityFrameworkCore.SqlServer** in das Suchfeld ein.
+* Klicken Sie auf die Registerkarte **Durchsuchen**, und geben Sie dann **Microsoft.EntityFrameworkCore.SqlServer** in das Suchfeld ein.
 * Wählen Sie im linken Bereich **Microsoft.EntityFrameworkCore.SqlServer** aus.
 * Aktivieren Sie das Kontrollkästchen **Projekt** im rechten Bereich, und klicken Sie dann auf **Installieren**.
-* Verwenden Sie die Anweisungen oben zum Hinzuzufügen des **Microsoft.EntityFrameworkCore.InMemory** -NuGet-Pakets.
+* Verwenden Sie die Anweisungen oben zum Hinzuzufügen des **Microsoft.EntityFrameworkCore.InMemory**-NuGet-Pakets.
 
 ![NuGet-Paket-Manager](first-web-api/_static/vs3NuGet.png)
 
 ## <a name="add-the-todocontext-database-context"></a>Hinzufügen des TodoContext-Datenbankkontexts
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext* , und klicken Sie auf **Hinzufügen**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext*, und klicken Sie auf **Hinzufügen**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -870,7 +870,7 @@ Dieses Tutorial verwendet Postman zum Testen der Web-API.
 * Starten Sie die Web-App.
 * Starten Sie Postman.
 * Deaktivieren Sie **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
-  * Deaktivieren Sie auf der Registerkarte **General** (Allgemein) unter File > Settings ( **Datei** > **Einstellungen** ) **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
+  * Deaktivieren Sie auf der Registerkarte **General** (Allgemein) unter File > Settings (**Datei** > **Einstellungen**) **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
     > [!WARNING]
     > Aktivieren Sie die Verifizierung des SSL-Zertifikats wieder, nachdem Sie den Controller getestet haben.
 
@@ -950,7 +950,7 @@ Das Attribut [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) gibt 
 
   [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
 
-* Ersetzen Sie `[controller]` durch den Namen des Controllers, bei dem es sich standardmäßig um den Namen der Controller-Klasse ohne das Suffix „Controller“ handelt. In diesem Beispiel ist der Klassenname des Controllers „ **TodoItems** Controller“. Der Controllername lautet also „TodoItems“. Beim ASP.NET Core-[Routing](xref:mvc/controllers/routing) wird die Groß-/Kleinschreibung nicht beachtet.
+* Ersetzen Sie `[controller]` durch den Namen des Controllers, bei dem es sich standardmäßig um den Namen der Controller-Klasse ohne das Suffix „Controller“ handelt. In diesem Beispiel ist der Klassenname des Controllers „**TodoItems** Controller“. Der Controllername lautet also „TodoItems“. Beim ASP.NET Core-[Routing](xref:mvc/controllers/routing) wird die Groß-/Kleinschreibung nicht beachtet.
 * Wenn das `[HttpGet]`-Attribut eine Routenvorlage (z. B. `[HttpGet("products")]`) hat, fügen Sie diese an den Pfad an. In diesem Beispiel wird keine Vorlage verwendet. Weitere Informationen finden Sie unter [Attributrouting mit Http[Verb]-Attributen](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In der folgenden `GetTodoItem`-Methode ist `"{id}"` eine Platzhaltervariable für den eindeutigen Bezeichner des To-do-Elements. Wenn `GetTodoItem` aufgerufen wird, wird der Wert von `"{id}"` in der URL der Methode in ihrem Parameter `id` bereitgestellt.
@@ -1100,7 +1100,7 @@ Das folgende Diagramm zeigt den Entwurf der App.
 
 * Klicken Sie im Menü **Datei** auf **Neu** > **Projekt**.
 * Wählen Sie die Vorlage **ASP.NET Core-Webanwendung** aus, und klicken Sie auf **Weiter**.
-* Geben Sie dem Projekt den Namen *TodoApi* , und klicken Sie auf **Erstellen**.
+* Geben Sie dem Projekt den Namen *TodoApi*, und klicken Sie auf **Erstellen**.
 * Vergewissern Sie sich, dass im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Optionen **.NET Core** und **ASP.NET Core 2.2** ausgewählt sind. Wählen Sie die Vorlage **API** aus, und klicken Sie auf **Erstellen**. Wählen Sie **nicht** **Enable Docker Support** (Docker-Unterstützung aktivieren) aus.
 
 ![VS-Dialogfeld „Neues Projekt“](first-web-api/_static/vs.png)
@@ -1170,7 +1170,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 * Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Hinzufügen** > **Neuer Ordner**. Geben Sie dem Ordner den Namen *Models* .
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem* , und wählen Sie **Hinzufügen** aus.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoItem*, und wählen Sie **Hinzufügen** aus.
 
 * Ersetzen Sie den Vorlagencode durch den folgenden Code:
 
@@ -1188,7 +1188,7 @@ Ein *Modell* ist eine Gruppe von Klassen, die die Daten darstellen, die die App 
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Neue Datei** > **Allgemein** > **Leere Klasse** aus.
 
-* Nennen Sie die Klasse *TodoItem* , und klicken Sie dann auf **Neu**.
+* Nennen Sie die Klasse *TodoItem*, und klicken Sie dann auf **Neu**.
 
 * Ersetzen Sie den Vorlagencode durch den folgenden Code:
 
@@ -1206,7 +1206,7 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext* , und klicken Sie auf **Hinzufügen**.
+* Klicken Sie mit der rechten Maustaste auf den Ordner *Models* , und wählen Sie **Hinzufügen** > **Klasse** aus. Nennen Sie die Klasse *TodoContext*, und klicken Sie auf **Hinzufügen**.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -1239,7 +1239,7 @@ Der vorangehende Code:
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Controller*.
 * Wählen Sie **Hinzufügen** > **Neues Element** aus.
 * Wählen Sie im Dialogfeld **Neues Element hinzufügen** die Vorlage **API-Controllerklasse** aus.
-* Benennen Sie die Klasse *TodoController* , und wählen Sie **Hinzufügen** aus.
+* Benennen Sie die Klasse *TodoController*, und wählen Sie **Hinzufügen** aus.
 
   ![Dialogfeld „Neues Element hinzufügen“ mit Controller im Suchfeld und ausgewähltem Web-API-Controller](first-web-api/_static/new_controller.png)
 
@@ -1298,7 +1298,7 @@ Das Attribut [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) gibt 
 
   [!code-csharp[](first-web-api/samples/2.2/TodoApi/Controllers/TodoController.cs?name=TodoController&highlight=3)]
 
-* Ersetzen Sie `[controller]` durch den Namen des Controllers, bei dem es sich standardmäßig um den Namen der Controller-Klasse ohne das Suffix „Controller“ handelt. Bei diesem Beispiel ist der Klassenname des Controllers „ **Todo** Controller“, d.h. der Controllername lautet „todo“. Beim ASP.NET Core-[Routing](xref:mvc/controllers/routing) wird die Groß-/Kleinschreibung nicht beachtet.
+* Ersetzen Sie `[controller]` durch den Namen des Controllers, bei dem es sich standardmäßig um den Namen der Controller-Klasse ohne das Suffix „Controller“ handelt. Bei diesem Beispiel ist der Klassenname des Controllers „**Todo** Controller“, d.h. der Controllername lautet „todo“. Beim ASP.NET Core-[Routing](xref:mvc/controllers/routing) wird die Groß-/Kleinschreibung nicht beachtet.
 * Wenn das `[HttpGet]`-Attribut eine Routenvorlage (z. B. `[HttpGet("products")]`) hat, fügen Sie diese an den Pfad an. In diesem Beispiel wird keine Vorlage verwendet. Weitere Informationen finden Sie unter [Attributrouting mit Http[Verb]-Attributen](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
 
 In der folgenden `GetTodoItem`-Methode ist `"{id}"` eine Platzhaltervariable für den eindeutigen Bezeichner des To-do-Elements. Wenn `GetTodoItem` aufgerufen wird, wird der Wert von `"{id}"` in der URL der Methode in ihrem Parameter `id` bereitgestellt.
@@ -1325,7 +1325,7 @@ Dieses Tutorial verwendet Postman zum Testen der Web-API.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Deaktivieren Sie auf der Registerkarte **General** (Allgemein) unter File > Settings ( **Datei** > **Einstellungen** ) **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
+* Deaktivieren Sie auf der Registerkarte **General** (Allgemein) unter File > Settings (**Datei** > **Einstellungen**) **SSL certificate verification** (Verifizierung des SSL-Zertifikats).
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 

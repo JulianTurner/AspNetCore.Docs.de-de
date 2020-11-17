@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: e9c74f7b45ebcdffc19a0483b4e98ad2f44d5747
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: e25549d557dd971d0f2f4d67a182574f07138acb
+ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061741"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94508122"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>Neuerungen in ASP.NET Core 5.0
 
@@ -95,7 +95,7 @@ In ASP.NET Core 5.0 wird die OpenAPI-Unterstützung von den Web-API-Vorlagen sta
     ```
 * Über Visual Studio: Deaktivieren Sie die Option **Support für OpenAPI aktivieren**.
 
-Alle *.csproj* -Dateien, die für Web-API-Projekte erstellt werden, enthalten den Verweis auf das [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/)-NuGet-Paket.
+Alle *.csproj*-Dateien, die für Web-API-Projekte erstellt werden, enthalten den Verweis auf das [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/)-NuGet-Paket.
 
 ```xml
 <ItemGroup>
@@ -223,6 +223,8 @@ In [gRPC](https://grpc.io/) wurden viele Leistungsverbesserungen vorgenommen. We
 Weitere Informationen zu gRPC finden Sie unter <xref:grpc/index>.
 
 ## SignalR
+
+### <a name="no-locsignalr-hub-filters"></a>SignalR-Hubfilter
 
 SignalR Hubfilter, die in ASP.NET als Hubpipelines bezeichnet werdenSignalR, sind ein Feature, das die Ausführung von Code vor und nach dem Aufruf von Hubmethoden ermöglicht. Das Ausführen von Code vor und nach dem Aufruf von Hubmethoden ist vergleichbar damit, wie mithilfe von Middleware Code vor und nach einer HTTP-Anforderung ausgeführt werden kann. Zu den allgemeinen Verwendungsmöglichkeiten zählen die Protokollierung, die Fehlerbehandlung und die Argumentvalidierung.
 
@@ -388,7 +390,7 @@ Weitere Informationen finden Sie unter [Kerberos authentication and role-based a
 
 JSON-Daten können mit den neuen Erweiterungsmethoden <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> und `WriteAsJsonAsync` aus einem `HttpRequest`- und `HttpResponse`-Element gelesen und geschrieben werden. Diese Erweiterungsmethoden verarbeiten die JSON-Daten mithilfe des Serialisierungsmoduls [System.Text.Json](xref:System.Text.Json). Mit der neuen `HasJsonContentType`-Erweiterungsmethode lässt sich auch überprüfen, ob eine Anforderung einen JSON-Inhaltstyp aufweist.
 
-Die JSON-Erweiterungsmethoden können mit [Endpunktrouting](xref:fundamentals/routing) kombiniert werden, um JSON-APIs in einem Programmierstil zu erstellen, der als * **Route-zu-Code** _ bezeichnet wird. Diese neue Option bietet Entwicklern die Möglichkeit, grundlegende JSON-APIs auf einfache Art und Weise zu erstellen. Beispielsweise kann eine Web-App, die nur über wenige Endpunkte verfügt, anstatt der vollständigen Funktionalität von ASP.NET Core-MVC auch Route-zu-Code nutzen:
+Die JSON-Erweiterungsmethoden können mit [Endpunktrouting](xref:fundamentals/routing) kombiniert werden, um JSON-APIs in einem Programmierstil zu erstellen, der als ***Route-zu-Code** _ bezeichnet wird. Diese neue Option bietet Entwicklern die Möglichkeit, grundlegende JSON-APIs auf einfache Art und Weise zu erstellen. Beispielsweise kann eine Web-App, die nur über wenige Endpunkte verfügt, anstatt der vollständigen Funktionalität von ASP.NET Core-MVC auch Route-zu-Code nutzen:
 
 ```csharp
 endpoints.MapGet("/weather/{city:alpha}", async context =>
@@ -408,13 +410,14 @@ Als Standardformat für <xref:System.Diagnostics.Activity?displayProperty=fullNa
 
 ### <a name="frombodyattribute"></a>FromBodyAttribute
 
-<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute> unterstützt die Konfiguration einer Option, mit der diese Parameter oder Eigenschaften als optional betrachtet werden können:
+<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute> unterstützt nun die Konfiguration einer Option, mit der diese Parameter oder Eigenschaften als optional betrachtet werden können:
 
 ```csharp
 public IActionResult Post([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)]
-                           MyModel model) {
-     ...
-     }
+                          MyModel model)
+{
+    ...
+}
 ```
 
 ## <a name="miscellaneous-improvements"></a>Sonstige Verbesserungen

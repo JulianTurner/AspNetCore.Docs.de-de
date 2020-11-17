@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 0912b3fbcd0b891deb4985eaa18841c22f4f3264
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7ae462ff9abd06fe4ab4b3e00a71515b76b0ee7d
+ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055749"
+ms.lasthandoff: 11/06/2020
+ms.locfileid: "94339983"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -125,7 +125,7 @@ Wenn Sie die Bereitstellung auf einem IIS-Server durchführen, können Sie das U
 
 Mit einer *gehosteten Bereitstellung* wird die Blazor WebAssembly-App über eine auf einem Webserver ausgeführte [ASP.NET Core-App](xref:index) für Browser bereitgestellt.
 
-Die Blazor WebAssembly-Client-App wird im Ordner `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` der Server-App zusammen mit allen anderen statischen Webressourcen der Server-App veröffentlicht. Die beiden Apps werden zusammen bereitgestellt. Hierfür wird ein Webserver benötigt, auf dem eine ASP.NET Core-App gehostet werden kann. Bei einer gehosteten Bereitstellung enthält Visual Studio die **Blazor WebAssembly-App** -Projektvorlage (`blazorwasm`-Vorlage bei Verwendung des Befehls [`dotnet new`](/dotnet/core/tools/dotnet-new)) mit der ausgewählten Option **`Hosted`** (`-ho|--hosted`, wenn Sie den Befehl `dotnet new` verwenden).
+Die Blazor WebAssembly-Client-App wird im Ordner `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` der Server-App zusammen mit allen anderen statischen Webressourcen der Server-App veröffentlicht. Die beiden Apps werden zusammen bereitgestellt. Hierfür wird ein Webserver benötigt, auf dem eine ASP.NET Core-App gehostet werden kann. Bei einer gehosteten Bereitstellung enthält Visual Studio die **Blazor WebAssembly-App**-Projektvorlage (`blazorwasm`-Vorlage bei Verwendung des Befehls [`dotnet new`](/dotnet/core/tools/dotnet-new)) mit der ausgewählten Option **`Hosted`** (`-ho|--hosted`, wenn Sie den Befehl `dotnet new` verwenden).
 
 Weitere Informationen zum Hosten und Bereitstellen von ASP.NET Core-Apps finden Sie unter <xref:host-and-deploy/index>.
 
@@ -480,7 +480,7 @@ Um eine benutzerdefinierte Datei `web.config` zu verwenden, speichern Sie die be
 Das [URL-Rewrite-Modul](https://www.iis.net/downloads/microsoft/url-rewrite) wird zum Umschreiben von URLs benötigt. Das Modul wird nicht standardmäßig installiert und ist für die Installation als Webserver (IIS)-Rollendienstfunktion nicht verfügbar. Das Modul muss von der IIS-Website heruntergeladen werden. Verwenden Sie den Webplattform-Installer zur Installation des Moduls:
 
 1. Navigieren Sie lokal zur [URL-Rewrite-Module-Downloadseite](https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads). Wählen Sie zum Herunterladen der englischen Version des WebPI-Installers **WebPI** aus. Wählen Sie zum Herunterladen des Installers in einer anderen Sprache die entsprechende Architektur für den Server (x86/x64) aus.
-1. Kopieren Sie den Installer auf den Server. Führen Sie den Installer aus. Klicken Sie auf die Schaltfläche **Installieren** , und stimmen Sie den Lizenzbedingungen zu. Der Server muss nach Abschluss der Installation nicht neu gestartet werden.
+1. Kopieren Sie den Installer auf den Server. Führen Sie den Installer aus. Klicken Sie auf die Schaltfläche **Installieren**, und stimmen Sie den Lizenzbedingungen zu. Der Server muss nach Abschluss der Installation nicht neu gestartet werden.
 
 #### <a name="configure-the-website"></a>Konfigurieren der Website
 
@@ -523,7 +523,16 @@ Das Entfernen des Handlers bzw. das Deaktivieren der Vererbung wird zusätzlich 
 
 #### <a name="brotli-and-gzip-compression"></a>Brotli- und Gzip-Komprimierung
 
-IIS kann über `web.config` so konfiguriert werden, dass Brotli- oder Gzip-komprimierte Blazor-Ressourcen bereitgestellt werden. Eine Beispielkonfiguration finden Sie unter [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
+*Dieser Abschnitt gilt nur für eigenständige Blazor WebAssembly-Apps. Gehostete Blazor-Apps verwenden eine für ASP.NET Core-App standardmäßige Datei `web.config`, nicht die in diesem Abschnitt verknüpfte Datei.*
+
+IIS kann über `web.config` so konfiguriert werden, dass mit Brotli oder Gzip komprimierte Blazor-Ressourcen für eigenständige Blazor WebAssembly-Apps bereitgestellt werden. Eine Beispielkonfigurationsdatei finden Sie unter [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
+
+In den folgenden Szenarien kann eine zusätzliche Konfiguration der Beispieldatei `web.config` erforderlich sein:
+
+* Die Spezifikation der App erfordert eine der folgenden Aktionen:
+  * Bereitstellung komprimierter Dateien, die nicht durch die Beispieldatei `web.config` konfiguriert sind.
+  * Bereitstellung komprimierter Dateien, die durch die Beispieldatei `web.config` in einem nicht komprimierten Format konfiguriert sind.
+* Die IIS-Konfiguration des Servers (z. B. `applicationHost.config`) stellt IIS-Standardwerte auf Serverebene bereit. Je nach Konfiguration auf Serverebene erfordert die App möglicherweise eine andere IIS-Konfiguration als diejenige, die in der Beispieldatei `web.config` enthalten ist.
 
 #### <a name="troubleshooting"></a>Problembehandlung
 
@@ -913,7 +922,7 @@ Wenn eine App erstellt wird, beschreibt das generierte `blazor.boot.json`-Manife
 
 Häufige Ursachen für Fehler sind hier:
 
- * Die Antwort des Webservers ist eine Fehlermeldung (z. B. *404 – nicht gefunden* oder *500 – Interner Serverfehler* ) anstelle der vom Browser angeforderten Datei. Dies wird vom Browser als Fehler bei der Integritätsprüfung gemeldet, nicht als Antwortfehler.
+ * Die Antwort des Webservers ist eine Fehlermeldung (z. B. *404 – nicht gefunden* oder *500 – Interner Serverfehler*) anstelle der vom Browser angeforderten Datei. Dies wird vom Browser als Fehler bei der Integritätsprüfung gemeldet, nicht als Antwortfehler.
  * Der Inhalt der Dateien wurde zwischen dem Build und der Übermittlung der Dateien an den Browser geändert. Dies kann vorkommen:
    * Wenn Sie oder Buildtools die Buildausgabe manuell ändern.
    * Wenn ein Aspekt des Bereitstellungsprozesses die Dateien geändert hat. Wenn Sie z. B. einen Bereitstellungsmechanismus auf Git-Basis verwenden, bedenken Sie, dass Git die Zeilenenden im Windows-Format transparent in UNIX-Zeilenenden konvertiert, wenn Sie Dateien unter Windows übertragen und unter Linux auschecken. Durch das Ändern von Dateizeilenenden werden die SHA-256-Hashwerte geändert. Um dieses Problem zu vermeiden, sollten Sie die [Verwendung von `.gitattributes` erwägen, um Buildartefakte als `binary`-Dateien](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) zu behandeln.

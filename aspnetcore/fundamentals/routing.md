@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: 5b07a2839daf190d99b2787db70998373d34cd44
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: e134832ad00b10bb01239afa06acc74d86707af1
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060000"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422560"
 ---
 # <a name="routing-in-aspnet-core"></a>Routing in ASP.NET Core
 
@@ -55,7 +55,7 @@ Das in diesem Dokument beschriebene Endpunktroutingsystem gilt für ASP.NET Core
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-Die Downloadbeispiele für dieses Dokument werden durch eine bestimmte `Startup`-Klasse aktiviert. Um ein bestimmtes Beispiel auszuführen, ändern Sie *Program.cs* , um die gewünschte `Startup`-Klasse aufzurufen.
+Die Downloadbeispiele für dieses Dokument werden durch eine bestimmte `Startup`-Klasse aktiviert. Um ein bestimmtes Beispiel auszuführen, ändern Sie *Program.cs*, um die gewünschte `Startup`-Klasse aufzurufen.
 
 ## <a name="routing-basics"></a>Routinggrundlagen
 
@@ -70,7 +70,7 @@ Beim Routing wird ein Middlewarepaar verwendet, das durch <xref:Microsoft.AspNet
 * `UseRouting` fügt der Middlewarepipeline einen Routenabgleich hinzu. Diese Middleware prüft die in der App definierten Endpunkte und wählt anhand der Anforderung die [beste Übereinstimmung](#urlm) aus.
 * `UseEndpoints` fügt der Middlewarepipeline die Endpunktausführung hinzu. Dabei wird der mit dem ausgewählten Endpunkt verknüpfte Delegat ausgeführt.
 
-Das vorherige Beispiel enthält eine einzelnen *Route-zu- Code* -Endpunkt unter Verwendung der [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*)-Methode:
+Das vorherige Beispiel enthält eine einzelnen *Route-zu- Code*-Endpunkt unter Verwendung der [MapGet](xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*)-Methode:
 
 * Wenn eine `GET`-HTTP-Anforderung an die Stamm-URL `/`gesendet wird:
   * Der angezeigte Anforderungsdelegat wird ausgeführt.
@@ -138,7 +138,7 @@ Im vorangehenden Beispiel gibt es zwei Endpunkte, aber nur dem für die Integrit
 
 ## <a name="routing-concepts"></a>Routingkonzepte
 
-Durch Hinzufügen des effizienten **Endpunkt** -Konzepts stellt das Routingsystem eine Ergänzung der Middlewarepipeline dar. Endpunkte stehen für Funktionseinheiten der App, die sich in Bezug auf Routing, Autorisierung und die Anzahl der ASP.NET Core-Systeme voneinander unterscheiden.
+Durch Hinzufügen des effizienten **Endpunkt**-Konzepts stellt das Routingsystem eine Ergänzung der Middlewarepipeline dar. Endpunkte stehen für Funktionseinheiten der App, die sich in Bezug auf Routing, Autorisierung und die Anzahl der ASP.NET Core-Systeme voneinander unterscheiden.
 
 <a name="endpoint"></a>
 
@@ -187,7 +187,7 @@ Diese Ausgabe zeigt Folgendes:
 
 * Der Endpunkt ist immer NULL, bevor `UseRouting` aufgerufen wird.
 * Wenn eine Übereinstimmung gefunden wird, ist der Endpunkt zwischen `UseRouting` und <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> ungleich NULL.
-* Die `UseEndpoints`-Middleware ist eine **Terminalmiddleware** , wenn eine Übereinstimmung gefunden wird. [Terminalmiddleware](#tm) wird weiter unten in diesem Dokument definiert.
+* Die `UseEndpoints`-Middleware ist eine **Terminalmiddleware**, wenn eine Übereinstimmung gefunden wird. [Terminalmiddleware](#tm) wird weiter unten in diesem Dokument definiert.
 * Die Middleware nach `UseEndpoints` wird nur ausgeführt, wenn keine Übereinstimmung gefunden wird.
 
 Die `UseRouting`-Middleware verwendet die [SetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.SetEndpoint*)-Methode, um den Endpunkt an den aktuellen Kontext anzufügen. Es ist möglich, die `UseRouting`-Middleware durch benutzerdefinierte Logik zu ersetzen und dennoch die Vorteile durch die Verwendung von Endpunkten zu nutzen. Endpunkte befinden sich auf niedriger Ebene, wie Middleware, und sind nicht an die Routingimplementierung gekoppelt. Die meisten Apps müssen `UseRouting` nicht durch eigene Logik ersetzen.
@@ -208,14 +208,14 @@ Im vorherigen Beispiel werden zwei wichtige Konzepte dargestellt:
       * Trifft häufig Sicherheitsentscheidungen, wie `UseAuthorization` und `UseCors`.
     * Durch die Kombination aus Middleware und Metadaten ist es möglich, für jeden einzelnen Endpunkt Richtlinien zu konfigurieren.
 
-Der vorangehende Code zeigt ein Beispiel für eine benutzerdefinierte Middleware, die entpunktbezogene Richtlinien unterstützt. Die Middleware schreibt ein *Überwachungsprotokoll* für den Zugriff auf vertrauliche Daten in der Konsole. Die Middleware kann so konfiguriert werden, dass ein Endpunkt mit den `AuditPolicyAttribute`-Metadaten *überwacht* wird. In diesem Beispiel wird ein *Opt-In* -Muster veranschaulicht, bei dem nur Endpunkte überwacht werden, die als vertraulich markiert sind. Es ist möglich, diese Logik umgekehrt zu definieren, indem beispielsweise alles geprüft wird, was nicht als sicher markiert ist. Das Endpunktmetadaten-System ist flexibel. Diese Logik lässt sich für jeden Anwendungsfall passend schreiben.
+Der vorangehende Code zeigt ein Beispiel für eine benutzerdefinierte Middleware, die entpunktbezogene Richtlinien unterstützt. Die Middleware schreibt ein *Überwachungsprotokoll* für den Zugriff auf vertrauliche Daten in der Konsole. Die Middleware kann so konfiguriert werden, dass ein Endpunkt mit den `AuditPolicyAttribute`-Metadaten *überwacht* wird. In diesem Beispiel wird ein *Opt-In*-Muster veranschaulicht, bei dem nur Endpunkte überwacht werden, die als vertraulich markiert sind. Es ist möglich, diese Logik umgekehrt zu definieren, indem beispielsweise alles geprüft wird, was nicht als sicher markiert ist. Das Endpunktmetadaten-System ist flexibel. Diese Logik lässt sich für jeden Anwendungsfall passend schreiben.
 
 Der vorherige Beispielcode soll die grundlegenden Konzepte von Endpunkten veranschaulichen. **Das Beispiel ist nicht für Produktionsumgebungen vorgesehen.** Eine vollständigere Version einer Middleware für *Überwachungsprotokolle* würde Folgendes bieten:
 
 * Protokollieren in einer Datei oder einer Datenbank.
 * Einschließen von Details wie Benutzer, IP-Adresse, Name des vertraulichen Endpunkts usw.
 
-Die Metadaten der Überwachungsrichtlinie `AuditPolicyAttribute` sind als `Attribute` definiert, um die Verwendung mit klassenbasierten Frameworks wie Controllern und SignalR zu erleichtern. Bei Verwendung von *Route-zu-Code* :
+Die Metadaten der Überwachungsrichtlinie `AuditPolicyAttribute` sind als `Attribute` definiert, um die Verwendung mit klassenbasierten Frameworks wie Controllern und SignalR zu erleichtern. Bei Verwendung von *Route-zu-Code*:
 
 * Metadaten werden an eine Generator-API angefügt.
 * Klassenbasierte Frameworks enthalten beim Erstellen von Endpunkten alle Attribute der entsprechenden Methode und Klasse.
@@ -350,7 +350,7 @@ Die [Routenvorlagenpriorität](https://github.com/dotnet/aspnetcore/blob/master/
 * Verhindert, dass die Reihenfolge der Endpunkte häufig angepasst werden muss.
 * Versucht, die allgemeinen Erwartungen an das Routingverhalten abzugleichen.
 
-Dies wird z. B. anhand der Vorlagen `/Products/List` und `/Products/{id}` deutlich. Es wäre begründet, anzunehmen, dass `/Products/List` eine bessere Übereinstimmung als `/Products/{id}` für den URL-Pfad `/Products/List` ist. Dies funktioniert, weil das Literalsegment `/List` eine höhere Priorität hat als das Parametersegment `/{id}`.
+Dies wird z. B. anhand der Vorlagen `/Products/List` und `/Products/{id}` deutlich. Es wäre begründet, anzunehmen, dass `/Products/List` eine bessere Übereinstimmung als `/Products/{id}` für den URL-Pfad `/Products/List` ist. Dies funktioniert, weil das Literalsegment `/List` eine höhere Priorität als das Parametersegment `/{id}` hat.
 
 Wie die Priorisierung im Einzelnen funktioniert, ist an die Definition der Routenvorlagen gekoppelt:
 
@@ -422,7 +422,7 @@ Eine Literalzeichenfolge, die nicht den Routenparametern entspricht (z.B. `{id}`
 Sternchen `*` oder Doppelsternchen `**`:
 
 * Können als Präfix für einen Routenparameter verwendet werden, um eine Bindung zum verbleibenden Teil des URI herzustellen.
-* Werden **Catch-All** -Parameter genannt. Zum Beispiel `blog/{**slug}`:
+* Werden **Catch-All**-Parameter genannt. Zum Beispiel `blog/{**slug}`:
   * Entspricht einem beliebigen URI, der mit `/blog` beginnt und einem beliebigen Wert folgt.
   * Der Wert nach `/blog` wird dem [Slug](https://developer.mozilla.org/docs/Glossary/Slug)-Routenwert zugewiesen.
 
@@ -1042,7 +1042,7 @@ Entwickler fügen in der Regel in speziellen Situationen durch [Attributrouting]
 
 Web-APIs sollten das Attributrouting verwenden, um die Funktionalität der App als einen Satz von Ressourcen zu modellieren, bei denen Vorgänge durch HTTP-Verben dargestellt werden. Dies bedeutet, dass viele Vorgänge, z. B. GET und POST, für dieselbe logische Ressource dieselbe URL verwenden. Das Attributrouting bietet eine Ebene der Steuerung, die für einen sorgfältigen Entwurf des öffentlichen Endpunktlayouts einer API erforderlich ist.
 
-Razor Pages-Apps verwenden konventionelles Standardrouting, um benannte Ressourcen im *Pages* -Ordner einer App bereitzustellen. Außerdem gibt es weitere Konventionen zum Anpassen des Routingverhaltens für Razor Pages. Weitere Informationen finden Sie unter <xref:razor-pages/index> und <xref:razor-pages/razor-pages-conventions>.
+Razor Pages-Apps verwenden konventionelles Standardrouting, um benannte Ressourcen im *Pages*-Ordner einer App bereitzustellen. Außerdem gibt es weitere Konventionen zum Anpassen des Routingverhaltens für Razor Pages. Weitere Informationen finden Sie unter <xref:razor-pages/index> und <xref:razor-pages/razor-pages-conventions>.
 
 Die Unterstützung zum Generieren von URLs ermöglicht es, die App ohne Hartcodierung der URLs zum Verlinken der App zu entwickeln. Auf diese Weise kann mit einer grundlegenden Routingkonfiguration begonnen werden, und die Routen können geändert werden, wenn das Ressourcenlayout der App festgelegt wurde.
 
@@ -1078,7 +1078,7 @@ Das Routingsystem ist beim Endpunktrouting für alle Weiterleitungsentscheidunge
 
 Wenn der Endpunktdelegat ausgeführt wird, werden die Eigenschaften von [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) auf Grundlage der bisher verarbeiteten Anforderungen auf entsprechende Werte festgelegt.
 
-[RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) ist ein Wörterbuch mit *Routenwerten* , das aus der Route erstellt wird. Die Werte werden in der Regel durch die Tokenisierung der URL ermittelt und können so verwendet werden, dass Benutzereingaben akzeptiert oder weitere Entscheidungen in der App zum Versenden von Anforderungen getroffen werden.
+[RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) ist ein Wörterbuch mit *Routenwerten*, das aus der Route erstellt wird. Die Werte werden in der Regel durch die Tokenisierung der URL ermittelt und können so verwendet werden, dass Benutzereingaben akzeptiert oder weitere Entscheidungen in der App zum Versenden von Anforderungen getroffen werden.
 
 [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) ist eine Eigenschaftensammlung mit zusätzlichen Daten zur zugeordneten Route. <xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*> werden bereitgestellt, damit sich jeder Route Zustandsdaten zuordnen lassen, sodass in der App später Entscheidungen auf Grundlage der zugeordneten Route getroffen werden können. Diese Werte werden vom Entwickler vorgegeben und beeinflussen das Routingverhalten **in keiner Weise**. Außerdem können im Gegensatz zu [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values), die sich in bzw. aus Zeichenfolgen konvertieren lassen müssen, Werte in [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) einem beliebigen Typ entsprechen.
 
@@ -1178,14 +1178,14 @@ Es gibt einige Unterschiede zwischen dem Endpunktrouting in ASP.NET Core 2.2 ode
 
   Sehen Sie sich das folgende Beispiel in ASP.NET Core 2.1 oder früher an. Wenn eine Verknüpfung zu einer anderen Aktion (oder Seite) hergestellt wird, können Routenwerte auf unerwünschte Weise wiederverwendet werden.
 
-  In */Pages/Store/Product.cshtml* :
+  In */Pages/Store/Product.cshtml*:
 
   ```cshtml
   @page "{id}"
   @Url.Page("/Login")
   ```
 
-  In */Pages/Login.cshtml* :
+  In */Pages/Login.cshtml*:
 
   ```cshtml
   @page "{id?}"
@@ -1382,7 +1382,7 @@ In den `Map[Verb]`-Methoden werden Einschränkungen verwendet, um die Route auf 
 
 ## <a name="route-template-reference"></a>Referenz für Routenvorlagen
 
-Token in geschweiften Klammern (`{ ... }`) definieren *Routenparameter* , die beim Abgleich der Route gebunden werden. Sie können in einem Routensegment mehrere Routenparameter definieren, wenn Sie sie durch einen Literalwert trennen. `{controller=Home}{action=Index}` ist z.B. keine gültige Route, da sich zwischen `{controller}` und `{action}` kein Literalwert befindet. Diese Routenparameter müssen einen Namen besitzen und können zusätzliche Attribute aufweisen.
+Token in geschweiften Klammern (`{ ... }`) definieren *Routenparameter*, die beim Abgleich der Route gebunden werden. Sie können in einem Routensegment mehrere Routenparameter definieren, wenn Sie sie durch einen Literalwert trennen. `{controller=Home}{action=Index}` ist z.B. keine gültige Route, da sich zwischen `{controller}` und `{action}` kein Literalwert befindet. Diese Routenparameter müssen einen Namen besitzen und können zusätzliche Attribute aufweisen.
 
 Eine Literalzeichenfolge, die nicht den Routenparametern entspricht (z.B. `{id}`), muss zusammen mit dem Pfadtrennzeichen `/` mit dem URL-Text übereinstimmen. Beim Abgleich von Text wird nicht zwischen Groß-/Kleinbuchstaben unterschieden, und die Übereinstimmung basiert auf der decodierten Repräsentation des URL-Pfads. Damit das Trennzeichen (`{` oder `}`) der Routenparameterliteralzeichenfolge bei einem Abgleich gefunden wird, muss es doppelt vorhanden sein (`{{` oder `}}`), was einem Escapezeichen entspricht.
 
@@ -1391,7 +1391,7 @@ Bei einem URL-Muster, durch das ein Dateiname mit einer optionalen Erweiterung e
 * `/files/myFile.txt`
 * `/files/myFile`
 
-Sie können ein (`*`) oder zwei (`**`) Sternchen als Präfix für einen Routenparameter verwenden, um eine Bindung zum verbleibenden Teil des URI herzustellen. Hierbei wird von *Catch-All* -Parametern gesprochen. Durch `blog/{**slug}` wird beispielsweise jeder URI ermittelt, der mit `/blog` beginnt und dahinter einen beliebigen Wert aufweist, der dann dem `slug`-Routenwert zugeordnet wird. Durch Catch-All-Parameter können auch leere Zeichenfolgen gefunden werden.
+Sie können ein (`*`) oder zwei (`**`) Sternchen als Präfix für einen Routenparameter verwenden, um eine Bindung zum verbleibenden Teil des URI herzustellen. Hierbei wird von *Catch-All*-Parametern gesprochen. Durch `blog/{**slug}` wird beispielsweise jeder URI ermittelt, der mit `/blog` beginnt und dahinter einen beliebigen Wert aufweist, der dann dem `slug`-Routenwert zugeordnet wird. Durch Catch-All-Parameter können auch leere Zeichenfolgen gefunden werden.
 
 Der Catch-All-Parameter schützt die entsprechenden Zeichen (Escaping), wenn die Route verwendet wird, um eine URL, einschließlich Pfadtrennzeichen zu generieren (`/`). Z.B. generiert die Route `foo/{*path}` mit den Routenwerten `{ path = "my/path" }``foo/my%2Fpath`. Beachten Sie den umgekehrten Schrägstrich mit Escapezeichen. Um Trennzeichen für Roundtrips einsetzen zu können, verwenden Sie das Routenparameterpräfix `**`. Die Route `foo/{**path}` mit `{ path = "my/path" }` generiert `foo/my/path`.
 
@@ -1624,7 +1624,7 @@ Entwickler fügen in der Regel in speziellen Situationen (z. B. bei Blog- und E
 
 Web-APIs sollten das Attributrouting verwenden, um die Funktionalität der App als einen Satz von Ressourcen zu modellieren, bei denen Vorgänge durch HTTP-Verben dargestellt werden. Dies bedeutet, dass viele Vorgänge (z.B. GET, POST) für dieselbe logische Ressource dieselbe URL verwenden. Das Attributrouting bietet eine Ebene der Steuerung, die für einen sorgfältigen Entwurf des öffentlichen Endpunktlayouts einer API erforderlich ist.
 
-Razor Pages-Apps verwenden konventionelles Standardrouting, um benannte Ressourcen im *Pages* -Ordner einer App bereitzustellen. Außerdem gibt es weitere Konventionen zum Anpassen des Routingverhaltens für Razor Pages. Weitere Informationen finden Sie unter <xref:razor-pages/index> und <xref:razor-pages/razor-pages-conventions>.
+Razor Pages-Apps verwenden konventionelles Standardrouting, um benannte Ressourcen im *Pages*-Ordner einer App bereitzustellen. Außerdem gibt es weitere Konventionen zum Anpassen des Routingverhaltens für Razor Pages. Weitere Informationen finden Sie unter <xref:razor-pages/index> und <xref:razor-pages/razor-pages-conventions>.
 
 Die Unterstützung zum Generieren von URLs ermöglicht es, die App ohne Hartcodierung der URLs zum Verlinken der App zu entwickeln. Auf diese Weise kann mit einer grundlegenden Routingkonfiguration begonnen werden, und die Routen können geändert werden, wenn das Ressourcenlayout der App festgelegt wurde.
 
@@ -1656,7 +1656,7 @@ Die Haupteingabe für <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> is
 
 Eine Zuordnung, die <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> aufruft, legt außerdem die Eigenschaften von [RouteContext.RouteData](xref:Microsoft.AspNetCore.Routing.RouteContext.RouteData) auf Grundlage der bisher verarbeiteten Anforderungen auf entsprechende Werte fest.
 
-[RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) ist ein Wörterbuch mit *Routenwerten* , das aus der Route erstellt wird. Die Werte werden in der Regel durch die Tokenisierung der URL ermittelt und können so verwendet werden, dass Benutzereingaben akzeptiert oder weitere Entscheidungen in der App zum Versenden von Anforderungen getroffen werden.
+[RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values*) ist ein Wörterbuch mit *Routenwerten*, das aus der Route erstellt wird. Die Werte werden in der Regel durch die Tokenisierung der URL ermittelt und können so verwendet werden, dass Benutzereingaben akzeptiert oder weitere Entscheidungen in der App zum Versenden von Anforderungen getroffen werden.
 
 [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) ist eine Eigenschaftensammlung mit zusätzlichen Daten zur zugeordneten Route. <xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*> werden bereitgestellt, damit sich jeder Route Zustandsdaten zuordnen lassen, sodass in der App später Entscheidungen auf Grundlage der zugeordneten Route getroffen werden können. Diese Werte werden vom Entwickler vorgegeben und beeinflussen das Routingverhalten **in keiner Weise**. Außerdem können im Gegensatz zu [RouteData.Values](xref:Microsoft.AspNetCore.Routing.RouteData.Values), die sich in bzw. aus Zeichenfolgen konvertieren lassen müssen, Werte in [RouteData.DataTokens](xref:Microsoft.AspNetCore.Routing.RouteData.DataTokens*) einem beliebigen Typ entsprechen.
 
@@ -1683,7 +1683,7 @@ Für Routen werden überwiegend die Routenwerte verwendet, die von <xref:Microso
 
 Die Ausgabe von <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> ist ein <xref:Microsoft.AspNetCore.Routing.VirtualPathData>-Objekt. <xref:Microsoft.AspNetCore.Routing.VirtualPathData> verhält sich analog zu <xref:Microsoft.AspNetCore.Routing.RouteData>. <xref:Microsoft.AspNetCore.Routing.VirtualPathData> enthält das <xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath>-Objekt für die Ausgabe-URL und einige zusätzlichen Eigenschaften, die von der Route festgelegt werden sollten.
 
-Die [VirtualPathData.VirtualPath](xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath*)-Eigenschaft enthält den *virtuellen Pfad* , der von der Route erstellt wird. Je nach Anforderungen muss der Pfad eventuell noch weiter verarbeitet werden. Wenn die generierte URL in HTML gerendert werden soll, müssen Sie den App-Basispfad voranstellen.
+Die [VirtualPathData.VirtualPath](xref:Microsoft.AspNetCore.Routing.VirtualPathData.VirtualPath*)-Eigenschaft enthält den *virtuellen Pfad*, der von der Route erstellt wird. Je nach Anforderungen muss der Pfad eventuell noch weiter verarbeitet werden. Wenn die generierte URL in HTML gerendert werden soll, müssen Sie den App-Basispfad voranstellen.
 
 [VirtualPathData.Router](xref:Microsoft.AspNetCore.Routing.VirtualPathData.Router*) ist ein Verweis auf die Route, mit der die URL generiert wurde.
 
@@ -1691,7 +1691,7 @@ Die [VirtualPathData.DataTokens](xref:Microsoft.AspNetCore.Routing.VirtualPathDa
 
 ### <a name="create-routes"></a>Erstellen von Routen
 
-Für die Routingfunktionalität wird die <xref:Microsoft.AspNetCore.Routing.Route>-Klasse als Standardimplementierung von <xref:Microsoft.AspNetCore.Routing.IRouter> zur Verfügung gestellt. <xref:Microsoft.AspNetCore.Routing.Route> verwendet die Syntax für *Routenvorlagen* , um Muster zu definieren, die dem URL-Pfad zugeordnet werden können, wenn <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> aufgerufen wird. <xref:Microsoft.AspNetCore.Routing.Route> nutzt dieselbe Routenvorlage zum Generieren einer URL, wenn <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> aufgerufen wird.
+Für die Routingfunktionalität wird die <xref:Microsoft.AspNetCore.Routing.Route>-Klasse als Standardimplementierung von <xref:Microsoft.AspNetCore.Routing.IRouter> zur Verfügung gestellt. <xref:Microsoft.AspNetCore.Routing.Route> verwendet die Syntax für *Routenvorlagen*, um Muster zu definieren, die dem URL-Pfad zugeordnet werden können, wenn <xref:Microsoft.AspNetCore.Routing.IRouter.RouteAsync*> aufgerufen wird. <xref:Microsoft.AspNetCore.Routing.Route> nutzt dieselbe Routenvorlage zum Generieren einer URL, wenn <xref:Microsoft.AspNetCore.Routing.IRouter.GetVirtualPath*> aufgerufen wird.
 
 Die meisten Apps erstellen Routen, indem sie <xref:Microsoft.AspNetCore.Builder.MapRouteRouteBuilderExtensions.MapRoute*> oder eine ähnliche Erweiterungsmethode aufrufen, die in <xref:Microsoft.AspNetCore.Routing.IRouteBuilder> definiert ist. All diese <xref:Microsoft.AspNetCore.Routing.IRouteBuilder>-Erweiterungsmethoden erstellen eine Instanz von <xref:Microsoft.AspNetCore.Routing.Route> und fügen diese der Routensammlung hinzu.
 
@@ -1844,7 +1844,7 @@ In den `Map[Verb]`-Methoden werden Einschränkungen verwendet, um die Route auf 
 
 ## <a name="route-template-reference"></a>Referenz für Routenvorlagen
 
-Token in geschweiften Klammern (`{ ... }`) definieren *Routenparameter* , die beim Abgleich der Route gebunden werden. Sie können in einem Routensegment mehrere Routenparameter definieren, wenn Sie sie durch einen Literalwert trennen. `{controller=Home}{action=Index}` ist z.B. keine gültige Route, da sich zwischen `{controller}` und `{action}` kein Literalwert befindet. Diese Routenparameter müssen einen Namen besitzen und können zusätzliche Attribute aufweisen.
+Token in geschweiften Klammern (`{ ... }`) definieren *Routenparameter*, die beim Abgleich der Route gebunden werden. Sie können in einem Routensegment mehrere Routenparameter definieren, wenn Sie sie durch einen Literalwert trennen. `{controller=Home}{action=Index}` ist z.B. keine gültige Route, da sich zwischen `{controller}` und `{action}` kein Literalwert befindet. Diese Routenparameter müssen einen Namen besitzen und können zusätzliche Attribute aufweisen.
 
 Eine Literalzeichenfolge, die nicht den Routenparametern entspricht (z.B. `{id}`), muss zusammen mit dem Pfadtrennzeichen `/` mit dem URL-Text übereinstimmen. Beim Abgleich von Text wird nicht zwischen Groß-/Kleinbuchstaben unterschieden, und die Übereinstimmung basiert auf der decodierten Repräsentation des URL-Pfads. Damit das Trennzeichen (`{` oder `}`) der Routenparameterliteralzeichenfolge bei einem Abgleich gefunden wird, muss es doppelt vorhanden sein (`{{` oder `}}`), was einem Escapezeichen entspricht.
 
@@ -1853,7 +1853,7 @@ Bei einem URL-Muster, durch das ein Dateiname mit einer optionalen Erweiterung e
 * `/files/myFile.txt`
 * `/files/myFile`
 
-Sie können das Sternchen (`*`) als Präfix für einen Routenparameter verwenden, um eine Bindung zum verbleibenden Teil des URI herzustellen. Hierbei wird von einem *Catch-All* -Parameter gesprochen. Durch `blog/{*slug}` wird beispielsweise jeder URI ermittelt, der mit `/blog` beginnt und dahinter einen beliebigen Wert aufweist, der dann dem `slug`-Routenwert zugeordnet wird. Durch Catch-All-Parameter können auch leere Zeichenfolgen gefunden werden.
+Sie können das Sternchen (`*`) als Präfix für einen Routenparameter verwenden, um eine Bindung zum verbleibenden Teil des URI herzustellen. Hierbei wird von einem *Catch-All*-Parameter gesprochen. Durch `blog/{*slug}` wird beispielsweise jeder URI ermittelt, der mit `/blog` beginnt und dahinter einen beliebigen Wert aufweist, der dann dem `slug`-Routenwert zugeordnet wird. Durch Catch-All-Parameter können auch leere Zeichenfolgen gefunden werden.
 
 Der Catch-All-Parameter schützt die entsprechenden Zeichen (Escaping), wenn die Route verwendet wird, um eine URL, einschließlich Pfadtrennzeichen zu generieren (`/`). Z.B. generiert die Route `foo/{*path}` mit den Routenwerten `{ path = "my/path" }``foo/my%2Fpath`. Beachten Sie den umgekehrten Schrägstrich mit Escapezeichen.
 

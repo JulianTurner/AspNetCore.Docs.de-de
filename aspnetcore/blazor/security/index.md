@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: a333c189e81a9f44e94deb6b37097f1a8b19a0f9
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 6435a7c9ce2a30873f0d3475a38270d3dea1b300
+ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430925"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "94595466"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Authentifizierung und Autorisierung in ASP.NET Core Blazor
 
@@ -255,7 +255,7 @@ Jedes dieser Konzepte entspricht dem einer ASP.NET Core MVC- oder Razor Pages-Ap
 
 ## <a name="authorizeview-component"></a>AuthorizeView-Komponente
 
-Die <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>-Komponente zeigt selektiv die Benutzeroberfläche an, abhängig davon, ob der Benutzer berechtigt ist, diese zu sehen. Dieser Ansatz ist nützlich, wenn Sie nur Daten für den Benutzer *anzeigen* müssen und nicht die Identität des Benutzers in der prozeduralen Logik verwenden müssen.
+Die <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>-Komponente zeigt selektiv den Inhalt der Benutzeroberfläche an, abhängig davon, ob der Benutzer dazu berechtigt ist. Dieser Ansatz ist nützlich, wenn Sie nur Daten für den Benutzer *anzeigen* müssen und nicht die Identität des Benutzers in der prozeduralen Logik verwenden müssen.
 
 Die Komponente macht eine Variable `context` vom Typ <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> verfügbar, mit der Sie auf Informationen über den angemeldeten Benutzer zugreifen können:
 
@@ -266,24 +266,29 @@ Die Komponente macht eine Variable `context` vom Typ <xref:Microsoft.AspNetCore.
 </AuthorizeView>
 ```
 
-Sie können auch andere Inhalte zur Anzeige bereitstellen, wenn der Benutzer nicht authentifiziert ist:
+Sie können auch andere Inhalte zur Anzeige bereitstellen, wenn der Benutzer nicht autorisiert ist:
 
 ```razor
 <AuthorizeView>
     <Authorized>
         <h1>Hello, @context.User.Identity.Name!</h1>
-        <p>You can only see this content if you're authenticated.</p>
+        <p>You can only see this content if you're authorized.</p>
+        <button @onclick="SecureMethod">Authorized Only Button</button>
     </Authorized>
     <NotAuthorized>
         <h1>Authentication Failure!</h1>
         <p>You're not signed in.</p>
     </NotAuthorized>
 </AuthorizeView>
+
+@code {
+    private void SecureMethod() { ... }
+}
 ```
 
-Die Komponente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> kann in der Komponente `NavMenu` (`Shared/NavMenu.razor`) verwendet werden, um ein Listenelement (`<li>...</li>`) für eine [`NavLink`-Komponente](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) anzuzeigen. Beachten Sie jedoch, dass bei diesem Ansatz nur das Listenelement aus der gerenderten Ausgabe entfernt wird. Benutzer werden nicht daran gehindert, zur Komponente zu navigieren.
-
 Der Inhalt der Tags `<Authorized>` und `<NotAuthorized>` kann beliebige Elemente beinhalten, z. B. andere interaktive Komponenten.
+
+Ein Standardereignishandler für ein autorisiertes Element, zum Beispiel die `SecureMethod`-Methode für das `<button>`-Element im vorangegangenen Beispiel, kann nur von einem autorisierten Benutzer aufgerufen werden.
 
 Autorisierungsbedingungen, wie Rollen oder Richtlinien, die Benutzeroberflächenoptionen oder den Zugriff steuern, werden im Abschnitt [Autorisierung](#authorization) behandelt.
 
@@ -291,6 +296,8 @@ Wenn keine Autorisierungsbedingungen angegeben sind, verwendet <xref:Microsoft.A
 
 * Authentifizierte (angemeldete) Benutzer als autorisiert.
 * Nicht authentifizierte (abgemeldete) Benutzer als nicht autorisiert.
+
+Die Komponente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> kann in der Komponente `NavMenu` (`Shared/NavMenu.razor`) verwendet werden, um ein Listenelement (`<li>...</li>`) für eine [`NavLink`-Komponente](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) anzuzeigen. Beachten Sie jedoch, dass bei diesem Ansatz nur das Listenelement aus der gerenderten Ausgabe entfernt wird. Benutzer werden nicht daran gehindert, zur Komponente zu navigieren.
 
 ### <a name="role-based-and-policy-based-authorization"></a>Rollenbasierte und richtlinienbasierte Autorisierung
 

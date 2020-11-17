@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 74f65b916c2d5b7de61ec29f4259a51584ee5989
-ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
+ms.openlocfilehash: 5849f4bfb9d0355177ceb5c2f4236c6d39dd9e92
+ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93365417"
+ms.lasthandoff: 11/06/2020
+ms.locfileid: "94340035"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages mit Entity Framework Core in ASP.NET Core – Tutorial 1 bis 8
 
@@ -119,12 +119,16 @@ To run the app after downloading the completed project:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Starten Sie Visual Studio, und wählen Sie **Neues Projekt erstellen** aus.
-* Klicken Sie auf **ASP.NET Core-Webanwendung**  > **WEITER**.
-* Geben Sie dem Projekt den Namen *ContosoUniversity*. Es ist wichtig, genau diesen Namen unter Beachtung von Groß-/Kleinschreibung zu verwenden, sodass die Namespaces beim Kopieren und Einfügen von Code übereinstimmen.
-* Klicken Sie auf **Erstellen**.
-* Wählen Sie in den Dropdownlisten **.NET Core** und **ASP.NET Core 5.0** und anschließend **Webanwendung** aus.
-
+1. Starten Sie Visual Studio, und wählen Sie **Neues Projekt erstellen** aus.
+1. Wählen Sie im Dialogfeld **Neues Projekt** die Option **ASP.NET Core-Webanwendung** > **Weiter** aus.
+1. Geben Sie `ContosoUniversity` im Dialogfeld **Neues Projekt konfigurieren** für **Projektname** ein. Es ist wichtig, genau diesen Namen unter Berücksichtigung der Groß-/Kleinschreibung zu verwenden, sodass beim Kopieren von Code jeder `namespace` übereinstimmt.
+1. Klicken Sie auf **Erstellen**.
+1. Wählen Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** Folgendes aus:
+    1. In den Dropdownmenüs **.NET Core** und **ASP.NET Core 5.0**.
+    1. **ASP.NET Core-Web-App (Model View Controller)** .
+    1. **Dialogfeld**
+      ![Neues ASP.NET Core-Projekt erstellen](~/data/ef-mvc/intro/_static/new-aspnet5.png)
+    
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
 * Navigieren Sie in einem Terminal zu dem Ordner, in dem der Projektordner erstellt werden soll.
@@ -145,7 +149,7 @@ Mit der Layoutdatei werden die Kopfzeile, die Fußzeile und das Menü der Websit
 
 * Jedes Vorkommen von „ContosoUniversity“ wird in „Contoso University“ geändert. Diese Begriffskombination kommt dreimal vor.
 * Die Menüeinträge **Home** und **Privacy** werden gelöscht.
-* Es werden Einträge für **About** , **Students** , **Courses** , **Instructors** und **Departmens** hinzugefügt.
+* Es werden Einträge für **About**, **Students**, **Courses**, **Instructors** und **Departmens** hinzugefügt.
 
 Ersetzen Sie den Inhalt der Datei *Pages/Index.cshtml* durch den folgenden Code:
 
@@ -223,7 +227,7 @@ In diesem Abschnitt verwenden Sie das ASP.Net Core-Gerüstbautool, um Folgendes 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Erstellen Sie einen Ordner *Pages/Students*.
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Pages/Students* , und wählen Sie **Hinzufügen** > **Neues Gerüstelement** aus.
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Pages/Students*, und wählen Sie **Hinzufügen** > **Neues Gerüstelement** aus.
 * Im Dialogfeld **Add New Scaffold Item** (Neues Gerüstelement hinzufügen):
   * Wählen Sie auf der linken Registerkarte **Installiert > Häufig > Razor-Seiten** aus.
   * Wählen Sie **Razor-Seiten mithilfe des Entity Frameworks (CRUD)** > **Hinzufügen** aus.
@@ -283,7 +287,7 @@ Wenn der vorherige Schritt zu einem Fehler führt, erstellen Sie das Projekt, un
 
 Der Gerüstbauprozess:
 
-* Erstellt Razor Pages im Ordner *Pages/Students* :
+* Erstellt Razor Pages im Ordner *Pages/Students*:
   * *Create.cshtml* und *Create.cshtml.cs*
   * *Create.cshtml* und *Delete.cshtml.cs*
   * *Details.cshtml* und *Details.cshtml.cs*
@@ -303,11 +307,11 @@ Die Verbindungszeichenfolge gibt [SQL Server LocalDB](/sql/database-engine/confi
 
 [!code-json[Main](intro/samples/cu50/appsettings.json?highlight=11)]
 
-LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. Standardmäßig erstellt LocalDB *MDF* -Dateien im Verzeichnis `C:/Users/<user>`.
+LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. Standardmäßig erstellt LocalDB *MDF*-Dateien im Verzeichnis `C:/Users/<user>`.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Kürzen Sie die SQLite-Verbindungszeichenfolge auf *CU.db* :
+Kürzen Sie die SQLite-Verbindungszeichenfolge auf *CU.db*:
 
 [!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
@@ -392,7 +396,7 @@ Das NuGet-Paket `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` stellt AS
 
 ## <a name="create-the-database"></a>Erstellen der Datenbank
 
-Aktualisieren Sie *Program.cs* , um die Datenbank zu erstellen, wenn diese nicht vorhanden ist:
+Aktualisieren Sie *Program.cs*, um die Datenbank zu erstellen, wenn diese nicht vorhanden ist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
@@ -456,8 +460,8 @@ Antworten Sie mit `Y`, um die Datenbank zu löschen.
 * Öffnen Sie über das Menü **Ansicht** im Visual Studio **SQL Server-Objekt-Explorer** (SSOX).
 * Wählen Sie in SSOX **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}** aus. Der Datenbankname wird anhand des Kontextnamens, den Sie zuvor angegeben haben, plus Bindestrich und GUID generiert.
 * Erweitern Sie den Knoten **Tabellen**.
-* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student** , und klicken Sie auf **Daten anzeigen** , um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
-* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student** , und klicken Sie auf **Code anzeigen** , um die Zuordnung des `Student`-Modells zum `Student`-Tabellenschema anzuzeigen.
+* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student**, und klicken Sie auf **Daten anzeigen**, um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
+* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student**, und klicken Sie auf **Code anzeigen**, um die Zuordnung des `Student`-Modells zum `Student`-Tabellenschema anzuzeigen.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -580,10 +584,10 @@ So führen Sie die APP nach dem Herunterladen des vollständigen Projekts aus:
 
 So führen Sie die APP nach dem Herunterladen des vollständigen Projekts aus:
 
-* Löschen Sie *ContosoUniversity.csproj* , und benennen Sie *ContosoUniversitySQLite.csproj* in *ContosoUniversity.csproj* um.
+* Löschen Sie *ContosoUniversity.csproj*, und benennen Sie *ContosoUniversitySQLite.csproj* in *ContosoUniversity.csproj* um.
 * Kommentieren Sie in *Program.cs* `#define Startup` aus, sodass `StartupSQLite` verwendet wird.
-* Löschen Sie *appSettings.json* , und benennen Sie *appSettingsSQLite.json* in *appSettings.json* um.
-* Löschen Sie den Ordner *Migrations* , und benennen Sie *MigrationsSQL* in *Migrations* um.
+* Löschen Sie *appSettings.json*, und benennen Sie *appSettingsSQLite.json* in *appSettings.json* um.
+* Löschen Sie den Ordner *Migrations*, und benennen Sie *MigrationsSQL* in *Migrations* um.
 * Führen Sie eine globale Suche nach `#if SQLiteVersion` aus, und entfernen Sie `#if SQLiteVersion` sowie die zugehörige `#endif`-Anweisung.
 * Erstellen Sie das Projekt.
 * Führen Sie an der Eingabeaufforderung im Projektordner die folgenden Befehle aus:
@@ -705,13 +709,13 @@ Erstellen Sie das Projekt, um sich zu vergewissern, dass keine Compilerfehler vo
 
 In diesem Abschnitt verwenden Sie das ASP.Net Core-Gerüstbautool, um Folgendes zu generieren:
 
-* Eine EF Core *context* -Klasse. „context“ ist die Hauptklasse, die die Entity Framework-Funktionen für ein angegebenes Datenmodell koordiniert. Diese Klasse wird von der `Microsoft.EntityFrameworkCore.DbContext`-Klasse abgeleitet.
+* Eine EF Core *context*-Klasse. „context“ ist die Hauptklasse, die die Entity Framework-Funktionen für ein angegebenes Datenmodell koordiniert. Diese Klasse wird von der `Microsoft.EntityFrameworkCore.DbContext`-Klasse abgeleitet.
 * Razor Pages-Instanzen, die CRUD-Vorgänge (Create, Read, Update, Delete) für die `Student`-Entität verarbeiten.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Erstellen Sie einen Ordner *Students* im Ordner *Pages*.
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Pages/Students* , und wählen Sie **Hinzufügen** > **Neues Gerüstelement** aus.
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Pages/Students*, und wählen Sie **Hinzufügen** > **Neues Gerüstelement** aus.
 * Wählen Sie im Dialogfeld **Gerüst hinzufügen** den Eintrag **Razor Pages mit Entity Framework (CRUD)** > **Hinzufügen** aus.
 * Gehen Sie im Dialogfeld **Razor Pages mit Entity Framework (CRUD) hinzufügen** folgendermaßen vor:
   * Wählen Sie im Dropdownmenü **Modellklasse** **Student (ContosoUniversity.Models)** aus.
@@ -772,7 +776,7 @@ Wenn Sie ein Problem mit dem vorherigen Schritt haben, erstellen Sie das Projekt
 
 Der Gerüstbauprozess:
 
-* Erstellt Razor Pages im Ordner *Pages/Students* :
+* Erstellt Razor Pages im Ordner *Pages/Students*:
   * *Create.cshtml* und *Create.cshtml.cs*
   * *Create.cshtml* und *Delete.cshtml.cs*
   * *Details.cshtml* und *Details.cshtml.cs*
@@ -790,7 +794,7 @@ In der Datei *appsettings.json* wird die Verbindungszeichenfolge [SQL Server Loc
 
 [!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
 
-LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. Standardmäßig erstellt LocalDB *MDF* -Dateien im Verzeichnis `C:/Users/<user>`.
+LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. Standardmäßig erstellt LocalDB *MDF*-Dateien im Verzeichnis `C:/Users/<user>`.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -843,7 +847,7 @@ Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie e
 
 ## <a name="create-the-database"></a>Erstellen der Datenbank
 
-Aktualisieren Sie *Program.cs* , um die Datenbank zu erstellen, wenn diese nicht vorhanden ist:
+Aktualisieren Sie *Program.cs*, um die Datenbank zu erstellen, wenn diese nicht vorhanden ist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
@@ -906,8 +910,8 @@ Drop-Database
 * Öffnen Sie über das Menü **Ansicht** im Visual Studio **SQL Server-Objekt-Explorer** (SSOX).
 * Wählen Sie in SSOX **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}** aus. Der Datenbankname wird anhand des Kontextnamens, den Sie zuvor angegeben haben, plus Bindestrich und GUID generiert.
 * Erweitern Sie den Knoten **Tabellen**.
-* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student** , und klicken Sie auf **Daten anzeigen** , um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
-* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student** , und klicken Sie auf **Code anzeigen** , um die Zuordnung des `Student`-Modells zum `Student`-Tabellenschema anzuzeigen.
+* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student**, und klicken Sie auf **Daten anzeigen**, um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
+* Klicken Sie mit der rechten Maustaste auf die Tabelle **Student**, und klicken Sie auf **Code anzeigen**, um die Zuordnung des `Student`-Modells zum `Student`-Tabellenschema anzuzeigen.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -1019,7 +1023,7 @@ Sie können das Websitemenü, das Layout und die Startseite über einige Änderu
 
 * Ändern Sie jedes „ContosoUniversity“ in „Contoso University“. Diese Begriffskombination kommt dreimal vor.
 
-* Fügen Sie Menüeinträge für **Studenten** , **Kurse** , **Dozenten** und **Abteilungen** hinzu, und löschen Sie den Menüeintrag **Kontakt**.
+* Fügen Sie Menüeinträge für **Studenten**, **Kurse**, **Dozenten** und **Abteilungen** hinzu, und löschen Sie den Menüeintrag **Kontakt**.
 
 Die Änderungen werden hervorgehoben. (Es wird *nicht* das gesamte Markup angezeigt.)
 
@@ -1043,7 +1047,7 @@ In den folgenden Abschnitten wird für jede dieser Entitäten eine Klasse erstel
 
 ![Entitätsdiagramm „Student“](intro/_static/student-entity.png)
 
-Erstellen Sie einen Ordner *Models* (Modelle). Erstellen Sie mit dem folgenden Code im Ordner *Models* (Modelle) eine Klassendatei mit dem Namen *Student.cs* :
+Erstellen Sie einen Ordner *Models* (Modelle). Erstellen Sie mit dem folgenden Code im Ordner *Models* (Modelle) eine Klassendatei mit dem Namen *Student.cs*:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_Intro)]
 
@@ -1057,7 +1061,7 @@ Wenn in einer Navigationseigenschaft mehrere Entitäten gespeichert werden könn
 
 ![Entitätsdiagramm „Enrollment“](intro/_static/enrollment-entity.png)
 
-Erstellen Sie mit dem folgenden Code im Ordner *Models* (Modelle) eine *Enrollment.cs* -Datei:
+Erstellen Sie mit dem folgenden Code im Ordner *Models* (Modelle) eine *Enrollment.cs*-Datei:
 
 [!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Intro)]
 
@@ -1075,7 +1079,7 @@ Entity Framework Core interpretiert Eigenschaften als Fremdschlüssel, wenn dies
 
 ![Entitätsdiagramm „Course“](intro/_static/course-entity.png)
 
-Erstellen Sie mit dem folgenden Code im Ordner *Models* (Modelle) eine *Course.cs* -Datei:
+Erstellen Sie mit dem folgenden Code im Ordner *Models* (Modelle) eine *Course.cs*-Datei:
 
 [!code-csharp[](intro/samples/cu21/Models/Course.cs?name=snippet_Intro)]
 
@@ -1092,7 +1096,7 @@ In diesem Abschnitt wird das Gerüst für das Studentenmodell erstellt. Mit dem 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Pages/Students* , und wählen Sie **Hinzufügen** > **Neues Gerüstelement** aus.
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner *Pages/Students*, und wählen Sie **Hinzufügen** > **Neues Gerüstelement** aus.
 * Wählen Sie im Dialogfeld **Gerüst hinzufügen** den Eintrag **Razor Pages mit Entity Framework (CRUD)** > **Hinzufügen** aus.
 
 Vervollständigen Sie das Dialogfeld **Add Razor Pages using Entity Framework (CRUD)** (Razor-Seiten mithilfe des Entity Frameworks (CRUD) hinzufügen):
@@ -1127,7 +1131,7 @@ Der Gerüstprozess hat folgende Dateien erstellt und geändert:
 
 ### <a name="file-updates"></a>Dateiupdates
 
-* *Startup.cs* : Die Änderungen an dieser Datei werden im nächsten Abschnitt ausführlich erläutert.
+* *Startup.cs*: Die Änderungen an dieser Datei werden im nächsten Abschnitt ausführlich erläutert.
 * *appsettings.json* : Die Verbindungszeichenfolge, die zum Herstellen einer Verbindung mit einer lokalen Datenbank verwendet wird, wurde hinzugefügt.
 
 ## <a name="examine-the-context-registered-with-dependency-injection"></a>Überprüfen des mit Dependency Injection registrierten Kontexts
@@ -1144,13 +1148,13 @@ Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie e
 
 ## <a name="update-main"></a>Aktualisieren der Main-Methode
 
-Ändern Sie in der *Program.cs* -Datei die `Main`-Methode, um die folgenden Vorgänge auszuführen:
+Ändern Sie in der *Program.cs*-Datei die `Main`-Methode, um die folgenden Vorgänge auszuführen:
 
 * Rufen Sie eine Datenbankkontextinstanz aus dem Dependency Injection-Container ab.
 * Rufen Sie [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) auf.
 * Löschen Sie den Kontext, wenn die `EnsureCreated`-Methode abgeschlossen ist.
 
-Der folgende Code zeigt die aktualisierte *Program.cs* -Datei.
+Der folgende Code zeigt die aktualisierte *Program.cs*-Datei.
 
 [!code-csharp[](intro/samples/cu21/Program.cs?name=snippet)]
 
@@ -1189,13 +1193,13 @@ Der hervorgehobene Code erstellt eine [DbSet\<TEntity>](/dotnet/api/microsoft.en
 
 ### <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-Die Verbindungszeichenfolge gibt [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb) an. LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Standardmäßig erstellt LocalDB *.mdf* -Datenbankdateien im `C:/Users/<user>`-Verzeichnis.
+Die Verbindungszeichenfolge gibt [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb) an. LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Standardmäßig erstellt LocalDB *.mdf*-Datenbankdateien im `C:/Users/<user>`-Verzeichnis.
 
 ## <a name="add-code-to-initialize-the-db-with-test-data"></a>Hinzufügen von Code zum Initialisieren der Datenbank mithilfe von Testdaten
 
 Entity Framework Core erstellt eine leere Datenbank. In diesem Abschnitt wird eine `Initialize`-Methode geschrieben, um diese mit Testdaten aufzufüllen.
 
-Erstellen Sie im Ordner *Data* eine neuen Klassendatei mit dem Namen *DbInitializer.cs* , und fügen Sie den folgenden Code hinzu:
+Erstellen Sie im Ordner *Data* eine neuen Klassendatei mit dem Namen *DbInitializer.cs*, und fügen Sie den folgenden Code hinzu:
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Intro)]
 
@@ -1231,7 +1235,7 @@ Klicken Sie im SSOX auf **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GU
 
 Erweitern Sie den Knoten **Tabellen**.
 
-Klicken Sie mit der rechten Maustaste auf die Tabelle **Student** , und klicken Sie auf **Daten anzeigen** , um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
+Klicken Sie mit der rechten Maustaste auf die Tabelle **Student**, und klicken Sie auf **Daten anzeigen**, um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
 
 ## <a name="asynchronous-code"></a>Asynchroner Code
 

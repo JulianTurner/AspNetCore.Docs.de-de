@@ -5,7 +5,7 @@ description: In diesem Artikel erfahren Sie, wie Sie Sicherheitsbedrohungen für
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/05/2020
+ms.date: 11/09/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: 5c3a002a8e3df030d53c8625597342a68ca0d4b5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0e8b26110a970526b5f6306da236a92f52e64604
+ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055411"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430953"
 ---
 # <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>Leitfaden zur Bedrohungsabwehr für Blazor Server in ASP.NET Core
 
@@ -101,7 +101,10 @@ In Blazor Server-Apps wird die Anzahl der Verbindungen pro Benutzer nicht automa
     * Durchsetzen der Authentifizierung bei der Verbindungsherstellung zur App und Nachverfolgen der aktiven Sitzungen pro Benutzer
     * Ablehnen neuer Sitzungen, wenn die Obergrenze erreicht wird
     * Proxy-WebSocket-Verbindungen zu einer App mithilfe eines Proxys wie [Azure SignalR Service](/azure/azure-signalr/signalr-overview). Dieser Dienst bündelt Client-zu-App-Verbindungen. Auf diese Weise kann eine App mehr Verbindungen akzeptieren, als ein einzelner Client herstellen kann. Dies verhindert, dass ein Client alle Verbindungen zum Server belegt.
-  * Auf Serverebene: Verwenden eines der App vorgeschalteten Proxys/Gateways. Mit [Azure Front Door](/azure/frontdoor/front-door-overview) können Sie beispielsweise das globale Routing des Webdatenverkehrs zur App definieren, verwalten und überwachen.
+  * Auf Serverebene: Verwenden eines der App vorgeschalteten Proxys/Gateways. Mit [Azure Front Door](/azure/frontdoor/front-door-overview) können Sie beispielsweise das globale Routing des Webdatenverkehrs zur App definieren, verwalten und überwachen. Es funktioniert, wenn Blazor Server-Apps für lange Abrufintervalle konfiguriert ist.
+  
+    > [!NOTE]
+    > Obwohl lange Abrufintervalle für Blazor Server-Apps unterstützt werden, ist [WebSockets das empfohlene Transportprotokoll](xref:blazor/host-and-deploy/server#azure-signalr-service). [Azure Front Door](/azure/frontdoor/front-door-overview) unterstützt WebSockets derzeit nicht, aber die Unterstützung von WebSockets wird für eine zukünftige Version des Diensts erwogen.
 
 ## <a name="denial-of-service-dos-attacks"></a>Denial-of-Service-Angriffe (DoS)
 
@@ -249,7 +252,7 @@ Das im vorherigen Beispiel gezeigte Wächtermuster funktioniert, wenn der Hinter
 
 ### <a name="cancel-early-and-avoid-use-after-dispose"></a>Frühes Abbrechen und Vermeiden der Verwendung nach der Entfernung (use-after-dispose)
 
-Zusätzlich zu einem Wächter (Abschnitt [Wächter gegen mehrere Sendungen](#guard-against-multiple-dispatches)) sollten Sie auch ein Abbruchtoken (<xref:System.Threading.CancellationToken>) verwenden, um zeitintensive Vorgänge nach dem Entfernen der Komponente abbrechen zu können. Dieser Ansatz bietet den zusätzlichen Vorteil, dass eine Verwendung nach der Entfernung ( *use-after-dispose* ) in Komponenten vermieden wird:
+Zusätzlich zu einem Wächter (Abschnitt [Wächter gegen mehrere Sendungen](#guard-against-multiple-dispatches)) sollten Sie auch ein Abbruchtoken (<xref:System.Threading.CancellationToken>) verwenden, um zeitintensive Vorgänge nach dem Entfernen der Komponente abbrechen zu können. Dieser Ansatz bietet den zusätzlichen Vorteil, dass eine Verwendung nach der Entfernung (*use-after-dispose*) in Komponenten vermieden wird:
 
 ```razor
 @implements IDisposable
@@ -307,7 +310,7 @@ Die clientseitige Fehlermeldung enthält weder den Aufrufstapel noch Details zur
 
 In JavaScript werden detaillierte Fehlermeldungen wie folgt aktiviert:
 
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
 * Der Konfigurationsschlüssel `DetailedErrors` muss auf `true` festgelegt werden. Diese Einstellung können Sie in der Einstellungsdatei der App (`appsettings.json`) vornehmen. Der Schlüssel lässt sich darüber hinaus mithilfe der Umgebungsvariablen `ASPNETCORE_DETAILEDERRORS` auf den Wert `true` festlegen.
 
 > [!WARNING]
@@ -354,7 +357,7 @@ Zusätzlich zu den vom Framework implementierten Schutzmaßnahmen muss die App v
 * Vertrauen Sie nicht der Eingabe für JS-Interop-Aufrufe zwischen JavaScript und .NET-Methoden (beide Richtungen).
 * Die App ist dafür zuständig, dass die Gültigkeit der Argumente und Ergebnisse überprüft wird, selbst wenn die Argumente oder Ergebnisse korrekt deserialisiert wurden.
 
-Das Risiko von XSS besteht nur, wenn die App Benutzereingaben in die gerenderte Seite einbindet. Blazor Server-Komponenten führen einen Schritt zur Kompilierzeit aus, bei dem Markup in einer `.razor`-Datei in eine prozedurale C#-Logik transformiert wird. Zur Laufzeit erstellt die C#-Logik eine *Renderingstruktur* , die die Elemente, den Text und die untergeordneten Komponenten beschreibt. Diese wird mithilfe mehrerer JavaScript-Anweisungen auf das DOM des Browsers angewendet (oder im Falle von Prerendering in HTML serialisiert):
+Das Risiko von XSS besteht nur, wenn die App Benutzereingaben in die gerenderte Seite einbindet. Blazor Server-Komponenten führen einen Schritt zur Kompilierzeit aus, bei dem Markup in einer `.razor`-Datei in eine prozedurale C#-Logik transformiert wird. Zur Laufzeit erstellt die C#-Logik eine *Renderingstruktur*, die die Elemente, den Text und die untergeordneten Komponenten beschreibt. Diese wird mithilfe mehrerer JavaScript-Anweisungen auf das DOM des Browsers angewendet (oder im Falle von Prerendering in HTML serialisiert):
 
 * Benutzereingaben, die über eine normale Razor-Syntax gerendert werden (z. B. `@someStringValue`) stellen kein XSS-Risiko dar, weil die Razor-Syntax mithilfe von Befehlen, die nur Text schreiben können, dem DOM hinzugefügt wird. Selbst wenn der Wert HTML-Markup enthält, wird er als statischer Text angezeigt. Während des Prerenderings wird die Ausgabe HTML-codiert, wodurch der Inhalt ebenfalls als statischer Text angezeigt wird.
 * Skripttags sind nicht zulässig und sollten in der Komponentenrenderingstruktur der App nicht verwendet werden. Wenn Sie ein Skripttag das Markup einer Komponente aufnehmen, wird ein Kompilierzeitfehler zurückgegeben.

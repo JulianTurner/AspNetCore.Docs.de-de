@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: ecb4de3439656eb56507b920db704048d8f96759
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: d075faa951a34fb3856b54eb9e21593b6616b4f1
+ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058505"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94673964"
 ---
 # <a name="filters-in-aspnet-core"></a>Filter in ASP.NET Core
 
@@ -292,7 +292,7 @@ Der `AddHeader`-Filter wird daher nie für die `SomeResource`-Aktion ausgeführt
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1)]
 
-## <a name="dependency-injection"></a>Abhängigkeitsinjektion
+## <a name="dependency-injection"></a>Dependency Injection
 
 Filter können nach Typ oder Instanz hinzugefügt werden. Wenn eine Instanz hinzugefügt wird, wird diese Instanz für jede Anforderung verwendet. Wenn ein Typ hinzugefügt wird, ist der Filter typaktiviert. Ein typaktivierter Filter bedeutet Folgendes:
 
@@ -499,7 +499,7 @@ Für Ausnahmefilter gilt Folgendes:
 * Sie eignen sich für das Abfangen von Ausnahmen, die in Aktionen auftreten.
 * Sie sind im Vergleich zu Middleware für die Fehlerbehandlung weniger flexibel.
 
-Sie sollten bei der Ausnahmebehandlung vorzugsweise Middleware verwenden. Verwenden Sie Ausnahmefilter nur, wenn sich die Fehlerbehandlung *unterscheidet* , je nachdem, welche Aktionsmethode aufgerufen wird. Zum Beispiel verfügt eine App möglicherweise über Aktionsmethoden für beide API-Endpunkte und für Ansichten bzw. HTML. Die API-Endpunkte können Fehlerinformationen als JSON zurückgeben, während ansichtsbasierte Aktionen eine Fehlerseite als HTML zurückgeben können.
+Sie sollten bei der Ausnahmebehandlung vorzugsweise Middleware verwenden. Verwenden Sie Ausnahmefilter nur, wenn sich die Fehlerbehandlung *unterscheidet*, je nachdem, welche Aktionsmethode aufgerufen wird. Zum Beispiel verfügt eine App möglicherweise über Aktionsmethoden für beide API-Endpunkte und für Ansichten bzw. HTML. Die API-Endpunkte können Fehlerinformationen als JSON zurückgeben, während ansichtsbasierte Aktionen eine Fehlerseite als HTML zurückgeben können.
 
 ## <a name="result-filters"></a>Ergebnisfilter
 
@@ -555,6 +555,18 @@ Beispielsweise wird der folgende Filter immer ausgeführt und legt ein Aktionser
 
 <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implementiert <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Deshalb kann eine `IFilterFactory`-Instanz an einer beliebigen Stelle in der Filterpipeline als `IFilterMetadata`-Instanz verwendet werden. Wenn die Runtime den Aufruf des Filters vorbereitet, versucht sie, ihn in eine `IFilterFactory` umzuwandeln. Wenn diese Umwandlung gelingt, wird die Methode <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> aufgerufen, um die Instanz `IFilterMetadata` für den Aufruf zu erstellen. Da die exakte Filterpipeline beim Start der Anwendung nicht explizit festgelegt werden muss, wird dadurch ein sehr flexibles Design ermöglicht.
 
+`IFilterFactory.IsReusable`:
+
+* Ein Hinweis von der Factory, dass die von der Factory erstellte Filter Instanz außerhalb des Anforderungs Bereichs wieder verwendet werden kann, in dem Sie erstellt wurde.
+* Sollte ***nicht** _ mit einem Filter verwendet werden, der von Diensten mit einer anderen Lebensdauer als Singleton abhängig ist.
+
+Die ASP.NET Core-Runtime bietet keine Garantie für Folgendes:
+
+_, Wenn eine einzelne Instanz des Filters erstellt wird.
+* Der Filter wird nicht zu einem späteren Zeitpunkt vom DI-Container erneut angefordert.
+
+[!WARNING] Nur so konfigurieren, dass `IFilterFactory.IsReusable` zurückgegeben `true` wird, wenn die Quelle der Filter eindeutig ist, die Filter Zustands loser sind und sicher für mehrere HTTP-Anforderungen verwendet werden können. Geben Sie beispielsweise keine Filter von di zurück, die als Bereichs bezogen oder vorübergehend registriert sind, wenn `IFilterFactory.IsReusable` zurückgibt. `true`
+
 Als weiteres Verfahren zum Erstellen von Filtern kann `IFilterFactory` mithilfe von benutzerdefinierten Attributimplementierungen implementiert werden:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/AddHeaderWithFactoryAttribute.cs?name=snippet_IFilterFactory&highlight=1,4,5,6,7)]
@@ -574,7 +586,7 @@ Die F12-Entwicklungstools zeigen folgende Antwortheader an, die vom Beispielcode
 * **globaladdheader:** `Result filter added to MvcOptions.Filters`
 * **intern:**`My header`
 
-Der oben stehende Code erstellt den Antwortheader „ **internal:** `My header`“.
+Der oben stehende Code erstellt den Antwortheader „**internal:** `My header`“.
 
 ### <a name="ifilterfactory-implemented-on-an-attribute"></a>In einem Attribut implementierte IFilterFactory
 
@@ -824,7 +836,7 @@ Der `AddHeader`-Filter wird daher nie für die `SomeResource`-Aktion ausgeführt
 
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/SampleController.cs?name=snippet_AddHeader&highlight=1,9)]
 
-## <a name="dependency-injection"></a>Abhängigkeitsinjektion
+## <a name="dependency-injection"></a>Dependency Injection
 
 Filter können nach Typ oder Instanz hinzugefügt werden. Wenn eine Instanz hinzugefügt wird, wird diese Instanz für jede Anforderung verwendet. Wenn ein Typ hinzugefügt wird, ist der Filter typaktiviert. Ein typaktivierter Filter bedeutet Folgendes:
 
@@ -1026,7 +1038,7 @@ Für Ausnahmefilter gilt Folgendes:
 * Sie eignen sich für das Abfangen von Ausnahmen, die in Aktionen auftreten.
 * Sie sind im Vergleich zu Middleware für die Fehlerbehandlung weniger flexibel.
 
-Sie sollten bei der Ausnahmebehandlung vorzugsweise Middleware verwenden. Verwenden Sie Ausnahmefilter nur, wenn sich die Fehlerbehandlung *unterscheidet* , je nachdem, welche Aktionsmethode aufgerufen wird. Zum Beispiel verfügt eine App möglicherweise über Aktionsmethoden für beide API-Endpunkte und für Ansichten bzw. HTML. Die API-Endpunkte können Fehlerinformationen als JSON zurückgeben, während ansichtsbasierte Aktionen eine Fehlerseite als HTML zurückgeben können.
+Sie sollten bei der Ausnahmebehandlung vorzugsweise Middleware verwenden. Verwenden Sie Ausnahmefilter nur, wenn sich die Fehlerbehandlung *unterscheidet*, je nachdem, welche Aktionsmethode aufgerufen wird. Zum Beispiel verfügt eine App möglicherweise über Aktionsmethoden für beide API-Endpunkte und für Ansichten bzw. HTML. Die API-Endpunkte können Fehlerinformationen als JSON zurückgeben, während ansichtsbasierte Aktionen eine Fehlerseite als HTML zurückgeben können.
 
 ## <a name="result-filters"></a>Ergebnisfilter
 
@@ -1097,7 +1109,7 @@ Die F12-Entwicklungstools zeigen folgende Antwortheader an, die vom Beispielcode
 * **globaladdheader:** `Result filter added to MvcOptions.Filters`
 * **intern:**`My header`
 
-Der oben stehende Code erstellt den Antwortheader „ **internal:** `My header`“.
+Der oben stehende Code erstellt den Antwortheader „**internal:** `My header`“.
 
 ### <a name="ifilterfactory-implemented-on-an-attribute"></a>In einem Attribut implementierte IFilterFactory
 

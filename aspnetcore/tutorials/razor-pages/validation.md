@@ -1,11 +1,14 @@
 ---
-title: 'Teil 8: Hinzufügen der Validierung zu einer ASP.NET Core-Razor-Seite'
+title: 'Teil 8: Hinzufügen der Validierung'
 author: rick-anderson
 description: Dies ist Teil 8 der Tutorialreihe zu Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 7/23/2019
+ms.date: 09/29/2020
 no-loc:
+- Index
+- Create
+- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +21,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 991a0f29c0edc5a220dfde69bd22dc4ed758394d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: efae7d79ff7a0b351afc68264463546bb26b4424
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060728"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422703"
 ---
 # <a name="part-8-add-validation-to-an-aspnet-core-no-locrazor-page"></a>Teil 8: Hinzufügen der Validierung zu einer ASP.NET Core-Razor-Seite
 
@@ -33,45 +36,56 @@ In diesem Abschnitt wird dem Modell `Movie` Validierungslogik hinzugefügt. Die 
 
 ## <a name="validation"></a>Validierung
 
-Ein wesentlicher Grundsatz der Softwareentwicklung heißt [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) ( **D** on't **R** epeat **Y** ourself, dt. Wiederholen Sie sich nicht). Razor Pages ist für Entwicklungsaufgaben gedacht, bei denen die Funktionalität einmal angegeben und für die gesamte App übernommen wird. DRY kann Sie bei Folgendem unterstützen:
+Ein wesentlicher Grundsatz der Softwareentwicklung heißt [DRY](https://wikipedia.org/wiki/Don%27t_repeat_yourself) (**D** on't **R** epeat **Y** ourself, dt. Wiederholen Sie sich nicht). Razor Pages ist für Entwicklungsaufgaben gedacht, bei denen die Funktionalität einmal angegeben und für die gesamte App übernommen wird. DRY kann Sie bei Folgendem unterstützen:
 
 * Sie können die Codemenge in einer App reduzieren.
 * Der Code wird weniger fehleranfällig und lässt sich leichter testen und verwalten.
 
-Die von Razor Pages und dem Entity Framework gebotene Unterstützung der Validierung ist ein gutes Beispiel des DRY-Prinzips. Validierungsregeln werden an zentraler Stelle (in der Modellklasse) deklarativ angegeben und überall in der App erzwungen.
+Die von Razor Pages und Entity Framework gebotene Unterstützung der Validierung ist ein gutes Beispiel des DRY-Prinzips:
+
+* Validierungsregeln werden an zentraler Stelle (in der Modellklasse) deklarativ angegeben.
+* Regeln werden überall in der App erzwungen.
 
 ## <a name="add-validation-rules-to-the-movie-model"></a>Hinzufügen von Validierungsregeln zum Modell „Movie“
 
-Der Namespace „DataAnnotations“ bietet eine Gruppe integrierter Validierungsattribute, die deklarativ auf eine Klasse oder Eigenschaft angewendet werden. „DataAnnotations“ enthält auch Formatierungsattribute wie `DataType`, die bei der Formatierung helfen und keinerlei Validierung bereitstellen.
+Der Namespace `DataAnnotations` bietet Folgendes:
 
-Aktualisieren Sie die `Movie`-Klasse, um die integrierten Validierungsattribute `Required`, `StringLength`, `RegularExpression` und `Range` zu nutzen.
+* Eine Gruppe integrierter Validierungsattribute, die deklarativ auf eine Klasse oder Eigenschaft angewendet werden.
+* Formatierungsattribute wie `[DataType]`, die bei der Formatierung helfen und keine Validierung bieten.
+
+Aktualisieren Sie die `Movie`-Klasse, um die integrierten Validierungsattribute `[Required]`, `[StringLength]`, `[RegularExpression]` und `[Range]` zu nutzen.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
-Die Validierungsattribute geben das Verhalten an, das Sie in den Modelleigenschaften erzwingen möchten, auf die sie angewendet werden:
+Die Validierungsattribute geben das Verhalten an, das für die Modelleigenschaften erzwungen werden soll:
 
-* Die Attribute `Required` und `MinimumLength` geben an, dass eine Eigenschaft einen Wert haben muss. Ein Benutzer kann allerdings ein Leerzeichen eingeben, um diese Anforderung zu erfüllen.
-* Das Attribut `RegularExpression` wird verwendet, um einzuschränken, welche Zeichen eingegeben werden dürfen. Für „Genre“ im Code oben gilt Folgendes:
+* Die Attribute `[Required]` und `[MinimumLength]` geben an, dass eine Eigenschaft über einen Wert verfügen muss. Nichts hindert einen Benutzer an der Eingabe von Leerzeichen, um diese Validierung zu erfüllen.
+* Das Attribut `[RegularExpression]` wird verwendet, um einzuschränken, welche Zeichen eingegeben werden dürfen. Im vorherigen Code, `Genre`:
 
   * Es dürfen nur Buchstaben enthalten sein.
   * Der erste Buchstabe muss ein Großbuchstabe sein. Leerzeichen, Zahlen und Sonderzeichen sind nicht zulässig.
 
-* Für `RegularExpression`-„Rating“ (Bewertung) gilt Folgendes:
+* Der `RegularExpression` `Rating`:
 
   * Das erste Zeichen muss ein Großbuchstabe sein.
-  * Sonderzeichen und Zahlen sind als darauffolgende Zeichen zulässig. „PG-13“ ist als Bewertung („Rating“) gültig, nicht jedoch als „Genre“.
+  * Sonderzeichen und Zahlen sind als darauffolgende Zeichen zulässig. „PG-13“ ist als Bewertung („Rating“) gültig, nicht jedoch als „`Genre`“.
 
-* Das Attribut `Range` schränkt einen Wert auf einen bestimmten Bereich ein.
-* Mit dem Attribut `StringLength` können Sie die maximale Länge einer Zeichenfolgeneigenschaft und optional die minimale Länge festlegen.
+* Das `[Range]`-Attribut schränkt einen Wert auf einen bestimmten Bereich ein.
+* Mit dem Attribut `[StringLength]` kann die maximale Länge einer Zeichenfolgeneigenschaft und optional die Mindestlänge festlegt werden.
 * Werttypen (wie `decimal`, `int`, `float`, `DateTime`) sind grundsätzlich erforderlich und benötigen nicht das Attribut `[Required]`.
 
-Indem Validierungsregeln von ASP.NET Core automatisch erzwungen werden, wird Ihre App stabiler. Darüber hinaus wird sichergestellt, dass Sie die Validierung nicht vergessen und nicht versehentlich falsche Daten in die Datenbank übernehmen.
+Die oben genannten Validierungsregeln dienen der Veranschaulichung und sind für ein Produktionssystem nicht optimal. Beispielsweise verhindert die vorherige Regel die Eingabe eines Films mit nur zwei Zeichen und lässt keine Sonderzeichen in `Genre` zu.
+
+Die automatische Erzwingung von Validierungsregeln durch ASP.NET Core dient folgenden Zwecken:
+
+* Hilft, die App stabiler zu machen.
+* Reduziert die Wahrscheinlichkeit, dass ungültige Daten in der Datenbank gespeichert werden.
 
 ### <a name="validation-error-ui-in-no-locrazor-pages"></a>Benutzeroberfläche für Validierungsfehler in Razor Pages
 
 Führen Sie die App aus, und navigieren Sie zu „Pages/Movies“.
 
-Klicken Sie auf den Link **Neu erstellen**. Füllen Sie das Formular mit einigen ungültigen Werten aus. Wenn die clientseitige jQuery-Validierung den Fehler erkennt, wird eine Fehlermeldung angezeigt.
+Wählen Sie den Link **Neu Create (erstellen)** aus. Füllen Sie das Formular mit einigen ungültigen Werten aus. Wenn die clientseitige jQuery-Validierung den Fehler erkennt, wird eine Fehlermeldung angezeigt.
 
 ![Ansichtsformular „Movie“ mit mehreren clientseitigen jQuery-Validierungsfehlern](validation/_static/val.png)
 
@@ -79,11 +93,11 @@ Klicken Sie auf den Link **Neu erstellen**. Füllen Sie das Formular mit einigen
 
 Wie Sie sehen, hat das Formular in allen Feldern mit einem ungültigen Wert automatisch eine Validierungsfehlermeldung angezeigt. Die Fehlermeldungen werden sowohl auf Clientseite (mithilfe von JavaScript und jQuery) als auch auf Serverseite erzwungen (wenn ein Benutzer JavaScript deaktiviert hat).
 
-Ein entscheidender Vorteil ist, dass **keine** Codeänderungen auf den Seiten „Erstellen“ oder „Bearbeiten“ erforderlich waren. Nach Anwenden von „DataAnnotations“ auf das Modell wurde die Benutzeroberflächenvalidierung aktiviert. Die in diesem Tutorial erstellten Razor-Seiten haben die Validierungsregeln automatisch übernommen (mithilfe der Validierungsattribute für die Eigenschaften der Modellklasse `Movie`). Testen Sie die Validierung mithilfe der Seite „Bearbeiten“. Es erfolgt dieselbe Validierung.
+Ein entscheidender Vorteil ist, dass **keine** Codeänderungen auf den Seiten Create oder „Bearbeiten“ erforderlich waren. Nach Anwenden von Datenanmerkungen auf das Modell wurde die Benutzeroberflächenvalidierung aktiviert. Die in diesem Tutorial erstellten Razor Pages haben die Validierungsregeln automatisch übernommen (mithilfe der Validierungsattribute für die Eigenschaften der Modellklasse `Movie`). Testen Sie die Validierung mithilfe der Seite „Bearbeiten“. Es erfolgt dieselbe Validierung.
 
 Die Formulardaten werden erst an den Server zurückgesendet, wenn auf Clientseite keine Validierungsfehler auftreten. Überprüfen Sie mithilfe von mindestens einem der folgenden Ansätze, ob keine Formulardaten bereitgestellt werden:
 
-* Setzen Sie einen Haltepunkt in der `OnPostAsync`-Methode. Senden Sie das Formular (wählen Sie **Erstellen** oder **Speichern** ). Der Haltepunkt wird niemals erreicht.
+* Setzen Sie einen Haltepunkt in der `OnPostAsync`-Methode. Senden Sie das Formular, indem Sie **Create** oder **Speichern** auswählen. Der Haltepunkt wird niemals erreicht.
 * Verwenden Sie das [Tool Fiddler](https://www.telerik.com/fiddler).
 * Verwenden Sie die Browserentwicklungstools zum Überwachen des Netzwerkdatenverkehrs.
 
@@ -93,66 +107,81 @@ Wenn JavaScript im Browser deaktiviert ist, erfolgt beim Senden des Formulars mi
 
 Testen Sie optional die serverseitige Validierung:
 
-* Deaktivieren Sie JavaScript im Browser. Sie können JavaScript mit den Entwicklertools des Browsers deaktivieren. Wenn Sie JavaScript im Browser nicht deaktivieren können, probieren Sie einen anderen Browser.
-* Setzen Sie auf der Seite „Erstellen“ oder „Bearbeiten“ in der `OnPostAsync`-Methode einen Haltepunkt.
-* Senden Sie ein Formular mit ungültigen Daten.
-* Überprüfen Sie, ob der Modellstatus ungültig ist:
+1. Deaktivieren Sie JavaScript im Browser. JavaScript kann in den Entwicklertools im Browser deaktiviert werden. Wenn JavaScript nicht im Browser deaktiviert werden kann, probieren Sie einen anderen Browser.
+1. Setzen Sie auf der Seite Create oder „Bearbeiten“ in der `OnPostAsync`-Methode einen Haltepunkt.
+1. Senden Sie ein Formular mit ungültigen Daten.
+1. Überprüfen Sie, ob der Modellstatus ungültig ist:
 
-  ```csharp
-   if (!ModelState.IsValid)
-   {
-      return Page();
-   }
-  ```
+   ```csharp
+    if (!ModelState.IsValid)
+    {
+       return Page();
+    }
+   ```
   
 Alternativ können Sie [die clientseitige Validierung auf dem Server deaktivieren](xref:mvc/models/validation#disable-client-side-validation).
 
-Der folgende Code zeigt einen Teil der Seite *Create.cshtml* , deren Gerüst Sie zuvor im Tutorial erstellt haben. Sie wird von den Seiten „Erstellen“ und „Bearbeiten“ zum Anzeigen des anfänglichen Formulars und zum erneuten Anzeigen des Formulars bei einem Fehler verwendet.
+Der folgende Code zeigt einen Teil der Seite *Create.cshtml*, deren Gerüst Sie zuvor im Tutorial erstellt haben. Sie wird auf den Seiten Create und „Bearbeiten“ für Folgendes verwendet:
+
+* Anzeigen des Ausgangsformulars
+* Erneutes Anzeigen des Formulars bei einem Fehler
 
 [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie/Pages/Movies/Create.cshtml?range=14-20)]
 
 Das [Hilfsprogramm für Eingabetags](xref:mvc/views/working-with-forms) verwendet die Attribute von [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) und generiert HTML-Attribute, die auf der Clientseite für die jQuery-Validierung erforderlich sind. Das [Hilfsprogramm für Validierungstags](xref:mvc/views/working-with-forms#the-validation-tag-helpers) zeigt Validierungsfehler. Weitere Informationen finden Sie unter [Validierung](xref:mvc/models/validation).
 
-Die Seiten „Erstellen“ und „Bearbeiten“ weisen keine Validierungsregeln auf. Die Validierungsregeln und Fehlerzeichenfolgen werden nur in der `Movie`-Klasse angegeben. Diese Validierungsregeln gelten automatisch für Razor-Seiten, die das Modell `Movie` bearbeiten.
+Die Seiten Create und „Bearbeiten“ weisen keine Validierungsregeln auf. Die Validierungsregeln und Fehlerzeichenfolgen werden nur in der `Movie`-Klasse angegeben. Diese Validierungsregeln gelten automatisch für Razor-Seiten, die das Modell `Movie` bearbeiten.
 
 Wenn Validierungslogik geändert werden muss, erfolgt dies nur im Modell. Die Validierung erfolgt in der gesamten Anwendung einheitlich (Validierungslogik ist zentral definiert). Die zentrale Validierung unterstützt sauberen Code und erleichtert dessen Verwaltung und Aktualisierung.
 
-## <a name="using-datatype-attributes"></a>Verwenden von „DataType“-Attributen
+## <a name="use-datatype-attributes"></a>Verwenden von DataType-Attributen
 
-Untersuchen Sie die Klasse `Movie`. Der Namespace `System.ComponentModel.DataAnnotations` stellt zusätzlich zu der integrierten Gruppe von Validierungsattributen Formatierungsattribute bereit. Das `DataType`-Attribut wird nur auf die Eigenschaften `ReleaseDate` und `Price` angewendet.
+Untersuchen Sie die Klasse `Movie`. Der Namespace `System.ComponentModel.DataAnnotations` stellt zusätzlich zu der integrierten Gruppe von Validierungsattributen Formatierungsattribute bereit. Das `[DataType]`-Attribut wird nur auf die Eigenschaften `ReleaseDate` und `Price` angewendet.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
-Die `DataType`-Attribute geben der Anzeige-Engine nur Hinweise zum Formatieren der Daten (und liefern Attribute wie `<a>` für URLs und `<a href="mailto:EmailAddress.com">` für E-Mail). Verwenden Sie das `RegularExpression`-Attribut, um das Format der Daten zu validieren. Das `DataType`-Attribut wird verwendet, um einen Datentyp anzugeben, der spezifischer als der datenbankinterne Typ ist. `DataType`-Attribute sind keine Validierungsattribute. In der Beispielanwendung wird nur das Datum ohne Uhrzeit angezeigt.
+Die `[DataType]`-Attribute stellen Folgendes bereit:
 
-Die `DataType`-Enumeration stellt viele Datentypen bereit, wie z.B. „Date“, „Time“, „PhoneNumber“, „Currency“, „EmailAddress“ usw. Das `DataType`-Attribut kann der Anwendung auch ermöglichen, typspezifische Features bereitzustellen. Ein Link des Typs `mailto:` kann beispielsweise für `DataType.EmailAddress` erstellt werden. In Browsern mit HTML5-Unterstützung kann für `DataType.Date` eine Datumsauswahl bereitgestellt werden. Die `DataType`-Attribute geben `data-`-Attribute (ausgesprochen „Datadash“) von HTML5 aus, die HTML5-Browser nutzen. Die `DataType`-Attribute bieten **keine** Validierung.
+* Hinweise für die Ansichts-Engine zum Formatieren der Daten
+* Attribute wie `<a>` für URLs und `<a href="mailto:EmailAddress.com">` für E-Mail
+
+Verwenden Sie das `[RegularExpression]`-Attribut, um das Format der Daten zu validieren. Das `[DataType]`-Attribut wird verwendet, um einen Datentyp anzugeben, der spezifischer als der datenbankinterne Typ ist. `[DataType]`-Attribute sind keine Validierungsattribute. In der Beispielanwendung wird nur das Datum ohne Uhrzeit angezeigt.
+
+Die `DataType`-Enumeration stellt viele Datentypen bereit, u. a. `Date`, `Time`, `PhoneNumber`, `Currency` und `EmailAddress`. 
+
+Die `[DataType]`-Attribute:
+
+* Können der Anwendung ermöglichen, typspezifische Features bereitzustellen. Ein Link des Typs `mailto:` kann beispielsweise für `DataType.EmailAddress` erstellt werden.
+* Können in Browsern mit HTML5-Unterstützung die Datumsauswahl `DataType.Date` bereitstellen.
+* Können HTML5-Attribute des Typs `data-` (ausgesprochen „Datadash“) ausgeben, die HTML5-Browser nutzen.
+* Bieten **keine** Validierung.
 
 `DataType.Date` gibt nicht das Format des Datums an, das angezeigt wird. Standardmäßig wird das Datenfeld gemäß den Standardformaten basierend auf `CultureInfo` des Servers angezeigt.
 
 Die Datenanmerkung `[Column(TypeName = "decimal(18, 2)")]` ist erforderlich, damit Entity Framework Core `Price` ordnungsgemäß einer Währung in der Datenbank zuordnen kann. Weitere Informationen finden Sie unter [Datentypen](/ef/core/modeling/relational/data-types).
 
-Das `DisplayFormat`-Attribut dient zum expliziten Angeben des Datumsformats:
+Das `[DisplayFormat]`-Attribut dient zum expliziten Angeben des Datumsformats:
 
 ```csharp
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 public DateTime ReleaseDate { get; set; }
 ```
 
-Die Einstellung `ApplyFormatInEditMode` gibt an, dass die Formatierung angewendet werden soll, wenn der Wert zur Bearbeitung angezeigt wird. Dieses Verhalten ist für einige Felder ggf. nicht wünschenswert. Beispielsweise sollte bei Währungswerten das Währungssymbol auf der Benutzeroberfläche für die Bearbeitung nicht angezeigt werden.
+Die Einstellung `ApplyFormatInEditMode` gibt an, dass die Formatierung angewendet wird, wenn der Wert zur Bearbeitung angezeigt wird. Dieses Verhalten kann für einige Felder unerwünscht sein. In Währungswerten soll beispielsweise wahrscheinlich nicht das Währungssymbol auf der Bearbeitungsoberfläche gezeigt werden.
 
-Das `DisplayFormat`-Attribut kann eigenständig verwendet werden, doch meist empfiehlt es sich, das `DataType`-Attribut zu verwenden. Das `DataType`-Attribut übermittelt die Semantik der Daten im Gegensatz zu deren Rendern auf einem Bildschirm. Es bietet die folgenden Vorteile, die „DisplayFormat“ nicht bietet:
+Das `[DisplayFormat]`-Attribut kann eigenständig verwendet werden, doch meist empfiehlt es sich, das `[DataType]`-Attribut zu verwenden. Das `[DataType]`-Attribut übermittelt die Semantik der Daten im Gegensatz zu deren Rendern auf einem Bildschirm. Das `[DataType]`-Attribut bietet folgende Vorteile, die mit `[DisplayFormat]` nicht verfügbar sind:
 
-* Der Browser kann HTML5-Features aktivieren (z.B. zum Anzeigen eines Kalendersteuerelements, des dem Gebietsschema entsprechenden Währungssymbols, von E-Mail-Links usw.).
-* Standardmäßig rendert der Browser Daten mit dem ordnungsgemäßen auf Ihrem Gebietsschema basierenden Format.
-* Das `DataType`-Attribut kann dem ASP.NET Core-Framework ermöglichen, die richtige Feldvorlage zum Rendern der Daten auszuwählen. `DisplayFormat`, falls eigenständig genutzt, verwendet die Zeichenfolgenvorlage.
+* Der Browser kann HTML5-Features aktivieren, z. B. zum Anzeigen eines Kalendersteuerelements, des dem Gebietsschema entsprechenden Währungssymbols, von E-Mail-Links usw.
+* Standardmäßig rendert der Browser Daten mit dem auf seinem Gebietsschema basierenden richtigen Format.
+* Das `[DataType]`-Attribut kann dem ASP.NET Core-Framework ermöglichen, die richtige Feldvorlage zum Rendern der Daten auszuwählen. `DisplayFormat`, falls eigenständig genutzt, verwendet die Zeichenfolgenvorlage.
 
-**Hinweis:** Die jQuery-Validierung funktioniert nicht mit den Attributen `Range` und `DateTime`. Bei folgendem Code wird z.B. stets ein clientseitiger Validierungsfehler angezeigt, auch wenn sich das Datum im angegebenen Bereich befindet:
+**Hinweis:** Die jQuery-Validierung funktioniert nicht mit den Attributen `[Range]` und `DateTime`. Bei folgendem Code wird z.B. stets ein clientseitiger Validierungsfehler angezeigt, auch wenn sich das Datum im angegebenen Bereich befindet:
 
 ```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
    ```
 
-Es wird allgemein nicht empfohlen, feste Datumsangaben in Ihren Modellen zu kompilieren, weshalb vom Einsatz des `Range`-Attributs und von `DateTime` abgeraten wird.
+Es ist eine bewährte Methode, keine festen Datumsangaben in Ihren Modellen zu kompilieren, weshalb vom Einsatz des `[Range]`-Attributs und von `DateTime` abgeraten wird. Verwenden Sie den Abschnitt [Configuration](xref:fundamentals/configuration/index) für Datumsbereiche und andere Werte, die häufig geändert werden, anstatt sie im Code anzugeben.
 
 Der folgende Code zeigt die Kombination von Attributen in einer Zeile:
 
@@ -221,7 +250,7 @@ Für SQLite sind keine Migrationen erforderlich.
 
 ### <a name="publish-to-azure"></a>Veröffentlichen in Azure
 
-Informationen zum Bereitstellen in Azure finden Sie unter [Tutorial: Erstellen einer ASP.NET Core-App in Azure mit SQL-Datenbank](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+Informationen zum Bereitstellen in Azure finden Sie unter [Tutorial: Erstellen einer ASP.NET Core-App in Azure mit SQL-Datenbank](/azure/app-service/tutorial-dotnetcore-sqldb-app).
 
 Vielen Dank für Ihr Interesse an dieser Einführung in Razor Pages. [Erste Schritte mit Razor Pages und EF Core](xref:data/ef-rp/intro) ist ein ausgezeichneter Anschlussartikel an dieses Tutorial.
 
@@ -231,7 +260,6 @@ Vielen Dank für Ihr Interesse an dieser Einführung in Razor Pages. [Erste Schr
 * <xref:fundamentals/localization>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
-* [Dieses Tutorial auf YouTube](https://youtu.be/b63m66eu7us)
 
 > [!div class="step-by-step"]
 > [Zurück: Hinzufügen eines neuen Felds](xref:tutorials/razor-pages/new-field)

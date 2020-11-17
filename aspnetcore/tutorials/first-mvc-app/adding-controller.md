@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 11832efa6715f96856665f174d65b094806d2810
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 1851a61441ed351442f86939022319ad59d10006
+ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061287"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94422618"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>Teil 2: Hinzufügen eines Controllers zu einer ASP.NET Core MVC-App
 
@@ -46,18 +46,18 @@ Wir behandeln diese Konzepte in dieser Tutorialreihe und zeigen Ihnen, wie Sie s
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf **Controller > Hinzufügen > Controller**.
-  ![Kontextmenü](adding-controller/_static/add_controller.png)
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf **Controller > Hinzufügen > Controller**
+  ![](~/tutorials/first-mvc-app/adding-controller/_static/add_controllerCopy.png).
 
-* Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **-Controllerklasse – leer** aus.
+* Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller - leer** aus.
 
-  ![Hinzufügen und Benennen des MVC-Controllers](adding-controller/_static/ac.png)
+  ![Hinzufügen und Benennen des MVC-Controllers](~/tutorials/first-mvc-app/adding-controller/_static/acCopy.png)
 
 * Geben Sie im **Dialogfeld zum Hinzufügen eines leeren MVC-Controllers**  den Namen **HelloWorldController** ein, und wählen Sie **Hinzufügen** aus.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Wählen Sie das **EXPLORER** -Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei** , und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
+Wählen Sie das **EXPLORER**-Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei**, und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
 
   ![Kontextmenü](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 
@@ -98,7 +98,7 @@ Das Routingformat ist in der `Configure`-Methode in der Datei *Startup.cs* festg
 
 Wenn Sie zu der App navigieren und keine URL-Segmente angeben, werden standardmäßig der Controller „Home“ und die Methode „Index“ verwendet, die in der oben hervorgehobenen Vorlagenzeile angegeben ist.
 
-Das erste URL-Segment bestimmt die auszuführende Controllerklasse. Daher wird `localhost:{PORT}/HelloWorld` der **HelloWorld** -Controllerklasse zugeordnet. Der zweite Teil des URL-Segments bestimmt die Aktionsmethode für die Klasse. Daher bewirkt `localhost:{PORT}/HelloWorld/Index` das Ausführen der `Index`-Methode der `HelloWorldController`-Klasse. Beachten Sie, dass Sie nur zu `localhost:{PORT}/HelloWorld` navigieren mussten und die `Index`-Methode standardmäßig aufgerufen wurde. Der Grund hierfür ist, dass `Index` die Standardmethode ist, die für einen Controller aufgerufen wird, wenn der Methodenname nicht explizit angegeben wird. Der dritte Teil des URL-Segments (`id`) ist für Routendaten. Routendaten werden weiter unten im Tutorial erläutert.
+Das erste URL-Segment bestimmt die auszuführende Controllerklasse. Daher wird `localhost:{PORT}/HelloWorld` der **HelloWorld**-Controllerklasse zugeordnet. Der zweite Teil des URL-Segments bestimmt die Aktionsmethode für die Klasse. Daher bewirkt `localhost:{PORT}/HelloWorld/Index` das Ausführen der `Index`-Methode der `HelloWorldController`-Klasse. Beachten Sie, dass Sie nur zu `localhost:{PORT}/HelloWorld` navigieren mussten und die `Index`-Methode standardmäßig aufgerufen wurde. Der Grund hierfür ist, dass `Index` die Standardmethode ist, die für einen Controller aufgerufen wird, wenn der Methodenname nicht explizit angegeben wird. Der dritte Teil des URL-Segments (`id`) ist für Routendaten. Routendaten werden weiter unten im Tutorial erläutert.
 
 Wechseln Sie zu `https://localhost:{PORT}/HelloWorld/Welcome`. Die `Welcome`-Methode wird ausgeführt und gibt die Zeichenfolge `This is the Welcome action method...` zurück. Bei dieser URL ist `HelloWorld` der Controller und `Welcome` die Aktionsmethode. Sie haben den Teil `[Parameters]` der URL noch nicht verwendet.
 
@@ -161,17 +161,17 @@ Wir behandeln diese Konzepte in dieser Tutorialreihe und zeigen Ihnen, wie Sie s
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf **Controller > Hinzufügen > Controller**.
-  ![Kontextmenü](adding-controller/_static/add_controller.png)
+  ![Kontextmenü](~/tutorials/first-mvc-app/adding-controller/_static/add_controller.png)
 
 * Wählen Sie im Dialogfeld **Gerüst hinzufügen** die Option **MVC-Controller - leer** aus.
 
-  ![Hinzufügen und Benennen des MVC-Controllers](adding-controller/_static/ac.png)
+  ![Hinzufügen und Benennen des MVC-Controllers](~/tutorials/first-mvc-app/adding-controller/_static/ac.png)
 
 * Geben Sie im **Dialogfeld zum Hinzufügen eines leeren MVC-Controllers**  den Namen **HelloWorldController** ein, und wählen Sie **Hinzufügen** aus.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Wählen Sie das **EXPLORER** -Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei** , und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
+Wählen Sie das **EXPLORER**-Symbol aus, klicken Sie dann bei gedrückter STRG-TASTE bzw. mit der rechten Maustaste auf **Controller > Neue Datei**, und geben Sie der neuen Datei den Namen *HelloWorldController.cs*.
 
   ![Kontextmenü](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
 

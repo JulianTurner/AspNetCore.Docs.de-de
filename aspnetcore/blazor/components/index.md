@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: d78076eb29d6d09756e408b388fcf12b4b6460f6
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: d8838a458943599890420adec4551ad87e43d328
+ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507940"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94637703"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -244,11 +244,25 @@ Wenn eine Komponente ein HTML-Element mit einem groß geschriebenen ersten Buchs
 
 Komponenten können Routenparameter von der Routenvorlage empfangen, die in der [`@page`][9]-Anweisung bereitgestellt wird. Der Router verwendet Routenparameter, um die entsprechenden Komponentenparameter aufzufüllen.
 
+::: moniker range=">= aspnetcore-5.0"
+
+Optionale Parameter werden unterstützt. Im folgenden Beispiel weist der optionale Parameter `text` den Wert des Routensegments der Eigenschaft `Text` der Komponente zu. Wenn das Segment nicht vorhanden ist, wird der Wert von `Text` auf `fantastic` festgelegt.
+
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](index/samples_snapshot/RouteParameter.razor?highlight=2,7-8)]
+[!code-razor[](index/samples_snapshot/RouteParameter-5x.razor?highlight=1,6-7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+`Pages/RouteParameter.razor`:
+
+[!code-razor[](index/samples_snapshot/RouteParameter-3x.razor?highlight=2,7-8)]
 
 Optionale Parameter werden nicht unterstützt. Deshalb werden im vorherigen Beispiel zwei [`@page`][9]-Anweisungen angewendet. Die erste ermöglicht die Navigation zur Komponente ohne einen Parameter. Die zweite [`@page`][9]-Anweisung empfängt den `{text}`-Routenparameter und weist den Wert der `Text`-Eigenschaft zu.
+
+::: moniker-end
 
 Informationen zu Routenparametern (`{*pageRoute}`), die Pfade über mehrere Ordnergrenzen hinweg erfassen, finden Sie unter <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
@@ -265,6 +279,14 @@ Im folgenden Beispiel aus der Beispiel-App legt der `ParentComponent` den Wert d
 `Pages/ParentComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
+
+Gemäß Konvention wird ein aus C#-Code bestehender Attributwert einem Parameter mithilfe des [reservierten `@`-Symbols von Razor zugewiesen](xref:mvc/views/razor#razor-syntax):
+
+* Übergeordnetes Feld oder übergeordnete Eigenschaft: `Title="@{FIELD OR PROPERTY}`, wobei der Platzhalter `{FIELD OR PROPERTY}` ein C#-Feld oder eine C#-Eigenschaft der übergeordneten Komponente ist.
+* Ergebnis einer Methode: `Title="@{METHOD}"`, wobei der Platzhalter `{METHOD}` eine C#-Methode der übergeordneten Komponente ist.
+* [Impliziter oder expliziter Ausdruck](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`, wobei der Platzhalter `{EXPRESSION}` ein C#-Ausdruck ist.
+  
+Weitere Informationen finden Sie unter <xref:mvc/views/razor>.
 
 > [!WARNING]
 > Erstellen Sie keine Komponenten, die in ihre eigenen *Komponentenparameter* schreiben, sondern verwenden Sie stattdessen ein privates Feld. Weitere Informationen finden Sie im Abschnitt [Überschriebene Parameter](#overwritten-parameters).
@@ -294,7 +316,7 @@ Aufgrund der Art und Weise, in der Blazor untergeordneten Inhalt rendert, erford
 > @for (int c = 0; c < 10; c++)
 > {
 >     var current = c;
->     <ChildComponent Param1="@c">
+>     <ChildComponent Title="@c">
 >         Child Content: Count: @current
 >     </ChildComponent>
 > }
@@ -305,7 +327,7 @@ Aufgrund der Art und Weise, in der Blazor untergeordneten Inhalt rendert, erford
 > ```razor
 > @foreach(var c in Enumerable.Range(0,10))
 > {
->     <ChildComponent Param1="@c">
+>     <ChildComponent Title="@c">
 >         Child Content: Count: @c
 >     </ChildComponent>
 > }
@@ -650,7 +672,7 @@ Angenommen, die folgende fehlerhafte `Expander`-Komponente:
 * Die Komponente schreibt direkt in den `Expanded`-Parameter, der das Problem mit überschriebenen Parametern veranschaulicht, das vermieden werden sollte.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
+<div @onclick="Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>Expanded</code> = @Expanded)</h2>
 
@@ -702,7 +724,7 @@ Die folgende überarbeitete `Expander`-Komponente:
 * Verwendet das private Feld, um den internen Umschaltzustand zu verwalten. Dies veranschaulicht, wie das direkte Schreiben in einen Parameter vermieden wird.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
+<div @onclick="Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>expanded</code> = @expanded)</h2>
 

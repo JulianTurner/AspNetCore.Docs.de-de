@@ -1,11 +1,11 @@
 ---
-title: Testen von Web-APIs mit HTTP REPL
+title: Testen von Web-APIs mit HttpRepl
 author: scottaddie
-description: Hier erfahren Sie, wie Sie das globale .NET Core-Tool HTTP REPL verwenden können, um ASP.NET Core-Web-APIs zu durchsuchen und zu testen.
+description: Hier erfahren Sie, wie Sie das globale .NET Core-Tool HttpRepl verwenden können, um ASP.NET Core-Web-APIs zu durchsuchen und zu testen.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: 81174b551c5b6d81e6ac80975f7f77ee6664059d
-ms.sourcegitcommit: fb72e9c1ae5b279817f1fb4b46a52170449b6f30
+ms.openlocfilehash: df2d4e63a18471b4c5f4f1c9434921303bb1da8a
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94501986"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550620"
 ---
-# <a name="test-web-apis-with-the-http-repl"></a>Testen von Web-APIs mit HTTP REPL
+# <a name="test-web-apis-with-the-httprepl"></a>Testen von Web-APIs mit HttpRepl
 
 Von [Scott Addie](https://twitter.com/Scott_Addie)
 
@@ -54,7 +54,7 @@ Folgende [HTTP-Verben](https://github.com/microsoft/api-guidelines/blob/vNext/Gu
 
 ## <a name="installation"></a>Installation
 
-Führen Sie den folgenden Befehl aus, um HTTP REPL zu installieren:
+Führen Sie den folgenden Befehl aus, um HttpRepl zu installieren:
 
 ```dotnetcli
 dotnet tool install -g Microsoft.dotnet-httprepl
@@ -64,13 +64,13 @@ Ein [globales .NET Core-Tool](/dotnet/core/tools/global-tools#install-a-global-t
 
 ## <a name="usage"></a>Verwendung
 
-Nach der erfolgreichen Installation des Tools können Sie folgenden Befehl ausführen, um HTTP REPL zu starten:
+Nach der erfolgreichen Installation des Tools können Sie folgenden Befehl ausführen, um HttpRepl zu starten:
 
 ```console
 httprepl
 ```
 
-Führen Sie einen der folgenden Befehle aus, um eine Liste der verfügbaren HTTP REPL-Befehle anzuzeigen:
+Führen Sie einen der folgenden Befehle aus, um eine Liste der verfügbaren HttpRepl-Befehle anzuzeigen:
 
 ```console
 httprepl -h
@@ -135,7 +135,7 @@ Use `help <COMMAND>` for more detail on an individual command. e.g. `help get`.
 For detailed tool info, see https://aka.ms/http-repl-doc.
 ```
 
-In HTTP REPL können Befehle vervollständigt werden. Wenn Sie die <kbd>TAB-TASTE</kbd> drücken, können Sie die Liste der Befehle durchlaufen, die die eingegebenen Zeichen oder API-Endpunkte vervollständigen. In den folgenden Abschnitten werden die verfügbaren CLI-Befehle erläutert.
+In HttpRepl können Befehle vervollständigt werden. Wenn Sie die <kbd>TAB-TASTE</kbd> drücken, können Sie die Liste der Befehle durchlaufen, die die eingegebenen Zeichen oder API-Endpunkte vervollständigen. In den folgenden Abschnitten werden die verfügbaren CLI-Befehle erläutert.
 
 ## <a name="connect-to-the-web-api"></a>Herstellen einer Verbindung mit der Web-API
 
@@ -151,7 +151,7 @@ httprepl <ROOT URI>
 httprepl https://localhost:5001
 ```
 
-Alternativ können Sie den folgenden Befehl jederzeit ausführen, während HTTP REPL ausgeführt wird:
+Alternativ können Sie den folgenden Befehl jederzeit ausführen, während HttpRepl ausgeführt wird:
 
 ```console
 connect <ROOT URI>
@@ -252,9 +252,9 @@ Für den Pfad im Befehl `cd` wird die Groß-/Kleinschreibung nicht beachtet. Fol
 https://localhost:5001/people>
 ```
 
-## <a name="customize-the-http-repl"></a>Anpassen von HTTP REPL
+## <a name="customize-the-httprepl"></a>Anpassen von HttpRepl
 
-Die [Standardfarben](#set-color-preferences) von HTTP REPL können angepasst werden. Außerdem kann definiert werden, welcher [Text-Editor](#set-the-default-text-editor) standardmäßig verwendet wird. Die HTTP REPL-Einstellungen werden in der aktuellen Sitzung beibehalten und in zukünftigen Sitzungen berücksichtigt. Nach der Änderung werden die Einstellungen in der folgenden Datei gespeichert:
+Die [Standardfarben](#set-color-preferences) von HttpRepl können angepasst werden. Außerdem kann definiert werden, welcher [Text-Editor](#set-the-default-text-editor) standardmäßig verwendet wird. Die HttpRepl-Einstellungen werden in der aktuellen Sitzung beibehalten und in zukünftigen Sitzungen berücksichtigt. Nach der Änderung werden die Einstellungen in der folgenden Datei gespeichert:
 
 # <a name="linux"></a>[Linux](#tab/linux)
 
@@ -295,7 +295,7 @@ colors.status=BoldYellow
 
 ### <a name="set-color-preferences"></a>Festlegen von Farbeinstellungen
 
-Die farbliche Kennzeichnung von Antworten wird derzeit nur für JSON unterstützt. Sie können die Standardfarben des HTTP REPL-Tools anpassen, indem Sie den Schlüssel für die entsprechende Farbe suchen und ändern. Weitere Informationen zum Suchen von Schlüsseln finden Sie im Abschnitt [Anzeigen der Einstellungen](#view-the-settings). Ändern Sie beispielsweise den Wert des Schlüssels `colors.json` folgendermaßen von `Green` in `White`:
+Die farbliche Kennzeichnung von Antworten wird derzeit nur für JSON unterstützt. Sie können die Standardfarben des HttpRepl-Tools anpassen, indem Sie den Schlüssel für die entsprechende Farbe suchen und ändern. Weitere Informationen zum Suchen von Schlüsseln finden Sie im Abschnitt [Anzeigen der Einstellungen](#view-the-settings). Ändern Sie beispielsweise den Wert des Schlüssels `colors.json` folgendermaßen von `Green` in `White`:
 
 ```console
 https://localhost:5001/people> pref set colors.json White
@@ -358,7 +358,7 @@ Nachfolgende Antworten berücksichtigen die Einstellung auf vier Leerzeichen:
 
 ### <a name="set-the-default-text-editor"></a>Festlegen des Standard-Text-Editors
 
-Standardmäßig ist für HTTP REPL kein Text-Editor konfiguriert. Wenn Sie Web-API-Methoden testen möchten, für die ein HTTP-Anforderungstext erforderlich ist, müssen Sie einen Standard-Text-Editor festlegen. Das HTTP REPL-Tool startet den konfigurierten Text-Editor nur zum Verfassen des Anforderungstexts. Führen Sie den folgenden Befehl aus, um Ihren bevorzugten Text-Editor festzulegen:
+Standardmäßig ist für HttpRepl kein Text-Editor konfiguriert. Wenn Sie Web-API-Methoden testen möchten, für die ein HTTP-Anforderungstext erforderlich ist, müssen Sie einen Standard-Text-Editor festlegen. Das HttpRepl-Tool startet den konfigurierten Text-Editor nur zum Verfassen des Anforderungstexts. Führen Sie den folgenden Befehl aus, um Ihren bevorzugten Text-Editor festzulegen:
 
 ```console
 pref set editor.command.default "<EXECUTABLE>"
@@ -386,7 +386,7 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 
 ---
 
-Legen Sie den Schlüssel `editor.command.default.arguments` fest, um den Standard-Text-Editor mit bestimmten CLI-Argumenten zu starten. Nehmen Sie beispielsweise an, dass Visual Studio Code der Standard-Text-Editor ist und Sie möchten, dass Visual Studio Code durch HTTP REPL immer in einer neuen Sitzung mit deaktivierten Erweiterungen öffnet. Führen Sie den folgenden Befehl aus:
+Legen Sie den Schlüssel `editor.command.default.arguments` fest, um den Standard-Text-Editor mit bestimmten CLI-Argumenten zu starten. Nehmen Sie beispielsweise an, dass Visual Studio Code der Standard-Text-Editor ist und Sie möchten, dass Visual Studio Code durch HttpRepl immer in einer neuen Sitzung mit deaktivierten Erweiterungen öffnet. Führen Sie den folgenden Befehl aus:
 
 ```console
 pref set editor.command.default.arguments "--disable-extensions --new-window"
@@ -397,7 +397,7 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 ### <a name="set-the-openapi-description-search-paths"></a>Festlegen der Suchpfade der OpenAPI-Beschreibung
 
-Standardmäßig weist die HTTP-REPL eine Reihe von relativen Pfaden auf, die zum Suchen nach der OpenAPI-Beschreibung verwendet werden, wenn der `connect`-Befehl ohne die Option `--openapi` ausgeführt wird. Diese relativen Pfade werden mit den Stamm- und Basispfaden kombiniert, die im `connect`-Befehl angegeben werden. Die standardmäßigen relativen Pfade lauten wie folgt:
+Standardmäßig weist die HttpReplL eine Reihe von relativen Pfaden auf, die zum Suchen nach der OpenAPI-Beschreibung verwendet werden, wenn der `connect`-Befehl ohne die Option `--openapi` ausgeführt wird. Diese relativen Pfade werden mit den Stamm- und Basispfaden kombiniert, die im `connect`-Befehl angegeben werden. Die standardmäßigen relativen Pfade lauten wie folgt:
 
 - *swagger.json*
 - *swagger/v1/swagger.json*
@@ -561,7 +561,7 @@ So führen Sie eine HTTP POST-Anforderung aus:
     }
     ```
 
-1. Speichern Sie die *TMP-Datei* , und schließen Sie den Text-Editor. In der Befehlsshell wird die folgende Ausgabe angezeigt:
+1. Speichern Sie die *TMP-Datei*, und schließen Sie den Text-Editor. In der Befehlsshell wird die folgende Ausgabe angezeigt:
 
     ```console
     HTTP/1.1 201 Created
@@ -657,7 +657,7 @@ So führen Sie eine HTTP PUT-Anforderung aus:
     }
     ```
 
-1. Speichern Sie die *TMP-Datei* , und schließen Sie den Text-Editor. In der Befehlsshell wird die folgende Ausgabe angezeigt:
+1. Speichern Sie die *TMP-Datei*, und schließen Sie den Text-Editor. In der Befehlsshell wird die folgende Ausgabe angezeigt:
 
     ```console
     [main 2019-06-28T17:27:01.805Z] update#setState idle
@@ -864,7 +864,7 @@ Verwenden Sie einen der folgenden Ansätze, um einen HTTP-Anforderungsheader fes
 
 ## <a name="test-secured-endpoints"></a>Testen gesicherter Endpunkte
 
-Die HTTP-REPL unterstützt das Testen von gesicherten Endpunkten auf folgende Weise:
+Die HttpRepl unterstützt das Testen von gesicherten Endpunkten auf folgende Weise:
 
 * Über die Standardanmeldeinformationen des angemeldeten Benutzers.
 * Über die Verwendung von HTTP-Anforderungsheadern.
@@ -907,7 +907,7 @@ Beispielsweise können Sie mit dem folgenden Befehl ein Bearertoken an einen End
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-Um auf einen in Azure gehosteten Endpunkt zuzugreifen oder die [Azure-REST-API](/rest/api/azure/) zu verwenden, benötigen Sie ein Bearertoken. Führen Sie die folgenden Schritte aus, um über die [Azure CLI](/cli/azure/) ein Bearertoken für Ihr Azure-Abonnement zu erhalten. Die HTTP-REPL legt das Bearertoken in einem HTTP-Anforderungsheader fest. Eine Liste mit Azure App Service-Web-Apps wird abgerufen.
+Um auf einen in Azure gehosteten Endpunkt zuzugreifen oder die [Azure-REST-API](/rest/api/azure/) zu verwenden, benötigen Sie ein Bearertoken. Führen Sie die folgenden Schritte aus, um über die [Azure CLI](/cli/azure/) ein Bearertoken für Ihr Azure-Abonnement zu erhalten. Die HttpRepl legt das Bearertoken in einem HTTP-Anforderungsheader fest. Eine Liste mit Azure App Service-Web-Apps wird abgerufen.
 
 1. Melden Sie sich bei Azure an:
 
@@ -933,7 +933,7 @@ Um auf einen in Azure gehosteten Endpunkt zuzugreifen oder die [Azure-REST-API](
     az account get-access-token --query accessToken
     ```
 
-1. Stellen Sie über HTTP REPL eine Verbindung mit der Azure-REST-API her:
+1. Stellen Sie über HttpRepl eine Verbindung mit der Azure-REST-API her:
 
     ```console
     httprepl https://management.azure.com
@@ -1041,9 +1041,9 @@ Request echoing is off
 
 ## <a name="run-a-script"></a>Ausführen eines Skripts
 
-Wenn Sie häufig die gleichen HTTP REPL-Befehle ausführen, können Sie diese in einer Textdatei speichern. Befehle in der Datei nehmen das gleiche Format wie manuell in der Befehlszeile ausgeführte Befehle an. Die Befehle können mithilfe des Befehls `run` auf einmal ausgeführt werden. Zum Beispiel:
+Wenn Sie häufig die gleichen HttpRepl-Befehle ausführen, können Sie diese in einer Textdatei speichern. Befehle in der Datei nehmen das gleiche Format wie manuell in der Befehlszeile ausgeführte Befehle an. Die Befehle können mithilfe des Befehls `run` auf einmal ausgeführt werden. Zum Beispiel:
 
-1. Erstellen Sie eine Textdatei, die einige Befehle enthält, die jeweils in einer neuen Zeile stehen. Sie können die Datei *people-script.txt* , die folgende Befehle enthält, als Beispiel verwenden:
+1. Erstellen Sie eine Textdatei, die einige Befehle enthält, die jeweils in einer neuen Zeile stehen. Sie können die Datei *people-script.txt*, die folgende Befehle enthält, als Beispiel verwenden:
 
     ```text
     set base https://localhost:5001
@@ -1096,7 +1096,7 @@ Wenn Sie häufig die gleichen HTTP REPL-Befehle ausführen, können Sie diese in
 
 ## <a name="clear-the-output"></a>Löschen der Ausgabe
 
-Sie können alle Ausgaben des HTTP REPL-Tools aus der Befehlsshell entfernen, indem Sie den Befehl `clear` oder `cls` ausführen. Nehmen Sie beispielsweise an, dass die Befehlsshell folgende Ausgabe enthält:
+Sie können alle Ausgaben des HttpRepl-Tools aus der Befehlsshell entfernen, indem Sie den Befehl `clear` oder `cls` ausführen. Nehmen Sie beispielsweise an, dass die Befehlsshell folgende Ausgabe enthält:
 
 ```console
 httprepl https://localhost:5001
@@ -1126,4 +1126,4 @@ https://localhost:5001/>
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [REST-API-Anforderungen](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [GitHub-Repository für HTTP REPL](https://github.com/dotnet/HttpRepl)
+* [GitHub-Repository für HttpRepl](https://github.com/dotnet/HttpRepl)

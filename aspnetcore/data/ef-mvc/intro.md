@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 77cf1e9ad51b7044a35e1a9b2c125b0fdd91435e
-ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
+ms.openlocfilehash: 428320f9d706b0dd16ced68d183ec4b331451965
+ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93365393"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94550646"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: Erste Schritte mit EF Core in einer ASP.NET Core MVC-Web-App
 
@@ -34,7 +34,7 @@ Von [Tom Dykstra](https://github.com/tdykstra) und [Rick Anderson](https://twitt
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-Anhand der Beispiel-Web-App „Contoso University“ wird veranschaulicht, wie Sie mit Entity Framework (EF) Core und Visual Studio eine MVC-Web-App in ASP.NET Core erstellen.
+Anhand der Beispiel-Web-App Contoso University wird veranschaulicht, wie Sie mit Entity Framework (EF) Core und Visual Studio eine MVC-Web-App in ASP.NET Core erstellen.
 
 Bei der Beispiel-App handelt es sich um eine Website für die fiktive Contoso University. Sie enthält Funktionen wie die Zulassung von Studenten, die Erstellung von Kursen und Aufgaben von Dozenten. Dies ist das erste von mehreren Tutorials, in denen das Erstellen der Beispiel-App „Contoso University“ erläutert wird.
 
@@ -73,20 +73,24 @@ Benutzer können Informationen zu den Studenten, Kursen und Dozenten abrufen. Im
 
 ## <a name="create-web-app"></a>Erstellen einer Web-App
 
-* Starten Sie Visual Studio, und klicken Sie auf **ASP.NET Core-Webanwendung** > **Weiter**.
-* Benennen Sie das Projekt mit `ContosoUniversity`. Es ist wichtig, genau diesen Namen unter Berücksichtigung der Groß-/Kleinschreibung zu verwenden, sodass die Namespaces beim Kopieren von Code übereinstimmen.
-* Klicken Sie auf **Erstellen**.
-* Wählen Sie in den Dropdownlisten **.NET Core** und **ASP.NET Core 5.0** aus, und klicken Sie anschließend auf die Vorlage **Webanwendung (Model-View-Controller)** .
-  ![Dialogfeld „Neues ASP.NET Core-Projekt“](intro/_static/new-aspnet5.png)
+1. Starten Sie Visual Studio, und wählen Sie **Neues Projekt erstellen** aus.
+1. Wählen Sie im Dialogfeld **Neues Projekt** die Option **ASP.NET Core-Webanwendung** > **Weiter** aus.
+1. Geben Sie `ContosoUniversity` im Dialogfeld **Neues Projekt konfigurieren** für **Projektname** ein. Es ist wichtig, genau diesen Namen unter Berücksichtigung der Groß-/Kleinschreibung zu verwenden, sodass beim Kopieren von Code jeder `namespace` übereinstimmt.
+1. Wählen Sie **Erstellen** aus.
+1. Wählen Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** Folgendes aus:
+    1. In den Dropdownmenüs **.NET Core** und **ASP.NET Core 5.0**.
+    1. **ASP.NET Core-Web-App (Model View Controller)** .
+    1. **Dialogfeld**
+      ![Neues ASP.NET Core-Projekt erstellen](~/data/ef-mvc/intro/_static/new-aspnet5.png)
 
 ## <a name="set-up-the-site-style"></a>Einrichten des Websitestils
 
 Mit ein paar wenigen grundlegenden Änderungen können Sie das Menü, das Layout und die Homepage der Website anpassen.
 
-Öffnen Sie *Views/Shared/_Layout.cshtml* , und nehmen Sie die folgenden Änderungen vor:
+Öffnen Sie *Views/Shared/_Layout.cshtml*, und nehmen Sie die folgenden Änderungen vor:
 
 * Ändern Sie jedes Vorkommen von `ContosoUniversity` in `Contoso University`. Diese Begriffskombination kommt dreimal vor.
-* Fügen Sie Menüeinträge für **Informationen** , **Studenten** , **Kurse** , **Dozenten** und **Abteilungen** hinzu, und löschen Sie den Menüeintrag **Datenschutz**.
+* Fügen Sie Menüeinträge für **Informationen**, **Studenten**, **Kurse**, **Dozenten** und **Abteilungen** hinzu, und löschen Sie den Menüeintrag **Datenschutz**.
 
 Die vorangehenden Änderungen sind im folgenden Code hervorgehoben:
 
@@ -109,8 +113,8 @@ Das EF-SQL Server-Paket und dessen Abhängigkeiten (`Microsoft.EntityFrameworkCo
 Fügen Sie die NuGet-Pakete [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) und [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) hinzu. Geben Sie die folgenden Befehle in die Programm-Manager-Konsole (PMC) ein, um die NuGet-Pakete hinzuzufügen:
 
 ```powershell
-Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 5.0.0-rc.2.20475.6
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 Das NuGet-Paket `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` stellt ASP.NET Core-Middleware für EF Core-Fehlerseiten bereit. Diese Middleware hilft bei der Erkennung und Diagnose von Fehlern bei EF Core-Migrationen.
@@ -138,7 +142,7 @@ Erstellen Sie mit dem folgenden Code im Ordner *Models* (Modelle) die `Student`-
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
-Die `ID`-Eigenschaft ist die Primärschlüsselspalte ( **PS** ) der Datenbanktabelle, die dieser Klasse entspricht. Standardmäßig interpretiert EF Core eine Eigenschaft mit dem Namen `ID` oder `classnameID` als Primärschlüssel. Beispielsweise kann der PS `StudentID` anstatt `ID`benannt werden.
+Die `ID`-Eigenschaft ist die Primärschlüsselspalte (**PS**) der Datenbanktabelle, die dieser Klasse entspricht. Standardmäßig interpretiert EF Core eine Eigenschaft mit dem Namen `ID` oder `classnameID` als Primärschlüssel. Beispielsweise kann der PS `StudentID` anstatt `ID`benannt werden.
 
 Die `Enrollments`-Eigenschaft ist eine [Navigationseigenschaft](/ef/core/modeling/relationships). Navigationseigenschaften enthalten andere Entitäten, die dieser Entität zugehörig sind. Die `Enrollments`-Eigenschaft einer `Student`-Entität...:
 
@@ -146,7 +150,7 @@ Die `Enrollments`-Eigenschaft ist eine [Navigationseigenschaft](/ef/core/modelin
 * Wenn eine bestimmte `Student`-Zeile in der Datenbank über zwei verknüpfte `Enrollment`-Zeilen verfügt,...:
   * ...enthält die `Enrollments`-Navigationseigenschaft dieser `Student`-Entität diese beiden `Enrollment`-Entitäten.
   
-`Enrollment`-Zeilen enthalten den PS-Wert eines Studierenden in der `StudentID`-Fremdschlüsselspalte ( **FS** ).
+`Enrollment`-Zeilen enthalten den PS-Wert eines Studierenden in der `StudentID`-Fremdschlüsselspalte (**FS**).
 
 Folgendes gilt, wenn eine Navigationseigenschaft mehrere Entitäten enthalten kann:
 
@@ -213,7 +217,7 @@ Wenn die Datenbank erstellt wird, erstellt EF Core Tabellen mit Namen, die den `
 
 [Dependency Injection](../../fundamentals/dependency-injection.md) ist in ASP.NET Core enthalten. Dienste wie der EF-Datenbankkontext werden per Dependency Injection beim App-Start registriert. Für Komponenten, die diese Dienste benötigen (z. B. MVC-Controller), werden sie über Konstruktorparameter bereitgestellt. Der Code des Controllerkonstruktors, der eine Kontextinstanz abruft, wird später in diesem Tutorial gezeigt.
 
-Öffnen Sie die *Startup.cs* -Datei, und fügen Sie der `ConfigureServices`-Methode die hervorgehobenen Zeilen hinzu, um `SchoolContext` als Dienst zu registrieren.
+Öffnen Sie die *Startup.cs*-Datei, und fügen Sie der `ConfigureServices`-Methode die hervorgehobenen Zeilen hinzu, um `SchoolContext` als Dienst zu registrieren.
 
 [!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1-2,22-23)]
 
@@ -233,7 +237,7 @@ Fügen Sie <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageE
 
 ### <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-Die Verbindungszeichenfolge gibt [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb) an. LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Standardmäßig erstellt LocalDB *.mdf* -Datenbankdateien im `C:/Users/<user>`-Verzeichnis.
+Die Verbindungszeichenfolge gibt [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb) an. LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar für die Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Standardmäßig erstellt LocalDB *.mdf*-Datenbankdateien im `C:/Users/<user>`-Verzeichnis.
 
 ## <a name="initialize-db-with-test-data"></a>Initialisieren Sie die Datenbank mit Testdaten
 
@@ -277,7 +281,7 @@ Verwenden Sie die Gerüstbau-Engine in Visual Studio, um einen MVC-Controller un
 Die automatische Erstellung von [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete)-Aktionsmethoden und Ansichten wird als Gerüstbau bezeichnet.
 
 * Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner `Controllers` und auf **Hinzufügen > Neues Gerüstelement**.
-* Im Dialogfeld **Gerüst hinzufügen** :
+* Im Dialogfeld **Gerüst hinzufügen**:
   * Wählen Sie **MVC-Controller mit Ansichten unter Verwendung von Entity Framework** aus.
   * Klicken Sie auf **Hinzufügen**. Das Dialogfeld **Add MVC Controller with views, using Entity Framework** (MVC-Controller mit Ansichten mithilfe von Entity Framework hinzufügen) wird angezeigt: ![Gerüstelement „Student“](intro/_static/scaffold-student2.png)
   * Wählen Sie unter **Modellklasse** **Student** aus.
@@ -299,7 +303,7 @@ Der Controller enthält eine `Index`-Aktionsmethode, über die alle Studenten in
 
 Die Elemente der asynchronen Programmierung in diesem Code werden später im Tutorial erläutert.
 
-In der *Views/Students/Index.cshtml* -Ansicht wird diese Liste in einer Tabelle dargestellt:
+In der *Views/Students/Index.cshtml*-Ansicht wird diese Liste in einer Tabelle dargestellt:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index1.cshtml)]
 
@@ -323,11 +327,11 @@ Verwenden Sie den **SQL Server-Objekt-Explorer** (SSOX), um die Datenbank in Vis
 * Wählen Sie über das Menü **Ansicht** in Visual Studio **SQL Server-Objekt-Explorer** aus.
 * Klicken Sie im SSOX auf **(localdb)\MSSQLLocalDB > Datenbanken**.
 * Wählen Sie `ContosoUniversity1` aus, den Eintrag für den Datenbanknamen in der Verbindungszeichenfolge in der *appsettings.json* -Datei.
-* Erweitern Sie den Knoten **Tabellen** , um die Tabellen in der Datenbank anzuzeigen.
+* Erweitern Sie den Knoten **Tabellen**, um die Tabellen in der Datenbank anzuzeigen.
 
 ![Tabellen im SSOX](intro/_static/ssox-tables.png)
 
-Klicken Sie mit der rechten Maustaste auf die Tabelle **Student** , und klicken Sie auf **Daten anzeigen** , um die Daten in der Tabelle anzuzeigen.
+Klicken Sie mit der rechten Maustaste auf die Tabelle **Student**, und klicken Sie auf **Daten anzeigen**, um die Daten in der Tabelle anzuzeigen.
 
 ![Tabelle „Student“ im SSOX](intro/_static/ssox-student-table.png)
 
@@ -388,11 +392,13 @@ Fahren Sie mit dem nächsten Tutorial fort, um zu erfahren, wie Sie grundlegende
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-3.1"
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
 Die Beispielwebanwendung der Contoso University veranschaulicht, wie mit Entity Framework Core 2.2 (EF Core 2.2) und Visual Studio 2017 oder 2019 ASP.NET Core 2.2 MVC-Webanwendungen erstellt werden.
+
+Dieses Tutorial wurde nicht für ASP.NET Core 3.1 aktualisiert. Es wurde für [ASP.NET Core 5.0](xref:data/ef-mvc/intro?view=aspnetcore-5.0) aktualisiert.
 
 Bei der Beispiel-App handelt es sich um eine Website für die fiktive Contoso University. Sie enthält Funktionen wie die Zulassung von Studenten, die Erstellung von Kursen und Aufgaben von Dozenten. Dies ist die erste Tutorial in der Reihe, in dem die Erstellung der Beispielanwendung der Contoso University von Grund auf erläutert wird.
 
@@ -436,7 +442,7 @@ Benutzer können Informationen zu den Studenten, Kursen und Dozenten abrufen. Na
 
 * Warten Sie, bis das Dialogfeld **Neue ASP.NET Core-Webanwendung** angezeigt wird.
 
-* Wählen Sie **.NET Core** , **ASP.NET Core 2.2** und die Vorlage **Webanwendung (Model-View-Controller)** aus.
+* Wählen Sie **.NET Core**, **ASP.NET Core 2.2** und die Vorlage **Webanwendung (Model-View-Controller)** aus.
 
 * Stellen Sie sicher, dass **Authentifizierung** auf **Keine Authentifizierung** festgelegt ist.
 
@@ -448,17 +454,17 @@ Benutzer können Informationen zu den Studenten, Kursen und Dozenten abrufen. Na
 
 Sie können das Websitemenü, das Layout und die Startseite über einige Änderungen einrichten.
 
-Öffnen Sie *Views/Shared/_Layout.cshtml* , und nehmen Sie die folgenden Änderungen vor:
+Öffnen Sie *Views/Shared/_Layout.cshtml*, und nehmen Sie die folgenden Änderungen vor:
 
 * Ändern Sie jedes „ContosoUniversity“ in „Contoso University“. Diese Begriffskombination kommt dreimal vor.
 
-* Fügen Sie Menüeinträge für **Informationen** , **Studenten** , **Kurse** , **Dozenten** und **Abteilungen** hinzu, und löschen Sie den Menüeintrag **Datenschutz**.
+* Fügen Sie Menüeinträge für **Informationen**, **Studenten**, **Kurse**, **Dozenten** und **Abteilungen** hinzu, und löschen Sie den Menüeintrag **Datenschutz**.
 
 Die Änderungen werden hervorgehoben.
 
 [!code-cshtml[](intro/samples/cu/Views/Shared/_Layout.cshtml?highlight=6,34-48,63)]
 
-Ersetzen Sie in der *Views/Home/Index.cshtml* -Datei die Inhalte der Datei durch den folgenden Code. Dadurch ersetzen Sie den Text zu ASP.NET und MVC durch Text zu dieser Anwendung:
+Ersetzen Sie in der *Views/Home/Index.cshtml*-Datei die Inhalte der Datei durch den folgenden Code. Dadurch ersetzen Sie den Text zu ASP.NET und MVC durch Text zu dieser Anwendung:
 
 [!code-cshtml[](intro/samples/cu/Views/Home/Index.cshtml)]
 
@@ -488,7 +494,7 @@ In den folgenden Abschnitten erstellen Sie für jede dieser Entitäten eine Klas
 
 ![Entitätsdiagramm „Student“](intro/_static/student-entity.png)
 
-Erstellen Sie im Ordner *Models* (Modelle) die Klassendatei *Student.cs* , und ersetzen Sie den Vorlagencode durch folgenden Code.
+Erstellen Sie im Ordner *Models* (Modelle) die Klassendatei *Student.cs*, und ersetzen Sie den Vorlagencode durch folgenden Code.
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
@@ -502,7 +508,7 @@ Wenn eine Navigationseigenschaft mehrere Entitäten enthalten kann (wie bei m:n-
 
 ![Entitätsdiagramm „Enrollment“](intro/_static/enrollment-entity.png)
 
-Erstellen Sie im Ordner *Models* (Modelle) die Datei *Enrollment.cs* , und ersetzen Sie den vorhandenen Code durch folgenden Code:
+Erstellen Sie im Ordner *Models* (Modelle) die Datei *Enrollment.cs*, und ersetzen Sie den vorhandenen Code durch folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
@@ -520,7 +526,7 @@ Entity Framework interpretiert Eigenschaften als Fremdschlüsseleigenschaften, w
 
 ![Entitätsdiagramm „Course“](intro/_static/course-entity.png)
 
-Erstellen Sie im Ordner *Models* (Modelle) die Datei *Course.cs* , und ersetzen Sie den vorhandenen Code durch folgenden Code:
+Erstellen Sie im Ordner *Models* (Modelle) die Datei *Course.cs*, und ersetzen Sie den vorhandenen Code durch folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
 
@@ -534,7 +540,7 @@ Die Datenbankkontextklasse ist die Hauptklasse, die die Entity Framework-Funktio
 
 Erstellen Sie im Projektordner einen Ordner mit dem Namen *Data* (Daten).
 
-Erstellen Sie im Ordner *Data* (Daten) die Klassendatei *SchoolContext.cs* , und ersetzen Sie den Vorlagencode durch folgenden Code:
+Erstellen Sie im Ordner *Data* (Daten) die Klassendatei *SchoolContext.cs*, und ersetzen Sie den Vorlagencode durch folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
 
@@ -552,7 +558,7 @@ Erstellen Sie das Projekt, um zu ermitteln, ob Compilerfehler vorliegen.
 
 ASP.NET Core implementiert standardmäßig [Dependency Injection](../../fundamentals/dependency-injection.md). Dienste wie der EF-Datenbankkontext werden per Dependency Injection beim Anwendungsstart registriert. Komponenten, die diese Dienste erfordern (z.B. Ihre MVC-Controller), werden über Konstruktorparameter bereitgestellt. Nachfolgend in diesem Tutorial wird der Konstruktorcode des Controllers angezeigt, der eine Kontextinstanz abruft.
 
-Öffnen Sie die *Startup.cs* -Datei, und fügen Sie der `ConfigureServices`-Methode die hervorgehobenen Zeilen hinzu, um `SchoolContext` als Dienst zu registrieren.
+Öffnen Sie die *Startup.cs*-Datei, und fügen Sie der `ConfigureServices`-Methode die hervorgehobenen Zeilen hinzu, um `SchoolContext` als Dienst zu registrieren.
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
 
@@ -568,7 +574,7 @@ Fügen Sie `using`-Anweisungen für die Namespaces `ContosoUniversity.Data` und 
 
 ### <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-Die Verbindungszeichenfolge gibt eine SQL Server-LocalDB-Datenbank an. LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar zur Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Standardmäßig erstellt LocalDB *.mdf* -Datenbankdateien im `C:/Users/<user>`-Verzeichnis.
+Die Verbindungszeichenfolge gibt eine SQL Server-LocalDB-Datenbank an. LocalDB ist eine Basisversion der SQL Server Express-Datenbank-Engine, die zwar zur Anwendungsentwicklung, aber nicht für den Produktionseinsatz bestimmt ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Standardmäßig erstellt LocalDB *.mdf*-Datenbankdateien im `C:/Users/<user>`-Verzeichnis.
 
 ## <a name="initialize-db-with-test-data"></a>Initialisieren Sie die Datenbank mit Testdaten
 
@@ -576,13 +582,13 @@ Entity Framework erstellt eine leere Datenbank für Sie. In diesem Abschnitt sch
 
 Verwenden Sie an dieser Stelle die `EnsureCreated`-Methode, um die Datenbank automatisch zu erstellen. In einem [späteren Tutorial](migrations.md) wird dargestellt, wie Sie mit Änderungen an dem Modell umgehen können, indem Sie Code First-Migrationen verwenden, um das Datenbankschema zu verwenden, anstatt die Datenbank zu verwerfen und neu zu erstellen.
 
-Erstellen Sie im Ordner *Data* (Daten) eine neue Klassendatei mit dem Namen *DbInitializer.cs* , und ersetzen Sie den Vorlagencode durch den folgenden Code, wodurch, falls nötig, eine Datenbank erstellt wird und Testdaten in eine neue Datenbank geladen werden.
+Erstellen Sie im Ordner *Data* (Daten) eine neue Klassendatei mit dem Namen *DbInitializer.cs*, und ersetzen Sie den Vorlagencode durch den folgenden Code, wodurch, falls nötig, eine Datenbank erstellt wird und Testdaten in eine neue Datenbank geladen werden.
 
 [!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
 
 Der Code überprüft, ob Studenten in der Datenbank enthalten sind. Wenn dies nicht der Fall ist, nimmt diese an, dass die Datenbank neu ist und mit Testdaten aufgefüllt werden muss. Testdaten werden in Arrays anstelle von `List<T>`-Auflistungen geladen, um die Leistung zu optimieren.
 
-Ändern Sie in der *Program.cs* -Datei die `Main`-Methode, um beim Anwendungsstart die folgenden Vorgänge auszuführen:
+Ändern Sie in der *Program.cs*-Datei die `Main`-Methode, um beim Anwendungsstart die folgenden Vorgänge auszuführen:
 
 * Rufen Sie eine Datenbankkontextinstanz aus dem Dependency Injection-Container ab.
 * Rufen Sie die Seedmethode auf, indem Sie den Kontext an diese übergeben.
@@ -603,8 +609,8 @@ In diesem Abschnitt wird die Gerüstbau-Engine in Visual Studio verwendet, um ei
 
 Die automatische Erstellung von CRUD-Aktionsmethoden und Ansichten wird als Gerüstbau bezeichnet. Gerüstbau und Codegeneration unterscheiden sich insofern als der Gerüstbaucode ein Startpunkt ist, den Sie Ihren eigenen Anforderungen entsprechend verändern können. Generierter Code wird in der Regel nicht verändert. Wenn Sie generierten Code anpassen müssen, verwenden Sie partielle Klassen, oder generieren Sie den Code erneut, wenn Änderungen vorgenommen werden.
 
-* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner **Controller** , und klicken Sie auf **Hinzufügen > Neues Gerüstelement**.
-* Im Dialogfeld **Gerüst hinzufügen** :
+* Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf den Ordner **Controller**, und klicken Sie auf **Hinzufügen > Neues Gerüstelement**.
+* Im Dialogfeld **Gerüst hinzufügen**:
   * Wählen Sie **MVC-Controller mit Ansichten unter Verwendung von Entity Framework** aus.
   * Klicken Sie auf **Hinzufügen**. Das Dialogfeld **Add MVC Controller with views, using Entity Framework** (MVC-Controller mit Ansichten mithilfe von Entity Framework hinzufügen) wird angezeigt: ![Gerüstelement „Student“](intro/_static/scaffold-student2.png)
   * Wählen Sie unter **Modellklasse** **Student** aus.
@@ -612,13 +618,13 @@ Die automatische Erstellung von CRUD-Aktionsmethoden und Ansichten wird als Ger�
   * Akzeptieren Sie den Standardnamen **StudentsController**.
   * Klicken Sie auf **Hinzufügen**.
 
-Die Gerüstbau-Engine von Visual Studio erstellt eine *StudentsController.cs* -Datei und mehrere Ansichten ( *.cshtml* -Dateien), die mit dem Controller zusammenarbeiten.
+Die Gerüstbau-Engine von Visual Studio erstellt eine *StudentsController.cs*-Datei und mehrere Ansichten ( *.cshtml*-Dateien), die mit dem Controller zusammenarbeiten.
 
 Beachten Sie, dass der Controller `SchoolContext` als Konstruktorparameter verwendet.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Context&highlight=5,7,9)]
 
-Über die Abhängigkeitsinjektion in ASP.NET Core wird eine Instanz von `SchoolContext` an den Controller übergeben. Dies wurde in der *Startup.cs* -Datei konfiguriert.
+Über die Abhängigkeitsinjektion in ASP.NET Core wird eine Instanz von `SchoolContext` an den Controller übergeben. Dies wurde in der *Startup.cs*-Datei konfiguriert.
 
 Der Controller enthält eine `Index`-Aktionsmethode, über die alle Studenten in der Datenbank angezeigt werden. Die Methode ruft eine Listen von Studenten aus der Entitätenmenge „Student“ ab, indem sie die `Students`-Eigenschaft aus der Datenbankkontextinstanz liest:
 
@@ -626,7 +632,7 @@ Der Controller enthält eine `Index`-Aktionsmethode, über die alle Studenten in
 
 Später im Tutorial erfahren Sie mehr über die Elemente der asynchronen Programmierung in diesem Code.
 
-In der *Views/Students/Index.cshtml* -Ansicht wird diese Liste in einer Tabelle dargestellt:
+In der *Views/Students/Index.cshtml*-Ansicht wird diese Liste in einer Tabelle dargestellt:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index1.cshtml)]
 
@@ -648,15 +654,15 @@ Wenn das SSOX-Fenster noch nicht geöffnet ist, wählen Sie es aus dem Menü **A
 
 Klicken Sie im SSOX auf **(localdb)\MSSQLLocalDB > Datenbanken** und dann auf den Eintrag zu dem Datenbanknamen, der sich in der Verbindungszeichenfolge in der *appsettings.json* -Datei befindet.
 
-Erweitern Sie den Knoten **Tabellen** , um die Tabellen in der Datenbank anzuzeigen.
+Erweitern Sie den Knoten **Tabellen**, um die Tabellen in der Datenbank anzuzeigen.
 
 ![Tabellen im SSOX](intro/_static/ssox-tables.png)
 
-Klicken Sie mit der rechten Maustaste auf die Tabelle **Students** , und klicken Sie auf **Daten anzeigen** , um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
+Klicken Sie mit der rechten Maustaste auf die Tabelle **Students**, und klicken Sie auf **Daten anzeigen**, um die erstellten Spalten und die in die Tabelle eingefügten Zeilen aufzurufen.
 
 ![Tabelle „Student“ im SSOX](intro/_static/ssox-student-table.png)
 
-Die *MDF* - und *LDF* -Datenbankdateien befinden sich im Ordner *C:\Benutzer\\\<username>* .
+Die *MDF*- und *LDF*-Datenbankdateien befinden sich im Ordner *C:\Benutzer\\\<username>* .
 
 Da Sie `EnsureCreated` in der Initialisierermethode aufrufen, die beim App-Start ausgeführt wird, können Sie Änderungen an der `Student`-Klasse vornehmen, die Datenbank löschen oder die Anwendung erneut ausführen. Dann wird Ihre Datenbank automatisch Ihren Änderungen entsprechend neu erstellt. Wenn Sie z.B. eine `EmailAddress`-Eigenschaft zu der `Student`-Klasse hinzufügen, wird eine neue `EmailAddress`-Spalte in der neu erstellten Tabelle angezeigt.
 

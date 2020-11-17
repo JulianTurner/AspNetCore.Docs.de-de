@@ -333,42 +333,6 @@
           items:
             - name: Übersicht
               uid: blazor/components/index
-            - name: Integrierte Komponenten
-              items:
-                - name: App
-                  href: blazor/templates.md#blazor-project-structure
-                - name: Authentifizierung
-                  href: blazor/security/webassembly/index.md#authentication-component
-                - name: AuthorizeView
-                  href: blazor/security/index.md#authorizeview-component
-                - name: InputCheckbox
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputDate
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputFile
-                  uid: blazor/file-uploads
-                - name: InputNumber
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadio
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadioGroup
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputSelect
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputText
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputTextArea
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: MainLayout
-                  href: blazor/layouts.md#mainlayout-component
-                - name: NavLink
-                  href: blazor/fundamentals/routing.md#navlink-component
-                - name: NavMenu
-                  href: blazor/fundamentals/routing.md#navlink-component
-                - name: Router
-                  href: blazor/fundamentals/routing.md#route-templates
-                - name: Virtualize
-                  uid: blazor/components/virtualization
             - name: Kaskadierende Werte und Parameter
               uid: blazor/components/cascading-values-and-parameters
             - name: Datenbindung
@@ -467,6 +431,42 @@
           uid: blazor/blazor-server-ef-core
         - name: Erweiterte Szenarien
           uid: blazor/advanced-scenarios
+        - name: Integrierte Komponenten
+          items:
+            - name: App
+              href: blazor/templates.md#blazor-project-structure
+            - name: Authentifizierung
+              href: blazor/security/webassembly/index.md#authentication-component
+            - name: AuthorizeView
+              href: blazor/security/index.md#authorizeview-component
+            - name: InputCheckbox
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputDate
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputFile
+              uid: blazor/file-uploads
+            - name: InputNumber
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadio
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadioGroup
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputSelect
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputText
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputTextArea
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: MainLayout
+              href: blazor/layouts.md#mainlayout-component
+            - name: NavLink
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: NavMenu
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: Router
+              href: blazor/fundamentals/routing.md#route-templates
+            - name: Virtualize
+              uid: blazor/components/virtualization
     - name: Clientseitige Entwicklung
       items:
         - name: Einzelseiten-Apps
@@ -604,9 +604,9 @@
       uid: web-api/advanced/conventions
     - name: Behandeln von Fehlern
       uid: web-api/handle-errors
-    - name: HTTP REPL
+    - name: Testen mit HttpRepl
       items:
-        - name: Testen von APIs
+        - name: Übersicht
           uid: web-api/http-repl
         - name: Telemetrie
           uid: web-api/http-repl/telemetry

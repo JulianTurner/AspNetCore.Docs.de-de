@@ -5,7 +5,7 @@ description: Hier erfahren Sie, wie Sie das globale .NET Core-Tool HttpRepl verw
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
-ms.date: 11/11/2020
+ms.date: 11/12/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: df2d4e63a18471b4c5f4f1c9434921303bb1da8a
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: c661141c1bec93c0f7b6404964dc0bca2319b529
+ms.sourcegitcommit: 827e8be18cebbcc09b467c089e17fa6f5e430cb2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550620"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94634612"
 ---
 # <a name="test-web-apis-with-the-httprepl"></a>Testen von Web-APIs mit HttpRepl
 
@@ -204,7 +204,7 @@ The field 'paths' in 'document' object is REQUIRED [#/paths]
 Führen Sie den Befehl `ls` oder `dir` aus, um die unterschiedlichen Endpunkte (Controller) im aktuellen Pfad der Web-API-Adresse aufzulisten:
 
 ```console
-https://localhot:5001/> ls
+https://localhost:5001/> ls
 ```
 
 Folgendes Ausgabeformat wird angezeigt:
@@ -1127,3 +1127,6 @@ https://localhost:5001/>
 
 * [REST-API-Anforderungen](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
 * [GitHub-Repository für HttpRepl](https://github.com/dotnet/HttpRepl)
+* [Konfigurieren von Visual Studio zum Starten von HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-windows-to-launch-httprepl-on-f5)
+* [Konfigurieren von Visual Studio Code zum Starten von HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-code-to-launch-httprepl-on-debug)
+* [Konfigurieren von Visual Studio für Mac zum Starten von HttpRepl](https://devblogs.microsoft.com/aspnet/httprepl-a-command-line-tool-for-interacting-with-restful-http-services/#configure-visual-studio-for-mac-to-launch-httprepl-as-a-custom-tool)

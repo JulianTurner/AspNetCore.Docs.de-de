@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: e87e74533fe6900d8e0a73708ad24b765a968493
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0bfdb1932d829ec00c9de1bd38b7920cb1f40c51
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056802"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570171"
 ---
 # <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>Erstellen einer wiederverwendbaren Benutzeroberfläche mithilfe eines Razor-Klassenbibliotheksprojekts in ASP.NET Core
 
@@ -31,7 +31,7 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Ansichten, Seiten, Controller, Seitenmodelle, [Razor-Komponenten](xref:blazor/components/class-libraries), [Anzeigekomponenten](xref:mvc/views/view-components) und Datenmodelle im Zusammenhang mit Razor können in einer Razor-Klassenbibliothek (Razor Class Library, RCL) zusammengefasst werden. Die RCL kann verpackt und wiederverwendet werden. Sie kann in Anwendungen eingebunden werden, wodurch sich die in der RCL enthaltenen Ansichten und Seiten überschreiben lassen. Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML* -Datei) in der Web-App Vorrang.
+Ansichten, Seiten, Controller, Seitenmodelle, [Razor-Komponenten](xref:blazor/components/class-libraries), [Anzeigekomponenten](xref:mvc/views/view-components) und Datenmodelle im Zusammenhang mit Razor können in einer Razor-Klassenbibliothek (Razor Class Library, RCL) zusammengefasst werden. Die RCL kann verpackt und wiederverwendet werden. Sie kann in Anwendungen eingebunden werden, wodurch sich die in der RCL enthaltenen Ansichten und Seiten überschreiben lassen. Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML*-Datei) in der Web-App Vorrang.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
@@ -69,11 +69,11 @@ Die ASP.NET Core-Vorlagen gehen davon aus, dass die RCL-Inhalte sich im Ordner *
 Folgende Komponenten können auf die RCL verweisen:
 
 * NuGet-Pakete. Weitere Informationen finden Sie unter [Creating NuGet packages](/nuget/create-packages/creating-a-package) (Erstellen von NuGet-Paketen), [dotnet add package](/dotnet/core/tools/dotnet-add-package) und [Erstellen und Veröffentlichen eines NuGet-Pakets](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
-* *{ProjectName}.csproj* -Dateien. Weitere Informationen finden Sie unter [dotnet add reference](/dotnet/core/tools/dotnet-add-reference).
+* *{ProjectName}.csproj*-Dateien. Weitere Informationen finden Sie unter [dotnet add reference](/dotnet/core/tools/dotnet-add-reference).
 
 ## <a name="override-views-partial-views-and-pages"></a>Überschreiben von Ansichten, Teilansichten und Seiten
 
-Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML* -Datei) in der Web-App Vorrang. Wenn Sie z. B. *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* zu WebApp1 hinzufügen, hat Page1 in WebApp1 Vorrang vor Page1 in der RCL.
+Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML*-Datei) in der Web-App Vorrang. Wenn Sie z. B. *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* zu WebApp1 hinzufügen, hat Page1 in WebApp1 Vorrang vor Page1 in der RCL.
 
 Ob Page1 in WebApp1 tatsächlich die Priorität zugeordnet wird, können Sie testen, indem Sie im Beispieldownload *WebApp1/Areas/MyFeature2* in *WebApp1/Areas/MyFeature* umbenennen.
 
@@ -122,7 +122,7 @@ Im folgenden Beispiel wird das Stylesheet *lib.css* im Ordner *wwwroot* nicht al
 
 Gehen Sie wie folgt vor, um TypeScript-Dateien in eine RCL aufzunehmen:
 
-1. Legen Sie die TypeScript-Dateien ( *.ts* ) außerhalb des Ordners *wwwroot* ab. Legen Sie sie zum Beispiel im Ordner *Client* ab.
+1. Legen Sie die TypeScript-Dateien ( *.ts*) außerhalb des Ordners *wwwroot* ab. Legen Sie sie zum Beispiel im Ordner *Client* ab.
 
 1. Konfigurieren Sie die TypeScript-Buildausgabe für den Ordner *wwwroot*. Legen Sie die `TypescriptOutDir`-Eigenschaft in einer Eigenschaftengruppe (`PropertyGroup`) wie folgt in der Projektdatei fest:
 
@@ -198,7 +198,7 @@ Wenn die App veröffentlicht wird, werden die Begleitobjekte aus allen Projekten
 
 ::: moniker range="< aspnetcore-3.0"
 
-Ansichten, Seiten, Controller, Seitenmodelle, [Razor-Komponenten](xref:blazor/components/class-libraries), [Anzeigekomponenten](xref:mvc/views/view-components) und Datenmodelle im Zusammenhang mit Razor können in einer Razor-Klassenbibliothek (Razor Class Library, RCL) zusammengefasst werden. Die RCL kann verpackt und wiederverwendet werden. Sie kann in Anwendungen eingebunden werden, wodurch sich die in der RCL enthaltenen Ansichten und Seiten überschreiben lassen. Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML* -Datei) in der Web-App Vorrang.
+Ansichten, Seiten, Controller, Seitenmodelle, [Razor-Komponenten](xref:blazor/components/class-libraries), [Anzeigekomponenten](xref:mvc/views/view-components) und Datenmodelle im Zusammenhang mit Razor können in einer Razor-Klassenbibliothek (Razor Class Library, RCL) zusammengefasst werden. Die RCL kann verpackt und wiederverwendet werden. Sie kann in Anwendungen eingebunden werden, wodurch sich die in der RCL enthaltenen Ansichten und Seiten überschreiben lassen. Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML*-Datei) in der Web-App Vorrang.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
@@ -237,7 +237,7 @@ Die ASP.NET Core-Vorlagen gehen davon aus, dass die RCL-Inhalte sich im Ordner *
 Folgende Komponenten können auf die RCL verweisen:
 
 * NuGet-Pakete. Weitere Informationen finden Sie unter [Creating NuGet packages](/nuget/create-packages/creating-a-package) (Erstellen von NuGet-Paketen), [dotnet add package](/dotnet/core/tools/dotnet-add-package) und [Erstellen und Veröffentlichen eines NuGet-Pakets](/nuget/quickstart/create-and-publish-a-package-using-visual-studio).
-* *{ProjectName}.csproj* -Dateien. Weitere Informationen finden Sie unter [dotnet add reference](/dotnet/core/tools/dotnet-add-reference).
+* *{ProjectName}.csproj*-Dateien. Weitere Informationen finden Sie unter [dotnet add reference](/dotnet/core/tools/dotnet-add-reference).
 
 ## <a name="walkthrough-create-an-rcl-project-and-use-from-a-no-locrazor-pages-project"></a>Exemplarische Vorgehensweise: Erstellen eines RCL-Projekts und dessen Verwendung in einem Razor Pages-Projekt
 
@@ -249,17 +249,17 @@ Wenn Sie die vollständige App nicht heruntergeladen haben und das Beispielproje
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Öffnen Sie die *SLN* -Datei in Visual Studio. Führen Sie die App aus.
+Öffnen Sie die *SLN*-Datei in Visual Studio. Führen Sie die App aus.
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
-Erstellen Sie über die Eingabeaufforderung im *cli* -Verzeichnis die RCL und die Web-App.
+Erstellen Sie über die Eingabeaufforderung im *cli*-Verzeichnis die RCL und die Web-App.
 
 ```dotnetcli
 dotnet build
 ```
 
-Wechseln Sie ins Verzeichnis *WebApp1* , und führen Sie die App aus:
+Wechseln Sie ins Verzeichnis *WebApp1*, und führen Sie die App aus:
 
 ```dotnetcli
 dotnet run
@@ -377,7 +377,7 @@ Wechseln Sie zu `/MyFeature/Page1`, um zu überprüfen, ob die Klassenbibliothek
 
 ## <a name="override-views-partial-views-and-pages"></a>Überschreiben von Ansichten, Teilansichten und Seiten
 
-Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML* -Datei) in der Web-App Vorrang. Wenn Sie z. B. *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* zu WebApp1 hinzufügen, hat Page1 in WebApp1 Vorrang vor Page1 in der RCL.
+Wenn eine Ansicht, Teilansicht oder Razor-Seite sowohl in der Web-App als auch in der RCL enthalten ist, hat das Razor-Markup (die *CSHTML*-Datei) in der Web-App Vorrang. Wenn Sie z. B. *WebApp1/Areas/MyFeature/Pages/Page1.cshtml* zu WebApp1 hinzufügen, hat Page1 in WebApp1 Vorrang vor Page1 in der RCL.
 
 Ob Page1 in WebApp1 tatsächlich die Priorität zugeordnet wird, können Sie testen, indem Sie im Beispieldownload *WebApp1/Areas/MyFeature2* in *WebApp1/Areas/MyFeature* umbenennen.
 
@@ -404,4 +404,15 @@ Nehmen Sie an, dass *RazorUIClassLib/Pages/Shared* zwei Teildateien enthält: *_
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
+::: moniker range=">= aspnetcore-5.0"
+
 * <xref:blazor/components/class-libraries>
+* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:blazor/components/class-libraries>
+
+::: moniker-end

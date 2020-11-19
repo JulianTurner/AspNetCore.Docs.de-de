@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 1769ddbb95c9ffe373e916c885e411adc3d4c65b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7e79836e3dd1da175a62a84e11dfd30fee7b2f1b
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054995"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570145"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>Blazor-Zustandsverwaltung in ASP.NET Core
 
@@ -61,12 +61,12 @@ Eine App kann nur den *App-Zustand* beibehalten. Benutzeroberflächen wie Kompon
 
 Es gibt allgemeine Speicherorte für die Beibehaltung des Zustands:
 
-* [Serverseitige Speicherung](#server-side-storage)
-* [URL](#url)
-* [Browserspeicherung](#browser-storage)
-* [Arbeitsspeicherinterner Zustandscontainer des Diensts](#in-memory-state-container-service)
+* [Serverseitige Speicherung](#server-side-storage-wasm)
+* [URL](#url-wasm)
+* [Browserspeicherung](#browser-storage-wasm)
+* [Arbeitsspeicherinterner Zustandscontainer des Diensts](#in-memory-state-container-service-wasm)
 
-### <a name="server-side-storage"></a>Serverseitige Speicherung
+<h2 id="server-side-storage-wasm">Serverseitige Speicherung</h2>
 
 Für permanente Datenspeicherung, die mehrere Benutzer und Geräte umfasst, kann die App unabhängigen serverseitigen Speicher verwenden, auf den über eine Web-API zugegriffen wird. Folgende Optionen sind verfügbar:
 
@@ -90,7 +90,7 @@ Weitere Informationen zu den Azure-Datenspeicheroptionen finden Sie hier:
 * [Azure-Datenbanken](https://azure.microsoft.com/product-categories/databases/)
 * [Azure Storage-Dokumentation](/azure/storage/)
 
-### <a name="url"></a>URL
+<h2 id="url-wasm">URL</h2>
 
 Modellieren Sie vorübergehende Daten, die den Navigationszustand darstellen, als Teil der URL. Beispiele für in der URL modellierte Benutzerzustände:
 
@@ -101,7 +101,7 @@ Der Inhalt der Adressleiste des Browsers wird beibehalten, wenn der Benutzer die
 
 Weitere Informationen zum Definieren von URL-Mustern mit der [`@page`](xref:mvc/views/razor#page)-Direktive finden Sie unter <xref:blazor/fundamentals/routing>.
 
-### <a name="browser-storage"></a>Browserspeicherung
+<h2 id="browser-storage-wasm">Browserspeicherung</h2>
 
 Für vorübergehende Daten, die der Benutzer aktiv erstellt, sind die [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage)- und [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)-Sammlungen des Browsers ein häufig verwendeter Speicherort:
 
@@ -121,7 +121,7 @@ Im Allgemeinen ist `sessionStorage` in der Anwendung sicherer. `sessionStorage` 
 > [!WARNING]
 > Benutzer können die Daten anzeigen oder bearbeiten, die in `localStorage` und `sessionStorage` gespeichert sind.
 
-## <a name="in-memory-state-container-service"></a>Arbeitsspeicherinterner Zustandscontainer des Diensts
+<h2 id="in-memory-state-container-service-wasm">Arbeitsspeicherinterner Zustandscontainer des Diensts</h2>
 
 [!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
@@ -170,12 +170,12 @@ Eine App kann nur den *App-Zustand* beibehalten. Benutzeroberflächen wie Kompon
 
 Es gibt allgemeine Speicherorte für die Beibehaltung des Zustands:
 
-* [Serverseitige Speicherung](#server-side-storage)
-* [URL](#url)
-* [Browserspeicherung](#browser-storage)
-* [Arbeitsspeicherinterner Zustandscontainer des Diensts](#in-memory-state-container-service)
+* [Serverseitige Speicherung](#server-side-storage-server)
+* [URL](#url-server)
+* [Browserspeicherung](#browser-storage-server)
+* [Arbeitsspeicherinterner Zustandscontainer des Diensts](#in-memory-state-container-service-server)
 
-### <a name="server-side-storage"></a>Serverseitige Speicherung
+<h2 id="server-side-storage-server">Serverseitige Speicherung</h2>
 
 Für permanente Datenspeicherung, die mehrere Benutzer und Geräte umfasst, kann die App serverseitigen Speicher verwenden. Folgende Optionen sind verfügbar:
 
@@ -191,7 +191,7 @@ Weitere Informationen zu den Azure-Datenspeicheroptionen finden Sie hier:
 * [Azure-Datenbanken](https://azure.microsoft.com/product-categories/databases/)
 * [Azure Storage-Dokumentation](/azure/storage/)
 
-### <a name="url"></a>URL
+<h2 id="url-server">URL</h2>
 
 Modellieren Sie vorübergehende Daten, die den Navigationszustand darstellen, als Teil der URL. Beispiele für in der URL modellierte Benutzerzustände:
 
@@ -205,7 +205,7 @@ Der Inhalt der Adressleiste des Browsers wird in folgenden Fällen beibehalten:
 
 Weitere Informationen zum Definieren von URL-Mustern mit der [`@page`](xref:mvc/views/razor#page)-Direktive finden Sie unter <xref:blazor/fundamentals/routing>.
 
-### <a name="browser-storage"></a>Browserspeicherung
+<h2 id="browser-storage-server">Browserspeicherung</h2>
 
 Für vorübergehende Daten, die der Benutzer aktiv erstellt, sind die [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage)- und [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)-Sammlungen des Browsers ein häufig verwendeter Speicherort:
 
@@ -371,7 +371,7 @@ else
 
 ### <a name="factor-out-the-state-preservation-to-a-common-location"></a>Ausklammern der Zustandsbeibehaltung an einen allgemeinen Speicherort
 
-Wenn viele Komponenten auf browserbasierte Speicherung zurückgreifen, führt ein erneutes Implementieren des Zustandsanbietercodes häufig zur Duplizierung des Codes. Eine Möglichkeit, die Duplizierung von Code zu vermeiden, besteht darin, eine *übergeordnete Komponente des Zustandsanbieters zu erstellen* , die die Zustandsanbieterlogik kapselt. Untergeordnete Komponenten können ohne Berücksichtigung des Zustandspersistenzmechanismus mit beibehaltenen Daten arbeiten.
+Wenn viele Komponenten auf browserbasierte Speicherung zurückgreifen, führt ein erneutes Implementieren des Zustandsanbietercodes häufig zur Duplizierung des Codes. Eine Möglichkeit, die Duplizierung von Code zu vermeiden, besteht darin, eine *übergeordnete Komponente des Zustandsanbieters zu erstellen*, die die Zustandsanbieterlogik kapselt. Untergeordnete Komponenten können ohne Berücksichtigung des Zustandspersistenzmechanismus mit beibehaltenen Daten arbeiten.
 
 Im folgenden Beispiel sehen Sie eine `CounterStateProvider`-Komponente, für die die Zählerdaten in `sessionStorage` persistent gespeichert werden:
 
@@ -615,7 +615,7 @@ else
 
 ### <a name="factor-out-the-state-preservation-to-a-common-location"></a>Ausklammern der Zustandsbeibehaltung an einen allgemeinen Speicherort
 
-Wenn viele Komponenten auf browserbasierte Speicherung zurückgreifen, führt ein erneutes Implementieren des Zustandsanbietercodes häufig zur Duplizierung des Codes. Eine Möglichkeit, die Duplizierung von Code zu vermeiden, besteht darin, eine *übergeordnete Komponente des Zustandsanbieters zu erstellen* , die die Zustandsanbieterlogik kapselt. Untergeordnete Komponenten können ohne Berücksichtigung des Zustandspersistenzmechanismus mit beibehaltenen Daten arbeiten.
+Wenn viele Komponenten auf browserbasierte Speicherung zurückgreifen, führt ein erneutes Implementieren des Zustandsanbietercodes häufig zur Duplizierung des Codes. Eine Möglichkeit, die Duplizierung von Code zu vermeiden, besteht darin, eine *übergeordnete Komponente des Zustandsanbieters zu erstellen*, die die Zustandsanbieterlogik kapselt. Untergeordnete Komponenten können ohne Berücksichtigung des Zustandspersistenzmechanismus mit beibehaltenen Daten arbeiten.
 
 Im folgenden Beispiel sehen Sie eine `CounterStateProvider`-Komponente, für die die Zählerdaten in `sessionStorage` persistent gespeichert werden:
 
@@ -700,7 +700,7 @@ Um viele verschiedene Zustandsobjekte beizubehalten und verschiedene Teilmengen 
 
 ::: moniker-end
 
-## <a name="in-memory-state-container-service"></a>Arbeitsspeicherinterner Zustandscontainer des Diensts
+<h2 id="in-memory-state-container-service-server">Arbeitsspeicherinterner Zustandscontainer des Diensts</h2>
 
 [!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 

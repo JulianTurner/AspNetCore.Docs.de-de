@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
-ms.openlocfilehash: 1c703cdbd168c2e83d09c40f7740689df8938dad
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.openlocfilehash: c96e7107c85bf36f55f6571c71c20d09bc94ddb3
+ms.sourcegitcommit: fb208f907249cc7aab029afff941a0266c187050
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422779"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94688498"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Erste Schritte mit ASP.NET Core MVC
 
@@ -75,7 +75,7 @@ Am Ende verfügen Sie über eine App, die Filmdaten verwalten und anzeigen kann.
     1. **ASP.NET Core-Web-App (Model View Controller)** .
     1. **Erstellen**
 
-![Erstellen einer neuen ASP.NET Core-Webanwendung ](start-mvc/_static/5/mvc.png)
+![Erstellen einer neuen ASP.NET Core-Webanwendung ](start-mvc/_static/mvcVS19v16.9.png)
 
 Alternative Ansätze zum Erstellen des Projekts finden Sie unter [Erstellen eines neuen Projekts in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -142,7 +142,7 @@ Drücken Sie **STRG+F5**, um die App im Nicht-Debugmodus auszuführen.
 
   Auf der folgenden Abbildung sehen Sie die App:
 
-  ![Start- oder Indexseite](start-mvc/_static/home2.2.png)
+  ![Start- oder Indexseite](start-mvc/_static/home50-vs.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -154,7 +154,7 @@ Drücken Sie STRG+F5, um die Ausführung ohne den Debugger zu starten.
 
   Das Starten der App mit STRG+F5 (Nicht-Debugmodus) ermöglicht die Änderung des Codes, das Speichern der Datei, das Aktualisieren des Browsers und das Anzeigen von Codeänderungen. Viele Entwickler bevorzugen den Nicht-Debugmodus, um die Seite zu aktualisieren und Änderungen anzuzeigen.
 
-  ![Start- oder Indexseite](start-mvc/_static/home2.2.png)
+  ![Start- oder Indexseite](start-mvc/_static/home50-port5001.png)
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 

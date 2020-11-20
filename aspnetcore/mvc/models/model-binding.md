@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 49300d32096e577db9b13a0510cc310b91ddb51d
-ms.sourcegitcommit: 33f631a4427b9a422755601ac9119953db0b4a3e
+ms.openlocfilehash: 4de34a75da932b41190caa8434ac5be8cc0710fd
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93365352"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981933"
 ---
 # <a name="model-binding-in-aspnet-core"></a>Modellbindung in ASP.NET Core
 
@@ -212,7 +212,7 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
@@ -280,7 +280,7 @@ Mehrere integrierte Attribute stehen für die Kontrolle der Modellbindung komple
 * `[BindNever]`
 
 > [!WARNING]
-> Diese Attribute wirken sich auf die Modellbindung aus, wenn bereitgestellte Formulardaten die Quelle der Wert sind. Sie haben * **nicht** _ Auswirkungen auf Eingabe Formatierungen, die gepostete JSON-und XML-Anforderungs Texte verarbeiten. Eingabeformatierer werden [später in diesem Artikel](#input-formatters) erklärt.
+> Diese Attribute wirken sich auf die Modellbindung aus, wenn bereitgestellte Formulardaten die Quelle der Wert sind. Sie haben ***nicht** _ Auswirkungen auf Eingabe Formatierungen, die gepostete JSON-und XML-Anforderungs Texte verarbeiten. Eingabeformatierer werden [später in diesem Artikel](#input-formatters) erklärt.
 
 ### <a name="bind-attribute"></a>[Bind]-Attribut
 
@@ -488,7 +488,7 @@ Eine in der HTTP-Anforderung enthaltene, hochgeladenen Datei.  Außerdem wird `I
 
 ### <a name="cancellationtoken"></a>CancellationToken
 
-Wird verwendet, um die Aktivität in asynchronen Controllern zu beenden.
+Aktionen können optional einen `CancellationToken` als Parameter binden. Dies bindet <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted> , wenn die Verbindung, die der HTTP-Anforderung zugrunde liegt, abgebrochen wird. Aktionen können diesen Parameter verwenden, um asynchrone Vorgänge mit langer Laufzeit abzubrechen, die als Teil der Controller Aktionen ausgeführt werden.
 
 ### <a name="formcollection"></a>„FormCollection“
 
@@ -496,7 +496,7 @@ Wird verwendet, um alle Werte aus bereitgestellten Formulardaten abzurufen.
 
 ## <a name="input-formatters"></a>Eingabeformatierer
 
-Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer* , der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
+Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer*, der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
 
 ASP.NET Core wählt Eingabeformatierer auf Grundlage des [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute)-Attributs aus. Wenn kein Attribut vorhanden ist, verwendet es den [Content-Type-Header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 
@@ -761,7 +761,7 @@ Die einfachen Typen, in die die Modellbindung Quellzeichenfolgen konvertieren ka
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
-* [Guid](xref:System.ComponentModel.GuidConverter)
+* [GUID](xref:System.ComponentModel.GuidConverter)
 * [Int16](xref:System.ComponentModel.Int16Converter), [Int32](xref:System.ComponentModel.Int32Converter), [Int64](xref:System.ComponentModel.Int64Converter)
 * [Single](xref:System.ComponentModel.SingleConverter)
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
@@ -983,7 +983,7 @@ Wird verwendet, um alle Werte aus bereitgestellten Formulardaten abzurufen.
 
 ## <a name="input-formatters"></a>Eingabeformatierer
 
-Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer* , der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
+Daten im Anforderungstext können im JSON-, XML- oder einem anderen Format sein. Um diese Daten zu analysieren, verwendet die Modellbindung einen *Eingabeformatierer*, der für die Verarbeitung eines bestimmten Inhaltstyps konfiguriert ist. ASP.NET Core enthält standardmäßig JSON-basierte Eingabeformatierer für die Verarbeitung von JSON-Daten. Sie können andere Formatierer für andere Inhaltstypen hinzufügen.
 
 ASP.NET Core wählt Eingabeformatierer auf Grundlage des [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute)-Attributs aus. Wenn kein Attribut vorhanden ist, verwendet es den [Content-Type-Header](https://www.w3.org/Protocols/rfc1341/4_Content-Type.html).
 

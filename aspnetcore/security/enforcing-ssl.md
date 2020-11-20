@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: aa109aaa89003fd7566e7dc219ecc9799b077355
-ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
+ms.openlocfilehash: 209d055f6205eceb9efb5434427c303345791809
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94703669"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981959"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Erzwingen von HTTPS in ASP.net Core
 
@@ -162,7 +162,7 @@ Wenn Anforderungen in einer Reverseproxykonfiguration weitergeleitet werden, ver
 
 Wenn Sie Azure App Service bereitstellen, befolgen Sie die Anweisungen im [Tutorial: Binden eines vorhandenen benutzerdefinierten SSL-Zertifikats an Azure-Web-Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-### <a name="options"></a>Tastatur
+### <a name="options"></a>Optionen
 
 Der folgende markierte Code ruft [addhttpsredirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) auf, um Middleware-Optionen zu konfigurieren:
 
@@ -465,7 +465,9 @@ Legen Sie zum Verwenden von Firefox mit IIS Express oder Kestrel  `security.ente
 1. Set `security.enterprise_roots.enabled` = `true`
 1. Beenden und Neustarten von Firefox
 
-## <a name="additional-information"></a>Zusätzliche Informationen
+Weitere Informationen finden Sie unter [Einrichten von Zertifizierungsstellen (CAS) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox).
+
+## <a name="additional-information"></a>Weitere Informationen
 
 * <xref:host-and-deploy/proxy-load-balancer>
 * [Host ASP.net Core unter Linux mit Apache: HTTPS-Konfiguration](xref:host-and-deploy/linux-apache#https-configuration)

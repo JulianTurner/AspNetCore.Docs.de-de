@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 10a949831c180f51bc6bb9b8294150a558f9343c
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: fcd5524bed11cca2380ffd8956f437f742729b55
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060130"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417609"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault Konfigurations Anbieters in ASP.net Core
 
@@ -32,7 +32,7 @@ Von [Andrew Stanton-Nurse](https://github.com/anurse)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In diesem Dokument wird erläutert, wie Sie den [Microsoft Azure Key Vault](https://azure.microsoft.com/services/key-vault/) -Konfigurations Anbieter verwenden, um App-Konfigurationswerte aus Azure Key Vault geheimen Schlüsseln zu laden. Azure Key Vault ist ein cloudbasierter Dienst, der Ihnen hilft, kryptografische Schlüssel und Geheimnisse zu schützen, die von apps und Diensten verwendet werden. Gängige Szenarien für die Verwendung von Azure Key Vault mit ASP.net Core-apps sind:
+In diesem Dokument wird erläutert, wie Sie den [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) -Konfigurations Anbieter verwenden, um App-Konfigurationswerte aus Azure Key Vault geheimen Schlüsseln zu laden. Azure Key Vault ist ein cloudbasierter Dienst, der Ihnen hilft, kryptografische Schlüssel und Geheimnisse zu schützen, die von apps und Diensten verwendet werden. Gängige Szenarien für die Verwendung von Azure Key Vault mit ASP.net Core-apps sind:
 
 * Steuern des Zugriffs auf vertrauliche Konfigurationsdaten.
 * Erfüllen der Anforderung für die Überprüfung der Hardware Sicherheitsmodule (HSM) von PPS 140-2 Level 2 bei der Speicherung von Konfigurationsdaten.
@@ -41,7 +41,7 @@ In diesem Dokument wird erläutert, wie Sie den [Microsoft Azure Key Vault](http
 
 ## <a name="packages"></a>Pakete
 
-Fügen Sie einen Paket Verweis auf die [Microsoft.Extensions.Config-urung hinzu. Azurekeyvault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) -Paket.
+Fügen Sie einen Paket Verweis auf die [Azure.Extensions.AspNetCore.Config-urung hinzu. Geheimes](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets/) Paket.
 
 ## <a name="sample-app"></a>Beispiel-App
 
@@ -87,7 +87,7 @@ Die Anweisungen im [Schnellstart: festlegen und Abrufen eines Geheimnisses aus A
 
 1. Öffnen Sie Azure Cloud Shell, indem Sie eine der folgenden Methoden in der [Azure-Portal](https://portal.azure.com/)verwenden:
 
-   * Klicken Sie in der rechten oberen Ecke eines Codeblocks auf **Ausprobieren** . Verwenden Sie die Such Zeichenfolge "Azure CLI" im Textfeld.
+   * Klicken Sie in der rechten oberen Ecke eines Codeblocks auf **Ausprobieren**. Verwenden Sie die Such Zeichenfolge "Azure CLI" im Textfeld.
    * Öffnen Sie Cloud Shell in Ihrem Browser mit der Schaltfläche **Start Cloud Shell** .
    * Wählen Sie im Menü in der oberen rechten Ecke des Azure-Portal die Schaltfläche **Cloud Shell** aus.
 
@@ -120,29 +120,29 @@ Die Anweisungen im [Schnellstart: festlegen und Abrufen eines Geheimnisses aus A
 
 ## <a name="use-application-id-and-x509-certificate-for-non-azure-hosted-apps"></a>Verwenden Sie die Anwendungs-ID und das X. 509-Zertifikat für nicht in Azure gehostete Apps.
 
-Konfigurieren Sie Azure AD, Azure Key Vault und die APP für die Verwendung einer Azure Active Directory Anwendungs-ID und eines X. 509-Zertifikats, um sich bei einem Schlüssel Tresor zu authentifizieren, **Wenn die APP außerhalb von Azure gehostet wird** . Weitere Informationen finden Sie im Artikel [Informationen zu Schlüsseln, Geheimnissen und Zertifikaten](/azure/key-vault/about-keys-secrets-and-certificates).
+Konfigurieren Sie Azure AD, Azure Key Vault und die APP für die Verwendung einer Azure Active Directory Anwendungs-ID und eines X. 509-Zertifikats, um sich bei einem Schlüssel Tresor zu authentifizieren, **Wenn die APP außerhalb von Azure gehostet wird**. Weitere Informationen finden Sie im Artikel [Informationen zu Schlüsseln, Geheimnissen und Zertifikaten](/azure/key-vault/about-keys-secrets-and-certificates).
 
 > [!NOTE]
 > Obwohl die Verwendung einer Anwendungs-ID und eines X. 509-Zertifikats für in Azure gehostete Apps unterstützt wird, empfiehlt es sich, beim Hosten einer APP in Azure [verwaltete Identitäten für Azure-Ressourcen zu](#use-managed-identities-for-azure-resources) verwenden. Für verwaltete Identitäten ist das Speichern eines Zertifikats in der APP oder in der Entwicklungsumgebung nicht erforderlich.
 
 Die Beispiel-App verwendet eine Anwendungs-ID und ein X. 509-Zertifikat, wenn die- `#define` Anweisung am Anfang der *Program.cs* -Datei auf festgelegt ist `Certificate` .
 
-1. Erstellen Sie ein PKCS # 12-Archiv Zertifikat ( *. pfx* ). Optionen zum Erstellen von Zertifikaten sind [Makecert unter Windows](/windows/desktop/seccrypto/makecert) und [OpenSSL](https://www.openssl.org/).
+1. Erstellen Sie ein PKCS # 12-Archiv Zertifikat (*. pfx*). Optionen zum Erstellen von Zertifikaten sind [Makecert unter Windows](/windows/desktop/seccrypto/makecert) und [OpenSSL](https://www.openssl.org/).
 1. Installieren Sie das Zertifikat im persönlichen Zertifikat Speicher des aktuellen Benutzers. Das Markieren des Schlüssels als exportierbar ist optional. Notieren Sie den Fingerabdruck des Zertifikats, der später in diesem Prozess verwendet wird.
-1. Exportieren Sie das PKCS # 12-Archiv Zertifikat ( *. pfx* ) als ein-codiertes Zertifikat ( *. CER* ).
-1. Registrieren Sie die APP bei Azure AD ( **App-Registrierungen** ).
-1. Laden Sie das der-codierte Zertifikat ( *. CER* ) in Azure AD hoch:
+1. Exportieren Sie das PKCS # 12-Archiv Zertifikat (*. pfx*) als ein-codiertes Zertifikat (*. CER*).
+1. Registrieren Sie die APP bei Azure AD (**App-Registrierungen**).
+1. Laden Sie das der-codierte Zertifikat (*. CER*) in Azure AD hoch:
    1. Wählen Sie die app in Azure AD aus.
-   1. Navigieren Sie zu **Zertifikate & Geheimnissen** .
-   1. Wählen Sie **Zertifikat hochladen** aus, um das Zertifikat hochzuladen, das den öffentlichen Schlüssel enthält. Ein *CER* -, *PEM* -oder *CRT* -Zertifikat ist akzeptabel.
+   1. Navigieren Sie zu **Zertifikate & Geheimnissen**.
+   1. Wählen Sie **Zertifikat hochladen** aus, um das Zertifikat hochzuladen, das den öffentlichen Schlüssel enthält. Ein *CER*-, *PEM*-oder *CRT* -Zertifikat ist akzeptabel.
 1. Speichern Sie den Key Vault-Namen, die Anwendungs-ID und den Zertifikat Fingerabdruck in der APP- *appsettings.json* Datei.
 1. Navigieren Sie in der Azure-Portal zu **Schlüssel Tresoren** .
 1. Wählen Sie den Schlüssel Tresor aus, den Sie im Abschnitt " [Geheimnis Speicher in der Produktionsumgebung mit Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) " erstellt haben.
-1. Klicken Sie auf **Zugriffsrichtlinien** .
+1. Klicken Sie auf **Zugriffsrichtlinien**.
 1. Wählen Sie **Zugriffsrichtlinie hinzufügen** aus.
 1. Öffnen Sie **geheime Berechtigungen** , und stellen Sie der APP die Berechtigungen **Get** und **List** bereit.
 1. Wählen Sie **Prinzipal auswählen** , und wählen Sie die registrierte App nach Name aus. Wählen Sie die Schaltfläche **Auswählen** aus.
-1. Klicken Sie auf **OK** .
+1. Klicken Sie auf **OK**.
 1. Wählen Sie **Speichern** aus.
 1. Stellen Sie die App bereit.
 
@@ -153,9 +153,9 @@ Die `Certificate` Beispiel-APP erhält Ihre Konfigurationswerte aus `IConfigurat
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-Das X. 509-Zertifikat wird vom Betriebssystem verwaltet. Die App Ruft <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> mit Werten auf, die von der Datei bereitgestellt werden *appsettings.json* :
+Das X. 509-Zertifikat wird vom Betriebssystem verwaltet. Die App Ruft **addazurekeyvault** mit Werten auf, die von der Datei bereitgestellt werden *appsettings.json* :
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
+[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=46-49)]
 
 Beispielwerte:
 
@@ -163,7 +163,7 @@ Beispielwerte:
 * Anwendungs-ID: `627e911e-43cc-61d4-992e-12db9c81b413`
 * Zertifikat Fingerabdruck: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appsettings.json* :
+*appsettings.json*:
 
 [!code-json[](key-vault-configuration/samples/3.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -191,15 +191,15 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 
 Die Beispiel-App:
 
-* Erstellt eine Instanz der- `AzureServiceTokenProvider` Klasse ohne eine Verbindungs Zeichenfolge. Wenn keine Verbindungs Zeichenfolge bereitgestellt wird, versucht der Anbieter, ein Zugriffs Token von verwalteten Identitäten für Azure-Ressourcen abzurufen.
-* Ein neues <xref:Microsoft.Azure.KeyVault.KeyVaultClient> wird mit dem `AzureServiceTokenProvider` instanztokenrückruf erstellt.
-* Die- <xref:Microsoft.Azure.KeyVault.KeyVaultClient> Instanz wird mit einer Standard Implementierung von verwendet <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> , die alle geheimen Werte lädt und doppelte Bindestriche ( `--` ) durch Doppelpunkte ( `:` ) in Schlüsselnamen ersetzt.
+* Erstellt eine Instanz der- `DefaultAzureCredential` Klasse. die Anmelde Informationen versuchen, ein Zugriffs Token aus der Umgebung für Azure-Ressourcen abzurufen.
+* Ein neues [`Azure.Security.KeyVault.Secrets.Secrets`](/dotnet/api/azure.security.keyvault.secrets) wird mit der- `DefaultAzureCredential` Instanz erstellt.
+* Die- `Azure.Security.KeyVault.Secrets.Secrets` Instanz wird mit einer Standard Implementierung von verwendet `Azure.Extensions.Aspnetcore.Configuration.Secrets` , die alle geheimen Werte lädt und doppelte Bindestriche ( `--` ) durch Doppelpunkte ( `:` ) in Schlüsselnamen ersetzt.
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
+[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
 Beispiel Wert für Key Vault-Name: `contosovault`
-    
-*appsettings.json* :
+
+*appsettings.json*:
 
 ```json
 {
@@ -215,37 +215,35 @@ Informationen zur Verwendung des Anbieters mit einer verwalteten Identität und 
 
 ## <a name="configuration-options"></a>Konfigurationsoptionen
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> kann akzeptieren <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions> :
+Addazurekeyvault kann azurekeyvaultconfigurationoptions akzeptieren:
 
 ```csharp
-config.AddAzureKeyVault(
-    new AzureKeyVaultConfigurationOptions()
+config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new DefaultAzureCredential()),
+                        new AzureKeyVaultConfigurationOptions())
     {
         ...
     });
 ```
 
-| Eigenschaft         | Beschreibung |
+| Eigenschaft         | BESCHREIBUNG |
 | ---------------- | ----------- |
-| `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> , der zum Abrufen von Werten verwendet werden soll. |
-| `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> zum Steuern des geheimen Schlüssels verwendete Instanz. |
+| `Manager`        | `Azure.Extensions.Aspnetcore.Configuration.Secrets` zum Steuern des geheimen Schlüssels verwendete Instanz. |
 | `ReloadInterval` | `Timespan` , um zwischen versuchen zu warten, den Schlüssel Tresor auf Änderungen abzufragen. Der Standardwert ist `null` (die Konfiguration wird nicht neu geladen). |
-| `Vault`          | Key Vault-URI. |
 
 ## <a name="use-a-key-name-prefix"></a>Schlüsselnamen Präfix verwenden
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> stellt eine Überladung bereit, die eine Implementierung von akzeptiert <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> , mit der Sie steuern können, wie Key Vault-Geheimnisse in Konfigurationsschlüssel konvertiert werden. Beispielsweise können Sie die-Schnittstelle implementieren, um geheime Werte basierend auf einem Präfix Wert zu laden, den Sie beim Starten der APP bereitstellen. So können Sie z. b. geheime Schlüssel basierend auf der Version der App laden.
+Addazurekeyvault stellt eine Überladung bereit, die eine Implementierung von akzeptiert `Azure.Extensions.Aspnetcore.Configuration.Secrets` , mit der Sie steuern können, wie Key Vault-Geheimnisse in Konfigurationsschlüssel konvertiert werden. Beispielsweise können Sie die-Schnittstelle implementieren, um geheime Werte basierend auf einem Präfix Wert zu laden, den Sie beim Starten der APP bereitstellen. So können Sie z. b. geheime Schlüssel basierend auf der Version der App laden.
 
 > [!WARNING]
 > Verwenden Sie keine Präfixe für Key Vault-Geheimnisse, um geheime Schlüssel für mehrere apps in demselben Schlüssel Tresor zu platzieren oder um Umwelt Geheimnisse (z. b. *Entwicklungs* -und *Produktions* Geheimnisse) in demselben Tresor zu platzieren. Es wird empfohlen, dass unterschiedliche apps und Entwicklungs-/Produktionsumgebungen separate Schlüssel Tresore verwenden, um App-Umgebungen für die höchste Sicherheitsstufe zu isolieren.
 
 Im folgenden Beispiel wird ein geheimer Schlüssel im Schlüssel Tresor erstellt (und mit dem Geheimnis-Manager-Tool für die Entwicklungsumgebung) für `5000-AppSecret` (Zeiträume sind in Key Vault-Geheimnis Namen nicht zulässig). Dieser geheime Schlüssel stellt einen geheimen App-Schlüssel für die Version 5.0.0.0 der APP dar. Bei einer anderen Version der APP, 5.1.0.0, wird dem Schlüssel Tresor ein geheimer Schlüssel (und mit dem Geheimnis-Manager-Tool) für hinzugefügt `5100-AppSecret` . Jede APP-Version lädt den Wert für die Versionierung mit Versions Angabe in die Konfiguration `AppSecret` , wobei die Version beim Laden des geheimen Schlüssels entfernt wird.
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> wird mit einem benutzerdefinierten aufgerufen <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> :
+"Addazurekeyvault" wird mit einem benutzerdefinierten aufgerufen `Azure.Extensions.Aspnetcore.Configuration.Secrets` :
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
-Die <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> Implementierung reagiert auf die Versions Präfixe von Geheimnissen, um den richtigen geheimen Schlüssel in die Konfiguration zu laden:
+Die `Azure.Extensions.Aspnetcore.Configuration.Secrets` Implementierung reagiert auf die Versions Präfixe von Geheimnissen, um den richtigen geheimen Schlüssel in die Konfiguration zu laden:
 
 * `Load` lädt ein Geheimnis, wenn sein Name mit dem Präfix beginnt. Andere Geheimnisse werden nicht geladen.
 * `GetKey`:
@@ -295,7 +293,7 @@ Wenn dieser Ansatz implementiert ist:
 1. Wenn die App-Version in der Projektdatei in geändert wird `5.1.0.0` und die APP erneut ausgeführt wird, wird der geheime Wert `5.1.0.0_secret_value_dev` in der Entwicklungsumgebung und in der Produktionsumgebung zurückgegeben `5.1.0.0_secret_value_prod` .
 
 > [!NOTE]
-> Sie können auch eine eigene <xref:Microsoft.Azure.KeyVault.KeyVaultClient> Implementierung für bereitstellen <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> . Ein benutzerdefinierter Client ermöglicht die gemeinsame Nutzung einer einzelnen Instanz des Clients in der gesamten app.
+> Sie können auch eine eigene <xref:Azure.Security.KeyVault.Secrets.SecretClient> Implementierung für "addazurekeyvault" bereitstellen. Ein benutzerdefinierter Client ermöglicht die gemeinsame Nutzung einer einzelnen Instanz des Clients in der gesamten app.
 
 ## <a name="bind-an-array-to-a-class"></a>Binden eines Arrays an eine Klasse
 
@@ -349,7 +347,7 @@ Configuration.Reload();
 
 ## <a name="disabled-and-expired-secrets"></a>Deaktivierte und abgelaufene Geheimnisse
 
-Deaktivierte und abgelaufene Geheimnisse lösen einen aus <xref:Microsoft.Azure.KeyVault.Models.KeyVaultErrorException> . Um zu verhindern, dass die APP ausgelöst wird, stellen Sie die Konfiguration mithilfe eines anderen Konfigurations Anbieters bereit, oder aktualisieren Sie das deaktivierte oder abgelaufene Geheimnis.
+Deaktivierte und abgelaufene Geheimnisse lösen einen aus <xref:Azure.RequestFailedException> . Um zu verhindern, dass die APP ausgelöst wird, stellen Sie die Konfiguration mithilfe eines anderen Konfigurations Anbieters bereit, oder aktualisieren Sie das deaktivierte oder abgelaufene Geheimnis.
 
 ## <a name="troubleshoot"></a>Problembehandlung
 
@@ -360,7 +358,7 @@ Wenn die APP die Konfiguration mit dem Anbieter nicht laden kann, wird eine Fehl
 * Die APP ist nicht autorisiert, auf den Schlüssel Tresor zuzugreifen.
 * Die Zugriffs Richtlinie enthält nicht `Get` die `List` Berechtigungen und.
 * Im Schlüssel Tresor werden die Konfigurationsdaten (Name/Wert-Paar) fälschlicherweise benannt, fehlen, sind deaktiviert oder abgelaufen.
-* Die APP hat den falschen Schlüssel Tresor Namen ( `KeyVaultName` ), Azure AD Anwendungs-ID ( `AzureADApplicationId` ) oder Azure AD Zertifikat Fingerabdruck ( `AzureADCertThumbprint` ).
+* Die APP verfügt über den falschen Schlüssel Tresor Namen ( `KeyVaultName` ), Azure AD Anwendungs-ID ( `AzureADApplicationId` ) oder Azure AD Zertifikat Fingerabdruck ( `AzureADCertThumbprint` ) oder Azure AD directoryid ( `AzureADDirectoryId` ).
 * Der Konfigurationsschlüssel (Name) ist in der APP falsch für den Wert, den Sie laden möchten.
 * Beim Hinzufügen der Zugriffs Richtlinie für die APP zum Schlüssel Tresor wurde die Richtlinie erstellt, aber die Schaltfläche **Speichern** wurde nicht in der Benutzeroberfläche für **Zugriffsrichtlinien** ausgewählt.
 
@@ -433,7 +431,7 @@ Die Anweisungen im [Schnellstart: festlegen und Abrufen eines Geheimnisses aus A
 
 1. Öffnen Sie Azure Cloud Shell, indem Sie eine der folgenden Methoden in der [Azure-Portal](https://portal.azure.com/)verwenden:
 
-   * Klicken Sie in der rechten oberen Ecke eines Codeblocks auf **Ausprobieren** . Verwenden Sie die Such Zeichenfolge "Azure CLI" im Textfeld.
+   * Klicken Sie in der rechten oberen Ecke eines Codeblocks auf **Ausprobieren**. Verwenden Sie die Such Zeichenfolge "Azure CLI" im Textfeld.
    * Öffnen Sie Cloud Shell in Ihrem Browser mit der Schaltfläche **Start Cloud Shell** .
    * Wählen Sie im Menü in der oberen rechten Ecke des Azure-Portal die Schaltfläche **Cloud Shell** aus.
 
@@ -466,29 +464,29 @@ Die Anweisungen im [Schnellstart: festlegen und Abrufen eines Geheimnisses aus A
 
 ## <a name="use-application-id-and-x509-certificate-for-non-azure-hosted-apps"></a>Verwenden Sie die Anwendungs-ID und das X. 509-Zertifikat für nicht in Azure gehostete Apps.
 
-Konfigurieren Sie Azure AD, Azure Key Vault und die APP für die Verwendung einer Azure Active Directory Anwendungs-ID und eines X. 509-Zertifikats, um sich bei einem Schlüssel Tresor zu authentifizieren, **Wenn die APP außerhalb von Azure gehostet wird** . Weitere Informationen finden Sie im Artikel [Informationen zu Schlüsseln, Geheimnissen und Zertifikaten](/azure/key-vault/about-keys-secrets-and-certificates).
+Konfigurieren Sie Azure AD, Azure Key Vault und die APP für die Verwendung einer Azure Active Directory Anwendungs-ID und eines X. 509-Zertifikats, um sich bei einem Schlüssel Tresor zu authentifizieren, **Wenn die APP außerhalb von Azure gehostet wird**. Weitere Informationen finden Sie im Artikel [Informationen zu Schlüsseln, Geheimnissen und Zertifikaten](/azure/key-vault/about-keys-secrets-and-certificates).
 
 > [!NOTE]
 > Obwohl die Verwendung einer Anwendungs-ID und eines X. 509-Zertifikats für in Azure gehostete Apps unterstützt wird, empfiehlt es sich, beim Hosten einer APP in Azure [verwaltete Identitäten für Azure-Ressourcen zu](#use-managed-identities-for-azure-resources) verwenden. Für verwaltete Identitäten ist das Speichern eines Zertifikats in der APP oder in der Entwicklungsumgebung nicht erforderlich.
 
 Die Beispiel-App verwendet eine Anwendungs-ID und ein X. 509-Zertifikat, wenn die- `#define` Anweisung am Anfang der *Program.cs* -Datei auf festgelegt ist `Certificate` .
 
-1. Erstellen Sie ein PKCS # 12-Archiv Zertifikat ( *. pfx* ). Optionen zum Erstellen von Zertifikaten sind [Makecert unter Windows](/windows/desktop/seccrypto/makecert) und [OpenSSL](https://www.openssl.org/).
+1. Erstellen Sie ein PKCS # 12-Archiv Zertifikat (*. pfx*). Optionen zum Erstellen von Zertifikaten sind [Makecert unter Windows](/windows/desktop/seccrypto/makecert) und [OpenSSL](https://www.openssl.org/).
 1. Installieren Sie das Zertifikat im persönlichen Zertifikat Speicher des aktuellen Benutzers. Das Markieren des Schlüssels als exportierbar ist optional. Notieren Sie den Fingerabdruck des Zertifikats, der später in diesem Prozess verwendet wird.
-1. Exportieren Sie das PKCS # 12-Archiv Zertifikat ( *. pfx* ) als ein-codiertes Zertifikat ( *. CER* ).
-1. Registrieren Sie die APP bei Azure AD ( **App-Registrierungen** ).
-1. Laden Sie das der-codierte Zertifikat ( *. CER* ) in Azure AD hoch:
+1. Exportieren Sie das PKCS # 12-Archiv Zertifikat (*. pfx*) als ein-codiertes Zertifikat (*. CER*).
+1. Registrieren Sie die APP bei Azure AD (**App-Registrierungen**).
+1. Laden Sie das der-codierte Zertifikat (*. CER*) in Azure AD hoch:
    1. Wählen Sie die app in Azure AD aus.
-   1. Navigieren Sie zu **Zertifikate & Geheimnissen** .
-   1. Wählen Sie **Zertifikat hochladen** aus, um das Zertifikat hochzuladen, das den öffentlichen Schlüssel enthält. Ein *CER* -, *PEM* -oder *CRT* -Zertifikat ist akzeptabel.
+   1. Navigieren Sie zu **Zertifikate & Geheimnissen**.
+   1. Wählen Sie **Zertifikat hochladen** aus, um das Zertifikat hochzuladen, das den öffentlichen Schlüssel enthält. Ein *CER*-, *PEM*-oder *CRT* -Zertifikat ist akzeptabel.
 1. Speichern Sie den Key Vault-Namen, die Anwendungs-ID und den Zertifikat Fingerabdruck in der APP- *appsettings.json* Datei.
 1. Navigieren Sie in der Azure-Portal zu **Schlüssel Tresoren** .
 1. Wählen Sie den Schlüssel Tresor aus, den Sie im Abschnitt " [Geheimnis Speicher in der Produktionsumgebung mit Azure Key Vault](#secret-storage-in-the-production-environment-with-azure-key-vault) " erstellt haben.
-1. Klicken Sie auf **Zugriffsrichtlinien** .
+1. Klicken Sie auf **Zugriffsrichtlinien**.
 1. Wählen Sie **Zugriffsrichtlinie hinzufügen** aus.
 1. Öffnen Sie **geheime Berechtigungen** , und stellen Sie der APP die Berechtigungen **Get** und **List** bereit.
 1. Wählen Sie **Prinzipal auswählen** , und wählen Sie die registrierte App nach Name aus. Wählen Sie die Schaltfläche **Auswählen** aus.
-1. Klicken Sie auf **OK** .
+1. Klicken Sie auf **OK**.
 1. Wählen Sie **Speichern** aus.
 1. Stellen Sie die App bereit.
 
@@ -509,7 +507,7 @@ Beispielwerte:
 * Anwendungs-ID: `627e911e-43cc-61d4-992e-12db9c81b413`
 * Zertifikat Fingerabdruck: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
-*appsettings.json* :
+*appsettings.json*:
 
 [!code-json[](key-vault-configuration/samples/2.x/SampleApp/appsettings.json?highlight=10-12)]
 
@@ -545,7 +543,7 @@ Die Beispiel-App:
 
 Beispiel Wert für Key Vault-Name: `contosovault`
     
-*appsettings.json* :
+*appsettings.json*:
 
 ```json
 {
@@ -702,4 +700,3 @@ Wenn die APP die Konfiguration mit dem Anbieter nicht laden kann, wird eine Fehl
 * [Tutorial: Verwenden von Azure Key Vault mit einem virtuellen Azure-Windows-Computer in .NET](/azure/key-vault/tutorial-net-windows-virtual-machine)
 
 ::: moniker-end
-

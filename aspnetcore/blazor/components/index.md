@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: d8838a458943599890420adec4551ad87e43d328
-ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
+ms.openlocfilehash: cc4604f7f67a6648c96e099572ff27bfed838916
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2020
-ms.locfileid: "94637703"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981868"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -268,7 +268,7 @@ Informationen zu Routenparametern (`{*pageRoute}`), die Pfade über mehrere Ordn
 
 ### <a name="component-parameters"></a>Komponentenparameter
 
-Komponenten können *Komponentenparameter* enthalten, die mithilfe öffentlicher Eigenschaften für die Komponentenklasse mit dem [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute)-Attribut definiert werden. Verwenden Sie Attribute, um Argumente für eine Komponente im Markup anzugeben.
+Komponenten können *Komponentenparameter* enthalten, die mithilfe öffentlicher einfacher oder komplexer Eigenschaften für die Komponentenklasse mit dem [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute)-Attribut definiert werden. Verwenden Sie Attribute, um Argumente für eine Komponente im Markup anzugeben.
 
 `Components/ChildComponent.razor`:
 

@@ -30,7 +30,7 @@ ms.locfileid: "94550516"
 
 [Daniel Roth](https://github.com/danroth27)
 
-Das Debuggen von Blazor WebAssembly-Apps kann mithilfe der Browserentwicklertools in Chromium-basierten Browsern (Edge/Chrome) durchgeführt werden. Sie können Ihre App auch mithilfe der folgenden integrierten Entwicklungsumgebungen (IDEs) debuggen:
+Das Debuggen von Blazor WebAssembly-Apps kann mithilfe der Browserentwicklertools in Chromium-basierten Browsern (Microsoft Edge/Chrome) durchgeführt werden. Sie können Ihre App auch mithilfe der folgenden integrierten Entwicklungsumgebungen (IDEs) debuggen:
 
 * Visual Studio
 * Visual Studio für Mac

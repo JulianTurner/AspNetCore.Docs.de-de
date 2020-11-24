@@ -1,5 +1,5 @@
 ---
-title: 'Hostingmodellkonfiguration für ASP.NET Core Blazor'
+title: Hostingmodellkonfiguration für ASP.NET Core Blazor
 author: guardrex
 description: In diesem Artikel erhalten Sie Informationen zu zusätzlichen Szenarios für die Blazor-Hostingmodellkonfiguration in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,38 +7,38 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020
 no-loc:
-- 'appsettings.json'
-- 'ASP.NET Core Identity'
-- 'cookie'
-- 'Cookie'
-- 'Blazor'
-- 'Blazor Server'
-- 'Blazor WebAssembly'
-- 'Identity'
-- "Let's Encrypt"
-- 'Razor'
-- 'SignalR'
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: f8b6e65424948aaa7b28023497bbbf2a1ceb47dd
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ef37c539d377f14a2744c3ead28234d8497df700
+ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056048"
+ms.lasthandoff: 11/15/2020
+ms.locfileid: "94637677"
 ---
-# <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a><span data-ttu-id="f2b1e-103">Hostingmodellkonfiguration für ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="f2b1e-103">ASP.NET Core Blazor hosting model configuration</span></span>
+# <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a><span data-ttu-id="a8fe1-103">Hostingmodellkonfiguration für ASP.NET Core Blazor</span><span class="sxs-lookup"><span data-stu-id="a8fe1-103">ASP.NET Core Blazor hosting model configuration</span></span>
 
-<span data-ttu-id="f2b1e-104">Von [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck) und [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="f2b1e-104">By [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck), and [Luke Latham](https://github.com/guardrex)</span></span>
+<span data-ttu-id="a8fe1-104">Von [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck) und [Luke Latham](https://github.com/guardrex)</span><span class="sxs-lookup"><span data-stu-id="a8fe1-104">By [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck), and [Luke Latham](https://github.com/guardrex)</span></span>
 
-<span data-ttu-id="f2b1e-105">Dieser Artikel behandelt die Hostingmodellkonfiguration.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-105">This article covers hosting model configuration.</span></span>
+<span data-ttu-id="a8fe1-105">Dieser Artikel behandelt die Hostingmodellkonfiguration.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-105">This article covers hosting model configuration.</span></span>
 
-### <a name="no-locsignalr-cross-origin-negotiation-for-authentication"></a><span data-ttu-id="f2b1e-106">Ursprungsübergreifende SignalR-Aushandlung für die Authentifizierung</span><span class="sxs-lookup"><span data-stu-id="f2b1e-106">SignalR cross-origin negotiation for authentication</span></span>
+### <a name="no-locsignalr-cross-origin-negotiation-for-authentication"></a><span data-ttu-id="a8fe1-106">Ursprungsübergreifende SignalR-Aushandlung für die Authentifizierung</span><span class="sxs-lookup"><span data-stu-id="a8fe1-106">SignalR cross-origin negotiation for authentication</span></span>
 
-<span data-ttu-id="f2b1e-107">*Dieser Abschnitt gilt für Blazor WebAssembly.*</span><span class="sxs-lookup"><span data-stu-id="f2b1e-107">*This section applies to Blazor WebAssembly.*</span></span>
+<span data-ttu-id="a8fe1-107">*Dieser Abschnitt gilt für Blazor WebAssembly.*</span><span class="sxs-lookup"><span data-stu-id="a8fe1-107">*This section applies to Blazor WebAssembly.*</span></span>
 
-<span data-ttu-id="f2b1e-108">So konfigurieren Sie den zugrunde liegenden SignalR-Client zum Senden von Anmeldeinformationen (z. B. cookie oder HTTP-Authentifizierungsheader):</span><span class="sxs-lookup"><span data-stu-id="f2b1e-108">To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:</span></span>
+<span data-ttu-id="a8fe1-108">So konfigurieren Sie den zugrunde liegenden SignalR-Client zum Senden von Anmeldeinformationen (z. B. cookie oder HTTP-Authentifizierungsheader):</span><span class="sxs-lookup"><span data-stu-id="a8fe1-108">To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:</span></span>
 
-* <span data-ttu-id="f2b1e-109">Verwenden Sie <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A>, um <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> auf ursprungsübergreifende [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch)-Anforderungen festzulegen:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-109">Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests:</span></span>
+* <span data-ttu-id="a8fe1-109">Verwenden Sie <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A>, um <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> auf ursprungsübergreifende [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch)-Anforderungen festzulegen:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-109">Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests:</span></span>
 
   ```csharp
   public class IncludeRequestCredentialsMessageHandler : DelegatingHandler
@@ -52,7 +52,7 @@ ms.locfileid: "93056048"
   }
   ```
 
-* <span data-ttu-id="f2b1e-110">Weisen Sie der <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory>-Eigenschaft die <xref:System.Net.Http.HttpMessageHandler>-Klasse hinzu:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-110">Assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:</span></span>
+* <span data-ttu-id="a8fe1-110">Weisen Sie der <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory>-Eigenschaft die <xref:System.Net.Http.HttpMessageHandler>-Klasse hinzu:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-110">Assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:</span></span>
 
   ```csharp
   var connection = new HubConnectionBuilder()
@@ -63,15 +63,15 @@ ms.locfileid: "93056048"
       }).Build();
   ```
 
-<span data-ttu-id="f2b1e-111">Weitere Informationen finden Sie unter <xref:signalr/configuration#configure-additional-options>.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-111">For more information, see <xref:signalr/configuration#configure-additional-options>.</span></span>
+<span data-ttu-id="a8fe1-111">Weitere Informationen finden Sie unter <xref:signalr/configuration#configure-additional-options>.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-111">For more information, see <xref:signalr/configuration#configure-additional-options>.</span></span>
 
-## <a name="reflect-the-connection-state-in-the-ui"></a><span data-ttu-id="f2b1e-112">Reflektieren des Verbindungszustands auf der Benutzeroberfläche</span><span class="sxs-lookup"><span data-stu-id="f2b1e-112">Reflect the connection state in the UI</span></span>
+## <a name="reflect-the-connection-state-in-the-ui"></a><span data-ttu-id="a8fe1-112">Reflektieren des Verbindungszustands auf der Benutzeroberfläche</span><span class="sxs-lookup"><span data-stu-id="a8fe1-112">Reflect the connection state in the UI</span></span>
 
-<span data-ttu-id="f2b1e-113">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="f2b1e-113">*This section applies to Blazor Server.*</span></span>
+<span data-ttu-id="a8fe1-113">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="a8fe1-113">*This section applies to Blazor Server.*</span></span>
 
-<span data-ttu-id="f2b1e-114">Wenn der Client erkennt, dass keine Verbindung mehr besteht, wird dem Benutzer eine Standardbenutzeroberfläche angezeigt, während der Client versucht, eine neue Verbindung herzustellen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-114">When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect.</span></span> <span data-ttu-id="f2b1e-115">Wenn die Wiederherstellung der Verbindung fehlschlägt, wird dem Benutzer die Option angezeigt, es noch mal zu versuchen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-115">If reconnection fails, the user is provided the option to retry.</span></span>
+<span data-ttu-id="a8fe1-114">Wenn der Client erkennt, dass keine Verbindung mehr besteht, wird dem Benutzer eine Standardbenutzeroberfläche angezeigt, während der Client versucht, eine neue Verbindung herzustellen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-114">When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect.</span></span> <span data-ttu-id="a8fe1-115">Wenn die Wiederherstellung der Verbindung fehlschlägt, wird dem Benutzer die Option angezeigt, es noch mal zu versuchen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-115">If reconnection fails, the user is provided the option to retry.</span></span>
 
-<span data-ttu-id="f2b1e-116">Wenn Sie die Benutzeroberfläche anpassen möchten, definieren Sie ein Element mit einer `id` von `components-reconnect-modal` im `<body>` auf der Razor-Seite von `_Host.cshtml`:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-116">To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page:</span></span>
+<span data-ttu-id="a8fe1-116">Wenn Sie die Benutzeroberfläche anpassen möchten, definieren Sie ein Element mit einer `id` von `components-reconnect-modal` im `<body>` auf der Razor-Seite von `_Host.cshtml`:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-116">To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page:</span></span>
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -79,7 +79,7 @@ ms.locfileid: "93056048"
 </div>
 ```
 
-<span data-ttu-id="f2b1e-117">Fügen Sie dem Stylesheet (`wwwroot/css/app.css` oder `wwwroot/css/site.css`) der App Folgendes hinzu:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-117">Add the following to the app's stylesheet (`wwwroot/css/app.css` or `wwwroot/css/site.css`):</span></span>
+<span data-ttu-id="a8fe1-117">Fügen Sie dem Stylesheet (`wwwroot/css/app.css` oder `wwwroot/css/site.css`) der App Folgendes hinzu:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-117">Add the following to the app's stylesheet (`wwwroot/css/app.css` or `wwwroot/css/site.css`):</span></span>
 
 ```css
 #components-reconnect-modal {
@@ -91,58 +91,47 @@ ms.locfileid: "93056048"
 }
 ```
 
-<span data-ttu-id="f2b1e-118">In der folgenden Tabelle werden die CSS-Klassen beschrieben, die auf das `components-reconnect-modal`-Element angewendet werden.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-118">The following table describes the CSS classes applied to the `components-reconnect-modal` element.</span></span>
+<span data-ttu-id="a8fe1-118">In der folgenden Tabelle werden die CSS-Klassen beschrieben, die auf das `components-reconnect-modal`-Element angewendet werden.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-118">The following table describes the CSS classes applied to the `components-reconnect-modal` element.</span></span>
 
-| <span data-ttu-id="f2b1e-119">CSS-Klasse</span><span class="sxs-lookup"><span data-stu-id="f2b1e-119">CSS class</span></span>                       | <span data-ttu-id="f2b1e-120">Steht für&hellip;</span><span class="sxs-lookup"><span data-stu-id="f2b1e-120">Indicates&hellip;</span></span> |
+| <span data-ttu-id="a8fe1-119">CSS-Klasse</span><span class="sxs-lookup"><span data-stu-id="a8fe1-119">CSS class</span></span>                       | <span data-ttu-id="a8fe1-120">Steht für&hellip;</span><span class="sxs-lookup"><span data-stu-id="a8fe1-120">Indicates&hellip;</span></span> |
 | ------------------------------- | ----------------- |
-| `components-reconnect-show`     | <span data-ttu-id="f2b1e-121">Die Verbindung wurde getrennt.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-121">A lost connection.</span></span> <span data-ttu-id="f2b1e-122">Der Client versucht, die Verbindung wiederherzustellen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-122">The client is attempting to reconnect.</span></span> <span data-ttu-id="f2b1e-123">Die modale Seite wird angezeigt.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-123">Show the modal.</span></span> |
-| `components-reconnect-hide`     | <span data-ttu-id="f2b1e-124">Auf dem Server wird eine aktive Verbindung wiederhergestellt.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-124">An active connection is re-established to the server.</span></span> <span data-ttu-id="f2b1e-125">Die modale Seite wird ausgeblendet.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-125">Hide the modal.</span></span> |
-| `components-reconnect-failed`   | <span data-ttu-id="f2b1e-126">Die Wiederherstellung der Verbindung ist wahrscheinlich aufgrund eines Netzwerkfehlers fehlgeschlagen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-126">Reconnection failed, probably due to a network failure.</span></span> <span data-ttu-id="f2b1e-127">Rufen Sie `window.Blazor.reconnect()` auf, um einen neuen Verbindungsversuch zu unternehmen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-127">To attempt reconnection, call `window.Blazor.reconnect()`.</span></span> |
-| `components-reconnect-rejected` | <span data-ttu-id="f2b1e-128">Die Wiederherstellung der Verbindung wurde abgelehnt.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-128">Reconnection rejected.</span></span> <span data-ttu-id="f2b1e-129">Der Server wurde zwar erreicht, jedoch hat dieser die Verbindung verweigert. Der Status des Benutzers auf dem Server wurde verworfen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-129">The server was reached but refused the connection, and the user's state on the server is lost.</span></span> <span data-ttu-id="f2b1e-130">Rufen Sie `location.reload()` auf, um die App neu zu laden.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-130">To reload the app, call `location.reload()`.</span></span> <span data-ttu-id="f2b1e-131">Dieser Verbindungszustand kann aus folgenden Gründen auftreten:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-131">This connection state may result when:</span></span><ul><li><span data-ttu-id="f2b1e-132">Aufgetretener Absturz auf der serverseitigen Verbindung.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-132">A crash in the server-side circuit occurs.</span></span></li><li><span data-ttu-id="f2b1e-133">Der Client war lange nicht verbunden, sodass der Server den Benutzerstatus verworfen hat.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-133">The client is disconnected long enough for the server to drop the user's state.</span></span> <span data-ttu-id="f2b1e-134">Komponenteninstanzen, mit denen der Benutzer interagiert, werden verworfen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-134">Instances of the components that the user is interacting with are disposed.</span></span></li><li><span data-ttu-id="f2b1e-135">Der Server wird neu gestartet, oder der Workerprozess der App wird wiederverwendet.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-135">The server is restarted, or the app's worker process is recycled.</span></span></li></ul> |
+| `components-reconnect-show`     | <span data-ttu-id="a8fe1-121">Die Verbindung wurde getrennt.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-121">A lost connection.</span></span> <span data-ttu-id="a8fe1-122">Der Client versucht, die Verbindung wiederherzustellen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-122">The client is attempting to reconnect.</span></span> <span data-ttu-id="a8fe1-123">Die modale Seite wird angezeigt.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-123">Show the modal.</span></span> |
+| `components-reconnect-hide`     | <span data-ttu-id="a8fe1-124">Auf dem Server wird eine aktive Verbindung wiederhergestellt.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-124">An active connection is re-established to the server.</span></span> <span data-ttu-id="a8fe1-125">Die modale Seite wird ausgeblendet.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-125">Hide the modal.</span></span> |
+| `components-reconnect-failed`   | <span data-ttu-id="a8fe1-126">Die Wiederherstellung der Verbindung ist wahrscheinlich aufgrund eines Netzwerkfehlers fehlgeschlagen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-126">Reconnection failed, probably due to a network failure.</span></span> <span data-ttu-id="a8fe1-127">Rufen Sie `window.Blazor.reconnect()` auf, um einen neuen Verbindungsversuch zu unternehmen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-127">To attempt reconnection, call `window.Blazor.reconnect()`.</span></span> |
+| `components-reconnect-rejected` | <span data-ttu-id="a8fe1-128">Die Wiederherstellung der Verbindung wurde abgelehnt.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-128">Reconnection rejected.</span></span> <span data-ttu-id="a8fe1-129">Der Server wurde zwar erreicht, jedoch hat dieser die Verbindung verweigert. Der Status des Benutzers auf dem Server wurde verworfen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-129">The server was reached but refused the connection, and the user's state on the server is lost.</span></span> <span data-ttu-id="a8fe1-130">Rufen Sie `location.reload()` auf, um die App neu zu laden.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-130">To reload the app, call `location.reload()`.</span></span> <span data-ttu-id="a8fe1-131">Dieser Verbindungszustand kann aus folgenden Gründen auftreten:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-131">This connection state may result when:</span></span><ul><li><span data-ttu-id="a8fe1-132">Aufgetretener Absturz auf der serverseitigen Verbindung.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-132">A crash in the server-side circuit occurs.</span></span></li><li><span data-ttu-id="a8fe1-133">Der Client war lange nicht verbunden, sodass der Server den Benutzerstatus verworfen hat.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-133">The client is disconnected long enough for the server to drop the user's state.</span></span> <span data-ttu-id="a8fe1-134">Komponenteninstanzen, mit denen der Benutzer interagiert, werden verworfen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-134">Instances of the components that the user is interacting with are disposed.</span></span></li><li><span data-ttu-id="a8fe1-135">Der Server wird neu gestartet, oder der Workerprozess der App wird wiederverwendet.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-135">The server is restarted, or the app's worker process is recycled.</span></span></li></ul> |
 
-## <a name="render-mode"></a><span data-ttu-id="f2b1e-136">Rendermodus</span><span class="sxs-lookup"><span data-stu-id="f2b1e-136">Render mode</span></span>
+## <a name="render-mode"></a><span data-ttu-id="a8fe1-136">Rendermodus</span><span class="sxs-lookup"><span data-stu-id="a8fe1-136">Render mode</span></span>
 
-<span data-ttu-id="f2b1e-137">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="f2b1e-137">*This section applies to Blazor Server.*</span></span>
+::: moniker range=">= aspnetcore-5.0"
 
-<span data-ttu-id="f2b1e-138">Blazor Server-Apps werden standardmäßig eingerichtet, um die Benutzeroberfläche auf dem Server schon vor der Einrichtung der Clientverbindung auf dem Server zu rendern.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-138">Blazor Server apps are set up by default to prerender the UI on the server before the client connection to the server is established.</span></span> <span data-ttu-id="f2b1e-139">Diese Einrichtung erfolgt auf der Razor-Seite von `_Host.cshtml`:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-139">This is set up in the `_Host.cshtml` Razor page:</span></span>
+<span data-ttu-id="a8fe1-137">*Dieser Abschnitt gilt für gehostete Blazor WebAssembly- und Blazor Server-Instanzen.*</span><span class="sxs-lookup"><span data-stu-id="a8fe1-137">*This section applies to hosted Blazor WebAssembly and Blazor Server.*</span></span>
 
-```cshtml
-<body>
-    <app>
-      <component type="typeof(App)" render-mode="ServerPrerendered" />
-    </app>
+<span data-ttu-id="a8fe1-138">Blazor-Apps werden standardmäßig so eingerichtet, dass sie die Benutzeroberfläche auf dem Server vorab rendern.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-138">Blazor apps are set up by default to prerender the UI on the server.</span></span> <span data-ttu-id="a8fe1-139">Weitere Informationen finden Sie unter <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-139">For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.</span></span>
 
-    <script src="_framework/blazor.server.js"></script>
-</body>
-```
+::: moniker-end
 
-<span data-ttu-id="f2b1e-140"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> konfiguriert folgende Einstellungen für die Komponente:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-140"><xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> configures whether the component:</span></span>
+::: moniker range="< aspnetcore-5.0"
 
-* <span data-ttu-id="f2b1e-141">Ob die Komponente zuvor für die Seite gerendert wird</span><span class="sxs-lookup"><span data-stu-id="f2b1e-141">Is prerendered into the page.</span></span>
-* <span data-ttu-id="f2b1e-142">Ob die Komponente als statische HTML auf der Seite gerendert wird oder ob sie die nötigen Informationen für das Bootstrapping einer Blazor-App über den Benutzer-Agent enthält.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-142">Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.</span></span>
+<span data-ttu-id="a8fe1-140">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="a8fe1-140">*This section applies to Blazor Server.*</span></span>
 
-| <span data-ttu-id="f2b1e-143">Rendermodus</span><span class="sxs-lookup"><span data-stu-id="f2b1e-143">Render mode</span></span> | <span data-ttu-id="f2b1e-144">Beschreibung</span><span class="sxs-lookup"><span data-stu-id="f2b1e-144">Description</span></span> |
-| --- | --- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | <span data-ttu-id="f2b1e-145">Rendert die Komponente in statisches HTML und fügt einen Marker für eine Blazor Server-App hinzu.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-145">Renders the component into static HTML and includes a marker for a Blazor Server app.</span></span> <span data-ttu-id="f2b1e-146">Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-146">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | <span data-ttu-id="f2b1e-147">Rendert einen Marker für eine Blazor Server-App.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-147">Renders a marker for a Blazor Server app.</span></span> <span data-ttu-id="f2b1e-148">Die Ausgabe der Komponente ist nicht enthalten.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-148">Output from the component isn't included.</span></span> <span data-ttu-id="f2b1e-149">Wenn der Benutzer-Agent gestartet wird, wird der Marker zum Bootstrapping einer Blazor-App verwendet.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-149">When the user-agent starts, this marker is used to bootstrap a Blazor app.</span></span> |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | <span data-ttu-id="f2b1e-150">Rendert die Komponente in statischen HTML-Code.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-150">Renders the component into static HTML.</span></span> |
+<span data-ttu-id="a8fe1-141">Blazor Server-Apps werden standardmäßig eingerichtet, um die Benutzeroberfläche auf dem Server schon vor der Einrichtung der Clientverbindung auf dem Server zu rendern.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-141">Blazor Server apps are set up by default to prerender the UI on the server before the client connection to the server is established.</span></span> <span data-ttu-id="a8fe1-142">Weitere Informationen finden Sie unter <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-142">For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.</span></span>
 
-<span data-ttu-id="f2b1e-151">Das Rendern von Serverkomponenten über eine statische HTML-Seite wird nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-151">Rendering server components from a static HTML page isn't supported.</span></span>
+::: moniker-end
 
-## <a name="initialize-the-no-locblazor-circuit"></a><span data-ttu-id="f2b1e-152">Initialisieren der Blazor-Verbindung</span><span class="sxs-lookup"><span data-stu-id="f2b1e-152">Initialize the Blazor circuit</span></span>
+## <a name="initialize-the-no-locblazor-circuit"></a><span data-ttu-id="a8fe1-143">Initialisieren der Blazor-Verbindung</span><span class="sxs-lookup"><span data-stu-id="a8fe1-143">Initialize the Blazor circuit</span></span>
 
-<span data-ttu-id="f2b1e-153">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="f2b1e-153">*This section applies to Blazor Server.*</span></span>
+<span data-ttu-id="a8fe1-144">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="a8fe1-144">*This section applies to Blazor Server.*</span></span>
 
-<span data-ttu-id="f2b1e-154">Konfigurieren Sie den manuellen Start der [SignalR-Verbindung](xref:blazor/hosting-models#circuits) einer Blazor Server-App in der Datei `Pages/_Host.cshtml`:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-154">Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:</span></span>
+<span data-ttu-id="a8fe1-145">Konfigurieren Sie den manuellen Start der [SignalR-Verbindung](xref:blazor/hosting-models#circuits) einer Blazor Server-App in der Datei `Pages/_Host.cshtml`:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-145">Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:</span></span>
 
-* <span data-ttu-id="f2b1e-155">Fügen Sie ein `autostart="false"`-Attribut zum `<script>`-Tag für das `blazor.server.js`-Skript hinzu.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-155">Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.</span></span>
-* <span data-ttu-id="f2b1e-156">Fügen Sie ein Skript, das `Blazor.start` aufruft, nach dem Tag `blazor.server.js` des Skripts und innerhalb des schließenden Tags `</body>` ein.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-156">Place a script that calls `Blazor.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.</span></span>
+* <span data-ttu-id="a8fe1-146">Fügen Sie ein `autostart="false"`-Attribut zum `<script>`-Tag für das `blazor.server.js`-Skript hinzu.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-146">Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.</span></span>
+* <span data-ttu-id="a8fe1-147">Fügen Sie ein Skript, das `Blazor.start` aufruft, nach dem Tag `blazor.server.js` des Skripts und innerhalb des schließenden Tags `</body>` ein.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-147">Place a script that calls `Blazor.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.</span></span>
 
-<span data-ttu-id="f2b1e-157">Wenn `autostart` deaktiviert ist, funktionieren alle Aspekte der App, die nicht von der Verbindung abhängen, normal.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-157">When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally.</span></span> <span data-ttu-id="f2b1e-158">So ist beispielsweise das clientseitige Routing betriebsbereit.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-158">For example, client-side routing is operational.</span></span> <span data-ttu-id="f2b1e-159">Aspekte, die von der Verbindung abhängen, sind jedoch erst betriebsbereit, nachdem `Blazor.start` aufgerufen wurde.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-159">However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called.</span></span> <span data-ttu-id="f2b1e-160">Das App-Verhalten ist ohne eine bestehende Verbindung unvorhersehbar.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-160">App behavior is unpredictable without an established circuit.</span></span> <span data-ttu-id="f2b1e-161">Komponentenmethoden können beispielsweise nicht ausgeführt werden, solange die Verbindung getrennt ist.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-161">For example, component methods fail to execute while the circuit is disconnected.</span></span>
+<span data-ttu-id="a8fe1-148">Wenn `autostart` deaktiviert ist, funktionieren alle Aspekte der App, die nicht von der Verbindung abhängen, normal.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-148">When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally.</span></span> <span data-ttu-id="a8fe1-149">So ist beispielsweise das clientseitige Routing betriebsbereit.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-149">For example, client-side routing is operational.</span></span> <span data-ttu-id="a8fe1-150">Aspekte, die von der Verbindung abhängen, sind jedoch erst betriebsbereit, nachdem `Blazor.start` aufgerufen wurde.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-150">However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called.</span></span> <span data-ttu-id="a8fe1-151">Das App-Verhalten ist ohne eine bestehende Verbindung unvorhersehbar.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-151">App behavior is unpredictable without an established circuit.</span></span> <span data-ttu-id="a8fe1-152">Komponentenmethoden können beispielsweise nicht ausgeführt werden, solange die Verbindung getrennt ist.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-152">For example, component methods fail to execute while the circuit is disconnected.</span></span>
 
-### <a name="initialize-no-locblazor-when-the-document-is-ready"></a><span data-ttu-id="f2b1e-162">Initialisieren von Blazor, wenn das Dokument bereit ist</span><span class="sxs-lookup"><span data-stu-id="f2b1e-162">Initialize Blazor when the document is ready</span></span>
+### <a name="initialize-no-locblazor-when-the-document-is-ready"></a><span data-ttu-id="a8fe1-153">Initialisieren von Blazor, wenn das Dokument bereit ist</span><span class="sxs-lookup"><span data-stu-id="a8fe1-153">Initialize Blazor when the document is ready</span></span>
 
-<span data-ttu-id="f2b1e-163">So initialisieren Sie die Blazor-App, wenn das Dokument bereit ist:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-163">To initialize the Blazor app when the document is ready:</span></span>
+<span data-ttu-id="a8fe1-154">So initialisieren Sie die Blazor-App, wenn das Dokument bereit ist:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-154">To initialize the Blazor app when the document is ready:</span></span>
 
 ```cshtml
 <body>
@@ -158,9 +147,9 @@ ms.locfileid: "93056048"
 </body>
 ```
 
-### <a name="chain-to-the-promise-that-results-from-a-manual-start"></a><span data-ttu-id="f2b1e-164">Verketten mit dem `Promise`, der sich aus einem manuellen Start ergibt</span><span class="sxs-lookup"><span data-stu-id="f2b1e-164">Chain to the `Promise` that results from a manual start</span></span>
+### <a name="chain-to-the-promise-that-results-from-a-manual-start"></a><span data-ttu-id="a8fe1-155">Verketten mit dem `Promise`, der sich aus einem manuellen Start ergibt</span><span class="sxs-lookup"><span data-stu-id="a8fe1-155">Chain to the `Promise` that results from a manual start</span></span>
 
-<span data-ttu-id="f2b1e-165">Wenn Sie weitere Aufgaben wie etwa eine JS-Interop-Initialisierung ausführen möchten, verwenden Sie `then` für die Verkettung mit dem `Promise`, der sich aus dem manuellen Start der Blazor-App ergibt:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-165">To perform additional tasks, such as JS interop initialization, use `then` to chain to the `Promise` that results from a manual Blazor app start:</span></span>
+<span data-ttu-id="a8fe1-156">Wenn Sie weitere Aufgaben wie etwa eine JS-Interop-Initialisierung ausführen möchten, verwenden Sie `then` für die Verkettung mit dem `Promise`, der sich aus dem manuellen Start der Blazor-App ergibt:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-156">To perform additional tasks, such as JS interop initialization, use `then` to chain to the `Promise` that results from a manual Blazor app start:</span></span>
 
 ```cshtml
 <body>
@@ -176,11 +165,11 @@ ms.locfileid: "93056048"
 </body>
 ```
 
-### <a name="configure-the-no-locsignalr-client"></a><span data-ttu-id="f2b1e-166">Konfigurieren des SignalR-Clients</span><span class="sxs-lookup"><span data-stu-id="f2b1e-166">Configure the SignalR client</span></span>
+### <a name="configure-the-no-locsignalr-client"></a><span data-ttu-id="a8fe1-157">Konfigurieren des SignalR-Clients</span><span class="sxs-lookup"><span data-stu-id="a8fe1-157">Configure the SignalR client</span></span>
 
-#### <a name="logging"></a><span data-ttu-id="f2b1e-167">Protokollierung</span><span class="sxs-lookup"><span data-stu-id="f2b1e-167">Logging</span></span>
+#### <a name="logging"></a><span data-ttu-id="a8fe1-158">Protokollierung</span><span class="sxs-lookup"><span data-stu-id="a8fe1-158">Logging</span></span>
 
-<span data-ttu-id="f2b1e-168">Zur Konfiguration der SignalR-Clientprotokollierung wird ein Konfigurationsobjekt (`configureSignalR`) übergeben, das `configureLogging` mit der Protokollebene im Client-Generator aufruft.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-168">To configure SignalR client logging, pass in a configuration object (`configureSignalR`) that calls `configureLogging` with the log level on the client builder:</span></span>
+<span data-ttu-id="a8fe1-159">Zur Konfiguration der SignalR-Clientprotokollierung wird ein Konfigurationsobjekt (`configureSignalR`) übergeben, das `configureLogging` mit der Protokollebene im Client-Generator aufruft.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-159">To configure SignalR client logging, pass in a configuration object (`configureSignalR`) that calls `configureLogging` with the log level on the client builder:</span></span>
 
 ```cshtml
 <body>
@@ -198,21 +187,21 @@ ms.locfileid: "93056048"
 </body>
 ```
 
-<span data-ttu-id="f2b1e-169">Im vorherigen Beispiel entspricht `information` der Protokollebene <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-169">In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.</span></span>
+<span data-ttu-id="a8fe1-160">Im vorherigen Beispiel entspricht `information` der Protokollebene <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-160">In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.</span></span>
 
-### <a name="modify-the-reconnection-handler"></a><span data-ttu-id="f2b1e-170">Ändern des Handlers für die Wiederherstellung einer Verbindung</span><span class="sxs-lookup"><span data-stu-id="f2b1e-170">Modify the reconnection handler</span></span>
+### <a name="modify-the-reconnection-handler"></a><span data-ttu-id="a8fe1-161">Ändern des Handlers für die Wiederherstellung einer Verbindung</span><span class="sxs-lookup"><span data-stu-id="a8fe1-161">Modify the reconnection handler</span></span>
 
-<span data-ttu-id="f2b1e-171">Die Verbindungsereignisse des Handlers für die Wiederherstellung einer Verbindung können geändert werden, um benutzerdefinierte Verhaltensweisen zu erzeugen, z. B. für Folgendes:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-171">The reconnection handler's circuit connection events can be modified for custom behaviors, such as:</span></span>
+<span data-ttu-id="a8fe1-162">Die Verbindungsereignisse des Handlers für die Wiederherstellung einer Verbindung können geändert werden, um benutzerdefinierte Verhaltensweisen zu erzeugen, z. B. für Folgendes:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-162">The reconnection handler's circuit connection events can be modified for custom behaviors, such as:</span></span>
 
-* <span data-ttu-id="f2b1e-172">Benachrichtigung an einen Benutzer, wenn die Verbindung unterbrochen wird</span><span class="sxs-lookup"><span data-stu-id="f2b1e-172">To notify the user if the connection is dropped.</span></span>
-* <span data-ttu-id="f2b1e-173">Ausführen der Protokollierung (vom Client), wenn eine Verbindung besteht</span><span class="sxs-lookup"><span data-stu-id="f2b1e-173">To perform logging (from the client) when a circuit is connected.</span></span>
+* <span data-ttu-id="a8fe1-163">Benachrichtigung an einen Benutzer, wenn die Verbindung unterbrochen wird</span><span class="sxs-lookup"><span data-stu-id="a8fe1-163">To notify the user if the connection is dropped.</span></span>
+* <span data-ttu-id="a8fe1-164">Ausführen der Protokollierung (vom Client), wenn eine Verbindung besteht</span><span class="sxs-lookup"><span data-stu-id="a8fe1-164">To perform logging (from the client) when a circuit is connected.</span></span>
 
-<span data-ttu-id="f2b1e-174">Zum Ändern der Verbindungsereignisse registrieren Sie Rückrufe für die folgenden Verbindungsänderungen:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-174">To modify the connection events, register callbacks for the following connection changes:</span></span>
+<span data-ttu-id="a8fe1-165">Zum Ändern der Verbindungsereignisse registrieren Sie Rückrufe für die folgenden Verbindungsänderungen:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-165">To modify the connection events, register callbacks for the following connection changes:</span></span>
 
-* <span data-ttu-id="f2b1e-175">Unterbrochene Verbindungen verwenden `onConnectionDown`.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-175">Dropped connections use `onConnectionDown`.</span></span>
-* <span data-ttu-id="f2b1e-176">Hergestellte/wieder hergestellte Verbindungen verwenden `onConnectionUp`.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-176">Established/re-established connections use `onConnectionUp`.</span></span>
+* <span data-ttu-id="a8fe1-166">Unterbrochene Verbindungen verwenden `onConnectionDown`.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-166">Dropped connections use `onConnectionDown`.</span></span>
+* <span data-ttu-id="a8fe1-167">Hergestellte/wieder hergestellte Verbindungen verwenden `onConnectionUp`.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-167">Established/re-established connections use `onConnectionUp`.</span></span>
 
-<span data-ttu-id="f2b1e-177">**Sowohl** `onConnectionDown` als auch `onConnectionUp` sind obligatorisch:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-177">**Both** `onConnectionDown` and `onConnectionUp` must be specified:</span></span>
+<span data-ttu-id="a8fe1-168">**Sowohl** `onConnectionDown` als auch `onConnectionUp` sind obligatorisch:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-168">**Both** `onConnectionDown` and `onConnectionUp` must be specified:</span></span>
 
 ```cshtml
 <body>
@@ -231,9 +220,9 @@ ms.locfileid: "93056048"
 </body>
 ```
 
-### <a name="adjust-the-reconnection-retry-count-and-interval"></a><span data-ttu-id="f2b1e-178">Passen Sie die Anzahl und das Intervall der Wiederholungsversuche zum erneuten Herstellen einer Verbindung an.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-178">Adjust the reconnection retry count and interval</span></span>
+### <a name="adjust-the-reconnection-retry-count-and-interval"></a><span data-ttu-id="a8fe1-169">Passen Sie die Anzahl und das Intervall der Wiederholungsversuche zum erneuten Herstellen einer Verbindung an.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-169">Adjust the reconnection retry count and interval</span></span>
 
-<span data-ttu-id="f2b1e-179">Legen Sie zum Anpassen der Anzahl und des Intervalls der Wiederholungsversuche zum erneuten Herstellen einer Verbindung die zulässige Anzahl von Wiederholungsversuchen (`maxRetries`) und den zulässigen Zeitraum in Millisekunden (`retryIntervalMilliseconds`) für jeden Versuch fest:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-179">To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`):</span></span>
+<span data-ttu-id="a8fe1-170">Legen Sie zum Anpassen der Anzahl und des Intervalls der Wiederholungsversuche zum erneuten Herstellen einer Verbindung die zulässige Anzahl von Wiederholungsversuchen (`maxRetries`) und den zulässigen Zeitraum in Millisekunden (`retryIntervalMilliseconds`) für jeden Versuch fest:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-170">To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`):</span></span>
 
 ```cshtml
 <body>
@@ -252,9 +241,9 @@ ms.locfileid: "93056048"
 </body>
 ```
 
-## <a name="hide-or-replace-the-reconnection-display"></a><span data-ttu-id="f2b1e-180">Ausblenden oder Ersetzen der Anzeige einer erneuten Verbindung</span><span class="sxs-lookup"><span data-stu-id="f2b1e-180">Hide or replace the reconnection display</span></span>
+## <a name="hide-or-replace-the-reconnection-display"></a><span data-ttu-id="a8fe1-171">Ausblenden oder Ersetzen der Anzeige einer erneuten Verbindung</span><span class="sxs-lookup"><span data-stu-id="a8fe1-171">Hide or replace the reconnection display</span></span>
 
-<span data-ttu-id="f2b1e-181">Legen Sie zum Ausblenden der Anzeige einer erneuten Verbindung das `_reconnectionDisplay` des Handlers für die erneuten Verbindung auf ein leeres Objekt fest (`{}` oder `new Object()`).</span><span class="sxs-lookup"><span data-stu-id="f2b1e-181">To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`):</span></span>
+<span data-ttu-id="a8fe1-172">Legen Sie zum Ausblenden der Anzeige einer erneuten Verbindung das `_reconnectionDisplay` des Handlers für die erneuten Verbindung auf ein leeres Objekt fest (`{}` oder `new Object()`).</span><span class="sxs-lookup"><span data-stu-id="a8fe1-172">To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`):</span></span>
 
 ```cshtml
 <body>
@@ -272,18 +261,18 @@ ms.locfileid: "93056048"
 </body>
 ```
 
-<span data-ttu-id="f2b1e-182">Um die Anzeige einer erneuten Verbindung zu ersetzen, legen Sie im vorherigen Beispiel `_reconnectionDisplay` auf das anzuzeigende Element fest:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-182">To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:</span></span>
+<span data-ttu-id="a8fe1-173">Um die Anzeige einer erneuten Verbindung zu ersetzen, legen Sie im vorherigen Beispiel `_reconnectionDisplay` auf das anzuzeigende Element fest:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-173">To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:</span></span>
 
 ```javascript
 Blazor.defaultReconnectionHandler._reconnectionDisplay = 
   document.getElementById("{ELEMENT ID}");
 ```
 
-<span data-ttu-id="f2b1e-183">Der Platzhalter `{ELEMENT ID}` ist die ID des HTML-Elements, das angezeigt werden soll.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-183">The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.</span></span>
+<span data-ttu-id="a8fe1-174">Der Platzhalter `{ELEMENT ID}` ist die ID des HTML-Elements, das angezeigt werden soll.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-174">The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.</span></span>
 
 ::: moniker range=">= aspnetcore-5.0"
 
-<span data-ttu-id="f2b1e-184">Passen Sie die Verzögerung an, bevor die Anzeige einer erneuten Verbindung angezeigt wird, indem Sie die `transition-delay`-Eigenschaft im CSS (`wwwroot/css/site.css`) der App für das modale Element festlegen.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-184">Customize the delay before the reconnection display appears by setting the `transition-delay` property in the app's CSS (`wwwroot/css/site.css`) for the modal element.</span></span> <span data-ttu-id="f2b1e-185">Im folgenden Beispiel wird die Übergangsverzögerung von 500 ms (Standard) auf 1.000 ms (1 Sekunde) festgelegt:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-185">The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second):</span></span>
+<span data-ttu-id="a8fe1-175">Passen Sie die Verzögerung an, bevor die Anzeige einer erneuten Verbindung angezeigt wird, indem Sie die `transition-delay`-Eigenschaft im CSS (`wwwroot/css/site.css`) der App für das modale Element festlegen.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-175">Customize the delay before the reconnection display appears by setting the `transition-delay` property in the app's CSS (`wwwroot/css/site.css`) for the modal element.</span></span> <span data-ttu-id="a8fe1-176">Im folgenden Beispiel wird die Übergangsverzögerung von 500 ms (Standard) auf 1.000 ms (1 Sekunde) festgelegt:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-176">The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second):</span></span>
 
 ```css
 #components-reconnect-modal {
@@ -291,9 +280,9 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 }
 ```
 
-## <a name="disconnect-the-no-locblazor-circuit-from-the-client"></a><span data-ttu-id="f2b1e-186">Trennen der Blazor-Verbindung mit dem Client</span><span class="sxs-lookup"><span data-stu-id="f2b1e-186">Disconnect the Blazor circuit from the client</span></span>
+## <a name="disconnect-the-no-locblazor-circuit-from-the-client"></a><span data-ttu-id="a8fe1-177">Trennen der Blazor-Verbindung mit dem Client</span><span class="sxs-lookup"><span data-stu-id="a8fe1-177">Disconnect the Blazor circuit from the client</span></span>
 
-<span data-ttu-id="f2b1e-187">Standardmäßig wird eine Blazor-Verbindung getrennt, wenn das [`unload`-Ereignis der Seite](https://developer.mozilla.org/docs/Web/API/Window/unload_event) ausgelöst wird.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-187">By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered.</span></span> <span data-ttu-id="f2b1e-188">Um die Verbindung in anderen Szenarien auf dem Client zu trennen, rufen Sie `Blazor.disconnect` im entsprechenden Ereignishandler auf.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-188">To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler.</span></span> <span data-ttu-id="f2b1e-189">Im folgenden Beispiel wird die Verbindung getrennt, wenn die Seite ausgeblendet wird ([`pagehide`-Ereignis](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span><span class="sxs-lookup"><span data-stu-id="f2b1e-189">In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span></span>
+<span data-ttu-id="a8fe1-178">Standardmäßig wird eine Blazor-Verbindung getrennt, wenn das [`unload`-Ereignis der Seite](https://developer.mozilla.org/docs/Web/API/Window/unload_event) ausgelöst wird.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-178">By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered.</span></span> <span data-ttu-id="a8fe1-179">Um die Verbindung in anderen Szenarien auf dem Client zu trennen, rufen Sie `Blazor.disconnect` im entsprechenden Ereignishandler auf.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-179">To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler.</span></span> <span data-ttu-id="a8fe1-180">Im folgenden Beispiel wird die Verbindung getrennt, wenn die Seite ausgeblendet wird ([`pagehide`-Ereignis](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span><span class="sxs-lookup"><span data-stu-id="a8fe1-180">In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):</span></span>
 
 ```javascript
 window.addEventListener('pagehide', () => {
@@ -338,13 +327,13 @@ When one of the framework components is used in a child component, the rendered 
 
 ::: moniker-end
 
-## <a name="static-files"></a><span data-ttu-id="f2b1e-190">Statische Dateien</span><span class="sxs-lookup"><span data-stu-id="f2b1e-190">Static files</span></span>
+## <a name="static-files"></a><span data-ttu-id="a8fe1-181">Statische Dateien</span><span class="sxs-lookup"><span data-stu-id="a8fe1-181">Static files</span></span>
 
-<span data-ttu-id="f2b1e-191">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="f2b1e-191">*This section applies to Blazor Server.*</span></span>
+<span data-ttu-id="a8fe1-182">*Dieser Abschnitt gilt für Blazor Server.*</span><span class="sxs-lookup"><span data-stu-id="a8fe1-182">*This section applies to Blazor Server.*</span></span>
 
-<span data-ttu-id="f2b1e-192">Verwenden Sie **einen** der folgenden Ansätze, um zusätzliche Dateizuordnungen mit einem <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> zu erstellen oder andere <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> zu konfigurieren.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-192">To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches.</span></span> <span data-ttu-id="f2b1e-193">In den folgenden Beispielen ist der Platzhalter `{EXTENSION}` die Dateierweiterung und der Platzhalter `{CONTENT TYPE}` der Inhaltstyp.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-193">In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.</span></span>
+<span data-ttu-id="a8fe1-183">Verwenden Sie **einen** der folgenden Ansätze, um zusätzliche Dateizuordnungen mit einem <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> zu erstellen oder andere <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> zu konfigurieren.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-183">To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches.</span></span> <span data-ttu-id="a8fe1-184">In den folgenden Beispielen ist der Platzhalter `{EXTENSION}` die Dateierweiterung und der Platzhalter `{CONTENT TYPE}` der Inhaltstyp.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-184">In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.</span></span>
 
-* <span data-ttu-id="f2b1e-194">Konfigurieren Sie Optionen über [Abhängigkeitsinjektion (Dependency Injection, DI)](xref:blazor/fundamentals/dependency-injection) in `Startup.ConfigureServices` (`Startup.cs`) mithilfe von <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-194">Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in `Startup.ConfigureServices` (`Startup.cs`) using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:</span></span>
+* <span data-ttu-id="a8fe1-185">Konfigurieren Sie Optionen über [Abhängigkeitsinjektion (Dependency Injection, DI)](xref:blazor/fundamentals/dependency-injection) in `Startup.ConfigureServices` (`Startup.cs`) mithilfe von <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-185">Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in `Startup.ConfigureServices` (`Startup.cs`) using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:</span></span>
 
   ```csharp
   using Microsoft.AspNetCore.StaticFiles;
@@ -360,11 +349,11 @@ When one of the framework components is used in a child component, the rendered 
   });
   ```
 
-  <span data-ttu-id="f2b1e-195">Da bei diesem Ansatz derselbe Dateianbieter konfiguriert wird, der für `blazor.server.js` verwendet wird, müssen Sie sicherstellen, dass die benutzerdefinierte Konfiguration nicht die Bereitstellung für `blazor.server.js` beeinträchtigt.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-195">Because this approach configures the same file provider used to serve `blazor.server.js`, make sure that your custom configuration doesn't interfere with serving `blazor.server.js`.</span></span> <span data-ttu-id="f2b1e-196">Entfernen Sie z. B. nicht die Zuordnung für JavaScript-Dateien, indem Sie den Anbieter mit `provider.Mappings.Remove(".js")` konfigurieren.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-196">For example, don't remove the mapping for JavaScript files by configuring the provider with `provider.Mappings.Remove(".js")`.</span></span>
+  <span data-ttu-id="a8fe1-186">Da bei diesem Ansatz derselbe Dateianbieter konfiguriert wird, der für `blazor.server.js` verwendet wird, müssen Sie sicherstellen, dass die benutzerdefinierte Konfiguration nicht die Bereitstellung für `blazor.server.js` beeinträchtigt.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-186">Because this approach configures the same file provider used to serve `blazor.server.js`, make sure that your custom configuration doesn't interfere with serving `blazor.server.js`.</span></span> <span data-ttu-id="a8fe1-187">Entfernen Sie z. B. nicht die Zuordnung für JavaScript-Dateien, indem Sie den Anbieter mit `provider.Mappings.Remove(".js")` konfigurieren.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-187">For example, don't remove the mapping for JavaScript files by configuring the provider with `provider.Mappings.Remove(".js")`.</span></span>
 
-* <span data-ttu-id="f2b1e-197">Verwenden Sie zwei Aufrufe von <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` (`Startup.cs`):</span><span class="sxs-lookup"><span data-stu-id="f2b1e-197">Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` (`Startup.cs`):</span></span>
-  * <span data-ttu-id="f2b1e-198">Konfigurieren Sie den benutzerdefinierten Dateianbieter im ersten Aufruf mit <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-198">Configure the custom file provider in the first call with <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.</span></span>
-  * <span data-ttu-id="f2b1e-199">Die zweite Middleware verarbeitet `blazor.server.js`. Diese Datei verwendet die Standardkonfiguration der statischen Dateien, die vom Blazor-Framework bereitgestellt wird.</span><span class="sxs-lookup"><span data-stu-id="f2b1e-199">The second middleware serves `blazor.server.js`, which uses the default static files configuration provided by the Blazor framework.</span></span>
+* <span data-ttu-id="a8fe1-188">Verwenden Sie zwei Aufrufe von <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` (`Startup.cs`):</span><span class="sxs-lookup"><span data-stu-id="a8fe1-188">Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` (`Startup.cs`):</span></span>
+  * <span data-ttu-id="a8fe1-189">Konfigurieren Sie den benutzerdefinierten Dateianbieter im ersten Aufruf mit <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-189">Configure the custom file provider in the first call with <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.</span></span>
+  * <span data-ttu-id="a8fe1-190">Die zweite Middleware verarbeitet `blazor.server.js`. Diese Datei verwendet die Standardkonfiguration der statischen Dateien, die vom Blazor-Framework bereitgestellt wird.</span><span class="sxs-lookup"><span data-stu-id="a8fe1-190">The second middleware serves `blazor.server.js`, which uses the default static files configuration provided by the Blazor framework.</span></span>
 
   ```csharp
   using Microsoft.AspNetCore.StaticFiles;
@@ -378,7 +367,7 @@ When one of the framework components is used in a child component, the rendered 
   app.UseStaticFiles();
   ```
 
-* <span data-ttu-id="f2b1e-200">Sie können eine Störung der Verarbeitung von `_framework/blazor.server.js` verhindern, indem Sie mit <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> eine benutzerdefinierte Middleware für statische Dateien ausführen:</span><span class="sxs-lookup"><span data-stu-id="f2b1e-200">You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:</span></span>
+* <span data-ttu-id="a8fe1-191">Sie können eine Störung der Verarbeitung von `_framework/blazor.server.js` verhindern, indem Sie mit <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> eine benutzerdefinierte Middleware für statische Dateien ausführen:</span><span class="sxs-lookup"><span data-stu-id="a8fe1-191">You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:</span></span>
 
   ```csharp
   app.MapWhen(ctx => !ctx.Request.Path
@@ -386,6 +375,7 @@ When one of the framework components is used in a child component, the rendered 
           subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
   ```
 
-## <a name="additional-resources"></a><span data-ttu-id="f2b1e-201">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="f2b1e-201">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="a8fe1-192">Zusätzliche Ressourcen</span><span class="sxs-lookup"><span data-stu-id="a8fe1-192">Additional resources</span></span>
 
 * <xref:fundamentals/logging/index>
+* [<span data-ttu-id="a8fe1-193">Blazor Server-Ereignisse zur Wiederherstellung von Verbindungen und zum Komponentenlebenszyklus</span><span class="sxs-lookup"><span data-stu-id="a8fe1-193">Blazor Server reconnection events and component lifecycle events</span></span>](xref:blazor/components/lifecycle#blazor-server-reconnection-events)

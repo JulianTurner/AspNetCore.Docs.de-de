@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/content-security-policy
-ms.openlocfilehash: 66fd41abe4f85071797bacc0a5531bbab35bd227
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 744449240fabc3dae317d0d7bc9090311521c224
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055593"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570119"
 ---
 # <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a>Erzwingen einer Content Security Policy für ASP.NET Core Blazor
 
@@ -36,7 +36,7 @@ Beim [Cross-Site-Scripting (XSS)](xref:security/cross-site-scripting) handelt es
 * gültige von einer Webseite durchgeführte Aktionen, wobei die URL-Ziele von Formularen angegeben werden
 * gültige Plug-Ins, die geladen werden können
 
-Zum Anwenden einer CSP auf eine App gibt der Entwickler mehrere CSP- *Anweisungen* zur Inhaltssicherheit in mindestens einem `Content-Security-Policy`-Header oder `<meta>`-Tag an.
+Zum Anwenden einer CSP auf eine App gibt der Entwickler mehrere CSP-*Anweisungen* zur Inhaltssicherheit in mindestens einem `Content-Security-Policy`-Header oder `<meta>`-Tag an.
 
 Die Richtlinien werden vom Browser ausgewertet, während eine Seite geladen wird. Der Browser untersucht die Quellen der Seite und bestimmt, ob diese die Anforderungen der Anweisungen zur Inhaltssicherheit erfüllen. Wenn Richtlinienanweisungen für eine Ressource nicht erfüllt werden, lädt der Browser die Ressource nicht. Denken Sie sich beispielsweise eine Richtlinie, die keine Skripts von Drittanbietern zulässt. Wenn eine Seite ein `<script>`-Tag mit Drittanbieterursprung im `src`-Attribut enthält, verhindert der Browser das Laden des Skripts.
 
@@ -57,12 +57,9 @@ Geben Sie mindestens die folgenden Anweisungen und Quellen für Blazor-Apps an. 
   * Geben Sie die Hostquelle `https://stackpath.bootstrapcdn.com/` für Bootstrapskripts an.
   * Geben Sie `self` an, um anzugeben, dass der Ursprung der App, einschließlich des Schemas und der Portnummer, eine gültige Quelle ist.
   * In einer Blazor WebAssembly-App:
-    * Geben Sie die folgenden Hashes an, damit die erforderlichen Blazor WebAssembly-Inlineskripts geladen werden können:
-      * `sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=`
-      * `sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=`
-      * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
+    * Geben Sie Hashes an, um das Laden erforderlicher Skripts zuzulassen.
     * Geben Sie `unsafe-eval` an, um `eval()` und Methoden zum Erstellen von Code aus Zeichenfolgen zu verwenden.
-  * Geben Sie in einer Blazor Server-App den Hash `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` für das Inlineskript an, das die Fallback-Erkennung für Stylesheets durchführt.
+  * Geben Sie in einer Blazor Server-App Hashes an, um das Laden erforderlicher Skripts zuzulassen.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Diese Anweisung gibt gültige Quellen für Stylesheets an.
   * Geben Sie die Hostquelle `https://stackpath.bootstrapcdn.com/` für Bootstrapstylesheets an.
   * Geben Sie `self` an, um anzugeben, dass der Ursprung der App, einschließlich des Schemas und der Portnummer, eine gültige Quelle ist.
@@ -93,6 +90,29 @@ In den folgenden Abschnitten werden Beispielrichtlinien für Blazor WebAssembly 
 
 Wenden Sie im `<head>`-Inhalt der Hostseite `wwwroot/index.html` die im Abschnitt [Richtlinienanweisungen](#policy-directives) beschriebenen Anweisungen an:
 
+::: moniker range=">= aspnetcore-5.0"
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               block-all-mixed-content;
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self' 
+                          'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=' 
+                          'unsafe-eval';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self'
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
@@ -112,9 +132,38 @@ Wenden Sie im `<head>`-Inhalt der Hostseite `wwwroot/index.html` die im Abschnit
                upgrade-insecure-requests;">
 ```
 
+::: moniker-end
+
+Fügen Sie zusätzliche `script-src`- und `style-src`-Hashes hinzu, die von der App benötigt werden. Verwenden Sie während der Entwicklung ein Onlinetool oder Browserentwicklertools, damit die Hashes für Sie berechnet werden. Beispielsweise meldet der folgende Fehler einer Browsertoolkonsole den Hash für ein erforderliches Skript, das nicht durch die Richtlinie abgedeckt ist:
+
+> Die Ausführung des Inlineskripts wurde verweigert, da es die folgende Anweisung der Inhaltssicherheitsrichtlinie verletzt: „...“. Zum Aktivieren der Inlineausführung ist entweder das Schlüsselwort „unsafe-inline“, ein Hash („sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=“) oder eine Nonce („nonce-...“) erforderlich.
+
+Das Skript, das diesem Fehler zugeordnet ist, wird neben dem Fehler in der Konsole angezeigt.
+
 ### Blazor Server
 
 Wenden Sie im `<head>`-Inhalt der Hostseite `Pages/_Host.cshtml` die im Abschnitt [Richtlinienanweisungen](#policy-directives) beschriebenen Anweisungen an:
+
+::: moniker range=">= aspnetcore-5.0"
+
+```cshtml
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               block-all-mixed-content;
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self' 
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -131,6 +180,14 @@ Wenden Sie im `<head>`-Inhalt der Hostseite `Pages/_Host.cshtml` die im Abschnit
                          'unsafe-inline';
                upgrade-insecure-requests;">
 ```
+
+::: moniker-end
+
+Fügen Sie zusätzliche `script-src`- und `style-src`-Hashes hinzu, die von der App benötigt werden. Verwenden Sie während der Entwicklung ein Onlinetool oder Browserentwicklertools, damit die Hashes für Sie berechnet werden. Beispielsweise meldet der folgende Fehler einer Browsertoolkonsole den Hash für ein erforderliches Skript, das nicht durch die Richtlinie abgedeckt ist:
+
+> Die Ausführung des Inlineskripts wurde verweigert, da es die folgende Anweisung der Inhaltssicherheitsrichtlinie verletzt: „...“. Zum Aktivieren der Inlineausführung ist entweder das Schlüsselwort „unsafe-inline“, ein Hash („sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=“) oder eine Nonce („nonce-...“) erforderlich.
+
+Das Skript, das diesem Fehler zugeordnet ist, wird neben dem Fehler in der Konsole angezeigt.
 
 ## <a name="meta-tag-limitations"></a>Einschränkungen für META-Tags
 

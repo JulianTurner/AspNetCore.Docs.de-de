@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/web-api-javascript
-ms.openlocfilehash: 4a80e3e82a18e0066c7628c8f40401155538e32b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: c32c5befe0be3b1ad4bd87649d3cc74b0296a134
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061196"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703708"
 ---
 # <a name="tutorial-call-an-aspnet-core-web-api-with-javascript"></a>Tutorial: Aufrufen einer ASP.NET Core-Web-API mit JavaScript
 
@@ -58,11 +58,15 @@ Ein sehr einfacher `fetch`-Aufruf akzeptiert einen einzelnen Parameter, der die 
 
 1. Erstellen Sie im Stammverzeichnis den Ordner *wwwroot*.
 
-1. Erstellen Sie einen *js* -Ordner im *wwwroot* -Ordner.
+1. Erstellen Sie einen *js*-Ordner im *wwwroot*-Ordner.
 
-1. Fügen Sie eine HTML-Datei namens *index.html* zum *wwwroot* -Ordner hinzu. Ersetzen Sie den Inhalt von *index.html* durch folgendes Markup:
+1. Fügen Sie eine HTML-Datei namens *index.html* zum *wwwroot*-Ordner hinzu. Ersetzen Sie den Inhalt von *index.html* durch folgendes Markup:
 
     [!code-html[](first-web-api/samples/3.0/TodoApi/wwwroot/index.html)]
+
+1. Fügen Sie eine CSS-Datei namens *site.css* zum Ordner *wwwroot/css* hinzu. Ersetzen Sie den Inhalt der Datei *site.css* durch die folgenden Formatvorlagen:
+
+    [!code-css[](first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css)]
 
 1. Fügen Sie eine JavaScript-Datei namens *site.js* zum Ordner *wwwroot/js* hinzu. Ersetzen Sie den Inhalt der Datei *site.js* durch den folgenden Code:
 

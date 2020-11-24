@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/intro
-ms.openlocfilehash: 428320f9d706b0dd16ced68d183ec4b331451965
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: c0623de3c8031b6dbb518a6d25623b55a6500af5
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550646"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703734"
 ---
 # <a name="tutorial-get-started-with-ef-core-in-an-aspnet-mvc-web-app"></a>Tutorial: Erste Schritte mit EF Core in einer ASP.NET Core MVC-Web-App
 
@@ -76,7 +76,7 @@ Benutzer können Informationen zu den Studenten, Kursen und Dozenten abrufen. Im
 1. Starten Sie Visual Studio, und wählen Sie **Neues Projekt erstellen** aus.
 1. Wählen Sie im Dialogfeld **Neues Projekt** die Option **ASP.NET Core-Webanwendung** > **Weiter** aus.
 1. Geben Sie `ContosoUniversity` im Dialogfeld **Neues Projekt konfigurieren** für **Projektname** ein. Es ist wichtig, genau diesen Namen unter Berücksichtigung der Groß-/Kleinschreibung zu verwenden, sodass beim Kopieren von Code jeder `namespace` übereinstimmt.
-1. Wählen Sie **Erstellen** aus.
+1. Klicken Sie auf **Erstellen**.
 1. Wählen Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** Folgendes aus:
     1. In den Dropdownmenüs **.NET Core** und **ASP.NET Core 5.0**.
     1. **ASP.NET Core-Web-App (Model View Controller)** .
@@ -110,7 +110,7 @@ In diesem Tutorial wird SQL Server verwendet, und das Anbieterpaket lautet [Micr
 
 Das EF-SQL Server-Paket und dessen Abhängigkeiten (`Microsoft.EntityFrameworkCore` und `Microsoft.EntityFrameworkCore.Relational`) stellen Runtimeunterstützung für EF bereit.
 
-Fügen Sie die NuGet-Pakete [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) und [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) hinzu. Geben Sie die folgenden Befehle in die Programm-Manager-Konsole (PMC) ein, um die NuGet-Pakete hinzuzufügen:
+Fügen Sie die NuGet-Pakete [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) und [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) hinzu. Geben Sie die folgenden Befehle in die Paket-Manager-Konsole (PMC) ein, um die NuGet-Pakete hinzuzufügen:
 
 ```powershell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
@@ -231,7 +231,7 @@ Der Name der Verbindungszeichenfolge wird an den Kontext übergeben, indem Sie e
 
 Fügen Sie <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> in `ConfigureServices` hinzu, wie im folgenden Code dargestellt:
 
-[!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=1=2,22-23)]
+[!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=6)]
 
 `AddDatabaseDeveloperPageExceptionFilter` bietet hilfreiche Fehlerinformationen in der [Entwicklungsumgebung](xref:fundamentals/environments).
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/css-isolation
-ms.openlocfilehash: 628e7dc897912beaae0df792b82958517ac70ca4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4fec0fa750b9209849030d0d6b7de8f4e163d62f
+ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056321"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94570132"
 ---
 # <a name="aspnet-core-no-locblazor-css-isolation"></a>ASP.NET Core Blazor-CSS-Isolation
 
@@ -34,9 +34,9 @@ Die CSS-Isolation verringert den CSS-Speicherbedarf einer App, indem Abhängigke
 
 ## <a name="enable-css-isolation"></a>Aktivieren der CSS-Isolation 
 
-Damit Sie komponentenspezifische Stile definieren können, erstellen Sie eine Datei `razor.css`, die mit dem Namen der `.razor`-Datei für die Komponente übereinstimmt. Eine solche Datei `razor.css` ist eine *bereichsbezogene CSS-Datei*. 
+Damit Sie komponentenspezifische Stile definieren können, erstellen Sie eine Datei `.razor.css`, die mit dem Namen der `.razor`-Datei für die Komponente übereinstimmt. Eine solche Datei `.razor.css` ist eine *bereichsbezogene CSS-Datei*. 
 
-Erstellen Sie für eine `MyComponent`-Komponente, die eine Datei `MyComponent.razor` enthält, eine Datei mit dem Namen `MyComponent.razor.css`. Beim `MyComponent`-Wert im Dateinamen von `razor.css` wird **nicht** zwischen Groß- und Kleinschreibung unterschieden.
+Erstellen Sie für eine `MyComponent`-Komponente, die eine Datei `MyComponent.razor` enthält, eine Datei mit dem Namen `MyComponent.razor.css`. Beim `MyComponent`-Wert im Dateinamen von `.razor.css` wird **nicht** zwischen Groß- und Kleinschreibung unterschieden.
 
 Wenn Sie beispielsweise der `Counter`-Komponente in der Standardprojektvorlage Blazor CSS-Isolation hinzufügen möchten, fügen Sie neben der Datei `Counter.razor` eine neue Datei mit dem Namen `Counter.razor.css` und dann folgenden CSS-Code hinzu:
 
@@ -86,7 +86,7 @@ Wenn andere Projekte verwendet werden, z. B. NuGet-Pakete oder [Razor-Klassenbi
 
 ## <a name="child-component-support"></a>Unterstützung für untergeordnete Komponenten
 
-Standardmäßig gilt die CSS-Isolation nur für die Komponente, die Sie dem Format `{COMPONENT NAME}.razor.css` zuordnen, wobei der Platzhalter `{COMPONENT NAME}` in der Regel der Komponentenname ist. Verwenden Sie zum Anwenden von Änderungen auf eine untergeordnete Komponente den `::deep`-Kombinator für alle Nachfolgerelemente in der Datei `razor.css` der übergeordneten Komponente. Der `::deep`-Kombinator wählt Elemente aus, die *Nachfolger* des generierten Bereichsbezeichners eines Elements sind. 
+Standardmäßig gilt die CSS-Isolation nur für die Komponente, die Sie dem Format `{COMPONENT NAME}.razor.css` zuordnen, wobei der Platzhalter `{COMPONENT NAME}` in der Regel der Komponentenname ist. Verwenden Sie zum Anwenden von Änderungen auf eine untergeordnete Komponente den `::deep`-Kombinator für alle Nachfolgerelemente in der Datei `.razor.css` der übergeordneten Komponente. Der `::deep`-Kombinator wählt Elemente aus, die *Nachfolger* des generierten Bereichsbezeichners eines Elements sind. 
 
 Das folgende Beispiel zeigt die übergeordnete Komponente `Parent`, die eine untergeordnete Komponente namens `Child` hat.
 
@@ -180,3 +180,24 @@ Wenn Sie das Verhalten von Blazor beim Veröffentlichen und Laden bereichsbezoge
   <DisableScopedCssBundling>true</DisableScopedCssBundling>
 </PropertyGroup>
 ```
+
+## <a name="no-locrazor-class-library-rcl-support"></a>Unterstützung für Razor-Klassenbibliothek (RCL)
+
+Wenn eine [Razor-Klassenbibliothek (RCL)](xref:razor-pages/ui-class) isolierte Stile bereitstellt, zeigt das `href`-Attribut des `<link>`-Tags auf `{STATIC WEB ASSET BASE PATH}/{ASSEMBLY NAME}.bundle.scp.css`, wobei die Platzhalter für Folgendes stehen:
+
+* `{STATIC WEB ASSET BASE PATH}`: Basispfad der statischen Webressource
+* `{ASSEMBLY NAME}`: Assemblyname der Klassenbibliothek
+
+Im folgenden Beispiel:
+
+* Der Basispfad der statischen Webressource lautet `_content/ClassLib`.
+* Der Assemblyname der Klassenbibliothek lautet `ClassLib`.
+
+```html
+<link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
+```
+
+Weitere Informationen zu RCLs und Komponentenbibliotheken finden Sie unter folgendem Link:
+
+* <xref:razor-pages/ui-class>
+* <xref:blazor/components/class-libraries>.

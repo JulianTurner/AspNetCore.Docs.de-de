@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: 74473eb5c0efcd8798d260b765c848d7e621e534
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a209109210ef5e335734a974ceb0c2af7cb8e1a1
+ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055762"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "94595440"
 ---
 # <a name="host-and-deploy-no-locblazor-server"></a>Hosten und Bereitstellen Blazor Server
 
@@ -56,7 +56,7 @@ Wenn Sie die Skalierbarkeit eines einzelnen Servers in Erwägung ziehen (zentral
 
 Anleitungen zum Erstellen sicherer und skalierbarer Blazor Server-Apps finden Sie unter <xref:blazor/security/server/threat-mitigation>.
 
-Jede Verbindung verwendet ungefähr 250 KB Arbeitsspeicher für eine minimale App im *Hello World* -Stil. Die Größe einer Verbindung hängt vom App-Code und den Zustandsverwaltungsanforderungen der einzelnen Komponenten ab. Sie sollten die Ressourcenanforderungen während der Entwicklung für Ihre App und die Infrastruktur messen, aber die folgende Baseline kann ein Ausgangspunkt zur Planung des Bereitstellungsziels sein: Wenn Sie davon ausgehen, dass Ihre App 5.000 gleichzeitige Benutzer unterstützt, sollten Sie erwägen, mindestens 1,3 GB Serverarbeitsspeicher (oder ~273 KB pro Benutzer) für die App einzukalkulieren.
+Jede Verbindung verwendet ungefähr 250 KB Arbeitsspeicher für eine minimale App im *Hello World*-Stil. Die Größe einer Verbindung hängt vom App-Code und den Zustandsverwaltungsanforderungen der einzelnen Komponenten ab. Sie sollten die Ressourcenanforderungen während der Entwicklung für Ihre App und die Infrastruktur messen, aber die folgende Baseline kann ein Ausgangspunkt zur Planung des Bereitstellungsziels sein: Wenn Sie davon ausgehen, dass Ihre App 5.000 gleichzeitige Benutzer unterstützt, sollten Sie erwägen, mindestens 1,3 GB Serverarbeitsspeicher (oder ~273 KB pro Benutzer) für die App einzukalkulieren.
 
 ### <a name="no-locsignalr-configuration"></a>SignalR-Konfiguration
 
@@ -69,7 +69,7 @@ Blazor funktioniert am besten, wenn WebSockets aufgrund geringerer Latenz und we
 Sie sollten [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) für Blazor Server-Apps verwenden. Der Dienst ermöglicht das Hochskalieren einer Blazor Server-App auf eine große Anzahl gleichzeitiger SignalR-Verbindungen. Außerdem tragen die globale Reichweite und die Hochleistungsrechenzentren von SignalR Service erheblich zur Verringerung der geografiebedingten Latenz bei.
 
 > [!IMPORTANT]
-> Wenn [Websockets](https://wikipedia.org/wiki/WebSocket) deaktiviert sind, simuliert Azure App Service eine Echtzeitverbindung mithilfe von Long-Polling über HTTP. Das Long-Polling über HTTP ist deutlich langsamer als die Ausführung mit aktivierten Websockets, für die kein Polling verwendet wird, um eine Client-Server-Verbindung zu simulieren.
+> Wenn [WebSockets](https://wikipedia.org/wiki/WebSocket) deaktiviert sind, simuliert Azure App Service eine Echtzeitverbindung mithilfe von langen HTTP-Abrufen. Das lange Abrufen über HTTP ist deutlich langsamer als die Ausführung mit aktiviertem WebSockets, das keinen Abruf verwendet, um eine Clientserververbindung zu simulieren.
 >
 > Es wird empfohlen, Websockets für Blazor Server-Apps zu verwenden, die in Azure App Service bereitgestellt werden. In [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) werden Websockets standardmäßig verwendet. Lesen Sie SignalR, wenn die App nicht Azure <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service> Service verwendet.
 >
@@ -78,9 +78,9 @@ Sie sollten [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) f�
 > * [Was ist Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 > * [Leitfaden zur Leistung für Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
 
-So konfigurieren Sie eine App (und stellen optional Azure SignalR Service bereit)
+### <a name="configuration"></a>Konfiguration
 
-1. Aktivieren Sie die Unterstützung von *persistenten Sitzungen* des Diensts, damit Clients [beim Vorabrendering an denselben Server umgeleitet werden](xref:blazor/hosting-models#connection-to-the-server). Legen Sie die `ServerStickyMode`-Option oder den Konfigurationswert auf `Required` fest. In der Regel erstellt eine App die Konfiguration mithilfe von **einem** der folgenden Ansätze:
+Wenn Sie eine App für Azure SignalR Service konfigurieren müssen, muss die App *persistente Sitzungen* unterstützen, in denen Clients [beim Prerendering wieder zurück zum gleichen Server geleitet werden](xref:blazor/hosting-models#connection-to-the-server). Die `ServerStickyMode`-Option oder der Konfigurationswert ist auf `Required` festgelegt. In der Regel erstellt eine App die Konfiguration nach **_EINEM_** der folgenden Ansätze:
 
    * `Startup.ConfigureServices`:
   
@@ -92,19 +92,25 @@ So konfigurieren Sie eine App (und stellen optional Azure SignalR Service bereit
      });
      ```
 
-   * Konfiguration (verwenden Sie **einen** der folgenden Ansätze):
+   * Konfiguration (verwenden Sie **_EINEN_** der folgenden Ansätze):
   
-     * `appsettings.json`:
+     * In `appsettings.json`:
 
        ```json
-       "Azure:SignalR:ServerStickyMode": "Required"
+       "Azure:SignalR:StickyServerMode": "Required"
        ```
 
-     * **Konfiguration** > **Anwendungseinstellungen** des App-Diensts im Azure-Portal ( **Name** : `Azure:SignalR:ServerStickyMode`, **Wert** : `Required`).
+     * **Konfiguration** > **Anwendungseinstellungen** des App-Diensts im Azure-Portal (**Name**: `Azure__SignalR__StickyServerMode`, **Wert**: `Required`). Dieser Ansatz wird für die App automatisch übernommen, wenn Sie [Azure SignalR Service bereitstellen](#provision-the-azure-signalr-service).
+
+### <a name="provision-the-azure-no-locsignalr-service"></a>Bereitstellen von Azure SignalR Service
+
+So stellen Sie Azure SignalR Service für eine App in Visual Studio bereit:
 
 1. Erstellen Sie ein Veröffentlichungsprofil für Azure-Apps in Visual Studio für die Blazor Server-App.
-1. Fügen Sie dem Profil die **Azure SignalR Service** -Abhängigkeit hinzu. Wenn das Azure-Abonnement nicht über eine bereits vorhandene Azure SignalR Service-Instanz verfügt, die der App zugewiesen werden soll, wählen Sie **Neue Azure SignalR Service-Instanz erstellen** aus, um eine neue Dienstinstanz bereitzustellen.
+1. Fügen Sie dem Profil die **Azure SignalR Service**-Abhängigkeit hinzu. Wenn das Azure-Abonnement nicht über eine bereits vorhandene Azure SignalR Service-Instanz verfügt, die der App zugewiesen werden soll, wählen Sie **Neue Azure SignalR Service-Instanz erstellen** aus, um eine neue Dienstinstanz bereitzustellen.
 1. Veröffentlichen Sie die App in Azure.
+
+Durch die Bereitstellung von Azure SignalR Service in Visual Studio werden automatisch [*persistente Sitzungen* aktiviert](#configuration), und die SignalR-Verbindungszeichenfolge wird der Konfiguration des App-Diensts hinzugefügt.
 
 #### <a name="iis"></a>IIS
 

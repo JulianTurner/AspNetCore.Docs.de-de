@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie Anforderungen in Apps und über die NavLink-K
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/02/2020
+ms.date: 11/17/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 8f0aa80d092b6678131a2b7152f21ecb8e168257
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: c4da8bf8447618c9a7a2d0f690164fe48a7ed006
+ms.sourcegitcommit: 8b867c4cb0c3b39bbc4d2d87815610d2ef858ae7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430990"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94703695"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor-Routing
 
@@ -112,7 +112,31 @@ Verwenden Sie den <xref:Microsoft.AspNetCore.Components.Routing.Router.Additiona
 
 ## <a name="route-parameters"></a>Routenparameter
 
-Der Router verwendet Routenparameter, um die entsprechenden Komponentenparameter mit demselben Namen (mit Beachtung der Groß-/Kleinschreibung) aufzufüllen:
+Der Router verwendet Routenparameter, um die entsprechenden Komponentenparameter mit demselben Namen (unter Berücksichtigung der Groß-/Kleinschreibung) aufzufüllen.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Optionale Parameter werden unterstützt. Im folgenden Beispiel weist der optionale Parameter `text` den Wert des Routensegments der Eigenschaft `Text` der Komponente zu. Wenn das Segment nicht vorhanden ist, wird der Wert von `Text` auf `fantastic` festgelegt:
+
+```razor
+@page "/RouteParameter/{text?}"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 ```razor
 @page "/RouteParameter"
@@ -132,6 +156,17 @@ Der Router verwendet Routenparameter, um die entsprechenden Komponentenparameter
 ```
 
 Optionale Parameter werden nicht unterstützt. Im vorherigen Beispiel werden zwei `@page`-Anweisungen angewendet. Die erste ermöglicht die Navigation zur Komponente ohne einen Parameter. Die zweite `@page`-Anweisung empfängt den `{text}`-Routenparameter und weist den Wert der `Text`-Eigenschaft zu.
+
+::: moniker-end
+
+Verwenden Sie [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) anstelle von [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods), um die App-Navigation zur gleichen Komponente mit einem anderen optionalen Parameterwert zuzulassen. Verwenden Sie auf der Grundlage des vorangehenden Beispiels `OnParametersSet`, wenn der Benutzer in der Lage sein soll, von `/RouteParameter` zu `/RouteParameter/awesome` oder von `/RouteParameter/awesome` zu `/RouteParameter` zu navigieren:
+
+```csharp
+protected override void OnParametersSet()
+{
+    Text = Text ?? "fantastic";
+}
+```
 
 ## <a name="route-constraints"></a>Routeneinschränkungen
 

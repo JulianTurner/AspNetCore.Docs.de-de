@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: fcd5524bed11cca2380ffd8956f437f742729b55
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: 7f5cd3de38f1e45d9b188c513a0e62ca658b2992
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417609"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035904"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault Konfigurations Anbieters in ASP.net Core
 
@@ -54,7 +54,7 @@ Weitere Informationen zum Konfigurieren einer Beispiel-App mithilfe von Präproz
 
 ## <a name="secret-storage-in-the-development-environment"></a>Speicherung von geheimen Schlüsseln in der Entwicklungsumgebung
 
-Legen Sie Geheimnisse mit dem [Geheimnis-Manager-Tool](xref:security/app-secrets)lokal fest. Wenn die Beispiel-App auf dem lokalen Computer in der Entwicklungsumgebung ausgeführt wird, werden Geheimnisse aus dem lokalen Speicher des geheimen Haupt Schlüssels geladen.
+Legen Sie Geheimnisse mit dem [Geheimnis-Manager-Tool](xref:security/app-secrets)lokal fest. Wenn die Beispiel-App auf dem lokalen Computer in der Entwicklungsumgebung ausgeführt wird, werden die geheimen Schlüssel aus dem lokalen Benutzer Geheimnis Speicher geladen.
 
 Das Secret Manager-Tool erfordert eine `<UserSecretsId>` Eigenschaft in der Projektdatei der app. Legen Sie den-Eigenschafts Wert ( `{GUID}` ) auf eine eindeutige GUID fest:
 
@@ -225,7 +225,7 @@ config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new
     });
 ```
 
-| Eigenschaft         | BESCHREIBUNG |
+| Eigenschaft         | Beschreibung |
 | ---------------- | ----------- |
 | `Manager`        | `Azure.Extensions.Aspnetcore.Configuration.Secrets` zum Steuern des geheimen Schlüssels verwendete Instanz. |
 | `ReloadInterval` | `Timespan` , um zwischen versuchen zu warten, den Schlüssel Tresor auf Änderungen abzufragen. Der Standardwert ist `null` (die Konfiguration wird nicht neu geladen). |
@@ -328,7 +328,7 @@ Azure Key Vault Schlüssel können keinen Doppelpunkt als Trennzeichen verwenden
 
 Die in der vorangehenden JSON-Datei angezeigte Konfiguration wird in Azure Key Vault mithilfe von Double Dash ( `--` )-Notation und numerischen Segmenten gespeichert:
 
-| Schlüssel | Wert |
+| Key | Wert |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -398,7 +398,7 @@ Weitere Informationen zum Konfigurieren einer Beispiel-App mithilfe von Präproz
 
 ## <a name="secret-storage-in-the-development-environment"></a>Speicherung von geheimen Schlüsseln in der Entwicklungsumgebung
 
-Legen Sie Geheimnisse mit dem [Geheimnis-Manager-Tool](xref:security/app-secrets)lokal fest. Wenn die Beispiel-App auf dem lokalen Computer in der Entwicklungsumgebung ausgeführt wird, werden Geheimnisse aus dem lokalen Speicher des geheimen Haupt Schlüssels geladen.
+Legen Sie Geheimnisse mit dem [Geheimnis-Manager-Tool](xref:security/app-secrets)lokal fest. Wenn die Beispiel-App auf dem lokalen Computer in der Entwicklungsumgebung ausgeführt wird, werden die geheimen Schlüssel aus dem lokalen Benutzer Geheimnis Speicher geladen.
 
 Das Secret Manager-Tool erfordert eine `<UserSecretsId>` Eigenschaft in der Projektdatei der app. Legen Sie den-Eigenschafts Wert ( `{GUID}` ) auf eine eindeutige GUID fest:
 
@@ -655,7 +655,7 @@ Azure Key Vault Schlüssel können keinen Doppelpunkt als Trennzeichen verwenden
 
 Die in der vorangehenden JSON-Datei angezeigte Konfiguration wird in Azure Key Vault mithilfe von Double Dash ( `--` )-Notation und numerischen Segmenten gespeichert:
 
-| Schlüssel | Wert |
+| Key | Wert |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |

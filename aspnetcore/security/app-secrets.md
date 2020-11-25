@@ -1,10 +1,10 @@
 ---
 title: Sichere Speicherung von App-Geheimnissen in der Entwicklung in ASP.net Core
 author: rick-anderson
-description: Erfahren Sie, wie Sie vertrauliche Informationen in Form von App-Geheimnissen während der Entwicklung einer ASP.net Core-APP speichern und abrufen.
+description: Erfahren Sie, wie Sie vertrauliche Informationen während der Entwicklung einer ASP.net Core-APP speichern und abrufen.
 ms.author: scaddie
-ms.custom: mvc
-ms.date: 4/20/2020
+ms.custom: mvc, contperfq2
+ms.date: 11/24/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/app-secrets
-ms.openlocfilehash: 174f831583c2ef6cb7f122a22fe855acc8fe3047
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 99b7b04076206f95c04da79283010beafdd1cc88
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056867"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035852"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Sichere Speicherung von App-Geheimnissen in der Entwicklung in ASP.net Core
 
@@ -33,7 +33,7 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twit
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/app-secrets/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-Dieses Dokument erläutert Techniken zum Speichern und Abrufen von sensiblen Daten während der Entwicklung einer ASP.net Core-App auf einem Entwicklungs Computer. Speichern Sie niemals Kenn Wörter oder andere sensible Daten im Quellcode. Produktionsgeheimnisse sollten nicht für Entwicklungs-oder Testzwecke verwendet werden. Geheimnisse sollten nicht mit der APP bereitgestellt werden. Stattdessen sollten geheime Schlüssel in der Produktionsumgebung über eine kontrollierte Methode wie Umgebungsvariablen, Azure Key Vault usw. zur Verfügung gestellt werden. Sie können Azure-Test-und Produktionsgeheimnisse mit dem [Azure Key Vault Konfigurations Anbieters](xref:security/key-vault-configuration)speichern und schützen.
+In diesem Dokument wird erläutert, wie sensible Daten für eine ASP.net Core-App auf einem Entwicklungs Computer verwaltet werden. Speichern Sie niemals Kenn Wörter oder andere sensible Daten im Quellcode. Produktionsgeheimnisse sollten nicht für Entwicklungs-oder Testzwecke verwendet werden. Geheimnisse sollten nicht mit der APP bereitgestellt werden. Stattdessen sollte auf die Produktionsgeheimnisse über ein kontrolliertes Mittel wie Umgebungsvariablen oder Azure Key Vault zugegriffen werden. Sie können Azure-Test- und -Produktionsgeheimnisse mit dem [Konfigurationsanbieter Azure Key Vault](xref:security/key-vault-configuration) speichern und schützen.
 
 ## <a name="environment-variables"></a>Umgebungsvariablen
 
@@ -55,7 +55,7 @@ Das Secret Manager-Tool speichert vertrauliche Daten während der Entwicklung ei
 
 ## <a name="how-the-secret-manager-tool-works"></a>So funktioniert das Secret Manager-Tool
 
-Das Secret Manager-Tool abstrahiert die Implementierungsdetails, z. b. wo und wie die Werte gespeichert werden. Sie können das Tool verwenden, ohne diese Implementierungsdetails kennen zu lernen. Die Werte werden in einer JSON-Konfigurationsdatei in einem vom System geschützten Benutzerprofil Ordner auf dem lokalen Computer gespeichert:
+Das Secret Manager-Tool verbirgt Implementierungsdetails, z. b. wo und wie die Werte gespeichert werden. Sie können das Tool verwenden, ohne diese Implementierungsdetails kennen zu lernen. Die Werte werden in einer JSON-Datei im Benutzerprofil Ordner des lokalen Computers gespeichert:
 
 # <a name="windows"></a>[Windows](#tab/windows)
 
@@ -71,7 +71,7 @@ Dateisystempfad:
 
 ---
 
-Ersetzen Sie in den vorangehenden Dateipfaden `<user_secrets_id>` durch den Wert, der `UserSecretsId` in der *csproj* -Datei angegeben ist.
+Ersetzen Sie in den vorangehenden Dateipfaden `<user_secrets_id>` durch den `UserSecretsId` in der Projektdatei angegebenen Wert.
 
 Schreiben Sie keinen Code, der vom Speicherort oder Format der mit dem Geheimnis-Manager-Tool gespeicherten Daten abhängt. Diese Implementierungsdetails können sich ändern. Die geheimen Werte sind z. b. nicht verschlüsselt, können aber in der Zukunft liegen.
 
@@ -85,15 +85,15 @@ Das Secret Manager-Tool enthält einen `init` Befehl in .net Core SDK 3.0.100 od
 dotnet user-secrets init
 ```
 
-Mit dem vorangehenden Befehl wird ein- `UserSecretsId` Element in einer `PropertyGroup` der *csproj* -Datei hinzugefügt. Standardmäßig ist der innere Text von `UserSecretsId` eine GUID. Der innere Text ist willkürlich, aber für das Projekt eindeutig.
+Mit dem vorangehenden Befehl wird ein- `UserSecretsId` Element in einer `PropertyGroup` der Projektdatei hinzugefügt. Standardmäßig ist der innere Text von `UserSecretsId` eine GUID. Der innere Text ist willkürlich, aber für das Projekt eindeutig.
 
 [!code-xml[](app-secrets/samples/3.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
-Klicken Sie in Visual Studio mit der rechten Maustaste auf das Projekt in Projektmappen-Explorer, und wählen Sie im Kontextmenü die Option **Benutzer Geheimnisse verwalten** aus. Diese Geste fügt `UserSecretsId` der *csproj* -Datei ein-Element, das mit einer GUID aufgefüllt ist, hinzu.
+Klicken Sie in Visual Studio mit der rechten Maustaste auf das Projekt in Projektmappen-Explorer, und wählen Sie im Kontextmenü die Option **Benutzer Geheimnisse verwalten** aus. Diese Geste fügt `UserSecretsId` der Projektdatei ein-Element, das mit einer GUID aufgefüllt ist, hinzu.
 
 ## <a name="set-a-secret"></a>Festlegen eines Geheimnisses
 
-Definieren Sie einen geheimen App-Schlüssel, der aus einem Schlüssel und seinem Wert besteht. Das Geheimnis wird dem Wert des Projekts zugeordnet `UserSecretsId` . Führen Sie z. b. den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Definieren Sie einen geheimen App-Schlüssel, der aus einem Schlüssel und seinem Wert besteht. Das Geheimnis wird dem Wert des Projekts zugeordnet `UserSecretsId` . Führen Sie z. b. den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345"
@@ -101,7 +101,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 Im vorherigen Beispiel deutet der Doppelpunkt darauf hin, dass `Movies` Ein Objektliteral mit einer- `ServiceApiKey` Eigenschaft ist.
 
-Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die *csproj* -Datei vorhanden ist. Zum Beispiel:
+Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die Projektdatei vorhanden ist. Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -109,7 +109,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Vereinfachen der JSON-Struktur in Visual Studio
 
-Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Zum Beispiel:
+Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Beispiel:
 
 ```json
 {
@@ -120,7 +120,7 @@ Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine 
 }
 ```
 
-Die JSON-Struktur wird nach Änderungen über `dotnet user-secrets remove` oder vereinfacht `dotnet user-secrets set` . Beispielsweise wird durch `dotnet user-secrets remove "Movies:ConnectionString"` das Ausführen des `Movies` Objektliterals reduziert. Die geänderte Datei ähnelt der folgenden:
+Die JSON-Struktur wird nach Änderungen über `dotnet user-secrets remove` oder vereinfacht `dotnet user-secrets set` . Beispielsweise wird durch `dotnet user-secrets remove "Movies:ConnectionString"` das Ausführen des `Movies` Objektliterals reduziert. Die geänderte Datei ähnelt der folgenden JSON-Datei:
 
 ```json
 {
@@ -152,19 +152,36 @@ Ein Batch geheimer Schlüssel kann durch die Weiterleitung von JSON an den Befeh
 
 ## <a name="access-a-secret"></a>Auf einen geheimen Schlüssel zugreifen
 
-Die [ASP.net Core-Konfigurations-API](xref:fundamentals/configuration/index) ermöglicht den Zugriff auf Geheimnisse geheimer Geheimnisse.
+Um auf ein Geheimnis zuzugreifen, führen Sie die folgenden Schritte aus:
 
-Die Konfigurations Quelle für Benutzer Geheimnisse wird automatisch im Entwicklungsmodus hinzugefügt, wenn das Projekt aufruft <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> , um eine neue Instanz des Hosts mit vorkonfigurierten Standardwerten zu initialisieren. `CreateDefaultBuilder` wird aufgerufen, <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> wenn Folgendes <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> ist <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development> :
+1. [Registrieren der Konfigurations Quelle für Benutzer Geheimnisse](#register-the-user-secrets-configuration-source)
+1. [Lesen des geheimen Schlüssels über die Konfigurations-API](#read-the-secret-via-the-configuration-api)
+
+### <a name="register-the-user-secrets-configuration-source"></a>Registrieren der Konfigurations Quelle für Benutzer Geheimnisse
+
+Der [Konfigurations Anbieter](/dotnet/core/extensions/configuration-providers) für Benutzer Geheimnisse registriert die geeignete Konfigurations Quelle bei der .net- [Konfigurations-API](xref:fundamentals/configuration/index).
+
+Die Konfigurations Quelle für Benutzer Geheimnisse wird automatisch im Entwicklungsmodus hinzugefügt, wenn das Projekt aufruft <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> . `CreateDefaultBuilder` wird aufgerufen, <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> wenn Folgendes <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> ist <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development> :
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program.cs?name=snippet_CreateHostBuilder&highlight=2)]
 
-Wenn `CreateDefaultBuilder` nicht aufgerufen wird, fügen Sie die Konfigurations Quelle für Benutzer Geheimnisse explizit hinzu, indem Sie aufrufen <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> . `AddUserSecrets`Wird nur aufgerufen, wenn die app in der Entwicklungsumgebung ausgeführt wird, wie im folgenden Beispiel gezeigt:
+Wenn `CreateDefaultBuilder` nicht aufgerufen wird, fügen Sie die Konfigurations Quelle für Benutzer Geheimnisse explizit hinzu, indem Sie <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> in Aufrufen <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A> . `AddUserSecrets`Wird nur aufgerufen, wenn die app in der Entwicklungsumgebung ausgeführt wird, wie im folgenden Beispiel gezeigt:
 
-[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program2.cs?name=snippet_Host&highlight=6-9)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program2.cs?name=snippet_Program&highlight=10-13)]
 
-Benutzer Geheimnisse können über die API abgerufen werden `Configuration` :
+### <a name="read-the-secret-via-the-configuration-api"></a>Lesen des geheimen Schlüssels über die Konfigurations-API
+
+Wenn die Konfigurations Quelle "Benutzer Geheimnisse" registriert ist, kann die .NET-Konfigurations-API die geheimen Schlüssel lesen. Die [Konstruktorinjektion](/dotnet/core/extensions/dependency-injection#constructor-injection-behavior) kann verwendet werden, um Zugriff auf die .NET-Konfigurations-API zu erhalten. Beachten Sie die folgenden Beispiele, um den Schlüssel zu lesen `Movies:ServiceApiKey` :
+
+**Startup-Klasse:**
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
+
+**Razor Seiten Modell der Seite:**
+
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
+
+Weitere Informationen finden Sie unter [Zugriffs Konfiguration in Start](xref:fundamentals/configuration/index#access-configuration-in-startup) -und [Zugriffs Konfiguration in Razor Seiten](xref:fundamentals/configuration/index#access-configuration-in-razor-pages).
 
 ## <a name="map-secrets-to-a-poco"></a>Zuordnen von Geheimnissen zu einem poco
 
@@ -172,7 +189,7 @@ Das Mapping eines gesamten Objektliterals zu einem poco (eine einfache .NET-Klas
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Um die vorangehenden geheimen Schlüssel einem poco zuzuordnen, verwenden Sie die `Configuration` [Objekt Diagramm-Bindungs](xref:fundamentals/configuration/index#bind-to-an-object-graph) Funktion der API. Der folgende Code bindet an ein benutzerdefiniertes `MovieSettings` poco und greift auf den- `ServiceApiKey` Eigenschafts Wert zu:
+Um die vorangehenden geheimen Schlüssel einem poco zuzuordnen, verwenden Sie die [Objekt Diagramm-Bindungs](xref:fundamentals/configuration/index#bind-to-an-object-graph) Funktion der .NET-Konfigurations-API. Der folgende Code bindet an ein benutzerdefiniertes `MovieSettings` poco und greift auf den- `ServiceApiKey` Eigenschafts Wert zu:
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
@@ -186,13 +203,13 @@ Das Speichern von Kenn Wörtern im Klartext ist unsicher. Beispielsweise kann ei
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Zum Beispiel:
+Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.json* . Zum Beispiel:
+Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.json* . Beispiel:
 
 [!code-json[](app-secrets/samples/3.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -204,7 +221,7 @@ Der Wert des Geheimnisses kann für die-Eigenschaft eines-Objekts festgelegt wer
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets list
@@ -217,13 +234,13 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan* .
+Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan*.
 
 ## <a name="remove-a-single-secret"></a>Entfernen eines einzelnen geheimen Schlüssels
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets remove "Movies:ConnectionString"
@@ -249,7 +266,7 @@ Movies:ServiceApiKey = 12345
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets clear
@@ -269,7 +286,7 @@ No secrets configured for this application.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* Informationen zum Zugriff auf den geheimen Hauptschlüssel von IIS finden Sie in [diesem Thema](https://github.com/dotnet/AspNetCore.Docs/issues/16328) .
+* Informationen zum Zugriff auf Benutzer Geheimnisse aus IIS finden Sie in [diesem Thema](https://github.com/dotnet/AspNetCore.Docs/issues/16328) .
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 
@@ -281,7 +298,7 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT), [Daniel Roth](https://gith
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/app-secrets/samples) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
-Dieses Dokument erläutert Techniken zum Speichern und Abrufen von sensiblen Daten während der Entwicklung einer ASP.net Core-App auf einem Entwicklungs Computer. Speichern Sie niemals Kenn Wörter oder andere sensible Daten im Quellcode. Produktionsgeheimnisse sollten nicht für Entwicklungs-oder Testzwecke verwendet werden. Geheimnisse sollten nicht mit der APP bereitgestellt werden. Stattdessen sollten geheime Schlüssel in der Produktionsumgebung über eine kontrollierte Methode wie Umgebungsvariablen, Azure Key Vault usw. zur Verfügung gestellt werden. Sie können Azure-Test-und Produktionsgeheimnisse mit dem [Azure Key Vault Konfigurations Anbieters](xref:security/key-vault-configuration)speichern und schützen.
+In diesem Dokument wird erläutert, wie sensible Daten für eine ASP.net Core-App auf einem Entwicklungs Computer verwaltet werden. Speichern Sie niemals Kenn Wörter oder andere sensible Daten im Quellcode. Produktionsgeheimnisse sollten nicht für Entwicklungs-oder Testzwecke verwendet werden. Geheimnisse sollten nicht mit der APP bereitgestellt werden. Stattdessen sollte auf die Produktionsgeheimnisse über ein kontrolliertes Mittel wie Umgebungsvariablen oder Azure Key Vault zugegriffen werden. Sie können Azure-Test- und -Produktionsgeheimnisse mit dem [Konfigurationsanbieter Azure Key Vault](xref:security/key-vault-configuration) speichern und schützen.
 
 ## <a name="environment-variables"></a>Umgebungsvariablen
 
@@ -303,7 +320,7 @@ Das Secret Manager-Tool speichert vertrauliche Daten während der Entwicklung ei
 
 ## <a name="how-the-secret-manager-tool-works"></a>So funktioniert das Secret Manager-Tool
 
-Das Secret Manager-Tool abstrahiert die Implementierungsdetails, z. b. wo und wie die Werte gespeichert werden. Sie können das Tool verwenden, ohne diese Implementierungsdetails kennen zu lernen. Die Werte werden in einer JSON-Konfigurationsdatei in einem vom System geschützten Benutzerprofil Ordner auf dem lokalen Computer gespeichert:
+Das Secret Manager-Tool verbirgt Implementierungsdetails, z. b. wo und wie die Werte gespeichert werden. Sie können das Tool verwenden, ohne diese Implementierungsdetails kennen zu lernen. Die Werte werden in einer JSON-Datei im Benutzerprofil Ordner des lokalen Computers gespeichert:
 
 # <a name="windows"></a>[Windows](#tab/windows)
 
@@ -319,7 +336,7 @@ Dateisystempfad:
 
 ---
 
-Ersetzen Sie in den vorangehenden Dateipfaden `<user_secrets_id>` durch den Wert, der `UserSecretsId` in der *csproj* -Datei angegeben ist.
+Ersetzen Sie in den vorangehenden Dateipfaden `<user_secrets_id>` durch den `UserSecretsId` in der Projektdatei angegebenen Wert.
 
 Schreiben Sie keinen Code, der vom Speicherort oder Format der mit dem Geheimnis-Manager-Tool gespeicherten Daten abhängt. Diese Implementierungsdetails können sich ändern. Die geheimen Werte sind z. b. nicht verschlüsselt, können aber in der Zukunft liegen.
 
@@ -327,16 +344,16 @@ Schreiben Sie keinen Code, der vom Speicherort oder Format der mit dem Geheimnis
 
 Das Secret Manager-Tool arbeitet mit projektspezifischen Konfigurationseinstellungen, die in Ihrem Benutzerprofil gespeichert sind.
 
-Definieren Sie ein- `UserSecretsId` Element in einer-Datei der `PropertyGroup` *csproj* -Datei, um Benutzer Geheimnisse zu verwenden. Der innere Text von `UserSecretsId` ist willkürlich, aber für das Projekt eindeutig. Entwickler generieren in der Regel eine GUID für das `UserSecretsId` .
+Zum Verwenden von Benutzer Geheimnissen definieren Sie ein- `UserSecretsId` Element innerhalb einer `PropertyGroup` der Projektdatei. Der innere Text von `UserSecretsId` ist willkürlich, aber für das Projekt eindeutig. Entwickler generieren in der Regel eine GUID für das `UserSecretsId` .
 
 [!code-xml[](app-secrets/samples/2.x/UserSecrets/UserSecrets.csproj?name=snippet_PropertyGroup&highlight=3)]
 
 > [!TIP]
-> Klicken Sie in Visual Studio mit der rechten Maustaste auf das Projekt in Projektmappen-Explorer, und wählen Sie im Kontextmenü die Option **Benutzer Geheimnisse verwalten** aus. Diese Geste fügt `UserSecretsId` der *csproj* -Datei ein-Element, das mit einer GUID aufgefüllt ist, hinzu.
+> Klicken Sie in Visual Studio mit der rechten Maustaste auf das Projekt in Projektmappen-Explorer, und wählen Sie im Kontextmenü die Option **Benutzer Geheimnisse verwalten** aus. Diese Geste fügt `UserSecretsId` der Projektdatei ein-Element, das mit einer GUID aufgefüllt ist, hinzu.
 
 ## <a name="set-a-secret"></a>Festlegen eines Geheimnisses
 
-Definieren Sie einen geheimen App-Schlüssel, der aus einem Schlüssel und seinem Wert besteht. Das Geheimnis wird dem Wert des Projekts zugeordnet `UserSecretsId` . Führen Sie z. b. den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Definieren Sie einen geheimen App-Schlüssel, der aus einem Schlüssel und seinem Wert besteht. Das Geheimnis wird dem Wert des Projekts zugeordnet `UserSecretsId` . Führen Sie z. b. den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345"
@@ -344,7 +361,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345"
 
 Im vorherigen Beispiel deutet der Doppelpunkt darauf hin, dass `Movies` Ein Objektliteral mit einer- `ServiceApiKey` Eigenschaft ist.
 
-Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die *csproj* -Datei vorhanden ist. Zum Beispiel:
+Das Secret Manager-Tool kann auch aus anderen Verzeichnissen verwendet werden. Verwenden Sie die- `--project` Option, um den Dateisystempfad anzugeben, in dem die Projektdatei vorhanden ist. Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp1\src\WebApp1"
@@ -352,7 +369,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### <a name="json-structure-flattening-in-visual-studio"></a>Vereinfachen der JSON-Struktur in Visual Studio
 
-Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Zum Beispiel:
+Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine *secrets.jsfür* die Datei im Text-Editor. Ersetzen Sie den Inhalt *secrets.jsauf* durch die zu speichernden Schlüssel-Wert-Paare. Beispiel:
 
 ```json
 {
@@ -363,7 +380,7 @@ Die Geste " **Benutzer Geheimnisse verwalten** " von Visual Studio öffnet eine 
 }
 ```
 
-Die JSON-Struktur wird nach Änderungen über `dotnet user-secrets remove` oder vereinfacht `dotnet user-secrets set` . Beispielsweise wird durch `dotnet user-secrets remove "Movies:ConnectionString"` das Ausführen des `Movies` Objektliterals reduziert. Die geänderte Datei ähnelt der folgenden:
+Die JSON-Struktur wird nach Änderungen über `dotnet user-secrets remove` oder vereinfacht `dotnet user-secrets set` . Beispielsweise wird durch `dotnet user-secrets remove "Movies:ConnectionString"` das Ausführen des `Movies` Objektliterals reduziert. Die geänderte Datei ähnelt der folgenden JSON-Datei:
 
 ```json
 {
@@ -395,11 +412,11 @@ Ein Batch geheimer Schlüssel kann durch die Weiterleitung von JSON an den Befeh
 
 ## <a name="access-a-secret"></a>Auf einen geheimen Schlüssel zugreifen
 
-Die [ASP.net Core-Konfigurations-API](xref:fundamentals/configuration/index) ermöglicht den Zugriff auf Geheimnisse geheimer Geheimnisse.
+Die [Konfigurations-API](xref:fundamentals/configuration/index) ermöglicht den Zugriff auf Benutzer Geheimnisse.
 
 Wenn das Projekt .NET Framework als Ziel hat, installieren Sie die [Microsoft.Extensions.Config-urung. Usersecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) -nuget-Paket.
 
-In ASP.net Core 2,0 oder höher wird die Konfigurations Quelle "Benutzer Geheimnisse" automatisch im Entwicklungsmodus hinzugefügt, wenn das Projekt aufruft <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> , um eine neue Instanz des Hosts mit vorkonfigurierten Standardwerten zu initialisieren. `CreateDefaultBuilder` wird aufgerufen, <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> wenn Folgendes <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> ist <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development> :
+In ASP.net Core 2,0 oder höher wird die Konfigurations Quelle "Benutzer Geheimnisse" automatisch im Entwicklungsmodus hinzugefügt, wenn das Projekt aufruft <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> . `CreateDefaultBuilder` wird aufgerufen, <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> wenn Folgendes <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName> ist <xref:Microsoft.AspNetCore.Hosting.EnvironmentName.Development> :
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Program.cs?name=snippet_CreateWebHostBuilder&highlight=2)]
 
@@ -407,7 +424,7 @@ Wenn `CreateDefaultBuilder` nicht aufgerufen wird, fügen Sie die Konfigurations
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_StartupConstructor&highlight=12)]
 
-Benutzer Geheimnisse können über die API abgerufen werden `Configuration` :
+Benutzer Geheimnisse können über die .NET-Konfigurations-API abgerufen werden:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 
@@ -417,7 +434,7 @@ Das Mapping eines gesamten Objektliterals zu einem poco (eine einfache .NET-Klas
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Um die vorangehenden geheimen Schlüssel einem poco zuzuordnen, verwenden Sie die `Configuration` [Objekt Diagramm-Bindungs](xref:fundamentals/configuration/index#bind-to-an-object-graph) Funktion der API. Der folgende Code bindet an ein benutzerdefiniertes `MovieSettings` poco und greift auf den- `ServiceApiKey` Eigenschafts Wert zu:
+Um die vorangehenden geheimen Schlüssel einem poco zuzuordnen, verwenden Sie die [Objekt Diagramm-Bindungs](xref:fundamentals/configuration/index#bind-to-an-object-graph) Funktion der .NET-Konfigurations-API. Der folgende Code bindet an ein benutzerdefiniertes `MovieSettings` poco und greift auf den- `ServiceApiKey` Eigenschafts Wert zu:
 
 [!code-csharp[](app-secrets/samples/2.x/UserSecrets/Startup3.cs?name=snippet_BindToObjectGraph)]
 
@@ -431,13 +448,13 @@ Das Speichern von Kenn Wörtern im Klartext ist unsicher. Beispielsweise kann ei
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings-unsecure.json?highlight=3)]
 
-Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Zum Beispiel:
+Ein sichereren Ansatz besteht darin, das Kennwort als geheimen Schlüssel zu speichern. Beispiel:
 
 ```dotnetcli
 dotnet user-secrets set "DbPassword" "pass123"
 ```
 
-Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.json* . Zum Beispiel:
+Entfernen Sie das `Password` Schlüssel-Wert-Paar aus der Verbindungs Zeichenfolge in *appsettings.json* . Beispiel:
 
 [!code-json[](app-secrets/samples/2.x/UserSecrets/appsettings.json?highlight=3)]
 
@@ -449,7 +466,7 @@ Der Wert des Geheimnisses kann für die-Eigenschaft eines-Objekts festgelegt wer
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets list
@@ -462,13 +479,13 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan* .
+Im vorherigen Beispiel gibt ein Doppelpunkt in den Schlüsselnamen die Objekthierarchie in *secrets.jsan*.
 
 ## <a name="remove-a-single-secret"></a>Entfernen eines einzelnen geheimen Schlüssels
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets remove "Movies:ConnectionString"
@@ -494,7 +511,7 @@ Movies:ServiceApiKey = 12345
 
 [!INCLUDE[secrets.json file](~/includes/app-secrets/secrets-json-file-and-text.md)]
 
-Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die *csproj* -Datei vorhanden ist:
+Führen Sie den folgenden Befehl aus dem Verzeichnis aus, in dem die Projektdatei vorhanden ist:
 
 ```dotnetcli
 dotnet user-secrets clear
@@ -514,7 +531,7 @@ No secrets configured for this application.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* Informationen zum Zugriff auf den geheimen Hauptschlüssel von IIS finden Sie in [diesem Thema](https://github.com/dotnet/AspNetCore.Docs/issues/16328) .
+* Informationen zum Zugriff auf Benutzer Geheimnisse aus IIS finden Sie in [diesem Thema](https://github.com/dotnet/AspNetCore.Docs/issues/16328) .
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 

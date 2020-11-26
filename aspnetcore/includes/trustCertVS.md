@@ -9,3 +9,5 @@ Das folgende Dialogfeld wird angezeigt:
 ![Dialogfeld „Sicherheitswarnung“](~/getting-started/_static/cert.png)
 
 Klicken Sie auf **Ja**, wenn Sie zustimmen möchten, dass das Entwicklungszertifikat vertrauenswürdig ist.
+
+[!INCLUDE[trust FF](~/includes/trust-ff.md)]

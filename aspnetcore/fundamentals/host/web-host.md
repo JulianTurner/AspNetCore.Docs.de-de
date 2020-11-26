@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/web-host
-ms.openlocfilehash: 09383cb9067d7fdc2d7b69213b741e7ae823e9ea
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 904b57f95cbc48a8177174dc9be770e8a6abf146
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060013"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035878"
 ---
 # <a name="aspnet-core-web-host"></a>ASP.NET Core-Webhost
 
@@ -74,10 +74,10 @@ Der Code, der `CreateDefaultBuilder` aufruft, befindet sich in einer Methode nam
 * Lädt die App-Konfiguration in der folgenden Reihenfolge:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*
-  * [Geheimnis-Manager](xref:security/app-secrets), wenn die App in der `Development`-Umgebung mit der Einstiegsassembly ausgeführt wird.
+  * [Benutzergeheimnissen](xref:security/app-secrets), wenn die App in der `Development`-Umgebung mit der Einstiegsassembly ausgeführt wird.
   * Umgebungsvariablen.
   * Befehlszeilenargumenten
-* Konfiguriert die [Protokollierung](xref:fundamentals/logging/index) für die Konsolen- und Debugausgabe Die Protokollierung umfasst Regeln zur [Protokollfilterung](xref:fundamentals/logging/index#log-filtering), die im Abschnitt für die Protokollierungskonfiguration einer *appsettings.json* - oder *appsettings.{Environment}.json* -Datei angegeben werden.
+* Konfiguriert die [Protokollierung](xref:fundamentals/logging/index) für die Konsolen- und Debugausgabe Die Protokollierung umfasst Regeln zur [Protokollfilterung](xref:fundamentals/logging/index#log-filtering), die im Abschnitt für die Protokollierungskonfiguration einer *appsettings.json* - oder *appsettings.{Environment}.json*-Datei angegeben werden.
 * Wenn die Ausführung mit dem [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) hinter den IIS erfolgt, ermöglicht `CreateDefaultBuilder` die [IIS-Integration](xref:host-and-deploy/iis/index), die die Basisadresse und den Port der App konfiguriert. Die IIS-Integration konfiguriert die App auch für das [Erfassen von Startfehlern](#capture-startup-errors). Informationen zu den IIS-Standardoptionen finden Sie unter <xref:host-and-deploy/iis/index#iis-options>.
 * Legt [ServiceProviderOptions.ValidateScopes](/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) auf `true` fest, wenn die Umgebung der App „Development“ ist. Weitere Informationen finden Sie unter [Bereichsvalidierung](#scope-validation).
 
@@ -168,7 +168,7 @@ Die Eigenschaft [IHostingEnvironment.ApplicationName](/dotnet/api/microsoft.exte
 
 **Schlüssel:** Anwendungsname  
 **Typ:** *Zeichenfolge*  
-**Standardwert** : Der Name der Assembly, die den Einstiegspunkt der App enthält.  
+**Standardwert**: Der Name der Assembly, die den Einstiegspunkt der App enthält.  
 **Festlegen mit:** `UseSetting`  
 **Umgebungsvariable:** `ASPNETCORE_APPLICATIONNAME`
 
@@ -183,7 +183,7 @@ Diese Einstellung steuert das Erfassen von Startfehlern.
 
 **Schlüssel:** captureStartupErrors  
 **Typ:** *Boolesch* (`true` or `1`)  
-**Standard** : Die Standardeinstellung ist gleich `false`, es sei denn, die App wird mit Kestrel hinter IIS ausgeführt, dann ist sie gleich `true`.  
+**Standard**: Die Standardeinstellung ist gleich `false`, es sei denn, die App wird mit Kestrel hinter IIS ausgeführt, dann ist sie gleich `true`.  
 **Festlegen mit:** `CaptureStartupErrors`  
 **Umgebungsvariable:** `ASPNETCORE_CAPTURESTARTUPERRORS`
 
@@ -200,7 +200,7 @@ Diese Einstellung bestimmt, wo ASP.NET mit der Suche nach Inhaltsdateien beginnt
 
 **Schlüssel:** contentRoot  
 **Typ:** *Zeichenfolge*  
-**Standard** : Entspricht standardmäßig dem Ordner, in dem die App-Assembly gespeichert ist.  
+**Standard**: Entspricht standardmäßig dem Ordner, in dem die App-Assembly gespeichert ist.  
 **Festlegen mit:** `UseContentRoot`  
 **Umgebungsvariable:** `ASPNETCORE_CONTENTROOT`
 
@@ -239,7 +239,7 @@ Legt die Umgebung der App fest.
 
 **Schlüssel:** environment  
 **Typ:** *Zeichenfolge*  
-**Standard** : Produktion  
+**Standard**: Produktion  
 **Festlegen mit:** `UseEnvironment`  
 **Umgebungsvariable:** `ASPNETCORE_ENVIRONMENT`
 
@@ -256,7 +256,7 @@ Legt die Hostingstartassemblys der App fest.
 
 **Schlüssel:** hostingStartupAssemblies  
 **Typ:** *Zeichenfolge*  
-**Standard** : Leere Zeichenfolge  
+**Standard**: Leere Zeichenfolge  
 **Festlegen mit:** `UseSetting`  
 **Umgebungsvariable:** `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
 
@@ -273,10 +273,10 @@ WebHost.CreateDefaultBuilder(args)
 
 Legen Sie den HTTPS-Umleitungsport fest. Wird in [Erzwingen von HTTPS](xref:security/enforcing-ssl) verwendet.
 
-**Schlüssel** : https_port **Typ** : *Zeichenfolge*
-**Standardwert** : Es ist kein Standardwert festgelegt.
-**Festlegen mit** : `UseSetting`
-**Umgebungsvariable** : `ASPNETCORE_HTTPS_PORT`
+**Schlüssel**: https_port **Typ**: *Zeichenfolge*
+**Standardwert**: Es ist kein Standardwert festgelegt.
+**Festlegen mit**: `UseSetting`
+**Umgebungsvariable**: `ASPNETCORE_HTTPS_PORT`
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -287,9 +287,9 @@ WebHost.CreateDefaultBuilder(args)
 
 Eine durch Semikolons getrennte Zeichenfolge der Hostingstartassemblys, die beim Start ausgeschlossen werden sollen.
 
-**Schlüssel** : hostingStartupExcludeAssemblies  
+**Schlüssel**: hostingStartupExcludeAssemblies  
 **Typ:** *Zeichenfolge*  
-**Standard** : Leere Zeichenfolge  
+**Standard**: Leere Zeichenfolge  
 **Festlegen mit:** `UseSetting`  
 **Umgebungsvariable:** `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES`
 
@@ -334,7 +334,7 @@ Gibt die IP-Adressen oder Hostadressen mit Ports und Protokollen an, denen der S
 
 **Schlüssel:** urls  
 **Typ:** *Zeichenfolge*  
-**Standard** : http://localhost:5000  
+**Standard**: http://localhost:5000  
 **Festlegen mit:** `UseUrls`  
 **Umgebungsvariable:** `ASPNETCORE_URLS`
 
@@ -353,7 +353,7 @@ Gibt die Wartezeit an, bis der Webhost heruntergefahren wird.
 
 **Schlüssel:** shutdownTimeoutSeconds  
 **Typ:** *Ganze Zahl*  
-**Standard** : 5  
+**Standard**: 5  
 **Festlegen mit:** `UseShutdownTimeout`  
 **Umgebungsvariable:** `ASPNETCORE_SHUTDOWNTIMEOUTSECONDS`
 
@@ -377,7 +377,7 @@ Bestimmt die Assembly, die nach der `Startup`-Klasse suchen soll.
 
 **Schlüssel:** startupAssembly  
 **Typ:** *Zeichenfolge*  
-**Standard** : Die Assembly der App  
+**Standard**: Die Assembly der App  
 **Festlegen mit:** `UseStartup`  
 **Umgebungsvariable:** `ASPNETCORE_STARTUPASSEMBLY`
 
@@ -399,7 +399,7 @@ Legt den relativen Pfad für die statischen Objekte der App fest.
 
 **Schlüssel:** webroot  
 **Typ:** *Zeichenfolge*  
-**Standard** : Der Standardwert ist `wwwroot`. Der Pfad zu *{Inhaltsstammverzeichnis}/wwwroot* muss vorhanden sein. Wenn der Pfad nicht vorhanden ist, wird ein Dateianbieter ohne Funktion verwendet.  
+**Standard**: Der Standardwert ist `wwwroot`. Der Pfad zu *{Inhaltsstammverzeichnis}/wwwroot* muss vorhanden sein. Wenn der Pfad nicht vorhanden ist, wird ein Dateianbieter ohne Funktion verwendet.  
 **Festlegen mit:** `UseWebRoot`  
 **Umgebungsvariable:** `ASPNETCORE_WEBROOT`
 
@@ -415,7 +415,7 @@ Weitere Informationen finden Sie unter:
 
 ## <a name="override-configuration"></a>Außerkraftsetzen der Konfiguration
 
-Verwenden Sie die [Konfiguration](xref:fundamentals/configuration/index), um den Webhost zu konfigurieren. Im folgenden Beispiel wird die Hostkonfiguration optional in einer *hostsettings.json* -Datei angegeben. Jede Konfiguration, die aus der Datei *hostsettings.json* geladen wird, kann von Befehlszeilenargumenten überschrieben werden. Die erstellte Konfiguration (in `config`) wird verwendet, um den Host mit [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) zu konfigurieren. Der Konfiguration der App wird die `IWebHostBuilder`-Konfiguration hinzugefügt, das Gegenteil gilt jedoch nicht. `ConfigureAppConfiguration` hat keinen Einfluss auf die `IWebHostBuilder`-Konfiguration.
+Verwenden Sie die [Konfiguration](xref:fundamentals/configuration/index), um den Webhost zu konfigurieren. Im folgenden Beispiel wird die Hostkonfiguration optional in einer *hostsettings.json*-Datei angegeben. Jede Konfiguration, die aus der Datei *hostsettings.json* geladen wird, kann von Befehlszeilenargumenten überschrieben werden. Die erstellte Konfiguration (in `config`) wird verwendet, um den Host mit [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) zu konfigurieren. Der Konfiguration der App wird die `IWebHostBuilder`-Konfiguration hinzugefügt, das Gegenteil gilt jedoch nicht. `ConfigureAppConfiguration` hat keinen Einfluss auf die `IWebHostBuilder`-Konfiguration.
 
 Das Überschreiben der Konfiguration wird von `UseUrls` bereitgestellt, hierbei kommt die Konfiguration *hostsettings.json* zuerst und anschließend die Konfiguration der Befehlszeilenargumente:
 
@@ -447,7 +447,7 @@ public class Program
 }
 ```
 
-*hostsettings.json* :
+*hostsettings.json*:
 
 ```json
 {
@@ -458,7 +458,7 @@ public class Program
 > [!NOTE]
 > [UseConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.useconfiguration) kopiert nur Schlüssel aus der bereitgestellten `IConfiguration`-Schnittstelle in die Konfiguration des Host-Generators. Daher hat das Festlegen von `reloadOnChange: true` für JSON-, INI- und XML-Einstellungsdateien keine Auswirkung.
 
-Damit der Host auf einer bestimmten URL ausgeführt wird, kann der gewünschte Wert von der Befehlszeile aus übergeben werden, wenn [dotnet run](/dotnet/core/tools/dotnet-run) ausgeführt wird. Das Befehlszeilenargument überschreibt den `urls`-Wert der *hostsettings.json* -Datei, und der Server lauscht Port 8080:
+Damit der Host auf einer bestimmten URL ausgeführt wird, kann der gewünschte Wert von der Befehlszeile aus übergeben werden, wenn [dotnet run](/dotnet/core/tools/dotnet-run) ausgeführt wird. Das Befehlszeilenargument überschreibt den `urls`-Wert der *hostsettings.json*-Datei, und der Server lauscht Port 8080:
 
 ```dotnetcli
 dotnet run --urls "http://*:8080"

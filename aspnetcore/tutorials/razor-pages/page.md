@@ -20,12 +20,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: a9494feacbe783b20a9f5eb98ef9e481f2c713fa
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: d655be26a794f87a0be07046ae1d6415256d592c
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360891"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417629"
 ---
 # <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Part 3: Gerüstbau mit Razor Pages in ASP.NET Core
 
@@ -236,12 +236,6 @@ Weitere Informationen zu Taghilfsprogrammen wie `<form method="post">` finden Si
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
-
-Von [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-In diesem Tutorial werden die Razor Pages näher untersucht, die durch den Gerüstbau im [vorherigen Tutorial](xref:tutorials/razor-pages/model) erstellt wurden.
-
-Beispiel [Anzeigen oder Herunterladen](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22).
 
 ## <a name="the-no-loccreate-no-locdelete-details-and-edit-pages"></a>Die Seiten Create, Delete, „Details“ und „Edit“
 

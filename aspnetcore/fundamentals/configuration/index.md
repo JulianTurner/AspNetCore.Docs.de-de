@@ -5,7 +5,7 @@ description: In diesem Artikel erfahren Sie, wie Sie mit der Konfigurations-API 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/23/2020
+ms.date: 11/24/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: c04dcc65f7518d2d8b32cdce7a7fbb756dd8ec3a
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: 97ee00dd37ed4eef1c013e0f45b598a79f3f260c
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417538"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035865"
 ---
 # <a name="configuration-in-aspnet-core"></a>Konfiguration in ASP.NET Core
 
@@ -108,20 +108,20 @@ Weitere Informationen zum Hinzufügen zusätzlicher JSON-Konfigurationsdateien f
 
 <a name="security"></a>
 
-## <a name="security-and-secret-manager"></a>Sicherheits- und Secret-Manager
+## <a name="security-and-user-secrets"></a>Sicherheit und Benutzergeheimnisse
 
 Richtlinien für Konfigurationsdaten:
 
-_ Speichern Sie nie Kennwörter oder andere vertrauliche Daten im Konfigurationsanbietercode oder in Nur-Text-Konfigurationsdateien. Der [Secret Manager](xref:security/app-secrets) kann zum Speichern von Geheimnissen in der Entwicklungsumgebung verwendet werden.
+_ Speichern Sie nie Kennwörter oder andere vertrauliche Daten im Konfigurationsanbietercode oder in Nur-Text-Konfigurationsdateien. Das [Secret Manager](xref:security/app-secrets)-Tool kann zum Speichern von Geheimnissen in der Entwicklungsumgebung verwendet werden.
 * Verwenden Sie keine Produktionsgeheimnisse in Entwicklungs- oder Testumgebungen.
 * Geben Sie Geheimnisse außerhalb des Projekts an, damit sie nicht versehentlich in ein Quellcoderepository übernommen werden können.
 
-[Standardmäßig](#default) liest [Secret Manager](xref:security/app-secrets) Konfigurationseinstellungen nach dem Lesen von *appsettings.json* und *appsettings.* `Environment` *.json*.
+Im [Standardmodell](#default) wird die Quelle der Benutzergeheimniskonfiguration nach den Quellen für die JSON-Konfiguration registriert. Daher haben geheime Benutzerschlüssel Vorrang vor Schlüssel in *appsettings.json* und *appsettings.* `Environment` *.json*.
 
 Weitere Informationen zum Speichern von Kennwörtern oder anderen vertraulichen Daten:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>:  Enthält Hinweise zur Verwendung von Umgebungsvariablen für das Speichern vertraulicher Daten. Der Secret Manager verwendet den [Dateikonfigurationsanbieter](#fcp), um Benutzergeheimnisse in einer JSON-Datei im lokalen System zu speichern.
+* <xref:security/app-secrets>: Enthält Hinweise zur Verwendung von Umgebungsvariablen für das Speichern vertraulicher Daten. Das Secret Manager-Tool verwendet den [Dateikonfigurationsanbieter](#fcp), um Benutzergeheimnisse in einer JSON-Datei im lokalen System zu speichern.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) speichert App-Geheimnisse für ASP.NET Core-Apps auf sichere Weise. Weitere Informationen finden Sie unter <xref:security/key-vault-configuration>.
 
@@ -129,7 +129,7 @@ Weitere Informationen zum Speichern von Kennwörtern oder anderen vertraulichen 
 
 ## <a name="environment-variables"></a>Umgebungsvariablen
 
-Bei Verwendung der [Standard](#default)-Konfiguration lädt der <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> die Konfiguration aus Schlüssel-Wert-Paaren der Umgebungsvariablen, nachdem *appsettings.json* , *appsettings.* `Environment` *.json* und [Secret Manager](xref:security/app-secrets) gelesen wurden. Daher überschreiben aus der Umgebung gelesene Schlüsselwerte Werte, die aus *appsettings.json* , *appsettings.* `Environment` *.json* und Secret Manager gelesen wurden.
+Bei Verwendung der [Standard](#default)-Konfiguration lädt der <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> die Konfiguration aus Schlüssel-Wert-Paaren der Umgebungsvariablen, nachdem *appsettings.json* , *appsettings.* `Environment` *.json* und [Benutzergeheimnisse](xref:security/app-secrets) gelesen wurden. Daher überschreiben aus der Umgebung gelesene Schlüsselwerte Werte, die aus *appsettings.json* , *appsettings.* `Environment` *.json* und Benutzergeheimnissen gelesen wurden.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -243,7 +243,7 @@ Umgebungsvariablen, die in der Datei *launchSettings.json* festgelegt sind, übe
 Bei Verwendung der [Standard](#default)-Konfiguration lädt der <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> die Konfiguration aus den Schlüssel-Wert-Paaren des Befehlszeilenarguments nach den folgenden Konfigurationsquellen:
 
 * In den Dateien *appsettings.json* und *appsettings*.`Environment`.*json*
-* [App-Geheimnisse (Secret Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
+* [App-Geheimnisse](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Umgebungsvariablen.
 
 [Standardmäßig](#default) überschreiben in der Befehlszeile festgelegte Konfigurationswerte die Konfigurationswerte, die mit allen anderen Konfigurationsanbietern festgelegt wurden.
@@ -355,7 +355,7 @@ Die folgende Tabelle zeigt die für ASP.NET Core-Apps verfügbaren Konfiguration
 | [Dateikonfigurationsanbieter](#file-configuration-provider) | INI-, JSON- und XML-Dateien |
 | [Schlüssel-pro-Datei-Konfigurationsanbieter](#key-per-file-configuration-provider) | Verzeichnisdateien |
 | [Speicherkonfigurationsanbieter](#memory-configuration-provider) | In-Memory-Sammlungen |
-| [Secret Manager](xref:security/app-secrets)  | Datei im Benutzerprofilverzeichnis |
+| [Benutzergeheimnisse](xref:security/app-secrets) | Datei im Benutzerprofilverzeichnis |
 
 Konfigurationsquellen werden in der Reihenfolge gelesen, in der ihre Konfigurationsanbieter angegeben sind. Ordnen Sie die Konfigurationsanbieter im Code so an, dass sie den Prioritäten für die zugrunde liegenden Konfigurationsquellen entsprechen, die für die App erforderlich sind.
 
@@ -363,7 +363,7 @@ Eine typische Konfigurationsanbietersequenz ist:
 
 1. *appsettings.json*
 1. *appsettings*.`Environment`.*json*
-1. [Secret Manager](xref:security/app-secrets)
+1. [Benutzergeheimnisse](xref:security/app-secrets)
 1. Umgebungsvariablen, die den [Umgebungsvariablen-Konfigurationsanbieter](#evcp) verwenden
 1. Befehlszeilenargumente, die den [Befehlszeilen-Konfigurationsanbieter](#command-line-configuration-provider) verwenden
 
@@ -865,7 +865,7 @@ Folgendes gilt für Apps, die den [Webhost](xref:fundamentals/host/web-host) ver
 * Die App-Konfiguration wird durch Folgendes festgelegt:
   * *appsettings.json* mithilfe des [Dateikonfigurationsanbieters](#file-configuration-provider)
   * *appsettings.{Umgebung}.json* mithilfe des [Dateikonfigurationsanbieters](#file-configuration-provider).
-  * [Geheimnis-Manager](xref:security/app-secrets), wenn die App in der `Development`-Umgebung mit der Einstiegsassembly ausgeführt wird.
+  * [Benutzergeheimnissen](xref:security/app-secrets), wenn die App in der `Development`-Umgebung mit der Einstiegsassembly ausgeführt wird.
   * Umgebungsvariablen mithilfe des [Umgebungsvariablen-Konfigurationsanbieters](#environment-variables-configuration-provider).
   * Befehlszeilenargumente mithilfe des [Befehlszeilen-Konfigurationsanbieters](#command-line-configuration-provider).
 
@@ -880,7 +880,7 @@ Wenden Sie die folgenden Verfahren an, um vertrauliche Konfigurationsdaten zu sc
 Weitere Informationen finden Sie unter den folgenden Themen:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets>: Enthält Hinweise zur Verwendung von Umgebungsvariablen für das Speichern vertraulicher Daten. Der Geheimnis-Manager verwendet den Dateikonfigurationsanbieter, um Benutzergeheimnisse in einer JSON-Datei im lokalen System zu speichern. Der Dateikonfigurationsanbieter wird später in diesem Thema beschrieben.
+* <xref:security/app-secrets>: Enthält Hinweise zur Verwendung von Umgebungsvariablen für das Speichern vertraulicher Daten. Das Secret Manager-Tool verwendet den Dateikonfigurationsanbieter, um Benutzergeheimnisse in einer JSON-Datei im lokalen System zu speichern. Der Dateikonfigurationsanbieter wird später in diesem Thema beschrieben.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) speichert App-Geheimnisse für ASP.NET Core-Apps auf sichere Weise. Weitere Informationen finden Sie unter <xref:security/key-vault-configuration>.
 
@@ -983,7 +983,7 @@ Die folgende Tabelle zeigt die für ASP.NET Core-Apps verfügbaren Konfiguration
 | [Dateikonfigurationsanbieter](#file-configuration-provider) | Dateien (INI, JSON, XML) |
 | [Schlüssel-pro-Datei-Konfigurationsanbieter](#key-per-file-configuration-provider) | Verzeichnisdateien |
 | [Speicherkonfigurationsanbieter](#memory-configuration-provider) | In-Memory-Sammlungen |
-| [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) (Thema *Sicherheit*) | Datei im Benutzerprofilverzeichnis |
+| [Benutzergeheimnisse](xref:security/app-secrets) (*Sicherheitsthemen*) | Datei im Benutzerprofilverzeichnis |
 
 Konfigurationsquellen werden beim Start in der Reihenfolge gelesen, in der ihre Konfigurationsanbieter angegeben sind. Die in diesem Thema beschriebenen Konfigurationsanbieter werden in alphabetischer Reihenfolge beschrieben, nicht in der Reihenfolge, in der der Code sie anordnet. Ordnen Sie die Konfigurationsanbieter im Code so an, dass sie den Prioritäten für die zugrunde liegenden Konfigurationsquellen entsprechen, die für die App erforderlich sind.
 
@@ -991,7 +991,7 @@ Eine typische Konfigurationsanbietersequenz ist:
 
 1. Dateien ( *appsettings.json* , *appsettings.{Environment}.json*, wobei `{Environment}` die aktuelle Hostingumgebung der App ist)
 1. [Azure Key Vault](xref:security/key-vault-configuration)
-1. [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) (nur Entwicklungsumgebung)
+1. [Benutzergeheimnisse](xref:security/app-secrets) (nur Entwicklungsumgebung)
 1. Umgebungsvariablen
 1. Befehlszeilenargumente
 
@@ -1067,7 +1067,7 @@ Um die Befehlszeilenkonfiguration zu aktivieren, wird die <xref:Microsoft.Extens
 `CreateDefaultBuilder` lädt außerdem:
 
 * Optionale Konfiguration aus den Dateien *appsettings.json* und *appsettings.{Environment}.json*
-* [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
+* [Benutzergeheimnisse](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Umgebungsvariablen.
 
 `CreateDefaultBuilder` fügt den Befehlszeilen-Konfigurationsanbieter zuletzt hinzu. Während der Laufzeit übergebene Befehlszeilenargumente überschreiben die von anderen Anbietern festgelegte Konfiguration.
@@ -1148,7 +1148,7 @@ Bei Apps, die Switchmappings verwenden, sollten im `CreateDefaultBuilder`-Aufruf
 
 Das erstellte Switchmappingwörterbuch enthält die in der folgenden Tabelle gezeigten Daten.
 
-| Schlüssel       | Wert             |
+| Key       | Wert             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1182,7 +1182,7 @@ Um die Umgebungsvariablenkonfiguration zu aktivieren, rufen Sie die <xref:Micros
 
 * App-Konfiguration über Umgebungsvariablen ohne Präfix durch Aufruf von `AddEnvironmentVariables` ohne Präfix.
 * Optionale Konfiguration aus den Dateien *appsettings.json* und *appsettings.{Environment}.json*
-* [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
+* [Benutzergeheimnisse](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Befehlszeilenargumenten
 
 Der Umgebungsvariablen-Konfigurationsanbieter wird aufgerufen, nachdem die Konfiguration aus Benutzergeheimnissen und *appsettings*-Dateien erstellt wurde. Das Aufrufen des Anbieters an dieser Stelle ermöglicht den während der Laufzeit gelesenen Umgebungsvariablen, die von Benutzergeheimnissen und *appsettings*-Dateien festgelegte Konfiguration zu überschreiben.
@@ -1342,7 +1342,7 @@ Weitere Informationen finden Sie im Abschnitt [Standardkonfiguration](#default-c
 `CreateDefaultBuilder` lädt außerdem:
 
 * Umgebungsvariablen.
-* [Benutzergeheimnisse (Geheimnis-Manager)](xref:security/app-secrets) in der Entwicklungsumgebung.
+* [Benutzergeheimnisse](xref:security/app-secrets) in der Entwicklungsumgebung.
 * Befehlszeilenargumenten
 
 Der JSON-Konfigurationsanbieter wird zuerst eingerichtet. Daher überschreiben Benutzergeheimnisse, Umgebungsvariablen und Befehlszeilenargumente die von *appsettings*-Dateien festgelegte Konfiguration.
@@ -1725,7 +1725,7 @@ config.AddJsonFile(
 
 Das Schlüssel-Wert-Paar in der Tabelle wird in die Konfiguration geladen.
 
-| Schlüssel             | Wert  |
+| Key             | Wert  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 

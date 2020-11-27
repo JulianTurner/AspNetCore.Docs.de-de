@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie Razor-Komponenten erstellen und verwenden, Da
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2020
+ms.date: 11/25/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,16 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: cc4604f7f67a6648c96e099572ff27bfed838916
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: b87986442bb8127f03df1f7ecff8167cafa27fdf
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981868"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035683"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
-Von [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27) und [Tobias Bartsch](https://www.aveo-solutions.com/)
+Von [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27) [Scott Addie](https://github.com/scottaddie) und [Tobias Bartsch](https://www.aveo-solutions.com/)
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
@@ -886,6 +886,64 @@ Ebenso werden SVG-Bilder in den CSS-Regeln einer Stylesheetdatei (`.css`) unters
 ```
 
 SVG-Inlinemarkup wird jedoch nicht in allen Szenarios unterstützt. Wenn Sie ein `<svg>`-Tag direkt in eine Komponentendatei (`.razor`) einfügen, wird das grundlegende Bildrendering unterstützt, viele fortgeschrittene Szenarios aber noch nicht. Beispielsweise werden `<use>`-Tags derzeit nicht beachtet, und [`@bind`][10] kann nicht mit einigen SVG-Tags verwendet werden. Weitere Informationen finden Sie unter [Improve SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271) (Verbessern der SVG-Unterstützung in Blazor).
+
+## <a name="whitespace-rendering-behavior"></a>Verhalten beim Rendern von Leerzeichen
+
+::: moniker range=">= aspnetcore-5.0"
+
+Wenn die [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace)-Direktive mit dem Wert `true`verwendet wird, werden standardmäßig zusätzliche Leerzeichen entfernt, wenn Folgendes gilt:
+
+* Sie stehen in einem Element am Anfang oder am Ende.
+* Sie stehen in einem `RenderFragment`-Parameter am Anfang oder am Ende. Ein Beispiel hierfür ist untergeordneter Inhalt, der an eine andere Komponente übergeben wird
+* Sie stehen am Anfang oder Ende eines C#-Codeblocks wie `@if` oder `@foreach`.
+
+Das Entfernen der Leerzeichen kann sich auf die gerenderte Ausgabe auswirken, wenn eine CSS-Regel wie `white-space: pre` verwendet wird. Führen Sie eine der folgenden Aktionen durch, um diese Leistungsoptimierung zu deaktivieren und die Leerzeichen beizubehalten:
+
+* Fügen Sie oben in der `.razor`-Datei die Anweisung `@preservewhitespace true` hinzu, um sie auf eine bestimmte Komponente anzuwenden.
+* Fügen Sie die Anweisung `@preservewhitespace true` in einer `_Imports.razor`-Datei hinzu, um sie auf ein gesamtes Unterverzeichnis oder das gesamte Projekt anzuwenden.
+
+In den meisten Fällen ist keine Aktion erforderlich, weil sich Apps normalerweise wie gewohnt (aber schneller) verhalten. Falls das Entfernen der Leerzeichen für eine bestimmte Komponente zu Problemen führt, sollten Sie darin `@preservewhitespace true` nutzen, um diese Optimierung zu deaktivieren.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Ein Leerzeichen wird im Quellcode einer Komponente beibehalten. Text nur mit Leerzeichen wird im Dokumentobjektmodell (DOM) des Browsers auch dann gerendert, wenn dies keine visuellen Auswirkungen hat.
+
+Betrachten Sie die Datei der folgenden Razor-Komponentencode:
+
+```razor
+<ul>
+    @foreach (var item in Items)
+    {
+        <li>
+            @item.Text
+        </li>
+    }
+</ul>
+```
+
+Im vorangehenden Beispiel werden folgende unnötige Leerzeichen gerendert:
+
+* Außerhalb des Codeblocks `@foreach`.
+* Im Bereich des Elements `<li>`.
+* Im Bereich der Ausgabe `@item.Text`.
+
+Eine Liste, die 100 Elemente enthält, ergibt 402 Bereiche mit Leerzeichen, und keines der zusätzlichen Leerzeichen wirkt sich visuell auf die gerenderte Ausgabe aus.
+
+Beim Rendern von statischem HTML-Code für Komponenten werden Leerzeichen innerhalb eines Tags nicht beibehalten. Sehen Sie sich beispielsweise die Quelle der folgenden Komponente in der gerenderten Ausgabe an:
+
+```razor
+<img     alt="My image"   src="img.png"     />
+```
+
+Leerzeichen werden aus dem vorangehenden Razor-Markup nicht beibehalten:
+
+```razor
+<img alt="My image" src="img.png" />
+```
+
+::: moniker-end
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

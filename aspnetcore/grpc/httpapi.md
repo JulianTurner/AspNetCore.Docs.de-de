@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: 45e2a1a5e6a9f00294147db769454b78c5b866e5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 64d18114e2fe9ee10edb902a98a281c3cd9f3393
+ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059935"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95417577"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Erstellen von JSON-Web-APIs über gRPC
 
@@ -58,7 +58,7 @@ gRPC kann weiterhin zum Aufrufen von Diensten verwendet werden.
 1. Fügen Sie [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi) einen Paketverweis hinzu.
 1. Registrieren Sie Dienste mit `AddGrpcHttpApi` in *Startup.cs*.
 1. Fügen Sie die Dateien [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) und [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) zu Ihrem Projekt hinzu.
-1. Kommentieren Sie die gRPC-Methoden in Ihren *PROTO* -Dateien mit HTTP-Bindungen und -Routen:
+1. Kommentieren Sie die gRPC-Methoden in Ihren *PROTO*-Dateien mit HTTP-Bindungen und -Routen:
 
 ```protobuf
 syntax = "proto3";
@@ -133,11 +133,11 @@ Das Interesse der Entwickler an gRPC HTTP API soll gemessen werden. [Senden Sie 
 
 ## <a name="grpc-gateway"></a>grpc-gateway
 
-[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) ist eine weitere Technologie zum Erstellen von RESTful-JSON-APIs über gRPC-Dienste. Es werden die gleichen *PROTO* -Anmerkungen verwendet, um HTTP-Konzepte gRPC-Diensten zuzuordnen.
+[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) ist eine weitere Technologie zum Erstellen von RESTful-JSON-APIs über gRPC-Dienste. Es werden die gleichen *PROTO*-Anmerkungen verwendet, um HTTP-Konzepte gRPC-Diensten zuzuordnen.
 
 Der größte Unterschied zwischen grpc-gateway und gRPC HTTP API besteht darin, dass grpc-gateway die Codegenerierung zum Erstellen eines Reverseproxyservers verwendet. Der Reverseproxy übersetzt RESTful-Aufrufe in gRPC und sendet diese dann an den gRPC-Dienst.
 
-Weitere Informationen zur Installation und Verwendung von grpc-gateway finden Sie in der [Dokumentation](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).
+Weitere Informationen zur Installation und Verwendung von grpc-gateway finden Sie in der [INFODATEI zu grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway/#grpc-gateway).
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

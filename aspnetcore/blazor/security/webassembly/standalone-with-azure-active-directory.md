@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 4e8c22c56b7023301499fd273a9194b8c7b58f3d
-ms.sourcegitcommit: 45aa1c24c3fdeb939121e856282b00bdcf00ea55
+ms.openlocfilehash: 4f203e57fe69c3a14dc267c0693094fcefa3dd80
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93343708"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96024682"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Sichern einer eigenständigen Blazor WebAssembly-App in ASP.NET Core mit Azure Active Directory
 
@@ -35,11 +35,15 @@ In diesem Artikel wird beschrieben, wie Sie eine [eigenständige Blazor WebAssem
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Visual Studio konfiguriert Blazor WebAssembly-Apps, die in Visual Studio erstellt und für die Unterstützung von Konten in einem AAD-Organisationsverzeichnis konfiguriert wurden, bei der Projektgenerierung nicht ordnungsgemäß. Dieses Problem wird in einem zukünftigen Release von Visual Studio behoben. In diesem Artikel wird gezeigt, wie Sie die App mit dem Befehl `dotnet new` der .NET Core-CLI erstellen. Wenn Sie die App lieber mit Visual Studio erstellen möchten, auch wenn die IDE noch nicht mit den neuesten Blazor-Vorlagen in ASP.NET Core 5.0 aktualisiert wurde, lesen Sie die einzelnen Abschnitte in diesem Artikel, und bestätigen oder aktualisieren Sie die Konfiguration der App, nachdem sie in Visual Studio erstellt wurde.
+> Für in Visual Studio erstellte Blazor WebAssembly-Apps, die zur Unterstützung von Konten in einem AAD-Organisationsverzeichnis konfiguriert sind, konfiguriert Visual Studio die Registrierungen der Azure-Portal-App bei der Projektgenerierung derzeit nicht richtig. Dieses Problem wird in einem zukünftigen Release von Visual Studio behoben.
+>
+> Dieser Artikel zeigt, wie die Projektmappe und die Registrierung für das Azure-App-Portal mit dem .NET-Befehl `dotnet new` der CLI und durch manuelles Erstellen der App-Registrierung im Azure-Portal erstellt werden können.
+>
+> Wenn Sie es vorziehen, die Projektmappe und die Azure-App-Registrierungen mit Visual Studio zu erstellen, bevor die IDE aktualisiert wird, lesen Sie **_jeden Abschnitt dieses Artikels_**, und bestätigen oder aktualisieren Sie die Konfiguration der App und die Registrierung der App, nachdem Visual Studio die Projektmappe erstellt hat.
 
 Registrieren Sie eine AAD-App im Bereich **Azure Active Directory**>**App-Registrierungen** des Azure-Portals:
 
-1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD** ).
+1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD**).
 1. Wählen Sie einen **Unterstützten Kontotyp** aus. Hier können Sie die Option **Nur Konten in diesem Organisationsverzeichnis** auswählen.
 1. Treffen Sie für **Umleitungs-URI** die Dropdownauswahl **Single-Page-Anwendung (SPA)** , und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
 1. Deaktivieren Sie das Kontrollkästchen **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen**.
@@ -63,9 +67,9 @@ In **Authentifizierung** > **Plattformkonfigurationen** > **Single-Page-Anwendun
 
 Registrieren Sie eine AAD-App im Bereich **Azure Active Directory**>**App-Registrierungen** des Azure-Portals:
 
-1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD** ).
+1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD**).
 1. Wählen Sie einen **Unterstützten Kontotyp** aus. Hier können Sie die Option **Nur Konten in diesem Organisationsverzeichnis** auswählen.
-1. Belassen Sie die Dropdownauswahl für **Umleitungs-URI** auf **Web** , und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
+1. Belassen Sie die Dropdownauswahl für **Umleitungs-URI** auf **Web**, und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
 1. Deaktivieren Sie das Kontrollkästchen **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen**.
 1. Wählen Sie **Registrieren**.
 
@@ -74,7 +78,7 @@ Notieren Sie sich folgende Informationen:
 * Anwendungs-ID (Client-ID) (z. B. `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
 * Verzeichnis-ID (Mandanten-ID) (z. B. `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
 
-In **Authentifizierung** > **Plattformkonfigurationen** > **Web** :
+In **Authentifizierung** > **Plattformkonfigurationen** > **Web**:
 
 1. Vergewissern Sie sich, dass der **Umleitungs-URI** von `https://localhost:{PORT}/authentication/login-callback` vorhanden ist.
 1. Aktivieren Sie für **Implizite Gewährung** die Kontrollkästchen **Zugriffstoken** und **ID-Token**.
@@ -195,7 +199,7 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 
 ::: moniker-end
 
-Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *zusätzlichen Szenarios* :
+Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *zusätzlichen Szenarios*:
 
 * [Anfordern zusätzlicher Zugriffstoken](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
 * [Anfügen von Token an ausgehende Anforderungen](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)

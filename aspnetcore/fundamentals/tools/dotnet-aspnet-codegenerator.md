@@ -4,7 +4,7 @@ author: rick-anderson
 description: Der Befehl „dotnet aspnet-codegenerator“ erstellt das Gerüst für ASP.NET Core-Projekte.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 07/04/2019
+ms.date: 11/16/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
-ms.openlocfilehash: 88d761b09833a14de5af9f9610753174867aa09a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 8844b0014cac58f414d79df4c64bc0efac75bfe1
+ms.sourcegitcommit: d29535ea0b4197443fd884aaa6e5b4b763d04fc7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059987"
+ms.lasthandoff: 11/19/2020
+ms.locfileid: "94920702"
 ---
 # <a name="dotnet-aspnet-codegenerator"></a>dotnet aspnet-codegenerator
 
@@ -31,9 +31,9 @@ Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 `dotnet aspnet-codegenerator`: Führt die ASP.NET Core-Gerüstbauengine aus. `dotnet aspnet-codegenerator` wird nur für den Gerüstbau über die Befehlszeile benötigt, nicht zum Gerüstbau mit Visual Studio.
 
-Dieser Artikel gilt für [.NET Core 2.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.1) und höher.
+## <a name="install-and-update-aspnet-codegenerator"></a>Installieren und Aktualisieren von aspnet-codegenerator
 
-## <a name="installing-aspnet-codegenerator"></a>Installieren von „aspnet-codegenerator“
+Installieren Sie das [.NET SDK](https://dotnet.microsoft.com/download).
 
 `dotnet-aspnet-codegenerator` ist ein [globales Tool](/dotnet/core/tools/global-tools), das installiert werden muss. Über den folgenden Befehl wird die neueste stabile Version des `dotnet-aspnet-codegenerator`-Tools installiert:
 
@@ -45,6 +45,17 @@ Mit dem folgenden Befehl wird `dotnet-aspnet-codegenerator` auf die neueste stab
 
 ```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
+```
+
+## <a name="uninstall-aspnet-codegenerator"></a>Deinstallieren von aspnet-codegenerator
+
+Es kann erforderlich sein, `aspnet-codegenerator` zu deinstallieren, um Probleme zu beheben. Wenn Sie z. B. eine Vorschauversion von `aspnet-codegenerator`installiert haben, deinstallieren Sie diese, bevor Sie die veröffentlichte Version installieren.
+
+Über den folgenden Befehl wird die neueste stabile Version des `dotnet-aspnet-codegenerator`-Tools installiert:
+
+```dotnetcli
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 ## <a name="synopsis"></a>Übersicht

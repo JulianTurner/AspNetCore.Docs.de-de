@@ -5,7 +5,7 @@ description: In diesem Artikel erfahren Sie, wie Sie JavaScript-Funktionen über
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 10/20/2020
+ms.date: 11/25/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,16 +19,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: f5373f1905958ee5c51ee76bd07690d079fb50f5
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: c73de0e30b7b564915f30d75f754f89fecccdc78
+ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570015"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96035722"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
 
-Von [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
+Von [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Pranav Krishnamoorthy](https://github.com/pranavkm) und [Luke Latham](https://github.com/guardrex)
 
 Eine Blazor-App kann JavaScript-Funktionen über .NET-Methoden und .NET-Methoden über JavaScript-Funktionen aufrufen. Diese Szenarios werden als *JavaScript-Interoperabilität* (*JS Interop*) bezeichnet.
 
@@ -543,28 +543,6 @@ public async ValueTask<string> Prompt(string message)
 
 `IJSInProcessObjectReference` steht für einen Verweis auf ein JavaScript-Objekt, dessen Funktionen synchron aufgerufen werden können.
 
-`IJSUnmarshalledObjectReference` steht für einen Verweis auf ein JavaScript-Objekt, dessen Funktionen aufgerufen werden können, ohne dass .NET-Daten serialisiert werden müssen. Die Verwendung in Blazor WebAssembly bietet sich an, wenn die Leistung entscheidend ist:
-
-```javascript
-window.unmarshalledInstance = {
-  helloWorld: function (personNamePointer) {
-    const personName = Blazor.platform.readStringField(value, 0);
-    return `Hello ${personName}`;
-  }
-};
-```
-
-```csharp
-var unmarshalledRuntime = (IJSUnmarshalledRuntime)js;
-var jsUnmarshalledReference = unmarshalledRuntime
-    .InvokeUnmarshalled<IJSUnmarshalledObjectReference>("unmarshalledInstance");
-
-string helloWorldString = jsUnmarshalledReference.InvokeUnmarshalled<string, string>(
-    "helloWorld");
-```
-
-Im vorangehenden Beispiel wird der Dienst <xref:Microsoft.JSInterop.IJSRuntime> in die Klasse injiziert und `js` zugewiesen (nicht gezeigt).
-
 ## <a name="use-of-javascript-libraries-that-render-ui-dom-elements"></a>Verwendung von JavaScript-Bibliotheken zum Rendern von Benutzeroberflächenelementen (DOM-Elemente)
 
 Manchmal möchten Sie vielleicht JavaScript-Bibliotheken verwenden, die sichtbare Benutzeroberflächenelemente innerhalb des Browser-DOM erstellen. Auf den ersten Blick scheint dies schwierig zu sein, da das Vergleichssystem von Blazor darauf beruht, die Kontrolle über die Struktur von DOM-Elementen zu haben. Außerdem treten Fehler auf, wenn externer Code die DOM-Struktur bearbeitet, was den Mechanismus für die Diff-Anwendung unmöglich macht. Dabei handelt es sich um keine Blazor-spezifische Einschränkung. Die gleiche Herausforderung stellt sich bei jedem anderen Diff-basierten Benutzeroberflächenframework.
@@ -707,6 +685,158 @@ Beachten Sie die folgenden Anleitungen, wenn Sie Code zum Übertragen großer Da
 ## <a name="js-modules"></a>JS-Module
 
 Für die JS-Isolation funktioniert JS-Interop mit der Standardunterstützung des Browsers für [ECMAScript-Module (ESM)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript-Spezifikation](https://tc39.es/ecma262/#sec-modules)).
+
+## <a name="unmarshalled-js-interop"></a>Nicht gemarshallt JS-Interop-Aufrufe
+
+Bei Blazor WebAssembly-Komponenten kann es zu Leistungseinbußen kommen, wenn .NET-Objekte für JS-Interop serialisiert werden und eine der folgenden Bedingungen zutrifft:
+
+* Eine große Menge von .NET-Objekten wird schnell serialisiert. Beispiel: JS-Interop-Aufrufe werden auf Grundlage des Bewegens eines Eingabegeräts durchgeführt, z. B. beim Drehen eines Mausrads.
+* Für JS-Interop müssen große .NET-Objekte oder viele .NET-Objekte serialisiert werden. Beispiel: Für JS-Interop-Aufrufe müssen Dutzende von Dateien serialisiert werden.
+
+<xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> steht für einen Verweis auf ein JavaScript-Objekt, dessen Funktionen aufgerufen werden können, ohne dass .NET-Daten serialisiert werden müssen.
+
+Im folgenden Beispiel:
+
+* Eine [Struktur](/dotnet/csharp/language-reference/builtin-types/struct), die eine Zeichenfolge und einen Integerwert enthält, wird unserialisiert an JavaScript übergegeben.
+* JavaScript-Funktionen verarbeiten die Daten und geben entweder einen booleschen Wert oder eine Zeichenfolge an den Aufrufer zurück.
+* Eine JavaScript-Zeichenfolge ist nicht direkt in ein .NET-`string`-Objekt konvertierbar. Mit der `unmarshalledFunctionReturnString`-Funktion wird `BINDING.js_string_to_mono_string` aufgerufen, um die Konvertierung einer JavaScript-Zeichenfolge zu verwalten.
+
+> [!NOTE]
+> Die folgenden Beispiele sind für dieses Szenario keine typischen Anwendungsfälle, da die [Struktur](/dotnet/csharp/language-reference/builtin-types/struct), die an JavaScript übergeben wird, nicht zu einer schlechten Komponentenleistung führt. Im Beispiel wird ein kleines Objekt verwendet, um nur die Konzepte für das Übergeben von unserialisierten .NET-Daten zu veranschaulichen.
+
+Der Inhalt eines `<script>`-Blocks in `wwwroot/index.html` oder einer externen JavaScript-Datei, auf die durch `wwwroot/index.html` verwiesen wird:
+
+```javascript
+window.returnJSObjectReference = () => {
+    return {
+        unmarshalledFunctionReturnBoolean: function (fields) {
+            const name = Blazor.platform.readStringField(fields, 0);
+            const year = Blazor.platform.readInt32Field(fields, 8);
+
+            return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
+                year === 1968;
+        },
+        unmarshalledFunctionReturnString: function (fields) {
+            const name = Blazor.platform.readStringField(fields, 0);
+            const year = Blazor.platform.readInt32Field(fields, 8);
+
+            return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
+        }
+    };
+}
+```
+
+> [!WARNING]
+> Der Name, das Verhalten und das Vorhandensein der `js_string_to_mono_string`-Funktion kann sich in einer zukünftigen Version von .NET ändern. Beispiel:
+>
+> * Die Funktion wird wahrscheinlich umbenannt.
+> * Die Funktion selbst kann zugunsten automatischer Konvertierung von Zeichenfolgen durch das Framework entfernt werden.
+
+`Pages/UnmarshalledJSInterop.razor` (URL: `/unmarshalled-js-interop`):
+
+```razor
+@page "/unmarshalled-js-interop"
+@using System.Runtime.InteropServices
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<h1>Unmarshalled JS interop</h1>
+
+@if (callResultForBoolean)
+{
+    <p>JS interop was successful!</p>
+}
+
+@if (!string.IsNullOrEmpty(callResultForString))
+{
+    <p>@callResultForString</p>
+}
+
+<p>
+    <button @onclick="CallJSUnmarshalledForBoolean">
+        Call Unmarshalled JS & Return Boolean
+    </button>
+    <button @onclick="CallJSUnmarshalledForString">
+        Call Unmarshalled JS & Return String
+    </button>
+</p>
+
+<p>
+    <a href="https://www.doctorwho.tv">Doctor Who</a>
+    is a registered trademark of the <a href="https://www.bbc.com/">BBC</a>.
+</p>
+
+@code {
+    private bool callResultForBoolean;
+    private string callResultForString;
+
+    private void CallJSUnmarshalledForBoolean()
+    {
+        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
+
+        var jsUnmarshalledReference = unmarshalledRuntime
+            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
+                "returnJSObjectReference");
+
+        callResultForBoolean = 
+            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, bool>(
+                "unmarshalledFunctionReturnBoolean", GetStruct());
+    }
+
+    private void CallJSUnmarshalledForString()
+    {
+        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
+
+        var jsUnmarshalledReference = unmarshalledRuntime
+            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
+                "returnJSObjectReference");
+
+        callResultForString = 
+            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, string>(
+                "unmarshalledFunctionReturnString", GetStruct());
+    }
+
+    private InteropStruct GetStruct()
+    {
+        return new InteropStruct
+        {
+            Name = "Brigadier Alistair Gordon Lethbridge-Stewart",
+            Year = 1968,
+        };
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct InteropStruct
+    {
+        [FieldOffset(0)]
+        public string Name;
+
+        [FieldOffset(8)]
+        public int Year;
+    }
+}
+```
+
+Wenn eine `IJSUnmarshalledObjectReference`-Instanz nicht im C#-Code verworfen wird, kann sie in JavaScript verworfen werden. Die folgende `dispose`-Funktion verwirft die Objektreferenz, wenn sie aus JavaScript aufgerufen wird:
+
+```javascript
+window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
+    return {
+        dispose: function () {
+            DotNet.disposeJSObjectReference(this);
+        },
+
+        ...
+    };
+}
+```
+
+Arraytypen können mithilfe von `js_typed_array_to_array` aus JavaScript-Objekten in .NET-Objekte konvertiert werden, aber das JavaScript-Array muss ein typisiertes Array sein. Arrays aus JavaScript können in C#-Code als .NET-Objektarray (`object[]`) gelesen werden.
+
+Andere Datentypen, z. B. Zeichenfolgenarrays, können konvertiert werden, erfordern jedoch das Erstellen eines neuen Mono-Arrayobjekts (`mono_obj_array_new`) und das Festlegen seines Werts (`mono_obj_array_set`).
+
+> [!WARNING]
+> JavaScript-Funktionen, die vom Blazor-Framework bereitgestellt werden (z. B. `js_typed_array_to_array`, `mono_obj_array_new` und `mono_obj_array_set`), unterliegen Namensänderungen, Verhaltensänderungen oder der Entfernung in zukünftigen Versionen von .NET.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

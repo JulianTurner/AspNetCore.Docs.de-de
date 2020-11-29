@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: f435870e1e73fdb1296699ed62052b72b3b78abf
-ms.sourcegitcommit: e087b6a38e3d38625ebb567a973e75b4d79547b9
+ms.openlocfilehash: 8a2dc802a1d05ead7445e350e3aef0ce7dfb2bb8
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2020
-ms.locfileid: "94637716"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981920"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>ASP.NET Core Blazor-Lebenszyklus
 
@@ -39,7 +39,7 @@ Ereignisse des Komponentenlebenszyklus:
 1. Wenn die Komponente erstmalig ein Rendering für eine Anforderung ausführt, führen Sie folgende Schritte durch:
    * Erstellen Sie die Instanz der Komponente.
    * Führen Sie eine Eigenschaftsinjektion durch. Führen Sie [`SetParametersAsync`](#before-parameters-are-set) aus.
-   * Rufen Sie [`OnInitialized{Async}`](#component-initialization-methods) auf. Wenn <xref:System.Threading.Tasks.Task> zurückgegeben wird, wird auf <xref:System.Threading.Tasks.Task> gewartet, und dann wird die Komponente gerendert. Wenn <xref:System.Threading.Tasks.Task> nicht zurückgegeben wird, wird die Komponente gerendert.
+   * Rufen Sie [`OnInitialized{Async}`](#component-initialization-methods) auf. Wenn <xref:System.Threading.Tasks.Task> zurückgegeben wird, wird auf <xref:System.Threading.Tasks.Task> gewartet, und die Komponente wird gerendert. Wenn <xref:System.Threading.Tasks.Task> nicht zurückgegeben wird, wird die Komponente gerendert.
 1. Rufen Sie [`OnParametersSet{Async}`](#after-parameters-are-set) auf, und rendern Sie die Komponente. Wenn <xref:System.Threading.Tasks.Task> aus `OnParametersSetAsync` zurückgegeben wird, wird auf <xref:System.Threading.Tasks.Task> gewartet. Anschließend wird die Komponente erneut gerendert.
 
 ![Lebenszyklusereignisse einer Razor-Komponente in Blazor](lifecycle/_static/lifecycle1.png)

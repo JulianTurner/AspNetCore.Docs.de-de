@@ -5,7 +5,7 @@ description: Erstellen Sie Schritt für Schritt eine Blazor-App.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2020
+ms.date: 11/24/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 1efcd167d9a45b2def271b239c9b360749d72791
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: a32655b8afedb73ad436f023d2f821b6920c2edd
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570184"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870437"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
 
@@ -85,6 +85,8 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
    <h3>Todo</h3>
    ```
 
+   Speichern Sie die Datei `Pages/Todo.razor`.
+
 1. Fügen Sie der Navigationsleiste die `Todo`-Komponente hinzu.
 
    Die Komponente `NavMenu` (`Shared/NavMenu.razor`) wird im Layout der App verwendet. Layouts sind Komponenten, mit denen Sie die Duplizierung des Inhalts in der App vermeiden können.
@@ -99,7 +101,9 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
    </li>
    ```
 
-1. Erstellen Sie die App, und führen Sie sie aus, indem Sie den `dotnet run`-Befehl in der Befehlsshell im `TodoList`-Ordner ausführen. Besuchen Sie unter `https://localhost:5001/todo` die neue „Todo“-Seite, um sicherzustellen, dass der Link zur `Todo`-Komponente funktioniert.
+   Speichern Sie die Datei `Shared/NavMenu.razor`.
+
+1. Erstellen Sie die App, und führen Sie sie aus, indem Sie den [`dotnet watch run`](/aspnet/core/tutorials/dotnet-watch)-Befehl in der Befehlsshell im Ordner `TodoList` ausführen. Besuchen Sie unter `https://localhost:5001/todo` die neue „Todo“-Seite, um sicherzustellen, dass der Navigationslink der Seitenleiste zur `Todo`-Komponente funktioniert.
 
 1. Fügen Sie dem Stamm des Projekts (der `TodoList`-Ordner) eine `TodoItem.cs`-Datei hinzu, die eine Klasse zum Darstellen eines Aufgabenelements enthalten soll. Verwenden Sie den folgenden C#-Code für die `TodoItem`-Klasse:
 
@@ -116,7 +120,9 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo3.razor?highlight=12-13)]
 
-1. Halten Sie die Ausführung der App in der Befehlsshell an. In vielen Befehlsshells kann der Tastaturbefehl <kbd>STRG</kbd>+<kbd>C</kbd> verwendet werden, um eine App anzuhalten. Erstellen Sie die App neu, und führen Sie sie mit dem `dotnet run`-Befehl aus. Bei Auswahl der Schaltfläche **`Add todo`** geschieht nichts, da kein Ereignishandler mit der Schaltfläche verknüpft ist.
+1. Speichern Sie die Datei `TodoItem.cs` und die aktualisierte Datei `Pages/Todo.razor`. In der Befehlsshell wird die App automatisch neu erstellt, wenn die Dateien gespeichert werden. Der Browser verliert vorübergehend seine Verbindung mit der App und lädt die Seite dann neu, wenn die Verbindung erneut hergestellt wird.
+
+1. Bei Auswahl der Schaltfläche **`Add todo`** geschieht nichts, da kein Ereignishandler mit der Schaltfläche verknüpft ist.
 
 1. Fügen Sie eine `AddTodo`-Methode zur `Todo`-Komponente hinzu, und registrieren Sie sie mit dem `@onclick`-Attribut für eine Schaltflächenauswahl. Die C#-Methode `AddTodo` wird aufgerufen, wenn die Schaltfläche ausgewählt wird:
 
@@ -134,7 +140,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo6.razor?highlight=19-26)]
 
-1. Halten Sie die Ausführung der App in der Befehlsshell an. Erstellen Sie die App neu, und führen Sie sie mit dem `dotnet run`-Befehl aus. Fügen Sie der Aufgabenliste einige Aufgabenelemente hinzu, um den neuen Code zu testen.
+1. Speichern Sie die Datei `Pages/ToDo.razor`. Die App wird automatisch in der Befehlsshell neu erstellt. Die Seite wird nach dem erneuten Verbinden des Browsers mit der App im Browser neu geladen.
 
 1. Der Titeltext für die einzelnen Aufgabenelemente kann als bearbeitbar festgelegt werden, und ein Kontrollkästchen kann dem Benutzer helfen, die erledigten Elemente nachzuverfolgen. Fügen Sie für jedes Aufgabenelement eine Kontrollkästcheneingabe hinzu, und binden Sie ihren Wert an die `IsDone`-Eigenschaft. Ändern Sie `@todo.Title` in ein `<input>`-Element, das an `@todo.Title` gebunden ist:
 
@@ -150,7 +156,11 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/Todo1.razor)]
 
-1. Halten Sie die Ausführung der App in der Befehlsshell an. Erstellen Sie die App neu, und führen Sie sie mit dem `dotnet run`-Befehl aus. Fügen Sie Aufgabenelemente hinzu, um den neuen Code zu testen.
+1. Speichern Sie die Datei `Pages/ToDo.razor`. Die App wird automatisch in der Befehlsshell neu erstellt. Die Seite wird nach dem erneuten Verbinden des Browsers mit der App im Browser neu geladen.
+
+1. Fügen Sie Aufgabenelemente hinzu, um den neuen Code zu testen.
+
+1. Wenn Sie fertig sind, fahren Sie die App in der Befehlsshell herunter. In vielen Befehlsshells kann der Tastaturbefehl <kbd>STRG</kbd>+<kbd>C</kbd> verwendet werden, um eine App anzuhalten.
 
 ## <a name="next-steps"></a>Nächste Schritte
 

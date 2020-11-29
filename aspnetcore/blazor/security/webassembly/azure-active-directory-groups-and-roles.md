@@ -19,16 +19,19 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: 680b44a705b66be0aab824487119cdb118b44d0f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ded70f028b3021574ba260838837d9b23abd72f1
+ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055307"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "94981881"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>AAD-Gruppen (Azure Active Directory), Administratorrollen und benutzerdefinierte Rollen
 
 Von [Luke Latham](https://github.com/guardrex) und [Javier Calvarro Nelson](https://github.com/javiercn)
+
+> [!NOTE]
+> Dieser Artikel bezieht sich auf Blazor ASP.NET Core-Apps Version 3.1 mit Microsoft Identity v1.0 und ist für das Update auf 5.0 mit Identity v2.0 vorgesehen. Weitere Informationen finden Sie unter [Blazor WASM mit AAD-/B2C-Gruppen und -Rollen (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683).
 
 Azure Active Directory (AAD) bietet mehrere Autorisierungsansätze, die mit ASP.NET Core Identity kombiniert werden können:
 
@@ -496,7 +499,7 @@ Eine Richtlinienüberprüfung kann auch [in Code mit prozeduraler Logik durchgef
 
 ## <a name="authorize-server-api-access-for-user-defined-groups-and-administrator-roles"></a>Autorisieren des Server-API-Zugriffs für benutzerdefinierte Gruppen und Administratorrollen
 
-Die Server-API kann Benutzer in der clientseitigen WebAssembly-App nicht nur für den Zugriff auf Seiten und Ressourcen, sondern auch für den Zugriff auf sichere API-Endpunkte autorisieren. Nachdem die *Server* -App das Zugriffstoken des Benutzers überprüft hat, geschieht Folgendes:
+Die Server-API kann Benutzer in der clientseitigen WebAssembly-App nicht nur für den Zugriff auf Seiten und Ressourcen, sondern auch für den Zugriff auf sichere API-Endpunkte autorisieren. Nachdem die *Server*-App das Zugriffstoken des Benutzers überprüft hat, geschieht Folgendes:
 
 * Die Server-API-App verwendet den unveränderlichen [Objektbezeichneranspruch (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) des Benutzers aus dessen Zugriffstoken, um ein Zugriffstoken für die Graph-API abzurufen.
 * Durch einen Graph-API-Aufruf von [`memberOf`](/graph/api/user-list-memberof) für den Benutzer werden dessen Mitgliedschaften in benutzerdefinierten Azure-Sicherheitsgruppen und Administratorrollen abgerufen.
@@ -515,12 +518,12 @@ Für den Graph-API-Aufruf durch die Server-API-App ist nur der Graph-API Bereich
 
 ### <a name="azure-configuration"></a>Azure-Konfiguration
 
-* Vergewissern Sie sich, dass die *Server* -App-Registrierung den Graph-API-Bereich **Anwendung** (nicht **Delegiert** ) für `Directory.Read.All` erhält. Dabei handelt es sich um die Zugriffsebene mit den geringsten Rechten für Sicherheitsgruppen. Stellen Sie nach dem Zuweisen des Bereichs sicher, dass die Administratoreinwilligung auf den Bereich angewandt wird.
-* Weisen Sie der *Server* -App ein neues Clientgeheimnis zu. Notieren Sie sich das Geheimnis für die Konfiguration der App im Abschnitt [App-Einstellungen](#app-settings).
+* Vergewissern Sie sich, dass die *Server*-App-Registrierung den Graph-API-Bereich **Anwendung** (nicht **Delegiert**) für `Directory.Read.All` erhält. Dabei handelt es sich um die Zugriffsebene mit den geringsten Rechten für Sicherheitsgruppen. Stellen Sie nach dem Zuweisen des Bereichs sicher, dass die Administratoreinwilligung auf den Bereich angewandt wird.
+* Weisen Sie der *Server*-App ein neues Clientgeheimnis zu. Notieren Sie sich das Geheimnis für die Konfiguration der App im Abschnitt [App-Einstellungen](#app-settings).
 
 ### <a name="app-settings"></a>App-Einstellungen
 
-Erstellen Sie in der Datei mit den App-Einstellungen (`appsettings.json` oder `appsettings.Production.json`) einen `ClientSecret`-Eintrag mit dem Clientgeheimnis der *Server* -App aus dem Azure-Portal:
+Erstellen Sie in der Datei mit den App-Einstellungen (`appsettings.json` oder `appsettings.Production.json`) einen `ClientSecret`-Eintrag mit dem Clientgeheimnis der *Server*-App aus dem Azure-Portal:
 
 ```json
 "AzureAd": {
@@ -586,7 +589,7 @@ Beispiel:
 
 ### <a name="authorization-policies"></a>Mit auf Namespace-Ebene konfigurierten Autorisierungsrichtlinien
 
-Erstellen Sie [Autorisierungsrichtlinien](xref:security/authorization/policies) für AAD-Sicherheitsgruppen und AAD-Administratorrollen in den `Startup.ConfigureServices` der *Server* -App (`Startup.cs`) auf der Grundlage von Gruppenobjekt-IDs und [Objekt-IDs für AAD-Administratorrollen](#aad-administrator-role-object-ids).
+Erstellen Sie [Autorisierungsrichtlinien](xref:security/authorization/policies) für AAD-Sicherheitsgruppen und AAD-Administratorrollen in den `Startup.ConfigureServices` der *Server*-App (`Startup.cs`) auf der Grundlage von Gruppenobjekt-IDs und [Objekt-IDs für AAD-Administratorrollen](#aad-administrator-role-object-ids).
 
 Beispielsweise weist eine Richtlinie der Azure-Rolle „Abrechnungsadministrator“ die folgende Konfiguration auf:
 
@@ -602,7 +605,7 @@ Weitere Informationen finden Sie unter <xref:security/authorization/policies>.
 
 ### <a name="controller-access"></a>Controllerzugriff
 
-Setzen Sie Richtlinien auf den Controllern der *Server* -App durch.
+Setzen Sie Richtlinien auf den Controllern der *Server*-App durch.
 
 Im folgenden Beispiel wird der Zugriff auf Abrechnungsdaten vom `BillingDataController` gemäß Konfiguration im Abschnitt [Autorisierungsrichtlinien](#authorization-policies) auf Azure-Abrechnungsadministratoren mit dem Richtliniennamen `BillingAdmin` beschränkt:
 
@@ -620,14 +623,14 @@ public class BillingDataController : ControllerBase
 
 ### <a name="packages"></a>Pakete
 
-Fügen Sie der *Server* -App Paketverweise für folgende Pakete hinzu:
+Fügen Sie der *Server*-App Paketverweise für folgende Pakete hinzu:
 
 * [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph)
 * [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client)
 
 ### <a name="services"></a>Dienste
 
-In der `Startup.ConfigureServices`-Methode der *Server* -App sind für den Code in der `Startup`-Klasse der *Server* -App zusätzliche Namespaces erforderlich. Fügen Sie `Startup.cs` die folgenden Namespaces hinzu:
+In der `Startup.ConfigureServices`-Methode der *Server*-App sind für den Code in der `Startup`-Klasse der *Server*-App zusätzliche Namespaces erforderlich. Fügen Sie `Startup.cs` die folgenden Namespaces hinzu:
 
 ```csharp
 using System;
@@ -751,19 +754,19 @@ Im obigen Code ist die Behandlung der folgenden Tokenfehler optional:
 
 ### <a name="packages"></a>Pakete
 
-Fügen Sie der *Server* -App Paketverweise für folgende Pakete hinzu:
+Fügen Sie der *Server*-App Paketverweise für folgende Pakete hinzu:
 
 * [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph)
 * [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages?q=Microsoft.IdentityModel.Clients.ActiveDirectory)
 
 ### <a name="service-configuration"></a>Dienstkonfiguration
 
-Fügen Sie in der Methode `Startup.ConfigureServices` der *Server* -App Logik hinzu, um die Graph-API aufzurufen und Benutzer-`group`-Ansprüche für die Sicherheitsgruppen und -rollen des Benutzers festzulegen.
+Fügen Sie in der Methode `Startup.ConfigureServices` der *Server*-App Logik hinzu, um die Graph-API aufzurufen und Benutzer-`group`-Ansprüche für die Sicherheitsgruppen und -rollen des Benutzers festzulegen.
 
 > [!NOTE]
 > Im Beispielcode in diesem Abschnitt wird die Active Directory-Authentifizierungsbibliothek (ADAL) verwendet, die auf Microsoft Identity Platform v1.0 basiert.
 
-Für den Code in der `Startup`-Klasse der *Server* -App sind zusätzliche Namespaces erforderlich. Die folgenden `using`-Anweisungen enthalten die erforderlichen Namespaces für den in diesem Abschnitt folgenden Code:
+Für den Code in der `Startup`-Klasse der *Server*-App sind zusätzliche Namespaces erforderlich. Die folgenden `using`-Anweisungen enthalten die erforderlichen Namespaces für den in diesem Abschnitt folgenden Code:
 
 ```csharp
 using System;

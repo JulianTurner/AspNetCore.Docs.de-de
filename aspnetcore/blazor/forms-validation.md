@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: fe232b40a2255732dd375cc266937576d5b2d5d9
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: a8bbcbd6ac13ec064350a5b885423835baa4c4cc
+ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507823"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "95870372"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>Blazor-Formulare und -Validierung in ASP.NET Core
 
@@ -337,49 +337,46 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace BlazorSample.Client
+public class CustomValidator : ComponentBase
 {
-    public class CustomValidator : ComponentBase
+    private ValidationMessageStore messageStore;
+
+    [CascadingParameter]
+    private EditContext CurrentEditContext { get; set; }
+
+    protected override void OnInitialized()
     {
-        private ValidationMessageStore messageStore;
-
-        [CascadingParameter]
-        private EditContext CurrentEditContext { get; set; }
-
-        protected override void OnInitialized()
+        if (CurrentEditContext == null)
         {
-            if (CurrentEditContext == null)
-            {
-                throw new InvalidOperationException(
-                    $"{nameof(CustomValidator)} requires a cascading " +
-                    $"parameter of type {nameof(EditContext)}. " +
-                    $"For example, you can use {nameof(CustomValidator)} " +
-                    $"inside an {nameof(EditForm)}.");
-            }
-
-            messageStore = new ValidationMessageStore(CurrentEditContext);
-
-            CurrentEditContext.OnValidationRequested += (s, e) => 
-                messageStore.Clear();
-            CurrentEditContext.OnFieldChanged += (s, e) => 
-                messageStore.Clear(e.FieldIdentifier);
+            throw new InvalidOperationException(
+                $"{nameof(CustomValidator)} requires a cascading " +
+                $"parameter of type {nameof(EditContext)}. " +
+                $"For example, you can use {nameof(CustomValidator)} " +
+                $"inside an {nameof(EditForm)}.");
         }
 
-        public void DisplayErrors(Dictionary<string, List<string>> errors)
-        {
-            foreach (var err in errors)
-            {
-                messageStore.Add(CurrentEditContext.Field(err.Key), err.Value);
-            }
+        messageStore = new ValidationMessageStore(CurrentEditContext);
 
-            CurrentEditContext.NotifyValidationStateChanged();
-        }
-
-        public void ClearErrors()
-        {
+        CurrentEditContext.OnValidationRequested += (s, e) => 
             messageStore.Clear();
-            CurrentEditContext.NotifyValidationStateChanged();
+        CurrentEditContext.OnFieldChanged += (s, e) => 
+            messageStore.Clear(e.FieldIdentifier);
+    }
+
+    public void DisplayErrors(Dictionary<string, List<string>> errors)
+    {
+        foreach (var err in errors)
+        {
+            messageStore.Add(CurrentEditContext.Field(err.Key), err.Value);
         }
+
+        CurrentEditContext.NotifyValidationStateChanged();
+    }
+
+    public void ClearErrors()
+    {
+        messageStore.Clear();
+        CurrentEditContext.NotifyValidationStateChanged();
     }
 }
 ```
@@ -451,7 +448,7 @@ Servervalidierung kann mit einer Server-[Validierungssteuerelementkomponente](#v
 * Verarbeiten Sie clientseitige Validierung im Formular mit der <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>-Komponente.
 * Wenn das Formular clientseitige Validierung besteht (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> wird aufgerufen), senden Sie das <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> zur Formularverarbeitung an eine Back-End-Server-API.
 * Verarbeiten Sie die Modellvalidierung auf dem Server.
-* Die Server-API umfasst sowohl die integrierte Framework-Datenanmerkungsvalidierung als auch benutzerdefinierte Validierungslogik, die vom Entwickler bereitgestellt wird. Wenn die Validierung auf dem Server bestanden wird, verarbeiten Sie das Formular, und senden Sie einen Erfolgsstatuscode zurück ( *200 - OK* ). Wenn bei der Validierung ein Fehler auftritt, werden ein Fehlerstatuscode ( *400 - Bad Request* (Ungültige Anforderung)) und die Feldvalidierungsfehler zurückgegeben.
+* Die Server-API umfasst sowohl die integrierte Framework-Datenanmerkungsvalidierung als auch benutzerdefinierte Validierungslogik, die vom Entwickler bereitgestellt wird. Wenn die Validierung auf dem Server bestanden wird, verarbeiten Sie das Formular, und senden Sie einen Erfolgsstatuscode zurück (*200 - OK*). Wenn bei der Validierung ein Fehler auftritt, werden ein Fehlerstatuscode (*400 - Bad Request* (Ungültige Anforderung)) und die Feldvalidierungsfehler zurückgegeben.
 * Deaktivieren Sie entweder das Formular bei Erfolg, oder zeigen Sie die Fehler an.
 
 Das folgende Beispiel beruht auf Folgendem:
@@ -483,7 +480,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BlazorSample.Shared;
 
-namespace BlazorSample.Server.Controllers
+namespace {ASSEMBLY NAME}.Controllers
 {
     [Authorize]
     [ApiController]
@@ -529,7 +526,9 @@ namespace BlazorSample.Server.Controllers
 }
 ```
 
-Wenn ein Validierungsfehler der Modellbindung auf dem Server auftritt, gibt ein [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normalerweise eine [Standardantwort „Ungültige Anforderung“](xref:web-api/index#default-badrequest-response) mit <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> zurück. Die Antwort enthält mehr Daten als nur die Validierungsfehler (wie im folgenden Beispiel gezeigt), wenn alle Felder des *Starfleet Starship Database* -Formulars nicht übermittelt wurden und die Validierung des Formulars fehlschlägt:
+Im Beispiel oben ist der Platzhalter `{ASSEMBLY NAME}` der Assemblyname der App (z. B. `BlazorSample.Server`).
+
+Wenn ein Validierungsfehler der Modellbindung auf dem Server auftritt, gibt ein [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normalerweise eine [Standardantwort „Ungültige Anforderung“](xref:web-api/index#default-badrequest-response) mit <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> zurück. Die Antwort enthält mehr Daten als nur die Validierungsfehler (wie im folgenden Beispiel gezeigt), wenn alle Felder des *Starfleet Starship Database*-Formulars nicht übermittelt wurden und die Validierung des Formulars fehlschlägt:
 
 ```json
 {
@@ -584,7 +583,7 @@ Weitere Informationen finden Sie unter <xref:web-api/handle-errors#validation-fa
 
 Fügen Sie im Clientprojekt die im Abschnitt [Validierungssteuerelementkomponenten](#validator-components) gezeigte Validierungssteuerelementkomponente hinzu.
 
-Im Clientprojekt wird das *Starfleet Starship Database* -Formular aktualisiert, um Servervalidierungsfehler mithilfe der `CustomValidator`-Komponente anzuzeigen. Wenn die Server-API Validierungsmeldungen zurückgibt, werden diese dem <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> der `CustomValidator`-Komponente hinzugefügt. Die Fehler sind im <xref:Microsoft.AspNetCore.Components.Forms.EditContext> des Formulars zur Anzeige durch die <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> des Formulars verfügbar:
+Im Clientprojekt wird das *Starfleet Starship Database*-Formular aktualisiert, um Servervalidierungsfehler mithilfe der `CustomValidator`-Komponente anzuzeigen. Wenn die Server-API Validierungsmeldungen zurückgibt, werden diese dem <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> der `CustomValidator`-Komponente hinzugefügt. Die Fehler sind im <xref:Microsoft.AspNetCore.Components.Forms.EditContext> des Formulars zur Anzeige durch die <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> des Formulars verfügbar:
 
 ```razor
 @page "/FormValidation"
@@ -803,7 +802,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Fügen Sie der App die folgende `enums`-Klasse hinzu. Erstellen Sie eine neue Datei, in der `enums` gespeichert werden kann, oder fügen Sie der `Starship.cs`-Datei `enums` hinzu. Sorgen Sie dafür, dass das `Starship`-Modell und das *Starfleet Starship Database* -Formular auf `enums` zugreifen können:
+Fügen Sie der App die folgende `enums`-Klasse hinzu. Erstellen Sie eine neue Datei, in der `enums` gespeichert werden kann, oder fügen Sie der `Starship.cs`-Datei `enums` hinzu. Sorgen Sie dafür, dass das `Starship`-Modell und das *Starfleet Starship Database*-Formular auf `enums` zugreifen können:
 
 ```csharp
 public enum Manufacturer { SpaceX, NASA, ULA, VirginGalactic, Unknown }
@@ -811,7 +810,7 @@ public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange 
 public enum Engine { Ion, Plasma, Fusion, Warp }
 ```
 
-Aktualisieren Sie das im Abschnitt [Integrierte Formularkomponenten](#built-in-forms-components) beschriebene *Starfleet Starship Database* -Formular. Fügen Sie die Komponenten hinzu, damit Folgendes erstellt wird:
+Aktualisieren Sie das im Abschnitt [Integrierte Formularkomponenten](#built-in-forms-components) beschriebene *Starfleet Starship Database*-Formular. Fügen Sie die Komponenten hinzu, damit Folgendes erstellt wird:
 
 * Eine Optionsfeldgruppe für den Schiffshersteller.
 * Eine geschachtelte Optionsfeldgruppe für die Farbe und den Motor des Schiffs.
@@ -1065,9 +1064,13 @@ private class MyFieldClassProvider : FieldCssClassProvider
 > [!NOTE]
 > Das [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)-Paket enthält die neueste Version des *Release Candidate* auf [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Verwenden Sie zu diesem Zeitpunkt weiterhin das *experimentelle* Release Candidate-Paket. Die Assembly des Pakets wird möglicherweise in einer zukünftigen Version entweder in das Framework oder die Laufzeit verschoben. Weitere Aktualisierungen finden Sie im [GitHub-Repository „Announcements“](https://github.com/aspnet/Announcements) (Ankündigungen), im [dotnet/aspnetcore-Repositoryvon GitHub ](https://github.com/dotnet/aspnetcore) oder in diesem Themenabschnitt.
 
-### <a name="compareproperty-attribute"></a>[CompareProperty]-Attribut
+::: moniker range="< aspnetcore-5.0"
+
+### <a name="compareproperty-attribute"></a>`[CompareProperty]`-Attribut
 
 <xref:System.ComponentModel.DataAnnotations.CompareAttribute> funktioniert nicht gut mit der <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>-Komponente, da hier das Validierungsergebnis nicht einem bestimmten Member zugeordnet wird. Das führt zu einem nicht konsistenten Verhalten zwischen Validierung auf Feldebene und der Validierung des gesamten Modells bei Sendevorgängen. Mit dem *experimentellen* Paket [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) wird das zusätzliche Validierungsattribut `ComparePropertyAttribute` eingeführt, das diese Einschränkungen umgeht. In einer Blazor-App handelt es sich bei `[CompareProperty]` um eine direkte Ersetzung des [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute)-Attributs.
+
+::: moniker-end
 
 ### <a name="nested-models-collection-types-and-complex-types"></a>Verschachtelte Modelle, Sammlungstypen und komplexe Typen
 

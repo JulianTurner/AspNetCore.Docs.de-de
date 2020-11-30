@@ -7,7 +7,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
 no-loc:
-- appsettings.json
 - ASP.NET Core Identity
 - cookie
 - Cookie
@@ -19,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-https
-ms.openlocfilehash: 63d6e220c0f28e552207039c1649041bfdf4a0d4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a4aac2ce06fee20bdef157efc361f3099a217b1a
+ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059675"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96332153"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>Hosting von ASP.net Core Images mit docker über HTTPS
 
@@ -47,6 +46,8 @@ Für einige der Anweisungen in diesem Dokument ist das [.net Core 2,2 SDK](https
 Ein Zertifikat von einer [Zertifizierungs](https://wikipedia.org/wiki/Certificate_authority) Stelle ist für das [Produktions Hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) für eine Domäne erforderlich. [Let's Encrypt](https://letsencrypt.org/) ist eine Zertifizierungsstelle, die kostenlose Zertifikate anbietet.
 
 In diesem Dokument werden [selbst signierte Entwicklungs Zertifikate](https://en.wikipedia.org/wiki/Self-signed_certificate) für das Hosting von vordefinierten Images verwendet `localhost` . Die Anweisungen ähneln der Verwendung von Produktions Zertifikaten.
+
+Verwenden Sie [dotnet dev-certs](/dotnet/core/additional-tools/self-signed-certificates-guide) , um selbst signierte Zertifikate für Entwicklung und Tests zu erstellen.
 
 Für produktionscerts:
 
@@ -84,6 +85,9 @@ docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://
 Wenn Sie [PowerShell](/powershell/scripting/overview)verwenden, ersetzen Sie `%USERPROFILE%` durch `$env:USERPROFILE` .
 
 Das Kennwort muss dem Kennwort entsprechen, das für das Zertifikat verwendet wird.
+
+
+Hinweis: das Zertifikat muss in diesem Fall eine `.pfx` Datei sein.  Das Verwenden einer- `.crt` oder- `.key` Datei mit oder ohne das Kennwort wird mit dem Beispiel Container nicht unterstützt.  Wenn Sie z. b. eine `.crt` Datei angeben, gibt der Container möglicherweise Fehlermeldungen zurück, z. b. "der Server Modus-SSL muss ein Zertifikat mit dem zugeordneten privaten Schlüssel verwenden". Überprüfen Sie bei Verwendung von [WSL](/windows/wsl/about)den Bereitstellungspfad, um sicherzustellen, dass das Zertifikat ordnungsgemäß geladen
 
 ### <a name="macos-or-linux"></a>macOS oder Linux
 

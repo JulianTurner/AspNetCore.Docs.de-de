@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: 962c1cf0be0f80ecd6c3adda7d22db7f16519a2a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 348b0fe4da6037933aabdb5b400d36ca073a146a
+ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060351"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320095"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>Komponententests für die Controllerlogik in ASP.NET Core
 
@@ -50,7 +50,7 @@ Der Homecontroller zeigt eine Liste von Brainstormingsitzungen an und ermöglich
 
 Für den oben aufgeführten Controller gilt Folgendes:
 
-* Er folgt dem [Prinzip der expliziten Abhängigkeiten](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
+* Er folgt dem [Prinzip der expliziten Abhängigkeiten](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
 * Er erwartet, dass [Abhängigkeitsinjektion (Dependency Injection, DI)](xref:fundamentals/dependency-injection) eine Instanz von `IBrainstormSessionRepository` bereitstellt.
 * Er kann mit einem simulierten `IBrainstormSessionRepository`-Dienst mithilfe eines Pseudoobjektframeworks wie [Moq](https://www.nuget.org/packages/Moq/) getestet werden. Ein *Pseudoobjekt* ist ein künstliches Objekt mit einem vordefiniertem Satz von Eigenschaften und Methodenverhalten, das zum Testen verwendet wird. Weitere Informationen finden Sie unter [Einführung in Integrationstests](xref:test/integration-tests#introduction-to-integration-tests).
 
@@ -90,7 +90,7 @@ Simulierte Aufrufe, die nicht aufgerufen werden, werden normalerweise ignoriert.
 > [!NOTE]
 > Mit der in diesem Beispiel verwendeten Moq-Bibliothek können überprüfbare (oder „strikte“) Pseudoobjekte mit nicht überprüfbaren Pseudoobjekten (auch „nicht-strikte“ Pseudoobjekte oder „Stubs“ genannt) kombiniert werden. Weitere Informationen finden Sie unter [Customizing Mock behavior with Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior) (Anpassen des Verhaltens von Pseudoobjekten mit Moq).
 
-In der Beispiel-App werden Informationen zu einer bestimmten Brainstormingsitzung mit [SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) angezeigt. Der Controller enthält Logik, um ungültige `id` Werte zu behandeln (es gibt im folgenden Beispiel zwei `return`-Szenarien, die diese Fälle abdecken). Die endgültige `return`-Anweisung gibt ein neues `StormSessionViewModel`-Objekt an die Ansicht zurück ( *Controllers/SessionController.cs* ):
+In der Beispiel-App werden Informationen zu einer bestimmten Brainstormingsitzung mit [SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) angezeigt. Der Controller enthält Logik, um ungültige `id` Werte zu behandeln (es gibt im folgenden Beispiel zwei `return`-Szenarien, die diese Fälle abdecken). Die endgültige `return`-Anweisung gibt ein neues `StormSessionViewModel`-Objekt an die Ansicht zurück (*Controllers/SessionController.cs*):
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -183,7 +183,7 @@ Der zweite Test überprüft, ob ein <xref:Microsoft.AspNetCore.Mvc.ControllerBas
 Für eine gültige Sitzungs-`id` bestätigt der letzte Test Folgendes:
 
 * Die Methode gibt ein `ActionResult` mit einem `BrainstormSession`-Typ zurück.
-* Das [Aktions Ergebnis \<T> . Das Ergebnis](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) ist ein <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult> . `CreatedAtActionResult` ist analog zu einer *201 Created* -Antwort mit einem `Location`-Header.
+* Das [Aktions Ergebnis \<T> . Das Ergebnis](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) ist ein <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult> . `CreatedAtActionResult` ist analog zu einer *201 Created*-Antwort mit einem `Location`-Header.
 * Das [Aktions Ergebnis \<T> . Der Wert](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) ist ein- `BrainstormSession` Typ.
 * Der Pseudoaufruf zum Aktualisieren der Sitzung (`UpdateAsync(testSession)`) wurde aufgerufen. Der `Verifiable`-Methodenaufruf wird überprüft, indem `mockRepo.Verify()` in den Assertionen ausgeführt wird.
 * Zwei `Idea`-Objekte werden für die Sitzung zurückgegeben.
@@ -253,7 +253,7 @@ Simulierte Aufrufe, die nicht aufgerufen werden, werden normalerweise ignoriert.
 > [!NOTE]
 > Mit der in diesem Beispiel verwendeten Moq-Bibliothek können überprüfbare (oder „strikte“) Pseudoobjekte mit nicht überprüfbaren Pseudoobjekten (auch „nicht-strikte“ Pseudoobjekte oder „Stubs“ genannt) kombiniert werden. Weitere Informationen finden Sie unter [Customizing Mock behavior with Moq](https://github.com/Moq/moq4/wiki/Quickstart#customizing-mock-behavior) (Anpassen des Verhaltens von Pseudoobjekten mit Moq).
 
-In der Beispiel-App werden Informationen zu einer bestimmten Brainstormingsitzung mit [SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) angezeigt. Der Controller enthält Logik, um ungültige `id` Werte zu behandeln (es gibt im folgenden Beispiel zwei `return`-Szenarien, die diese Fälle abdecken). Die endgültige `return`-Anweisung gibt ein neues `StormSessionViewModel`-Objekt an die Ansicht zurück ( *Controllers/SessionController.cs* ):
+In der Beispiel-App werden Informationen zu einer bestimmten Brainstormingsitzung mit [SessionController](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs) angezeigt. Der Controller enthält Logik, um ungültige `id` Werte zu behandeln (es gibt im folgenden Beispiel zwei `return`-Szenarien, die diese Fälle abdecken). Die endgültige `return`-Anweisung gibt ein neues `StormSessionViewModel`-Objekt an die Ansicht zurück (*Controllers/SessionController.cs*):
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/src/TestingControllersSample/Controllers/SessionController.cs?name=snippet_SessionController&highlight=12-16,18-22,31)]
 
@@ -346,7 +346,7 @@ Der zweite Test überprüft, ob ein <xref:Microsoft.AspNetCore.Mvc.ControllerBas
 Für eine gültige Sitzungs-`id` bestätigt der letzte Test Folgendes:
 
 * Die Methode gibt ein `ActionResult` mit einem `BrainstormSession`-Typ zurück.
-* Das [Aktions Ergebnis \<T> . Das Ergebnis](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) ist ein <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult> . `CreatedAtActionResult` ist analog zu einer *201 Created* -Antwort mit einem `Location`-Header.
+* Das [Aktions Ergebnis \<T> . Das Ergebnis](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Result*) ist ein <xref:Microsoft.AspNetCore.Mvc.CreatedAtActionResult> . `CreatedAtActionResult` ist analog zu einer *201 Created*-Antwort mit einem `Location`-Header.
 * Das [Aktions Ergebnis \<T> . Der Wert](xref:Microsoft.AspNetCore.Mvc.ActionResult%601.Value*) ist ein- `BrainstormSession` Typ.
 * Der Pseudoaufruf zum Aktualisieren der Sitzung (`UpdateAsync(testSession)`) wurde aufgerufen. Der `Verifiable`-Methodenaufruf wird überprüft, indem `mockRepo.Verify()` in den Assertionen ausgeführt wird.
 * Zwei `Idea`-Objekte werden für die Sitzung zurückgegeben.
@@ -360,6 +360,6 @@ Für eine gültige Sitzungs-`id` bestätigt der letzte Test Folgendes:
 
 * <xref:test/integration-tests>
 * [Erstellen und Ausführen von Komponententests mit Visual Studio](/visualstudio/test/unit-test-your-code)
-* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. ( *Wird von Microsoft nicht verwaltet oder unterstützt.* )
-* [JustMockLite:](https://github.com/telerik/JustMockLite) Dies ist ein Beispielframework für .NET-Entwickler. ( *Wird von Microsoft nicht verwaltet oder unterstützt.* )
+* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. (*Wird von Microsoft nicht verwaltet oder unterstützt.* )
+* [JustMockLite:](https://github.com/telerik/JustMockLite) Dies ist ein Beispielframework für .NET-Entwickler. (*Wird von Microsoft nicht verwaltet oder unterstützt.* )
 

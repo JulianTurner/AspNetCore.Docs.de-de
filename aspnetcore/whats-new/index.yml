@@ -5,18 +5,20 @@ metadata:
   title: ASP.NET Core-Dokumentation – Neuerungen
   description: Dokumentation zu den neuen und aktualisierten Inhalten in ASP.NET Core.
   ms.topic: landing-page
-  ms.date: 08/03/2020
-  ms.openlocfilehash: 57122e1f4fa7bb867859a0e287b18f50bc59ef02
-  ms.sourcegitcommit: d64bf0cbe763beda22a7728c7f10d07fc5e19262
+  ms.date: 12/01/2020
+  ms.openlocfilehash: 0d134ccfeb958e47e3a69fbfb29a8ab388d539fd
+  ms.sourcegitcommit: 94c8cc1a8ce2bdba0ebdd9d37c155bf42d3cc62b
   ms.translationtype: HT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/03/2020
-  ms.locfileid: "93234529"
+  ms.lasthandoff: 12/01/2020
+  ms.locfileid: "96473702"
 landingContent:
 - title: Neuerungen in ASP.NET Core
   linkLists:
   - linkListType: whats-new
     links:
+    - text: November 2020
+      url: 2020-11.md
     - text: Oktober 2020
       url: 2020-10.md
     - text: September 2020
@@ -27,8 +29,6 @@ landingContent:
       url: 2020-07.md
     - text: Juni 2020
       url: 2020-06.md
-    - text: Mai 2020
-      url: 2020-05.md
 - title: ASP.NET Core-Dokumentation mitgestalten
   linkLists:
   - linkListType: overview

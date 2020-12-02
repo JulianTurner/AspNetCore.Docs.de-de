@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 - Route-to-code
 uid: web-api/route-to-code
-ms.openlocfilehash: 49eaa3ceb47c41226b7a50782436ec270e6e1b7b
-ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
+ms.openlocfilehash: 1f5f532053f8f5ca7f73df8c1a910a484e2488d9
+ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96335594"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96513095"
 ---
 # <a name="basic-json-apis-with-no-locroute-to-code-in-aspnet-core"></a>Grundlegende JSON-APIs mit Route-to-code in ASP.net Core
 
@@ -54,7 +54,7 @@ Beachten Sie den folgenden Code, der eine JSON-API für eine App konfiguriert:
 
 [!code-csharp[](route-to-code/sample/Startup3.cs?name=snippet&highlight=6)]
 
-Der vorangehende Code:
+Der obige Code:
 
 * Fügt einen HTTP Get-API-Endpunkt mit `/hello/{name:alpha}` als Routen Vorlage hinzu.
 * Wenn die Route abgeglichen wird, liest die API den `name` Routen Wert aus der Anforderung.
@@ -66,7 +66,7 @@ Der vorangehende Code:
 
 [!code-csharp[](route-to-code/sample/Startup2.cs?name=snippet&highlight=5,11)]
 
-Der vorangehende Code:
+Der obige Code:
 
 * Fügt einen HTTP Post-API-Endpunkt mit `/weather` als Routen Vorlage hinzu.
 * Wenn die Route übereinstimmt, wird `HasJsonContentType` der Inhaltstyp der Anforderung überprüft. Ein nicht-JSON-Inhaltstyp gibt einen 415-Statuscode zurück.
@@ -111,6 +111,21 @@ Beachten Sie die folgende statische `UserApi` Klasse, die eine `Map` Methode def
 In der `Startup.Configure` `Map` -Methode werden die statischen Methoden der-Methode und der anderen Klasse in aufgerufen `UseEndpoints` :
 
 [!code-csharp[](route-to-code/sample/Startup5.cs?name=snippet)]
+
+## <a name="notable-missing-features-compared-to-web-api"></a>Wichtige fehlende Features im Vergleich zur Web-API
+
+Route-to-code ist für grundlegende JSON-APIs konzipiert. Sie verfügt nicht über Unterstützung für viele der erweiterten Features, die von ASP.net Core Web-API bereitgestellt werden.
+
+Folgende Funktionen werden nicht bereitgestellt Route-to-code :
+
+* Modellbindung
+* Modellvalidierung
+* OpenAPI/Swagger
+* Inhaltsaushandlung
+* Injektion von konstruktorabhängigkeiten
+* `ProblemDetails` ([https://tools.ietf.org/html/rfc7807](RFC 7807))
+
+Verwenden Sie ggf. [ASP.net Core Web-API](xref:web-api/index) , um eine API zu erstellen, wenn Sie einige der Features in der vorangehenden Liste erfordert.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

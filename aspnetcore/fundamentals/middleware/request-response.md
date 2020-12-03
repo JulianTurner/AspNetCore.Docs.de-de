@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/request-response
-ms.openlocfilehash: cc701343cb3859f0f76ebc62bd54aa2e4431d522
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5ad39821778ea58097169def85a940a06f1d036e
+ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061027"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96513108"
 ---
 # <a name="request-and-response-operations-in-aspnet-core"></a>Anforderungs- und Antwortvorgänge in ASP.NET Core
 
@@ -44,6 +44,8 @@ Anstelle von Datenströmen werden [Pipelines](/dotnet/standard/io/pipelines) emp
 Datenströme werden jedoch nicht aus dem Framework entfernt. Datenströme werden weiterhin in .NET verwendet, und für viele Datenstromtypen gibt es keine entsprechenden Pipelines, z. B. `FileStreams` und `ResponseCompression`.
 
 ## <a name="stream-examples"></a>Datenstrombeispiele
+
+<!-- see "fundamentals\middleware\request-response\static\TestPipes.JPG for testing sample -->
 
 Angenommen, Sie möchten eine Middleware erstellen, die den gesamten Anforderungstext als Liste von Zeichenfolgen liest, die in neue Zeilen umbrochen werden. Eine einfache Datenstromimplementierung könnte wie im folgenden Beispiel aussehen:
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: bfc8f334b9229fed54e6b9841e4fb255ed18249a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 6a74b8c5668a37082f648ae74210d90684c4559c
+ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056620"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320108"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>ASP.NET Core Blazor Server mit Entity Framework Core (EFCore)
 
@@ -65,7 +65,7 @@ Die folgenden Empfehlungen sollen einen konsistenten Ansatz für die Verwendung 
 * Erwägen Sie standardmäßig die Verwendung eines Kontexts pro Vorgang. Der Kontext ist für schnelle Instanziierung mit geringem Mehraufwand konzipiert:
 
   ```csharp
-  var using context = new MyContext();
+  using var context = new MyContext();
 
   return await context.MyEntities.ToListAsync();
   ```
@@ -196,7 +196,7 @@ Die folgenden Empfehlungen sollen einen konsistenten Ansatz für die Verwendung 
 * Erwägen Sie standardmäßig die Verwendung eines Kontexts pro Vorgang. Der Kontext ist für schnelle Instanziierung mit geringem Mehraufwand konzipiert:
 
   ```csharp
-  var using context = new MyContext();
+  using var context = new MyContext();
 
   return await context.MyEntities.ToListAsync();
   ```

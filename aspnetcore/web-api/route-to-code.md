@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 - Route-to-code
 uid: web-api/route-to-code
-ms.openlocfilehash: 1f5f532053f8f5ca7f73df8c1a910a484e2488d9
-ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
+ms.openlocfilehash: f8a3804a887ebfa0f5284d8991e903c978b18208
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96513095"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556605"
 ---
 # <a name="basic-json-apis-with-no-locroute-to-code-in-aspnet-core"></a>Grundlegende JSON-APIs mit Route-to-code in ASP.net Core
 
@@ -76,14 +76,14 @@ Der obige Code:
 
 Es gibt zwei Möglichkeiten zum Anpassen der JSON-Serialisierung:
 
-* Standardserialisierungsoptionen können mit `JsonOptions` in der-Methode konfiguriert werden `Startup.ConfigureServices` .
-* `WriteAsJsonAsync` und `ReadFromJsonAsync` verfügen über über Ladungen, die ein- `JsonSerializerOptions` Objekt akzeptieren. Dieses `JsonSerializerOptions` Objekt überschreibt die Standardoptionen.
+* Standardserialisierungsoptionen können mit <xref:Microsoft.AspNetCore.Http.Json.JsonOptions> in der-Methode konfiguriert werden `Startup.ConfigureServices` .
+* `WriteAsJsonAsync` und `ReadFromJsonAsync` verfügen über über Ladungen, die ein- <xref:System.Text.Json.JsonSerializerOptions> Objekt akzeptieren. Dieses Options-Objekt überschreibt die Standardoptionen.
 
 [!code-csharp[](route-to-code/sample/Startup6.cs?name=snippet)]
 
 ## <a name="authentication-and-authorization"></a>Authentifizierung und Autorisierung
 
-Route-to-code unterstützt Authentifizierung und Autorisierung. Attribute, wie z. b. `[Authorize]` und `[AllowAnonymous]` , können nicht auf Endpunkten platziert werden, die einem Anforderungs Delegaten zugeordnet sind. Stattdessen werden Autorisierungs Metadaten mithilfe der `RequireAuthorization` -und- `AllowAnonymous` Erweiterungs Methoden hinzugefügt.
+Route-to-code unterstützt Authentifizierung und Autorisierung. Attribute, wie z. b. `[Authorize]` und `[AllowAnonymous]` , können nicht auf Endpunkten platziert werden, die einem Anforderungs Delegaten zugeordnet sind. Stattdessen werden Autorisierungs Metadaten mithilfe der <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> -und- <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A> Erweiterungs Methoden hinzugefügt.
 
 [!code-csharp[](route-to-code/sample/Startup.cs?name=snippet&highlight=30)]
 
@@ -123,7 +123,7 @@ Folgende Funktionen werden nicht bereitgestellt Route-to-code :
 * OpenAPI/Swagger
 * Inhaltsaushandlung
 * Injektion von konstruktorabhängigkeiten
-* `ProblemDetails` ([https://tools.ietf.org/html/rfc7807](RFC 7807))
+* `ProblemDetails` ([RFC 7807](https://tools.ietf.org/html/rfc7807))
 
 Verwenden Sie ggf. [ASP.net Core Web-API](xref:web-api/index) , um eine API zu erstellen, wenn Sie einige der Features in der vorangehenden Liste erfordert.
 

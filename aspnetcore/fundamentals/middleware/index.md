@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/index
-ms.openlocfilehash: aa51e53284bc25629b3975ff0e6de967b9a2b866
-ms.sourcegitcommit: 0bcc0d6df3145a0727da7c4be2f4bda8f27eeaa3
+ms.openlocfilehash: bdeccf81a3bb620c2e1fe15a798d5a83375842c8
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96513121"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556540"
 ---
 # <a name="aspnet-core-middleware"></a>ASP.NET Core-Middleware
 
@@ -101,7 +101,7 @@ Für den Code oben gilt:
   * `UseCors`, `UseAuthentication` und `UseAuthorization` müssen in der gezeigten Reihenfolge vorliegen.
   * `UseCors` muss sich derzeit aufgrund [dieses Fehlers](https://github.com/dotnet/aspnetcore/issues/23218) vor `UseResponseCaching` befinden.
 
-In einigen Szenarien gilt bei Middleware eine andere Reihenfolge. Die Reihenfolge für Zwischenspeicherung und Komprimierung beispielsweise ist szenariospezifisch, und es gibt verschiedene gültige Reihenfolgen. Beispiel:
+In einigen Szenarien gilt bei Middleware eine andere Reihenfolge. Die Reihenfolge für Zwischenspeicherung und Komprimierung beispielsweise ist szenariospezifisch, und es gibt verschiedene gültige Reihenfolgen. Zum Beispiel:
 
 ```csharp
 app.UseResponseCaching();
@@ -113,9 +113,9 @@ Mit dem obigen Code könnte durch Zwischenspeichern der komprimierten Antwort di
 Die folgende Reihenfolge kombiniert statische Dateien, um eine Zwischenspeicherung komprimierter statischer Dateien zuzulassen:
 
 ```csharp
-app.UseResponseCaching
-app.UseResponseCompression
-app.UseStaticFiles
+app.UseResponseCaching();
+app.UseResponseCompression();
+app.UseStaticFiles();
 ```
 
 Die folgenden `Startup.Configure`-Methode fügt Middlewarekomponenten für allgemeine App-Szenarien hinzu:
@@ -193,6 +193,8 @@ public void Configure(IApplicationBuilder app)
     // Static files aren't compressed by Static File Middleware.
     app.UseStaticFiles();
 
+    app.UseRouting();
+
     app.UseResponseCompression();
 
     app.UseEndpoints(endpoints =>
@@ -260,7 +262,7 @@ In der folgenden Tabelle sind die Anforderungen und Antworten von `http://localh
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> brancht auch die Anforderungspipeline auf Grundlage des Ergebnisses des angegebenen Prädikats. Anders als bei `MapWhen` wird dieser Branch wieder mit der Hauptpipeline verbunden, wenn er nicht kurzgeschlossen wird oder eine Terminalmiddleware enthält:
 
-[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=25-26)]
+[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=18-19)]
 
 Im vorherigen Beispiel wird „Hello from main pipeline“ (Hallo aus der Hauptpipeline) für alle Anforderungen geschrieben. Wenn die Anforderung eine Abfragezeichenfolgevariable `branch` enthält, wird der Wert der Pipeline protokolliert, bevor eine neue Verbindung hergestellt wird.
 

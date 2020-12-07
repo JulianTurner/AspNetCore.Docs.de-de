@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/25/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: d655be26a794f87a0be07046ae1d6415256d592c
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: 4a5369b9e40de89ac9a1895466e7bdd7afb9d32e
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417629"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420031"
 ---
 # <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>Part 3: Gerüstbau mit Razor Pages in ASP.NET Core
 
@@ -47,7 +45,7 @@ In diesem Tutorial werden die Razor Pages näher untersucht, die durch den Gerü
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="the-no-loccreate-no-locdelete-details-and-edit-pages"></a>Die Seiten Create, Delete, „Details“ und „Edit“
+## <a name="the-create-delete-details-and-edit-pages"></a>Die Seiten „Create“, „Delete“, „Details“ und „Edit“
 
 Überprüfen Sie das Seitenmodell *Pages/Movies/Index.cshtml.cs*:
 
@@ -151,7 +149,7 @@ Die Zeile `@*Markup removed for brevity.*@` ist ein Razor-Kommentar. Im Gegensat
 
 1. Speichern Sie Ihre Änderungen, und testen Sie die App, indem Sie den Link **RpMovie** auswählen. Wenn Probleme auftreten, sehen Sie sich die Datei [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml) in GitHub an.
 
-1. Testen Sie die Links **Home**, **RpMovie**, **Create** , **Edit** und **Delete** . Jede Seite legt den Titel fest, der in der Browserregisterkarte angezeigt wird. Wenn Sie eine Seite mit einem Lesezeichen versehen, wird dieser Titel für das Lesezeichen verwendet.
+1. Testen Sie die folgenden Links: **Home** (Startseite), **RpMovie** (Razor Pages-Film), **Create** (Erstellen), **Edit** (Bearbeiten) und **Delete** (Löschen). Jede Seite legt den Titel fest, der in der Browserregisterkarte angezeigt wird. Wenn Sie eine Seite mit einem Lesezeichen versehen, wird dieser Titel für das Lesezeichen verwendet.
 
 > [!NOTE]
 > Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben. Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für nicht englische Gebietsschemas, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und Nicht-US-englische Datums- und Uhrzeitformate müssen Sie Schritte zur Globalisierung der App ausführen. In diesem [GitHub-Problem 4076](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) finden Sie Anweisungen zum Hinzufügen von Kommas als Dezimaltrennzeichen.
@@ -162,15 +160,15 @@ Die Eigenschaft `Layout` wird in der Datei *Pages/_ViewStart.cshtml* festgelegt:
 
 Das vorhergehende Markup legt die Layoutdatei für alle Razor-Dateien unter dem Ordner *Pages* auf *Pages/Shared/_Layout.cshtml* fest. Weitere Informationen finden Sie unter [Layout](xref:razor-pages/index#layout).
 
-### <a name="the-no-loccreate-page-model"></a>Das Seitenmodell Create
+### <a name="the-create-page-model"></a>Das Seitenmodell „Create“
 
 Überprüfen Sie das Seitenmodell *Pages/Movies/Create.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-Die Methode `OnGet` initialisiert einen beliebigen Zustand, der für die Seite erforderlich ist. Die Seite Create (Erstellen) verfügt nicht über einen initialisierbaren Zustand. Deshalb wird `Page` zurückgegeben. Später in diesem Tutorial wird ein Beispiel für `OnGet` zur Initialisierung des Zustands gezeigt. Die Methode `Page` erstellt ein `PageResult`-Objekt, das die Seite *Create.cshtml* rendert.
+Die Methode `OnGet` initialisiert einen beliebigen Zustand, der für die Seite erforderlich ist. Die Seite „Create“ (Erstellen) verfügt nicht über einen initialisierbaren Zustand. Deshalb wird `Page` zurückgegeben. Später in diesem Tutorial wird ein Beispiel für `OnGet` zur Initialisierung des Zustands gezeigt. Die Methode `Page` erstellt ein `PageResult`-Objekt, das die Seite *Create.cshtml* rendert.
 
-Die Eigenschaft `Movie` verwendet das Attribut [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute), um die [Modellbindung](xref:mvc/models/model-binding) zu aktivieren. Wenn das Formular Create die Formularwerte bereitstellt, bindet die ASP.NET Core-Laufzeit die bereitgestellten Werte an das `Movie`-Modell.
+Die Eigenschaft `Movie` verwendet das Attribut [[BindProperty]](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute), um die [Modellbindung](xref:mvc/models/model-binding) zu aktivieren. Wenn das Formular „Create“ die Formularwerte bereitstellt, bindet die ASP.NET Core-Laufzeit die bereitgestellten Werte an das `Movie`-Modell.
 
 Die Methode `OnPostAsync` wird ausgeführt, wenn die Seite Formulardaten bereitstellt:
 
@@ -183,9 +181,9 @@ Wenn keine Modellfehler vorliegen:
 * Die Daten werden gespeichert.
 * Der Browser wird zur Seite Index umgeleitet.
 
-### <a name="the-no-loccreate-no-locrazor-page"></a>Die Razor Page Create
+### <a name="the-create-no-locrazor-page"></a>Razor-Seite „Erstellen“
 
-Sehen Sie sich die Razor Page-Datei *Pages/Movies/Create.cshtml* an:
+Betrachten Sie die Datei *Pages/Movies/Create.cshtml* der Razor-Seite:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Create.cshtml)]
 
@@ -199,7 +197,7 @@ Visual Studio zeigt die folgenden Tags in einer bestimmten Schriftart an, die f�
 * `<input asp-for="Movie.Title" class="form-control" />`
 * `<span asp-validation-for="Movie.Title" class="text-danger"></span>`
 
-![VS17-Ansicht der Seite Create.cshtml](page/_static/th3.png)
+![VS17-Ansicht der Create.cshtml-Seite](page/_static/th3.png)
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -237,7 +235,7 @@ Weitere Informationen zu Taghilfsprogrammen wie `<form method="post">` finden Si
 
 ::: moniker range="< aspnetcore-3.0"
 
-## <a name="the-no-loccreate-no-locdelete-details-and-edit-pages"></a>Die Seiten Create, Delete, „Details“ und „Edit“
+## <a name="the-create-delete-details-and-edit-pages"></a>Die Seiten „Create“, „Delete“, „Details“ und „Edit“
 
 Überprüfen Sie das Seitenmodell *Pages/Movies/Index.cshtml.cs*:
 
@@ -326,7 +324,7 @@ Das vorangehende Ankerelement ist ein [Tag Helper (Taghilfsprogramm)](xref:mvc/v
 
 Speichern Sie Ihre Änderungen, und testen Sie die App, indem Sie auf den Link **RpMovie** klicken. Wenn Probleme auftreten, sehen Sie sich die Datei [_Layout.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Shared/_Layout.cshtml) in GitHub an.
 
-Testen Sie die anderen Links(**Home**, **RpMovie**, **Create** , **Edit** und **Delete** ) Jede Seite legt den Titel fest, der in der Browserregisterkarte angezeigt wird. Wenn Sie eine Seite mit einem Lesezeichen versehen, wird dieser Titel für das Lesezeichen verwendet.
+Testen Sie die anderen Links – **Home** (Startseite), **RpMovie** (Razor Pages-Film), **Create** (Erstellen), **Edit** (Bearbeiten) und **Delete** (Löschen). Jede Seite legt den Titel fest, der in der Browserregisterkarte angezeigt wird. Wenn Sie eine Seite mit einem Lesezeichen versehen, wird dieser Titel für das Lesezeichen verwendet.
 
 > [!NOTE]
 > Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben. Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für nicht englische Gebietsschemas, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und Nicht-US-englische Datums- und Uhrzeitformate müssen Sie Schritte zur Globalisierung der App ausführen. In diesem [GitHub-Problem 4076](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420) finden Sie Anweisungen zum Hinzufügen von Kommas als Dezimaltrennzeichen.
@@ -337,15 +335,15 @@ Die Eigenschaft `Layout` wird in der Datei *Pages/_ViewStart.cshtml* festgelegt:
 
 Das vorhergehende Markup legt die Layoutdatei für alle Razor-Dateien unter dem Ordner *Pages* auf *Pages/Shared/_Layout.cshtml* fest. Weitere Informationen finden Sie unter [Layout](xref:razor-pages/index#layout).
 
-### <a name="the-no-loccreate-page-model"></a>Das Seitenmodell Create
+### <a name="the-create-page-model"></a>Das Seitenmodell „Create“
 
 Überprüfen Sie das Seitenmodell *Pages/Movies/Create.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml.cs?name=snippetALL)]
 
-Die Methode `OnGet` initialisiert einen beliebigen Zustand, der für die Seite erforderlich ist. Die Seite Create (Erstellen) verfügt nicht über einen initialisierbaren Zustand. Deshalb wird `Page` zurückgegeben. Im späteren Verlauf des Tutorials initialisiert die Methode `OnGet` einen Zustand. Die Methode `Page` erstellt ein `PageResult`-Objekt, das die Seite *Create.cshtml* rendert.
+Die Methode `OnGet` initialisiert einen beliebigen Zustand, der für die Seite erforderlich ist. Die Seite „Create“ (Erstellen) verfügt nicht über einen initialisierbaren Zustand. Deshalb wird `Page` zurückgegeben. Im späteren Verlauf des Tutorials initialisiert die Methode `OnGet` einen Zustand. Die Methode `Page` erstellt ein `PageResult`-Objekt, das die Seite *Create.cshtml* rendert.
 
-Die Eigenschaft `Movie` verwendet das Attribut [[BindProperty]<xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute>, um die [Modellbindung](xref:mvc/models/model-binding) zu aktivieren. Wenn das Formular Create die Formularwerte bereitstellt, bindet die ASP.NET Core-Laufzeit die bereitgestellten Werte an das `Movie`-Modell.
+Die Eigenschaft `Movie` verwendet das Attribut [[BindProperty]<xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute>, um die [Modellbindung](xref:mvc/models/model-binding) zu aktivieren. Wenn das Formular „Create“ die Formularwerte bereitstellt, bindet die ASP.NET Core-Laufzeit die bereitgestellten Werte an das `Movie`-Modell.
 
 Die Methode `OnPostAsync` wird ausgeführt, wenn die Seite Formulardaten bereitstellt:
 
@@ -355,9 +353,9 @@ Wenn es zu Modellfehlern kommt, wird das Formular mit allen bereitgestellten For
 
 Wenn keine Modellfehler auftreten, werden die Daten gespeichert und der Browser zur Seite Index umgeleitet.
 
-### <a name="the-no-loccreate-no-locrazor-page"></a>Die Razor Page Create
+### <a name="the-create-no-locrazor-page"></a>Razor-Seite „Erstellen“
 
-Sehen Sie sich die Razor Page-Datei *Pages/Movies/Create.cshtml* an:
+Betrachten Sie die Datei *Pages/Movies/Create.cshtml* der Razor-Seite:
 
 [!code-cshtml[](razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Create.cshtml)]
 
@@ -365,7 +363,7 @@ Sehen Sie sich die Razor Page-Datei *Pages/Movies/Create.cshtml* an:
 
 Visual Studio zeigt das `<form method="post">`-Tag in einer bestimmten Schriftart an, die für Taghilfsprogramme verwendet wird:
 
-![VS17-Ansicht der Seite Create.cshtml](page/_static/th.png)
+![VS17-Ansicht der Create.cshtml-Seite](page/_static/th.png)
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 

@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/26/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 2c5bc221901d9e41984fb591755a8ad94e7e1420
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: 6627825239d815d2c8bcad98e22340f07f921ab9
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570236"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420018"
 ---
 # <a name="part-4-of-tutorial-series-on-no-locrazor-pages"></a>Dies ist Teil 4 der Tutorialreihe zu Razor Pages.
 
@@ -118,7 +116,7 @@ Es gibt viele Tools von Drittanbietern, die Sie herunterladen können, um eine S
 
 ## <a name="seed-the-database"></a>Ausführen eines Seedings für die Datenbank
 
-Create (erstellen) Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:
+Erstellen Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
@@ -154,7 +152,7 @@ Die folgende Ausnahme tritt auf, wenn `Update-Database` nicht ausgeführt wurde:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Delete (löschen) Sie alle Datensätze in der Datenbank. Dies ist über die Links „Löschen“ im Browser oder [SSOX](xref:tutorials/razor-pages/new-field#ssox) möglich.
+1. Löschen Sie alle Datensätze in der Datenbank. Dies ist über die Links „Löschen“ im Browser oder [SSOX](xref:tutorials/razor-pages/new-field#ssox) möglich.
 
 1. Zwingen Sie die App zur Initialisierung (rufen Sie dazu die Methoden in der `Startup`-Klasse auf), damit die Seed-Methode ausgeführt wird. Um die Initialisierung zu erzwingen, muss IIS Express beendet und neu gestartet werden. Sie müssen IIS mit einer der folgenden Vorgehensweisen beenden und neu starten:
 
@@ -169,7 +167,7 @@ Die folgende Ausnahme tritt auf, wenn `Update-Database` nicht ausgeführt wurde:
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete (löschen) Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
+Löschen Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
 
 ---
 
@@ -272,7 +270,7 @@ Es gibt viele Tools von Drittanbietern, die Sie herunterladen können, um eine S
 
 ## <a name="seed-the-database"></a>Ausführen eines Seedings für die Datenbank
 
-Create (erstellen) Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:
+Erstellen Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
@@ -308,7 +306,7 @@ Die folgende Ausnahme tritt auf, wenn `Update-Database` nicht ausgeführt wurde:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Delete (löschen) Sie alle Datensätze in der Datenbank. Dies ist über die Links „Löschen“ im Browser oder [SSOX](xref:tutorials/razor-pages/new-field#ssox) möglich.
+* Löschen Sie alle Datensätze in der Datenbank. Dies ist über die Links „Löschen“ im Browser oder [SSOX](xref:tutorials/razor-pages/new-field#ssox) möglich.
 * Zwingen Sie die App zur Initialisierung (rufen Sie dazu die Methoden in der `Startup`-Klasse auf), damit die Seed-Methode ausgeführt wird. Um die Initialisierung zu erzwingen, muss IIS Express beendet und neu gestartet werden. Sie müssen IIS mit einer der folgenden Vorgehensweisen beenden und neu starten:
 
   * Klicken Sie auf der Taskleiste im Infobereich mit der rechten Maustaste auf das Symbol von IIS Express, und wählen Sie **Beenden** oder **Website beenden** aus:
@@ -322,7 +320,7 @@ Die folgende Ausnahme tritt auf, wenn `Update-Database` nicht ausgeführt wurde:
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete (löschen) Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
+Löschen Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
 
 ---
 
@@ -416,7 +414,7 @@ Beachten Sie das Schlüsselsymbol neben `ID`. EF erstellt standardmäßig eine E
 
 ## <a name="seed-the-database"></a>Ausführen eines Seedings für die Datenbank
 
-Create (erstellen) Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:
+Erstellen Sie im Ordner *Models* mit dem folgenden Code die neue Klasse `SeedData`:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
@@ -452,7 +450,7 @@ Die Anmeldung des Benutzers „Benutzername“ ist fehlgeschlagen.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Delete (löschen) Sie alle Datensätze in der Datenbank. Dies ist über die Links „Löschen“ im Browser oder [SSOX](xref:tutorials/razor-pages/new-field#ssox) möglich.
+* Löschen Sie alle Datensätze in der Datenbank. Dies ist über die Links „Löschen“ im Browser oder [SSOX](xref:tutorials/razor-pages/new-field#ssox) möglich.
 * Zwingen Sie die App zur Initialisierung (rufen Sie dazu die Methoden in der `Startup`-Klasse auf), damit die Seed-Methode ausgeführt wird. Um die Initialisierung zu erzwingen, muss IIS Express beendet und neu gestartet werden. Hierzu können Sie einen der folgenden Ansätze verwenden:
 
   * Klicken Sie auf der Taskleiste im Infobereich mit der rechten Maustaste auf das Symbol von IIS Express, und wählen Sie **Beenden** oder **Website beenden** aus:
@@ -466,11 +464,11 @@ Die Anmeldung des Benutzers „Benutzername“ ist fehlgeschlagen.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Delete (löschen) Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
+Löschen Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-Delete (löschen) Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
+Löschen Sie alle Datensätze in der Datenbank (damit die Seed-Methode ausgeführt wird). Beenden und starten Sie die App, um das Seeding der Datenbank auszuführen.
 
 ---
 

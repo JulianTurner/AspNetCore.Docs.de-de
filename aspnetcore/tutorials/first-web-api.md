@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: ab06f2d347d7f05e9c72a85e0c6e0fbc67fe48a7
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: ccbfc27eb89e23938a69f0ab4cb306d6a4136889
+ms.sourcegitcommit: fe2e3174c34bee1e425c6e52dd8f663fe52b8756
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550711"
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "96175051"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Erstellen einer Web-API mit ASP.NET Core
 
@@ -149,7 +149,7 @@ Drücken Sie STRG+F5, um die Ausführung ohne den Debugger zu starten.
   Visual Studio startet Folgendes:
 
 * Den IIS Express-Webserver.
-* Den Standardbrowser. Visual Studio navigiert zu `https://localhost:<port>/https://localhost:5001/swagger/index.html`, wobei es sich bei `<port>` um eine zufällig ausgewählte Portnummer handelt.
+* Den Standardbrowser. Visual Studio navigiert zu `https://localhost:<port>/swagger/index.html`, wobei es sich bei `<port>` um eine zufällig ausgewählte Portnummer handelt.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
@@ -270,10 +270,8 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 ### <a name="add-nuget-packages"></a>Hinzufügen von NuGet-Paketen
 
 * Klicken Sie im Menü **Extras** auf **NuGet-Paket-Manager > NuGet-Pakete für Projektmappe verwalten...** .
-* Wählen Sie die Registerkarte **Durchsuchen** aus, und geben Sie dann Folgendes in das Suchfeld ein: **Microsoft.
-**EntityFrameworkCore.SqlServer**.
+* Klicken Sie auf die Registerkarte **Durchsuchen**, und geben Sie dann **Microsoft.EntityFrameworkCore.SqlServer** in das Suchfeld ein.
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
-* Aktivieren Sie das Kontrollkästchen **Vorabversion einschließen**, damit die Version 5.0 RC verfügbar ist. 
 * Wählen Sie im linken Bereich **Microsoft.EntityFrameworkCore.SqlServer** aus.
 * Aktivieren Sie das Kontrollkästchen **Projekt** im rechten Bereich, und klicken Sie dann auf **Installieren**.
 * Verwenden Sie die Anweisungen oben zum Hinzuzufügen des **Microsoft.EntityFrameworkCore.InMemory**-NuGet-Pakets.
@@ -330,8 +328,8 @@ Führen Sie die folgenden Befehle aus:
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool update -g Dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -536,7 +534,7 @@ Ein DTO kann für Folgendes verwendet werden:
 
 Um den DTO-Ansatz zu veranschaulichen, aktualisieren Sie die `TodoItem`-Klasse, sodass sie ein geheimes Feld einschließt:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=8)]
 
 Das geheime Feld muss in dieser App ausgeblendet werden, eine administrative App kann es jedoch verfügbar machen.
 
@@ -1364,7 +1362,7 @@ Die `CreatedAtAction`-Methode:
 
 * Erstellen Sie das Projekt.
 * Legen Sie in Postman die HTTP-Methode auf `POST` fest.
-* Legen Sie den URI auf `https://localhost:<port>/api/TodoItem` fest. Beispiel: `https://localhost:5001/api/TodoItem`.
+* Legen Sie den URI auf `https://localhost:<port>/api/Todo` fest. Beispiel: `https://localhost:5001/api/Todo`.
 * Wählen Sie die Registerkarte **Body** (Text) aus.
 * Wählen Sie das Optionsfeld **raw** (Unformatiert) aus.
 * Legen Sie den Typ auf **JSON (application/json)** fest.

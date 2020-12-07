@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 7323cf11ad4556443def4068873e6805b449058a
-ms.sourcegitcommit: bce62ceaac7782e22d185814f2e8532c84efa472
+ms.openlocfilehash: 9dcb1c4a19e50a57f1a1918cfcf775b49fa89b11
+ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94674016"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320147"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages mit Entity Framework Core in ASP.NET Core – Tutorial 1 bis 8
 
@@ -125,7 +125,7 @@ To run the app after downloading the completed project:
 1. Klicken Sie auf **Erstellen**.
 1. Wählen Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** Folgendes aus:
     1. In den Dropdownmenüs **.NET Core** und **ASP.NET Core 5.0**.
-    1. **ASP.NET Core-Web-App (Model View Controller)** .
+    1. **ASP.NET Core-Web-App**
     1. **Dialogfeld**
       ![Neues ASP.NET Core-Projekt erstellen](~/data/ef-mvc/intro/_static/new-aspnet5.png)
     

@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 09/20/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/da1
-ms.openlocfilehash: 7146c1955a578502a63578de4f1abce932cb8b32
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: 460950413d1dd2d3539c1d62b0eb11f6bb5144a9
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360607"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96419966"
 ---
 # <a name="part-5-update-the-generated-pages-in-an-aspnet-core-app"></a>Teil 5: Aktualisieren der generierten Seiten in einer ASP.NET Core-App
 
@@ -55,7 +53,7 @@ Navigieren Sie zu *Pages/Movies*, und bewegen Sie den Mauszeiger über dem Link 
 
 ![Browserfenster mit Maus über dem Link „Bearbeiten“ und der angezeigten Link-URL von https://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-Die Links **Bearbeiten**, **Details** und **Delete** werden mithilfe des [Hilfsprogramms für Ankertags](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
+Die Links **Edit**, **Details** und **Delete** werden mithilfe des [Hilfsprogramms für Ankertags](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -77,7 +75,7 @@ Rufen Sie in einem Browser **Quelltext anzeigen** auf, um das generierte Markup 
 
 ### <a name="add-route-template"></a>Hinzufügen der Routenvorlage
 
-Aktualisieren Sie die Razor Pages „Edit“ (Bearbeiten), „Details“ und Delete (Löschen) so, dass die Routenvorlage `{id:int}` verwendet wird. Ändern Sie die „page“-Direktive für jede dieser Seiten aus `@page` in `@page "{id:int}"`. Führen Sie die App aus, und zeigen Sie dann den Quelltext an.
+Aktualisieren Sie die Razor Pages „Edit“ (Bearbeiten), „Details“ und „Delete“ (Löschen) so, dass die Routenvorlage `{id:int}` verwendet wird. Ändern Sie die „page“-Direktive für jede dieser Seiten aus `@page` in `@page "{id:int}"`. Führen Sie die App aus, und zeigen Sie dann den Quelltext an.
 
 Der generierte HTML-Code fügt die ID dem Pfadteil der URL hinzu:
 
@@ -146,7 +144,7 @@ Wenn die Seite „Filme/Bearbeiten“ bereitgestellt wird:
 * Bei Fehlern beim Modellstatus (Beispiel: `ReleaseDate` kann nicht in ein Datum konvertiert werden) wird das Formular mit den übermittelten Werten erneut angezeigt.
 * Wenn keine Modellfehler vorhanden sind, wird der Film gespeichert.
 
-Die HTTP GET-Methoden auf den Razor Pages Index,Create und Delete folgen einem ähnlichen Muster. Die HTTP-POST-Methode `OnPostAsync` auf der Create Page Razor folgt einem ähnlichen Muster wie die `OnPostAsync`-Methode auf der Razor Page „Edit“.
+Die HTTP GET-Methoden auf den Razor Pages Index „Create“ und „Delete“ folgen einem ähnlichen Muster. Die HTTP-POST-Methode `OnPostAsync` auf der Razor Page „Create“ folgt einem ähnlichen Muster wie die `OnPostAsync`-Methode auf der Razor Page „Edit“.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
@@ -176,7 +174,7 @@ Navigieren Sie zu „Pages/Movies“, und bewegen Sie den Mauszeiger über dem L
 
 ![Browserfenster mit Maus über dem Link „Bearbeiten“ und der angezeigten Link-URL von http://localhost:1234/Movies/Edit/5](~/tutorials/razor-pages/da1/edit7.png)
 
-Die Links **Bearbeiten**, **Details** und **Delete** werden mithilfe des [Hilfsprogramms für Ankertags](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
+Die Links **Edit**, **Details** und **Delete** werden mithilfe des [Hilfsprogramms für Ankertags](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
@@ -194,7 +192,7 @@ Rufen Sie in einem Browser **Quelltext anzeigen** auf, um das generierte Markup 
 
 Die dynamisch generierten Links übergeben die Film-ID mit einer Abfragezeichenfolge. Beispiel: `?id=1` in `https://localhost:5001/Movies/Details?id=1`.
 
-Aktualisieren Sie die Delete Pages „Edit“, „Details“ und Razor so, dass die Routenvorlage {id:int} verwendet wird. Ändern Sie die „page“-Direktive für jede dieser Seiten aus `@page` in `@page "{id:int}"`. Führen Sie die App aus, und zeigen Sie dann den Quelltext an. Der generierte HTML-Code fügt die ID dem Pfadteil der URL hinzu:
+Aktualisieren Sie die Razor Pages „Edit“, „Details“ und „Delete“ so, dass die Routenvorlage „{id:int}“ verwendet wird. Ändern Sie die „page“-Direktive für jede dieser Seiten aus `@page` in `@page "{id:int}"`. Führen Sie die App aus, und zeigen Sie dann den Quelltext an. Der generierte HTML-Code fügt die ID dem Pfadteil der URL hinzu:
 
 ```html
 <td>
@@ -261,7 +259,7 @@ Wenn die Seite „Filme/Bearbeiten“ bereitgestellt wird:
 * Bei Fehlern beim Modellstatus (Beispiel: `ReleaseDate` kann nicht in ein Datum konvertiert werden) wird das Formular mit den übermittelten Werten angezeigt.
 * Wenn keine Modellfehler vorhanden sind, wird der Film gespeichert.
 
-Die HTTP GET-Methoden auf den Razor Pages Index,Create und Delete folgen einem ähnlichen Muster. Die HTTP-POST-Methode `OnPostAsync` auf der Create Page Razor folgt einem ähnlichen Muster wie die `OnPostAsync`-Methode auf der Razor Page „Edit“.
+Die HTTP GET-Methoden auf den Razor Pages Index „Create“ und „Delete“ folgen einem ähnlichen Muster. Die HTTP-POST-Methode `OnPostAsync` auf der Razor Page „Create“ folgt einem ähnlichen Muster wie die `OnPostAsync`-Methode auf der Razor Page „Edit“.
 
 Die Suche wird im nächsten Tutorial hinzugefügt.
 

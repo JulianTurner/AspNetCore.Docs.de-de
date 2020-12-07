@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/index
-ms.openlocfilehash: 19e888859cea35624491a516404c57e30aa9db05
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4f3d4c29a189cf6aa14eb10f570f0b35d8ff9abc
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057218"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556618"
 ---
 # <a name="host-and-deploy-aspnet-core"></a>Hosten und Bereitstellen von ASP.NET Core
 
@@ -38,7 +38,18 @@ Um eine ASP.NET Core-App in einer Hostingumgebung bereitzustellen, müssen Sie a
 
 ## <a name="publish-to-a-folder"></a>Veröffentlichen in einem Ordner
 
-Der Befehl [dotnet publish](/dotnet/core/tools/dotnet-publish) kompiliert App-Code und kopiert die Dateien, die zum Ausführen der App erforderlich sind, in den Ordner *publish* . Bei der Bereitstellung von Visual Studio erfolgt der `dotnet publish`-Schritt automatisch, bevor die Dateien in das Bereitstellungsziel kopiert werden.
+Der Befehl [dotnet publish](/dotnet/core/tools/dotnet-publish) kompiliert App-Code und kopiert die Dateien, die zum Ausführen der App erforderlich sind, in den Ordner *publish*. Bei der Bereitstellung von Visual Studio erfolgt der `dotnet publish`-Schritt automatisch, bevor die Dateien in das Bereitstellungsziel kopiert werden.
+
+## <a name="publish-settings-files"></a>Dateien mit Veröffentlichungseinstellungen
+
+`*.json`-Dateien werden standardmäßig veröffentlicht. Um andere Einstellungsdateien zu veröffentlichen, geben Sie sie in einem [`<ItemGroup><Content Include= ... />`](/visualstudio/msbuild/common-msbuild-project-items#content)-Element in der Projektdatei an. Im folgenden Beispiel werden XML-Dateien veröffentlicht:
+
+```xml
+<ItemGroup>
+  <Content Include="**\*.xml" Exclude="bin\**\*;obj\**\*"
+    CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
 
 ### <a name="folder-contents"></a>Ordnerinhalte
 
@@ -46,7 +57,7 @@ Der Ordner *publish* enthält mindestens eine App-Assemblydatei, Abhängigkeiten
 
 Eine .NET Core-App kann als *eigenständige Bereitstellung* oder als *Framework-abhängige Bereitstellung* veröffentlicht werden. Wenn die App eigenständig ist, sind die Assemblydateien, die die .NET-Runtime enthalten, im Ordner *publish* enthalten. Wenn die App frameworkabhängig ist, sind die Dateien für die .NET-Runtime nicht enthalten, da die App über einen Verweis auf eine auf dem Server installierte .NET-Version verfügt. Das Standardmodell für die Bereitstellung ist Framework-abhängig. Weitere Informationen finden Sie unter [.NET Core application deployment (.NET Core-Anwendungsbereitstellung)](/dotnet/core/deploying/).
 
-Zusätzlich zu den *EXE* - und *DLL* -Dateien enthält der Ordner *publish* für eine ASP.NET Core-App üblicherweise noch Konfigurationsdateien, statische Objekte und MVC-Ansichten. Weitere Informationen finden Sie unter <xref:host-and-deploy/directory-structure>.
+Zusätzlich zu den *EXE*- und *DLL*-Dateien enthält der Ordner *publish* für eine ASP.NET Core-App üblicherweise noch Konfigurationsdateien, statische Objekte und MVC-Ansichten. Weitere Informationen finden Sie unter <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Einrichten eines Prozessmanagers
 
@@ -85,7 +96,7 @@ Anleitungen zum Veröffentlichen einer App mit einem Visual Studio-Veröffentlic
 
 ## <a name="internet-information-services-iis"></a>IIS (Internet Information Services)
 
-Informationen zu Bereitstellungen zu Internetinformationsdiensten (IIS) mit von der *web.config* -Datei bereitgestellter Konfiguration, finden Sie in den Artikeln unter <xref:host-and-deploy/iis/index>.
+Informationen zu Bereitstellungen zu Internetinformationsdiensten (IIS) mit von der *web.config*-Datei bereitgestellter Konfiguration, finden Sie in den Artikeln unter <xref:host-and-deploy/iis/index>.
 
 ## <a name="host-in-a-web-farm"></a>Hosten in einer Webfarm
 
@@ -116,7 +127,7 @@ Um eine ASP.NET Core-App in einer Hostingumgebung bereitzustellen, müssen Sie a
 
 ## <a name="publish-to-a-folder"></a>Veröffentlichen in einem Ordner
 
-Der Befehl [dotnet publish](/dotnet/core/tools/dotnet-publish) kompiliert App-Code und kopiert die Dateien, die zum Ausführen der App erforderlich sind, in den Ordner *publish* . Bei der Bereitstellung von Visual Studio erfolgt der `dotnet publish`-Schritt automatisch, bevor die Dateien in das Bereitstellungsziel kopiert werden.
+Der Befehl [dotnet publish](/dotnet/core/tools/dotnet-publish) kompiliert App-Code und kopiert die Dateien, die zum Ausführen der App erforderlich sind, in den Ordner *publish*. Bei der Bereitstellung von Visual Studio erfolgt der `dotnet publish`-Schritt automatisch, bevor die Dateien in das Bereitstellungsziel kopiert werden.
 
 ### <a name="folder-contents"></a>Ordnerinhalte
 
@@ -124,7 +135,7 @@ Der Ordner *publish* enthält mindestens eine App-Assemblydatei, Abhängigkeiten
 
 Eine .NET Core-App kann als *eigenständige Bereitstellung* oder als *Framework-abhängige Bereitstellung* veröffentlicht werden. Wenn die App eigenständig ist, sind die Assemblydateien, die die .NET-Runtime enthalten, im Ordner *publish* enthalten. Wenn die App frameworkabhängig ist, sind die Dateien für die .NET-Runtime nicht enthalten, da die App über einen Verweis auf eine auf dem Server installierte .NET-Version verfügt. Das Standardmodell für die Bereitstellung ist Framework-abhängig. Weitere Informationen finden Sie unter [.NET Core application deployment (.NET Core-Anwendungsbereitstellung)](/dotnet/core/deploying/).
 
-Zusätzlich zu den *EXE* - und *DLL* -Dateien enthält der Ordner *publish* für eine ASP.NET Core-App üblicherweise noch Konfigurationsdateien, statische Objekte und MVC-Ansichten. Weitere Informationen finden Sie unter <xref:host-and-deploy/directory-structure>.
+Zusätzlich zu den *EXE*- und *DLL*-Dateien enthält der Ordner *publish* für eine ASP.NET Core-App üblicherweise noch Konfigurationsdateien, statische Objekte und MVC-Ansichten. Weitere Informationen finden Sie unter <xref:host-and-deploy/directory-structure>.
 
 ## <a name="set-up-a-process-manager"></a>Einrichten eines Prozessmanagers
 
@@ -163,7 +174,7 @@ Anleitungen zum Veröffentlichen einer App mit einem Visual Studio-Veröffentlic
 
 ## <a name="internet-information-services-iis"></a>IIS (Internet Information Services)
 
-Informationen zu Bereitstellungen zu Internetinformationsdiensten (IIS) mit von der *web.config* -Datei bereitgestellter Konfiguration, finden Sie in den Artikeln unter <xref:host-and-deploy/iis/index>.
+Informationen zu Bereitstellungen zu Internetinformationsdiensten (IIS) mit von der *web.config*-Datei bereitgestellter Konfiguration, finden Sie in den Artikeln unter <xref:host-and-deploy/iis/index>.
 
 ## <a name="host-in-a-web-farm"></a>Hosten in einer Webfarm
 

@@ -6,8 +6,6 @@ ms.author: riande
 ms.date: 11/11/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -20,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 6244ac8798fb470a88802389961968fb52bd3c0a
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.openlocfilehash: b2e840e20d034b42b2dc4a525b1dd76e44bbe3a8
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94550678"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420057"
 ---
 # <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Teil 2: Hinzufügen eines Modells zu einer Razor Pages-App in ASP.NET Core
 
@@ -147,7 +145,7 @@ In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt. Mit dem Tool 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-1. Create (erstellen) Sie den Ordner *Pages/Movies*:
+1. Erstellen Sie den Ordner *Pages/Movies*:
    1. Klicken Sie mit der rechten Maustaste auf den Ordner *Pages*. Klicken Sie dann auf **Hinzufügen** > **Neuer Ordner**.
    1. Nennen Sie den Ordner *Movies*.
 
@@ -196,7 +194,7 @@ Die Datei *appsettings.json* wird mit der Verbindungszeichenfolge aktualisiert, 
 | `-dc`  | Die `DbContext`-Klasse, die verwendet werden soll. |
 | `-udl` | Verwendung des Standardlayouts. |
 | `-outDir` | Der relative Ausgabeordnerpfad zur Erstellung der Ansichten. |
-| `--referenceScriptLibraries` | Fügt `_ValidationScriptsPartial` den Seiten „Edit“ und Create hinzu. |
+| `--referenceScriptLibraries` | Fügt `_ValidationScriptsPartial` zu den Seiten „Create“ und „Edit“ hinzu. |
 
 Über die Option `-h` können Sie Hilfe zum Befehl `aspnet-codegenerator razorpage` erhalten:
 
@@ -214,7 +212,7 @@ Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-1. Create (erstellen) Sie den Ordner *Pages/Movies*:
+1. Erstellen Sie den Ordner *Pages/Movies*:
    1. Klicken Sie bei gedrückter CTRL-TASTE auf den Ordner *Pages*. Wählen Sie **Hinzufügen** > **Neuer Ordner** aus.
    1. Nennen Sie den Ordner *Movies*.
 
@@ -248,7 +246,7 @@ Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die 
 
 Der Gerüstprozess erstellt und ändert folgende Dateien:
 
-* *Pages/Movies*: Create, Delete, Details, Edit und Index.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Aktualisiert
@@ -261,7 +259,7 @@ Die erstellten und aktualisierten Daten werden im nächsten Abschnitt erläutert
 
 Der Gerüstbauprozess erstellt die folgenden Dateien:
 
-* *Pages/Movies*: Create, Delete, Details, Edit und Index.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
 
 Die erstellten Daten werden im nächsten Abschnitt erläutert.
 
@@ -269,7 +267,7 @@ Die erstellten Daten werden im nächsten Abschnitt erläutert.
 
 Der Gerüstprozess erstellt und ändert folgende Dateien:
 
-* *Pages/Movies*: Create, Delete, Details, Edit und Index.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Aktualisiert
@@ -282,11 +280,11 @@ Die erstellten und aktualisierten Daten werden im nächsten Abschnitt erläutert
 
 <a name="pmc"></a>
 
-## <a name="no-loccreate-the-initial-database-schema-using-efs-migration-feature"></a>Create (erstellen) Sie das anfängliche Datenbankschema mithilfe des EF-Features „Migrationen“
+## <a name="create-the-initial-database-schema-using-efs-migration-feature"></a>Erstellen des anfängliche, Datenbankschema mithilfe des EF-Features „Migrationen“
 
 Das Feature „Migrationen“ in Entity Framework Core ermöglicht Folgendes:
 
-* Create (erstellen) des anfänglichen Datenbankschemas.
+* Erstellen des anfänglichen Datenbankschemas
 * Schrittweises Aktualisieren des Datenbankschemas, um es mit dem Datenmodell der Anwendung synchron zu halten.  In der Datenbank vorhandene Daten werden beibehalten.
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
@@ -340,7 +338,7 @@ Untersuchen Sie die Methode `Startup.ConfigureServices`. Die hervorgehobene Zeil
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update, Delete usw.) für das `Movie`-Modell. Der Datenkontext (`RazorPagesMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) abgeleitet. Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind.
+Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update und Delete) für das `Movie`-Modell. Der Datenkontext (`RazorPagesMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) abgeleitet. Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
 
@@ -369,9 +367,9 @@ Untersuchen Sie die Methode `Up`.
 
    Sie haben den [Migrationsschritt](#pmc) verpasst.
 
-1. Testen Sie den Link **Create** .
+1. Testen Sie den Link **Create** (Erstellen).
 
-   ![Seite Create](model/_static/conan5.png)
+   ![Seite „Create“](model/_static/conan5.png)
 
    > [!NOTE]
    > Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben. Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden. Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
@@ -513,7 +511,7 @@ In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt. Mit dem Tool 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Create (erstellen) Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies*:
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Pages*. Klicken Sie dann auf **Hinzufügen** > **Neuer Ordner**.
 * Nennen Sie den Ordner *Movies*.
@@ -563,7 +561,7 @@ Die Datei *appsettings.json* wird mit der Verbindungszeichenfolge aktualisiert, 
 | `-dc`  | Die `DbContext`-Klasse, die verwendet werden soll. |
 | `-udl` | Verwendung des Standardlayouts. |
 | `-outDir` | Der relative Ausgabeordnerpfad zur Erstellung der Ansichten. |
-| `--referenceScriptLibraries` | Fügt `_ValidationScriptsPartial` den Seiten „Edit“ und Create hinzu. |
+| `--referenceScriptLibraries` | Fügt `_ValidationScriptsPartial` zu den Seiten „Create“ und „Edit“ hinzu. |
 
 Über die Option `-h` können Sie Hilfe zum Befehl `aspnet-codegenerator razorpage` erhalten:
 
@@ -581,7 +579,7 @@ Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die 
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-Create (erstellen) Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies*:
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Pages*. Klicken Sie dann auf **Hinzufügen** > **Neuer Ordner**.
 * Nennen Sie den Ordner *Movies*.
@@ -628,7 +626,7 @@ Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die 
 
 Der Gerüstprozess erstellt und ändert folgende Dateien:
 
-* *Pages/Movies*: Create, Delete, Details, Edit und Index.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Aktualisiert
@@ -641,7 +639,7 @@ Die erstellten und aktualisierten Daten werden im nächsten Abschnitt erläutert
 
 Der Gerüstprozess erstellt und ändert folgende Dateien:
 
-* *Pages/Movies*: Create, Delete, Details, Edit und Index.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Aktualisiert
@@ -654,7 +652,7 @@ Die erstellten und aktualisierten Daten werden im nächsten Abschnitt erläutert
 
 Der Gerüstbauprozess erstellt die folgenden Dateien:
 
-* *Pages/Movies*: Create, Delete, Details, Edit und Index.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“
 
 Die erstellten Daten werden im nächsten Abschnitt erläutert.
 
@@ -715,7 +713,7 @@ Untersuchen Sie die Methode `Startup.ConfigureServices`. Die hervorgehobene Zeil
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update, Delete usw.) für das `Movie`-Modell. Der Datenkontext (`RazorPagesMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) abgeleitet. Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind.
+Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update und Delete) für das `Movie`-Modell. Der Datenkontext (`RazorPagesMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) abgeleitet. Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
@@ -744,9 +742,9 @@ Login failed for user 'User-name'.
 
 Sie haben den [Migrationsschritt](#pmc) verpasst.
 
-* Testen Sie den Link **Create** .
+* Testen Sie den Link **Create** (Erstellen).
 
-  ![Seite Create](model/_static/conan5.png)
+  ![Seite „Create“](model/_static/conan5.png)
 
   > [!NOTE]
   > Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben. Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden. Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
@@ -899,7 +897,7 @@ In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt. Mit dem Tool 
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Create (erstellen) Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies*:
 
 * Klicken Sie mit der rechten Maustaste auf den Ordner *Pages*. Klicken Sie dann auf **Hinzufügen** > **Neuer Ordner**.
 * Nennen Sie den Ordner *Movies*.
@@ -953,7 +951,7 @@ Die Datei *appsettings.json* wird mit der Verbindungszeichenfolge aktualisiert, 
 | `-dc`  | Die `DbContext`-Klasse, die verwendet werden soll. |
 | `-udl` | Verwendung des Standardlayouts. |
 | `-outDir` | Der relative Ausgabeordnerpfad zur Erstellung der Ansichten. |
-| `--referenceScriptLibraries` | Fügt `_ValidationScriptsPartial` den Seiten „Edit“ und Create hinzu. |
+| `--referenceScriptLibraries` | Fügt `_ValidationScriptsPartial` zu den Seiten „Create“ und „Edit“ hinzu. |
 
 Über die Option `-h` können Sie Hilfe zum Befehl `aspnet-codegenerator razorpage` erhalten:
 
@@ -965,7 +963,7 @@ Weitere Informationen finden Sie unter [dotnet-aspnet-codegenerator](xref:fundam
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-Create (erstellen) Sie den Ordner *Pages/Movies*:
+Erstellen Sie den Ordner *Pages/Movies*:
 
 * Klicken Sie bei gedrückter CTRL-TASTE auf den Ordner *Pages*. Wählen Sie **Hinzufügen** > **Neuer Ordner** aus.
 * Nennen Sie den Ordner *Movies*.
@@ -994,7 +992,7 @@ Der Gerüstprozess erstellt und ändert folgende Dateien:
 
 ### <a name="files-created"></a>Erstellte Dateien
 
-* *Pages/Movies*: Create, Delete, Details, Edit und Index.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="file-updated"></a>Datei aktualisiert
@@ -1027,7 +1025,7 @@ Update-Database
 
 Mit dem Befehl `Add-Migration` wird Code generiert, um das anfängliche Datenbankschema zu erstellen. Das Schema basiert auf dem Modell in `DbContext` in der Datei *RazorPagesMovieContext.cs*. Das Argument `InitialCreate` wird verwendet, um die Migration zu benennen. Es kann jeder Name verwendet werden, aber per Konvention wird ein Name verwendet, der die Migration beschreibt. Weitere Informationen finden Sie unter <xref:data/ef-mvc/migrations>.
 
-Der Befehl `Update-Database` führt die Methode `Up`-in der Datei *Migrations/\<time-stamp>_InitialCreate.cs* aus. Die Methode `Up` erstellt die Datenbank.
+Der Befehl `Update-Database` führt die Methode `Up` in der Datei *Migrations/\<time-stamp>_InitialCreate.cs* aus. Die Methode `Up` erstellt die Datenbank.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Visual Studio für Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -1058,7 +1056,7 @@ Untersuchen Sie die Methode `Startup.ConfigureServices`. Die hervorgehobene Zeil
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update, Delete usw.) für das `Movie`-Modell. Der Datenkontext (`RazorPagesMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) abgeleitet. Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind.
+Der `RazorPagesMovieContext` koordiniert die EF Core-Funktionen (Create, Read, Update und Delete) für das `Movie`-Modell. Der Datenkontext (`RazorPagesMovieContext`) wird aus [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) abgeleitet. Der Datenkontext gibt an, welche Entitäten im Datenmodell enthalten sind.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
@@ -1087,9 +1085,9 @@ Login failed for user 'User-name'.
 
 Sie haben den [Migrationsschritt](#pmc) verpasst.
 
-* Testen Sie den Link **Create** .
+* Testen Sie den Link **Create** (Erstellen).
 
-  ![Seite Create](model/_static/conan.png)
+  ![Seite „Create“](model/_static/conan.png)
 
   > [!NOTE]
   > Sie können unter Umständen in das Feld `Price` keine Kommas als Dezimaltrennzeichen eingeben. Zur Unterstützung der [jQuery-Validierung](https://jqueryvalidation.org/) für Gebietsschemas mit einer anderen Sprache als Englisch, in denen ein Komma („,“) als Dezimaltrennzeichen verwendet wird, und für Datums- und Uhrzeitformate, die nicht dem US-englischen Format entsprechen, muss die App globalisiert werden. Globalisierungsanweisungen finden Sie unter [GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).

@@ -4,14 +4,14 @@ author: codemillmatt
 description: In diesem Artikel erfahren Sie, wie Sie eine ASP.NET Core-Web-API mithilfe von Visual Studio in Azure API Management veröffentlichen.
 ms.author: masoucou
 ms.custom: devx-track-csharp, mvc
-ms.date: 08/26/2020
+ms.date: 11/22/2020
 uid: tutorials/publish-to-azure-api-management-using-vs
-ms.openlocfilehash: 3cc6b8c0bd93f133151e1c8ad18a55b11975a9be
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 395b5981a3018486235c38f032893f985ab71383
+ms.sourcegitcommit: 619200f2981656ede6d89adb6a22ad1a0e16da22
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945485"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96332214"
 ---
 # <a name="publish-an-aspnet-core-web-api-to-azure-api-management-with-visual-studio"></a>Veröffentlichen einer ASP.NET Core-Web-API in Azure API Management mit Visual Studio
 
@@ -108,11 +108,15 @@ An diesem Punkt müssen Sie eine API zum Azure API Management-Dienst hinzufügen
 
 1. Öffnen Sie die API Management-Dienstinstanz, die Sie zuvor im Azure-Portal erstellt haben. Wählen Sie das Blatt **APIs** aus:
 
-    ![Ausgewähltes Blatt „APIs“ in der API Management-Dienstinstanz](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+  ![Ausgewähltes Blatt „APIs“ in der API Management-Dienstinstanz](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+
+1. Wählen Sie die drei Punkte neben **Echo-API** aus, und wählen Sie dann aus dem Popupmenü **Löschen** aus, um es zu entfernen.
+
+  ![Löschen der Echo-API aus der API Management-Dienstinstanz](publish-to-azure-api-management-using-vs/_static/portal_delete_echo.png)
 
 1. Klicken Sie im Bereich **Neue API hinzufügen** auf die Kachel **Leere API**:
 
-    ![Screenshot: Hervorgehobene Kachel „Leere API“](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
+  ![Screenshot: Hervorgehobene Kachel „Leere API“](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
 
 1. Geben Sie die folgenden Werte in das angezeigte Dialogfeld **Leere API erstellen** ein:    
 

@@ -7,8 +7,6 @@ ms.custom: mvc
 ms.date: 09/28/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -21,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 2dca5a9552dd2800212f8cd78ace0578b3d38cdb
-ms.sourcegitcommit: 342588e10ae0054a6d6dc0fd11dae481006be099
+ms.openlocfilehash: 6b6856731c61957a9e23f76e2bc15befe56ea57d
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/07/2020
-ms.locfileid: "94360878"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420005"
 ---
 # <a name="part-7-add-a-new-field-to-a-no-locrazor-page-in-aspnet-core"></a>Teil 7: Hinzufügen eines neuen Felds zu einer Razor-Seite in ASP.NET Core
 
@@ -63,8 +61,8 @@ Durch die automatische Überprüfung, ob Schema und Modell synchron sind, könne
    [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie50/SnapShots/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Aktualisieren Sie die folgenden Seiten:
-   1. Fügen Sie das Feld `Rating` den Seiten „Delete“ und „Details“ hinzu.
-   1. Aktualisieren Sie die Datei[Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Create.cshtml) mit dem Feld `Rating`.
+   1. Fügen Sie das `Rating`-Feld zu den Seiten „Delete“ und „Details“ hinzu.
+   1. Aktualisieren Sie die Datei [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Create.cshtml) mit einem `Rating`-Feld.
    1. Fügen Sie das Feld `Rating` der Bearbeitungsseite hinzu.
 
 Die App funktioniert erst, nachdem die Datenbank so aktualisiert wurde, dass sie das neue Feld enthält. Wenn Sie die App ohne eine Aktualisierung der Datenbank ausführen, wird eine `SqlException` ausgelöst:
@@ -108,7 +106,7 @@ Erstellen Sie die Projektmappe.
 Der `Add-Migration`-Befehl weist das Framework an, Folgendes auszuführen:
 
 * Das Modell `Movie` mit dem Schema der Datenbank `Movie` vergleichen.
-* Create (erstellen) von Code, um das Schema der Datenbank in das neue Modell zu migrieren.
+* Erstellen von Code, um das Schema der Datenbank in das neue Modell zu migrieren
 
 Der Name „Rating“ ist beliebig und wird verwendet, um die Migrationsdatei zu benennen. Es ist hilfreich, einen aussagekräftigen Namen für die Migrationsdatei zu verwenden.
 
@@ -121,7 +119,7 @@ Wenn Sie alle Datensätze aus der Datenbank löschen, führt der Initialisierer 
 Eine weitere Möglichkeit ist, die Datenbank zu löschen und Migrationen zu verwenden, um die Datenbank neu zu erstellen. So löschen Sie die Datenbank in SSOX
 
 1. Wählen Sie die Datenbank in SSOX aus.
-1. Klicken Sie mit der rechten Maustaste auf die Datenbank, und wählen Sie **Delete** aus.
+1. Klicken Sie mit der rechten Maustaste auf die Datenbank, und wählen Sie **Löschen** aus.
 1. Aktivieren Sie **Vorhandene Verbindungen schließen**.
 1. Klicken Sie auf **OK**.
 1. Aktualisieren Sie die Datenbank in [PMC](xref:tutorials/razor-pages/new-field#pmc):
@@ -151,7 +149,7 @@ Eine weitere Möglichkeit ist, die Datenbank zu löschen und Migrationen zu verw
 > * [Datenseeding](/ef/core/modeling/data-seeding)
 > * [SQLite ALTER TABLE-Anweisung](https://sqlite.org/lang_altertable.html)
 
-1. Delete (löschen) Sie den Ordner „Migration“.  
+1. Löschen Sie den Ordner „Migration“.  
 
 1. Verwenden Sie die folgenden Befehle, um die Datenbank neu zu erstellen.
 
@@ -204,8 +202,8 @@ Durch die automatische Überprüfung, ob Schema und Modell synchron sind, könne
    [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Aktualisieren Sie die folgenden Seiten:
-   1. Fügen Sie das Feld `Rating` den Seiten „Delete“ und „Details“ hinzu.
-   1. Aktualisieren Sie die Datei[Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) mit dem Feld `Rating`.
+   1. Fügen Sie das `Rating`-Feld zu den Seiten „Delete“ und „Details“ hinzu.
+   1. Aktualisieren Sie die Datei [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) mit einem `Rating`-Feld.
    1. Fügen Sie das Feld `Rating` der Bearbeitungsseite hinzu.
 
 Die App funktioniert erst, nachdem die Datenbank so aktualisiert wurde, dass sie das neue Feld enthält. Wenn Sie die App ohne eine Aktualisierung der Datenbank ausführen, wird eine `SqlException` ausgelöst:
@@ -249,7 +247,7 @@ Erstellen Sie die Projektmappe.
 Der `Add-Migration`-Befehl weist das Framework an, Folgendes auszuführen:
 
 * Das Modell `Movie` mit dem Schema der Datenbank `Movie` vergleichen.
-* Create (erstellen) von Code, um das Schema der Datenbank in das neue Modell zu migrieren.
+* Erstellen von Code, um das Schema der Datenbank in das neue Modell zu migrieren
 
 Der Name „Rating“ ist beliebig und wird verwendet, um die Migrationsdatei zu benennen. Es ist hilfreich, einen aussagekräftigen Namen für die Migrationsdatei zu verwenden.
 
@@ -262,7 +260,7 @@ Wenn Sie alle Datensätze aus der Datenbank löschen, führt der Initialisierer 
 Eine weitere Möglichkeit ist, die Datenbank zu löschen und Migrationen zu verwenden, um die Datenbank neu zu erstellen. So löschen Sie die Datenbank in SSOX
 
 * Wählen Sie die Datenbank in SSOX aus.
-* Klicken Sie mit der rechten Maustaste auf die Datenbank, und wählen Sie **Delete** aus.
+* Klicken Sie mit der rechten Maustaste auf die Datenbank, und wählen Sie **Löschen** aus.
 * Aktivieren Sie **Vorhandene Verbindungen schließen**.
 * Klicken Sie auf **OK**.
 * Aktualisieren Sie die Datenbank in [PMC](xref:tutorials/razor-pages/new-field#pmc):
@@ -292,7 +290,7 @@ Eine weitere Möglichkeit ist, die Datenbank zu löschen und Migrationen zu verw
 > * [Datenseeding](/ef/core/modeling/data-seeding)
 > * [SQLite ALTER TABLE-Anweisung](https://sqlite.org/lang_altertable.html)
 
-1. Delete (löschen) Sie den Ordner „Migration“.  
+1. Löschen Sie den Ordner „Migration“.  
 
 1. Verwenden Sie die folgenden Befehle, um die Datenbank neu zu erstellen.
 
@@ -344,8 +342,8 @@ Bearbeiten Sie *Pages/Movies/Index.cshtml*, und fügen das Feld `Rating` hinzu:
 
 Aktualisieren Sie die folgenden Seiten:
 
-* Fügen Sie das Feld `Rating` den Seiten „Delete“ und „Details“ hinzu.
-* Aktualisieren Sie die Datei[Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) mit dem Feld `Rating`.
+* Fügen Sie das `Rating`-Feld zu den Seiten „Delete“ und „Details“ hinzu.
+* Aktualisieren Sie die Datei [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Create.cshtml) mit einem `Rating`-Feld.
 * Fügen Sie das Feld `Rating` der Bearbeitungsseite hinzu.
 
 Die App funktioniert erst, nachdem die Datenbank so aktualisiert wurde, dass sie das neue Feld enthält. Wenn die App jetzt ausgeführt wird, löst sie eine `SqlException` aus:
@@ -389,7 +387,7 @@ Update-Database
 Der `Add-Migration`-Befehl weist das Framework an, Folgendes auszuführen:
 
 * Das Modell `Movie` mit dem Schema der Datenbank `Movie` vergleichen.
-* Create (erstellen) von Code, um das Schema der Datenbank in das neue Modell zu migrieren.
+* Erstellen von Code, um das Schema der Datenbank in das neue Modell zu migrieren
 
 Der Name „Rating“ ist beliebig und wird verwendet, um die Migrationsdatei zu benennen. Es ist hilfreich, einen aussagekräftigen Namen für die Migrationsdatei zu verwenden.
 
@@ -402,7 +400,7 @@ Wenn Sie alle Datensätze aus der Datenbank löschen, führt der Initialisierer 
 Eine weitere Möglichkeit ist, die Datenbank zu löschen und Migrationen zu verwenden, um die Datenbank neu zu erstellen. So löschen Sie die Datenbank in SSOX
 
 * Wählen Sie die Datenbank in SSOX aus.
-* Klicken Sie mit der rechten Maustaste auf die Datenbank, und wählen Sie **Delete** aus.
+* Klicken Sie mit der rechten Maustaste auf die Datenbank, und wählen Sie **Löschen** aus.
 * Aktivieren Sie **Vorhandene Verbindungen schließen**.
 * Klicken Sie auf **OK**.
 * Aktualisieren Sie die Datenbank in [PMC](xref:tutorials/razor-pages/new-field#pmc):
@@ -432,7 +430,7 @@ Eine weitere Möglichkeit ist, die Datenbank zu löschen und Migrationen zu verw
 > * [Datenseeding](/ef/core/modeling/data-seeding)
 > * [SQLite ALTER TABLE-Anweisung](https://sqlite.org/lang_altertable.html)
 
-Delete (löschen) Sie die Datenbank, und verwenden Sie Migrationen, um die Datenbank erneut zu erstellen. Um die Datenbank zu löschen, löschen Sie die Datenbankdatei (*MvcMovie.db*). Führen Sie dann den `ef database update`-Befehl aus:
+Löschen Sie die Datenbank, und verwenden Sie Migrationen, um die Datenbank erneut zu erstellen. Um die Datenbank zu löschen, löschen Sie die Datenbankdatei (*MvcMovie.db*). Führen Sie dann den `ef database update`-Befehl aus:
 
 ```dotnetcli
 dotnet ef database update

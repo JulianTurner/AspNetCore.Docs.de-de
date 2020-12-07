@@ -7,8 +7,6 @@ ms.custom: mvc
 ms.date: 09/29/2020
 no-loc:
 - Index
-- Create
-- Delete
 - appsettings.json
 - ASP.NET Core Identity
 - cookie
@@ -21,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: d69ab3452f4f15e916049e5c772a20fe9f9fac65
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: f155922c9cb5ea7fdbad0963221ceddd19f4fe60
+ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570223"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96419953"
 ---
 # <a name="part-8-of-tutorial-series-on-no-locrazor-pages"></a>Dies ist Teil 8 der Tutorialreihe zu Razor Pages.
 
@@ -85,7 +83,7 @@ Die automatische Erzwingung von Validierungsregeln durch ASP.NET Core dient folg
 
 Führen Sie die App aus, und navigieren Sie zu „Pages/Movies“.
 
-Wählen Sie den Link **Neu Create (erstellen)** aus. Füllen Sie das Formular mit einigen ungültigen Werten aus. Wenn die clientseitige jQuery-Validierung den Fehler erkennt, wird eine Fehlermeldung angezeigt.
+Klicken Sie auf den Link **Neu erstellen**. Füllen Sie das Formular mit einigen ungültigen Werten aus. Wenn die clientseitige jQuery-Validierung den Fehler erkennt, wird eine Fehlermeldung angezeigt.
 
 ![Ansichtsformular „Movie“ mit mehreren clientseitigen jQuery-Validierungsfehlern](validation/_static/val.png)
 
@@ -93,11 +91,11 @@ Wählen Sie den Link **Neu Create (erstellen)** aus. Füllen Sie das Formular mi
 
 Wie Sie sehen, hat das Formular in allen Feldern mit einem ungültigen Wert automatisch eine Validierungsfehlermeldung angezeigt. Die Fehlermeldungen werden sowohl auf Clientseite (mithilfe von JavaScript und jQuery) als auch auf Serverseite erzwungen (wenn ein Benutzer JavaScript deaktiviert hat).
 
-Ein entscheidender Vorteil ist, dass **keine** Codeänderungen auf den Seiten Create oder „Bearbeiten“ erforderlich waren. Nach Anwenden von Datenanmerkungen auf das Modell wurde die Benutzeroberflächenvalidierung aktiviert. Die in diesem Tutorial erstellten Razor Pages haben die Validierungsregeln automatisch übernommen (mithilfe der Validierungsattribute für die Eigenschaften der Modellklasse `Movie`). Testen Sie die Validierung mithilfe der Seite „Bearbeiten“. Es erfolgt dieselbe Validierung.
+Ein entscheidender Vorteil ist, dass **keine** Codeänderungen auf den Seiten „Erstellen“ oder „Bearbeiten“ erforderlich waren. Nach Anwenden von Datenanmerkungen auf das Modell wurde die Benutzeroberflächenvalidierung aktiviert. Die in diesem Tutorial erstellten Razor Pages haben die Validierungsregeln automatisch übernommen (mithilfe der Validierungsattribute für die Eigenschaften der Modellklasse `Movie`). Testen Sie die Validierung mithilfe der Seite „Bearbeiten“. Es erfolgt dieselbe Validierung.
 
 Die Formulardaten werden erst an den Server zurückgesendet, wenn auf Clientseite keine Validierungsfehler auftreten. Überprüfen Sie mithilfe von mindestens einem der folgenden Ansätze, ob keine Formulardaten bereitgestellt werden:
 
-* Setzen Sie einen Haltepunkt in der `OnPostAsync`-Methode. Senden Sie das Formular, indem Sie **Create** oder **Speichern** auswählen. Der Haltepunkt wird niemals erreicht.
+* Setzen Sie einen Haltepunkt in der `OnPostAsync`-Methode. Senden Sie das Formular, indem Sie **Erstellen** oder **Speichern** auswählen. Der Haltepunkt wird niemals erreicht.
 * Verwenden Sie das [Tool Fiddler](https://www.telerik.com/fiddler).
 * Verwenden Sie die Browserentwicklungstools zum Überwachen des Netzwerkdatenverkehrs.
 
@@ -108,7 +106,7 @@ Wenn JavaScript im Browser deaktiviert ist, erfolgt beim Senden des Formulars mi
 Testen Sie optional die serverseitige Validierung:
 
 1. Deaktivieren Sie JavaScript im Browser. JavaScript kann in den Entwicklertools im Browser deaktiviert werden. Wenn JavaScript nicht im Browser deaktiviert werden kann, probieren Sie einen anderen Browser.
-1. Setzen Sie auf der Seite Create oder „Bearbeiten“ in der `OnPostAsync`-Methode einen Haltepunkt.
+1. Setzen Sie auf der Seite „Erstellen“ oder „Bearbeiten“ in der `OnPostAsync`-Methode einen Haltepunkt.
 1. Senden Sie ein Formular mit ungültigen Daten.
 1. Überprüfen Sie, ob der Modellstatus ungültig ist:
 
@@ -121,7 +119,7 @@ Testen Sie optional die serverseitige Validierung:
   
 Alternativ können Sie [die clientseitige Validierung auf dem Server deaktivieren](xref:mvc/models/validation#disable-client-side-validation).
 
-Der folgende Code zeigt einen Teil der Seite *Create.cshtml*, deren Gerüst Sie zuvor im Tutorial erstellt haben. Sie wird auf den Seiten Create und „Bearbeiten“ für Folgendes verwendet:
+Der folgende Code zeigt einen Teil der Seite *Create.cshtml*, deren Gerüst Sie zuvor im Tutorial erstellt haben. Sie wird auf den Seiten „Erstellen“ und „Bearbeiten“ für Folgendes verwendet:
 
 * Anzeigen des Ausgangsformulars
 * Erneutes Anzeigen des Formulars bei einem Fehler
@@ -130,7 +128,7 @@ Der folgende Code zeigt einen Teil der Seite *Create.cshtml*, deren Gerüst Sie 
 
 Das [Hilfsprogramm für Eingabetags](xref:mvc/views/working-with-forms) verwendet die Attribute von [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) und generiert HTML-Attribute, die auf der Clientseite für die jQuery-Validierung erforderlich sind. Das [Hilfsprogramm für Validierungstags](xref:mvc/views/working-with-forms#the-validation-tag-helpers) zeigt Validierungsfehler. Weitere Informationen finden Sie unter [Validierung](xref:mvc/models/validation).
 
-Die Seiten Create und „Bearbeiten“ weisen keine Validierungsregeln auf. Die Validierungsregeln und Fehlerzeichenfolgen werden nur in der `Movie`-Klasse angegeben. Diese Validierungsregeln gelten automatisch für Razor-Seiten, die das Modell `Movie` bearbeiten.
+Die Seiten „Erstellen“ und „Bearbeiten“ weisen keine Validierungsregeln auf. Die Validierungsregeln und Fehlerzeichenfolgen werden nur in der `Movie`-Klasse angegeben. Diese Validierungsregeln gelten automatisch für Razor-Seiten, die das Modell `Movie` bearbeiten.
 
 Wenn Validierungslogik geändert werden muss, erfolgt dies nur im Modell. Die Validierung erfolgt in der gesamten Anwendung einheitlich (Validierungslogik ist zentral definiert). Die zentrale Validierung unterstützt sauberen Code und erleichtert dessen Verwaltung und Aktualisierung.
 

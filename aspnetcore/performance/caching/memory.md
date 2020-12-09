@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/memory
-ms.openlocfilehash: 4d5f459d54a3c74a2eb23a50db6537eeaf8596b3
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9b19c782d1d42ddaba590f05bab31899402f681a
+ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061443"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96901222"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>Speicher interne Speicherung in ASP.net Core
 
@@ -84,6 +84,9 @@ Die aktuelle Uhrzeit und die zwischengespeicherte Zeit werden angezeigt:
 
 [!code-cshtml[](memory/3.0sample/WebCacheSample/Views/Home/Cache.cshtml)]
 
+Der folgende Code verwendet die [Set](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.set#Microsoft_Extensions_Caching_Memory_CacheExtensions_Set__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object___0_System_TimeSpan_) -Erweiterungsmethode, um Daten für eine relative Zeit zwischenzuspeichern, ohne das-Objekt zu erstellen `MemoryCacheEntryOptions` .
+[!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet_set)]
+
 Der zwischengespeicherte `DateTime` Wert verbleibt im Cache, während innerhalb des Timeout Zeitraums Anforderungen vorhanden sind.
 
 Der folgende Code verwendet [getorcreate](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreate#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreate__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry___0__) und [getorkreateasync](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.getorcreateasync#Microsoft_Extensions_Caching_Memory_CacheExtensions_GetOrCreateAsync__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_System_Func_Microsoft_Extensions_Caching_Memory_ICacheEntry_System_Threading_Tasks_Task___0___) zum Zwischenspeichern von Daten.
@@ -122,7 +125,7 @@ Im folgenden Beispiel:
 
 Eine `MemoryCache` -Instanz kann optional eine Größenbeschränkung angeben und erzwingen. Das Cache Größenlimit weist keine definierte Maßeinheit auf, da der Cache keinen Mechanismus zum Messen der Größe der Einträge aufweist. Wenn die Cache Größenbeschränkung festgelegt ist, müssen alle Einträge die Größe angeben. Die ASP.net Core Laufzeit schränkt die Cache Größe nicht auf Grundlage des Arbeitsspeichers ein. Der Entwickler muss die Cache Größe einschränken. Die angegebene Größe befindet sich in Einheiten, die vom Entwickler ausgewählt werden.
 
-Zum Beispiel:
+Beispiel:
 
 * Wenn die Web-App primär Zeichen folgen zwischenspeichert, könnte jede Cache Eintrags Größe die Zeichen folgen Länge aufweisen.
 * Die APP kann die Größe aller Einträge als 1 angeben, und die Größenbeschränkung ist die Anzahl der Einträge.
@@ -298,7 +301,7 @@ Im folgenden Beispiel:
 
 Eine `MemoryCache` -Instanz kann optional eine Größenbeschränkung angeben und erzwingen. Das Cache Größenlimit weist keine definierte Maßeinheit auf, da der Cache keinen Mechanismus zum Messen der Größe der Einträge aufweist. Wenn die Cache Größenbeschränkung festgelegt ist, müssen alle Einträge die Größe angeben. Die ASP.net Core Laufzeit schränkt die Cache Größe nicht auf Grundlage des Arbeitsspeichers ein. Der Entwickler muss die Cache Größe einschränken. Die angegebene Größe befindet sich in Einheiten, die vom Entwickler ausgewählt werden.
 
-Zum Beispiel:
+Beispiel:
 
 * Wenn die Web-App primär Zeichen folgen zwischenspeichert, könnte jede Cache Eintrags Größe die Zeichen folgen Länge aufweisen.
 * Die APP kann die Größe aller Einträge als 1 angeben, und die Größenbeschränkung ist die Anzahl der Einträge.

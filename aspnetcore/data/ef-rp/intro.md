@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 9dcb1c4a19e50a57f1a1918cfcf775b49fa89b11
-ms.sourcegitcommit: 43a540e703b9096921de27abc6b66bc0783fe905
+ms.openlocfilehash: 0e81397d210518854939c6941e7f6da43ed48389
+ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96320147"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "96855507"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages mit Entity Framework Core in ASP.NET Core – Tutorial 1 bis 8
 
@@ -479,7 +479,7 @@ Der Webserver verfügt nur über eine begrenzte Anzahl von Threads. Daher werden
 
 Zur Laufzeit bedeutet die Verwendung von asynchronem Code allerdings, dass ein wenig mehr Aufwand entsteht. Für Situationen mit wenig Datenverkehr haben diese Leistungseinbußen keine negativen Folgen. Wenn es jedoch eine große Menge an Datenverkehr gibt, ist eine potentielle Verbesserung der Leistung von Bedeutung.
 
-Im folgenden Code führen das [async](/dotnet/csharp/language-reference/keywords/async)-Schlüsselwort, der `Task<T>`-Rückgabewert, das `await`-Schlüsselwort und die `ToListAsync`-Methode dazu, dass der Code asynchron ausgeführt wird.
+Im folgenden Code führen das [async](/dotnet/csharp/language-reference/keywords/async)-Schlüsselwort, der `Task`-Rückgabewert, das `await`-Schlüsselwort und die `ToListAsync`-Methode dazu, dass der Code asynchron ausgeführt wird.
 
 ```csharp
 public async Task OnGetAsync()
@@ -491,7 +491,7 @@ public async Task OnGetAsync()
 * Das `async`-Schlüsselwort gibt dem Compiler folgende Anweisungen:
   * Er soll Rückrufe für Teile des Methodentexts generieren.
   * Er soll das [Task](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType)-Objekt erstellen, das zurückgegeben wird.
-* Der Rückgabetyp `Task<T>` stellt die derzeit ausgeführten Aufgaben dar.
+* Der Rückgabetyp `Task` stellt die derzeit ausgeführten Aufgaben dar.
 * Das `await`-Schlüsselwort hat zur Folge, dass der Compiler die Methode in zwei Teile unterteilt. Der erste Teil endet mit dem Vorgang, der auf asynchrone Weise gestartet wird. Der zweite Teil wird in eine Rückrufmethode übertragen, die aufgerufen wird, wenn der Vorgang abgeschlossen wird.
 * Bei `ToListAsync` handelt es sich um die asynchrone Version der `ToList`-Erweiterungsmethode.
 

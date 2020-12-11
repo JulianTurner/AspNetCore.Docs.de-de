@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 7ae462ff9abd06fe4ab4b3e00a71515b76b0ee7d
-ms.sourcegitcommit: bb475e69cb647f22cf6d2c6f93d0836c160080d7
+ms.openlocfilehash: 7edba338716a0545390ec53775f69eaef141d389
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/06/2020
-ms.locfileid: "94339983"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855286"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -933,12 +933,34 @@ So diagnostizieren Sie, was davon in Ihrem Fall zutrifft:
  1. Beachten Sie, welche Datei den Fehler auslöst, indem Sie die Fehlermeldung lesen.
  1. Öffnen Sie die Entwicklertools Ihres Browsers, und sehen Sie sich die Registerkarte *Netzwerk* an. Laden Sie ggf. die Seite erneut, um die Liste der Anforderungen und Antworten anzuzeigen. Suchen Sie die Datei, die den in dieser Liste ausgeführten Fehler auslöst.
  1. Überprüfen Sie den HTTP-Statuscode in der Antwort. Wenn der Server etwas anderes als *200 – OK* (oder einen anderen 2xx-Statuscode) zurückgibt, müssen Sie ein serverseitiges Problem diagnostizieren. Der Statuscode 403 bedeutet beispielsweise, dass ein Autorisierungsproblem vorliegt, während der Statuscode 500 bedeutet, dass ein nicht angegebener Serverfehler aufgetreten ist. Untersuchen Sie serverseitige Protokolle, um die App zu diagnostizieren und zu korrigieren.
- 1. Wenn der Statuscode für die Ressource *200 – OK* ist, sehen Sie sich den Antwortinhalt in den Entwicklertools des Browsers an, und überprüfen Sie, ob der Inhalt mit den erwarteten Daten übereinstimmt. Ein häufiges Problem ist beispielsweise die falsche Konfiguration des Routings, sodass Anforderungen Ihre `index.html`-Daten auch für andere Dateien zurückgeben. Stellen Sie sicher, dass Antworten auf `.wasm`-Anforderungen WebAssembly-Binärdateien und Antworten auf `.dll`-Anforderungen .NET-Assembly-Binärdateien sind. Wenn dies nicht der Fall ist, müssen Sie ein serverseitiges Routingproblem diagnostizieren.
+ 1. Wenn der Statuscode für die Ressource *200 – OK* lautet, sehen Sie sich den Antwortinhalt in den Entwicklertools des Browsers an, und überprüfen Sie, ob der Inhalt mit den erwarteten Daten übereinstimmt. Ein häufiges Problem ist beispielsweise die falsche Konfiguration des Routings, sodass Anforderungen Ihre `index.html`-Daten auch für andere Dateien zurückgeben. Stellen Sie sicher, dass Antworten auf `.wasm`-Anforderungen WebAssembly-Binärdateien und Antworten auf `.dll`-Anforderungen .NET-Assembly-Binärdateien sind. Wenn dies nicht der Fall ist, müssen Sie ein serverseitiges Routingproblem diagnostizieren.
+ 1. Überprüfen Sie die veröffentlichte und bereitgestellte Ausgabe der App mithilfe des [PowerShell-Skripts für die Behebung von Problemen bei der Integrität](#troubleshoot-integrity-powershell-script).
 
 Wenn Sie sich vergewissert haben, dass der Server überzeugend korrekte Daten zurückgibt, muss irgendetwas anderes zwischen Build und Übermittlung der Datei den Inhalt ändern. So ermitteln Sie dies:
 
  * Untersuchen Sie die Buildtoolkette und den Bereitstellungsmechanismus darauf hin, ob sie Dateien nach dem Erstellen ändern. Dies ist beispielsweise der Fall, wenn Git wie zuvor beschrieben Dateizeilenenden transformiert.
  * Untersuchen Sie den Webserver oder die CDN-Konfiguration darauf hin, ob sie so eingerichtet sind, dass Antworten dynamisch geändert werden (z. B. der Versuch, HTML zu minimieren). Es ist in Ordnung, dass der Webserver die HTTP-Komprimierung implementiert (z. B. Rückgabe von `content-encoding: br` oder `content-encoding: gzip`), da dies das Ergebnis nach der Dekomprimierung nicht beeinträchtigt. Es ist jedoch *nicht* in Ordnung, dass der Webserver die nicht komprimierten Daten ändert.
+
+### <a name="troubleshoot-integrity-powershell-script"></a>PowerShell-Skript für die Behebung von Problemen bei der Integrität
+
+Verwenden Sie das PowerShell-Skript [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) zum Überprüfen einer veröffentlichten und bereitgestellten Blazor-App. Das Skript wird als Startpunkt zur Behebung von Integritätsproblemen mit der App bereitgestellt, die vom Blazor-Framework nicht identifiziert werden können. Möglicherweise müssen Sie das Skript auf Ihre Apps anpassen.
+
+Das Skript überprüft die Dateien im Ordner `publish` sowie die von der bereitgestellten App heruntergeladenen Dateien, um Probleme in den verschiedenen Manifesten zu erkennen, die Integritätshashes enthalten. Mit diesen Prüfungen sollten sich die häufigsten Probleme erkennen lassen:
+
+* Sie haben eine Datei in der veröffentlichten Ausgabe geändert, ohne es zu bemerken.
+* Die App wurde nicht ordnungsgemäß im Bereitstellungsziel bereitgestellt, oder etwas hat sich in der Umgebung des Bereitstellungsziels geändert.
+* Es gibt Unterschiede zwischen der bereitgestellten App und der Ausgabe der Veröffentlichung der App.
+
+Rufen Sie das Skript mit dem folgenden Befehl in einer PowerShell-Befehlsshell auf:
+
+```powershell
+.\integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
+```
+
+Platzhalter:
+
+* `{BASE URL}`: Die URL der bereitgestellten App.
+* `{PUBLISH OUTPUT FOLDER}`: Der Pfad zum `publish`-Ordner der App oder zu dem Speicherort, in dem die App für die Bereitstellung veröffentlicht wurde.
 
 ### <a name="disable-integrity-checking-for-non-pwa-apps"></a>Deaktivieren der Integritätsprüfung für Nicht-PWA-Apps
 

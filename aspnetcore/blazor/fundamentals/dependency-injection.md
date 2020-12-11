@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: 0cec9a1ea6f6df52103ab190c85518ddc42a573f
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: c68deb5237754872e11bfd9c83275b9a3b147319
+ms.sourcegitcommit: 92439194682dc788b8b5b3a08bd2184dc00e200b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507927"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96556514"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>Abhängigkeitsinjektion in ASP.NET Core Blazor
 
@@ -34,7 +34,7 @@ Blazor unterstützt die [Abhängigkeitsinjektion](xref:fundamentals/dependency-i
 
 Die Abhängigkeitsinjektion ist ein Verfahren für den Zugriff auf Dienste, die an einer zentralen Stelle konfiguriert sind. Dies kann in Blazor-Apps für Folgendes nützlich sein:
 
-* Freigabe einer einzelnen Instanz einer Dienstklasse über viele Komponenten hinweg, bekannt als *Singleton* -Dienst.
+* Freigabe einer einzelnen Instanz einer Dienstklasse über viele Komponenten hinweg, bekannt als *Singleton*-Dienst.
 * Entkoppeln von Komponenten von konkreten Dienstklassen durch Verwendung von Referenzabstraktionen. Betrachten Sie zum Beispiel eine `IDataAccess`-Schnittstelle für den Zugriff auf Daten in der App. Die Schnittstelle wird durch eine konkrete `DataAccess`-Klasse implementiert und als Dienst im Dienstcontainer der App registriert. Wenn eine Komponente die Abhängigkeitsinjektion verwendet, um eine `IDataAccess`-Implementierung zu erhalten, ist die Komponente nicht an den konkreten Typ gekoppelt. Die Implementierung kann ausgetauscht werden, z. B. gegen eine Pseudoimplementierung in Komponententests.
 
 ## <a name="default-services"></a>Standarddienste
@@ -154,7 +154,7 @@ Die Dienste können mit den in der folgenden Tabelle angegebenen Lebensdauern ko
 
 | Lebensdauer | Beschreibung |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor WebAssembly-Apps verfügen derzeit nicht über ein Konzept für Bereiche von Abhängigkeitsinjektionen. `Scoped`-registrierte Dienste verhalten sich wie `Singleton`-Dienste. Das Blazor Server-Hostingmodell unterstützt jedoch die Lebensdauer `Scoped`. In Blazor Server-Apps wird die Registrierung eines bereichsbezogenen Diensts der *Verbindung* zugeordnet. Aus diesem Grund wird die Verwendung von bereichsbezogenen Diensten für Dienste bevorzugt, die dem aktuellen Benutzer zugeordnet werden sollen, auch wenn die aktuelle Absicht darin besteht, clientseitig im Browser in einer Blazor WebAssembly-App ausgeführt zu werden. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Blazor WebAssembly-Apps verfügen derzeit nicht über ein Konzept für Bereiche von Abhängigkeitsinjektionen. `Scoped`-registrierte Dienste verhalten sich wie `Singleton`-Dienste.</p><p>Das Blazor Server-Hostingmodell unterstützt die `Scoped`-Lebensdauer über HTTP-Anforderungen hinweg, nicht jedoch über SignalR-Verbindungs- bzw. Leitungsmeldungen zwischen Komponenten hinweg, die auf dem Client geladen sind. Beim Navigieren zwischen Seiten oder Ansichten oder von einer Seite oder Ansicht zu einer Komponente verarbeitet der Razor Pages- bzw. MVC-Teil der App bereichsbezogene Dienste normal und erstellt die Dienste für *jede HTTP-Anforderung* neu. Beim Navigieren zwischen Komponenten auf dem Client werden bereichsbezogene Dienste nicht neu erstellt. In diesem Fall erfolgt die Kommunikation mit dem Server über die SignalR-Verbindung der Benutzerleitung, nicht über HTTP-Anforderungen. In den folgenden Komponentenszenarien auf dem Client werden bereichsbezogene Dienste neu erstellt, weil für den Benutzer eine neue Leitung erstellt wird:</p><ul><li>Der Benutzer schließt das Browserfenster. Der Benutzer öffnet ein neues Fenster und navigiert zur App zurück.</li><li>Der Benutzer schließt die letzte Registerkarte der App in einem Browserfenster. Der Benutzer öffnet eine neue Registerkarte und navigiert zur App zurück.</li><li>Der Benutzer wählt die Schaltfläche des Browsers zum erneuten Laden oder Aktualisieren aus.</li></ul><p>Weitere Informationen zum Beibehalten des Benutzerstatus in Blazor Server-Apps über bereichsbezogene Dienste hinweg finden Sie unter <xref:blazor/hosting-models?pivots=server>.</p> |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | Die Abhängigkeitsinjektion erstellt eine *Einzelinstanz* des Diensts. Alle Komponenten, die einen `Singleton`-Dienst erfordern, erhalten eine Instanz desselben Diensts. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Immer wenn eine Komponente eine Instanz eines `Transient`-Diensts aus dem Dienstcontainer erhält, erhält sie eine *neue Instanz* des Diensts. |
 

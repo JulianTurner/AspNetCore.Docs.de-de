@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 9462b73ad67394e79de08e7d2b13bf6a3145a04e
-ms.sourcegitcommit: 1be547564381873fe9e84812df8d2088514c622a
+ms.openlocfilehash: c6f9815f473380f96092d663cdd785fd19109701
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94507966"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855299"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>Blazor-Layouts in ASP.NET Core
 
@@ -34,10 +34,10 @@ Einige App-Elemente wie Menüs, Copyrightmeldungen und Firmenlogos sind in der R
 
 Technisch gesehen ist ein Layout nur eine weitere Komponente. Layouts werden in Razor-Vorlagen oder in C#-Code definiert und können [Datenbindung](xref:blazor/components/data-binding), [Abhängigkeitsinjektion](xref:blazor/fundamentals/dependency-injection) und andere Komponentenszenarien nutzen.
 
-Zum Umwandeln einer *Komponente* in ein *Layout* muss die Komponente:
+So konvertieren Sie eine Komponente in ein Layout:
 
-* von <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> erben, was eine <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body>-Eigenschaft für die gerenderten Inhalte im Layout definiert.
-* die Razor-Syntax `@Body` verwenden, um den Standort im Layoutmarkup anzugeben, ab den der Inhalt gerendert wird.
+* Legen Sie die Komponente so fest, dass sie von <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> erbt. <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> definiert eine <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body>-Eigenschaft für die gerenderten Inhalte im Layout.
+* Verwenden Sie die Razor-Syntax `@Body`, um die Position im Layoutmarkup anzugeben, an der die Inhalte gerendert werden.
 
 Das folgende Codebeispiel zeigt die Razor-Vorlage einer Layoutkomponente (`MainLayout.razor`). Das Layout erbt <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> und legt `@Body` zwischen der Navigationsleiste und der Fußzeile fest:
 
@@ -89,7 +89,7 @@ Alle Ordner einer App können optional eine Vorlagendatei namens `_Imports.razor
 
 Die folgende `_Imports.razor`-Datei importiert:
 
-* `MyCoolLayout`
+* `MyCoolLayout`.
 * Alle Razor-Komponenten im gleichen Ordner und in dessen Unterordnern
 * Der `BlazorApp1.Data` -Namespace.
  

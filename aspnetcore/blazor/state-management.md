@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 7e79836e3dd1da175a62a84e11dfd30fee7b2f1b
-ms.sourcegitcommit: 1ea3f23bec63e96ffc3a927992f30a5fc0de3ff9
+ms.openlocfilehash: 24f845bc1d98331f2ee54710d17beb6ffa95ad88
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94570145"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855416"
 ---
 # <a name="aspnet-core-no-locblazor-state-management"></a>Blazor-Zustandsverwaltung in ASP.NET Core
 
@@ -43,6 +43,9 @@ Beispiele für den Benutzerzustand im Arbeitsspeicher des Browsers sind:
 * Werte, die durch [JavaScript-Interop](xref:blazor/call-javascript-from-dotnet)-Aufrufe festgelegt werden.
 
 Wenn ein Benutzer seinen Browser schließt und erneut öffnet oder die Seite erneut lädt, geht der Benutzerzustand im Arbeitsspeicher des Browsers verloren.
+
+> [!NOTE]
+> [Protected Browser Storage](xref:blazor/state-management?pivots=server#aspnet-core-protected-browser-storage) (im Namespace <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName>) basiert auf ASP.NET Core-Datenschutz und wird nur für Blazor Server-Apps unterstützt.
 
 ## <a name="persist-state-across-browser-sessions"></a>Persistentes Speichern des Zustands über Browsersitzungen hinweg
 

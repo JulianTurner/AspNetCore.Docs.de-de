@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: c5b9be64ea30cce7a3178bfbb244ef893e9639d2
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 4a48fb094888d51aa6f881c82e4f20ffbc84c8e2
+ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053864"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96901170"
 ---
 # <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>Teil 2: Razor Pages mit EF Core in ASP.NET Core – CRUD
 
@@ -52,7 +52,7 @@ Ersetzen Sie die `OnGetAsync`-Methode durch den folgenden Code, um Registrierung
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Details.cshtml.cs?name=snippet_OnGetAsync&highlight=8-12)]
 
-Aufgrund der Methoden [Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include) und [ThenInclude](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_ThenInclude__3_Microsoft_EntityFrameworkCore_Query_IIncludableQueryable___0_System_Collections_Generic_IEnumerable___1___System_Linq_Expressions_Expression_System_Func___1___2___) lädt der Kontext die Navigationseigenschaft `Student.Enrollments` und in jeder Registrierung die Navigationseigenschaft `Enrollment.Course`. Diese Methoden werden im Tutorial zum [Lesen in Beziehung stehender Daten](xref:data/ef-rp/read-related-data) ausführlich untersucht.
+Aufgrund der Methoden [Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.include) und [ThenInclude](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.theninclude#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_ThenInclude__3_Microsoft_EntityFrameworkCore_Query_IIncludableQueryable___0_System_Collections_Generic_IEnumerable___1___System_Linq_Expressions_Expression_System_Func___1___2___) lädt der Kontext die Navigationseigenschaft `Student.Enrollments` und in jeder Registrierung die Navigationseigenschaft `Enrollment.Course`. Diese Methoden werden im Tutorial zum [Lesen relevanter Daten](xref:data/ef-rp/read-related-data) ausführlich untersucht.
 
 Die Methode [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) verbessert die Leistung in Szenarien, in denen die zurückgegebenen Entitäten nicht im aktuellen Kontext aktualisiert werden. `AsNoTracking` wird später in diesem Tutorial behandelt.
 
@@ -345,9 +345,9 @@ Der vorangehende Code fügt der `OnGetAsync`-Methodensignatur den optionalen-Par
 Die `OnPostAsync`-Methode ruft die ausgewählte Entität ab und anschließend die Methode [Remove](/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_) auf, um den Zustand der Entität auf `Deleted` festzulegen. Wenn `SaveChanges` aufgerufen wird, wird der SQL-Befehl DELETE generiert. Wenn `Remove` fehlschlägt:
 
 * Wird die Datenbankausnahme abgefangen.
-* Wird die Methode `OnGetAsync` auf der Seite „Löschen“ mit `saveChangesError=true` aufgerufen.
+* Die `OnGetAsync`-Methode der Löschseite wird mit `saveChangesError=true` aufgerufen.
 
-Fügen Sie der Razor Page „Delete“ ( *Pages/Students/Delete.cshtml* ) eine Fehlermeldung hinzu:
+Fügen Sie der Razor Page „Delete“ (*Pages/Students/Delete.cshtml*) eine Fehlermeldung hinzu:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
 
@@ -405,7 +405,7 @@ Wenn Sie jedoch weitere Entitäten mithilfe von `Include` einschließen möchten
 
 ## <a name="customize-the-details-page"></a>Anpassen der Seite „Details“
 
-Navigieren Sie zur Seite `Pages/Students`. Die Links **Bearbeiten** , **Details** und **Löschen** werden mithilfe des [Anchor-Taghilfsprogramms](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
+Navigieren Sie zur Seite `Pages/Students`. Die Links **Bearbeiten**, **Details** und **Löschen** werden mithilfe des [Anchor-Taghilfsprogramms](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) in der Datei *Pages/Movies/Index.cshtml* generiert.
 
 [!code-cshtml[](intro/samples/cu21/Pages/Students/Index1.cshtml?name=snippet)]
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: ca8aa126a44ea417017f0be0372e818a95ad8413
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9c65abd5a055bb677a14921296316e7e03760bc2
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053747"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855364"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementierung des Http.sys-Webservers in ASP.NET Core
 
@@ -98,10 +98,11 @@ Die weitere Konfiguration von HTTP.sys erfolgt über [Registrierungseinstellunge
 
 | Eigenschaft | Beschreibung | Standard |
 | -------- | ----------- | :-----: |
-| [AllowSynchronousIO](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO) | Hiermit steuern Sie, ob eine synchrone Eingabe/Ausgabe für `HttpContext.Request.Body` und `HttpContext.Response.Body` zulässig ist. | `false` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO> | Hiermit steuern Sie, ob eine synchrone Eingabe/Ausgabe für `HttpContext.Request.Body` und `HttpContext.Response.Body` zulässig ist. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Hiermit lassen Sie anonyme Anforderungen zu. | `true` |
 | [Authentication.Schemes](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.Schemes) | Hiermit geben Sie die zulässigen Authentifizierungsschemas an. Diese Eigenschaft kann jederzeit vor dem Verwerfen des Listeners geändert werden. Die Werte werden durch die [AuthenticationSchemes-Enumeration](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes) bereitgestellt: `Basic`, `Kerberos`, `Negotiate`, `None` und `NTLM`. | `None` |
-| [EnableResponseCaching](xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching) | Hiermit wird das Caching im [Kernelmodus](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) für Antworten mit geeigneten Headern versucht. Die Antwort enthält möglicherweise keine `Set-Cookie`-, `Vary`- oder `Pragma`-Header. Sie muss einen `Cache-Control`-Header enthalten, der vom Typ `public` ist und entweder ein `shared-max-age`- oder ein `max-age`-Wert oder ein `Expires`-Header ist. | `true` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableResponseCaching> | Hiermit wird das Caching im [Kernelmodus](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) für Antworten mit geeigneten Headern versucht. Die Antwort enthält möglicherweise keine `Set-Cookie`-, `Vary`- oder `Pragma`-Header. Sie muss einen `Cache-Control`-Header enthalten, der vom Typ `public` ist und entweder ein `shared-max-age`- oder ein `max-age`-Wert oder ein `Expires`-Header ist. | `true` |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Http503Verbosity> | Das Verhalten von „HTTP.sys“, wenn Anforderungen aufgrund von Drosselungsbedingungen abgelehnt werden. | [Http503VerbosityLevel.<br>Basic](xref:Microsoft.AspNetCore.Server.HttpSys.Http503VerbosityLevel) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxAccepts> | Die maximale Anzahl gleichzeitiger Aufrufe. | 5 &times; [Environment.<br>ProcessorCount](xref:System.Environment.ProcessorCount) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxConnections> | Die maximale Anzahl an gleichzeitigen Verbindungen, die akzeptiert werden. Verwenden Sie `-1`, um eine unbegrenzte Anzahl anzugeben. Verwenden Sie `null`, um die computerübergreifende Einstellung der Registrierung zu verwenden. | `null`<br>(computerweite<br>Einstellung) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> | Informationen hierzu finden Sie im Abschnitt <a href="#maxrequestbodysize">MaxRequestBodySize</a>. | 30.000.000 Bytes<br>(~28,6 MB) |
@@ -109,8 +110,8 @@ Die weitere Konfiguration von HTTP.sys erfolgt über [Registrierungseinstellunge
 | `RequestQueueMode` | Hiermit wird angegeben, ob der Server für die Erstellung und Konfiguration der Anforderungswarteschlange verantwortlich ist oder ob ein Anfügen an eine bestehende Warteschlange erfolgen soll.<br>Die meisten vorhandenen Konfigurationsoptionen gelten beim Anfügen an eine vorhandene Warteschlange nicht. | `RequestQueueMode.Create` |
 | `RequestQueueName` | Der Name der HTTP.sys-Anforderungswarteschlange. | `null` (Anonyme Warteschlange) |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.ThrowWriteExceptions> | Hiermit geben Sie an, ob Schreibvorgänge für Antworttext, die einen Fehler zurückgeben, weil die Verbindung zum Client getrennt wird, eine Ausnahme auslösen oder normal beendet werden. | `false`<br>(normal beenden) |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Machen Sie die HTTP.sys-Konfiguration <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> verfügbar. Diese kann auch in der Registrierung konfiguriert werden. Unter folgenden API-Links finden Sie Informationen zu den einzelnen Einstellungen sowie die Standardwerte:<ul><li>[TimeoutManager.DrainEntityBody:](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody) die zulässige Zeit, in der die HTTP-Server-API den Entitätstext in einer Keep-Alive-Verbindung leeren muss</li><li>[TimeoutManager.EntityBody:](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody) die zulässige Zeit für die Ankunft des Anforderungsentitätstexts</li><li>[TimeoutManager.HeaderWait:](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait) die zulässige Zeit, in der die HTTP-Server-API den Anforderungsheader analysieren muss</li><li>[TimeoutManager.IdleConnection:](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection) die zulässige Zeit für eine Verbindung im Leerlauf</li><li>[TimeoutManager.MinSendBytesPerSecond:](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond) die Mindestsenderate für die Antwort.</li><li>[TimeoutManager.RequestQueue:](xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue) die zulässige Zeit, die die Anforderung in der Anforderungswarteschlange verbleibt, bevor sie von der App übernommen wird</li></ul> |  |
-| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Geben Sie die <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> an, die bei „HTTP.sys“ registriert werden soll. Besonders nützlich ist die Eigenschaft [UrlPrefixCollection.Add](xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add*), mit der Sie der Sammlung ein Präfix hinzufügen können. Diese Eigenschaften können jederzeit vor dem Verwerfen des Listeners geändert werden. |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.Timeouts> | Machen Sie die HTTP.sys-Konfiguration <xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager> verfügbar. Diese kann auch in der Registrierung konfiguriert werden. Unter folgenden API-Links finden Sie Informationen zu den einzelnen Einstellungen sowie die Standardwerte:<ul><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.DrainEntityBody?displayProperty=nameWithType> die zulässige Zeit, in der die HTTP-Server-API den Entitätstext in einer Keep-Alive-Verbindung leeren muss</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.EntityBody?displayProperty=nameWithType> die zulässige Zeit für die Ankunft des Anforderungsentitätstexts</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.HeaderWait?displayProperty=nameWithType> die zulässige Zeit, in der die HTTP-Server-API den Anforderungsheader analysieren muss</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.IdleConnection?displayProperty=nameWithType> die zulässige Zeit für eine Verbindung im Leerlauf</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.MinSendBytesPerSecond?displayProperty=nameWithType> die Mindestsenderate für die Antwort.</li><li><xref:Microsoft.AspNetCore.Server.HttpSys.TimeoutManager.RequestQueue?displayProperty=nameWithType> die zulässige Zeit, die die Anforderung in der Anforderungswarteschlange verbleibt, bevor sie von der App übernommen wird</li></ul> |  |
+| <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> | Geben Sie die <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection> an, die bei „HTTP.sys“ registriert werden soll. Besonders nützlich ist die Eigenschaft <xref:Microsoft.AspNetCore.Server.HttpSys.UrlPrefixCollection.Add%2A?displayProperty=nameWithType>, mit der Sie der Sammlung ein Präfix hinzufügen können. Diese Eigenschaften können jederzeit vor dem Verwerfen des Listeners geändert werden. |  |
 
 <a name="maxrequestbodysize"></a>
 
@@ -151,8 +152,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -182,7 +183,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -207,7 +208,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -254,7 +255,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe* :
+   Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
@@ -419,8 +420,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -450,7 +451,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -475,7 +476,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -522,7 +523,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe* :
+   Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
@@ -672,8 +673,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -703,7 +704,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -728,7 +729,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -775,7 +776,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe* :
+   Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)
@@ -925,8 +926,8 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Wenn es sich bei der App um eine [frameworkabhängige Bereitstellung](/dotnet/core/deploying/#framework-dependent-deployments-fdd) handelt, installieren Sie .NET Core, .NET Framework oder beides (wenn es sich um eine .NET Core-App für das .NET Framework handelt).
 
-   * **.NET Core** : Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
-   * **.NET Framework** : Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
+   * **.NET Core**: Wenn die App .NET Core erfordert, rufen Sie den Installer für die **.NET Core Runtime** über [.NET Core-Downloads](https://dotnet.microsoft.com/download) ab, und führen Sie ihn aus. Installieren Sie nicht das vollständige SDK auf dem Server.
+   * **.NET Framework**: Erfordert die App .NET Framework, rufen Sie das [.NET Framework-Installationshandbuch](/dotnet/framework/install/) auf. Installieren Sie das erforderliche .NET Framework. Der Installer für das neueste .NET Framework steht auf der Seite [.NET Core-Downloads](https://dotnet.microsoft.com/download) zur Verfügung.
 
    Wenn die App eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) ist, enthält die App die Runtime in ihrer Bereitstellung. Es ist keine Frameworkinstallation auf dem Server erforderlich.
 
@@ -956,7 +957,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
    Das integrierte Tool für die Konfiguration von HTTP.sys ist *netsh.exe*. Mithilfe von *netsh.exe* können Sie URL-Präfixe reservieren und X.509-Zertifikate zuweisen. Das Tool erfordert Administratorrechte.
 
-   Verwenden Sie das Tool *netsh.exe* , um die URLs für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um die URLs für die App zu registrieren:
 
    ```console
    netsh http add urlacl url=<URL> user=<USER>
@@ -981,7 +982,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
 
 1. Registrieren Sie X.509-Zertifikate auf dem Server.
 
-   Verwenden Sie das Tool *netsh.exe* , um Zertifikate für die App zu registrieren:
+   Verwenden Sie das Tool *netsh.exe*, um Zertifikate für die App zu registrieren:
 
    ```console
    netsh http add sslcert ipport=<IP>:<PORT> certhash=<THUMBPRINT> appid="{<GUID>}"
@@ -1028,7 +1029,7 @@ In Visual Studio ist das Standardstartprofil auf IIS Express ausgerichtet. Wenn 
    netsh http delete sslcert ipport=<IP>:<PORT>
    ```
 
-   Referenzdokumentation für *netsh.exe* :
+   Referenzdokumentation für *netsh.exe*:
 
    * [Netsh Commands for Hypertext Transfer Protocol (HTTP) (Netsh-Befehle für Hypertext Transfer-Protokolle (HTTP))](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings (UrlPrefix-Zeichenfolgen)](/windows/win32/http/urlprefix-strings)

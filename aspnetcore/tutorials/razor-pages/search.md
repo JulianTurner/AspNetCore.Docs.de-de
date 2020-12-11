@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: 3b95fe117895555ebcd44f971e7bb9d1173e1697
-ms.sourcegitcommit: db0a6eb0be7bd7f22810a71fe9bf30e957fd116a
+ms.openlocfilehash: 1e571966b78f93e29e7901dd9648fbe3aca52726
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96419979"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855481"
 ---
 # <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a>Teil 6: Hinzufügen der Suche zu Razor Pages in ASP.NET Core
 
@@ -70,7 +70,7 @@ var movies = from m in _context.Movie
              select m;
 ```
 
-Die Abfrage wird an dieser Stelle *nur* definiert und **nicht** auf die Datenbank angewendet.
+Die Abfrage wird an diesem Punkt nur ***definiert** _. Sie wurde noch _*_nicht_*_ in der Datenbank ausgeführt.
 
 Wenn die `SearchString`-Eigenschaft nicht NULL oder leer ist, wird die Abfrage nach Filmen so geändert, dass die Suchzeichenfolge gefiltert wird:
 
@@ -95,7 +95,7 @@ Die vorangehende Routeneinschränkung ermöglicht das Suchen des Titels als Rout
 
 ![Ansicht Index mit dem der URL hinzugefügten Wort „ghost“ und einer zurückgegebenen Filmliste mit zwei Filmen: Ghostbusters und Ghostbusters 2](search/_static/g2.png)
 
-Die ASP.NET Core-Runtime verwendet die [Modellbindung](xref:mvc/models/model-binding), um den Wert der `SearchString`-Eigenschaft aus der Abfragezeichenfolge (`?searchString=Ghost`) oder aus Datenrouten (`https://localhost:5001/Movies/Ghost`) festzulegen. Bei der Modellbindung wird Groß-/ Kleinschreibung **_nicht_* _ berücksichtigt.
+Die ASP.NET Core-Runtime verwendet die [Modellbindung](xref:mvc/models/model-binding), um den Wert der `SearchString`-Eigenschaft aus der Abfragezeichenfolge (`?searchString=Ghost`) oder aus Datenrouten (`https://localhost:5001/Movies/Ghost`) festzulegen. Bei der Modellbindung wird die Groß- und Kleinschreibung _*_nicht_*_ berücksichtigt.
 
 Sie können jedoch von Benutzern nicht erwarten, dass sie die URL ändern, um nach einem Film zu suchen. In diesem Schritt wird eine Benutzeroberflächenoption hinzugefügt, um Filme zu filtern. Wenn Sie die Routeneinschränkung `"{searchString?}"` hinzugefügt haben, entfernen Sie sie.
 

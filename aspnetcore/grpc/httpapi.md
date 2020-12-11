@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/httpapi
-ms.openlocfilehash: 64d18114e2fe9ee10edb902a98a281c3cd9f3393
-ms.sourcegitcommit: aa85f2911792a1e4783bcabf0da3b3e7e218f63a
+ms.openlocfilehash: cb2855f0293a6bc800bb5758cd1a8400d4434a24
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95417577"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855460"
 ---
 # <a name="create-json-web-apis-from-grpc"></a>Erstellen von JSON-Web-APIs über gRPC
 
@@ -105,6 +105,21 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 ```
 
 Das ist ein einfaches Beispiel. Weitere Anpassungsoptionen finden Sie unter [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule).
+
+### <a name="enable-swaggeropenapi-support"></a>Aktivieren der Unterstützung für Swagger/OpenAPI
+
+Bei Swagger (OpenAPI) handelt es sich um eine sprachunabhängige Spezifikation für das Beschreiben von REST-APIs. Die gRPC-HTTP-API lässt sich in [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) integrieren, um einen Swagger-Endpunkt für RESTful-gRPC-Dienste zu generieren. Dann kann der Swagger-Endpunkt mit der [Swagger-Benutzeroberfläche](https://swagger.io/swagger-ui/) und anderen Tools verwendet werden.
+
+So aktivieren Sie Swagger mit der gRPC-HTTP-API:
+
+1. Fügen Sie [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) einen Paketverweis hinzu.
+2. Konfigurieren Sie Swashbuckle in *Startup.cs*. Die `AddGrpcSwagger`-Methode konfiguriert Swashbuckle so, dass gRPC-HTTP-API-Endpunkte eingeschlossen werden.
+
+[!code-csharp[](~/grpc/httpapi/Startup.cs?name=snippet_1&highlight=6-10,15-19)]
+
+Um zu überprüfen, ob Swashbuckle Swagger für die RESTful-gRPC-Dienste generiert, starten Sie die App und navigieren zur Seite der Swagger-Benutzeroberfläche:
+
+![Swagger-Benutzeroberfläche](~/grpc/httpapi/static/swaggerui.png)
 
 ### <a name="grpc-http-api-vs-grpc-web"></a>gRPC HTTP API und gRPC-Web im Vergleich
 

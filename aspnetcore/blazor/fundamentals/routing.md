@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: a83637bb2690407dac5994bb63c765fcfa97462f
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: 3bfd623a206f260d24e2c9009acdb3b205b7ab2d
+ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981894"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96855403"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor-Routing
 
@@ -57,7 +57,7 @@ Die <xref:Microsoft.AspNetCore.Components.Routing.Router>-Komponente ermöglicht
 </Router>
 ```
 
-Wenn eine `.razor`-Datei mit einer `@page`-Anweisung kompiliert wird, erhält die generierte Klasse ein <xref:Microsoft.AspNetCore.Components.RouteAttribute>-Element, das die Routenvorlage angibt.
+Wenn eine `.razor`-Datei mit einer `@page`-Anweisung kompiliert wird, erhält die generierte Klasse ein <xref:Microsoft.AspNetCore.Components.RouteAttribute>-Element, das die Routenvorlage angibt. Beim Starten der App wird die als `AppAssembly` angegebene Assembly überprüft, um Informationen zu allen Komponenten zu erfassen, die ein <xref:Microsoft.AspNetCore.Components.RouteAttribute> aufweisen.
 
 Zur Laufzeit führt die <xref:Microsoft.AspNetCore.Components.RouteView>-Komponente Folgendes aus:
 

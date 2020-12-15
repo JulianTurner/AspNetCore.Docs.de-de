@@ -3,7 +3,7 @@ title: Sichere Speicherung von App-Geheimnissen in der Entwicklung in ASP.net Co
 author: rick-anderson
 description: Erfahren Sie, wie Sie vertrauliche Informationen während der Entwicklung einer ASP.net Core-APP speichern und abrufen.
 ms.author: scaddie
-ms.custom: mvc, contperfq2
+ms.custom: mvc, contperf-fy21q2
 ms.date: 11/24/2020
 no-loc:
 - appsettings.json
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/app-secrets
-ms.openlocfilehash: 99b7b04076206f95c04da79283010beafdd1cc88
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: 63032895ce45ad096612a8c39a2709628c12790f
+ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035852"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97486199"
 ---
 # <a name="safe-storage-of-app-secrets-in-development-in-aspnet-core"></a>Sichere Speicherung von App-Geheimnissen in der Entwicklung in ASP.net Core
 

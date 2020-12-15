@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 6e5e9d866a1e03e69856cc63dcfe30284048dd6d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 49029bbd53b98425a05bdb82517238e3aa2e3b1f
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061313"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506629"
 ---
 # <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>Protokollierung und Diagnose in ASP.net Core SignalR
 
@@ -81,7 +81,7 @@ Aktivieren Sie die Option **Anwendungs Protokollierung (File System)** im Abschn
 
 Wenn die App in einer anderen Umgebung bereitgestellt wird (z. B. Docker, Kubernetes oder Windows-Dienst) finden Sie unter <xref:fundamentals/logging/index> weitere Informationen zum Konfigurieren von Protokollierungsanbietern, die für die Umgebung geeignet sind.
 
-## <a name="javascript-client-logging"></a>JavaScript-Client Protokollierung
+## <a name="javascript-client-logging"></a>JavaScript-Clientprotokollierung
 
 > [!WARNING]
 > Clientseitige Protokolle enthalten möglicherweise vertrauliche Daten aus Ihrer App. Veröffentlichten Sie deshalb **niemals** Protokolle von Produktions-Apps auf öffentlichen Foren wie GitHub.
@@ -106,18 +106,18 @@ In der folgenden Tabelle werden die für den JavaScript-Client verfügbaren Prot
 
 Nachdem Sie die Ausführlichkeit konfiguriert haben, werden die Protokolle in die Browser Konsole (oder die Standard Ausgabe in einer nodejs-APP) geschrieben.
 
-Wenn Sie Protokolle an ein benutzerdefiniertes Protokollierungs System senden möchten, können Sie ein JavaScript-Objekt bereitstellen, das die- `ILogger` Schnittstelle implementiert. Die einzige Methode, die implementiert werden muss `log` , ist, die die Ebene des Ereignisses und die dem Ereignis zugeordnete Meldung annimmt. Zum Beispiel:
+Wenn Sie Protokolle an ein benutzerdefiniertes Protokollierungs System senden möchten, können Sie ein JavaScript-Objekt bereitstellen, das die- `ILogger` Schnittstelle implementiert. Die einzige Methode, die implementiert werden muss `log` , ist, die die Ebene des Ereignisses und die dem Ereignis zugeordnete Meldung annimmt. Beispiel:
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
-## <a name="net-client-logging"></a> .NET-Clientprotokollierung
+## <a name="net-client-logging"></a>.NET-Clientprotokollierung
 
 > [!WARNING]
 > Clientseitige Protokolle enthalten möglicherweise vertrauliche Daten aus Ihrer App. Veröffentlichten Sie deshalb **niemals** Protokolle von Produktions-Apps auf öffentlichen Foren wie GitHub.
 
 Um Protokolle vom .NET-Client zu erhalten, können Sie die- `ConfigureLogging` Methode für verwenden `HubConnectionBuilder` . Dies funktioniert genauso wie die `ConfigureLogging` -Methode in `WebHostBuilder` und `HostBuilder` . Sie können die gleichen Protokollierungs Anbieter konfigurieren, die Sie in ASP.net Core verwenden. Allerdings müssen Sie die nuget-Pakete für die einzelnen Protokollierungs Anbieter manuell installieren und aktivieren.
 
-Weitere Informationen zum Hinzufügen der .NET-Client Protokollierung zu einer- Blazor WebAssembly App <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging>
+Weitere Informationen zum Hinzufügen der .NET-Client Protokollierung zu einer- Blazor WebAssembly App <xref:blazor/fundamentals/logging#signalr-net-client-logging>
 
 ### <a name="console-logging"></a>Konsolenprotokollierung
 
@@ -158,7 +158,7 @@ Diese Methode funktioniert für alle apps.
 
 Wenn Sie eine Verbindung über HTTPS herstellen, sind einige zusätzliche Schritte erforderlich, um sicherzustellen, dass der HTTPS-Datenverkehr von fddler entschlüsselt werden kann Weitere Informationen finden Sie in der [Dokumentation](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS)zu "Dokumentation".
 
-Nachdem Sie die Ablauf Verfolgung gesammelt haben, können Sie die Ablauf Verfolgung exportieren **File** , indem Sie auf  >  **Save**  >  der Menüleiste auf Datei **alle Sitzungen** speichern klicken.
+Nachdem Sie die Ablauf Verfolgung gesammelt haben, können Sie die Ablauf Verfolgung exportieren , indem Sie auf  >    >  der Menüleiste auf Datei **alle Sitzungen** speichern klicken.
 
 ![Exportieren aller Sitzungen aus "fddler"](diagnostics/fiddler-export.png)
 
@@ -174,7 +174,7 @@ tcpdump -i [interface] -w trace.pcap
 
 Ersetzen `[interface]` Sie durch die Netzwerkschnittstelle, die Sie erfassen möchten. In der Regel handelt es sich hierbei um `/dev/eth0` (für die standardethernet-Schnittstelle) oder `/dev/lo0` (für localhost-Datenverkehr). Weitere Informationen finden `tcpdump` Sie auf der Seite "man" auf Ihrem Host System.
 
-## <a name="collect-a-network-trace-in-the-browser"></a>Erfassen einer Netzwerk Ablauf Verfolgung im Browser
+## <a name="collect-a-network-trace-in-the-browser"></a>Erfassen einer Netzwerkablaufverfolgung im Browser
 
 Diese Methode funktioniert nur bei browserbasierten apps.
 

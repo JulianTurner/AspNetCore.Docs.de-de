@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 209d055f6205eceb9efb5434427c303345791809
-ms.sourcegitcommit: 8363e44f630fcc6433ccd2a85f7aa9567cd274ed
+ms.openlocfilehash: 3277fda0d1dcb5121a2172b3fc1e4869ed6f8430
+ms.sourcegitcommit: fc4cce2767e34f81079510f34bd54e9d0aa86497
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "94981959"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97592868"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>Erzwingen von HTTPS in ASP.net Core
 
@@ -162,7 +162,7 @@ Wenn Anforderungen in einer Reverseproxykonfiguration weitergeleitet werden, ver
 
 Wenn Sie Azure App Service bereitstellen, befolgen Sie die Anweisungen im [Tutorial: Binden eines vorhandenen benutzerdefinierten SSL-Zertifikats an Azure-Web-Apps](/azure/app-service/app-service-web-tutorial-custom-ssl).
 
-### <a name="options"></a>Optionen
+### <a name="options"></a>Tastatur
 
 Der folgende markierte Code ruft [addhttpsredirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) auf, um Middleware-Optionen zu konfigurieren:
 
@@ -397,6 +397,8 @@ Das Windows-Subsystem für Linux (WSL) generiert ein selbst signiertes HTTPS-Zer
 
 Dieser Abschnitt enthält Hilfe, wenn das ASP.net Core HTTPS-Entwicklungs Zertifikat [installiert und vertrauenswürdig](#trust)ist, Sie jedoch weiterhin Browser Warnungen haben, dass das Zertifikat nicht vertrauenswürdig ist. Das ASP.net Core HTTPS-Entwicklungs Zertifikat wird von [Kestrel](xref:fundamentals/servers/kestrel)verwendet.
 
+Informationen zum Reparieren des IIS Express Zertifikats finden Sie in [diesem StackOverflow](https://stackoverflow.com/a/20048613/502537) -Problem.
+
 ### <a name="all-platforms---certificate-not-trusted"></a>Alle Plattformen-Zertifikat nicht vertrauenswürdig
 
 Führen Sie die folgenden Befehle aus:
@@ -467,7 +469,7 @@ Legen Sie zum Verwenden von Firefox mit IIS Express oder Kestrel  `security.ente
 
 Weitere Informationen finden Sie unter [Einrichten von Zertifizierungsstellen (CAS) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox).
 
-## <a name="additional-information"></a>Weitere Informationen
+## <a name="additional-information"></a>Zusätzliche Informationen
 
 * <xref:host-and-deploy/proxy-load-balancer>
 * [Host ASP.net Core unter Linux mit Apache: HTTPS-Konfiguration](xref:host-and-deploy/linux-apache#https-configuration)

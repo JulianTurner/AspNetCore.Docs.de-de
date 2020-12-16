@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 6435a7c9ce2a30873f0d3475a38270d3dea1b300
-ms.sourcegitcommit: 98f92d766d4f343d7e717b542c1b08da29e789c1
+ms.openlocfilehash: 8a61472da556db48a8572b0a59075beb7737a547
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "94595466"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506824"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Authentifizierung und Autorisierung in ASP.NET Core Blazor
 
@@ -231,6 +231,8 @@ Richten Sie den kaskadierenden Parameter `Task<`<xref:Microsoft.AspNetCore.Compo
 </CascadingAuthenticationState>
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 Fügen Sie in einer Blazor WebAssembly-App Dienste für Optionen und für die Autorisierung in `Program.Main` hinzu:
 
 ```csharp
@@ -422,6 +424,8 @@ In der Standardprojektvorlage für Blazor Server zeigt die Komponente `App` (`Ap
 </CascadingAuthenticationState>
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 Der Inhalt der Tags `<NotFound>`, `<NotAuthorized>` und `<Authorizing>` kann beliebige Elemente beinhalten, z. B. andere interaktive Komponenten.
 
 Wenn das Tag `<NotAuthorized>` nicht angegeben ist, verwendet <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> die folgende alternative Meldung:
@@ -499,6 +503,8 @@ Wahrscheinlich wurde das Projekt nicht mit einer Blazor Server-Vorlage mit aktiv
     </Router>
 </CascadingAuthenticationState>
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> stellt den kaskadierenden Parameter `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` zur Verfügung, den er wiederum vom zugrunde liegenden DI-Dienst <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> empfängt.
 

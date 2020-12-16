@@ -314,8 +314,8 @@
               uid: tutorials/build-a-blazor-app
             - name: SignalR mit Blazor-WebAssembly
               uid: tutorials/signalr-blazor-webassembly
-        - name: Vorlagen
-          uid: blazor/templates
+        - name: Projektstruktur
+          uid: blazor/project-structure
         - name: Grundlagen
           items:
             - name: Routing
@@ -437,7 +437,7 @@
         - name: Integrierte Komponenten
           items:
             - name: App
-              href: blazor/templates.md#blazor-project-structure
+              uid: blazor/project-structure
             - name: Authentifizierung
               href: blazor/security/webassembly/index.md#authentication-component
             - name: AuthorizeView

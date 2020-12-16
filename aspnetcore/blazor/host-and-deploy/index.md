@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 082072d2b70abfe60da8e2cd40daa8b93ebcc9ac
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: a23bee120611ee603305a88dabac76566481fa4a
+ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055814"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97485887"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor"></a>Hosten und Bereitstellen von ASP.NET Core Blazor
 
@@ -38,11 +38,11 @@ Apps werden für die Bereitstellung in Releasekonfigurationen veröffentlicht.
 
 1. Wählen Sie **Build** > **Publish {APPLICATION}** auf der Navigationsleiste aus.
 1. Wählen Sie das *Veröffentlichungsziel* aus. Um lokal zu veröffentlichen, wählen Sie **Ordner** aus.
-1. Übernehmen Sie den Standardspeicherort im Feld **Ordner auswählen** , oder geben Sie einen anderen Speicherort an. Wählen Sie die Schaltfläche **`Publish`** aus.
+1. Übernehmen Sie den Standardspeicherort im Feld **Ordner auswählen**, oder geben Sie einen anderen Speicherort an. Wählen Sie die Schaltfläche **`Publish`** aus.
 
 # <a name="visual-studio-for-mac"></a>[Visual Studio für Mac](#tab/visual-studio-mac)
 
-1. Klicken Sie auf **Erstellen** > **In Ordner veröffentlichen** .
+1. Klicken Sie auf **Erstellen** > **In Ordner veröffentlichen**.
 1. Bestätigen Sie den Ordner, in dem die veröffentlichten Ressourcen gespeichert werden, und wählen Sie **`Publish`** aus.
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
@@ -79,10 +79,18 @@ Der *Basispfad einer App* beschreibt den URL-Stammpfad der App. Betrachten Sie d
 
 Wenn keine zusätzlichen Konfiguration für `CoolApp` festgelegt wird, weiß die untergeordnete App in diesem Szenario nicht, wo sie sich auf dem Server befindet. Beispielsweise kann die App keine richtigen relativen URLs zu ihren Ressourcen erstellen, ohne zu wissen, dass sie sich unter dem relativen URL-Pfad `/CoolApp/` befindet.
 
-Um die Konfiguration für den Basispfad `https://www.contoso.com/CoolApp/` der Blazor-App anzugeben, wird das `href`-Attribut des `<base>`-Tags auf den relativen Stammpfad in der Datei `Pages/_Host.cshtml` (Blazor Server) oder der Datei `wwwroot/index.html` (Blazor WebAssembly) festgelegt:
+Um die Konfiguration für den Basispfad `https://www.contoso.com/CoolApp/` der Blazor-App anzugeben, wird das `href`-Attribut des `<base>`-Tags auf den relativen Stammpfad in der Datei `wwwroot/index.html` (Blazor WebAssembly) oder der Datei `Pages/_Host.cshtml` (Blazor Server) festgelegt.
+
+Blazor WebAssembly (`wwwroot/index.html`):
 
 ```html
 <base href="/CoolApp/">
+```
+
+Blazor Server (`Pages/_Host.cshtml`):
+
+```html
+<base href="~/CoolApp/">
 ```
 
 Blazor Server-Apps legen zusätzlich den serverseitigen Basispfad fest, indem sie <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> in der Anforderungspipeline `Startup.Configure` der App aufrufen:
@@ -95,9 +103,9 @@ Indem der relative URL-Pfad angegeben wird, kann eine Komponente, die sich nicht
 
 Bei vielen Hostingszenarios ist der relative URL-Pfad des Servers zur App das Stammverzeichnis der App. In diesen Fällen handelt es sich beim relativen URL-Basispfad um einen Schrägstrich (`<base href="/" />`). Hierbei handelt es sich um die Standardkonfiguration für Blazor-Apps. Bei anderen Hostingszenarios, z. B. bei GitHub-Seiten und untergeordneten IIS-Apps, muss der Basispfad der App auf den relativen URL-Pfad des Servers der App festgelegt werden.
 
-Aktualisieren Sie das Tag `<base>` in den `<head>`-Tagelementen der Datei `Pages/_Host.cshtml` (Blazor Server) oder der Datei `wwwroot/index.html` (Blazor WebAssembly), um den Basispfad der App festzulegen. Legen Sie das `href`-Attribut auf `/{RELATIVE URL PATH}/` fest (der nachstehende Schrägstrich ist erforderlich). `{RELATIVE URL PATH}` entspricht hier dem vollständigen relativen URL-Pfad der App.
+Aktualisieren Sie das Tag `<base>` in den `<head>`-Tagelementen der Datei `Pages/_Host.cshtml` (Blazor Server) oder der Datei `wwwroot/index.html` (Blazor WebAssembly), um den Basispfad der App festzulegen. Legen Sie den Wert des `href`-Attributs auf `/{RELATIVE URL PATH}/` (Blazor WebAssembly) oder `~/{RELATIVE URL PATH}/` (Blazor Server) fest. **Der nachstehende Schrägstrich ist erforderlich.** Der Platzhalter `{RELATIVE URL PATH}` ist der vollständige relative URL-Pfad der App.
 
-Bei einer Blazor WebAssembly-App mit einem relativen URL-Pfad, der sich nicht im Stammverzeichnis befindet (z. B. `<base href="/CoolApp/">`), werden die Ressourcen der App nicht gefunden, *wenn die App lokal ausgeführt wird* . Um dieses Problem bei der lokalen Entwicklung und bei Tests zu beheben, können Sie ein *Pfadbasis* -Argument bereitstellen, das dem `href`-Wert des `<base>`-Tags zur Laufzeit entspricht. Fügen Sie keinen nachgestellten Schrägstrich ein. Führen Sie den Befehl `dotnet run` aus dem Verzeichnis der App mit der `--pathbase`-Option aus, um das Basispfadargument beim lokalen Ausführen der App zu übergeben:
+Bei einer Blazor WebAssembly-App mit einem relativen URL-Pfad, der nicht zum Stammverzeichnis führt (z. B. `<base href="/CoolApp/">`), werden die Ressourcen der App nicht gefunden, *wenn die App lokal ausgeführt wird*. Um dieses Problem bei der lokalen Entwicklung und bei Tests zu beheben, können Sie ein *Pfadbasis*-Argument bereitstellen, das dem `href`-Wert des `<base>`-Tags zur Laufzeit entspricht. **Fügen Sie keinen nachgestellten Schrägstrich ein.** Führen Sie den Befehl `dotnet run` aus dem Verzeichnis der App mit der `--pathbase`-Option aus, um das Basispfadargument beim lokalen Ausführen der App zu übergeben:
 
 ```dotnetcli
 dotnet run --pathbase=/{RELATIVE URL PATH (no trailing slash)}

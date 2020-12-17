@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: affca6c9b585b91787f94a13144d07bedfefdd37
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 3402117334548f9d90880d4f536e8baa288e7bc9
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431688"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506980"
 ---
 # <a name="prerender-and-integrate-aspnet-core-no-locrazor-components"></a>Vorabrendern und Integrieren von ASP.NET Core Razor-Komponenten
 
@@ -308,6 +308,8 @@ So richten Sie die Unterstützung von routingfähigen Razor-Komponenten in Razor
    </Router>
    ```
 
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 1. Fügen Sie dem Ordner `Pages` eine `_Host.cshtml`-Datei mit dem folgenden Inhalt hinzu:
 
    ```cshtml
@@ -376,6 +378,8 @@ So richten Sie die Unterstützung von routingfähigen Razor-Komponenten in MVC-A
        </NotFound>
    </Router>
    ```
+
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 1. Fügen Sie dem Ordner `Views/Home` eine `_Host.cshtml`-Datei mit dem folgenden Inhalt hinzu:
 

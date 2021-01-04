@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 0e81397d210518854939c6941e7f6da43ed48389
-ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
+ms.openlocfilehash: 86b57a9cad27673b72ad174a18741f5528f9f78a
+ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
 ms.translationtype: HT
 ms.contentlocale: de-DE
 ms.lasthandoff: 12/10/2020
-ms.locfileid: "96855507"
+ms.locfileid: "97011857"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>Razor Pages mit Entity Framework Core in ASP.NET Core – Tutorial 1 bis 8
 
@@ -237,7 +237,8 @@ In diesem Abschnitt verwenden Sie das ASP.Net Core-Gerüstbautool, um Folgendes 
   * Wählen Sie im Dropdownmenü **Modellklasse** **Student (ContosoUniversity.Models)** aus.
   * Wählen Sie in der Zeile **Datenkontextklasse** das **+** -Zeichen (Pluszeichen) aus.
     * Ändern Sie den Datenkontextnamen so, dass er auf `SchoolContext` anstatt auf `ContosoUniversityContext` endet. Der aktualisierte Kontextname lautet `ContosoUniversity.Data.SchoolContext`.
-   * Wählen Sie **Hinzufügen** aus.
+    * Klicken Sie auf **Hinzufügen**, um das Hinzufügen der Datenkontextklasse abzuschließen.
+   * Klicken Sie auf **Hinzufügen**, um das Dialogfeld **Add Razor Pages** (Razor Pages hinzufügen) zu beenden.
 
 Die folgenden Pakete werden automatisch installiert:
 

@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 500342ac979efdee824ac0d4b5757ca9804f3b30
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 29f1a1f211688a1edcd31c7230e7216df7c89eef
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93054813"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506811"
 ---
 # <a name="tooling-for-aspnet-core-no-locblazor"></a>Tools für ASP.NET-Core Blazor
 
@@ -43,7 +43,9 @@ Von [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github
 
 1. Wählen Sie für eine Blazor WebAssembly-Benutzeroberfläche die **Blazor WebAssembly-App-** Vorlage aus. Wählen Sie für eine Blazor Server-Benutzeroberfläche die **Blazor Server-App-** Vorlage aus. Wählen Sie **Erstellen** aus.
 
-   Informationen zu den zwei Blazor-Hostingmodellen ( *Blazor WebAssembly* und *Blazor Server* ) finden Sie unter <xref:blazor/hosting-models>.
+   Aktivieren Sie für das gehostete Modell von Blazor WebAssembly das Kontrollkästchen **ASP.NET Core, gehostet**.
+
+   Informationen zu den beiden Hostingmodellen für Blazor, *Blazor WebAssembly* (eigenständig und gehostet) und *Blazor Server* , finden Sie unter <xref:blazor/hosting-models>.
 
 1. Drücken Sie <kbd>STRG</kbd>+<kbd>F5</kbd>, um die App auszuführen.
 
@@ -69,13 +71,19 @@ Weitere Informationen zum Festlegen des ASP.NET Core-HTTPS-Entwicklungszertifika
    dotnet new blazorwasm -o WebApplication1
    ```
 
+   Fügen Sie dem Befehl für ein gehostetes Blazor WebAssembly-Modell die Hostingoption (`-ho` oder `--hosted`) hinzu:
+   
+   ```dotnetcli
+   dotnet new blazorwasm -o WebApplication1 -ho
+   ```
+   
    Für eine Blazor Server-Benutzeroberfläche führen Sie den folgenden Befehl in einer Befehlsshell aus:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
    ```
 
-   Informationen zu den zwei Blazor-Hostingmodellen ( *Blazor WebAssembly* und *Blazor Server* ) finden Sie unter <xref:blazor/hosting-models>.
+   Informationen zu den beiden Hostingmodellen für Blazor, *Blazor WebAssembly* (eigenständig und gehostet) und *Blazor Server* , finden Sie unter <xref:blazor/hosting-models>.
 
 1. Öffnen Sie in Visual Studio Code den Ordner `WebApplication1`.
 
@@ -105,9 +113,11 @@ Weitere Informationen finden Sie in der Dokumentation zu Ihrem Browseranbieter u
 
    Wählen Sie für eine Blazor WebAssembly-Benutzeroberfläche die **Blazor WebAssembly-App-** Vorlage aus. Wählen Sie für eine Blazor Server-Benutzeroberfläche die **Blazor Server-App-** Vorlage aus. Klicken Sie auf **Weiter**.
 
-   Informationen zu den zwei Blazor-Hostingmodellen ( *Blazor WebAssembly* und *Blazor Server* ) finden Sie unter <xref:blazor/hosting-models>.
+   Informationen zu den beiden Hostingmodellen für Blazor, *Blazor WebAssembly* (eigenständig und gehostet) und *Blazor Server* , finden Sie unter <xref:blazor/hosting-models>.
 
 1. Vergewissern Sie sich, dass **Authentifizierung** auf **Keine Authentifizierung** festgelegt ist. Klicken Sie auf **Weiter**.
+
+1. Aktivieren Sie für das gehostete Modell von Blazor WebAssembly das Kontrollkästchen **ASP.NET Core, gehostet**.
 
 1. Benennen Sie im Feld **Projektname** die App `WebApplication1`. Wählen Sie **Erstellen** aus.
 
@@ -116,3 +126,23 @@ Weitere Informationen finden Sie in der Dokumentation zu Ihrem Browseranbieter u
 Wenn eine Eingabeaufforderung dem Entwicklungszertifikat zu vertrauen scheint, vertrauen Sie dem Zertifikat und fahren Sie fort. Das Benutzer- und Keychainkennwort sind erforderlich, um dem Zertifikat zu vertrauen. Weitere Informationen zum Festlegen des ASP.NET Core-HTTPS-Entwicklungszertifikats als vertrauenswürdig finden Sie hier: <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 ::: zone-end
+
+## <a name="use-visual-studio-code-for-cross-platform-no-locblazor-development"></a>Verwenden von Visual Studio Code für die plattformübergreifende Blazor-Entwicklung
+
+[Visual Studio Code](https://code.visualstudio.com/) ist eine plattformübergreifende Open-Source-Entwicklungsumgebung (Integrated Development Environment, IDE), mit der Blazor-Apps entwickelt werden können. Verwenden Sie die .NET-CLI zum Erstellen einer neuen Blazor-App für die Entwicklung mit Visual Studio Code. Weitere Informationen finden Sie in der [Linux-Version dieses Artikels](/aspnet/core/blazor/tooling?pivots=linux).
+
+## <a name="no-locblazor-template-options"></a>Blazor-Vorlagenoptionen
+
+Das Blazor-Framework bietet für beide Blazor-Hostingmodelle Vorlagen zum Erstellen neuer Apps. Mithilfe der Vorlagen können neue Blazor-Projekte und -Projektmappen erstellt werden, unabhängig von den Tools, die Sie für die Blazor-Entwicklung auswählen (Visual Studio, Visual Studio für Mac, Visual Studio Code oder die .NET-CLI):
+
+* Blazor WebAssembly-Projektvorlage: `blazorwasm`
+* Blazor Server-Projektvorlage: `blazorserver`
+
+Weitere Informationen zur Blazor-Hostingmodellen finden Sie unter <xref:blazor/hosting-models>.
+
+Vorlagenoptionen sind verfügbar, indem Sie die Hilfeoption (`-h` oder `--help`) in einer Befehlsshell an den CLI-Befehl [`dotnet new`](/dotnet/core/tools/dotnet-new) übergeben:
+
+```dotnetcli
+dotnet new blazorwasm --h
+dotnet new blazorserver --h
+```

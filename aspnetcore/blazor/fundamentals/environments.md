@@ -5,7 +5,7 @@ description: Weitere Informationen zu Umgebungen und zum Festlegen der Umgebung 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 12/11/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,25 +19,25 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/environments
-ms.openlocfilehash: 61d46e0bd83d8bd82bf7faaf9d8f2fecbacc2ffa
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9ba23753df1726ee4c8a9802e1a1260ef7cf6fa5
+ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056035"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97506954"
 ---
 # <a name="aspnet-core-no-locblazor-environments"></a>ASP.NET Core Blazor-Umgebungen
 
 > [!NOTE]
-> Dieses Thema gilt für Blazor WebAssembly. Eine allgemeine Anleitung zur App-Konfiguration in ASP.NET Core finden Sie unter <xref:fundamentals/environments>.
+> Dieses Thema gilt für Blazor WebAssembly. Eine allgemeine Anleitung zur Konfiguration von ASP.NET Core-Apps, in der die Ansätze für Blazor Server-Apps beschrieben werden, finden Sie unter <xref:fundamentals/environments>.
 
 Wenn eine App lokal ausgeführt wird, wird Umgebung standardmäßig auf „Entwicklung“ festgelegt. Wenn die App veröffentlicht wird, wird standardmäßig die Produktionsumgebung verwendet.
 
-Eine gehostete Blazor WebAssembly-App übernimmt die Umgebung vom Server mittels einer Middleware, die die Umgebung dem Browser mitteilt, indem sie den `blazor-environment`-Header hinzufügt. Der Wert des Headers ist die Umgebung. Die gehostete Blazor-App und die Server-App verwenden gemeinsam dieselbe Umgebung. Weitere Informationen, einschließlich Informationen zum Konfigurieren der Umgebung, finden Sie unter <xref:fundamentals/environments>.
+Die clientseitige Blazor-App ( *`Client`* ) einer gehosteten Blazor WebAssembly-Lösung bestimmt die Umgebung aus der *`Server`* -App der Lösung über eine Middleware, die dem Browser die Umgebung mitteilt. Die *`Server`* -App fügt einen Header namens `blazor-environment` hinzu, wobei die Umgebung den Wert des Headers darstellt. Der *`Client`* -App liest den Header. Die *`Server`* -App der Lösung ist eine ASP.NET Core-App. Weitere Informationen zum Konfigurieren der Umgebung finden Sie unter <xref:fundamentals/environments>.
 
-Wenn eine eigenständige App lokal ausgeführt wird, fügt der Entwicklungsserver den `blazor-environment`-Header hinzu, um die Entwicklungsumgebung anzugeben. Um die Umgebung für andere Hostingumgebungen anzugeben, fügen Sie den `blazor-environment`-Header hinzu.
+Wenn eine eigenständige Blazor WebAssembly-App lokal ausgeführt wird, fügt der Entwicklungsserver den `blazor-environment`-Header hinzu, um die Entwicklungsumgebung anzugeben. Um die Umgebung für andere Hostingumgebungen anzugeben, fügen Sie den `blazor-environment`-Header hinzu.
 
-Im folgenden Beispiel für IIS fügen Sie den benutzerdefinierten Header zu der veröffentlichten Datei `web.config` hinzu. Die `web.config`-Datei befindet sich im Ordner `bin/Release/{TARGET FRAMEWORK}/publish`:
+Im folgenden Beispiel für IIS wird der benutzerdefinierte Header (`blazor-environment`) zu der veröffentlichten `web.config`-Datei hinzugefügt. Die `web.config`-Datei befindet sich im Ordner `bin/Release/{TARGET FRAMEWORK}/publish`, wobei der Platzhalter `{TARGET FRAMEWORK}` für das Zielframework steht:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -58,19 +58,15 @@ Im folgenden Beispiel für IIS fügen Sie den benutzerdefinierten Header zu der 
 > [!NOTE]
 > Informationen zum Verwenden einer benutzerdefinierten Datei `web.config` für IIS, die nicht überschrieben wird, wenn die App im Ordner `publish` veröffentlicht wird, finden Sie unter <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
 
-Rufen Sie die Umgebung der App in einer Komponente ab, indem Sie <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> einfügen und die <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment>-Eigenschaft lesen:
+Rufen Sie die Umgebung der App in einer Komponente ab, indem Sie <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> einfügen und die <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment>-Eigenschaft lesen.
 
-```razor
-@page "/"
-@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
-@inject IWebAssemblyHostEnvironment HostEnvironment
+`Pages/ReadEnvironment.razor`:
 
-<h1>Environment example</h1>
+[!code-razor[](environments/samples_snapshot/ReadEnvironment.razor?highlight=3,7)]
 
-<p>Environment: @HostEnvironment.Environment</p>
-```
+Während des Starts macht <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> die Schnittstelle <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> über die <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> -Eigenschaft verfügbar, die umgebungsspezifische Logik im Code des Host-Generators ermöglicht.
 
-Während des Starts macht <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> die <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> über die <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment>-Eigenschaft verfügbar, was es Entwicklern ermöglicht, umgebungsspezifische Logik in ihrem Code zu verwenden:
+In `Program.Main` von `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -79,12 +75,14 @@ if (builder.HostEnvironment.Environment == "Custom")
 };
 ```
 
-Die folgenden bequemen Erweiterungsmethoden ermöglichen die Überprüfung der aktuellen Umgebung auf die Namen „Entwicklung“, „Produktion“, „Staging“ sowie benutzerdefinierte Umgebungsnamen:
+Die folgenden bequemen, von <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions> bereitgestellten Erweiterungsmethoden ermöglichen die Überprüfung der aktuellen Umgebung auf die Namen „Development“, „Production“, „Staging“ sowie auf benutzerdefinierte Umgebungsnamen:
 
-* `IsDevelopment()`
-* `IsProduction()`
-* `IsStaging()`
-* `IsEnvironment("{ENVIRONMENT NAME}")`
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsDevelopment%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsProduction%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsStaging%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsEnvironment%2A>
+
+In `Program.Main` von `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.IsStaging())

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 7edba338716a0545390ec53775f69eaef141d389
-ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
+ms.openlocfilehash: 5983cbc1e0256f7cf8e85fb07f9ba1bbc1bf08db
+ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96855286"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97011870"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -910,9 +910,7 @@ Wenn Blazor WebAssembly die Startdateien einer App herunterlädt, wird der Brows
 
 Wenn Ihr Webserver Antworten zurückgibt, die nicht den erwarteten SHA-256-Hashwerten entsprechen, wird in der Entwicklerkonsole des Browsers eine Fehlermeldung angezeigt, die der folgenden ähnelt:
 
-```
-Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
-```
+> Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/\_framework/MyBlazor App.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked. (Fehler beim Ermitteln eines gültigen Hashs im 'integrity'-Attribut für die Ressource 'https://myapp.example.com/_framework/MyBlazorApp.dll' mit der berechneten SHA-256-Integrität 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. Die Ressource wurde blockiert.)
 
 In den meisten Fällen liegt hier *kein* Problem mit der Integritätsprüfung selbst vor. Stattdessen bedeutet dies, dass ein anderes Problem vorliegt, und die Integritätsüberprüfung warnt Sie vor diesem anderen Problem.
 
@@ -961,6 +959,13 @@ Platzhalter:
 
 * `{BASE URL}`: Die URL der bereitgestellten App.
 * `{PUBLISH OUTPUT FOLDER}`: Der Pfad zum `publish`-Ordner der App oder zu dem Speicherort, in dem die App für die Bereitstellung veröffentlicht wurde.
+
+> [!NOTE]
+> Wenn Sie das GitHub-Repository `dotnet/AspNetCore.Docs` in einem System klonen möchten, das den Virusscanner [Bitdefender](https://www.bitdefender.com) verwendet, fügen Sie in Bitdefender eine Ausnahme für das `integrity.ps1`-Skript hinzu. Fügen Sie Bitdefender die Ausnahme hinzu, bevor Sie das Repository klonen, um zu vermeiden, dass das Skript vom Virusscanner unter Quarantäne gestellt wird. Das folgende Beispiel enthält einen typischen Pfad zum Skript für das geklonte Repository in einem Windows-System. Passen Sie den Pfad nach Bedarf an. Der Platzhalter `{USER}` steht für das Pfadsegment des Benutzers.
+>
+> ```
+> C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
+> ```
 
 ### <a name="disable-integrity-checking-for-non-pwa-apps"></a>Deaktivieren der Integritätsprüfung für Nicht-PWA-Apps
 

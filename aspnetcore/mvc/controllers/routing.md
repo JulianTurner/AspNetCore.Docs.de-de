@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 59ad373cefaa12370aa7c02a367125c7a94f59a6
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.openlocfilehash: a163c87fdb9a02c1b074ab32c19c11932c66cfd4
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422599"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854534"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -220,7 +220,7 @@ Wenn zwei Endpunkte über das Routing abgleichen, muss das Routing einen der fol
 * Wählen Sie den besten Kandidaten aus.
 * Löst eine Ausnahme aus.
 
-Zum Beispiel:
+Beispiel:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
@@ -260,7 +260,7 @@ Routennamen:
 * Hat keine Auswirkung auf die URL-Übereinstimmung oder-Verarbeitung von Anforderungen.
 * Werden nur für die URL-Generierung verwendet.
 
-Das Routing Namenskonzept wird als " [iendpointnamemetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata)" dargestellt. Die Begriffe **Routen Name** und **Endpunkt Name** :
+Das Routing Namenskonzept wird als " [iendpointnamemetadata](xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata)" dargestellt. Die Begriffe **Routen Name** und **Endpunkt Name**:
 
 * Sind austauschbar.
 * Welche Informationen in der Dokumentation und im Code verwendet werden, hängt von der API ab, die beschrieben wird.
@@ -278,7 +278,7 @@ Beim Attributrouting werden Aktionen mithilfe von Attributen direkt Routenvorlag
 
 Im vorangehenden Code <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> wird innerhalb von aufgerufen, `UseEndpoints` um Attribut Routing Controller zuzuordnen.
 
-Siehe folgendes Beispiel:
+Im folgenden Beispiel:
 
 * Die vorangehende `Configure` Methode wird verwendet.
 * `HomeController` entspricht einem Satz von URLs, die mit der herkömmlichen Standardroute `{controller=Home}/{action=Index}/{id?}` übereinstimmen.
@@ -351,7 +351,7 @@ Beachten Sie den folgenden Controller:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * Jede Aktion enthält das- `[HttpGet]` Attribut, das die Übereinstimmung von HTTP-GET-Anforderungen einschränkt.
 * Die `GetProduct` Aktion enthält die `"{id}"` Vorlage und `id` wird daher an die `"api/[controller]"` Vorlage auf dem Controller angehängt. Die Methoden Vorlage ist `"api/[controller]/"{id}""` . Daher entspricht diese Aktion nur Get-Anforderungen für das Formular `/api/test2/xyz` , `/api/test2/123` , `/api/test2/{any string}` usw.
@@ -435,7 +435,7 @@ In der folgenden Tabelle werden die `[Route]` Attribute im vorangehenden Code er
 | `[Route("")]` | Ja | `"Home"` |
 | `[Route("Index")]` | Ja | `"Home/Index"` |
 | `[Route("/")]` | **Nein** | `""` |
-| `[Route("About")]` | Yes | `"Home/About"` |
+| `[Route("About")]` | Ja | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
 <a name="oar"></a>
@@ -472,7 +472,7 @@ Durch das Hinzufügen `Order` eines der Routen Attribute wird die Mehrdeutigkeit
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemo3Controller.cs?name=snippet3& highlight=2)]
 
-Mit dem vorangehenden Code `/home` führt den `HomeController.Index` Endpunkt aus. Um die `MyDemoController.MyIndex` anzufordern, fordern Sie an `/home/MyIndex` . **Hinweis** :
+Mit dem vorangehenden Code `/home` führt den `HomeController.Index` Endpunkt aus. Um die `MyDemoController.MyIndex` anzufordern, fordern Sie an `/home/MyIndex` . **Hinweis**:
 
 * Der vorangehende Code ist ein Beispiel oder ein schlechtes Routing Design. Es wurde verwendet, um die-Eigenschaft zu veranschaulichen `Order` .
 * Die- `Order` Eigenschaft löst nur die Mehrdeutigkeit auf, diese Vorlage kann nicht abgeglichen werden. Es wäre besser, die Vorlage zu entfernen `[Route("Home")]` .
@@ -485,16 +485,11 @@ In einigen Fällen wird ein HTTP 500-Fehler mit mehrdeutigen Routen zurückgegeb
 
 ## <a name="token-replacement-in-route-templates-controller-action-area"></a>Ersetzung von Token in Routen Vorlagen [Controller], [Aktion], [Bereich]
 
-Zur einfacheren Unterstützung unterstützen Attribut Routen die Tokenersetzung für reservierte Routen Parameter durch das Einschließen eines Tokens in einer der folgenden Werte:
-
-* Eckige Klammern: `[]`
-* Geschweifte Klammern: `{}`
-
-Die Token `[action]` , `[area]` und `[controller]` werden durch die Werte für Aktionsname, Bereichs Name und Controller Name aus der Aktion ersetzt, in der die Route definiert ist:
+Zur einfacheren Unterstützung unterstützen Attribut Routen die *Tokenersetzung* durch Einschließen eines Tokens in eckige Klammern ( `[` , `]` ). Die Token `[action]` , `[area]` und `[controller]` werden durch die Werte für Aktionsname, Bereichs Name und Controller Name aus der Aktion ersetzt, in der die Route definiert ist:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
@@ -633,7 +628,7 @@ Sehen Sie sich beispielsweise den folgenden Controller an:
 
 [!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs)]
 
-Für den Code oben gilt:
+Im obigen Code:
 
 * Die Basis `namespace` ist `My.Application` .
 * Der vollständige Name des vorangehenden Controllers ist `My.Application.Admin.Controllers.UsersController` .
@@ -717,7 +712,7 @@ Wenn der Wert `{ d = Donovan }` hinzugefügt wird:
 * Der Wert `{ d = David }` wird ignoriert.
 * Der generierte URL-Pfad ist `Alice/Bob/Carol/Donovan` .
 
-**Warnung** : URL-Pfade sind hierarchisch. Im vorherigen Beispiel, wenn der Wert `{ c = Cheryl }` hinzugefügt wird:
+**Warnung**: URL-Pfade sind hierarchisch. Im vorherigen Beispiel, wenn der Wert `{ c = Cheryl }` hinzugefügt wird:
 
 * Beide Werte `{ c = Carol, d = David }` werden ignoriert.
 * Für ist kein Wert mehr vorhanden, `d` und die URL-Generierung schlägt fehl.
@@ -874,7 +869,7 @@ In diesem Artikel werden die Schnittstellen zwischen MVC und Routing und die Art
 
 ## <a name="setting-up-routing-middleware"></a>Einrichten der Routing-Middleware
 
-Ihre *Configure* -Methode kann Code wie diesen enthalten:
+Ihre *Configure*-Methode kann Code wie diesen enthalten:
 
 ```csharp
 app.UseMvc(routes =>
@@ -1000,7 +995,7 @@ app.UseMvc(routes =>
 });
 ```
 
-Die `blog`-Route hier ist eine *dedizierte herkömmliche Route* , d.h., dass das herkömmliche Routingsystem verwendet wird, aber einer bestimmten Aktion zugeordnet ist. Da `controller` und `action` nicht als Parameter in der Routenvorlage vorkommen, können sie nur die Standardwerte haben. Daher wird diese Route immer der Aktion `BlogController.Article` zugeordnet.
+Die `blog`-Route hier ist eine *dedizierte herkömmliche Route*, d.h., dass das herkömmliche Routingsystem verwendet wird, aber einer bestimmten Aktion zugeordnet ist. Da `controller` und `action` nicht als Parameter in der Routenvorlage vorkommen, können sie nur die Standardwerte haben. Daher wird diese Route immer der Aktion `BlogController.Article` zugeordnet.
 
 Die Routen in der Routenauflistung sind geordnet und werden in der Reihenfolge verarbeitet, in der sie hinzugefügt wurden. In diesem Beispiel wird daher die Route `blog` vor der Route `default` überprüft.
 
@@ -1013,7 +1008,7 @@ Im Rahmen der Anforderungsverarbeitung überprüft MVC, ob mit den Routenwerten 
 
 ### <a name="disambiguating-actions"></a>Aktionen eindeutig zuordnen
 
-Wenn zwei Aktionen beim Routing übereinstimmen, muss MVC beide analysieren und die beste auswählen oder eine Ausnahme auslösen. Zum Beispiel:
+Wenn zwei Aktionen beim Routing übereinstimmen, muss MVC beide analysieren und die beste auswählen oder eine Ausnahme auslösen. Beispiel:
 
 ```csharp
 public class ProductsController : Controller
@@ -1164,7 +1159,7 @@ public class ProductsApiController : Controller
 Routennamen können verwendet werden, um basierend auf einer bestimmten Route eine URL zu generieren. Routennamen haben keine Auswirkung auf das URL-Zuordnungsverhalten des Routings und dienen nur zur URL-Generierung. Routennamen müssen anwendungsweit eindeutig sein.
 
 > [!NOTE]
-> Vergleichen Sie dies mit der herkömmlichen *Standardroute* , die den `id`-Parameter als optional definiert (`{id?}`). APIs präzise angeben zu können, hat Vorteile, z.B. können `/products` und `/products/5` an unterschiedliche Aktionen gesendet werden.
+> Vergleichen Sie dies mit der herkömmlichen *Standardroute*, die den `id`-Parameter als optional definiert (`{id?}`). APIs präzise angeben zu können, hat Vorteile, z.B. können `/products` und `/products/5` an unterschiedliche Aktionen gesendet werden.
 
 <a name="routing-combining-ref-label"></a>
 
@@ -1459,7 +1454,7 @@ Beim Routing wird versucht, mit den Werten in den Umgebungswerten Informationen 
 > [!WARNING]
 > URL-Pfade sind hierarchisch. Wenn Sie im obigen Beispiel den Wert `{ c = Cheryl }` hinzufügen, werden die beiden Werte `{ c = Carol, d = David }` ignoriert. In diesem Fall haben wir keinen Wert für `d` mehr, und die URL-Generierung schlägt fehl. Sie müssten dann den gewünschten Wert von `c` und `d` angeben.  Man könnte annehmen, dass dieses Problem bei der Standardroute auftritt (`{controller}/{action}/{id?}`). Tatsächlich passiert es in der Praxis jedoch selten, das `Url.Action` immer explizit einen `controller`- und `action`-Wert angibt.
 
-Längere Überladungen von `Url.Action` akzeptieren auch ein zusätzliches *route values* -Objekt, um andere Werte für Routenparameter als `controller` und `action` bereitzustellen. Es wird in der Regel mit `id` verwendet, z.B. in `Url.Action("Buy", "Products", new { id = 17 })`. Gemäß der Konvention ist das *Routenwerte* -Objekt eines des anonymen Typs, es kann aber auch ein `IDictionary<>`-Objekt oder ein *Plain Old .NET Object* sein. Alle zusätzlichen Routenwerte, die keinen Routenparametern zugeordnet sind, werden in der Abfragezeichenfolge platziert.
+Längere Überladungen von `Url.Action` akzeptieren auch ein zusätzliches *route values*-Objekt, um andere Werte für Routenparameter als `controller` und `action` bereitzustellen. Es wird in der Regel mit `id` verwendet, z.B. in `Url.Action("Buy", "Products", new { id = 17 })`. Gemäß der Konvention ist das *Routenwerte*-Objekt eines des anonymen Typs, es kann aber auch ein `IDictionary<>`-Objekt oder ein *Plain Old .NET Object* sein. Alle zusätzlichen Routenwerte, die keinen Routenparametern zugeordnet sind, werden in der Abfragezeichenfolge platziert.
 
 [!code-csharp[](routing/samples/2.x/main/Controllers/TestController.cs)]
 

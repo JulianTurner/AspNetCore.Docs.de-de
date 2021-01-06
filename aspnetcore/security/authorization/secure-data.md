@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: accfd46fa72c33976f8af2a39267c993447e036e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: dc70cfe7cb0c0f044f5f1e7ee68a293b3ea7507f
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051940"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854651"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Erstellen einer ASP.net Core-Web-App mit von der Autorisierung geschützten Benutzerdaten
 
@@ -45,7 +45,7 @@ In diesem Tutorial wird gezeigt, wie Sie eine ASP.net Core-Web-App mit Benutzerd
 
 Die Bilder in diesem Dokument entsprechen nicht exakt den neuesten Vorlagen.
 
-In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und **Edit** / **Löschen** bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
+In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und  / **Löschen** bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
 
 ![Screenshot der Anmeldung mit Rick](secure-data/_static/rick.png)
 
@@ -93,7 +93,7 @@ Dieses Tutorial ist erweitert. Sie sollten sich mit folgenden Aktionen vertraut 
 
 [Laden Sie](xref:index#how-to-download-a-sample) die [Starter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/) -APP herunter.
 
-Führen Sie die APP aus, tippen Sie auf den Link **ContactManager** , und überprüfen Sie, ob Sie einen Kontakt erstellen, bearbeiten und löschen können.
+Führen Sie die APP aus, tippen Sie auf den Link **ContactManager** , und überprüfen Sie, ob Sie einen Kontakt erstellen, bearbeiten und löschen können. Informationen zum Erstellen der Starter-App finden Sie unter [Erstellen der Starter-App](#create-the-starter-app).
 
 ## <a name="secure-user-data"></a>Sichern von Benutzerdaten
 
@@ -128,7 +128,7 @@ Legen Sie die Fall Back Authentifizierungs Richtlinie so fest, dass Benutzer aut
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
-Der obige markierte Code legt die [Fall Back Authentifizierungs Richtlinie](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)fest. Die Fall Back Authentifizierungs Richtlinie erfordert, dass * *_all_* _-Benutzer authentifiziert werden, mit Ausnahme von Razor Seiten, Controllern oder Aktionsmethoden mit einem Authentifizierungs Attribut. Beispielsweise werden Razor Seiten, Controller oder Aktionsmethoden mit `[AllowAnonymous]` oder `[Authorize(PolicyName="MyPolicy")]` das angewendete Authentifizierungs Attribut anstelle der Fall Back Authentifizierungs Richtlinie verwendet.
+Der obige markierte Code legt die [Fall Back Authentifizierungs Richtlinie](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)fest. Die Fall Back Authentifizierungs Richtlinie erfordert, dass **_all_* _-Benutzer authentifiziert werden, mit Ausnahme von Razor Seiten, Controllern oder Aktionsmethoden mit einem Authentifizierungs Attribut. Beispielsweise werden Razor Seiten, Controller oder Aktionsmethoden mit `[AllowAnonymous]` oder `[Authorize(PolicyName="MyPolicy")]` das angewendete Authentifizierungs Attribut anstelle der Fall Back Authentifizierungs Richtlinie verwendet.
 
 Die Richtlinie für die Fall Back Authentifizierung:
 
@@ -152,7 +152,7 @@ Fügen Sie den Seiten und die [Zuordnung](/dotnet/api/microsoft.aspnetcore.autho
 
 ### <a name="configure-the-test-account"></a>Konfigurieren des Testkontos
 
-Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs* ) fest:
+Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs*) fest:
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -334,16 +334,16 @@ Eine einfache Möglichkeit zum Testen der abgeschlossenen App besteht darin, dre
 
 | Benutzer                | Seeding von der APP | Optionen                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | No                | Bearbeiten/Löschen Sie die eigenen Daten.                |
-| manager@contoso.com | Yes               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
-| admin@contoso.com   | Yes               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
+| test@example.com    | Nein                | Bearbeiten/Löschen Sie die eigenen Daten.                |
+| manager@contoso.com | Ja               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
+| admin@contoso.com   | Ja               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
 
 Erstellen Sie einen Kontakt im Browser des Administrators. Kopieren Sie die URL zum Löschen und bearbeiten vom Administrator Kontakt. Fügen Sie diese Links in den Browser des Test Benutzers ein, um zu überprüfen, ob der Test Benutzer diese Vorgänge nicht ausführen kann.
 
 ## <a name="create-the-starter-app"></a>Erstellen der Starter-App
 
 * Erstellen Sie eine Seiten-App mit dem Razor Namen "ContactManager".
-  * Erstellen Sie die APP mit **einzelnen Benutzerkonten** .
+  * Erstellen Sie die APP mit **einzelnen Benutzerkonten**.
   * Nennen Sie Sie "ContactManager", damit der Namespace mit dem Namespace übereinstimmt, der im Beispiel verwendet wird.
   * `-uld` gibt localdb anstelle von SQLite an.
 
@@ -399,7 +399,7 @@ In diesem Tutorial wird gezeigt, wie Sie eine ASP.net Core-Web-App mit Benutzerd
 * **Manager** können Kontaktdaten genehmigen oder ablehnen. Nur genehmigte Kontakte sind für Benutzer sichtbar.
 * **Administratoren** können beliebige Daten genehmigen/ablehnen und bearbeiten bzw. löschen.
 
-In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und **Edit** / **Löschen** bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
+In der folgenden Abbildung ist der Benutzer Rick ( `rick@example.com` ) angemeldet. Rick kann nur genehmigte Kontakte anzeigen und  / **Löschen** bearbeiten / **neue** Verknüpfungen für seine Kontakte erstellen. Nur der letzte von Rick erstellte Datensatz zeigt **Bearbeitungs** -und **Lösch** Links an. Andere Benutzer sehen den letzten Datensatz erst, wenn ein Manager oder Administrator den Status in "genehmigt" ändert.
 
 ![Screenshot der Anmeldung mit Rick](secure-data/_static/rick.png)
 
@@ -488,7 +488,7 @@ Fügen Sie die [Zuordnung](/dotnet/api/microsoft.aspnetcore.authorization.allowa
 
 ### <a name="configure-the-test-account"></a>Konfigurieren des Testkontos
 
-Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs* ) fest:
+Die `SeedData` -Klasse erstellt zwei Konten: Administrator und Manager. Verwenden Sie das [Tool Secret Manager](xref:security/app-secrets) , um ein Kennwort für diese Konten festzulegen. Legen Sie das Kennwort aus dem Projektverzeichnis (dem Verzeichnis mit *Program.cs*) fest:
 
 ```dotnetcli
 dotnet user-secrets set SeedUserPW <PW>
@@ -661,16 +661,16 @@ Eine einfache Möglichkeit zum Testen der abgeschlossenen App besteht darin, dre
 
 | Benutzer                | Seeding von der APP | Optionen                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | No                | Bearbeiten/Löschen Sie die eigenen Daten.                |
-| manager@contoso.com | Yes               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
-| admin@contoso.com   | Yes               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
+| test@example.com    | Nein                | Bearbeiten/Löschen Sie die eigenen Daten.                |
+| manager@contoso.com | Ja               | Genehmigen/ablehnen und Bearbeiten/Löschen eigener Daten. |
+| admin@contoso.com   | Ja               | Alle Daten genehmigen/ablehnen und bearbeiten/löschen. |
 
 Erstellen Sie einen Kontakt im Browser des Administrators. Kopieren Sie die URL zum Löschen und bearbeiten vom Administrator Kontakt. Fügen Sie diese Links in den Browser des Test Benutzers ein, um zu überprüfen, ob der Test Benutzer diese Vorgänge nicht ausführen kann.
 
 ## <a name="create-the-starter-app"></a>Erstellen der Starter-App
 
 * Erstellen Sie eine Seiten-App mit dem Razor Namen "ContactManager".
-  * Erstellen Sie die APP mit **einzelnen Benutzerkonten** .
+  * Erstellen Sie die APP mit **einzelnen Benutzerkonten**.
   * Nennen Sie Sie "ContactManager", damit der Namespace mit dem Namespace übereinstimmt, der im Beispiel verwendet wird.
   * `-uld` gibt localdb anstelle von SQLite an.
 

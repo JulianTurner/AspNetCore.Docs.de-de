@@ -4,7 +4,7 @@ author: scottaddie
 description: Hier erfahren Sie, wie Sie das globale .NET Core-Tool HttpRepl verwenden können, um ASP.NET Core-Web-APIs zu durchsuchen und zu testen.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.custom: mvc, devx-track-azurecli
+ms.custom: mvc
 ms.date: 11/12/2020
 no-loc:
 - appsettings.json
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/http-repl
-ms.openlocfilehash: c661141c1bec93c0f7b6404964dc0bca2319b529
-ms.sourcegitcommit: 827e8be18cebbcc09b467c089e17fa6f5e430cb2
+ms.openlocfilehash: 1027887738740d50c30e24e800c0402b1ce4ad02
+ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/15/2020
-ms.locfileid: "94634612"
+ms.lasthandoff: 01/03/2021
+ms.locfileid: "97854664"
 ---
 # <a name="test-web-apis-with-the-httprepl"></a>Testen von Web-APIs mit HttpRepl
 

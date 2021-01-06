@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 7f5cd3de38f1e45d9b188c513a0e62ca658b2992
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: 4b035fe59b8576eb387ddce67943386ccab55492
+ms.sourcegitcommit: 8dfcd2b4be936950c228b4d98430622a04254cd7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035904"
+ms.lasthandoff: 12/26/2020
+ms.locfileid: "97792079"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>Azure Key Vault Konfigurations Anbieters in ASP.net Core
 
@@ -41,7 +41,10 @@ In diesem Dokument wird erläutert, wie Sie den [Azure Key Vault](https://azure.
 
 ## <a name="packages"></a>Pakete
 
-Fügen Sie einen Paket Verweis auf die [Azure.Extensions.AspNetCore.Config-urung hinzu. Geheimes](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets/) Paket.
+Fügen Sie Paket Verweise für die folgenden Pakete hinzu:
+
+* [Azure.Extensions.AspNetCore.Configuration.Secrets](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.Configuration.Secrets)
+* [Azure.Identity](https://www.nuget.org/packages/Azure.Identity)
 
 ## <a name="sample-app"></a>Beispiel-App
 
@@ -193,7 +196,7 @@ Die Beispiel-App:
 
 * Erstellt eine Instanz der- `DefaultAzureCredential` Klasse. die Anmelde Informationen versuchen, ein Zugriffs Token aus der Umgebung für Azure-Ressourcen abzurufen.
 * Ein neues [`Azure.Security.KeyVault.Secrets.Secrets`](/dotnet/api/azure.security.keyvault.secrets) wird mit der- `DefaultAzureCredential` Instanz erstellt.
-* Die- `Azure.Security.KeyVault.Secrets.Secrets` Instanz wird mit einer Standard Implementierung von verwendet `Azure.Extensions.Aspnetcore.Configuration.Secrets` , die alle geheimen Werte lädt und doppelte Bindestriche ( `--` ) durch Doppelpunkte ( `:` ) in Schlüsselnamen ersetzt.
+* Die- `Azure.Security.KeyVault.Secrets.Secrets` Instanz wird mit einer Standard Implementierung von verwendet `Azure.Extensions.AspNetCore.Configuration.Secrets` , die alle geheimen Werte lädt und doppelte Bindestriche ( `--` ) durch Doppelpunkte ( `:` ) in Schlüsselnamen ersetzt.
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
@@ -225,25 +228,25 @@ config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new
     });
 ```
 
-| Eigenschaft         | Beschreibung |
+| Eigenschaft         | BESCHREIBUNG |
 | ---------------- | ----------- |
-| `Manager`        | `Azure.Extensions.Aspnetcore.Configuration.Secrets` zum Steuern des geheimen Schlüssels verwendete Instanz. |
+| `Manager`        | `Azure.Extensions.AspNetCore.Configuration.Secrets` zum Steuern des geheimen Schlüssels verwendete Instanz. |
 | `ReloadInterval` | `Timespan` , um zwischen versuchen zu warten, den Schlüssel Tresor auf Änderungen abzufragen. Der Standardwert ist `null` (die Konfiguration wird nicht neu geladen). |
 
 ## <a name="use-a-key-name-prefix"></a>Schlüsselnamen Präfix verwenden
 
-Addazurekeyvault stellt eine Überladung bereit, die eine Implementierung von akzeptiert `Azure.Extensions.Aspnetcore.Configuration.Secrets` , mit der Sie steuern können, wie Key Vault-Geheimnisse in Konfigurationsschlüssel konvertiert werden. Beispielsweise können Sie die-Schnittstelle implementieren, um geheime Werte basierend auf einem Präfix Wert zu laden, den Sie beim Starten der APP bereitstellen. So können Sie z. b. geheime Schlüssel basierend auf der Version der App laden.
+Addazurekeyvault stellt eine Überladung bereit, die eine Implementierung von akzeptiert `Azure.Extensions.AspNetCore.Configuration.Secrets` , mit der Sie steuern können, wie Key Vault-Geheimnisse in Konfigurationsschlüssel konvertiert werden. Beispielsweise können Sie die-Schnittstelle implementieren, um geheime Werte basierend auf einem Präfix Wert zu laden, den Sie beim Starten der APP bereitstellen. So können Sie z. b. geheime Schlüssel basierend auf der Version der App laden.
 
 > [!WARNING]
 > Verwenden Sie keine Präfixe für Key Vault-Geheimnisse, um geheime Schlüssel für mehrere apps in demselben Schlüssel Tresor zu platzieren oder um Umwelt Geheimnisse (z. b. *Entwicklungs* -und *Produktions* Geheimnisse) in demselben Tresor zu platzieren. Es wird empfohlen, dass unterschiedliche apps und Entwicklungs-/Produktionsumgebungen separate Schlüssel Tresore verwenden, um App-Umgebungen für die höchste Sicherheitsstufe zu isolieren.
 
 Im folgenden Beispiel wird ein geheimer Schlüssel im Schlüssel Tresor erstellt (und mit dem Geheimnis-Manager-Tool für die Entwicklungsumgebung) für `5000-AppSecret` (Zeiträume sind in Key Vault-Geheimnis Namen nicht zulässig). Dieser geheime Schlüssel stellt einen geheimen App-Schlüssel für die Version 5.0.0.0 der APP dar. Bei einer anderen Version der APP, 5.1.0.0, wird dem Schlüssel Tresor ein geheimer Schlüssel (und mit dem Geheimnis-Manager-Tool) für hinzugefügt `5100-AppSecret` . Jede APP-Version lädt den Wert für die Versionierung mit Versions Angabe in die Konfiguration `AppSecret` , wobei die Version beim Laden des geheimen Schlüssels entfernt wird.
 
-"Addazurekeyvault" wird mit einem benutzerdefinierten aufgerufen `Azure.Extensions.Aspnetcore.Configuration.Secrets` :
+"Addazurekeyvault" wird mit einem benutzerdefinierten aufgerufen `Azure.Extensions.AspNetCore.Configuration.Secrets` :
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
-Die `Azure.Extensions.Aspnetcore.Configuration.Secrets` Implementierung reagiert auf die Versions Präfixe von Geheimnissen, um den richtigen geheimen Schlüssel in die Konfiguration zu laden:
+Die `Azure.Extensions.AspNetCore.Configuration.Secrets` Implementierung reagiert auf die Versions Präfixe von Geheimnissen, um den richtigen geheimen Schlüssel in die Konfiguration zu laden:
 
 * `Load` lädt ein Geheimnis, wenn sein Name mit dem Präfix beginnt. Andere Geheimnisse werden nicht geladen.
 * `GetKey`:
@@ -328,7 +331,7 @@ Azure Key Vault Schlüssel können keinen Doppelpunkt als Trennzeichen verwenden
 
 Die in der vorangehenden JSON-Datei angezeigte Konfiguration wird in Azure Key Vault mithilfe von Double Dash ( `--` )-Notation und numerischen Segmenten gespeichert:
 
-| Key | Wert |
+| Schlüssel | Wert |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |
@@ -655,7 +658,7 @@ Azure Key Vault Schlüssel können keinen Doppelpunkt als Trennzeichen verwenden
 
 Die in der vorangehenden JSON-Datei angezeigte Konfiguration wird in Azure Key Vault mithilfe von Double Dash ( `--` )-Notation und numerischen Segmenten gespeichert:
 
-| Key | Wert |
+| Schlüssel | Wert |
 | --- | ----- |
 | `Serilog--WriteTo--0--Name` | `AzureTableStorage` |
 | `Serilog--WriteTo--0--Args--storageTableName` | `logs` |

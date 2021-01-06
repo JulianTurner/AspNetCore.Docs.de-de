@@ -19,17 +19,17 @@ no-loc:
 - SignalR
 uid: grpc/dotnet-grpc
 ms.openlocfilehash: f34e1543d9695e138a85db3b79e013cf5fb6d138
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059909"
 ---
 # <a name="manage-protobuf-references-with-dotnet-grpc"></a>Verwalten von Protobuf-Verweisen mit dotnet-grpc
 
 Von [John Luo](https://github.com/juntaoluo)
 
-`dotnet-grpc` ist ein globales .NET Core-Tool zum Verwalten von [Protobuf ( *.proto* )](xref:grpc/basics#proto-file)-Verweisen in einem .NET gRPC-Projekt. Das Tool kann zum Hinzufügen, Aktualisieren, Entfernen und Auflisten von Protobuf-Verweisen verwendet werden.
+`dotnet-grpc` ist ein globales .NET Core-Tool zum Verwalten von [Protobuf ( *.proto*)](xref:grpc/basics#proto-file)-Verweisen in einem .NET gRPC-Projekt. Das Tool kann zum Hinzufügen, Aktualisieren, Entfernen und Auflisten von Protobuf-Verweisen verwendet werden.
 
 ## <a name="installation"></a>Installation
 
@@ -41,7 +41,7 @@ dotnet tool install -g dotnet-grpc
 
 ## <a name="add-references"></a>Hinzufügen von Verweisen
 
-`dotnet-grpc` kann verwendet werden, um Protobuf-Verweise als `<Protobuf />`-Elemente zur *CSPROJ* -Datei hinzuzufügen:
+`dotnet-grpc` kann verwendet werden, um Protobuf-Verweise als `<Protobuf />`-Elemente zur *CSPROJ*-Datei hinzuzufügen:
 
 ```xml
 <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
@@ -113,10 +113,10 @@ dotnet-grpc add-url [options] <url>
 
 ## <a name="remove"></a>Remove
 
-Der Befehl `remove` wird verwendet, um Protobuf-Verweise aus der *CSPROJ* -Datei zu entfernen. Der Befehl akzeptiert Pfadargumente und Quell-URLs als Argumente. Folgendes gilt für das Tool:
+Der Befehl `remove` wird verwendet, um Protobuf-Verweise aus der *CSPROJ*-Datei zu entfernen. Der Befehl akzeptiert Pfadargumente und Quell-URLs als Argumente. Folgendes gilt für das Tool:
 
 * Es entfernt nur den Protobuf-Verweis.
-* Es löscht nicht die *PROTO* -Datei, auch wenn sie ursprünglich von einer Remote-URL heruntergeladen wurde.
+* Es löscht nicht die *PROTO*-Datei, auch wenn sie ursprünglich von einer Remote-URL heruntergeladen wurde.
 
 ### <a name="usage"></a>Verwendung
 

@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ms.openlocfilehash: 1485e1a97e51bb4d12d0d74ca1550e5cf18258d8
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93053786"
 ---
 # <a name="continuous-deployment-to-azure-with-visual-studio-and-git-with-aspnet-core"></a>Continuous Deployment in Azure mit Visual Studio und Git mit ASP.NET Core
@@ -104,7 +104,7 @@ Bei Git handelt es sich um ein verteiltes Versionskontrollsystem, mit dem Sie ei
 
 1. Melden Sie sich beim [Azure-Portal](https://portal.azure.com) an.
 
-1. Klicken Sie auf **App-Dienste** , um eine Liste der App-Dienste anzuzeigen, die Ihrem Azure-Abonnement zugeordnet sind.
+1. Klicken Sie auf **App-Dienste**, um eine Liste der App-Dienste anzuzeigen, die Ihrem Azure-Abonnement zugeordnet sind.
 
 1. Wählen Sie die Web-App aus, die im vorherigen Abschnitt dieses Tutorials erstellt wurde.
 
@@ -155,9 +155,9 @@ In diesem Abschnitt erstellen Sie ein lokales Git-Repository mit Visual Studio u
 
 1. Klicken Sie auf **Start** (Startsymbol) > **Einstellungen** > **Globale Einstellungen**. Überprüfen Sie, ob der Name und die E-Mail-Adresse festgelegt wurden. Wählen Sie ggf. **Aktualisieren** aus.
 
-1. Klicken Sie auf **Start** > **Änderungen** , um zur Ansicht **Änderungen** zurückzukehren.
+1. Klicken Sie auf **Start** > **Änderungen**, um zur Ansicht **Änderungen** zurückzukehren.
 
-1. Geben Sie eine Commit-Nachricht ein, z.B. **Anfänglicher Push Nr. 1** , und klicken Sie auf **Commit ausführen**. Durch diese Aktion wird lokal ein *Commit* erstellt.
+1. Geben Sie eine Commit-Nachricht ein, z.B. **Anfänglicher Push Nr. 1**, und klicken Sie auf **Commit ausführen**. Durch diese Aktion wird lokal ein *Commit* erstellt.
 
    ![Team Explorer-Registerkarte „Verbinden“](azure-continuous-deployment/_static/12-initial-commit.png)
 
@@ -174,7 +174,7 @@ In diesem Abschnitt erstellen Sie ein lokales Git-Repository mit Visual Studio u
 
    `git push -u Azure-SampleApp master`
 
-1. Geben Sie das Kennwort für die Azure- **Anmeldeinformationen für die Bereitstellung** ein, das Sie zuvor in Azure erstellt haben.
+1. Geben Sie das Kennwort für die Azure-**Anmeldeinformationen für die Bereitstellung** ein, das Sie zuvor in Azure erstellt haben.
 
    Dieser Befehl startet eine Übertragung der lokalen Projektdateien mithilfe von Push in Azure. Die Ausgabe des obigen Befehls endet mit der Meldung, dass die Bereitstellung erfolgreich war.
 
@@ -204,7 +204,7 @@ Führen Sie die App aus, nachdem die Web-App in Azure bereitgestellt wurde.
 
 Dafür stehen zwei Methoden zur Verfügung:
 
-* Suchen Sie im Azure-Portal das Blatt „Web-App“ für die Web-App. Wählen Sie **Durchsuchen** , um die App im Standardbrowser anzuzeigen.
+* Suchen Sie im Azure-Portal das Blatt „Web-App“ für die Web-App. Wählen Sie **Durchsuchen**, um die App im Standardbrowser anzuzeigen.
 * Öffnen Sie einen Browser, und geben Sie die URL für die Web-App ein. Ein Beispiel: `http://SampleWebAppDemo.azurewebsites.net`
 
 ## <a name="update-the-web-app-and-republish"></a>Aktualisieren der Web-App und erneutes Veröffentlichen
@@ -225,7 +225,7 @@ Veröffentlichen Sie den lokalen Code erneut, nachdem Sie Änderungen daran vorg
 
 1. Geben Sie eine Commit-Nachricht ein, wie z.B. `Update #2`.
 
-1. Klicken Sie auf die Schaltfläche **Commit ausführen** , um die Projektänderungen zu committen.
+1. Klicken Sie auf die Schaltfläche **Commit ausführen**, um die Projektänderungen zu committen.
 
 1. Klicken Sie auf **Start** > **Synchronisieren** > **Aktionen** > **Push**.
 

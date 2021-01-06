@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/iis/development-time-iis-support
 ms.openlocfilehash: ab892b2cdfa61378ac7328c0380c8a6cffc6d376
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058453"
 ---
 # <a name="development-time-iis-support-in-visual-studio-for-aspnet-core"></a>IIS-Support zum Zeitpunkt der Entwicklung in Visual Studio für ASP.NET Core
@@ -81,9 +81,9 @@ Für ein Projekt, das HTTP verwendet, werden die [HTTPS-Umleitung und HSTS-Middl
 So erstellen Sie ein neues Startprofil, um IIS-Unterstützung zur Entwicklungszeit hinzuzufügen:
 
 1. Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Eigenschaften**. Öffnen Sie die Registerkarte **Debuggen**.
-1. Klicken Sie für **Profil** auf die Schaltfläche **Neu**. Geben Sie dem Profil im Popupfenster den Namen „IIS“. Klicken Sie auf **OK** , um das Profil zu erstellen.
+1. Klicken Sie für **Profil** auf die Schaltfläche **Neu**. Geben Sie dem Profil im Popupfenster den Namen „IIS“. Klicken Sie auf **OK**, um das Profil zu erstellen.
 1. Wählen Sie bei der Einstellung **Start** den Eintrag **IIS** aus der Liste aus.
-1. Aktivieren Sie das Kontrollkästchen bei **Browser starten** , und geben Sie die Endpunkt-URL an.
+1. Aktivieren Sie das Kontrollkästchen bei **Browser starten**, und geben Sie die Endpunkt-URL an.
 
    Wenn die App HTTPS erfordert, verwenden Sie einen HTTPS-Endpunkt (`https://`). Verwenden Sie für HTTP einen HTTP-Endpunkt (`http://`).
 
@@ -94,7 +94,7 @@ So erstellen Sie ein neues Startprofil, um IIS-Unterstützung zur Entwicklungsze
    `https://localhost/WebApplication1` (HTTPS) oder `http://localhost/WebApplication1` (HTTP) sind beispielsweise gültige Endpunkt-URLs.
 1. Klicken Sie im Abschnitt **Umgebungsvariablen** auf die Schaltfläche **Hinzufügen**. Geben Sie eine Umgebungsvariable mit dem **Namen**`ASPNETCORE_ENVIRONMENT` und dem **Wert**`Development` an.
 1. Legen Sie im Bereich **Webservereinstellungen** die **App-URL** auf den gleichen Wert fest, der für die Endpunkt-URL für **Browser starten** verwendet wird.
-1. Wählen Sie für die Einstellung **Hostingmodel** in Visual Studio 2019 oder höher **Standard** , um das vom Projekt verwendete Hostingmodell zu nutzen. Wenn das Projekt die `<AspNetCoreHostingModel>`-Eigenschaft in seiner Projektdatei festlegt, wird der Wert der Eigenschaft (`InProcess` oder `OutOfProcess`) verwendet. Wenn die Eigenschaft nicht vorhanden ist, wird das standardmäßige Hostingmodell der App (In-Process) verwendet. Wenn die App eine explizite Einstellung des Hostingmodells erfordert, die sich vom normalen Hostingmodell der App unterscheidet, legen Sie das **Hostingmodell** nach Bedarf entweder auf `In Process` oder `Out Of Process` fest.
+1. Wählen Sie für die Einstellung **Hostingmodel** in Visual Studio 2019 oder höher **Standard**, um das vom Projekt verwendete Hostingmodell zu nutzen. Wenn das Projekt die `<AspNetCoreHostingModel>`-Eigenschaft in seiner Projektdatei festlegt, wird der Wert der Eigenschaft (`InProcess` oder `OutOfProcess`) verwendet. Wenn die Eigenschaft nicht vorhanden ist, wird das standardmäßige Hostingmodell der App (In-Process) verwendet. Wenn die App eine explizite Einstellung des Hostingmodells erfordert, die sich vom normalen Hostingmodell der App unterscheidet, legen Sie das **Hostingmodell** nach Bedarf entweder auf `In Process` oder `Out Of Process` fest.
 1. Speichern Sie den Profilnamen.
 
 Wenn Sie nicht Visual Studio verwenden, können Sie in der App im Ordner *Properties* manuell ein Startprofil zur Datei [launchSettings.json](https://json.schemastore.org/launchsettings) hinzufügen. Im folgenden Beispiel wird das Profil für die Verwendung des HTTPS-Protokolls konfiguriert:
@@ -196,9 +196,9 @@ Für ein Projekt, das HTTP verwendet, werden die [HTTPS-Umleitung und HSTS-Middl
 So erstellen Sie ein neues Startprofil, um IIS-Unterstützung zur Entwicklungszeit hinzuzufügen:
 
 1. Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt. Klicken Sie auf **Eigenschaften**. Öffnen Sie die Registerkarte **Debuggen**.
-1. Klicken Sie für **Profil** auf die Schaltfläche **Neu**. Geben Sie dem Profil im Popupfenster den Namen „IIS“. Klicken Sie auf **OK** , um das Profil zu erstellen.
+1. Klicken Sie für **Profil** auf die Schaltfläche **Neu**. Geben Sie dem Profil im Popupfenster den Namen „IIS“. Klicken Sie auf **OK**, um das Profil zu erstellen.
 1. Wählen Sie bei der Einstellung **Start** den Eintrag **IIS** aus der Liste aus.
-1. Aktivieren Sie das Kontrollkästchen bei **Browser starten** , und geben Sie die Endpunkt-URL an.
+1. Aktivieren Sie das Kontrollkästchen bei **Browser starten**, und geben Sie die Endpunkt-URL an.
 
    Wenn die App HTTPS erfordert, verwenden Sie einen HTTPS-Endpunkt (`https://`). Verwenden Sie für HTTP einen HTTP-Endpunkt (`http://`).
 
@@ -209,7 +209,7 @@ So erstellen Sie ein neues Startprofil, um IIS-Unterstützung zur Entwicklungsze
    `https://localhost/WebApplication1` (HTTPS) oder `http://localhost/WebApplication1` (HTTP) sind beispielsweise gültige Endpunkt-URLs.
 1. Klicken Sie im Abschnitt **Umgebungsvariablen** auf die Schaltfläche **Hinzufügen**. Geben Sie eine Umgebungsvariable mit dem **Namen**`ASPNETCORE_ENVIRONMENT` und dem **Wert**`Development` an.
 1. Legen Sie im Bereich **Webservereinstellungen** die **App-URL** auf den gleichen Wert fest, der für die Endpunkt-URL für **Browser starten** verwendet wird.
-1. Wählen Sie für die Einstellung **Hostingmodel** in Visual Studio 2019 oder höher **Standard** , um das vom Projekt verwendete Hostingmodell zu nutzen. Wenn das Projekt die `<AspNetCoreHostingModel>`-Eigenschaft in seiner Projektdatei festlegt, wird der Wert der Eigenschaft (`InProcess` oder `OutOfProcess`) verwendet. Wenn die Eigenschaft nicht vorhanden ist, wird das standardmäßige Hostingmodell der App (Out-of-Process) verwendet. Wenn die App eine explizite Einstellung des Hostingmodells erfordert, die sich vom normalen Hostingmodell der App unterscheidet, legen Sie das **Hostingmodell** nach Bedarf entweder auf `In Process` oder `Out Of Process` fest.
+1. Wählen Sie für die Einstellung **Hostingmodel** in Visual Studio 2019 oder höher **Standard**, um das vom Projekt verwendete Hostingmodell zu nutzen. Wenn das Projekt die `<AspNetCoreHostingModel>`-Eigenschaft in seiner Projektdatei festlegt, wird der Wert der Eigenschaft (`InProcess` oder `OutOfProcess`) verwendet. Wenn die Eigenschaft nicht vorhanden ist, wird das standardmäßige Hostingmodell der App (Out-of-Process) verwendet. Wenn die App eine explizite Einstellung des Hostingmodells erfordert, die sich vom normalen Hostingmodell der App unterscheidet, legen Sie das **Hostingmodell** nach Bedarf entweder auf `In Process` oder `Out Of Process` fest.
 1. Speichern Sie den Profilnamen.
 
 Wenn Sie nicht Visual Studio verwenden, können Sie in der App im Ordner *Properties* manuell ein Startprofil zur Datei [launchSettings.json](https://json.schemastore.org/launchsettings) hinzufügen. Im folgenden Beispiel wird das Profil für die Verwendung des HTTPS-Protokolls konfiguriert:

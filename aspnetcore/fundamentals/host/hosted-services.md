@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/host/hosted-services
 ms.openlocfilehash: b8d6ec079ed39fb3a2c314816ebae6cea0847a36
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061079"
 ---
 # <a name="background-tasks-with-hosted-services-in-aspnet-core"></a>Hintergrundtasks mit gehosteten Diensten in ASP.NET Core
@@ -54,7 +54,7 @@ Gehen Sie folgendermaßen vor, wenn Sie die Vorlage als Grundlage für eine Host
 
 ## <a name="package"></a>Package
 
-Eine App, die auf der Workerdienstvorlage basiert, verwendet das `Microsoft.NET.Sdk.Worker` SDK und verfügt über einen expliziten Paketverweis auf das [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting)-Paket. Sehen Sie sich dazu beispielsweise die Projektdatei der Beispiel-App ( *BackgroundTasksSample.csproj* ) an.
+Eine App, die auf der Workerdienstvorlage basiert, verwendet das `Microsoft.NET.Sdk.Worker` SDK und verfügt über einen expliziten Paketverweis auf das [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting)-Paket. Sehen Sie sich dazu beispielsweise die Projektdatei der Beispiel-App (*BackgroundTasksSample.csproj*) an.
 
 Für Web-Apps, die das `Microsoft.NET.Sdk.Web` SDK verwenden, wird auf das [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting)-Paket implizit über das geteilte Framework verwiesen. Es ist kein expliziter Paketverweis in der Projektdatei der App erforderlich.
 
@@ -128,7 +128,7 @@ Zeitlich festgelegte Hintergrundtasks verwenden die Klasse [System.Threading.Tim
 
 <xref:System.Threading.Timer> wartet nicht auf den Abschluss vorheriger Ausführungen von `DoWork`. Die veranschaulichte Vorgehensweise eignet sich also möglicherweise nicht für alle Szenarios. [Interlocked.Increment](xref:System.Threading.Interlocked.Increment*) wird zum Erhöhen des Ausführungszählers mit einem atomischen Vorgang verwendet, wodurch sichergestellt wird, dass `executionCount` nicht durch mehrere Threads gleichzeitig aktualisiert wird.
 
-Der Dienst wird in `IHostBuilder.ConfigureServices` ( *Program.cs* ) mit der Erweiterungsmethode `AddHostedService` registriert:
+Der Dienst wird in `IHostBuilder.ConfigureServices` (*Program.cs*) mit der Erweiterungsmethode `AddHostedService` registriert:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet1)]
 
@@ -147,7 +147,7 @@ Der gehostete Dienst erstellt einen Bereich, um den bereichsbezogenen Dienst fü
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/ConsumeScopedServiceHostedService.cs?name=snippet1&highlight=19,22-35)]
 
-Die Dienste werden in `IHostBuilder.ConfigureServices` ( *Program.cs* ) registriert. Der gehostete Dienst wird mit der Erweiterungsmethode `AddHostedService` registriert:
+Die Dienste werden in `IHostBuilder.ConfigureServices` (*Program.cs*) registriert. Der gehostete Dienst wird mit der Erweiterungsmethode `AddHostedService` registriert:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet2)]
 
@@ -175,7 +175,7 @@ Ein `MonitorLoop`-Dienst verarbeitet das Einreihen von Tasks in die Warteschlang
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
 
-Die Dienste werden in `IHostBuilder.ConfigureServices` ( *Program.cs* ) registriert. Der gehostete Dienst wird mit der Erweiterungsmethode `AddHostedService` registriert:
+Die Dienste werden in `IHostBuilder.ConfigureServices` (*Program.cs*) registriert. Der gehostete Dienst wird mit der Erweiterungsmethode `AddHostedService` registriert:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 

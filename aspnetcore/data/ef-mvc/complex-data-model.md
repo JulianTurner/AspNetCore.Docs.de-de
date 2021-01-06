@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/complex-data-model
 ms.openlocfilehash: cee9e9eb4c5435f3f63f7d1d04f131d88effe9f6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054475"
 ---
 # <a name="tutorial-create-a-complex-data-model---aspnet-mvc-with-ef-core"></a>Tutorial: Erstellen eines komplexen Datenmodells: ASP.NET MVC mit EF Core
@@ -122,7 +122,7 @@ Der `migrations add`-Befehl gibt eine Warnung aus, dass es zu Datenverlust komme
 
 Der Zeitstempel, der dem Namen der Migrationsdatei vorangestellt ist, wird von Entity Framework verwendet, um die Migrationen zu sortieren. Sie können mehrere Migrationen erstellen, bevor Sie den Befehl „update-database“ ausführen. Anschließend werden alle Migrationen in der Reihenfolge angewendet, in der Sie erstellt wurden.
 
-Führen Sie die App aus, wählen Sie die Registerkarte **Students** aus, klicken Sie dann auf **Neu erstellen** , und geben Sie einen beliebigen Namen ein, der länger als 50 Zeichen ist. Die Anwendung sollte Sie daran hindern. 
+Führen Sie die App aus, wählen Sie die Registerkarte **Students** aus, klicken Sie dann auf **Neu erstellen**, und geben Sie einen beliebigen Namen ein, der länger als 50 Zeichen ist. Die Anwendung sollte Sie daran hindern. 
 
 ### <a name="the-column-attribute"></a>Das Column-Attribut
 
@@ -188,7 +188,7 @@ Bei `FullName` handelt es sich um eine berechnete Eigenschaft, die einen Wert zu
 
 ![Instructor-Entität](complex-data-model/_static/instructor-entity.png)
 
-Erstellen Sie *Models/Instructor.cs* , indem Sie den Vorlagencode durch folgenden Code ersetzen:
+Erstellen Sie *Models/Instructor.cs*, indem Sie den Vorlagencode durch folgenden Code ersetzen:
 
 [!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
 
@@ -510,13 +510,13 @@ dotnet ef database update
 
 Führen Sie die App aus, damit die `DbInitializer.Initialize`-Methode ausgeführt wird und die neue Datenbank auffüllt.
 
-Öffnen Sie die Datenbank wie zuvor im SSOX, und erweitern Sie den Knoten **Tabellen** , um festzustellen, dass alle Tabellen erstellt wurden. (Wenn Sie SSOX immer noch geöffnet haben, klicken Sie auf die Schaltfläche **Aktualisieren**.)
+Öffnen Sie die Datenbank wie zuvor im SSOX, und erweitern Sie den Knoten **Tabellen**, um festzustellen, dass alle Tabellen erstellt wurden. (Wenn Sie SSOX immer noch geöffnet haben, klicken Sie auf die Schaltfläche **Aktualisieren**.)
 
 ![Tabellen im SSOX](complex-data-model/_static/ssox-tables.png)
 
 Führen Sie die App aus, um den Initialisierungscode auszulösen, der das Seeding für die Datenbank ausführt.
 
-Klicken Sie mit der rechten Maustaste auf die Tabelle **CourseAssignment** , und klicken Sie auf **Daten anzeigen** , um zu überprüfen, dass diese Daten enthält.
+Klicken Sie mit der rechten Maustaste auf die Tabelle **CourseAssignment**, und klicken Sie auf **Daten anzeigen**, um zu überprüfen, dass diese Daten enthält.
 
 ![CourseAssignment-Daten im SSOX](complex-data-model/_static/ssox-ci-data.png)
 

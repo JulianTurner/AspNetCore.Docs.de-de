@@ -4,7 +4,7 @@ Dieses Beispiel veranschaulicht die Verwendung von Middleware und Diensten für 
 
 Um die Beispiel-App für ein im Thema beschriebenes Szenario auszuführen, verwenden Sie den Befehl [dotnet run](https://docs.microsoft.com/dotnet/core/tools/dotnet-run) aus dem Ordner des Projekts in einer Befehlsshell. Übergeben Sie einen Schalter für das Szenario, das Sie untersuchen möchten. Die App verwendet standardmäßig die `basic`-Konfiguration, wenn kein Schalter in `dotnet run` angegeben wird.
 
-| Szenario                                               | Befehl für die Beispiel-App               | Beschreibung |
+| Szenario                                               | Befehl für die Beispiel-App               | BESCHREIBUNG |
 | ------------------------------------------------------ | -------------------------------- | ----------- |
 | Grundlegender Integritätstest (Standard)                           | `dotnet run --scenario basic`    | Bestätigt, dass die App HTTP-Anforderungen verarbeiten kann. |
 | Datenbanktest                                         | `dotnet run --scenario db`       | Überprüft die Verbindung mit der SQL Server-Datenbank. Im Abschnitt [Datenbanktest](https://docs.microsoft.com/aspnet/core/host-and-deploy/health-checks#database-probe) des Themas finden Sie Anweisungen dazu. |

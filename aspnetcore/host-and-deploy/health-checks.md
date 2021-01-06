@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/health-checks
 ms.openlocfilehash: 32b7a4c6722ba45ba998f9430f5d6da6ddca53f9
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058661"
 ---
 # <a name="health-checks-in-aspnet-core"></a>Integritätsprüfungen in ASP.NET Core
@@ -60,17 +60,17 @@ Die Beispiel-App stellt Startcode bereit, um die Integritätsprüfungen für ver
 > [!NOTE]
 > [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) wird von Microsoft nicht gewartet oder unterstützt.
 
-Ein anderes Szenario für Integritätsprüfungen zeigt, wie Sie Integritätsprüfungen auf einen Verwaltungsport filtern können. Für die Beispiel-App müssen Sie eine *Properties/launchSettings.json* -Datei erstellen, die die Verwaltungs-URL und den Verwaltungsport enthält. Weitere Informationen finden Sie im Abschnitt [Filtern nach Port](#filter-by-port).
+Ein anderes Szenario für Integritätsprüfungen zeigt, wie Sie Integritätsprüfungen auf einen Verwaltungsport filtern können. Für die Beispiel-App müssen Sie eine *Properties/launchSettings.json*-Datei erstellen, die die Verwaltungs-URL und den Verwaltungsport enthält. Weitere Informationen finden Sie im Abschnitt [Filtern nach Port](#filter-by-port).
 
 ## <a name="basic-health-probe"></a>Grundlegender Integritätstest
 
-In vielen Apps genügt zur Ermittlung des App-Status eine grundlegende Integritätstestkonfiguration, die die Verfügbarkeit der App für die Verarbeitung von Anforderungen ( *Lebendigkeit* ) meldet.
+In vielen Apps genügt zur Ermittlung des App-Status eine grundlegende Integritätstestkonfiguration, die die Verfügbarkeit der App für die Verarbeitung von Anforderungen (*Lebendigkeit*) meldet.
 
 Die grundlegende Konfiguration registriert Integritätsprüfungsdienste und ruft die Middleware für Integritätsprüfungen auf, damit diese an einem URL-Endpunkt mit dem Integritätsstatus antwortet. Standardmäßig werden keine spezifischen Integritätsprüfungen registriert, um eine bestimmte Abhängigkeit oder ein bestimmtes Subsystem zu testen. Die App wird als fehlerfrei angesehen, wenn sie an der URL des Integritätsendpunkts antworten kann. Der standardmäßige Antwortwriter schreibt den Status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) als Klartextantwort zurück an den Client und gibt den Status als [HealthStatus.Healthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus), [HealthStatus.Degraded](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) oder [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) an.
 
 Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Erstellen Sie einen Integritätsprüfungs-Endpunkt durch Aufrufen von `MapHealthChecks` in `Startup.Configure`.
 
-In der Beispiel-App wird der Integritätsprüfungs-Endpunkt in `/health` ( *BasicStartup.cs* ) erstellt:
+In der Beispiel-App wird der Integritätsprüfungs-Endpunkt in `/health` (*BasicStartup.cs*) erstellt:
 
 ```csharp
 public class BasicStartup
@@ -353,7 +353,7 @@ Geben Sie in der *appsettings.json* -Datei der App eine gültige Zeichenfolge f�
 
 [!code-json[](health-checks/samples/3.x/HealthChecksSample/appsettings.json?highlight=3)]
 
-Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Die Beispiel-App ruft die `AddSqlServer`-Methode mit der Verbindungszeichenfolge der Datenbank ( *DbHealthStartup.cs* ) auf:
+Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Die Beispiel-App ruft die `AddSqlServer`-Methode mit der Verbindungszeichenfolge der Datenbank (*DbHealthStartup.cs*) auf:
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/DbHealthStartup.cs?name=snippet_ConfigureServices)]
 
@@ -389,7 +389,7 @@ Standardmäßig:
 * `DbContextHealthCheck` ruft die `CanConnectAsync`-Methode von EF Core auf. Sie können festlegen, welcher Vorgang ausgeführt wird, wenn die Integrität mit `AddDbContextCheck`-Methodenüberladungen überprüft wird.
 * Der Name der Integritätsprüfung ist der Name des `TContext`-Typs.
 
-In der Beispiel-App wird `AppDbContext` für `AddDbContextCheck` bereitgestellt und als Dienst in `Startup.ConfigureServices` ( *DbContextHealthStartup.cs* ) registriert:
+In der Beispiel-App wird `AppDbContext` für `AddDbContextCheck` bereitgestellt und als Dienst in `Startup.ConfigureServices` (*DbContextHealthStartup.cs*) registriert:
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_ConfigureServices)]
 
@@ -451,17 +451,17 @@ In einigen Hostingszenarien wird ein Integritätsprüfungspaar verwendet, bei de
 * *Bereitschaft* gibt an, ob die App ordnungsgemäß ausgeführt wird, aber nicht für den Empfang von Anforderungen bereit ist.
 * *Livetest* gibt an, ob eine App abgestürzt ist und neu gestartet werden muss.
 
-Betrachten Sie das folgende Beispiel: Eine App muss eine große Konfigurationsdatei herunterladen, bevor sie für die Verarbeitung von Anforderungen bereit ist. Wir möchten nicht, dass die App neu gestartet wird, wenn der erste Download fehlschlägt, da die App mehrmals versuchen kann, die Datei herunterzuladen. Wir verwenden einen *Livetest* , um den Livezustand des Prozesses zu beschreiben. Weitere Überprüfungen werden nicht durchgeführt. Außerdem soll verhindert werden, dass Anforderungen an die App gesendet werden, bevor die Konfigurationsdatei erfolgreich heruntergeladen wurde. Wir verwenden einen *Bereitschaftstest* , um den Status "nicht bereit" anzugeben, bis der Download erfolgreich durchgeführt wurde und die App für den Empfang von Anforderungen bereit ist.
+Betrachten Sie das folgende Beispiel: Eine App muss eine große Konfigurationsdatei herunterladen, bevor sie für die Verarbeitung von Anforderungen bereit ist. Wir möchten nicht, dass die App neu gestartet wird, wenn der erste Download fehlschlägt, da die App mehrmals versuchen kann, die Datei herunterzuladen. Wir verwenden einen *Livetest*, um den Livezustand des Prozesses zu beschreiben. Weitere Überprüfungen werden nicht durchgeführt. Außerdem soll verhindert werden, dass Anforderungen an die App gesendet werden, bevor die Konfigurationsdatei erfolgreich heruntergeladen wurde. Wir verwenden einen *Bereitschaftstest*, um den Status "nicht bereit" anzugeben, bis der Download erfolgreich durchgeführt wurde und die App für den Empfang von Anforderungen bereit ist.
 
-Die Beispiel-App enthält eine Integritätsprüfung, um den Abschluss eines Starttasks mit langer Ausführungsdauer in einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) zu melden. `StartupHostedServiceHealthCheck` macht die Eigenschaft `StartupTaskCompleted` verfügbar, die der gehostete Dienst auf `true` festlegen kann, wenn der Task mit langer Ausführungsdauer abgeschlossen ist ( *StartupHostedServiceHealthCheck.cs* ):
+Die Beispiel-App enthält eine Integritätsprüfung, um den Abschluss eines Starttasks mit langer Ausführungsdauer in einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) zu melden. `StartupHostedServiceHealthCheck` macht die Eigenschaft `StartupTaskCompleted` verfügbar, die der gehostete Dienst auf `true` festlegen kann, wenn der Task mit langer Ausführungsdauer abgeschlossen ist (*StartupHostedServiceHealthCheck.cs*):
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/StartupHostedServiceHealthCheck.cs?name=snippet1&highlight=7-11)]
 
-Der Hintergrundtask mit langer Ausführungsdauer wird von einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) ( *Services/StartupHostedService* ) gestartet. Nach Abschluss des Tasks wird `StartupHostedServiceHealthCheck.StartupTaskCompleted` auf `true` festgelegt:
+Der Hintergrundtask mit langer Ausführungsdauer wird von einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) (*Services/StartupHostedService*) gestartet. Nach Abschluss des Tasks wird `StartupHostedServiceHealthCheck.StartupTaskCompleted` auf `true` festgelegt:
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=18-20)]
 
-Die Integritätsprüfung wird mit <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> zusammen mit dem gehosteten Dienst in `Startup.ConfigureServices` registriert. Da der gehostete Dienst die Eigenschaft in der Integritätsprüfung festlegen muss, wird die Integritätsprüfung ebenfalls im Dienstcontainer ( *LivenessProbeStartup.cs* ) registriert:
+Die Integritätsprüfung wird mit <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> zusammen mit dem gehosteten Dienst in `Startup.ConfigureServices` registriert. Da der gehostete Dienst die Eigenschaft in der Integritätsprüfung festlegen muss, wird die Integritätsprüfung ebenfalls im Dienstcontainer (*LivenessProbeStartup.cs*) registriert:
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_ConfigureServices)]
 
@@ -496,7 +496,7 @@ Um das Szenario für die Konfiguration von Bereitschafts-/Lebendigkeitsprüfunge
 dotnet run --scenario liveness
 ```
 
-Besuchen Sie `/health/ready` mehrmals in einem Browser, bis 15 Sekunden verstrichen sind. Die Integritätsprüfung meldet während der ersten 15 Sekunden *Fehlerhaft*. Nach 15 Sekunden meldet der Endpunkt *Fehlerfrei* , was darauf hindeutet, dass die Ausführung des Tasks mit langer Ausführungsdauer durch den gehosteten Dienst abgeschlossen wurde.
+Besuchen Sie `/health/ready` mehrmals in einem Browser, bis 15 Sekunden verstrichen sind. Die Integritätsprüfung meldet während der ersten 15 Sekunden *Fehlerhaft*. Nach 15 Sekunden meldet der Endpunkt *Fehlerfrei*, was darauf hindeutet, dass die Ausführung des Tasks mit langer Ausführungsdauer durch den gehosteten Dienst abgeschlossen wurde.
 
 In diesem Beispiel wird auch ein Herausgeber der Integritätsprüfung erstellt (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>-Implementierung), der die erste Bereitschaftsprüfung mit einer Verzögerung von zwei Sekunden ausführt. Weitere Informationen finden Sie im Abschnitt [Herausgeber der Integritätsprüfung](#health-check-publisher).
 
@@ -527,7 +527,7 @@ spec:
 
 Die Beispiel-App veranschaulicht eine Arbeitsspeicher-Integritätsprüfung mit einem benutzerdefinierten Antwortwriter.
 
-`MemoryHealthCheck` meldet einen beeinträchtigten Status, wenn die App mehr Arbeitsspeicher verwendet, als für den Schwellenwert festgelegt wurde (1 GB in der Beispiel-App). Das <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> enthält Garbage Collector-Informationen (GC) für die App ( *MemoryHealthCheck.cs* ):
+`MemoryHealthCheck` meldet einen beeinträchtigten Status, wenn die App mehr Arbeitsspeicher verwendet, als für den Schwellenwert festgelegt wurde (1 GB in der Beispiel-App). Das <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> enthält Garbage Collector-Informationen (GC) für die App (*MemoryHealthCheck.cs*):
 
 [!code-csharp[](health-checks/samples/3.x/HealthChecksSample/MemoryHealthCheck.cs?name=snippet1)]
 
@@ -568,9 +568,9 @@ Rufen Sie `RequireHost` auf `MapHealthChecks` mit einem URL-Muster auf, das eine
 
 Die Beispiel-App konfiguriert den Port mithilfe des [Umgebungsvariablen-Konfigurationsanbieters](xref:fundamentals/configuration/index#environment-variables). Der Port wird in der Datei *launchSettings.json* festgelegt und über eine Umgebungsvariable an den Konfigurationsanbieter übergeben. Sie müssen den Server auch so konfigurieren, dass er am Verwaltungsport auf Anforderungen lauscht.
 
-Um die Beispiel-App zum Veranschaulichen der Konfiguration des Verwaltungsports zu verwenden, erstellen Sie die Datei *launchSettings.json* in einem *Eigenschaften* -Ordner.
+Um die Beispiel-App zum Veranschaulichen der Konfiguration des Verwaltungsports zu verwenden, erstellen Sie die Datei *launchSettings.json* in einem *Eigenschaften*-Ordner.
 
-Die folgende *Properties/launchSettings.json* -Datei in der Beispiel-App ist in den Projektdateien der Beispiel-App nicht vorhanden und muss manuell erstellt werden:
+Die folgende *Properties/launchSettings.json*-Datei in der Beispiel-App ist in den Projektdateien der Beispiel-App nicht vorhanden und muss manuell erstellt werden:
 
 ```json
 {
@@ -622,7 +622,7 @@ app.UseEndpoints(endpoints =>
 > [!NOTE]
 > Sie können vermeiden, die Datei *launchSettings.json* in der Beispiel-App erstellen zu müssen, indem Sie den Verwaltungsport explizit im Code festlegen. Fügen Sie in *Program.cs* an der Stelle, an der <xref:Microsoft.Extensions.Hosting.HostBuilder> erstellt wird, einen Aufruf von <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenAnyIP*> hinzu, und geben Sie den Endpunkt des Verwaltungsports der App an. Geben Sie in `Configure` von *ManagementPortStartup.cs* den Verwaltungsport mit `RequireHost` an:
 >
-> *Program.cs* :
+> *Program.cs*:
 >
 > ```csharp
 > return new HostBuilder()
@@ -638,7 +638,7 @@ app.UseEndpoints(endpoints =>
 >     .Build();
 > ```
 >
-> *ManagementPortStartup.cs* :
+> *ManagementPortStartup.cs*:
 >
 > ```csharp
 > app.UseEndpoints(endpoints =>
@@ -829,17 +829,17 @@ Die Beispiel-App stellt Startcode bereit, um die Integritätsprüfungen für ver
 > [!NOTE]
 > [AspNetCore.Diagnostics.HealthChecks](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) wird von Microsoft nicht gewartet oder unterstützt.
 
-Ein anderes Szenario für Integritätsprüfungen zeigt, wie Sie Integritätsprüfungen auf einen Verwaltungsport filtern können. Für die Beispiel-App müssen Sie eine *Properties/launchSettings.json* -Datei erstellen, die die Verwaltungs-URL und den Verwaltungsport enthält. Weitere Informationen finden Sie im Abschnitt [Filtern nach Port](#filter-by-port).
+Ein anderes Szenario für Integritätsprüfungen zeigt, wie Sie Integritätsprüfungen auf einen Verwaltungsport filtern können. Für die Beispiel-App müssen Sie eine *Properties/launchSettings.json*-Datei erstellen, die die Verwaltungs-URL und den Verwaltungsport enthält. Weitere Informationen finden Sie im Abschnitt [Filtern nach Port](#filter-by-port).
 
 ## <a name="basic-health-probe"></a>Grundlegender Integritätstest
 
-In vielen Apps genügt zur Ermittlung des App-Status eine grundlegende Integritätstestkonfiguration, die die Verfügbarkeit der App für die Verarbeitung von Anforderungen ( *Lebendigkeit* ) meldet.
+In vielen Apps genügt zur Ermittlung des App-Status eine grundlegende Integritätstestkonfiguration, die die Verfügbarkeit der App für die Verarbeitung von Anforderungen (*Lebendigkeit*) meldet.
 
 Die grundlegende Konfiguration registriert Integritätsprüfungsdienste und ruft die Middleware für Integritätsprüfungen auf, damit diese an einem URL-Endpunkt mit dem Integritätsstatus antwortet. Standardmäßig werden keine spezifischen Integritätsprüfungen registriert, um eine bestimmte Abhängigkeit oder ein bestimmtes Subsystem zu testen. Die App wird als fehlerfrei angesehen, wenn sie an der URL des Integritätsendpunkts antworten kann. Der standardmäßige Antwortwriter schreibt den Status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) als Klartextantwort zurück an den Client und gibt den Status als [HealthStatus.Healthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus), [HealthStatus.Degraded](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) oder [HealthStatus.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus) an.
 
 Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Fügen Sie mit <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*> in der Anforderungsverarbeitungspipeline von `Startup.Configure` einen Endpunkt für die Middleware für Integritätsprüfungen hinzu.
 
-In der Beispiel-App wird der Integritätsprüfungs-Endpunkt in `/health` ( *BasicStartup.cs* ) erstellt:
+In der Beispiel-App wird der Integritätsprüfungs-Endpunkt in `/health` (*BasicStartup.cs*) erstellt:
 
 ```csharp
 public class BasicStartup
@@ -1072,7 +1072,7 @@ Geben Sie in der *appsettings.json* -Datei der App eine gültige Zeichenfolge f�
 
 [!code-json[](health-checks/samples/2.x/HealthChecksSample/appsettings.json?highlight=3)]
 
-Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Die Beispiel-App ruft die `AddSqlServer`-Methode mit der Verbindungszeichenfolge der Datenbank ( *DbHealthStartup.cs* ) auf:
+Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Die Beispiel-App ruft die `AddSqlServer`-Methode mit der Verbindungszeichenfolge der Datenbank (*DbHealthStartup.cs*) auf:
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbHealthStartup.cs?name=snippet_ConfigureServices)]
 
@@ -1105,7 +1105,7 @@ Standardmäßig:
 * `DbContextHealthCheck` ruft die `CanConnectAsync`-Methode von EF Core auf. Sie können festlegen, welcher Vorgang ausgeführt wird, wenn die Integrität mit `AddDbContextCheck`-Methodenüberladungen überprüft wird.
 * Der Name der Integritätsprüfung ist der Name des `TContext`-Typs.
 
-In der Beispiel-App wird `AppDbContext` für `AddDbContextCheck` bereitgestellt und als Dienst in `Startup.ConfigureServices` ( *DbContextHealthStartup.cs* ) registriert:
+In der Beispiel-App wird `AppDbContext` für `AddDbContextCheck` bereitgestellt und als Dienst in `Startup.ConfigureServices` (*DbContextHealthStartup.cs*) registriert:
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/DbContextHealthStartup.cs?name=snippet_ConfigureServices)]
 
@@ -1164,17 +1164,17 @@ In einigen Hostingszenarien wird ein Integritätsprüfungspaar verwendet, bei de
 * *Bereitschaft* gibt an, ob die App ordnungsgemäß ausgeführt wird, aber nicht für den Empfang von Anforderungen bereit ist.
 * *Livetest* gibt an, ob eine App abgestürzt ist und neu gestartet werden muss.
 
-Betrachten Sie das folgende Beispiel: Eine App muss eine große Konfigurationsdatei herunterladen, bevor sie für die Verarbeitung von Anforderungen bereit ist. Wir möchten nicht, dass die App neu gestartet wird, wenn der erste Download fehlschlägt, da die App mehrmals versuchen kann, die Datei herunterzuladen. Wir verwenden einen *Livetest* , um den Livezustand des Prozesses zu beschreiben. Weitere Überprüfungen werden nicht durchgeführt. Außerdem soll verhindert werden, dass Anforderungen an die App gesendet werden, bevor die Konfigurationsdatei erfolgreich heruntergeladen wurde. Wir verwenden einen *Bereitschaftstest* , um den Status "nicht bereit" anzugeben, bis der Download erfolgreich durchgeführt wurde und die App für den Empfang von Anforderungen bereit ist.
+Betrachten Sie das folgende Beispiel: Eine App muss eine große Konfigurationsdatei herunterladen, bevor sie für die Verarbeitung von Anforderungen bereit ist. Wir möchten nicht, dass die App neu gestartet wird, wenn der erste Download fehlschlägt, da die App mehrmals versuchen kann, die Datei herunterzuladen. Wir verwenden einen *Livetest*, um den Livezustand des Prozesses zu beschreiben. Weitere Überprüfungen werden nicht durchgeführt. Außerdem soll verhindert werden, dass Anforderungen an die App gesendet werden, bevor die Konfigurationsdatei erfolgreich heruntergeladen wurde. Wir verwenden einen *Bereitschaftstest*, um den Status "nicht bereit" anzugeben, bis der Download erfolgreich durchgeführt wurde und die App für den Empfang von Anforderungen bereit ist.
 
-Die Beispiel-App enthält eine Integritätsprüfung, um den Abschluss eines Starttasks mit langer Ausführungsdauer in einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) zu melden. `StartupHostedServiceHealthCheck` macht die Eigenschaft `StartupTaskCompleted` verfügbar, die der gehostete Dienst auf `true` festlegen kann, wenn der Task mit langer Ausführungsdauer abgeschlossen ist ( *StartupHostedServiceHealthCheck.cs* ):
+Die Beispiel-App enthält eine Integritätsprüfung, um den Abschluss eines Starttasks mit langer Ausführungsdauer in einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) zu melden. `StartupHostedServiceHealthCheck` macht die Eigenschaft `StartupTaskCompleted` verfügbar, die der gehostete Dienst auf `true` festlegen kann, wenn der Task mit langer Ausführungsdauer abgeschlossen ist (*StartupHostedServiceHealthCheck.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/StartupHostedServiceHealthCheck.cs?name=snippet1&highlight=7-11)]
 
-Der Hintergrundtask mit langer Ausführungsdauer wird von einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) ( *Services/StartupHostedService* ) gestartet. Nach Abschluss des Tasks wird `StartupHostedServiceHealthCheck.StartupTaskCompleted` auf `true` festgelegt:
+Der Hintergrundtask mit langer Ausführungsdauer wird von einem [gehosteten Dienst](xref:fundamentals/host/hosted-services) (*Services/StartupHostedService*) gestartet. Nach Abschluss des Tasks wird `StartupHostedServiceHealthCheck.StartupTaskCompleted` auf `true` festgelegt:
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/Services/StartupHostedService.cs?name=snippet1&highlight=18-20)]
 
-Die Integritätsprüfung wird mit <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> zusammen mit dem gehosteten Dienst in `Startup.ConfigureServices` registriert. Da der gehostete Dienst die Eigenschaft in der Integritätsprüfung festlegen muss, wird die Integritätsprüfung ebenfalls im Dienstcontainer ( *LivenessProbeStartup.cs* ) registriert:
+Die Integritätsprüfung wird mit <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> zusammen mit dem gehosteten Dienst in `Startup.ConfigureServices` registriert. Da der gehostete Dienst die Eigenschaft in der Integritätsprüfung festlegen muss, wird die Integritätsprüfung ebenfalls im Dienstcontainer (*LivenessProbeStartup.cs*) registriert:
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/LivenessProbeStartup.cs?name=snippet_ConfigureServices)]
 
@@ -1198,7 +1198,7 @@ Um das Szenario für die Konfiguration von Bereitschafts-/Lebendigkeitsprüfunge
 dotnet run --scenario liveness
 ```
 
-Besuchen Sie `/health/ready` mehrmals in einem Browser, bis 15 Sekunden verstrichen sind. Die Integritätsprüfung meldet während der ersten 15 Sekunden *Fehlerhaft*. Nach 15 Sekunden meldet der Endpunkt *Fehlerfrei* , was darauf hindeutet, dass die Ausführung des Tasks mit langer Ausführungsdauer durch den gehosteten Dienst abgeschlossen wurde.
+Besuchen Sie `/health/ready` mehrmals in einem Browser, bis 15 Sekunden verstrichen sind. Die Integritätsprüfung meldet während der ersten 15 Sekunden *Fehlerhaft*. Nach 15 Sekunden meldet der Endpunkt *Fehlerfrei*, was darauf hindeutet, dass die Ausführung des Tasks mit langer Ausführungsdauer durch den gehosteten Dienst abgeschlossen wurde.
 
 In diesem Beispiel wird auch ein Herausgeber der Integritätsprüfung erstellt (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher>-Implementierung), der die erste Bereitschaftsprüfung mit einer Verzögerung von zwei Sekunden ausführt. Weitere Informationen finden Sie im Abschnitt [Herausgeber der Integritätsprüfung](#health-check-publisher).
 
@@ -1229,13 +1229,13 @@ spec:
 
 Die Beispiel-App veranschaulicht eine Arbeitsspeicher-Integritätsprüfung mit einem benutzerdefinierten Antwortwriter.
 
-`MemoryHealthCheck` meldet einen Fehlerstatus, wenn die App mehr Arbeitsspeicher verwendet, als für den Schwellenwert festgelegt wurde (1 GB in der Beispiel-App). Das <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> enthält Garbage Collector-Informationen (GC) für die App ( *MemoryHealthCheck.cs* ):
+`MemoryHealthCheck` meldet einen Fehlerstatus, wenn die App mehr Arbeitsspeicher verwendet, als für den Schwellenwert festgelegt wurde (1 GB in der Beispiel-App). Das <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> enthält Garbage Collector-Informationen (GC) für die App (*MemoryHealthCheck.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/MemoryHealthCheck.cs?name=snippet1)]
 
 Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Die Integritätsprüfung wird nicht durch Übergabe an <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> aktiviert, stattdessen wird `MemoryHealthCheck` als Dienst registriert. Alle bei <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> registrierten Dienste stehen für die Dienste und Middleware für Integritätsprüfungen zur Verfügung. Es wird empfohlen, Integritätsprüfungsdienste als Singleton-Dienste zu registrieren.
 
-In der Beispiel-App ( *CustomWriterStartup.cs* ):
+In der Beispiel-App (*CustomWriterStartup.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/CustomWriterStartup.cs?name=snippet_ConfigureServices&highlight=4)]
 
@@ -1273,9 +1273,9 @@ Wenn <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.
 
 Die Beispiel-App konfiguriert den Port mithilfe des [Umgebungsvariablen-Konfigurationsanbieters](xref:fundamentals/configuration/index#environment-variables-configuration-provider). Der Port wird in der Datei *launchSettings.json* festgelegt und über eine Umgebungsvariable an den Konfigurationsanbieter übergeben. Sie müssen den Server auch so konfigurieren, dass er am Verwaltungsport auf Anforderungen lauscht.
 
-Um die Beispiel-App zum Veranschaulichen der Konfiguration des Verwaltungsports zu verwenden, erstellen Sie die Datei *launchSettings.json* in einem *Eigenschaften* -Ordner.
+Um die Beispiel-App zum Veranschaulichen der Konfiguration des Verwaltungsports zu verwenden, erstellen Sie die Datei *launchSettings.json* in einem *Eigenschaften*-Ordner.
 
-Die folgende *Properties/launchSettings.json* -Datei in der Beispiel-App ist in den Projektdateien der Beispiel-App nicht vorhanden und muss manuell erstellt werden:
+Die folgende *Properties/launchSettings.json*-Datei in der Beispiel-App ist in den Projektdateien der Beispiel-App nicht vorhanden und muss manuell erstellt werden:
 
 ```json
 {
@@ -1295,14 +1295,14 @@ Die folgende *Properties/launchSettings.json* -Datei in der Beispiel-App ist in 
 }
 ```
 
-Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Der Aufruf von <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*> gibt den Verwaltungsport an ( *ManagementPortStartup.cs* ):
+Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks*> in `Startup.ConfigureServices`. Der Aufruf von <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*> gibt den Verwaltungsport an (*ManagementPortStartup.cs*):
 
 [!code-csharp[](health-checks/samples/2.x/HealthChecksSample/ManagementPortStartup.cs?name=snippet1&highlight=17)]
 
 > [!NOTE]
 > Sie können es vermeiden, die Datei *launchSettings.json* in der Beispiel-App erstellen zu müssen, indem Sie die URLs und den Verwaltungsport explizit im Code festlegen. Fügen Sie in *Program.cs* an der Stelle, an der <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> erstellt wird, einen Aufruf von <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls*> hinzu, und geben Sie den normalen Antwortendpunkt der App und den Endpunkt des Verwaltungsports an. Geben Sie in *ManagementPortStartup.cs* an der Stelle, an der <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*> aufgerufen wird, explizit den Verwaltungsport an.
 >
-> *Program.cs* :
+> *Program.cs*:
 >
 > ```csharp
 > return new WebHostBuilder()
@@ -1319,7 +1319,7 @@ Registrieren Sie Integritätsprüfungsdienste mit <xref:Microsoft.Extensions.Dep
 >     .Build();
 > ```
 >
-> *ManagementPortStartup.cs* :
+> *ManagementPortStartup.cs*:
 >
 > ```csharp
 > app.UseHealthChecks("/health", port: 5001);

@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: test/middleware
 ms.openlocfilehash: 2dd5fa127af4432c612bb654d50eb4147aea6868
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93051433"
 ---
 # <a name="test-aspnet-core-middleware"></a>Testen von ASP.NET Core-Middleware
@@ -68,7 +68,7 @@ Senden Sie eine Anforderung mit <xref:System.Net.Http.HttpClient>:
 
 Bestätigen Sie das Ergebnis. Machen Sie zunächst eine Assertion, die das Gegenteil des von Ihnen erwarteten Ergebnisses darstellt. Ein erster Lauf mit einer falsch-positiven Assertion bestätigt, dass der Test fehlschlägt, wenn die Middleware einwandfrei funktioniert. Führen Sie den Test aus, und bestätigen Sie, dass der Test fehlschlägt.
 
-Im folgenden Beispiel sollte die Middleware den Statuscode 404 ( *Nicht gefunden* ) zurückgeben, wenn der Stammendpunkt angefordert wird. Führen Sie den ersten Testlauf mit `Assert.NotEqual( ... );` durch, der fehlschlagen sollte:
+Im folgenden Beispiel sollte die Middleware den Statuscode 404 (*Nicht gefunden*) zurückgeben, wenn der Stammendpunkt angefordert wird. Führen Sie den ersten Testlauf mit `Assert.NotEqual( ... );` durch, der fehlschlagen sollte:
 
 [!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=22)]
 

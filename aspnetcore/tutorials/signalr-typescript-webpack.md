@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/signalr-typescript-webpack
 ms.openlocfilehash: 949276bf4aae33c3af3fd1b8219a83868095f378
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93056841"
 ---
 # <a name="use-aspnet-core-no-locsignalr-with-typescript-and-webpack"></a>Verwenden von ASP.NET Core SignalR mit TypeScript und Webpack
@@ -75,13 +75,13 @@ Konfigurieren Sie Visual Studio, damit in der Umgebungsvariable *PATH* nach NPM 
 
 Die Konfiguration von Visual Studio ist abgeschlossen.
 
-1. Verwenden Sie die Menüoption **Datei** > **Neu** > **Projekt** , und wählen Sie die Vorlage **ASP.NET Core-Web-App** aus. Klicken Sie auf **Weiter**.
-1. Benennen Sie das Projekt *SignalRWebPack* , und klicken Sie auf **Erstellen**.
+1. Verwenden Sie die Menüoption **Datei** > **Neu** > **Projekt**, und wählen Sie die Vorlage **ASP.NET Core-Web-App** aus. Klicken Sie auf **Weiter**.
+1. Benennen Sie das Projekt *SignalRWebPack*, und klicken Sie auf **Erstellen**.
 1. Wählen Sie in der Dropdownliste mit Zielframeworks *.NET Core* und in der Dropdownliste zur Auswahl des Frameworks *ASP.NET Core 3.1* aus. Wählen Sie die **leere** Vorlage und dann **Erstellen** aus.
 
 `Microsoft.TypeScript.MSBuild`-Paket zu Projekt hinzufügen:
 
-1. Klicken Sie im **Projektmappen-Explorer** (rechter Bereich) mit der rechten Maustaste auf den Projektknoten, und wählen Sie **NuGet-Pakete verwalten** aus. Suchen Sie auf der Registerkarte **Durchsuchen** nach `Microsoft.TypeScript.MSBuild`, und klicken Sie dann rechts auf **Installieren** , um das Paket zu installieren.
+1. Klicken Sie im **Projektmappen-Explorer** (rechter Bereich) mit der rechten Maustaste auf den Projektknoten, und wählen Sie **NuGet-Pakete verwalten** aus. Suchen Sie auf der Registerkarte **Durchsuchen** nach `Microsoft.TypeScript.MSBuild`, und klicken Sie dann rechts auf **Installieren**, um das Paket zu installieren.
 
 Visual Studio fügt das NuGet-Paket unter dem Knoten **Abhängigkeiten** im **Projektmappen-Explorer** hinzu, wodurch die TypeScript-Kompilierung im Projekt aktiviert wird.
 
@@ -94,7 +94,7 @@ dotnet new web -o SignalRWebPack
 code -r SignalRWebPack
 ```
 
-* Durch den Befehl `dotnet new` wird eine leere ASP.NET Core-Web-App in einem *SignalRWebPack* -Verzeichnis erstellt.
+* Durch den Befehl `dotnet new` wird eine leere ASP.NET Core-Web-App in einem *SignalRWebPack*-Verzeichnis erstellt.
 * Der Befehl `code` öffnet den Ordner *SignalRWebPack* in der aktuellen Instanz von Visual Studio Code.
 
 Führen Sie im **integrierten Terminal** den folgenden .NET Core-CLI-Befehl aus:
@@ -111,13 +111,13 @@ dotnet add package Microsoft.TypeScript.MSBuild
 
 In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript und die Bündelung clientseitiger Ressourcen konfiguriert.
 
-1. Führen Sie den folgenden Befehl im Projektstamm aus, um eine *package.json* -Datei zu erstellen:
+1. Führen Sie den folgenden Befehl im Projektstamm aus, um eine *package.json*-Datei zu erstellen:
 
     ```console
     npm init -y
     ```
 
-1. Fügen Sie der *package.json* -Datei die hervorgehobene Eigenschaft hinzu, und speichern Sie die Dateiänderungen:
+1. Fügen Sie der *package.json*-Datei die hervorgehobene Eigenschaft hinzu, und speichern Sie die Dateiänderungen:
 
     [!code-json[package.json](signalr-typescript-webpack/sample/3.x/snippets/package1.json?highlight=4)]
 
@@ -132,7 +132,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
     Beachten Sie folgende Informationen:
 
     * Auf das `@`-Zeichen folgt bei jedem Paketnamen eine Versionsnummer. Die spezifischen Paketversionen werden von NPM installiert.
-    * Die Option `-E` deaktiviert das Standardverhalten von NPM, das Bereichsoperatoren für die [semantische Versionierung](https://semver.org/) in die *package.json* -Datei schreibt. Beispielsweise wird `"webpack": "4.41.5"` anstelle von `"webpack": "^4.41.5"` verwendet. Diese Option verhindert unbeabsichtigte Upgrades auf neuere Paketversionen.
+    * Die Option `-E` deaktiviert das Standardverhalten von NPM, das Bereichsoperatoren für die [semantische Versionierung](https://semver.org/) in die *package.json*-Datei schreibt. Beispielsweise wird `"webpack": "4.41.5"` anstelle von `"webpack": "^4.41.5"` verwendet. Diese Option verhindert unbeabsichtigte Upgrades auf neuere Paketversionen.
 
     Ausführliche Informationen finden Sie in der Dokumentation zu [npm-install](https://docs.npmjs.com/cli/install).
 
@@ -161,7 +161,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
     * Die Eigenschaft `output` überschreibt den Standardwert von *dist*. Das Bündel wird stattdessen an das Verzeichnis *wwwroot* ausgegeben.
     * Das `resolve.extensions`-Array schließt *.js* ein, um den JavaScript-Code des SignalR-Clients zu importieren.
 
-1. Erstellen Sie ein neues *src* -Verzeichnis im Projektstamm, um die clientseitigen Ressourcen des Projekts zu speichern.
+1. Erstellen Sie ein neues *src*-Verzeichnis im Projektstamm, um die clientseitigen Ressourcen des Projekts zu speichern.
 
 1. Erstellen Sie *src/index.html* mit dem folgenden Markup.
 
@@ -169,7 +169,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
     Der vorangehende HTML-Code definiert die Markupbausteine der Homepage.
 
-1. Erstellen Sie ein neues *src/css* -Verzeichnis. Es dient als Speicherort für die *CSS* -Dateien des Projekts.
+1. Erstellen Sie ein neues *src/css*-Verzeichnis. Es dient als Speicherort für die *CSS*-Dateien des Projekts.
 
 1. Erstellen Sie *src/css/main.css* mit der folgenden CSS-Spezifikation:
 
@@ -198,9 +198,9 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseStaticDefaultFiles&highlight=9-10)]
 
-   Der vorherige Code ermöglicht dem Server, die *index.html* -Datei zu finden und bereitzustellen.  Die Datei wird bereitgestellt, wenn der Benutzer die vollständige URL oder nur die Stamm-URL der Web-App eingibt.
+   Der vorherige Code ermöglicht dem Server, die *index.html*-Datei zu finden und bereitzustellen.  Die Datei wird bereitgestellt, wenn der Benutzer die vollständige URL oder nur die Stamm-URL der Web-App eingibt.
 
-1. Ordnen Sie am Ende von `Startup.Configure` eine */hub* -Route dem `ChatHub`-Hub zu. Ersetzen Sie den Code, der *Hello World!* anzeigt, durch folgende Zeile: 
+1. Ordnen Sie am Ende von `Startup.Configure` eine */hub*-Route dem `ChatHub`-Hub zu. Ersetzen Sie den Code, der *Hello World!* anzeigt, durch folgende Zeile: 
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_UseSignalR&highlight=3)]
 
@@ -208,9 +208,9 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
    [!code-csharp[Startup](signalr-typescript-webpack/sample/3.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Erstellen Sie im Projektstamm *SignalRWebPack/* ein neues Verzeichnis namens *Hubs* , um den SignalR-Hub zu speichern.
+1. Erstellen Sie im Projektstamm *SignalRWebPack/* ein neues Verzeichnis namens *Hubs*, um den SignalR-Hub zu speichern.
 
-1. Erstellen Sie mit dem folgenden Code den Hub *Hubs/ChatHub.cs* :
+1. Erstellen Sie mit dem folgenden Code den Hub *Hubs/ChatHub.cs*:
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/3.x/snippets/ChatHub.cs?name=snippet_ChatHubStubClass)]
 
@@ -265,7 +265,7 @@ Mit den folgenden Schritten können Sie überprüfen, ob die App funktioniert.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Klicken Sie auf **Debuggen** > **Starten ohne Debugging** , um die App in einem Browser zu starten, ohne den Debugger anzufügen. Die Datei *wwwroot/index.html* wird unter `http://localhost:<port_number>` bereitgestellt.
+1. Klicken Sie auf **Debuggen** > **Starten ohne Debugging**, um die App in einem Browser zu starten, ohne den Debugger anzufügen. Die Datei *wwwroot/index.html* wird unter `http://localhost:<port_number>` bereitgestellt.
 
    Wenn Sie Kompilierungsfehlermeldungen erhalten, versuchen Sie, die Projektmappe zu schließen und erneut zu öffnen. 
 
@@ -331,8 +331,8 @@ Konfigurieren Sie Visual Studio, damit in der Umgebungsvariable *PATH* nach NPM 
 
 Die Konfiguration von Visual Studio ist abgeschlossen. Jetzt ist es an der Zeit, das Projekt zu erstellen.
 
-1. Verwenden Sie die Menüoption **Datei** > **Neu** > **Projekt** , und wählen Sie die Vorlage **ASP.NET Core-Web-App** aus.
-1. Benennen Sie das Projekt *SignalRWebPack* , und klicken Sie auf **Erstellen**.
+1. Verwenden Sie die Menüoption **Datei** > **Neu** > **Projekt**, und wählen Sie die Vorlage **ASP.NET Core-Web-App** aus.
+1. Benennen Sie das Projekt *SignalRWebPack*, und klicken Sie auf **Erstellen**.
 1. Wählen Sie in der Dropdownliste mit Zielframeworks *.NET Core* und in der Dropdownliste zur Auswahl des Frameworks *ASP.NET Core 2.2* aus. Wählen Sie die **leere** Vorlage und dann **Erstellen** aus.
 
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
@@ -343,7 +343,7 @@ Führen Sie den folgenden Befehl aus dem **integrierten Terminal** aus:
 dotnet new web -o SignalRWebPack
 ```
 
-Eine leere ASP.NET Core-Web-App für .NET Core wird in einem *SignalRWebPack* -Verzeichnis erstellt.
+Eine leere ASP.NET Core-Web-App für .NET Core wird in einem *SignalRWebPack*-Verzeichnis erstellt.
 
 ---
 
@@ -351,13 +351,13 @@ Eine leere ASP.NET Core-Web-App für .NET Core wird in einem *SignalRWebPack* -V
 
 In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript und die Bündelung clientseitiger Ressourcen konfiguriert.
 
-1. Führen Sie den folgenden Befehl im Projektstamm aus, um eine *package.json* -Datei zu erstellen:
+1. Führen Sie den folgenden Befehl im Projektstamm aus, um eine *package.json*-Datei zu erstellen:
 
     ```console
     npm init -y
     ```
 
-1. Fügen Sie der *package.json* -Datei die hervorgehobene Eigenschaft hinzu:
+1. Fügen Sie der *package.json*-Datei die hervorgehobene Eigenschaft hinzu:
 
     [!code-json[package.json](signalr-typescript-webpack/sample/2.x/snippets/package1.json?highlight=4)]
 
@@ -372,7 +372,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
     Beachten Sie folgende Informationen:
 
     * Auf das `@`-Zeichen folgt bei jedem Paketnamen eine Versionsnummer. Die spezifischen Paketversionen werden von NPM installiert.
-    * Die Option `-E` deaktiviert das Standardverhalten von NPM, das Bereichsoperatoren für die [semantische Versionierung](https://semver.org/) in die *package.json* -Datei schreibt. Beispielsweise wird `"webpack": "4.29.3"` anstelle von `"webpack": "^4.29.3"` verwendet. Diese Option verhindert unbeabsichtigte Upgrades auf neuere Paketversionen.
+    * Die Option `-E` deaktiviert das Standardverhalten von NPM, das Bereichsoperatoren für die [semantische Versionierung](https://semver.org/) in die *package.json*-Datei schreibt. Beispielsweise wird `"webpack": "4.29.3"` anstelle von `"webpack": "^4.29.3"` verwendet. Diese Option verhindert unbeabsichtigte Upgrades auf neuere Paketversionen.
 
     Ausführliche Informationen finden Sie in der Dokumentation zu [npm-install](https://docs.npmjs.com/cli/install).
 
@@ -401,7 +401,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
     * Die Eigenschaft `output` überschreibt den Standardwert von *dist*. Das Bündel wird stattdessen an das Verzeichnis *wwwroot* ausgegeben.
     * Das `resolve.extensions`-Array schließt *.js* ein, um den JavaScript-Code des SignalR-Clients zu importieren.
 
-1. Erstellen Sie ein neues *src* -Verzeichnis im Projektstamm, um die clientseitigen Ressourcen des Projekts zu speichern.
+1. Erstellen Sie ein neues *src*-Verzeichnis im Projektstamm, um die clientseitigen Ressourcen des Projekts zu speichern.
 
 1. Erstellen Sie *src/index.html* mit dem folgenden Markup.
 
@@ -409,7 +409,7 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
     Der vorangehende HTML-Code definiert die Markupbausteine der Homepage.
 
-1. Erstellen Sie ein neues *src/css* -Verzeichnis. Es dient als Speicherort für die *CSS* -Dateien des Projekts.
+1. Erstellen Sie ein neues *src/css*-Verzeichnis. Es dient als Speicherort für die *CSS*-Dateien des Projekts.
 
 1. Erstellen Sie *src/css/main.css* mit dem folgenden Markup:
 
@@ -444,13 +444,13 @@ In den folgenden Schritten wird die Konvertierung von TypeScript zu JavaScript u
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_AddSignalR)]
 
-1. Ordnen Sie dem `ChatHub`-Hub eine */hub* -Route zu. Fügen Sie die folgenden Zeilen am Ende von `Startup.Configure` hinzu:
+1. Ordnen Sie dem `ChatHub`-Hub eine */hub*-Route zu. Fügen Sie die folgenden Zeilen am Ende von `Startup.Configure` hinzu:
 
     [!code-csharp[Startup](signalr-typescript-webpack/sample/2.x/Startup.cs?name=snippet_UseSignalR)]
 
 1. Erstellen Sie ein neues Verzeichnis namens *Hubs* am Projektstamm. Es dient als Speicherort des SignalR-Hubs, der im nächsten Schritt erstellt wird.
 
-1. Erstellen Sie mit dem folgenden Code den Hub *Hubs/ChatHub.cs* :
+1. Erstellen Sie mit dem folgenden Code den Hub *Hubs/ChatHub.cs*:
 
     [!code-csharp[ChatHub](signalr-typescript-webpack/sample/2.x/snippets/ChatHub.cs?name=snippet_ChatHubStubClass)]
 
@@ -502,7 +502,7 @@ Mit den folgenden Schritten können Sie überprüfen, ob die App funktioniert.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Klicken Sie auf **Debuggen** > **Starten ohne Debugging** , um die App in einem Browser zu starten, ohne den Debugger anzufügen. Die Datei *wwwroot/index.html* wird unter `http://localhost:<port_number>` bereitgestellt.
+1. Klicken Sie auf **Debuggen** > **Starten ohne Debugging**, um die App in einem Browser zu starten, ohne den Debugger anzufügen. Die Datei *wwwroot/index.html* wird unter `http://localhost:<port_number>` bereitgestellt.
 
 1. Öffnen Sie eine weitere Browserinstanz (beliebiger Browser). Fügen Sie die URL in die Adressleiste ein.
 

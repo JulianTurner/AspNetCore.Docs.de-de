@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/aspnetcore
 ms.openlocfilehash: b120aa4ab6922445f2c53f3b1cb3bd5c159d8a84
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057829"
 ---
 # <a name="grpc-services-with-aspnet-core"></a>gRPC-Dienste mit ASP.NET Core
@@ -67,7 +67,7 @@ gRPC erfordert das Paket [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.A
 
 ### <a name="configure-grpc"></a>Konfigurieren von gRPC
 
-In *Startup.cs* :
+In *Startup.cs*:
 
 * gRPC wird mit der Methode `AddGrpc` aktiviert.
 * Jeder gRPC-Dienst wird der Routingpipeline durch die `MapGrpcService`-Methode hinzugefügt.

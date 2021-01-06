@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/url-rewriting
 ms.openlocfilehash: e7bd5f4d61661dd23eb0907f896d0d32b7799aac
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061300"
 ---
 # <a name="url-rewriting-middleware-in-aspnet-core"></a>URL-umschreibende Middleware in ASP.NET Core
@@ -272,7 +272,7 @@ Die Middleware unterstützt die folgenden Servervariablen für die Apache „mod
 
 ### <a name="iis-url-rewrite-module-rules"></a>Regeln zum IIS-Umschreibungsmodul
 
-Um denselben Regelsatz zu verwenden, der für das IIS-Moduls für URL-Neuschreibung gilt, verwenden Sie <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Vergewissern Sie sich, dass die Regeldatei mit der App bereitgestellt wird. Geben Sie der Middleware nicht die Anweisung, die *web.config* -Datei der App zu verwenden, wenn sie auf der Windows Server-IIS ausgeführt wird. Bei IIS sollten diese Regeln außerhalb der *web.config* -Datei der App gespeichert werden, um Konflikte mit dem IIS-Neuschreibungsmodul zu vermeiden. Weitere Informationen und Beispiele zu den Regeln zum IIS-Umschreibungsmodul finden Sie unter [Using Url Rewrite Module 2.0 (Verwenden des URL-Umschreibungsmoduls 2.0)](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) und [URL Rewrite Module Configuration Reference (Konfigurationsreferenz des URL-Umschreibungsmoduls)](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
+Um denselben Regelsatz zu verwenden, der für das IIS-Moduls für URL-Neuschreibung gilt, verwenden Sie <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Vergewissern Sie sich, dass die Regeldatei mit der App bereitgestellt wird. Geben Sie der Middleware nicht die Anweisung, die *web.config*-Datei der App zu verwenden, wenn sie auf der Windows Server-IIS ausgeführt wird. Bei IIS sollten diese Regeln außerhalb der *web.config*-Datei der App gespeichert werden, um Konflikte mit dem IIS-Neuschreibungsmodul zu vermeiden. Weitere Informationen und Beispiele zu den Regeln zum IIS-Umschreibungsmodul finden Sie unter [Using Url Rewrite Module 2.0 (Verwenden des URL-Umschreibungsmoduls 2.0)](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) und [URL Rewrite Module Configuration Reference (Konfigurationsreferenz des URL-Umschreibungsmoduls)](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
 Zum Lesen der Regeldatei *IISUrlRewrite.xml* wird <xref:System.IO.StreamReader> verwendet:
 
@@ -339,7 +339,7 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*>,
 
 In der Beispiel-App wird eine Methode dargestellt, die Anforderungen für Pfade weiterleitet, die auf *.xml* enden. Wenn eine Anforderung für `/file.xml` erfolgt, wird sie zu `/xmlfiles/file.xml` umgeleitet. Der Statuscode wird auf *301 – Permanent verschoben* festgelegt. Wenn vom Browser eine neue Anforderung für */xmlfiles/file.xml* gesendet wird, wird dem Client die Datei von Middleware für statische Dateien aus dem Ordner *wwwroot/xmlfiles* bereitgestellt. Legen Sie für eine Umleitung den Statuscode der Antwort explizit fest. Andernfalls wird ein Statuscode *200 – OK* zurückgegeben, und die Umleitung findet nicht auf dem Client statt.
 
-*RewriteRules.cs* :
+*RewriteRules.cs*:
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXmlFileRequests&highlight=14-18)]
 
@@ -347,7 +347,7 @@ Bei diesem Ansatz können auch Anforderungen erneut generiert werden. In der Bei
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=15,22)]
 
-*RewriteRules.cs* :
+*RewriteRules.cs*:
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=7-8)]
 
@@ -357,7 +357,7 @@ Um Regellogik in einer Klasse zu nutzen, die die <xref:Microsoft.AspNetCore.Rewr
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=16-17)]
 
-Die Werte für die Parameter in der Beispiel-App für `extension` und `newPath` werden auf verschiedene Bedingungen geprüft. `extension` muss einen Wert enthalten, der *.png* , *.jpg* oder *.gif* entspricht. Wenn `newPath` nicht gültig ist, wird <xref:System.ArgumentException> nicht ausgelöst. Wenn eine Anforderung für *image.png* erfolgt, wird sie zu `/png-images/image.png` umgeleitet. Wenn eine Anforderung für *image.jpg* erfolgt, wird die zu `/jpg-images/image.jpg` umgeleitet. Der Statuscode ist auf *301 – Permanent verschoben* festgelegt, und `context.Result` erhält die Anweisung, Verarbeitungsregeln nicht mehr anzuwenden und die Antwort zu senden.
+Die Werte für die Parameter in der Beispiel-App für `extension` und `newPath` werden auf verschiedene Bedingungen geprüft. `extension` muss einen Wert enthalten, der *.png*, *.jpg* oder *.gif* entspricht. Wenn `newPath` nicht gültig ist, wird <xref:System.ArgumentException> nicht ausgelöst. Wenn eine Anforderung für *image.png* erfolgt, wird sie zu `/png-images/image.png` umgeleitet. Wenn eine Anforderung für *image.jpg* erfolgt, wird die zu `/jpg-images/image.jpg` umgeleitet. Der Statuscode ist auf *301 – Permanent verschoben* festgelegt, und `context.Result` erhält die Anweisung, Verarbeitungsregeln nicht mehr anzuwenden und die Antwort zu senden.
 
 [!code-csharp[](url-rewriting/samples/3.x/SampleApp/RewriteRules.cs?name=snippet_RedirectImageRequests)]
 
@@ -626,7 +626,7 @@ Die Middleware unterstützt die folgenden Servervariablen für die Apache „mod
 
 ### <a name="iis-url-rewrite-module-rules"></a>Regeln zum IIS-Umschreibungsmodul
 
-Um denselben Regelsatz zu verwenden, der für das IIS-Moduls für URL-Neuschreibung gilt, verwenden Sie <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Vergewissern Sie sich, dass die Regeldatei mit der App bereitgestellt wird. Geben Sie der Middleware nicht die Anweisung, die *web.config* -Datei der App zu verwenden, wenn sie auf der Windows Server-IIS ausgeführt wird. Bei IIS sollten diese Regeln außerhalb der *web.config* -Datei der App gespeichert werden, um Konflikte mit dem IIS-Neuschreibungsmodul zu vermeiden. Weitere Informationen und Beispiele zu den Regeln zum IIS-Umschreibungsmodul finden Sie unter [Using Url Rewrite Module 2.0 (Verwenden des URL-Umschreibungsmoduls 2.0)](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) und [URL Rewrite Module Configuration Reference (Konfigurationsreferenz des URL-Umschreibungsmoduls)](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
+Um denselben Regelsatz zu verwenden, der für das IIS-Moduls für URL-Neuschreibung gilt, verwenden Sie <xref:Microsoft.AspNetCore.Rewrite.IISUrlRewriteOptionsExtensions.AddIISUrlRewrite*>. Vergewissern Sie sich, dass die Regeldatei mit der App bereitgestellt wird. Geben Sie der Middleware nicht die Anweisung, die *web.config*-Datei der App zu verwenden, wenn sie auf der Windows Server-IIS ausgeführt wird. Bei IIS sollten diese Regeln außerhalb der *web.config*-Datei der App gespeichert werden, um Konflikte mit dem IIS-Neuschreibungsmodul zu vermeiden. Weitere Informationen und Beispiele zu den Regeln zum IIS-Umschreibungsmodul finden Sie unter [Using Url Rewrite Module 2.0 (Verwenden des URL-Umschreibungsmoduls 2.0)](/iis/extensions/url-rewrite-module/using-url-rewrite-module-20) und [URL Rewrite Module Configuration Reference (Konfigurationsreferenz des URL-Umschreibungsmoduls)](/iis/extensions/url-rewrite-module/url-rewrite-module-configuration-reference).
 
 Zum Lesen der Regeldatei *IISUrlRewrite.xml* wird <xref:System.IO.StreamReader> verwendet:
 
@@ -693,7 +693,7 @@ Verwenden Sie <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*>,
 
 In der Beispiel-App wird eine Methode dargestellt, die Anforderungen für Pfade weiterleitet, die auf *.xml* enden. Wenn eine Anforderung für `/file.xml` erfolgt, wird sie zu `/xmlfiles/file.xml` umgeleitet. Der Statuscode wird auf *301 – Permanent verschoben* festgelegt. Wenn vom Browser eine neue Anforderung für */xmlfiles/file.xml* gesendet wird, wird dem Client die Datei von Middleware für statische Dateien aus dem Ordner *wwwroot/xmlfiles* bereitgestellt. Legen Sie für eine Umleitung den Statuscode der Antwort explizit fest. Andernfalls wird ein Statuscode *200 – OK* zurückgegeben, und die Umleitung findet nicht auf dem Client statt.
 
-*RewriteRules.cs* :
+*RewriteRules.cs*:
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RedirectXmlFileRequests&highlight=14-18)]
 
@@ -701,7 +701,7 @@ Bei diesem Ansatz können auch Anforderungen erneut generiert werden. In der Bei
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=15,22)]
 
-*RewriteRules.cs* :
+*RewriteRules.cs*:
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RewriteTextFileRequests&highlight=7-8)]
 
@@ -711,7 +711,7 @@ Um Regellogik in einer Klasse zu nutzen, die die <xref:Microsoft.AspNetCore.Rewr
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/Startup.cs?name=snippet1&highlight=16-17)]
 
-Die Werte für die Parameter in der Beispiel-App für `extension` und `newPath` werden auf verschiedene Bedingungen geprüft. `extension` muss einen Wert enthalten, der *.png* , *.jpg* oder *.gif* entspricht. Wenn `newPath` nicht gültig ist, wird <xref:System.ArgumentException> nicht ausgelöst. Wenn eine Anforderung für *image.png* erfolgt, wird sie zu `/png-images/image.png` umgeleitet. Wenn eine Anforderung für *image.jpg* erfolgt, wird die zu `/jpg-images/image.jpg` umgeleitet. Der Statuscode ist auf *301 – Permanent verschoben* festgelegt, und `context.Result` erhält die Anweisung, Verarbeitungsregeln nicht mehr anzuwenden und die Antwort zu senden.
+Die Werte für die Parameter in der Beispiel-App für `extension` und `newPath` werden auf verschiedene Bedingungen geprüft. `extension` muss einen Wert enthalten, der *.png*, *.jpg* oder *.gif* entspricht. Wenn `newPath` nicht gültig ist, wird <xref:System.ArgumentException> nicht ausgelöst. Wenn eine Anforderung für *image.png* erfolgt, wird sie zu `/png-images/image.png` umgeleitet. Wenn eine Anforderung für *image.jpg* erfolgt, wird die zu `/jpg-images/image.jpg` umgeleitet. Der Statuscode ist auf *301 – Permanent verschoben* festgelegt, und `context.Result` erhält die Anweisung, Verarbeitungsregeln nicht mehr anzuwenden und die Antwort zu senden.
 
 [!code-csharp[](url-rewriting/samples/2.x/SampleApp/RewriteRules.cs?name=snippet_RedirectImageRequests)]
 

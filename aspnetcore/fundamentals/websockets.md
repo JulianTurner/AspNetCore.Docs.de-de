@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/websockets
 ms.openlocfilehash: 83a41d503b2d56bca3f1bac14eeb9d54a8257642
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057777"
 ---
 # <a name="websockets-support-in-aspnet-core"></a>WebSockets-Unterstützung in ASP.NET Core
@@ -128,7 +128,7 @@ Wenn der Client nicht immer Nachrichten sendet und Sie kein Timeout festlegen m�
 
 ## <a name="websocket-origin-restriction"></a>Beschränkung von WebSocket-Ursprüngen
 
-Der von CORS erzeugte Schutz gilt nicht für WebSockets. Für Browser gilt Folgendes **nicht** :
+Der von CORS erzeugte Schutz gilt nicht für WebSockets. Für Browser gilt Folgendes **nicht**:
 
 * Ausführen von CORS-Preflightanforderungen
 * Berücksichtigen der Einschränkungen, die in den `Access-Control`-Headern bei der Erstellung von WebSocket-Anforderungen angegeben sind
@@ -161,11 +161,11 @@ So aktivieren Sie die Unterstützung für das WebSocket-Protokoll unter Windows 
 1. Verwenden Sie den Assistenten **Rollen und Features hinzufügen** im Menü **Verwalten** oder den Link in **Server-Manager**.
 1. Klicken Sie auf **Rollenbasierte oder featurebasierte Installation**. Klicken Sie auf **Weiter**.
 1. Wählen Sie den entsprechenden Server aus (standardmäßig ist der lokale Server ausgewählt). Klicken Sie auf **Weiter**.
-1. Erweitern Sie **Webserver (IIS)** in der Struktur **Rollen** , und erweitern Sie **Webserver** und anschließend **Anwendungsentwicklung**.
+1. Erweitern Sie **Webserver (IIS)** in der Struktur **Rollen**, und erweitern Sie **Webserver** und anschließend **Anwendungsentwicklung**.
 1. Wählen Sie **WebSocket-Protokoll** aus. Klicken Sie auf **Weiter**.
 1. Wenn keine zusätzlichen Features erforderlich sind, klicken Sie auf **Weiter**.
 1. Klicken Sie auf **Installieren**.
-1. Wenn die Installation abgeschlossen ist, klicken Sie auf **Schließen** , um den Assistenten zu beenden.
+1. Wenn die Installation abgeschlossen ist, klicken Sie auf **Schließen**, um den Assistenten zu beenden.
 
 So aktivieren Sie die Unterstützung für das WebSocket-Protokoll unter Windows 8 oder höher:
 

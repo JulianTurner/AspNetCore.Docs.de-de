@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/sort-filter-page
 ms.openlocfilehash: 8e425d413471912c763c4892a90e9d12039efec4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93053981"
 ---
 # <a name="tutorial-add-sorting-filtering-and-paging---aspnet-mvc-with-ef-core"></a>Tutorial: Hinzufügen von Sortieren, Filtern und Paging: ASP.NET MVC mit EF Core
@@ -109,13 +109,13 @@ Sie haben einen `searchString`-Parameter zur `Index`-Methode hinzugefügt. Der Z
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>Hinzufügen eines Suchfelds zur Studentenindexansicht
 
-Fügen Sie in *Views/Student/Index.cshtml* den hervorgehobenen Code unmittelbar vor dem Tag „Tabelle öffnen“ hinzu, um eine Beschriftung, ein Textfeld und eine **Suche** -Schaltfläche zu erstellen.
+Fügen Sie in *Views/Student/Index.cshtml* den hervorgehobenen Code unmittelbar vor dem Tag „Tabelle öffnen“ hinzu, um eine Beschriftung, ein Textfeld und eine **Suche**-Schaltfläche zu erstellen.
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
 Dieser Code verwendet das [Taghilfsprogramm](xref:mvc/views/tag-helpers/intro) `<form>`, um das Suchtextfeld und die Schaltfläche hinzuzufügen. Das Taghilfsprogramm `<form>` sendet standardmäßig Formulardaten mit einem POST, was bedeutet, dass Parameter als Abfragezeichenfolgen im Hauptteil der HTTP-Nachricht und nicht in der URL übergeben werden. Bei der Angabe von HTTP GET werden die Formulardaten als Abfragezeichenfolgen an die URL übergeben. Dadurch können Benutzer ein Lesezeichen für die URL erstellen. Die W3C-Richtlinien empfehlen die Verwendung eines GET-Vorgangs, wenn die Aktion nicht zu einem Update führt.
 
-Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Studenten** , geben Sie eine Suchzeichenfolge ein, und klicken Sie auf „Suchen“, um die Funktionsweise des Filters zu überprüfen.
+Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Studenten**, geben Sie eine Suchzeichenfolge ein, und klicken Sie auf „Suchen“, um die Funktionsweise des Filters zu überprüfen.
 
 ![Indexseite Studenten mit Filtern](sort-filter-page/_static/filtering.png)
 
@@ -252,7 +252,7 @@ Die LINQ-Anweisung gruppiert die Studentenentitäten nach Anmeldedatum, berechne
 
 ### <a name="create-the-about-view"></a>Erstellen der Ansicht „Info“
 
-Fügen Sie eine *Views/Home/About.cshtml* -Datei mit dem folgenden Code hinzu:
+Fügen Sie eine *Views/Home/About.cshtml*-Datei mit dem folgenden Code hinzu:
 
 [!code-cshtml[](intro/samples/cu/Views/Home/About.cshtml)]
 

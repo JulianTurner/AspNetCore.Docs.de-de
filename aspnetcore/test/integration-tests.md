@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: test/integration-tests
 ms.openlocfilehash: f1ce6a209ef3ca85abe0a6f1ac61d85bec52d17a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93050822"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>Integrationstests in ASP.NET Core
@@ -84,7 +84,7 @@ Integrationstests in ASP.NET Core erfordern Folgendes:
 * Das Testprojekt erstellt einen Testwebhost für das GS und verwendet einen Testserverclient, um Anforderungen und Antworten im Zusammenhang mit dem GS zu verarbeiten.
 * Um die Tests auszuführen und die Testergebnisse zu melden, wird ein Test-Runner verwendet.
 
-Integrationstests folgen einer Sequenz von Ereignissen, die die üblichen Testschritte *Arrange* , *Act* und *Assert* umfassen:
+Integrationstests folgen einer Sequenz von Ereignissen, die die üblichen Testschritte *Arrange*, *Act* und *Assert* umfassen:
 
 1. Der Webhost des GS wird konfiguriert.
 1. Es wird ein Testserverclient erstellt, um Anforderungen an die App zu senden.
@@ -100,7 +100,7 @@ Infrastrukturkomponenten wie der Testwebhost und der In-Memory-Testserver ([Test
 
 Das `Microsoft.AspNetCore.Mvc.Testing`-Paket verarbeitet die folgenden Aufgaben:
 
-* Es kopiert die Datei für Abhängigkeiten ( *.deps* ) aus dem GS in das *bin-* Verzeichnis des Testprojekts.
+* Es kopiert die Datei für Abhängigkeiten ( *.deps*) aus dem GS in das *bin-* Verzeichnis des Testprojekts.
 * Es legt das [Inhaltsstammelement](xref:fundamentals/index#content-root) auf das Projektstammelement des GS fest, damit statische Dateien und Seiten/Ansichten bei der Ausführung der Tests gefunden werden.
 * Es stellt die Klasse [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) zur Optimierung des Bootstrappings des GS mit `TestServer` bereit.
 
@@ -140,7 +140,7 @@ Wenn die [Umgebung](xref:fundamentals/environments) des GS nicht festgelegt ist,
 
 [WebApplicationFactory\<TEntryPoint>](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) wird verwendet, um einen [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) für die Integrationstests zu erstellen. `TEntryPoint` ist die Einstiegspunktklasse des GS, in der Regel die `Startup`-Klasse.
 
-Testklassen implementieren eine *class fixture* -Schnittstelle ( [IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), um anzugeben, dass die Klasse Tests enthält und um in den Tests in der Klasse gemeinsame Objektinstanzen bereitzustellen.
+Testklassen implementieren eine *class fixture*-Schnittstelle ([IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), um anzugeben, dass die Klasse Tests enthält und um in den Tests in der Klasse gemeinsame Objektinstanzen bereitzustellen.
 
 Die folgende Testklasse (`BasicTests`) verwendet die `WebApplicationFactory` für den Bootstrap des GS und um einen [HttpClient](/dotnet/api/system.net.http.httpclient) für eine Testmethode `Get_EndpointsReturnSuccessAndCorrectContentType` bereitzustellen. Die Methode prüft, ob der Antwortstatuscode erfolgreich ist (Statuscodes im Bereich 200-299) und der `Content-Type`-Header für mehrere App-Seiten `text/html; charset=utf-8` lautet.
 
@@ -195,7 +195,7 @@ Jede POST-Anforderung an das GS muss die Fälschungsschutzprüfung bestehen, die
 1. Analysieren des Fälschungsschutzcookies und des Anforderungsvalidierungstokens von der Antwort.
 1. Senden der POST-Anforderung mit vorhandenem Fälschungsschutzcookie und Anforderungsvalidierungstoken.
 
-Die `SendAsync`-Hilfsprogrammerweiterungsmethoden ( *Helpers/HttpClientExtensions.cs* ) und die `GetDocumentAsync`-Hilfsprogrammmethode ( *Helpers/HtmlHelpers.cs* ) in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) verwenden den [AngleSharp](https://anglesharp.github.io/)-Parser, um die Fälschungsschutzprüfungen mit den folgenden Methoden durchzuführen:
+Die `SendAsync`-Hilfsprogrammerweiterungsmethoden (*Helpers/HttpClientExtensions.cs*) und die `GetDocumentAsync`-Hilfsprogrammmethode (*Helpers/HtmlHelpers.cs*) in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) verwenden den [AngleSharp](https://anglesharp.github.io/)-Parser, um die Fälschungsschutzprüfungen mit den folgenden Methoden durchzuführen:
 
 * `GetDocumentAsync`: Empfängt die [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) und gibt ein `IHtmlDocument` zurück. `GetDocumentAsync` verwendet eine Factory, die eine *virtuelle Antwort* basierend auf der ursprünglichen `HttpResponseMessage` vorbereitet. Weitere Informationen finden Sie in der [AngleSharp-Dokumentation](https://github.com/AngleSharp/AngleSharp#documentation).
 * `SendAsync`-Erweiterungsmethoden für den `HttpClient` verfassen eine [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) und rufen [SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) auf, um Anforderungen an das GS zu senden. Überladungen für `SendAsync` akzeptieren das HTML-Formular (`IHtmlFormElement`) und Folgendes:
@@ -246,23 +246,23 @@ Dienste können in einem Test mit dem Aufruf [ConfigureTestServices](/dotnet/api
 
 Das Beispiel-GS enthält einen bereichsbezogenen Dienst, der ein Zitat zurückgibt. Wenn die Indexseite angefordert wird, wird das Zitat in ein ausgeblendetes Feld auf der Indexseite eingebettet.
 
-*Services/IQuoteService.cs* :
+*Services/IQuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
 
-*Services/QuoteService.cs* :
+*Services/QuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
-*Startup.cs* :
+*Startup.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet2)]
 
-*Pages/Index.cshtml.cs* :
+*Pages/Index.cshtml.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml.cs?name=snippet1&highlight=4,9,20,26)]
 
-*Pages/Index.cs* :
+*Pages/Index.cs*:
 
 [!code-cshtml[](integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml?name=snippet_Quote)]
 
@@ -275,7 +275,7 @@ Das folgende Markup wird generiert, wenn die GS-App ausgeführt wird:
 
 Um den Dienst und die Zitateinfügung in einem Integrationstest zu testen, wird vom Test ein Pseudodienst in das GS eingefügt. Der Pseudodienst ersetzt `QuoteService` der App durch einen Dienst namens `TestQuoteService`, der von der Test-App bereitgestellt wird:
 
-*IntegrationTests.IndexPageTests.cs* :
+*IntegrationTests.IndexPageTests.cs*:
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
 
@@ -343,11 +343,11 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Ableitung des Inhaltsstammpfads der App durch die Testinfrastruktur
 
-Der `WebApplicationFactory`-Konstruktor leitet den [Inhaltsstammpfad](xref:fundamentals/index#content-root) der App ab, indem er in der Assembly, die die Integrationstests enthält, nach einem [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) mit einem Schlüssel sucht, der `TEntryPoint` assembly `System.Reflection.Assembly.FullName` entspricht. Wenn kein Attribut mit dem richtigen Schlüssel gefunden wird, greift `WebApplicationFactory` auf die Suche nach einer Projektmappendatei ( *.sln* ) zurück und fügt den `TEntryPoint`-Assemblynamen an das Projektmappenverzeichnis an. Das Stammverzeichnis der App (der Inhaltsstammpfad) wird verwendet, um Sichten und Inhaltsdateien zu ermitteln.
+Der `WebApplicationFactory`-Konstruktor leitet den [Inhaltsstammpfad](xref:fundamentals/index#content-root) der App ab, indem er in der Assembly, die die Integrationstests enthält, nach einem [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) mit einem Schlüssel sucht, der `TEntryPoint` assembly `System.Reflection.Assembly.FullName` entspricht. Wenn kein Attribut mit dem richtigen Schlüssel gefunden wird, greift `WebApplicationFactory` auf die Suche nach einer Projektmappendatei ( *.sln*) zurück und fügt den `TEntryPoint`-Assemblynamen an das Projektmappenverzeichnis an. Das Stammverzeichnis der App (der Inhaltsstammpfad) wird verwendet, um Sichten und Inhaltsdateien zu ermitteln.
 
 ## <a name="disable-shadow-copying"></a>Deaktivieren der Erstellung von Schattenkopien
 
-Das Erstellen von Schattenkopien bewirkt, dass die Tests in einem anderen Verzeichnis als dem Ausgabeverzeichnis ausgeführt werden. Damit Tests ordnungsgemäß funktionieren, muss die Erstellung von Schattenkopien deaktiviert werden. Die [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) verwendet xUnit und deaktiviert die Erstellung von Schattenkopien für xUnit durch Einschließen einer *xunit.runner.json* -Datei mit der korrekten Konfigurationseinstellung. Weitere Informationen finden Sie unter [Konfigurieren von xUnit mit JSON](https://xunit.github.io/docs/configuring-with-json.html).
+Das Erstellen von Schattenkopien bewirkt, dass die Tests in einem anderen Verzeichnis als dem Ausgabeverzeichnis ausgeführt werden. Damit Tests ordnungsgemäß funktionieren, muss die Erstellung von Schattenkopien deaktiviert werden. Die [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) verwendet xUnit und deaktiviert die Erstellung von Schattenkopien für xUnit durch Einschließen einer *xunit.runner.json*-Datei mit der korrekten Konfigurationseinstellung. Weitere Informationen finden Sie unter [Konfigurieren von xUnit mit JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
 Fügen Sie die Datei *xunit.runner.json* mit folgendem Inhalt zum Stamm des Testprojekts hinzu:
 
@@ -380,10 +380,10 @@ dotnet test
 
 Beim GS handelt es sich um ein Razor Pages-Nachrichtensystem mit folgenden Merkmalen:
 
-* Die Indexseite der App ( *Pages/Index.cshtml* und *Pages/Index.cshtml.cs* ) stellt eine Benutzeroberfläche und Seitenmodellmethoden bereit, mit denen Sie das Hinzufügen, Löschen und Analysieren von Nachrichten (durchschnittliche Anzahl von Wörtern pro Nachricht) steuern können.
-* Eine Nachricht wird von der `Message`-Klasse ( *Data/Message.cs* ) mit zwei Eigenschaften beschrieben: `Id` (Schlüssel) und `Text` (Nachricht). Die `Text`-Eigenschaft ist erforderlich und auf 200 Zeichen beschränkt.
+* Die Indexseite der App (*Pages/Index.cshtml* und *Pages/Index.cshtml.cs*) stellt eine Benutzeroberfläche und Seitenmodellmethoden bereit, mit denen Sie das Hinzufügen, Löschen und Analysieren von Nachrichten (durchschnittliche Anzahl von Wörtern pro Nachricht) steuern können.
+* Eine Nachricht wird von der `Message`-Klasse (*Data/Message.cs*) mit zwei Eigenschaften beschrieben: `Id` (Schlüssel) und `Text` (Nachricht). Die `Text`-Eigenschaft ist erforderlich und auf 200 Zeichen beschränkt.
 * Nachrichten werden mithilfe der [In-Memory-Datenbank von Entity Framework](/ef/core/providers/in-memory/)&#8224; gespeichert.
-* Die App enthält eine Datenzugriffsebene (DAL) in ihrer Datenbankkontextklasse `AppDbContext` ( *Data/AppDbContext.cs* ).
+* Die App enthält eine Datenzugriffsebene (DAL) in ihrer Datenbankkontextklasse `AppDbContext` (*Data/AppDbContext.cs*).
 * Wenn die Datenbank beim Starten der App leer ist, wird der Nachrichtenspeicher mit drei Nachrichten initialisiert.
 * Die App enthält eine `/SecurePage`, auf die nur ein authentifizierter Benutzer zugreifen kann.
 
@@ -472,7 +472,7 @@ Integrationstests in ASP.NET Core erfordern Folgendes:
 * Das Testprojekt erstellt einen Testwebhost für das GS und verwendet einen Testserverclient, um Anforderungen und Antworten im Zusammenhang mit dem GS zu verarbeiten.
 * Um die Tests auszuführen und die Testergebnisse zu melden, wird ein Test-Runner verwendet.
 
-Integrationstests folgen einer Sequenz von Ereignissen, die die üblichen Testschritte *Arrange* , *Act* und *Assert* umfassen:
+Integrationstests folgen einer Sequenz von Ereignissen, die die üblichen Testschritte *Arrange*, *Act* und *Assert* umfassen:
 
 1. Der Webhost des GS wird konfiguriert.
 1. Es wird ein Testserverclient erstellt, um Anforderungen an die App zu senden.
@@ -488,7 +488,7 @@ Infrastrukturkomponenten wie der Testwebhost und der In-Memory-Testserver ([Test
 
 Das `Microsoft.AspNetCore.Mvc.Testing`-Paket verarbeitet die folgenden Aufgaben:
 
-* Es kopiert die Datei für Abhängigkeiten ( *.deps* ) aus dem GS in das *bin-* Verzeichnis des Testprojekts.
+* Es kopiert die Datei für Abhängigkeiten ( *.deps*) aus dem GS in das *bin-* Verzeichnis des Testprojekts.
 * Es legt das [Inhaltsstammelement](xref:fundamentals/index#content-root) auf das Projektstammelement des GS fest, damit statische Dateien und Seiten/Ansichten bei der Ausführung der Tests gefunden werden.
 * Es stellt die Klasse [WebApplicationFactory](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) zur Optimierung des Bootstrappings des GS mit `TestServer` bereit.
 
@@ -522,7 +522,7 @@ Wenn die [Umgebung](xref:fundamentals/environments) des GS nicht festgelegt ist,
 
 [WebApplicationFactory\<TEntryPoint>](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1) wird verwendet, um einen [TestServer](/dotnet/api/microsoft.aspnetcore.testhost.testserver) für die Integrationstests zu erstellen. `TEntryPoint` ist die Einstiegspunktklasse des GS, in der Regel die `Startup`-Klasse.
 
-Testklassen implementieren eine *class fixture* -Schnittstelle ( [IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), um anzugeben, dass die Klasse Tests enthält und um in den Tests in der Klasse gemeinsame Objektinstanzen bereitzustellen.
+Testklassen implementieren eine *class fixture*-Schnittstelle ([IClassFixture](https://xunit.github.io/docs/shared-context#class-fixture)), um anzugeben, dass die Klasse Tests enthält und um in den Tests in der Klasse gemeinsame Objektinstanzen bereitzustellen.
 
 Die folgende Testklasse (`BasicTests`) verwendet die `WebApplicationFactory` für den Bootstrap des GS und um einen [HttpClient](/dotnet/api/system.net.http.httpclient) für eine Testmethode `Get_EndpointsReturnSuccessAndCorrectContentType` bereitzustellen. Die Methode prüft, ob der Antwortstatuscode erfolgreich ist (Statuscodes im Bereich 200-299) und der `Content-Type`-Header für mehrere App-Seiten `text/html; charset=utf-8` lautet.
 
@@ -558,7 +558,7 @@ Jede POST-Anforderung an das GS muss die Fälschungsschutzprüfung bestehen, die
 1. Analysieren des Fälschungsschutzcookies und des Anforderungsvalidierungstokens von der Antwort.
 1. Senden der POST-Anforderung mit vorhandenem Fälschungsschutzcookie und Anforderungsvalidierungstoken.
 
-Die `SendAsync`-Hilfsprogrammerweiterungsmethoden ( *Helpers/HttpClientExtensions.cs* ) und die `GetDocumentAsync`-Hilfsprogrammmethode ( *Helpers/HtmlHelpers.cs* ) in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) verwenden den [AngleSharp](https://anglesharp.github.io/)-Parser, um die Fälschungsschutzprüfungen mit den folgenden Methoden durchzuführen:
+Die `SendAsync`-Hilfsprogrammerweiterungsmethoden (*Helpers/HttpClientExtensions.cs*) und die `GetDocumentAsync`-Hilfsprogrammmethode (*Helpers/HtmlHelpers.cs*) in der [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/) verwenden den [AngleSharp](https://anglesharp.github.io/)-Parser, um die Fälschungsschutzprüfungen mit den folgenden Methoden durchzuführen:
 
 * `GetDocumentAsync`: Empfängt die [HttpResponseMessage](/dotnet/api/system.net.http.httpresponsemessage) und gibt ein `IHtmlDocument` zurück. `GetDocumentAsync` verwendet eine Factory, die eine *virtuelle Antwort* basierend auf der ursprünglichen `HttpResponseMessage` vorbereitet. Weitere Informationen finden Sie in der [AngleSharp-Dokumentation](https://github.com/AngleSharp/AngleSharp#documentation).
 * `SendAsync`-Erweiterungsmethoden für den `HttpClient` verfassen eine [HttpRequestMessage](/dotnet/api/system.net.http.httprequestmessage) und rufen [SendAsync(HttpRequestMessage)](/dotnet/api/system.net.http.httpclient.sendasync#System_Net_Http_HttpClient_SendAsync_System_Net_Http_HttpRequestMessage_) auf, um Anforderungen an das GS zu senden. Überladungen für `SendAsync` akzeptieren das HTML-Formular (`IHtmlFormElement`) und Folgendes:
@@ -609,23 +609,23 @@ Dienste können in einem Test mit dem Aufruf [ConfigureTestServices](/dotnet/api
 
 Das Beispiel-GS enthält einen bereichsbezogenen Dienst, der ein Zitat zurückgibt. Wenn die Indexseite angefordert wird, wird das Zitat in ein ausgeblendetes Feld auf der Indexseite eingebettet.
 
-*Services/IQuoteService.cs* :
+*Services/IQuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
 
-*Services/QuoteService.cs* :
+*Services/QuoteService.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
-*Startup.cs* :
+*Startup.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet2)]
 
-*Pages/Index.cshtml.cs* :
+*Pages/Index.cshtml.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml.cs?name=snippet1&highlight=4,9,20,26)]
 
-*Pages/Index.cs* :
+*Pages/Index.cs*:
 
 [!code-cshtml[](integration-tests/samples/2.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml?name=snippet_Quote)]
 
@@ -638,7 +638,7 @@ Das folgende Markup wird generiert, wenn die GS-App ausgeführt wird:
 
 Um den Dienst und die Zitateinfügung in einem Integrationstest zu testen, wird vom Test ein Pseudodienst in das GS eingefügt. Der Pseudodienst ersetzt `QuoteService` der App durch einen Dienst namens `TestQuoteService`, der von der Test-App bereitgestellt wird:
 
-*IntegrationTests.IndexPageTests.cs* :
+*IntegrationTests.IndexPageTests.cs*:
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
 
@@ -724,11 +724,11 @@ public class CustomWebApplicationFactory<TStartup>
 
 ## <a name="how-the-test-infrastructure-infers-the-app-content-root-path"></a>Ableitung des Inhaltsstammpfads der App durch die Testinfrastruktur
 
-Der `WebApplicationFactory`-Konstruktor leitet den [Inhaltsstammpfad](xref:fundamentals/index#content-root) der App ab, indem er in der Assembly, die die Integrationstests enthält, nach einem [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) mit einem Schlüssel sucht, der `TEntryPoint` assembly `System.Reflection.Assembly.FullName` entspricht. Wenn kein Attribut mit dem richtigen Schlüssel gefunden wird, greift `WebApplicationFactory` auf die Suche nach einer Projektmappendatei ( *.sln* ) zurück und fügt den `TEntryPoint`-Assemblynamen an das Projektmappenverzeichnis an. Das Stammverzeichnis der App (der Inhaltsstammpfad) wird verwendet, um Sichten und Inhaltsdateien zu ermitteln.
+Der `WebApplicationFactory`-Konstruktor leitet den [Inhaltsstammpfad](xref:fundamentals/index#content-root) der App ab, indem er in der Assembly, die die Integrationstests enthält, nach einem [WebApplicationFactoryContentRootAttribute](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) mit einem Schlüssel sucht, der `TEntryPoint` assembly `System.Reflection.Assembly.FullName` entspricht. Wenn kein Attribut mit dem richtigen Schlüssel gefunden wird, greift `WebApplicationFactory` auf die Suche nach einer Projektmappendatei ( *.sln*) zurück und fügt den `TEntryPoint`-Assemblynamen an das Projektmappenverzeichnis an. Das Stammverzeichnis der App (der Inhaltsstammpfad) wird verwendet, um Sichten und Inhaltsdateien zu ermitteln.
 
 ## <a name="disable-shadow-copying"></a>Deaktivieren der Erstellung von Schattenkopien
 
-Das Erstellen von Schattenkopien bewirkt, dass die Tests in einem anderen Verzeichnis als dem Ausgabeverzeichnis ausgeführt werden. Damit Tests ordnungsgemäß funktionieren, muss die Erstellung von Schattenkopien deaktiviert werden. Die [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) verwendet xUnit und deaktiviert die Erstellung von Schattenkopien für xUnit durch Einschließen einer *xunit.runner.json* -Datei mit der korrekten Konfigurationseinstellung. Weitere Informationen finden Sie unter [Konfigurieren von xUnit mit JSON](https://xunit.github.io/docs/configuring-with-json.html).
+Das Erstellen von Schattenkopien bewirkt, dass die Tests in einem anderen Verzeichnis als dem Ausgabeverzeichnis ausgeführt werden. Damit Tests ordnungsgemäß funktionieren, muss die Erstellung von Schattenkopien deaktiviert werden. Die [Beispiel-App](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) verwendet xUnit und deaktiviert die Erstellung von Schattenkopien für xUnit durch Einschließen einer *xunit.runner.json*-Datei mit der korrekten Konfigurationseinstellung. Weitere Informationen finden Sie unter [Konfigurieren von xUnit mit JSON](https://xunit.github.io/docs/configuring-with-json.html).
 
 Fügen Sie die Datei *xunit.runner.json* mit folgendem Inhalt zum Stamm des Testprojekts hinzu:
 
@@ -771,10 +771,10 @@ dotnet test
 
 Beim GS handelt es sich um ein Razor Pages-Nachrichtensystem mit folgenden Merkmalen:
 
-* Die Indexseite der App ( *Pages/Index.cshtml* und *Pages/Index.cshtml.cs* ) stellt eine Benutzeroberfläche und Seitenmodellmethoden bereit, mit denen Sie das Hinzufügen, Löschen und Analysieren von Nachrichten (durchschnittliche Anzahl von Wörtern pro Nachricht) steuern können.
-* Eine Nachricht wird von der `Message`-Klasse ( *Data/Message.cs* ) mit zwei Eigenschaften beschrieben: `Id` (Schlüssel) und `Text` (Nachricht). Die `Text`-Eigenschaft ist erforderlich und auf 200 Zeichen beschränkt.
+* Die Indexseite der App (*Pages/Index.cshtml* und *Pages/Index.cshtml.cs*) stellt eine Benutzeroberfläche und Seitenmodellmethoden bereit, mit denen Sie das Hinzufügen, Löschen und Analysieren von Nachrichten (durchschnittliche Anzahl von Wörtern pro Nachricht) steuern können.
+* Eine Nachricht wird von der `Message`-Klasse (*Data/Message.cs*) mit zwei Eigenschaften beschrieben: `Id` (Schlüssel) und `Text` (Nachricht). Die `Text`-Eigenschaft ist erforderlich und auf 200 Zeichen beschränkt.
 * Nachrichten werden mithilfe der [In-Memory-Datenbank von Entity Framework](/ef/core/providers/in-memory/)&#8224; gespeichert.
-* Die App enthält eine Datenzugriffsebene (DAL) in ihrer Datenbankkontextklasse `AppDbContext` ( *Data/AppDbContext.cs* ).
+* Die App enthält eine Datenzugriffsebene (DAL) in ihrer Datenbankkontextklasse `AppDbContext` (*Data/AppDbContext.cs*).
 * Wenn die Datenbank beim Starten der App leer ist, wird der Nachrichtenspeicher mit drei Nachrichten initialisiert.
 * Die App enthält eine `/SecurePage`, auf die nur ein authentifizierter Benutzer zugreifen kann.
 

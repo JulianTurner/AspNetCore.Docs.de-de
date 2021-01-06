@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: spa/react
 ms.openlocfilehash: 6c3539d96329489189f49a3af0c718791824be6b
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054449"
 ---
 # <a name="use-the-react-project-template-with-aspnet-core"></a>Verwenden der React-Projektvorlage mit ASP.NET Core
@@ -49,7 +49,7 @@ Führen Sie die App über Visual Studio oder die .NET Core CLI aus:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-Öffnen Sie die generierte *CSPROJ* -Datei, und führen Sie die App von dort wie gewohnt aus.
+Öffnen Sie die generierte *CSPROJ*-Datei, und führen Sie die App von dort wie gewohnt aus.
 
 Während der Erstellung werden bei der ersten Ausführung npm-Abhängigkeiten wiederhergestellt. Dies kann einige Minuten dauern. Nachfolgende Builds sind wesentlich schneller.
 
@@ -94,7 +94,7 @@ Das Projekt ist so konfiguriert, dass die eigene Instanz des CRA-Entwicklungsser
 
 Bei diesem Standardsetup gibt es einen Nachteil. Jedes Mal, wenn Sie Ihren C#-Code ändern und Ihre ASP.NET Core-App neu gestartet werden muss, wird auch der CRA-Server neu gestartet. Es dauert einige Sekunden, bis der Sicherungsvorgang gestartet wird. Wenn Sie Ihren C#-Code häufig bearbeiten und nicht warten möchten, bis der CRA-Server neu gestartet wurde, können Sie den CRA-Server extern ausführen, unabhängig vom ASP.NET Core-Prozess. Gehen Sie hierzu wie folgt vor:
 
-1. Fügen Sie dem Unterverzeichnis *ClientApp* eine *ENV* -Datei mit der folgenden Einstellung hinzu:
+1. Fügen Sie dem Unterverzeichnis *ClientApp* eine *ENV*-Datei mit der folgenden Einstellung hinzu:
 
     ```
     BROWSER=none
@@ -102,7 +102,7 @@ Bei diesem Standardsetup gibt es einen Nachteil. Jedes Mal, wenn Sie Ihren C#-Co
 
     Dadurch wird verhindert, dass der Webbrowser geöffnet wird, wenn der CRA-Server extern gestartet wird.
 
-2. Wechseln Sie in einer Eingabeaufforderung zu dem Unterverzeichnis *ClientApp* , und starten Sie den CRA-Bereitstellungsserver:
+2. Wechseln Sie in einer Eingabeaufforderung zu dem Unterverzeichnis *ClientApp*, und starten Sie den CRA-Bereitstellungsserver:
 
     ```console
     cd ClientApp

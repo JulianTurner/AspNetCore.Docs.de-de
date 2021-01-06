@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: data/ef-rp/migrations
 ms.openlocfilehash: e6d1b9f041e892aaa37840c28fdb3153bf098b0d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061105"
 ---
 # <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>Teil 4: Razor Pages mit EF Core-Migrationen in ASP.NET Core
@@ -62,7 +62,7 @@ Drop-Database
 
 * Navigieren Sie in der Eingabeaufforderung zum Projektordner. Der Projektordner enthält die Datei *ContosoUniversity.csproj*.
 
-* Löschen Sie die Datei *CU.db* , oder führen Sie den folgenden Befehl aus:
+* Löschen Sie die Datei *CU.db*, oder führen Sie den folgenden Befehl aus:
 
   ```dotnetcli
   dotnet ef database drop --force

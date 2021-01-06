@@ -20,22 +20,22 @@ no-loc:
 - SignalR
 uid: host-and-deploy/web-farm
 ms.openlocfilehash: ee78e80a4eda3089943765700aa6bb62c6c1e07d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057517"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>Hosten von ASP.NET Core in einer Webfarm
 
 Von [Chris Ross](https://github.com/Tratcher)
 
-Eine *Webfarm* ist eine Gruppe von mindestens zwei Webservern (oder *Knoten* ), die mehrere Instanzen einer App hostet. Wenn eine Webfarm Benutzeranforderungen empfängt, verteilt ein *Lastenausgleichsmodul* die Anforderungen auf die Knoten der Webfarm. Webfarmen verbessern:
+Eine *Webfarm* ist eine Gruppe von mindestens zwei Webservern (oder *Knoten*), die mehrere Instanzen einer App hostet. Wenn eine Webfarm Benutzeranforderungen empfängt, verteilt ein *Lastenausgleichsmodul* die Anforderungen auf die Knoten der Webfarm. Webfarmen verbessern:
 
 * **Zuverlässigkeit/Verfügbarkeit:** Wenn bei mindestens einem Knoten ein Fehler auftritt, kann der Lastenausgleich Anforderungen zur weiteren Verarbeitung an andere funktionierende Knoten weiterleiten.
 * **Kapazität/Leistung:** Mehrere Knoten können mehr Anforderungen verarbeiten als ein einzelner Server. Das Lastenausgleichsmodul verteilt den Workload, indem Anforderungen auf die Knoten verteilt werden.
 * **Skalierbarkeit:** Wenn mehr oder weniger Kapazität benötigt wird, kann die Anzahl der aktiven Knoten entsprechend der Arbeitsauslastung erhöht oder verringert werden. Webfarmtechnologien wie [Azure App Service](https://azure.microsoft.com/services/app-service/) können Knoten automatisch auf Systemadministratoranforderungen hin hinzufügen oder entfernen bzw. diese Vorgänge komplett ohne manuelles Eingreifen ausführen.
-* **Wartbarkeit** : Knoten einer Webfarm können auf einer Reihe von gemeinsamen Diensten basieren, wodurch die Systemverwaltung vereinfacht wird. Beispielsweise können die Knoten einer Webfarm auf einem einzigen Datenbankserver und einer gemeinsamen Netzwerkadresse für statische Ressourcen wie Images und herunterladbare Dateien basieren.
+* **Wartbarkeit**: Knoten einer Webfarm können auf einer Reihe von gemeinsamen Diensten basieren, wodurch die Systemverwaltung vereinfacht wird. Beispielsweise können die Knoten einer Webfarm auf einem einzigen Datenbankserver und einer gemeinsamen Netzwerkadresse für statische Ressourcen wie Images und herunterladbare Dateien basieren.
 
 Dieses Thema beschreibt die Konfiguration und Abhängigkeiten für ASP.NET Core-Apps, die in einer Webfarm gehostet werden und auf freigegebenen Ressourcen basieren.
 

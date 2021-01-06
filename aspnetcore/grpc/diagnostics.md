@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/diagnostics
 ms.openlocfilehash: 1f25ae76e5a480e5e6f247e4ac78d06dd4e778e9
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060442"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>Protokollierung und Diagnosen in gRPC für .NET
@@ -223,7 +223,7 @@ Press p to pause, r to resume, q to quit.
 
 Eine andere Möglichkeit, gRPC-Metriken zu überwachen, ist es, Indikatoren mithilfe des [Microsoft.ApplicationInsights.EventCounterCollector-Pakets](/azure/azure-monitor/app/eventcounters) von Application Insights zu sammeln. Sobald Application Insights eingerichtet ist, werden allgemeine .NET-Indikatoren zur Laufzeit gesammelt. Indikatoren von gRPC werden nicht standardmäßig gesammelt, aber Application Insights kann so [angepasst werden, dass zusätzliche Indikatoren eingeschlossen](/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected) werden.
 
-Geben Sie die gRPC-Indikatoren, die gesammelt werden sollen, für Application Insights in *Startup.cs* :
+Geben Sie die gRPC-Indikatoren, die gesammelt werden sollen, für Application Insights in *Startup.cs*:
 
 ```csharp
     using Microsoft.ApplicationInsights.Extensibility.EventCounterCollector;

@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: data/ef-rp/complex-data-model
 ms.openlocfilehash: 1ac9d6303daac82f3973c5d027fe1f453dc32e02
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054098"
 ---
 # <a name="part-5-no-locrazor-pages-with-ef-core-in-aspnet-core---data-model"></a>Teil 5: Razor Pages mit EF Core in ASP.NET Core (Datenmodell)
@@ -237,7 +237,7 @@ In diesem Tutorial wird die anfängliche Migration gelöscht und erneut erstellt
 
 * Führen Sie die Anwendung aus. Wechseln Sie zur Studentenseite.
 * Beachten Sie, dass die Uhrzeiten nicht mit Datumsangaben eingegeben oder angezeigt werden.
-* Klicken Sie auf **Neu erstellen** , und versuchen Sie, einen Namen einzugeben, der länger als 50 Zeichen ist.
+* Klicken Sie auf **Neu erstellen**, und versuchen Sie, einen Namen einzugeben, der länger als 50 Zeichen ist.
 
 > [!Note]
 > In den folgenden Abschnitten werden beim Erstellen der App in einigen Phasen Compilerfehler generiert. Diese Anweisungen präzisieren, wann die App erstellt werden soll.
@@ -538,7 +538,7 @@ Das vorherige Diagramm stellt Folgendes dar:
 
 ## <a name="seed-the-database"></a>Ausführen eines Seedings für die Datenbank
 
-Aktualisieren Sie den Code in *Data/DbInitializer.cs* :
+Aktualisieren Sie den Code in *Data/DbInitializer.cs*:
 
 [!code-csharp[](intro/samples/cu30/Data/DbInitializer.cs)]
 
@@ -611,7 +611,7 @@ Löschen und aktualisieren Sie die Datenbank, um EF Core zum Erstellen einer neu
   Drop-Database
   ```
 
-* Löschen Sie den Ordner *Migrations* , und führen Sie dann den folgenden Befehl aus:
+* Löschen Sie den Ordner *Migrations*, und führen Sie dann den folgenden Befehl aus:
 
   ```powershell
   Add-Migration InitialCreate
@@ -628,7 +628,7 @@ Löschen und aktualisieren Sie die Datenbank, um EF Core zum Erstellen einer neu
   dotnet ef database drop --force
   ```
 
-* Löschen Sie den Ordner *Migrations* , und führen Sie dann den folgenden Befehl aus:
+* Löschen Sie den Ordner *Migrations*, und führen Sie dann den folgenden Befehl aus:
 
   ```dotnetcli
   dotnet ef migrations add InitialCreate
@@ -648,10 +648,10 @@ Führen Sie die App aus. Durch das Ausführen der App wird die `DbInitializer.In
 
   ![Tabellen im SSOX](complex-data-model/_static/ssox-tables.png)
 
-* Überprüfen Sie die Tabelle **CourseAssignment** :
+* Überprüfen Sie die Tabelle **CourseAssignment**:
 
-  * Klicken Sie mit der rechten Maustaste auf die Tabelle **CourseAssignment** , und klicken Sie auf **Daten anzeigen**.
-  * Überprüfen Sie, ob die Tabelle **CourseAssignment** -Daten enthält.
+  * Klicken Sie mit der rechten Maustaste auf die Tabelle **CourseAssignment**, und klicken Sie auf **Daten anzeigen**.
+  * Überprüfen Sie, ob die Tabelle **CourseAssignment**-Daten enthält.
 
   ![CourseAssignment-Daten im SSOX](complex-data-model/_static/ssox-ci-data.png)
 
@@ -660,7 +660,7 @@ Führen Sie die App aus. Durch das Ausführen der App wird die `DbInitializer.In
 Verwenden Sie das SQLite-Tool, um die Datenbank zu untersuchen:
 
 * Neue Tabellen und Spalten.
-* Mit Daten aufgefüllte Tabellen, z.B. die **CourseAssignment** -Tabelle.
+* Mit Daten aufgefüllte Tabellen, z.B. die **CourseAssignment**-Tabelle.
 
 ---
 
@@ -806,7 +806,7 @@ Der vorangehende Code beschränkt Namen auf maximal 50 Zeichen. Das `StringLengt
 Führen Sie die App aus:
 
 * Navigieren Sie zur Seite für Studenten.
-* Klicken Sie auf **Neu erstellen** , und geben Sie einen Namen ein, der länger als 50 Zeichen ist.
+* Klicken Sie auf **Neu erstellen**, und geben Sie einen Namen ein, der länger als 50 Zeichen ist.
 * Wenn Sie auf **Erstellen** klicken, zeigt die clientseitige Validierung eine Fehlermeldung an.
 
 ![Indexseite „Studenten“, die Fehler für die Zeichenfolgenlänge anzeigt](complex-data-model/_static/string-length-errors.png)
@@ -1246,7 +1246,7 @@ Das vorherige Diagramm stellt Folgendes dar:
 
 ## <a name="seed-the-db-with-test-data"></a>Ausführen eines Seedings mit Testdaten für die Datenbank
 
-Aktualisieren Sie den Code in *Data/DbInitializer.cs* :
+Aktualisieren Sie den Code in *Data/DbInitializer.cs*:
 
 [!code-csharp[](intro/samples/cu21/Data/DbInitializer.cs?name=snippet_Final)]
 
@@ -1331,10 +1331,10 @@ Führen Sie die App aus. Durch das Ausführen der App wird die `DbInitializer.In
 
 ![Tabellen im SSOX](complex-data-model/_static/ssox-tables.png)
 
-Überprüfen Sie die Tabelle **CourseAssignment** :
+Überprüfen Sie die Tabelle **CourseAssignment**:
 
-* Klicken Sie mit der rechten Maustaste auf die Tabelle **CourseAssignment** , und klicken Sie auf **Daten anzeigen**.
-* Überprüfen Sie, ob die Tabelle **CourseAssignment** -Daten enthält.
+* Klicken Sie mit der rechten Maustaste auf die Tabelle **CourseAssignment**, und klicken Sie auf **Daten anzeigen**.
+* Überprüfen Sie, ob die Tabelle **CourseAssignment**-Daten enthält.
 
 ![CourseAssignment-Daten im SSOX](complex-data-model/_static/ssox-ci-data.png)
 

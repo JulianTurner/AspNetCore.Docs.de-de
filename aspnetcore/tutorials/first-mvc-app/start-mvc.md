@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/start-mvc
 ms.openlocfilehash: c96e7107c85bf36f55f6571c71c20d09bc94ddb3
-ms.sourcegitcommit: fb208f907249cc7aab029afff941a0266c187050
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/17/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94688498"
 ---
 # <a name="get-started-with-aspnet-core-mvc"></a>Erste Schritte mit ASP.NET Core MVC
@@ -69,7 +69,7 @@ Am Ende verfügen Sie über eine App, die Filmdaten verwalten und anzeigen kann.
 1. Starten Sie Visual Studio, und wählen Sie **Neues Projekt erstellen** aus.
 1. Wählen Sie im Dialogfeld **Neues Projekt** die Option **ASP.NET Core-Webanwendung** > **Weiter** aus.
 1. Geben Sie `MvcMovie` im Dialogfeld **Neues Projekt konfigurieren** für **Projektname** ein. Es ist wichtig, genau diesen Namen unter Berücksichtigung der Groß-/Kleinschreibung zu verwenden, sodass beim Kopieren von Code jeder `namespace` übereinstimmt.
-1. Wählen Sie **Erstellen** aus.
+1. Klicken Sie auf **Erstellen**.
 1. Wählen Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** Folgendes aus:
     1. In den Dropdownmenüs **.NET Core** und **ASP.NET Core 5.0**.
     1. **ASP.NET Core-Web-App (Model View Controller)** .

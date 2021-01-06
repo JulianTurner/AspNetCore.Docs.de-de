@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/new-field
 ms.openlocfilehash: ce119d79bc96f01803b63c715332ec3d287473ff
-ms.sourcegitcommit: df808efa68574dd674f1985aa9d03f4f5fab883f
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/18/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94851181"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>Teil 8: Hinzufügen eines neuen Felds zu einer ASP.NET Core MVC-App

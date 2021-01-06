@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/concurrency
 ms.openlocfilehash: d476c836e8d497ca1291992dda38da1fc9f59ed2
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054371"
 ---
 # <a name="tutorial-handle-concurrency---aspnet-mvc-with-ef-core"></a>Tutorial: Behandeln der Parallelität: ASP.NET MVC mit EF Core
@@ -87,7 +87,7 @@ Einige der Optionen schließen Folgendes ein:
 
 * Sie können zulassen, dass die Änderungen von Benutzer2 die Änderungen von Benutzer1 überschreiben.
 
-     Das nächste Mal, wenn jemand den englischen Fachbereich durchsucht, wird das Datum 1.9.2013 und der wiederhergestellte Wert $350.000,00 angezeigt. Das ist entweder ein *Client gewinnt* - oder ein *Letzter Schreiber gewinnt* -Szenario. (Alle Werte des Clients haben Vorrang vor dem Datenspeicher.) Wie in der Einführung dieses Abschnitts beschrieben, geschieht dies automatisch, wenn Sie für die Behandlung der Parallelität keinen Code schreiben.
+     Das nächste Mal, wenn jemand den englischen Fachbereich durchsucht, wird das Datum 1.9.2013 und der wiederhergestellte Wert $350.000,00 angezeigt. Das ist entweder ein *Client gewinnt*- oder ein *Letzter Schreiber gewinnt*-Szenario. (Alle Werte des Clients haben Vorrang vor dem Datenspeicher.) Wie in der Einführung dieses Abschnitts beschrieben, geschieht dies automatisch, wenn Sie für die Behandlung der Parallelität keinen Code schreiben.
 
 * Sie können verhindern, dass die Änderungen von Benutzer2 in die Datenbank aufgenommen werden.
 
@@ -117,7 +117,7 @@ Fügen Sie der Datei *Models/Department.cs* eine Nachverfolgungseigenschaft name
 
 Das Attribut `Timestamp` gibt an, dass diese Spalte in die Where-Klausel der Befehle „Update“ und „Delete“ einbezogen wird, die an die Datenbank gesendet werden. Das Attribut wird `Timestamp` genannt, weil vorherige Versionen von SQL Server einen SQL-`timestamp`-Datentyp verwendet haben, bevor er durch SQL-`rowversion` ersetzt wurde. Der .NET-Typ für `rowversion` ist ein Bytearray.
 
-Wenn Sie die Verwendung der Fluent-API bevorzugen, können Sie die Methode `IsConcurrencyToken` (in *Data/SchoolContext.cs* ) verwenden, um die Änderungsverfolgungseigenschaft anzugeben, wie im folgenden Beispiel dargestellt wird:
+Wenn Sie die Verwendung der Fluent-API bevorzugen, können Sie die Methode `IsConcurrencyToken` (in *Data/SchoolContext.cs*) verwenden, um die Änderungsverfolgungseigenschaft anzugeben, wie im folgenden Beispiel dargestellt wird:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -276,7 +276,7 @@ Dadurch werden folgende Änderungen vorgenommen:
 
 Führen Sie die App aus, und navigieren Sie zur Indexseite „Abteilungen“. Klicken Sie mit der rechten Maustaste auf den Link **Löschen** für die englische Abteilung, und wählen Sie **In neuer Registerkarte öffnen** aus. Klicken Sie in der ersten Registerkarte dann auf den Link **Bearbeiten** für die englische Abteilung.
 
-Ändern Sie im ersten Fenster einen der Werte, und klicken Sie auf **Speichern** :
+Ändern Sie im ersten Fenster einen der Werte, und klicken Sie auf **Speichern**:
 
 ![Die Seite „Abteilung bearbeiten“ nach der Änderung vor dem Löschen](concurrency/_static/edit-after-change-for-delete.png)
 
@@ -290,11 +290,11 @@ Wenn Sie erneut auf **Löschen** klicken, werden Sie auf die Indexseite weiterge
 
 Optional können Sie den eingerüsteten Code in den Ansichten „Details“ und „Erstellen“ bereinigen.
 
-Ersetzen Sie den Code in der Datei *Views/Departments/Details.cshtml* , um die Spalte „RowVersion“ zu löschen und den vollständigen Namen des Administrators anzuzeigen.
+Ersetzen Sie den Code in der Datei *Views/Departments/Details.cshtml*, um die Spalte „RowVersion“ zu löschen und den vollständigen Namen des Administrators anzuzeigen.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
 
-Ersetzen Sie den Code in der Datei *Views/Departments/Create.cshtml* , um der Dropdownliste eine Select-Option hinzuzufügen.
+Ersetzen Sie den Code in der Datei *Views/Departments/Create.cshtml*, um der Dropdownliste eine Select-Option hinzuzufügen.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 

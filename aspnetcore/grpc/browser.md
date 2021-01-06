@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: grpc/browser
 ms.openlocfilehash: 6456707620ae1c1f4d23f3562c78d1bf05d4844f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058908"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Verwenden von gRPC in Browser-Apps
@@ -124,11 +124,11 @@ Der vorangehende Code:
 
 `GrpcWebHandler` hat die folgenden Konfigurationsoptionen:
 
-* **InnerHandler** : Der zugrundeliegende <xref:System.Net.Http.HttpMessageHandler>, der die gRPC HTTP-Anforderung stellt, z. B. `HttpClientHandler`.
-* **GrpcWebMode** : Ein Enumerationstyp, der angibt, ob die gRPC-HTTP-Anforderung `Content-Type` `application/grpc-web` oder `application/grpc-web-text` ist.
+* **InnerHandler**: Der zugrundeliegende <xref:System.Net.Http.HttpMessageHandler>, der die gRPC HTTP-Anforderung stellt, z. B. `HttpClientHandler`.
+* **GrpcWebMode**: Ein Enumerationstyp, der angibt, ob die gRPC-HTTP-Anforderung `Content-Type` `application/grpc-web` oder `application/grpc-web-text` ist.
     * `GrpcWebMode.GrpcWeb` konfiguriert Inhalte, die ohne Codierung gesendet werden. Standardwert.
     * `GrpcWebMode.GrpcWebText` konfiguriert den Inhalt so, dass er Base64-codiert ist. Erforderlich für Serverstreamingaufrufe in Browsern.
-* **HttpVersion** : Die `Version` des HTTP-Protokolls, die verwendet wird, um [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) für die zugrunde liegende gRPC-HTTP-Anforderung festzulegen. gRPC-Web erfordert keine bestimmte Version und setzt die Standardeinstellung nicht außer Kraft, sofern nicht anders angegeben.
+* **HttpVersion**: Die `Version` des HTTP-Protokolls, die verwendet wird, um [HttpRequestMessage.Version](xref:System.Net.Http.HttpRequestMessage.Version) für die zugrunde liegende gRPC-HTTP-Anforderung festzulegen. gRPC-Web erfordert keine bestimmte Version und setzt die Standardeinstellung nicht außer Kraft, sofern nicht anders angegeben.
 
 > [!IMPORTANT]
 > Generierte gRPC-Clients verfügen über synchrone und asynchrone Methoden für den Aufruf unärer Methoden. Beispiel: `SayHello` ist synchron und `SayHelloAsync` ist asynchron. Der Aufruf einer synchronen Methode in einer Blazor WebAssembly-App führt dazu, dass die App nicht mehr reagiert. Asynchrone Methoden müssen in Blazor WebAssembly immer verwendet werden.

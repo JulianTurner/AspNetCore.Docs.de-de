@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: client-side/spa-services
 ms.openlocfilehash: 1b9f5b4b4e066cdd3dd5fbfa666c7a087949979f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054644"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>Verwenden von JavaScript Services zum Erstellen von Single-Page-Anwendungen in ASP.NET Core
@@ -115,7 +115,7 @@ Diese Taghilfsprogramme beseitigen die Komplexität der direkten Kommunikation m
 
 ### <a name="asp-prerender-module-tag-helper"></a>Taghilfsprogramm „asp-prerender-module“
 
-Das Taghilfsprogramm `asp-prerender-module`, das im vorherigen Codebeispiel verwendet wird, führt *ClientApp/dist/main-server. js* auf dem Server über Node.js aus. Der Übersichtlichkeit halber ist die Datei *main-server.js* ein Artefakt der TypeScript-zu-JavaScript-Transpilationstask im [Webpack](https://webpack.github.io/)-Erstellungsprozess. Webpack definiert einen Einstiegspunktalias von `main-server`; und die Durchquerung des Abhängigkeitsdiagramms für diesen Alias beginnt bei der Datei *ClientApp/boot-server.ts* :
+Das Taghilfsprogramm `asp-prerender-module`, das im vorherigen Codebeispiel verwendet wird, führt *ClientApp/dist/main-server. js* auf dem Server über Node.js aus. Der Übersichtlichkeit halber ist die Datei *main-server.js* ein Artefakt der TypeScript-zu-JavaScript-Transpilationstask im [Webpack](https://webpack.github.io/)-Erstellungsprozess. Webpack definiert einen Einstiegspunktalias von `main-server`; und die Durchquerung des Abhängigkeitsdiagramms für diesen Alias beginnt bei der Datei *ClientApp/boot-server.ts*:
 
 [!code-javascript[](../client-side/spa-services/sample/SpaServicesSampleApp/webpack.config.js?range=53)]
 
@@ -133,7 +133,7 @@ Das empfangene `UserName`-Argument wird mit dem integrierten JSON-Serialisierung
 
 [!code-typescript[](../client-side/spa-services/sample/SpaServicesSampleApp/ClientApp/boot-server.ts?range=6,10-21,38-52,79-)]
 
-Eigenschaftsnamen, die in Taghilfsprogramme übergeben werden, werden mit **PascalCase** -Notation dargestellt. Dies steht im Gegensatz zu JavaScript, wo die gleichen Eigenschaftsnamen mit **camelCase** dargestellt werden. Dieser Unterschied ist auf die Standardkonfiguration der JSON-Serialisierung zurückzuführen.
+Eigenschaftsnamen, die in Taghilfsprogramme übergeben werden, werden mit **PascalCase**-Notation dargestellt. Dies steht im Gegensatz zu JavaScript, wo die gleichen Eigenschaftsnamen mit **camelCase** dargestellt werden. Dieser Unterschied ist auf die Standardkonfiguration der JSON-Serialisierung zurückzuführen.
 
 Um das vorherige Codebeispiel zu erweitern, können Daten vom Server an die Ansicht durch Umwandlung der `globals`-Eigenschaft, die der `resolve`-Funktion zur Verfügung gestellt wird, übergeben werden:
 
@@ -280,7 +280,7 @@ Die Anwendung startet auf Localhost entsprechend dem [Laufzeitkonfigurationsmodu
 
 ### <a name="run-with-visual-studio-2017"></a>Ausführen mit Visual Studio 2017
 
-Öffnen Sie die Datei *.csproj* , die mit dem [dotnet new](/dotnet/core/tools/dotnet-new)-Befehl generiert wurde. Die erforderlichen NuGet- und npm-Pakete werden beim Öffnen des Projekts automatisch wiederhergestellt. Dieser Wiederherstellungsprozess kann einige Minuten in Anspruch nehmen, und die Anwendung ist nach Abschluss des Vorgangs einsatzbereit. Klicken Sie auf die grüne Schaltfläche zum Ausführen, oder drücken Sie `Ctrl + F5`, und der Browser öffnet die Landing Page der Anwendung. Die Anwendung wird auf Localhost entsprechend dem [Laufzeitkonfigurationsmodus](#set-the-runtime-configuration-mode) ausgeführt.
+Öffnen Sie die Datei *.csproj*, die mit dem [dotnet new](/dotnet/core/tools/dotnet-new)-Befehl generiert wurde. Die erforderlichen NuGet- und npm-Pakete werden beim Öffnen des Projekts automatisch wiederhergestellt. Dieser Wiederherstellungsprozess kann einige Minuten in Anspruch nehmen, und die Anwendung ist nach Abschluss des Vorgangs einsatzbereit. Klicken Sie auf die grüne Schaltfläche zum Ausführen, oder drücken Sie `Ctrl + F5`, und der Browser öffnet die Landing Page der Anwendung. Die Anwendung wird auf Localhost entsprechend dem [Laufzeitkonfigurationsmodus](#set-the-runtime-configuration-mode) ausgeführt.
 
 ## <a name="test-the-app"></a>Testen der App
 

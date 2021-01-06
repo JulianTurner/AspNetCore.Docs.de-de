@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: tutorials/razor-pages/model
 ms.openlocfilehash: 7ea28e0ecad410335c37c603c8ec1eb5e6e41d33
-ms.sourcegitcommit: 6299f08aed5b7f0496001d093aae617559d73240
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/14/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "97485991"
 ---
 # <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Teil 2: Hinzufügen eines Modells zu einer Razor Pages-App in ASP.NET Core

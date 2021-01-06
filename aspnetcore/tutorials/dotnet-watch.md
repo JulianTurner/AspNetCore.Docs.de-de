@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/dotnet-watch
 ms.openlocfilehash: 27420fe00ba6375e15b67fb359be06df055eff1f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060039"
 ---
 # <a name="develop-aspnet-core-apps-using-a-file-watcher"></a>Entwickeln von ASP.NET Core-Apps mit einem Dateiwatcher
@@ -63,7 +63,7 @@ Navigieren Sie zur Produkt-API (`http://localhost:<port number>/api/math/product
 
 Das Dateiwatcher-Tool `dotnet watch` ist im Lieferumfang von .NET Core SDK-Version 2.1.300 enthalten. Wenn Sie eine frühere Version von .NET Core SDK verwenden, sind die folgenden Schritte erforderlich.
 
-1. Fügen Sie der *CSPROJ* -Datei einen `Microsoft.DotNet.Watcher.Tools`-Paketverweis hinzu:
+1. Fügen Sie der *CSPROJ*-Datei einen `Microsoft.DotNet.Watcher.Tools`-Paketverweis hinzu:
 
     ```xml
     <ItemGroup>
@@ -95,7 +95,7 @@ Führen Sie `dotnet watch run` im Ordner *WebApp* aus. Die Konsolenausgabe gibt 
 ::: moniker range=">= aspnetcore-5.0"
 Wenn `dotnet watch run` in einer Web-App ausgeführt wird, wird ein Browser aufgerufen, der nach der Bereitstellung zur URL der App navigiert. Dies geschieht bei `dotnet watch`, indem die Konsolenausgabe der App gelesen und auf die durch <xref:Microsoft.AspNetCore.WebHost> angezeigte Bereitmeldung gewartet wird.
 
-`dotnet watch` aktualisiert den Browser, wenn an den überwachten Dateien Änderungen erkannt werden. Hierzu wird mit dem Watch-Befehl eine Middleware in die App eingefügt, mit der durch die App erstellte HTML-Antworten geändert werden. Die Middleware fügt der Seite einen JavaScript-Block hinzu, mit dessen Hilfe `dotnet watch` den Browser anweist, eine Aktualisierung durchzuführen. Derzeit führen Änderungen an überwachten Dateien wie etwa an statischen Inhalten wie *HTML* und *CSS* -Dateien dazu, dass die App neu erstellt wird.
+`dotnet watch` aktualisiert den Browser, wenn an den überwachten Dateien Änderungen erkannt werden. Hierzu wird mit dem Watch-Befehl eine Middleware in die App eingefügt, mit der durch die App erstellte HTML-Antworten geändert werden. Die Middleware fügt der Seite einen JavaScript-Block hinzu, mit dessen Hilfe `dotnet watch` den Browser anweist, eine Aktualisierung durchzuführen. Derzeit führen Änderungen an überwachten Dateien wie etwa an statischen Inhalten wie *HTML* und *CSS*-Dateien dazu, dass die App neu erstellt wird.
 
 `dotnet watch`:
 
@@ -150,7 +150,7 @@ Standardmäßig überwacht `dotnet-watch` alle Dateien mit den folgenden Globmus
 * `*.csproj`
 * `**/*.resx`
 
-Durch Bearbeiten der *CSPROJ* -Datei können der Watchlist weitere Elemente hinzugefügt werden. Dabei können die Elemente einzeln oder mithilfe von Globmustern angegeben werden.
+Durch Bearbeiten der *CSPROJ*-Datei können der Watchlist weitere Elemente hinzugefügt werden. Dabei können die Elemente einzeln oder mithilfe von Globmustern angegeben werden.
 
 ```xml
 <ItemGroup>
@@ -161,7 +161,7 @@ Durch Bearbeiten der *CSPROJ* -Datei können der Watchlist weitere Elemente hinz
 
 ## <a name="opt-out-of-files-to-be-watched"></a>Abwählen von zu überwachenden Dateien
 
-Sie können `dotnet-watch` so konfigurieren, dass die Standardeinstellungen ignoriert werden. Wenn Sie bestimmte Dateien ignorieren möchten, fügen Sie der Definition eines Elements in der *CSPROJ* -Datei das `Watch="false"`-Attribut hinzu:
+Sie können `dotnet-watch` so konfigurieren, dass die Standardeinstellungen ignoriert werden. Wenn Sie bestimmte Dateien ignorieren möchten, fügen Sie der Definition eines Elements in der *CSPROJ*-Datei das `Watch="false"`-Attribut hinzu:
 
 ```xml
 <ItemGroup>
@@ -201,7 +201,7 @@ Wenn beide Projekte überwacht werden sollen, erstellen Sie eine benutzerdefinie
 </Project>
 ```
 
-Wechseln Sie zum Starten der Dateiüberwachung in beiden Projekten zum *test* -Ordner. Führen Sie den folgenden Befehl aus:
+Wechseln Sie zum Starten der Dateiüberwachung in beiden Projekten zum *test*-Ordner. Führen Sie den folgenden Befehl aus:
 
 ```dotnetcli
 dotnet watch msbuild /t:Test

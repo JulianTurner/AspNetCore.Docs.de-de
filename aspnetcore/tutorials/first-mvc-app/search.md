@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/search
 ms.openlocfilehash: 657072803f59feb99de8b31ddb3a6433d832aa30
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059623"
 ---
 # <a name="part-7-add-search-to-an-aspnet-core-mvc-app"></a>Teil 7: Hinzufügen der Suche zu einer ASP.NET Core MVC-App
@@ -77,7 +77,7 @@ Sie können jedoch von den Benutzern nicht erwarten, dass sie jedes Mal die URL 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,6,8&name=snippet_1stSearch)]
 
-Öffnen Sie die Datei *Views/Movies/Index.cshtml* , und fügen Sie das hervorgehobene `<form>`-Markup hinzu:
+Öffnen Sie die Datei *Views/Movies/Index.cshtml*, und fügen Sie das hervorgehobene `<form>`-Markup hinzu:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
 

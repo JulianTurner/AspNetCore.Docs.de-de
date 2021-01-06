@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/azure-iis-errors-reference
 ms.openlocfilehash: b009cc61a94e618a48d96ecbd770ef6371308f6a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93059844"
 ---
 # <a name="common-errors-reference-for-azure-app-service-and-iis-with-aspnet-core"></a>Referenz zu häufigen Fehlern bei Azure App Service und IIS mit ASP.NET Core
@@ -40,7 +40,7 @@ Sammeln Sie folgende Informationen:
 * Einträge im Anwendungsereignisprotokoll
   * Azure App Service: Siehe <xref:test/troubleshoot-azure-iis>.
   * IIS
-    1. Klicken Sie im **Windows** -Menü auf **Start** , geben Sie *Ereignisanzeige* ein, und drücken Sie die **EINGABETASTE**.
+    1. Klicken Sie im **Windows**-Menü auf **Start**, geben Sie *Ereignisanzeige* ein, und drücken Sie die **EINGABETASTE**.
     1. Erweitern Sie in der **Ereignisanzeige** die Option **Windows-Protokolle** > **Anwendung** auf der Randleiste.
 * stdout- und Debugprotokolleinträge im ASP.NET Core-Modul
   * Azure App Service: Siehe <xref:test/troubleshoot-azure-iis>.
@@ -171,7 +171,7 @@ Problembehandlung:
 
 * Vergewissern Sie sich, dass die richtige Rolle aktiviert wurde. Siehe [IIS-Konfiguration](xref:host-and-deploy/iis/index#iis-configuration).
 
-* Öffnen Sie **Programme und Features** oder **Apps und Features** , und vergewissern Sie sich, dass **Windows Server Hosting** installiert ist. Wenn **Windows Server Hosting** nicht in der Liste der installierten Programme vorhanden ist, laden Sie das .NET Core Hosting-Paket herunter, und installieren Sie es.
+* Öffnen Sie **Programme und Features** oder **Apps und Features**, und vergewissern Sie sich, dass **Windows Server Hosting** installiert ist. Wenn **Windows Server Hosting** nicht in der Liste der installierten Programme vorhanden ist, laden Sie das .NET Core Hosting-Paket herunter, und installieren Sie es.
 
   [Aktueller Installer für das .NET Core Hosting-Paket (direkter Download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
@@ -179,7 +179,7 @@ Problembehandlung:
 
 * Stellen Sie sicher, dass **Anwendungspool** > **Prozessmodell** > **Identity** auf **ApplicationPoolIdentity** festgelegt ist, oder dass die benutzerdefinierte Identität über die erforderlichen Berechtigungen für den Zugriff auf den Bereitstellungsordner der App verfügt.
 
-* Wenn Sie das ASP.NET Core-Hostingpaket deinstallieren und eine frühere Version des Hostingpakets installieren, ist in der *applicationHost.config* -Datei kein Abschnitt für das ASP.NET Core-Modul enthalten. Öffnen Sie die *applicationHost.config* -Datei unter *%windir%/System32/inetsrv/config* , und suchen Sie nach der Abschnittsgruppe `<configuration><configSections><sectionGroup name="system.webServer">`. Wenn der Abschnitt für das ASP.NET Core-Modul in der Abschnittsgruppe nicht vorhanden ist, fügen Sie dieses Abschnittselement hinzu:
+* Wenn Sie das ASP.NET Core-Hostingpaket deinstallieren und eine frühere Version des Hostingpakets installieren, ist in der *applicationHost.config*-Datei kein Abschnitt für das ASP.NET Core-Modul enthalten. Öffnen Sie die *applicationHost.config*-Datei unter *%windir%/System32/inetsrv/config*, und suchen Sie nach der Abschnittsgruppe `<configuration><configSections><sectionGroup name="system.webServer">`. Wenn der Abschnitt für das ASP.NET Core-Modul in der Abschnittsgruppe nicht vorhanden ist, fügen Sie dieses Abschnittselement hinzu:
 
   ```xml
   <section name="aspNetCore" overrideModeDefault="Allow" />
@@ -201,7 +201,7 @@ Problembehandlung:
 
 * Vergewissern Sie sich, dass die App lokal auf Kestrel ausgeführt wird. Ein Prozessfehler könnte die Folge eines Problems in der App sein. Weitere Informationen finden Sie unter <xref:test/troubleshoot-azure-iis>.
 
-* Überprüfen Sie das Attribut *processPath* im Element `<aspNetCore>` in der Datei *web.config* , um sicherzustellen, dass es den Wert `dotnet` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) oder `.\{ASSEMBLY}.exe` für eine [eigenständige Bereitstellung (Self-Contained Deployment, SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) enthält.
+* Überprüfen Sie das Attribut *processPath* im Element `<aspNetCore>` in der Datei *web.config*, um sicherzustellen, dass es den Wert `dotnet` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) oder `.\{ASSEMBLY}.exe` für eine [eigenständige Bereitstellung (Self-Contained Deployment, SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) enthält.
 
 * Für eine Framework-abhängige Bereitstellung ist *dotnet.exe* möglicherweise über die PATH-Einstellungen nicht verfügbar. Überprüfen Sie, ob *C:\Programme\dotnet\\* in den PATH-Einstellungen des Systems vorhanden ist.
 
@@ -231,7 +231,7 @@ Problembehandlung:
 
 * Vergewissern Sie sich, dass die App lokal auf Kestrel ausgeführt wird. Ein Prozessfehler könnte die Folge eines Problems in der App sein. Weitere Informationen finden Sie unter <xref:test/troubleshoot-azure-iis>.
 
-* Überprüfen Sie das Attribut *arguments* im Element `<aspNetCore>` in der Datei *web.config* , um sicherzustellen, dass der Wert entweder `.\{ASSEMBLY}.dll` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) entspricht oder nicht vorhanden, eine leere Zeichenfolge (`arguments=""`) oder eine Liste von Argumenten der App (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) für eine eigenständige Bereitstellung (Self-Contained Deployment, SCD) ist.
+* Überprüfen Sie das Attribut *arguments* im Element `<aspNetCore>` in der Datei *web.config*, um sicherzustellen, dass der Wert entweder `.\{ASSEMBLY}.dll` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) entspricht oder nicht vorhanden, eine leere Zeichenfolge (`arguments=""`) oder eine Liste von Argumenten der App (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) für eine eigenständige Bereitstellung (Self-Contained Deployment, SCD) ist.
 
 ## <a name="missing-net-core-shared-framework"></a>Fehlendes freigegebenes .NET Core-Framework
 
@@ -275,9 +275,9 @@ Vergewissern Sie sich, dass der Anwendungspool nicht den Status *Beendet* aufwei
 
 Problembehandlung:
 
-Überprüfen Sie, ob der Abschnitt `<handlers>` in der *web.config* -Datei der untergeordneten App fehlt oder ob die untergeordnete App die Handler der übergeordneten App nicht erbt.
+Überprüfen Sie, ob der Abschnitt `<handlers>` in der *web.config*-Datei der untergeordneten App fehlt oder ob die untergeordnete App die Handler der übergeordneten App nicht erbt.
 
-Der Abschnitt `<system.webServer>` in der *web.config* -Datei der übergeordneten App befindet sich in einem `<location>`-Element. Die Eigenschaft <xref:System.Configuration.SectionInformation.InheritInChildApplications*> wird auf `false` festgelegt, um anzugeben, dass die im Element [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) angegebenen Einstellungen nicht von Apps geerbt werden, die in einem Unterverzeichnis der übergeordneten App gespeichert sind. Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module>.
+Der Abschnitt `<system.webServer>` in der *web.config*-Datei der übergeordneten App befindet sich in einem `<location>`-Element. Die Eigenschaft <xref:System.Configuration.SectionInformation.InheritInChildApplications*> wird auf `false` festgelegt, um anzugeben, dass die im Element [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) angegebenen Einstellungen nicht von Apps geerbt werden, die in einem Unterverzeichnis der übergeordneten App gespeichert sind. Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module>.
 
 ## <a name="stdout-log-path-incorrect"></a>Der stdout-Protokollpfad ist falsch
 
@@ -328,7 +328,7 @@ Sammeln Sie folgende Informationen:
 * Einträge im Anwendungsereignisprotokoll
   * Azure App Service: Siehe <xref:test/troubleshoot-azure-iis>.
   * IIS
-    1. Klicken Sie im **Windows** -Menü auf **Start** , geben Sie *Ereignisanzeige* ein, und drücken Sie die **EINGABETASTE**.
+    1. Klicken Sie im **Windows**-Menü auf **Start**, geben Sie *Ereignisanzeige* ein, und drücken Sie die **EINGABETASTE**.
     1. Erweitern Sie in der **Ereignisanzeige** die Option **Windows-Protokolle** > **Anwendung** auf der Randleiste.
 * stdout- und Debugprotokolleinträge im ASP.NET Core-Modul
   * Azure App Service: Siehe <xref:test/troubleshoot-azure-iis>.
@@ -449,7 +449,7 @@ Problembehandlung:
 
 * Vergewissern Sie sich, dass die richtige Rolle aktiviert wurde. Siehe [IIS-Konfiguration](xref:host-and-deploy/iis/index#iis-configuration).
 
-* Öffnen Sie **Programme und Features** oder **Apps und Features** , und vergewissern Sie sich, dass **Windows Server Hosting** installiert ist. Wenn **Windows Server Hosting** nicht in der Liste der installierten Programme vorhanden ist, laden Sie das .NET Core Hosting-Paket herunter, und installieren Sie es.
+* Öffnen Sie **Programme und Features** oder **Apps und Features**, und vergewissern Sie sich, dass **Windows Server Hosting** installiert ist. Wenn **Windows Server Hosting** nicht in der Liste der installierten Programme vorhanden ist, laden Sie das .NET Core Hosting-Paket herunter, und installieren Sie es.
 
   [Aktueller Installer für das .NET Core Hosting-Paket (direkter Download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
@@ -457,7 +457,7 @@ Problembehandlung:
 
 * Stellen Sie sicher, dass **Anwendungspool** > **Prozessmodell** > **Identity** auf **ApplicationPoolIdentity** festgelegt ist, oder dass die benutzerdefinierte Identität über die erforderlichen Berechtigungen für den Zugriff auf den Bereitstellungsordner der App verfügt.
 
-* Wenn Sie das ASP.NET Core-Hostingpaket deinstallieren und eine frühere Version des Hostingpakets installieren, ist in der *applicationHost.config* -Datei kein Abschnitt für das ASP.NET Core-Modul enthalten. Öffnen Sie die *applicationHost.config* -Datei unter *%windir%/System32/inetsrv/config* , und suchen Sie nach der Abschnittsgruppe `<configuration><configSections><sectionGroup name="system.webServer">`. Wenn der Abschnitt für das ASP.NET Core-Modul in der Abschnittsgruppe nicht vorhanden ist, fügen Sie dieses Abschnittselement hinzu:
+* Wenn Sie das ASP.NET Core-Hostingpaket deinstallieren und eine frühere Version des Hostingpakets installieren, ist in der *applicationHost.config*-Datei kein Abschnitt für das ASP.NET Core-Modul enthalten. Öffnen Sie die *applicationHost.config*-Datei unter *%windir%/System32/inetsrv/config*, und suchen Sie nach der Abschnittsgruppe `<configuration><configSections><sectionGroup name="system.webServer">`. Wenn der Abschnitt für das ASP.NET Core-Modul in der Abschnittsgruppe nicht vorhanden ist, fügen Sie dieses Abschnittselement hinzu:
 
   ```xml
   <section name="aspNetCore" overrideModeDefault="Allow" />
@@ -477,7 +477,7 @@ Problembehandlung:
 
 * Vergewissern Sie sich, dass die App lokal auf Kestrel ausgeführt wird. Ein Prozessfehler könnte die Folge eines Problems in der App sein. Weitere Informationen finden Sie unter <xref:test/troubleshoot-azure-iis>.
 
-* Überprüfen Sie das Attribut *processPath* im Element `<aspNetCore>` in der Datei *web.config* , um sicherzustellen, dass es den Wert `dotnet` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) oder `.\{ASSEMBLY}.exe` für eine [eigenständige Bereitstellung (Self-Contained Deployment, SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) enthält.
+* Überprüfen Sie das Attribut *processPath* im Element `<aspNetCore>` in der Datei *web.config*, um sicherzustellen, dass es den Wert `dotnet` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) oder `.\{ASSEMBLY}.exe` für eine [eigenständige Bereitstellung (Self-Contained Deployment, SCD)](/dotnet/core/deploying/#self-contained-deployments-scd) enthält.
 
 * Für eine Framework-abhängige Bereitstellung ist *dotnet.exe* möglicherweise über die PATH-Einstellungen nicht verfügbar. Überprüfen Sie, ob *C:\Programme\dotnet\\* in den PATH-Einstellungen des Systems vorhanden ist.
 
@@ -505,7 +505,7 @@ Problembehandlung:
 
 * Vergewissern Sie sich, dass die App lokal auf Kestrel ausgeführt wird. Ein Prozessfehler könnte die Folge eines Problems in der App sein. Weitere Informationen finden Sie unter <xref:test/troubleshoot-azure-iis>.
 
-* Überprüfen Sie das Attribut *arguments* im Element `<aspNetCore>` in der Datei *web.config* , um sicherzustellen, dass der Wert entweder `.\{ASSEMBLY}.dll` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) entspricht oder nicht vorhanden, eine leere Zeichenfolge (`arguments=""`) oder eine Liste von Argumenten der App (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) für eine eigenständige Bereitstellung (Self-Contained Deployment, SCD) ist.
+* Überprüfen Sie das Attribut *arguments* im Element `<aspNetCore>` in der Datei *web.config*, um sicherzustellen, dass der Wert entweder `.\{ASSEMBLY}.dll` für eine frameworkabhängige Bereitstellung (Framework-Dependent Deployment, FDD) entspricht oder nicht vorhanden, eine leere Zeichenfolge (`arguments=""`) oder eine Liste von Argumenten der App (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) für eine eigenständige Bereitstellung (Self-Contained Deployment, SCD) ist.
 
 Problembehandlung:
 

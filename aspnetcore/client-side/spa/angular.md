@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: spa/angular
 ms.openlocfilehash: 2fff0d60b71bbbab9347dbe74cad023264247388
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054566"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>Verwenden der Angular-Projektvorlage mit ASP.NET Core
@@ -47,7 +47,7 @@ Führen Sie die App über Visual Studio oder die .NET Core CLI aus:
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
-Öffnen Sie die generierte *CSPROJ* -Datei, und führen Sie die App von dort wie gewohnt aus.
+Öffnen Sie die generierte *CSPROJ*-Datei, und führen Sie die App von dort wie gewohnt aus.
 
 Während der Erstellung werden bei der ersten Ausführung npm-Abhängigkeiten wiederhergestellt. Dies kann einige Minuten dauern. Nachfolgende Builds sind wesentlich schneller.
 
@@ -80,7 +80,7 @@ Die Angular-App, die mit dieser Vorlage erstellt wurde, und die App, die von der
 
 ## <a name="run-ng-commands"></a>Ausführen von ng-Befehlen
 
-Wechseln Sie über eine Eingabeaufforderung zum Unterverzeichnis *ClientApp* :
+Wechseln Sie über eine Eingabeaufforderung zum Unterverzeichnis *ClientApp*:
 
 ```console
 cd ClientApp
@@ -113,7 +113,7 @@ Das Projekt ist so konfiguriert, dass die eigene Instanz des Angular-CLI-Servers
 
 Bei diesem Standardsetup gibt es einen Nachteil. Jedes Mal, wenn Sie Ihren C#-Code ändern und Ihre ASP.NET Core-App neu gestartet werden muss, wird auch der Angular-CLI-Server neu gestartet. Die Sicherung wird nach ca. 10 Sekunden gestartet. Wenn Sie Ihren C#-Code häufig bearbeiten und nicht warten möchten, bis der Angular-CLI-Server neu gestartet wurde, können Sie den Angular-CLI-Server unabhängig vom ASP.NET Core-Prozess extern ausführen. Gehen Sie hierzu wie folgt vor:
 
-1. Wechseln Sie in einer Eingabeaufforderung zu dem Unterverzeichnis *ClientApp* , und starten Sie den Angular-CLI-Entwicklungsserver:
+1. Wechseln Sie in einer Eingabeaufforderung zu dem Unterverzeichnis *ClientApp*, und starten Sie den Angular-CLI-Entwicklungsserver:
 
     ```console
     cd ClientApp
@@ -133,7 +133,7 @@ Wenn Sie Ihre ASP.NET Core-App starten, wird kein Angular-CLI-Server gestartet. 
 
 ### <a name="pass-data-from-net-code-into-typescript-code"></a>Übergeben von Daten aus .NET Code in TypeScript-Code
 
-Während des SSR empfiehlt es sich, per Anforderung Daten aus der ASP.NET Core-App an die Angular-App zu übergeben. Beispielsweise könnten Sie cookieinformationen übergeben oder etwas aus einer Datenbank lesen. Bearbeiten Sie hierzu die *Startup* -Klasse. Im Rückruf für `UseSpaPrerendering` legen Sie einen Wert für `options.SupplyData` fest, z.B.:
+Während des SSR empfiehlt es sich, per Anforderung Daten aus der ASP.NET Core-App an die Angular-App zu übergeben. Beispielsweise könnten Sie cookieinformationen übergeben oder etwas aus einer Datenbank lesen. Bearbeiten Sie hierzu die *Startup*-Klasse. Im Rückruf für `UseSpaPrerendering` legen Sie einen Wert für `options.SupplyData` fest, z.B.:
 
 ```csharp
 options.SupplyData = (context, data) =>
@@ -143,7 +143,7 @@ options.SupplyData = (context, data) =>
 };
 ```
 
-Der `SupplyData`-Rückruf ermöglicht Ihnen, beliebige JSON-serialisierbare Daten per Anforderung zu übergeben (z.B. Zeichenfolgen, boolesche Werte oder Zahlen). Der *main.server.ts* -Code erhält diese als `params.data`. Im vorangehenden Codebeispiel wird z.B. ein boolescher Wert als `params.data.isHttpsRequest` an den `createServerRenderer`-Rückruf übergeben. Sie können dies auf eine beliebige Art und Weise, die von Angular unterstützt wird, an andere Teile Ihrer App übergeben. Sehen Sie beispielsweise, wie *main.server.ts* den `BASE_URL`-Wert an eine beliebige Komponente übergibt, deren Konstruktor für den Empfang deklariert wurde.
+Der `SupplyData`-Rückruf ermöglicht Ihnen, beliebige JSON-serialisierbare Daten per Anforderung zu übergeben (z.B. Zeichenfolgen, boolesche Werte oder Zahlen). Der *main.server.ts*-Code erhält diese als `params.data`. Im vorangehenden Codebeispiel wird z.B. ein boolescher Wert als `params.data.isHttpsRequest` an den `createServerRenderer`-Rückruf übergeben. Sie können dies auf eine beliebige Art und Weise, die von Angular unterstützt wird, an andere Teile Ihrer App übergeben. Sehen Sie beispielsweise, wie *main.server.ts* den `BASE_URL`-Wert an eine beliebige Komponente übergibt, deren Konstruktor für den Empfang deklariert wurde.
 
 ### <a name="drawbacks-of-ssr"></a>Nachteile von SSR
 
@@ -152,7 +152,7 @@ Nicht alle Apps profitieren von SSR. Der Hauptvorteil ist die wahrgenommene Leis
 Gleichzeitig hat die Aktivierung von SSR zahlreiche Nachteile. Sie erhöht die Komplexität des Entwicklungsprozesses. Der Code muss in zwei verschiedenen Umgebungen ausgeführt werden: clientseitig und serverseitig (über ASP.NET Core in einer Node.js-Umgebung aufgerufen). Nachfolgend sind einige Dinge aufgeführt, die Sie berücksichtigen sollten:
 
 * Das SSR erfordert eine Node.js-Installation auf Produktionsservern. Dies ist für einige Bereitstellungsszenarios, wie z.B. Azure App Services, automatisch der Fall, für andere, wie etwa Azure Service Fabric, dagegen nicht.
-* Bei Aktivierung des `BuildServerSideRenderer`-Buildflags veröffentlicht das *node_modules* -Verzeichnis. Dieser Ordner enthält mehr als 20.000 Dateien, was die Bereitstellungszeit erhöht.
+* Bei Aktivierung des `BuildServerSideRenderer`-Buildflags veröffentlicht das *node_modules*-Verzeichnis. Dieser Ordner enthält mehr als 20.000 Dateien, was die Bereitstellungszeit erhöht.
 * Zum Ausführen von Code in einer Node.js-Umgebung kann nicht davon ausgegangen werden, dass Browser-spezifische JavaScript-APIs, wie z.B. `window` oder `localStorage`, vorhanden sind. Wenn Ihr Code (oder eine Bibliothek eines Drittanbieters, auf die Sie verweisen) versucht, diese APIs zu verwenden, erhalten Sie einen Fehler während des SSR. Verwenden Sie beispielsweise jQuery nicht, da es häufig auf Browser-spezifische APIs verweist. Um Fehler auszuschließen, müssen Sie das SSR vermeiden oder aber Browser-spezifische APIs oder Bibliotheken vermeiden. Sie können alle Aufrufe dieser APIs in Überprüfungen einschließen, um sicherzustellen, dass sie nicht während des SSR aufgerufen werden. Verwenden Sie z.B. eine Überprüfung wie die im folgenden JavaScript- oder TypeScript-Code enthaltene:
 
     ```javascript

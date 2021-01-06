@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: tutorials/first-mvc-app/working-with-sql
 ms.openlocfilehash: c082457258346637499b8ea8000dd8792931112f
-ms.sourcegitcommit: 91e14f1e2a25c98a57c2217fe91b172e0ff2958c
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94422651"
 ---
 # <a name="part-5-work-with-a-database-in-an-aspnet-core-mvc-app"></a>Teil 5: Arbeiten mit einer Datenbank in einer ASP.NET Core MVC-App
@@ -56,7 +56,7 @@ Wenn die App auf einem Test- oder Produktionsserver bereitgestellt wird, kann ei
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-LocalDB ist eine Lightweightversion der SQL Server Express-Datenbank-Engine, die für die Programmentwicklung geeignet ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Die LocalDB-Datenbank erstellt standardmäßig *MDF* -Dateien im Verzeichnis *C:/Benutzer/{Benutzer}* .
+LocalDB ist eine Lightweightversion der SQL Server Express-Datenbank-Engine, die für die Programmentwicklung geeignet ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Die LocalDB-Datenbank erstellt standardmäßig *MDF*-Dateien im Verzeichnis *C:/Benutzer/{Benutzer}* .
 
 * Öffnen Sie im Menü **Ansicht** den **SQL Server-Objekt-Explorer** (SSOX).
 
@@ -168,7 +168,7 @@ Wenn Sie die App auf einem Test- oder Produktionsserver bereitstellen, können S
 
 ## <a name="sql-server-express-localdb"></a>SQL Server Express LocalDB
 
-LocalDB ist eine Lightweightversion der SQL Server Express-Datenbank-Engine, die für die Programmentwicklung geeignet ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Die LocalDB-Datenbank erstellt standardmäßig *MDF* -Dateien im Verzeichnis *C:/Benutzer/{Benutzer}* .
+LocalDB ist eine Lightweightversion der SQL Server Express-Datenbank-Engine, die für die Programmentwicklung geeignet ist. LocalDB wird bedarfsgesteuert gestartet und im Benutzermodus ausgeführt, sodass keine komplexe Konfiguration anfällt. Die LocalDB-Datenbank erstellt standardmäßig *MDF*-Dateien im Verzeichnis *C:/Benutzer/{Benutzer}* .
 
 * Öffnen Sie im Menü **Ansicht** den **SQL Server-Objekt-Explorer** (SSOX).
 

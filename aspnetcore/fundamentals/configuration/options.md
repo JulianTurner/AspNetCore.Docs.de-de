@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/configuration/options
 ms.openlocfilehash: dedc17d7d793a6fd2eac1c8017b704d98a86f1cb
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061092"
 ---
 # <a name="options-pattern-in-aspnet-core"></a>Optionsmuster in ASP.NET Core
@@ -320,7 +320,7 @@ Mit [Postkonfigurationsszenarien](#options-post-configuration) können Sie Optio
 
 Die allgemeine Optionskonfiguration wird als Beispiel 1 in der Beispiel-App veranschaulicht.
 
-Eine Optionsklasse muss nicht abstrakt sein und über einen öffentlichen parameterlosen Konstruktor verfügen. Die folgende Klasse `MyOptions` verfügt über die zwei Eigenschaften: `Option1` und `Option2`. Das Festlegen von Standardwerten ist optional, aber der Klassenkonstruktor im folgenden Beispiel legt den Standardwert von `Option1` fest. `Option2` hat den Standardwert festgelegt, indem die Eigenschaft direkt initialisiert wurde ( *Models/MyOptions.cs* ):
+Eine Optionsklasse muss nicht abstrakt sein und über einen öffentlichen parameterlosen Konstruktor verfügen. Die folgende Klasse `MyOptions` verfügt über die zwei Eigenschaften: `Option1` und `Option2`. Das Festlegen von Standardwerten ist optional, aber der Klassenkonstruktor im folgenden Beispiel legt den Standardwert von `Option1` fest. `Option2` hat den Standardwert festgelegt, indem die Eigenschaft direkt initialisiert wurde (*Models/MyOptions.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
 
@@ -328,7 +328,7 @@ Die `MyOptions`-Klasse wird zum Dienstcontainer mit <xref:Microsoft.Extensions.D
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example1)]
 
-Das folgende Seitenmodel verwendet [konstruktorbasierte Dependency Injection](xref:mvc/controllers/dependency-injection) mit <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>, um auf die Einstellungen zugreifen zu können ( *Pages/Index.cshtml.cs* ):
+Das folgende Seitenmodel verwendet [konstruktorbasierte Dependency Injection](xref:mvc/controllers/dependency-injection) mit <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>, um auf die Einstellungen zugreifen zu können (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -364,7 +364,7 @@ option1 = value1_from_json, option2 = -1
 
 Das Konfigurieren von einfachen Optionen mit einem Delegaten wird als Beispiel 2 in der Beispiel-App veranschaulicht.
 
-Verwenden Sie einen Delegaten zum Festlegen von Optionswerten. Die Beispielanwendung verwendet die `MyOptionsWithDelegateConfig`-Klasse ( *Models/MyOptionsWithDelegateConfig.cs* ):
+Verwenden Sie einen Delegaten zum Festlegen von Optionswerten. Die Beispielanwendung verwendet die `MyOptionsWithDelegateConfig`-Klasse (*Models/MyOptionsWithDelegateConfig.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
 
@@ -372,7 +372,7 @@ Im folgenden Code wird ein zweiter <xref:Microsoft.Extensions.Options.IConfigure
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example2)]
 
-*Index.cshtml.cs* :
+*Index.cshtml.cs*:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
 
@@ -408,11 +408,11 @@ Die *appsettings.json* -Datei des Beispiels definiert einen `subsection`-Member 
 
 [!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=4-7)]
 
-Die `MySubOptions`-Klasse definiert die Eigenschaften `SubOption1` und `SubOption2` zur Aufnahme der Optionswerte ( *Models/MySubOptions.cs* ):
+Die `MySubOptions`-Klasse definiert die Eigenschaften `SubOption1` und `SubOption2` zur Aufnahme der Optionswerte (*Models/MySubOptions.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Models/MySubOptions.cs?name=snippet1)]
 
-Die `OnGet`-Methode des Seitenmodells gibt eine Zeichenfolge mit den Optionswerten ( *Pages/Index.cshtml.cs* ) zurück:
+Die `OnGet`-Methode des Seitenmodells gibt eine Zeichenfolge mit den Optionswerten (*Pages/Index.cshtml.cs*) zurück:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=11)]
 
@@ -435,7 +435,7 @@ Fügen Sie <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> ein in:
 * Eine Razor-Seite oder MVC-Ansicht mithilfe der [`@inject`](xref:mvc/views/razor#inject) Razor-Anweisung.
 * Ein Seiten- oder Ansichtsmodell.
 
-Im folgenden Beispiel aus der Beispiel-App wird <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in ein Seitenmodell eingefügt ( *Pages/Index.cshtml.cs* ):
+Im folgenden Beispiel aus der Beispiel-App wird <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in ein Seitenmodell eingefügt (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -462,7 +462,7 @@ Der Unterschied zwischen `IOptionsMonitor` und `IOptionsSnapshot` ist folgender:
 * `IOptionsMonitor` ist ein [Singleton-Dienst](xref:fundamentals/dependency-injection#singleton), der zu jeder Zeit aktuelle Optionswerte empfängt, was insbesondere bei Singleton-Abhängigkeiten nützlich ist.
 * `IOptionsSnapshot` ist ein [bereichsbezogener Dienst](xref:fundamentals/dependency-injection#scoped) und bietet eine Momentaufnahme der Optionen zu dem Zeitpunkt, da das `IOptionsSnapshot<T>`-Objekt konstruiert wird. Momentaufnahmen von Optionen sind für die Verwendung mit vorübergehenden und bereichsbezogenen Abhängigkeiten bestimmt.
 
-Im folgenden Beispiel wird veranschaulicht, wie eine neue <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> nach den *appsettings.json* -Änderungen erstellt wird ( *Pages/Index.cshtml.cs* ). Mehrere Anforderungen an den Server geben konstante Werte zurück, die von der *appsettings.json* -Datei bereitgestellt werden, bis die Datei geändert wird und die Konfiguration neu lädt.
+Im folgenden Beispiel wird veranschaulicht, wie eine neue <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> nach den *appsettings.json* -Änderungen erstellt wird (*Pages/Index.cshtml.cs*). Mehrere Anforderungen an den Server geben konstante Werte zurück, die von der *appsettings.json* -Datei bereitgestellt werden, bis die Datei geändert wird und die Konfiguration neu lädt.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=12)]
 
@@ -476,7 +476,7 @@ Die folgende Abbildung zeigt die anfänglichen `option1`- und `option2`-Werte, d
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Ändern Sie die Werte in der *appsettings.json* -Datei in `value1_from_json UPDATED` und `200`. Speichern Sie die *appsettings.json* -Datei. Aktualisieren Sie den Browser, um festzustellen, ob die Optionswerte aktualisiert wurden:
+Ändern Sie die Werte in der *appsettings.json* -Datei in `value1_from_json UPDATED` und `200`. Speichern Sie die *appsettings.json*-Datei. Aktualisieren Sie den Browser, um festzustellen, ob die Optionswerte aktualisiert wurden:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -490,7 +490,7 @@ Die Unterstützung für benannte Optionen ermöglicht es der Anwendung, zwischen
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
-Die Beispielanwendung greift mit <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1.Get*> auf die benannten Optionen zu ( *Pages/Index.cshtml.cs* ):
+Die Beispielanwendung greift mit <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1.Get*> auf die benannten Optionen zu (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=13-14)]
 
@@ -742,7 +742,7 @@ Mit [Postkonfigurationsszenarien](#options-post-configuration) können Sie Optio
 
 Die allgemeine Optionskonfiguration wird als Beispiel 1 in der Beispiel-App veranschaulicht.
 
-Eine Optionsklasse muss nicht abstrakt sein und über einen öffentlichen parameterlosen Konstruktor verfügen. Die folgende Klasse `MyOptions` verfügt über die zwei Eigenschaften: `Option1` und `Option2`. Das Festlegen von Standardwerten ist optional, aber der Klassenkonstruktor im folgenden Beispiel legt den Standardwert von `Option1` fest. `Option2` hat den Standardwert festgelegt, indem die Eigenschaft direkt initialisiert wurde ( *Models/MyOptions.cs* ):
+Eine Optionsklasse muss nicht abstrakt sein und über einen öffentlichen parameterlosen Konstruktor verfügen. Die folgende Klasse `MyOptions` verfügt über die zwei Eigenschaften: `Option1` und `Option2`. Das Festlegen von Standardwerten ist optional, aber der Klassenkonstruktor im folgenden Beispiel legt den Standardwert von `Option1` fest. `Option2` hat den Standardwert festgelegt, indem die Eigenschaft direkt initialisiert wurde (*Models/MyOptions.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
 
@@ -750,7 +750,7 @@ Die `MyOptions`-Klasse wird zum Dienstcontainer mit <xref:Microsoft.Extensions.D
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example1)]
 
-Das folgende Seitenmodel verwendet [konstruktorbasierte Dependency Injection](xref:mvc/controllers/dependency-injection) mit <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>, um auf die Einstellungen zugreifen zu können ( *Pages/Index.cshtml.cs* ):
+Das folgende Seitenmodel verwendet [konstruktorbasierte Dependency Injection](xref:mvc/controllers/dependency-injection) mit <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>, um auf die Einstellungen zugreifen zu können (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -786,7 +786,7 @@ option1 = value1_from_json, option2 = -1
 
 Das Konfigurieren von einfachen Optionen mit einem Delegaten wird als Beispiel 2 in der Beispiel-App veranschaulicht.
 
-Verwenden Sie einen Delegaten zum Festlegen von Optionswerten. Die Beispielanwendung verwendet die `MyOptionsWithDelegateConfig`-Klasse ( *Models/MyOptionsWithDelegateConfig.cs* ):
+Verwenden Sie einen Delegaten zum Festlegen von Optionswerten. Die Beispielanwendung verwendet die `MyOptionsWithDelegateConfig`-Klasse (*Models/MyOptionsWithDelegateConfig.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
 
@@ -794,7 +794,7 @@ Im folgenden Code wird ein zweiter <xref:Microsoft.Extensions.Options.IConfigure
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example2)]
 
-*Index.cshtml.cs* :
+*Index.cshtml.cs*:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
 
@@ -830,11 +830,11 @@ Die *appsettings.json* -Datei des Beispiels definiert einen `subsection`-Member 
 
 [!code-json[](options/samples/2.x/OptionsSample/appsettings.json?highlight=4-7)]
 
-Die `MySubOptions`-Klasse definiert die Eigenschaften `SubOption1` und `SubOption2` zur Aufnahme der Optionswerte ( *Models/MySubOptions.cs* ):
+Die `MySubOptions`-Klasse definiert die Eigenschaften `SubOption1` und `SubOption2` zur Aufnahme der Optionswerte (*Models/MySubOptions.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Models/MySubOptions.cs?name=snippet1)]
 
-Die `OnGet`-Methode des Seitenmodells gibt eine Zeichenfolge mit den Optionswerten ( *Pages/Index.cshtml.cs* ) zurück:
+Die `OnGet`-Methode des Seitenmodells gibt eine Zeichenfolge mit den Optionswerten (*Pages/Index.cshtml.cs*) zurück:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=11)]
 
@@ -852,7 +852,7 @@ subOption1 = subvalue1_from_json, subOption2 = 200
 
 Optionen, die durch ein Ansichtsmodell oder mit direkter View Injection bereitgestellt werden, werden im Beispiel 4 in der Beispiel-App veranschaulicht.
 
-Optionen können in einem Ansichtsmodell oder durch direkte Injection von <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in eine Ansicht ( *Pages/Index.cshtml.cs* ) angegeben werden:
+Optionen können in einem Ansichtsmodell oder durch direkte Injection von <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in eine Ansicht (*Pages/Index.cshtml.cs*) angegeben werden:
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
 
@@ -876,7 +876,7 @@ Das Neuladen der Konfigurationsdaten mit <xref:Microsoft.Extensions.Options.IOpt
 
 Optionen werden einmal pro Anforderung berechnet. Dies geschieht, wenn auf sie zugegriffen wird und sie für die Dauer der Anforderung zwischengespeichert werden.
 
-Im folgenden Beispiel wird veranschaulicht, wie eine neue <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> nach den *appsettings.json* -Änderungen erstellt wird ( *Pages/Index.cshtml.cs* ). Mehrere Anforderungen an den Server geben konstante Werte zurück, die von der *appsettings.json* -Datei bereitgestellt werden, bis die Datei geändert wird und die Konfiguration neu lädt.
+Im folgenden Beispiel wird veranschaulicht, wie eine neue <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> nach den *appsettings.json* -Änderungen erstellt wird (*Pages/Index.cshtml.cs*). Mehrere Anforderungen an den Server geben konstante Werte zurück, die von der *appsettings.json* -Datei bereitgestellt werden, bis die Datei geändert wird und die Konfiguration neu lädt.
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=12)]
 
@@ -890,7 +890,7 @@ Die folgende Abbildung zeigt die anfänglichen `option1`- und `option2`-Werte, d
 snapshot option1 = value1_from_json, snapshot option2 = -1
 ```
 
-Ändern Sie die Werte in der *appsettings.json* -Datei in `value1_from_json UPDATED` und `200`. Speichern Sie die *appsettings.json* -Datei. Aktualisieren Sie den Browser, um festzustellen, ob die Optionswerte aktualisiert wurden:
+Ändern Sie die Werte in der *appsettings.json* -Datei in `value1_from_json UPDATED` und `200`. Speichern Sie die *appsettings.json*-Datei. Aktualisieren Sie den Browser, um festzustellen, ob die Optionswerte aktualisiert wurden:
 
 ```html
 snapshot option1 = value1_from_json UPDATED, snapshot option2 = 200
@@ -904,7 +904,7 @@ Die Unterstützung für benannte Optionen ermöglicht es der Anwendung, zwischen
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Startup.cs?name=snippet_Example6)]
 
-Die Beispielanwendung greift mit <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1.Get*> auf die benannten Optionen zu ( *Pages/Index.cshtml.cs* ):
+Die Beispielanwendung greift mit <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1.Get*> auf die benannten Optionen zu (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](options/samples/2.x/OptionsSample/Pages/Index.cshtml.cs?range=13-14)]
 

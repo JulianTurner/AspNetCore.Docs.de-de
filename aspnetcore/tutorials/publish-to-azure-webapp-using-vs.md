@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/publish-to-azure-webapp-using-vs
 ms.openlocfilehash: 817169503a80a771354e32123d65ba2bf388aa2d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060221"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Veröffentlichen einer ASP.NET Core-App in Azure mit Visual Studio
@@ -81,7 +81,7 @@ Visual Studio erstellt die Projektmappe.
 
 ### <a name="register-a-user"></a>Registrieren eines Benutzers
 
-* Wählen Sie **Registrieren** , und registrieren Sie einen neuen Benutzer. Sie können eine fiktive E-Mail-Adresse verwenden. Sobald Sie diese übermitteln, zeigt die Seite die folgende Fehlermeldung an:
+* Wählen Sie **Registrieren**, und registrieren Sie einen neuen Benutzer. Sie können eine fiktive E-Mail-Adresse verwenden. Sobald Sie diese übermitteln, zeigt die Seite die folgende Fehlermeldung an:
 
     *„Fehler bei einem Datenbankvorgang beim Verarbeiten der Anforderung. Das Anwenden vorhandener Migrationen für den Datenbankkontext der Anwendung kann dieses Problem beheben.“*
 * Wählen Sie **Migrationen anwenden** aus, und aktualisieren Sie die Seite.
@@ -118,7 +118,7 @@ Wählen Sie im Dialogfeld **Veröffentlichen** die Option **Neuen Azure App Serv
 
 Das Dialogfeld **App Service erstellen** wird angezeigt:
 
-* Die Eingabefelder **App-Name** , **Ressourcengruppe** und **App Service-Plan** werden aufgefüllt. Sie können diese Namen beibehalten oder ändern.
+* Die Eingabefelder **App-Name**, **Ressourcengruppe** und **App Service-Plan** werden aufgefüllt. Sie können diese Namen beibehalten oder ändern.
 * Wählen Sie **Erstellen** aus.
 
 ![Dialogfeld „App Service erstellen“](publish-to-azure-webapp-using-vs/_static/newrg1.png)
@@ -147,7 +147,7 @@ Wählen Sie im Dialogfeld **Azure SQL-Datenbank konfigurieren** die Option **Ers
 
 Das Dialogfeld **Erstellen einer Azure SQL-Datenbank** wird angezeigt:
 
-* Die Eingabefelder **Datenbankname** , **Ressourcengruppe** , **Datenbankserver** und **App Service-Plan** werden aufgefüllt. Sie können diese Werte beibehalten oder ändern.
+* Die Eingabefelder **Datenbankname**, **Ressourcengruppe**, **Datenbankserver** und **App Service-Plan** werden aufgefüllt. Sie können diese Werte beibehalten oder ändern.
 * Geben Sie **Datenbankadministrator-Benutzername** und **Datenbankadministrator-Kennwort** für den ausgewählten **Datenbankserver** ein (beachten Sie, dass das verwendete Konto über die erforderlichen Berechtigungen zum Erstellen der neuen Instanz von Azure SQL-Datenbank verfügen muss).
 * Wählen Sie **Erstellen** aus.
 
@@ -160,7 +160,7 @@ Nachdem die Erstellung abgeschlossen ist, wird das Dialogfeld automatisch geschl
 
 ![Dialogfeld „Azure SQL-Datenbank konfigurieren“](publish-to-azure-webapp-using-vs/_static/sql_select.png)
 
-Im nächsten Schritt des Dialogfelds **Azure SQL-Datenbank konfigurieren** :
+Im nächsten Schritt des Dialogfelds **Azure SQL-Datenbank konfigurieren**:
 
 * Füllen Sie die Felder **Datenbankverbindungs-Benutzername** und **Datenbankverbindungs-Kennwort** aus. Diese Details verwendet Ihre Anwendung zur Runtime zum Herstellen einer Verbindung mit der Datenbank. Sie sollten vermeiden, den gleichen Administratorbenutzernamen und das gleiche Kennwort wie im vorherigen Schritt zu verwenden.
 * Wählen Sie **Fertig stellen** aus.
@@ -173,8 +173,8 @@ Wählen Sie auf der Seite **Zusammenfassung des Veröffentlichungsprofils** die 
 
 Gehen Sie im Bereich **Einstellungen** im Dialogfeld **Veröffentlichen** so vor:
 
-* Erweitern Sie **Datenbanken** , und aktivieren Sie **Diese Verbindungszeichenfolge zur Laufzeit verwenden**.
-* Erweitern Sie **Entity Framework-Migrationen** , und aktivieren Sie **Diese Migration auf Veröffentlichung anwenden**.
+* Erweitern Sie **Datenbanken**, und aktivieren Sie **Diese Verbindungszeichenfolge zur Laufzeit verwenden**.
+* Erweitern Sie **Entity Framework-Migrationen**, und aktivieren Sie **Diese Migration auf Veröffentlichung anwenden**.
 
 * Klicken Sie auf **Speichern**. Visual Studio kehrt zum Dialogfeld **Veröffentlichen** zurück. 
 
@@ -186,7 +186,7 @@ Klicken Sie auf **Veröffentlichen**. Visual Studio veröffentlicht Ihre App in 
 
 ### <a name="update-the-app"></a>Aktualisieren der App
 
-* Bearbeiten Sie die Razor-Seite *Pages/Index.cshtml* , und verändern Sie deren Inhalt. Sie können beispielsweise den Absatz so verändern, dass er „Hallo ASP.NET Core!“ anzeigt.
+* Bearbeiten Sie die Razor-Seite *Pages/Index.cshtml*, und verändern Sie deren Inhalt. Sie können beispielsweise den Absatz so verändern, dass er „Hallo ASP.NET Core!“ anzeigt.
 
     [!code-html[Index](publish-to-azure-webapp-using-vs/sample/index.cshtml?highlight=10&range=1-12)]
 

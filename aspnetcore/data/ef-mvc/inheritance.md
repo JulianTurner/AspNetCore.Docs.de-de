@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/inheritance
 ms.openlocfilehash: 581a31bad4069523699fbbac63862c9dff12034d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054215"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>Tutorial: Implementieren von Vererbung: ASP.NET MVC mit EF Core
@@ -114,7 +114,7 @@ dotnet ef migrations add Inheritance
 
 Führen Sie noch nicht den Befehl `database update` aus. Die Ausführung dieses Befehls führt zu einem Datenverlust, da er die Tabelle „Instructor“ löscht und die Tabelle „Student“ in „Person“ umbenennt. Sie müssen benutzerdefinierten Code angeben, damit vorhandene Daten erhalten bleiben.
 
-Öffnen Sie *Migrations/\<timestamp>_Inheritance.cs* , und ersetzen Sie die Methode `Up` durch den folgenden Code:
+Öffnen Sie *Migrations/\<timestamp>_Inheritance.cs*, und ersetzen Sie die Methode `Up` durch den folgenden Code:
 
 [!code-csharp[](intro/samples/cu/Migrations/20170216215525_Inheritance.cs?name=snippet_Up)]
 
@@ -159,7 +159,7 @@ Wenn Sie im **SQL Server-Objekt-Explorer** **Data Connections/SchoolContext** un
 
 ![Person-Tabelle im SSOX](inheritance/_static/ssox-person-table.png)
 
-Klicken Sie mit der rechten Maustaste auf die Tabelle „Person“, und klicken Sie anschließend auf **Tabellendaten anzeigen** , um die Unterscheidungsspalte anzuzeigen.
+Klicken Sie mit der rechten Maustaste auf die Tabelle „Person“, und klicken Sie anschließend auf **Tabellendaten anzeigen**, um die Unterscheidungsspalte anzuzeigen.
 
 ![Person-Tabelle im SSOX: Tabellendaten](inheritance/_static/ssox-person-data.png)
 

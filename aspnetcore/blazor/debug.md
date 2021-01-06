@@ -20,17 +20,17 @@ no-loc:
 - SignalR
 uid: blazor/debug
 ms.openlocfilehash: 990882c03ddc14c664aa8da0518fb36087199aca
-ms.sourcegitcommit: 202144092067ea81be1dbb229329518d781dbdfb
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/12/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "94550516"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
 [Daniel Roth](https://github.com/danroth27)
 
-Das Debuggen von Blazor WebAssembly-Apps kann mithilfe der Browserentwicklertools in Chromium-basierten Browsern (Microsoft Edge/Chrome) durchgeführt werden. Sie können Ihre App auch mithilfe der folgenden integrierten Entwicklungsumgebungen (IDEs) debuggen:
+Das Debuggen von Blazor WebAssembly-Apps kann mithilfe der Browserentwicklertools in Chromium-basierten Browsern (Edge/Chrome) durchgeführt werden. Sie können Ihre App auch mithilfe der folgenden integrierten Entwicklungsumgebungen (IDEs) debuggen:
 
 * Visual Studio
 * Visual Studio für Mac

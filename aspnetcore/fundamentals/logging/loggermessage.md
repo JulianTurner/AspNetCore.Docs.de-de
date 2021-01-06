@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: fundamentals/logging/loggermessage
 ms.openlocfilehash: 0224e768bd0e016eac5165dc4d9745f4b0867094
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93060455"
 ---
 # <a name="high-performance-logging-with-loggermessage-in-aspnet-core"></a>Hochleistungsprotokollierung mit LoggerMessage in ASP.NET Core
@@ -47,7 +47,7 @@ Die Beispiel-App veranschaulicht <xref:Microsoft.Extensions.Logging.LoggerMessag
 
 Die für die Methode <xref:Microsoft.Extensions.Logging.LoggerMessage.Define*> bereitgestellte Zeichenfolge ist eine Vorlage und keine interpolierte Zeichenfolge. Platzhalter werden in der Reihenfolge der angegebenen Typen ersetzt. Die Platzhalternamen in den Vorlagen sollten eindeutig und in allen Vorlagen einheitlich sein. Sie fungieren als Eigenschaftennamen in strukturierten Protokolldaten. Es wird empfohlen, für Platzhalternamen die [Pascal-Schreibweise](/dotnet/standard/design-guidelines/capitalization-conventions) zu verwenden. Platzhalter in einer derartigen Schreibweise sind z.B. `{Count}` und `{FirstName}`.
 
-Jede Protokollmeldung ist ein <xref:System.Action>-Objekt, das in einem von [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*) erstellten statischen Feld enthalten ist. Beispiel: Die Beispiel-App erstellt ein Feld, das eine Protokollmeldung für eine GET-Anforderung für die Indexseite beschreibt ( *Internal/LoggerExtensions.cs* ):
+Jede Protokollmeldung ist ein <xref:System.Action>-Objekt, das in einem von [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*) erstellten statischen Feld enthalten ist. Beispiel: Die Beispiel-App erstellt ein Feld, das eine Protokollmeldung für eine GET-Anforderung für die Indexseite beschreibt (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet1)]
 
@@ -95,7 +95,7 @@ Die Protokollmeldungsvorlage des Delegaten erhält ihre Platzhalterwerte von den
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-Im Seitenmodell der Indexseite ( *Pages/Index.cshtml.cs* ) wird `QuoteAdded` aufgerufen, um die Meldung zu protokollieren:
+Im Seitenmodell der Indexseite (*Pages/Index.cshtml.cs*) wird `QuoteAdded` aufgerufen, um die Meldung zu protokollieren:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -108,7 +108,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-Die Beispiel-App implementiert ein [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Muster für das Löschen von Zitaten. Es wird eine Meldung protokolliert, die angibt, dass der Löschvorgang erfolgreich war. Es wird eine Fehlermeldung protokolliert, die angibt, dass bei einem Löschvorgang eine Ausnahme ausgelöst wurde. Die Protokollmeldung für den fehlgeschlagenen Löschvorgang enthält die Ausnahmenprotokollnachverfolgung ( *Internal/LoggerExtensions.cs* ):
+Die Beispiel-App implementiert ein [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Muster für das Löschen von Zitaten. Es wird eine Meldung protokolliert, die angibt, dass der Löschvorgang erfolgreich war. Es wird eine Fehlermeldung protokolliert, die angibt, dass bei einem Löschvorgang eine Ausnahme ausgelöst wurde. Die Protokollmeldung für den fehlgeschlagenen Löschvorgang enthält die Ausnahmenprotokollnachverfolgung (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -118,7 +118,7 @@ Beachten Sie, wie die Ausnahme an den Delegaten in `QuoteDeleteFailed` übergebe
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-Im Seitenmodell für die Indexseite ruft ein erfolgreicher Zitatlöschvorgang die `QuoteDeleted`-Methode in der Protokollierung auf: Wenn kein zu löschendes Zitat gefunden wird, wir eine <xref:System.ArgumentNullException> ausgelöst. Die Ausnahme wird von der [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisung aufgefangen und durch den Aufruf der `QuoteDeleteFailed`-Methode in der Protokollierung im [catch](/dotnet/csharp/language-reference/keywords/try-catch)-Block protokolliert ( *Pages/Index.cshtml.cs* ):
+Im Seitenmodell für die Indexseite ruft ein erfolgreicher Zitatlöschvorgang die `QuoteDeleted`-Methode in der Protokollierung auf: Wenn kein zu löschendes Zitat gefunden wird, wir eine <xref:System.ArgumentNullException> ausgelöst. Die Ausnahme wird von der [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisung aufgefangen und durch den Aufruf der `QuoteDeleteFailed`-Methode in der Protokollierung im [catch](/dotnet/csharp/language-reference/keywords/try-catch)-Block protokolliert (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=9,13)]
 
@@ -159,7 +159,7 @@ Aktivieren Sie `IncludeScopes` in den Optionen der Konsolenprotokollierung von *
 
 [!code-json[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
-Fügen Sie zum Erstellen eines Protokollbereichs ein Feld hinzu, dass einen <xref:System.Func%601>-Delegaten für den Bereich enthält. Die Beispiel-App erstellt ein Feld mit dem Namen `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):
+Fügen Sie zum Erstellen eines Protokollbereichs ein Feld hinzu, dass einen <xref:System.Func%601>-Delegaten für den Bereich enthält. Die Beispiel-App erstellt ein Feld mit dem Namen `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet4)]
 
@@ -213,7 +213,7 @@ Die Beispiel-App veranschaulicht <xref:Microsoft.Extensions.Logging.LoggerMessag
 
 Die für die Methode <xref:Microsoft.Extensions.Logging.LoggerMessage.Define*> bereitgestellte Zeichenfolge ist eine Vorlage und keine interpolierte Zeichenfolge. Platzhalter werden in der Reihenfolge der angegebenen Typen ersetzt. Die Platzhalternamen in den Vorlagen sollten eindeutig und in allen Vorlagen einheitlich sein. Sie fungieren als Eigenschaftennamen in strukturierten Protokolldaten. Es wird empfohlen, für Platzhalternamen die [Pascal-Schreibweise](/dotnet/standard/design-guidelines/capitalization-conventions) zu verwenden. Platzhalter in einer derartigen Schreibweise sind z.B. `{Count}` und `{FirstName}`.
 
-Jede Protokollmeldung ist ein <xref:System.Action>-Objekt, das in einem von [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*) erstellten statischen Feld enthalten ist. Beispiel: Die Beispiel-App erstellt ein Feld, das eine Protokollmeldung für eine GET-Anforderung für die Indexseite beschreibt ( *Internal/LoggerExtensions.cs* ):
+Jede Protokollmeldung ist ein <xref:System.Action>-Objekt, das in einem von [LoggerMessage.Define](xref:Microsoft.Extensions.Logging.LoggerMessage.Define*) erstellten statischen Feld enthalten ist. Beispiel: Die Beispiel-App erstellt ein Feld, das eine Protokollmeldung für eine GET-Anforderung für die Indexseite beschreibt (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet1)]
 
@@ -261,7 +261,7 @@ Die Protokollmeldungsvorlage des Delegaten erhält ihre Platzhalterwerte von den
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet10)]
 
-Im Seitenmodell der Indexseite ( *Pages/Index.cshtml.cs* ) wird `QuoteAdded` aufgerufen, um die Meldung zu protokollieren:
+Im Seitenmodell der Indexseite (*Pages/Index.cshtml.cs*) wird `QuoteAdded` aufgerufen, um die Meldung zu protokollieren:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet3&highlight=6)]
 
@@ -274,7 +274,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-Die Beispiel-App implementiert ein [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Muster für das Löschen von Zitaten. Es wird eine Meldung protokolliert, die angibt, dass der Löschvorgang erfolgreich war. Es wird eine Fehlermeldung protokolliert, die angibt, dass bei einem Löschvorgang eine Ausnahme ausgelöst wurde. Die Protokollmeldung für den fehlgeschlagenen Löschvorgang enthält die Ausnahmenprotokollnachverfolgung ( *Internal/LoggerExtensions.cs* ):
+Die Beispiel-App implementiert ein [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Muster für das Löschen von Zitaten. Es wird eine Meldung protokolliert, die angibt, dass der Löschvorgang erfolgreich war. Es wird eine Fehlermeldung protokolliert, die angibt, dass bei einem Löschvorgang eine Ausnahme ausgelöst wurde. Die Protokollmeldung für den fehlgeschlagenen Löschvorgang enthält die Ausnahmenprotokollnachverfolgung (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -284,7 +284,7 @@ Beachten Sie, wie die Ausnahme an den Delegaten in `QuoteDeleteFailed` übergebe
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-Im Seitenmodell für die Indexseite ruft ein erfolgreicher Zitatlöschvorgang die `QuoteDeleted`-Methode in der Protokollierung auf: Wenn kein zu löschendes Zitat gefunden wird, wir eine <xref:System.ArgumentNullException> ausgelöst. Die Ausnahme wird von der [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisung aufgefangen und durch den Aufruf der `QuoteDeleteFailed`-Methode in der Protokollierung im [catch](/dotnet/csharp/language-reference/keywords/try-catch)-Block protokolliert ( *Pages/Index.cshtml.cs* ):
+Im Seitenmodell für die Indexseite ruft ein erfolgreicher Zitatlöschvorgang die `QuoteDeleted`-Methode in der Protokollierung auf: Wenn kein zu löschendes Zitat gefunden wird, wir eine <xref:System.ArgumentNullException> ausgelöst. Die Ausnahme wird von der [try-catch](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisung aufgefangen und durch den Aufruf der `QuoteDeleteFailed`-Methode in der Protokollierung im [catch](/dotnet/csharp/language-reference/keywords/try-catch)-Block protokolliert (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 
@@ -327,7 +327,7 @@ Aktivieren Sie `IncludeScopes` in den Optionen der Konsolenprotokollierung von *
 
 [!code-json[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
-Fügen Sie zum Erstellen eines Protokollbereichs ein Feld hinzu, dass einen <xref:System.Func%601>-Delegaten für den Bereich enthält. Die Beispiel-App erstellt ein Feld mit dem Namen `_allQuotesDeletedScope` ( *Internal/LoggerExtensions.cs* ):
+Fügen Sie zum Erstellen eines Protokollbereichs ein Feld hinzu, dass einen <xref:System.Func%601>-Delegaten für den Bereich enthält. Die Beispiel-App erstellt ein Feld mit dem Namen `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet4)]
 

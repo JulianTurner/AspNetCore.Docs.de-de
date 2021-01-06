@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: data/ef-rp/sort-filter-page
 ms.openlocfilehash: 51a1e2a90259898262ac655b7a0e8a55d766f0c7
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93061040"
 ---
 # <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>Teil 3: Razor Pages mit EF Core in ASP.NET Core – Sortieren, Filtern und Paging
@@ -141,7 +141,7 @@ Weitere Informationen finden Sie unter [Verwenden von Abfragen ohne Berücksicht
 
 ### <a name="update-the-no-locrazor-page"></a>Aktualisieren der Razor-Seite
 
-Ersetzen Sie den Code in *Pages/Students/Index.cshtml* , um eine Schaltfläche **Search** (Suchen) hinzuzufügen.
+Ersetzen Sie den Code in *Pages/Students/Index.cshtml*, um eine Schaltfläche **Search** (Suchen) hinzuzufügen.
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
@@ -149,7 +149,7 @@ Der vorangehende Code verwendet das `<form>`-[Taghilfsprogramm](xref:mvc/views/t
 
 Testen der App:
 
-* Klicken Sie auf die Registerkarte **Studenten** , und geben Sie eine Suchzeichenfolge ein. Wenn Sie SQLite verwenden, wird für den Filter nur denn nicht zwischen Groß-/Kleinschreibung unterschieden, wenn Sie den zuvor gezeigten optionalen `ToUpper`-Code implementiert haben.
+* Klicken Sie auf die Registerkarte **Studenten**, und geben Sie eine Suchzeichenfolge ein. Wenn Sie SQLite verwenden, wird für den Filter nur denn nicht zwischen Groß-/Kleinschreibung unterschieden, wenn Sie den zuvor gezeigten optionalen `ToUpper`-Code implementiert haben.
 
 * Klicken Sie auf **Suchen**.
 
@@ -181,7 +181,7 @@ Die Methode `CreateAsync` dient zum Erstellen des Objekts `PaginatedList<T>`. Ei
 
 ### <a name="add-paging-to-the-pagemodel-class"></a>Hinzufügen von Paging zur PageModel-Klasse
 
-Ersetzen Sie den Code in *Students/Index.cshtml.cs* , um Paging hinzuzufügen.
+Ersetzen Sie den Code in *Students/Index.cshtml.cs*, um Paging hinzuzufügen.
 
 [!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=15-20,23-30,57-59)]
 
@@ -405,7 +405,7 @@ Der vorangehende Code verwendet das `<form>`-[Taghilfsprogramm](xref:mvc/views/t
 
 Testen der App:
 
-* Klicken Sie auf die Registerkarte **Studenten** , und geben Sie eine Suchzeichenfolge ein.
+* Klicken Sie auf die Registerkarte **Studenten**, und geben Sie eine Suchzeichenfolge ein.
 * Klicken Sie auf **Suchen**.
 
 Beachten Sie, dass die URL die Suchzeichenfolge enthält.
@@ -506,7 +506,7 @@ Führen Sie den Debugger schrittweise aus.
 
 In diesem Schritt wird *Pages/About.cshtml* aktualisiert, um anzuzeigen, wie viele Studenten sich am jeweiligen Anmeldedatum angemeldet haben. Bei dem Update wird eine Gruppierung verwendet, und es umfasst die folgenden Schritte:
 
-* Das Erstellen eines Ansichtsmodells für die auf der **Info** -Seite verwendeten Daten.
+* Das Erstellen eines Ansichtsmodells für die auf der **Info**-Seite verwendeten Daten.
 * Das Aktualisieren der Info-Seite, um das Ansichtsmodell zu verwenden.
 
 ### <a name="create-the-view-model"></a>Erstellen des Ansichtsmodells

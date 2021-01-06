@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: host-and-deploy/iis/modules
 ms.openlocfilehash: 47ba04f199f9b77cf6032de9f80f2410f5c69424
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057400"
 ---
 # <a name="iis-modules-with-aspnet-core"></a>IIS-Module mit ASP.NET Core
@@ -60,7 +60,7 @@ Die Tabelle enthält native IIS-Module, die mit ASP.NET Core-Apps und dem ASP.NE
 | **Protokollunterstützung**<br>`ProtocolSupportModule`                                                  | Ja | |
 | **Anforderungsfilterung**<br>`RequestFilteringModule`                                                | Ja | [URL-umschreibende Middleware`IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
 | **Anforderungsüberwachung**<br>`RequestMonitorModule`                                                    | Ja | |
-| **URL-Umschreibung** &#8224;<br>`RewriteModule`                                                      | Ja | [URL-umschreibende Middleware](xref:fundamentals/url-rewriting) |
+| **URL-Umschreibung**&#8224;<br>`RewriteModule`                                                      | Ja | [URL-umschreibende Middleware](xref:fundamentals/url-rewriting) |
 | **Serverseitige Includedateien**<br>`ServerSideIncludeModule`                                            | Nein  | |
 | **Statische Komprimierung**<br>`StaticCompressionModule`                                              | Nein  | [Antworten komprimierende Middleware](xref:performance/response-compression) |
 | **Statischer Inhalt**<br>`StaticFileModule`                                                         | Nein  | [Middleware für statische Dateien](xref:fundamentals/static-files) |
@@ -115,7 +115,7 @@ Für weitere Informationen zum Deaktivieren von Modulen mit Konfigurationseinste
 
 ### <a name="module-removal"></a>Entfernen von Modulen
 
-Wenn Sie ein Modul mit einer Einstellung in der Datei *web.config* entfernen können, entsperren Sie das Modul, und entsperren Sie zunächst den Abschnitt `<modules>` in der Datei *web.config* :
+Wenn Sie ein Modul mit einer Einstellung in der Datei *web.config* entfernen können, entsperren Sie das Modul, und entsperren Sie zunächst den Abschnitt `<modules>` in der Datei *web.config*:
 
 1. Entsperren Sie das Modul auf Serverebene. Wählen Sie den IIS-Server in der IIS-Manager-Sidebar **Verbindungen** aus. Öffnen Sie **Module** im Bereich **IIS**. Wählen Sie das Modul aus der Liste aus. Wählen Sie in der Sidebar **Aktionen** auf der rechten Seite die Option **Entsperren** aus. Wenn der Aktionseintrag für das Modul **Lock** (Sperren) lautet, wurde das Modul bereits entsperrt, und es ist keine weitere Aktion erforderlich. Entsperren Sie alle Module, die Sie später aus *web.config* entfernen möchten.
 
@@ -135,7 +135,7 @@ Wenn Sie ein Modul mit einer Einstellung in der Datei *web.config* entfernen kö
    </configuration>
    ```
 
-Sie können Module für IIS Express mit *web.config* hinzufügen oder entfernen. Ändern Sie dazu die Datei *applicationHost.config* , und entsperren Sie den Abschnitt `<modules>`:
+Sie können Module für IIS Express mit *web.config* hinzufügen oder entfernen. Ändern Sie dazu die Datei *applicationHost.config*, und entsperren Sie den Abschnitt `<modules>`:
 
 1. Öffnen Sie *{ANWENDUNGSSTAMM}\\.vs\config\applicationhost.config*.
 
@@ -153,7 +153,7 @@ Sie können Module für IIS Express mit *web.config* hinzufügen oder entfernen.
    <add name="CgiModule" lockItem="false" />
    ```
 
-1. Nachdem der Abschnitt `<modules>` und die einzelnen Module entsperrt wurden, können Sie IIS-Module mit der *web.config* -Datei der App hinzufügen, um die App in IIS Express auszuführen.
+1. Nachdem der Abschnitt `<modules>` und die einzelnen Module entsperrt wurden, können Sie IIS-Module mit der *web.config*-Datei der App hinzufügen, um die App in IIS Express auszuführen.
 
 Ein IIS-Modul kann auch mit *Appcmd.exe* entfernt werden. Geben Sie `MODULE_NAME` und `APPLICATION_NAME` im Befehl an:
 

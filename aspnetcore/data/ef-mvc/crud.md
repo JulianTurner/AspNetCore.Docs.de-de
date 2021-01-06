@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: data/ef-mvc/crud
 ms.openlocfilehash: 043fe513f370cf63637733b66ca195e7887faab0
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054293"
 ---
 # <a name="tutorial-implement-crud-functionality---aspnet-mvc-with-ef-core"></a>Tutorial: Implementieren von CRUD-Funktionen – ASP.NET MVC mit EF Core
@@ -122,7 +122,7 @@ Führen Sie die App aus, wählen Sie die Registerkarte **Studenten** aus, und kl
 
 ## <a name="update-the-create-page"></a>Aktualisieren der Seite „Create“ (Erstellen)
 
-Bearbeiten Sie die HttpPost-Methode `Create` in *StudentsController.cs* , indem Sie einen Try-Catch-Block hinzufügen und die ID aus dem Attribut `Bind` entfernen.
+Bearbeiten Sie die HttpPost-Methode `Create` in *StudentsController.cs*, indem Sie einen Try-Catch-Block hinzufügen und die ID aus dem Attribut `Bind` entfernen.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=4,6-7,14-21)]
 
@@ -167,7 +167,7 @@ Der Code in der Datei *Views/Students/Create.cshtml* verwendet die Taghilfsprogr
 
 Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Students** aus und klicken auf **Neu erstellen**.
 
-Geben Sie Namen und ein Datum ein. Versuchen Sie ein ungültiges Datum einzugeben, sofern Ihr Browser dies zulässt. (Manche Browser erzwingen die Verwendung einer Datumsauswahl.) Klicken Sie dann auf **Erstellen** , um die Fehlermeldung anzuzeigen.
+Geben Sie Namen und ein Datum ein. Versuchen Sie ein ungültiges Datum einzugeben, sofern Ihr Browser dies zulässt. (Manche Browser erzwingen die Verwendung einer Datumsauswahl.) Klicken Sie dann auf **Erstellen**, um die Fehlermeldung anzuzeigen.
 
 ![Validierungsfehler beim Datum](crud/_static/date-error.png)
 
@@ -175,7 +175,7 @@ Dies ist eine serverseitige Validierung, die Sie standardgemäß erhalten. In ei
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=8)]
 
-Ändern Sie das Datum in einen gültigen Wert und klicken auf **Erstellen** , damit der neue Student auf der Seite **Index** angezeigt wird.
+Ändern Sie das Datum in einen gültigen Wert und klicken auf **Erstellen**, damit der neue Student auf der Seite **Index** angezeigt wird.
 
 ## <a name="update-the-edit-page"></a>Aktualisieren der Seite „Edit“ (Bearbeiten)
 
@@ -273,7 +273,7 @@ Fügen Sie in der Datei *Views/Student/Delete.cshtml* eine Fehlermeldung zwische
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 
-Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Students** aus und klicken auf den Link **Löschen** :
+Führen Sie die Anwendung aus, wählen Sie die Registerkarte **Students** aus und klicken auf den Link **Löschen**:
 
 ![Bestätigungsseite „Löschen“](crud/_static/student-delete.png)
 

@@ -20,10 +20,10 @@ no-loc:
 - SignalR
 uid: grpc/troubleshoot
 ms.openlocfilehash: cbce85caf7ba792253ba62c6be084c8905acd00f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93058713"
 ---
 # <a name="troubleshoot-grpc-on-net-core"></a>Problembehandlung für gRPC in .NET Core
@@ -137,7 +137,7 @@ Der gRPC-Client muss ebenfalls so konfiguriert sein, dass er kein TLS verwendet.
 
 Für das Generieren von gRPC-Code für konkrete Clients und Dienstbasisklassen muss in einem Projekt auf Protobuf-Dateien und -Tools verwiesen werden. Folgendes muss enthalten sein:
 
-* *.proto* -Dateien, die Sie in der Elementgruppe `<Protobuf>` verwenden wollen. Auf [importierte *.proto* -Dateien](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) muss im Projekt verwiesen werden.
+* *.proto*-Dateien, die Sie in der Elementgruppe `<Protobuf>` verwenden wollen. Auf [importierte *.proto*-Dateien](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) muss im Projekt verwiesen werden.
 * Paketverweis auf das gRPC-Toolpaket [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
 
 Weitere Informationen zum Generieren von gRPC-C#-Objekten finden Sie unter <xref:grpc/basics>.
@@ -160,16 +160,16 @@ Bei einer gRPC-Client-App, die gRPC-Aufrufe ausführt, muss nur der konkrete Cli
 
 ## <a name="wpf-projects-unable-to-generate-grpc-c-assets-from-proto-files"></a>Generieren von gRPC-C#-Objekten aus PROTO-Dateien in WPF-Projekten nicht möglich
 
-Es gibt ein [bekanntes Problem](https://github.com/dotnet/wpf/issues/810) bei WPF-Projekten, das verhindert, dass das Generieren von gRPC-Code richtig funktioniert. Bei der Verwendung aller gRPC-Typen, die in einem WPF-Projekt durch Verweise auf `Grpc.Tools` und *.proto* -Dateien generiert werden, treten Kompilierungsfehler auf:
+Es gibt ein [bekanntes Problem](https://github.com/dotnet/wpf/issues/810) bei WPF-Projekten, das verhindert, dass das Generieren von gRPC-Code richtig funktioniert. Bei der Verwendung aller gRPC-Typen, die in einem WPF-Projekt durch Verweise auf `Grpc.Tools` und *.proto*-Dateien generiert werden, treten Kompilierungsfehler auf:
 
 > Fehler CS0246: Der Typ- oder Namespacename „MyGrpcServices“ wurde nicht gefunden (möglicherweise fehlt eine using-Direktive oder ein Assemblyverweis).
 
 So umgehen Sie dieses Problem:
 
 1. Erstellen Sie ein neues .NET Core-Klassenbibliotheksprojekt.
-2. Fügen Sie im neuen Projekt Verweise hinzu, um das [Generieren von C#-Code aus *\*.proto* -Dateien](xref:grpc/basics#generated-c-assets) zu ermöglichen:
+2. Fügen Sie im neuen Projekt Verweise hinzu, um das [Generieren von C#-Code aus *\*.proto*-Dateien](xref:grpc/basics#generated-c-assets) zu ermöglichen:
     * Fügen Sie dem [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)-Paket einen Paketverweis hinzu.
-    * Fügen Sie der `<Protobuf>`-Elementgruppe *\*.proto* -Dateien hinzu.
+    * Fügen Sie der `<Protobuf>`-Elementgruppe *\*.proto*-Dateien hinzu.
 3. Fügen Sie in der WPF-Anwendung einen Verweis auf das neue Projekt hinzu.
 
 Die WPF-Anwendung kann die in gRPC generierten Typen aus dem neuen Klassenbibliotheksprojekt verwenden.

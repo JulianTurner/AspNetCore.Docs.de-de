@@ -18,10 +18,10 @@ no-loc:
 - SignalR
 uid: client-side/using-grunt
 ms.openlocfilehash: 374c23f440dcf301b3a1e1e9e6684dd050f218c6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93054553"
 ---
 # <a name="use-grunt-in-aspnet-core"></a>Verwenden von Grunt in ASP.NET Core
@@ -32,17 +32,17 @@ In diesem Beispiel wird ein leeres ASP.NET Core-Projekt als Ausgangspunkt verwen
 
 Das fertige Beispiel bereinigt das Zielbereitstellungsverzeichnis, kombiniert JavaScript-Dateien, prüft die Codequalität, verdichtet den Inhalt der JavaScript-Datei und stellt sie im Stammverzeichnis Ihrer Webanwendung bereit. Wir werden die folgenden Pakete verwenden:
 
-* **grunt** : Das Grunt-Aufgabenausführungspaket.
+* **grunt**: Das Grunt-Aufgabenausführungspaket.
 
-* **grunt-contrib-clean** : Ein Plug-In, das Dateien oder Verzeichnisse entfernt.
+* **grunt-contrib-clean**: Ein Plug-In, das Dateien oder Verzeichnisse entfernt.
 
-* **grunt-contrib-jshint** : Ein Plug-In, das die Qualität von JavaScript-Code überprüft.
+* **grunt-contrib-jshint**: Ein Plug-In, das die Qualität von JavaScript-Code überprüft.
 
-* **grunt-contrib-concat** : Ein Plug-In, das Dateien zu einer einzelnen Datei verknüpft.
+* **grunt-contrib-concat**: Ein Plug-In, das Dateien zu einer einzelnen Datei verknüpft.
 
-* **grunt-contrib-uglify** : Ein Plug-In, das den Umfang von JavaScript verringert, um die Größe zu reduzieren.
+* **grunt-contrib-uglify**: Ein Plug-In, das den Umfang von JavaScript verringert, um die Größe zu reduzieren.
 
-* **grunt-contrib-watch** : Ein Plug-In, das Dateiaktivitäten überwacht.
+* **grunt-contrib-watch**: Ein Plug-In, das Dateiaktivitäten überwacht.
 
 ## <a name="preparing-the-application"></a>Vorbereiten der Anwendung
 
@@ -58,11 +58,11 @@ Richten Sie zunächst eine neue leere Webanwendung ein, und fügen Sie TypeScrip
 
 4. Fügen Sie einen neuen Ordner namens `TypeScript` zu Ihrem Projektverzeichnis hinzu.
 
-5. Stellen Sie vor dem Hinzufügen von Dateien sicher, dass in Visual Studio die Option „Beim Speichern kompilieren“ für TypeScript-Dateien aktiviert ist. Navigieren Sie zu **Tools** > **Optionen** > **Text-Editor** > **TypeSkript** > **Projekt** :
+5. Stellen Sie vor dem Hinzufügen von Dateien sicher, dass in Visual Studio die Option „Beim Speichern kompilieren“ für TypeScript-Dateien aktiviert ist. Navigieren Sie zu **Tools** > **Optionen** > **Text-Editor** > **TypeSkript** > **Projekt**:
 
     ![Optionen zur Einstellung der automatischen Kompilierung von TypeScript-Dateien](using-grunt/_static/typescript-options.png)
 
-6. Klicken Sie mit der rechten Maustaste auf das Verzeichnis `TypeScript`, und wählen Sie **Hinzufügen > Neues Element** aus dem Kontextmenü aus. Wählen Sie das Element **JavaScript-Datei** aus, und benennen Sie die Datei *Tastes.ts* (beachten Sie die Erweiterung \*.ts). Kopieren Sie die folgende Zeile des TypeScript-Codes in die Datei (beim Speichern wird eine neue *Tastes.js* -Datei mit dem JavaScript-Quelltext angezeigt).
+6. Klicken Sie mit der rechten Maustaste auf das Verzeichnis `TypeScript`, und wählen Sie **Hinzufügen > Neues Element** aus dem Kontextmenü aus. Wählen Sie das Element **JavaScript-Datei** aus, und benennen Sie die Datei *Tastes.ts* (beachten Sie die Erweiterung \*.ts). Kopieren Sie die folgende Zeile des TypeScript-Codes in die Datei (beim Speichern wird eine neue *Tastes.js*-Datei mit dem JavaScript-Quelltext angezeigt).
 
     ```typescript
     enum Tastes { Sweet, Sour, Salty, Bitter }
@@ -99,7 +99,7 @@ Richten Sie zunächst eine neue leere Webanwendung ein, und fügen Sie TypeScrip
 
 Als nächstes konfigurieren Sie NPM zum Herunterladen von „grunt“ und „grunt-tasks“.
 
-1. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das Projekt, und wählen Sie **Hinzufügen > Neues Element** aus dem Kontextmenü aus. Wählen Sie das Element **NPM-Konfigurationsdatei** aus, belassen Sie den Standardnamen, *package.json* , und klicken Sie auf die Schaltfläche **Hinzufügen**.
+1. Klicken Sie im Projektmappen-Explorer mit der rechten Maustaste auf das Projekt, und wählen Sie **Hinzufügen > Neues Element** aus dem Kontextmenü aus. Wählen Sie das Element **NPM-Konfigurationsdatei** aus, belassen Sie den Standardnamen, *package.json*, und klicken Sie auf die Schaltfläche **Hinzufügen**.
 
 2. Geben Sie in der Datei *package.json* innerhalb der `devDependencies`-Objektklammern „grunt“ ein. Wählen Sie `grunt` aus der Intellisense-Liste aus, und drücken Sie die EINGABETASTE. Visual Studio zitiert den grunt-Paketnamen und fügt einen Doppelpunkt hinzu. Wählen Sie rechts neben dem Doppelpunkt die aktuellste stabile Version des Pakets oben in der Intellisense-Liste aus (drücken Sie `Ctrl-Space`, wenn Intellisense nicht angezeigt wird).
 
@@ -108,7 +108,7 @@ Als nächstes konfigurieren Sie NPM zum Herunterladen von „grunt“ und „gru
     > [!NOTE]
     > NPM verwendet die [semantische Versionsverwaltung](https://semver.org/), um Abhängigkeiten zu organisieren. Die semantische Versionsverwaltung, auch als SemVer bezeichnet, identifiziert Pakete mit dem Nummerierungsschema \<major>.\<minor>.\<patch>. Intellisense vereinfacht die semantische Versionsverwaltung, indem es nur einige wenige gemeinsame Optionen anzeigt. Der oberste Punkt in der Intellisense-Liste (0.4.5 im obigen Beispiel) gilt als die aktuellste stabile Version des Pakets. Das Caretzeichen (^) entspricht der aktuellsten Hauptversion und die Tilde (~) entspricht der aktuellsten Nebenversion. Eine Anleitung für die volle Ausdrucksfähigkeit, die SemVer bietet, finden Sie in der [NPM SemVer Version-Parserreferenz](https://www.npmjs.com/package/semver).
 
-3. Fügen Sie weitere Abhängigkeiten hinzu, um grunt-contrib-\*-Pakete für *clean* , *jshint* , *concat* , *uglify* und *watch* zu laden, wie im Beispiel unten gezeigt. Die Versionen müssen nicht mit dem Beispiel übereinstimmen.
+3. Fügen Sie weitere Abhängigkeiten hinzu, um grunt-contrib-\*-Pakete für *clean*, *jshint*, *concat*, *uglify* und *watch* zu laden, wie im Beispiel unten gezeigt. Die Versionen müssen nicht mit dem Beispiel übereinstimmen.
 
     ```json
     "devDependencies": {
@@ -123,7 +123,7 @@ Als nächstes konfigurieren Sie NPM zum Herunterladen von „grunt“ und „gru
 
 4. Speichern Sie die Datei *package.json*.
 
-Die Pakete für die einzelnen `devDependencies`-Elemente werden zusammen mit den für jedes Paket erforderlichen Dateien heruntergeladen. Sie finden die Paketdateien im Verzeichnis *node_modules* , indem Sie die Schaltfläche **Alle Dateien anzeigen** im **Projektmappen-Explorer** aktivieren.
+Die Pakete für die einzelnen `devDependencies`-Elemente werden zusammen mit den für jedes Paket erforderlichen Dateien heruntergeladen. Sie finden die Paketdateien im Verzeichnis *node_modules*, indem Sie die Schaltfläche **Alle Dateien anzeigen** im **Projektmappen-Explorer** aktivieren.
 
 ![grunt node_modules](using-grunt/_static/node-modules.png)
 
@@ -136,7 +136,7 @@ Die Pakete für die einzelnen `devDependencies`-Elemente werden zusammen mit den
 
 Grunt wird mithilfe eines Manifests namens *Gruntfile.js* konfiguriert, das Aufgaben definiert, lädt und registriert, die manuell ausgeführt oder so konfiguriert werden können, dass sie automatisch auf der Grundlage von Ereignissen in Visual Studio ausgeführt werden.
 
-1. Klicken Sie mit der rechten Maustaste auf das Projekt, und wählen Sie **Hinzufügen** > **Neues Element** aus. Wählen Sie die Elementvorlage **JavaScript-Datei** aus, ändern Sie den Namen in *Gruntfile.js* , und klicken Sie auf die Schaltfläche **Hinzufügen**.
+1. Klicken Sie mit der rechten Maustaste auf das Projekt, und wählen Sie **Hinzufügen** > **Neues Element** aus. Wählen Sie die Elementvorlage **JavaScript-Datei** aus, ändern Sie den Namen in *Gruntfile.js*, und klicken Sie auf die Schaltfläche **Hinzufügen**.
 
 1. Fügen Sie den folgenden Code zu *Gruntfile.js* hinzu. Die Funktion `initConfig` legt Optionen für jedes Paket fest, und der Rest des Moduls lädt und registriert Aufgaben.
 
@@ -147,7 +147,7 @@ Grunt wird mithilfe eines Manifests namens *Gruntfile.js* konfiguriert, das Aufg
    };
    ```
 
-1. Fügen Sie innerhalb der Funktion `initConfig` Optionen für die Aufgabe `clean` hinzu, wie im *Gruntfile.js* -Beispiel unten gezeigt. Die Aufgabe `clean` akzeptiert ein Array von Verzeichniszeichenfolgen. Diese Aufgabe entfernt Dateien aus *wwwroot/lib* und entfernt das gesamte Verzeichnis */temp*.
+1. Fügen Sie innerhalb der Funktion `initConfig` Optionen für die Aufgabe `clean` hinzu, wie im *Gruntfile.js*-Beispiel unten gezeigt. Die Aufgabe `clean` akzeptiert ein Array von Verzeichniszeichenfolgen. Diese Aufgabe entfernt Dateien aus *wwwroot/lib* und entfernt das gesamte Verzeichnis */temp*.
 
     ```javascript
     module.exports = function (grunt) {
@@ -167,7 +167,7 @@ Grunt wird mithilfe eines Manifests namens *Gruntfile.js* konfiguriert, das Aufg
 
     ![Anfängliche Gruntfile](using-grunt/_static/gruntfile-js-initial.png)
 
-1. Klicken Sie mit der rechten Maustaste auf *Gruntfile.js* , und wählen Sie **Aufgabenausführungs-Explorer** aus dem Kontextmenü aus. Das Fenster **Aufgabenausführungs-Explorer** wird geöffnet.
+1. Klicken Sie mit der rechten Maustaste auf *Gruntfile.js*, und wählen Sie **Aufgabenausführungs-Explorer** aus dem Kontextmenü aus. Das Fenster **Aufgabenausführungs-Explorer** wird geöffnet.
 
     ![Menü des Aufgabenausführungs-Explorers](using-grunt/_static/task-runner-explorer-menu.png)
 
@@ -216,7 +216,7 @@ Grunt wird mithilfe eines Manifests namens *Gruntfile.js* konfiguriert, das Aufg
 
 1. Fügen Sie die Aufgabe `uglify` mit dem folgenden Code hinzu.
 
-    Die Aufgabe verkleinert die Datei *combined.js* , die sich im Verzeichnis „temp“ befindet, und erstellt die Ergebnisdatei in „wwwroot/lib“ gemäß der Standardnamenskonvention *\<file name\>.min.js*.
+    Die Aufgabe verkleinert die Datei *combined.js*, die sich im Verzeichnis „temp“ befindet, und erstellt die Ergebnisdatei in „wwwroot/lib“ gemäß der Standardnamenskonvention *\<file name\>.min.js*.
 
     ```javascript
     uglify: {
@@ -243,7 +243,7 @@ Grunt wird mithilfe eines Manifests namens *Gruntfile.js* konfiguriert, das Aufg
 
     ![Aufgabenausführungs-Explorer – Ausführen der einzelnen Aufgaben](using-grunt/_static/task-runner-explorer-run-each-task.png)
 
-    Die concat-Aufgabe erstellt eine neue *combined.js* -Datei und legt sie im Verzeichnis „temp“ ab. Die `jshint`-Aufgabe wird einfach ausgeführt und erzeugt keine Ausgabe. Die `uglify`-Aufgabe erstellt eine neue *combined.min.js* -Datei und platziert sie in *wwwroot/lib*. Nach der Fertigstellung sollte die Lösung in etwa so aussehen wie der Screenshot unten:
+    Die concat-Aufgabe erstellt eine neue *combined.js*-Datei und legt sie im Verzeichnis „temp“ ab. Die `jshint`-Aufgabe wird einfach ausgeführt und erzeugt keine Ausgabe. Die `uglify`-Aufgabe erstellt eine neue *combined.min.js* -Datei und platziert sie in *wwwroot/lib*. Nach der Fertigstellung sollte die Lösung in etwa so aussehen wie der Screenshot unten:
 
     ![Projektmappen-Explorer nach allen Aufgaben](using-grunt/_static/solution-explorer-after-all-tasks.png)
 
@@ -285,7 +285,7 @@ Klicken Sie mit der rechten Maustaste auf das Überwachungselement im Aufgabenau
 
 ## <a name="binding-to-visual-studio-events"></a>Binden an Visual Studio-Ereignisse
 
-Wenn Sie Ihre Aufgaben nicht jedes Mal, wenn Sie in Visual Studio arbeiten, manuell starten möchten, binden Sie Aufgaben an die Ereignisse **Vor Build** , **Nach Build** , **Bereinigen** und **Projekt geöffnet**.
+Wenn Sie Ihre Aufgaben nicht jedes Mal, wenn Sie in Visual Studio arbeiten, manuell starten möchten, binden Sie Aufgaben an die Ereignisse **Vor Build**, **Nach Build**, **Bereinigen** und **Projekt geöffnet**.
 
 Binden Sie `watch`, sodass es bei jedem Öffnen von Visual Studio ausgeführt wird. Klicken Sie im Aufgabenausführungs-Explorer mit der rechten Maustaste auf das Überwachungselement, und wählen Sie **Bindungen** > **Projekt geöffnet** aus dem Kontextmenü aus.
 

@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: tutorials/get-started-with-swashbuckle
 ms.openlocfilehash: 9fbd4bc5e91d8f05afc99a4f04c706399f83a518
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 01/04/2021
 ms.locfileid: "93057608"
 ---
 # <a name="get-started-with-swashbuckle-and-aspnet-core"></a>Erste Schritte mit Swashbuckle und ASP.NET Core
@@ -45,16 +45,16 @@ Swashbuckle kann mit folgenden Vorgehensweisen hinzugefügt werden:
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* Aus dem Fenster **Paket-Manager-Konsole** :
+* Aus dem Fenster **Paket-Manager-Konsole**:
   * Navigieren Sie zu **Ansicht** > **Weitere Fenster** > **Paket-Manager-Konsole**.
-  * Navigieren Sie zu dem Verzeichnis, in dem die *TodoApi.csproj* -Datei gespeichert ist.
+  * Navigieren Sie zu dem Verzeichnis, in dem die *TodoApi.csproj*-Datei gespeichert ist.
   * Führen Sie den folgenden Befehl aus:
 
     ```powershell
     Install-Package Swashbuckle.AspNetCore -Version 5.5.0
     ```
 
-* Aus dem Dialogfeld **NuGet-Pakete verwalten** :
+* Aus dem Dialogfeld **NuGet-Pakete verwalten**:
   * Klicken Sie mit der rechten Maustaste unter **Projektmappen-Explorer** > **NuGet-Pakete verwalten** auf Ihr Projekt.
   * Legen Sie die **Paketquelle** auf „nuget.org“ fest.
   * Stellen Sie sicher, dass die Option „Vorabversion einschließen“ aktiviert ist.
@@ -181,7 +181,7 @@ XML-Kommentare können mithilfe der folgenden Ansätze aktiviert werden:
 ::: moniker range=">= aspnetcore-2.0"
 
 * Klicken Sie im **Projektmappen-Explorer** mit der rechten Maustaste auf das Projekt, und wählen Sie **<project_name>.csproj bearbeiten** aus.
-* Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ* -Datei hinzu:
+* Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ*-Datei hinzu:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
 
@@ -198,8 +198,8 @@ XML-Kommentare können mithilfe der folgenden Ansätze aktiviert werden:
 
 ::: moniker range=">= aspnetcore-2.0"
 
-* Drücken und halten Sie im *Lösungspad* die **CONTROL** -Taste, und klicken Sie auf den Projektnamen. Navigieren Sie zu **Extras** > **Datei bearbeiten**.
-* Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ* -Datei hinzu:
+* Drücken und halten Sie im *Lösungspad* die **CONTROL**-Taste, und klicken Sie auf den Projektnamen. Navigieren Sie zu **Extras** > **Datei bearbeiten**.
+* Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ*-Datei hinzu:
 
 [!code-xml[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.Swashbuckle/TodoApi.csproj?name=snippet_SuppressWarnings&highlight=1-2,4)]
 
@@ -207,14 +207,14 @@ XML-Kommentare können mithilfe der folgenden Ansätze aktiviert werden:
 
 ::: moniker range="<= aspnetcore-1.1"
 
-* Öffnen Sie das Dialogfeld **Projektoptionen** , und klicken Sie dann auf **Erstellen** > **Compiler**.
+* Öffnen Sie das Dialogfeld **Projektoptionen**, und klicken Sie dann auf **Erstellen** > **Compiler**.
 * Überprüfen Sie das Feld **XML-Dokumentation generieren** im Abschnitt **Allgemeine Optionen**.
 
 ::: moniker-end
 
 #### <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ* -Datei hinzu:
+Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ*-Datei hinzu:
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -230,7 +230,7 @@ Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ* -Datei hinzu:
 
 #### <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
-Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ* -Datei hinzu:
+Fügen Sie die hervorgehobenen Zeilen manuell der *CSPROJ*-Datei hinzu:
 
 ::: moniker range=">= aspnetcore-2.0"
 

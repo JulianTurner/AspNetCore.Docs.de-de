@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: 98dfd539171807cbf94d4ac8746458152c809495
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: eae4a19042efded03f10e9ebd17122232f0323eb
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93057569"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97854638"
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>Visual Studio-Veröffentlichungsprofile (PUBXML) für die Bereitstellung von ASP.NET Core-Apps
 
@@ -52,9 +52,9 @@ Wenn in MSBuild oder Visual Studio ein Projekt geladen wird, werden die folgende
 
 ## <a name="compute-project-items"></a>Berechnen der Projektelemente
 
-Wenn das Projekt geladen ist, werden die [MSBuild-Projektelemente](/visualstudio/msbuild/common-msbuild-project-items) (Dateien) berechnet. Der Elementtyp bestimmt, wie die Datei verarbeitet wird. Standardmäßig sind *CS* -Dateien in der `Compile`-Elementliste enthalten. Dateien in der `Compile`-Elementliste werden kompiliert.
+Wenn das Projekt geladen ist, werden die [MSBuild-Projektelemente](/visualstudio/msbuild/common-msbuild-project-items) (Dateien) berechnet. Der Elementtyp bestimmt, wie die Datei verarbeitet wird. Standardmäßig sind *CS*-Dateien in der `Compile`-Elementliste enthalten. Dateien in der `Compile`-Elementliste werden kompiliert.
 
-Die `Content`-Elementliste enthält Dateien, die zusätzlich zu den Buildausgaben veröffentlicht werden. Standardmäßig sind Dateien, die mit den Mustern `wwwroot\**`, `**\*.config` und `**\*.json` übereinstimmen, in der Elementliste `Content` enthalten. Das `wwwroot\**` [Globmuster](https://gruntjs.com/configuring-tasks#globbing-patterns) stimmt z. B. mit allen Dateien im *wwwroot* -Ordner und in dessen Unterordnern überein.
+Die `Content`-Elementliste enthält Dateien, die zusätzlich zu den Buildausgaben veröffentlicht werden. Standardmäßig sind Dateien, die mit den Mustern `wwwroot\**`, `**\*.config` und `**\*.json` übereinstimmen, in der Elementliste `Content` enthalten. Das `wwwroot\**` [Globmuster](https://gruntjs.com/configuring-tasks#globbing-patterns) stimmt z. B. mit allen Dateien im *wwwroot*-Ordner und in dessen Unterordnern überein.
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -68,17 +68,17 @@ Das [Web-SDK](xref:razor-pages/web-sdk) importiert das [Razor SDK](xref:razor-pa
 
 ::: moniker-end
 
-Um eine Datei explizit der Veröffentlichungsliste hinzuzufügen, fügen Sie die Datei, wie im Abschnitt [Includedateien](#include-files) gezeigt, direkt der *CSPROJ* -Datei hinzu.
+Um eine Datei explizit der Veröffentlichungsliste hinzuzufügen, fügen Sie die Datei, wie im Abschnitt [Includedateien](#include-files) gezeigt, direkt der *CSPROJ*-Datei hinzu.
 
 Wenn Sie auf die Schaltfläche **Veröffentlichen** in Visual Studio klicken oder aus der Befehlszeile veröffentlichen:
 
 * Die Eigenschaften und Elemente werden berechnet (die Dateien, die für den Build benötigt werden).
-* **Nur Visual Studio** : NuGet-Pakete werden wiederhergestellt. (Die Wiederherstellung muss explizit vom Benutzer auf der CLI durchgeführt werden.)
+* **Nur Visual Studio**: NuGet-Pakete werden wiederhergestellt. (Die Wiederherstellung muss explizit vom Benutzer auf der CLI durchgeführt werden.)
 * Das Projekt wird erstellt.
 * Die zu veröffentlichenden Elemente werden berechnet (die Dateien, die für die Veröffentlichung benötigt werden).
 * Das Projekt wird veröffentlicht (die berechneten Dateien werden in das Veröffentlichungsziel kopiert).
 
-Wenn ein ASP.NET Core-Projekt auf `Microsoft.NET.Sdk.Web` in der Projektdatei verweist, wird eine *app_offline.htm* -Datei im Stammverzeichnis des Verzeichnisses der Web-App abgelegt. Wenn die Datei vorhanden ist, fährt das ASP.NET Core Module die App ordnungsgemäß herunter und verarbeitet die Datei *app_offline.htm* während der Bereitstellung. Weitere Informationen finden Sie unter [Konfigurationsreferenz für das ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
+Wenn ein ASP.NET Core-Projekt auf `Microsoft.NET.Sdk.Web` in der Projektdatei verweist, wird eine *app_offline.htm*-Datei im Stammverzeichnis des Verzeichnisses der Web-App abgelegt. Wenn die Datei vorhanden ist, fährt das ASP.NET Core Module die App ordnungsgemäß herunter und verarbeitet die Datei *app_offline.htm* während der Bereitstellung. Weitere Informationen finden Sie unter [Konfigurationsreferenz für das ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
 
 ## <a name="basic-command-line-publishing"></a>Grundlegendes zur Veröffentlichung über die Befehlszeile
 
@@ -151,16 +151,16 @@ Die Registerkarte **Veröffentlichen** der Seite für App-Funktionen wird angeze
 
 Unter [Übersicht über die Bereitstellung in Visual Studio](/visualstudio/ide/not-in-toc/web-publish-options) erfahren Sie, wie Sie das ideale Veröffentlichungsziel bestimmen.
 
-Wenn **Ordner** als Veröffentlichungsziel ausgewählt ist, geben Sie einen Ordnerpfad ein, um die veröffentlichten Objekte zu speichern. Der Standardordnerpfad ist *bin\\{PROJEKTKONFIGURATION}\\{ZIELFRAMEWORKMONIKER}\publish\\* . Dies ist dann z. B. *bin\Release\netcoreapp2.2\publish\\* . Klicken Sie auf die Schaltfläche **Profil erstellen** , um den Vorgang abzuschließen.
+Wenn **Ordner** als Veröffentlichungsziel ausgewählt ist, geben Sie einen Ordnerpfad ein, um die veröffentlichten Objekte zu speichern. Der Standardordnerpfad ist *bin\\{PROJEKTKONFIGURATION}\\{ZIELFRAMEWORKMONIKER}\publish\\* . Dies ist dann z. B. *bin\Release\netcoreapp2.2\publish\\* . Klicken Sie auf die Schaltfläche **Profil erstellen**, um den Vorgang abzuschließen.
 
-Sobald ein Veröffentlichungsprofil erstellt wurde, ändert sich der Inhalt der Registerkarte **Veröffentlichen**. Das neu erstellte Profil wird in einer Dropdownliste angezeigt. Klicken Sie unter der Dropdownliste auf **Neues Profil erstellen** , um ein weiteres neues Profil zu erstellen.
+Sobald ein Veröffentlichungsprofil erstellt wurde, ändert sich der Inhalt der Registerkarte **Veröffentlichen**. Das neu erstellte Profil wird in einer Dropdownliste angezeigt. Klicken Sie unter der Dropdownliste auf **Neues Profil erstellen**, um ein weiteres neues Profil zu erstellen.
 
-Das Visual Studio-Veröffentlichungstool erstellt die MSBuild-Datei *Properties/PublishProfiles/{PROFILNAME}.pubxml* , in der das Veröffentlichungsprofil beschrieben wird. Die *PUBXML* -Datei:
+Das Visual Studio-Veröffentlichungstool erstellt die MSBuild-Datei *Properties/PublishProfiles/{PROFILNAME}.pubxml*, in der das Veröffentlichungsprofil beschrieben wird. Die *PUBXML*-Datei:
 
 * enthält Veröffentlichungskonfigurationseinstellungen und wird vom Veröffentlichungsprozess verwendet.
 * kann geändert werden, um den Build- und Veröffentlichungsprozess anzupassen.
 
-Beim Veröffentlichen in einem Azure-Ziel enthält die *PUBXML* -Datei Ihre Azure-Abonnement-ID. Bei diesem Zieltyp wird vom Hinzufügen der Datei zur Quellkontrolle abgeraten. Beim Veröffentlichen auf einem Nicht-Azure-Ziel kann die *PUBXML* -Datei eingecheckt werden.
+Beim Veröffentlichen in einem Azure-Ziel enthält die *PUBXML*-Datei Ihre Azure-Abonnement-ID. Bei diesem Zieltyp wird vom Hinzufügen der Datei zur Quellkontrolle abgeraten. Beim Veröffentlichen auf einem Nicht-Azure-Ziel kann die *PUBXML*-Datei eingecheckt werden.
 
 Vertrauliche Informationen (z.B. das Kennwort für die Veröffentlichung) werden pro Benutzer/Computer verschlüsselt. Sie werden in der Datei *Properties/PublishProfiles/{PROFILNAME}.pubxml.user* gespeichert. Da diese Datei vertrauliche Informationen enthalten kann, sollte sie nicht in die Quellverwaltung eingecheckt werden.
 
@@ -223,7 +223,7 @@ Fügen Sie dem Projektordner *Properties/PublishProfiles* ein Veröffentlichungs
 Verwenden Sie einen der folgenden Befehle, wenn Sie mit einem Profil namens *FolderProfile* veröffentlichen:
 
 ```dotnetcli
-dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile`
+dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile
 ```
 
 ```dotnetcli
@@ -291,7 +291,7 @@ Im vorherigen Beispiel:
 
 Im folgenden Beispiel wird von Visual Studio eine ASP.NET Core-Web-App namens *AzureWebApp* erstellt. Ein Azure Apps-Veröffentlichungsprofil wird mit Visual Studio hinzugefügt. Weitere Informationen zum Erstellen eines Profils finden Sie unter im Abschnitt [Veröffentlichungsprofile](#publish-profiles).
 
-Um eine App mit einem Veröffentlichungsprofil bereitzustellen, führen Sie den Befehl `msbuild` an einer **Developer-Eingabeaufforderung** von Visual Studio aus. Die Eingabeaufforderung finden Sie im Ordner *Visual Studio* im **Start** -Menü auf der Windows-Taskleiste. Für einfacheren Zugriff können Sie die Eingabeaufforderung zum Menü **Tools** in Visual Studio hinzufügen. Weitere Informationen finden Sie unter [Developer-Eingabeaufforderung für Visual Studio](/dotnet/framework/tools/developer-command-prompt-for-vs#run-the-command-prompt-from-inside-visual-studio).
+Um eine App mit einem Veröffentlichungsprofil bereitzustellen, führen Sie den Befehl `msbuild` an einer **Developer-Eingabeaufforderung** von Visual Studio aus. Die Eingabeaufforderung finden Sie im Ordner *Visual Studio* im **Start**-Menü auf der Windows-Taskleiste. Für einfacheren Zugriff können Sie die Eingabeaufforderung zum Menü **Tools** in Visual Studio hinzufügen. Weitere Informationen finden Sie unter [Developer-Eingabeaufforderung für Visual Studio](/dotnet/framework/tools/developer-command-prompt-for-vs#run-the-command-prompt-from-inside-visual-studio).
 
 MSBuild hat die folgende Befehlssyntax:
 
@@ -335,7 +335,7 @@ dotnet msbuild "AzureWebApp.csproj"
 
 ## <a name="set-the-environment"></a>Festlegen der Umgebung
 
-Beziehen Sie die `<EnvironmentName>`-Eigenschaft in das Veröffentlichungsprofil ( *PUBXML* ) oder die Projektdatei ein, um die [Umgebung](xref:fundamentals/environments) der App festzulegen:
+Beziehen Sie die `<EnvironmentName>`-Eigenschaft in das Veröffentlichungsprofil (*PUBXML*) oder die Projektdatei ein, um die [Umgebung](xref:fundamentals/environments) der App festzulegen:
 
 ```xml
 <PropertyGroup>
@@ -343,7 +343,7 @@ Beziehen Sie die `<EnvironmentName>`-Eigenschaft in das Veröffentlichungsprofil
 </PropertyGroup>
 ```
 
-Wenn Sie *web.config* -Transformationen benötigen (z.B. Umgebungsvariablen basierend auf der Konfiguration, dem Profil oder der Umgebung), finden Sie weitere Informationen unter <xref:host-and-deploy/iis/transform-webconfig>.
+Wenn Sie *web.config*-Transformationen benötigen (z.B. Umgebungsvariablen basierend auf der Konfiguration, dem Profil oder der Umgebung), finden Sie weitere Informationen unter <xref:host-and-deploy/iis/transform-webconfig>.
 
 ## <a name="exclude-files"></a>Dateien ausschließen
 
@@ -351,11 +351,11 @@ Wenn Sie ASP.NET Core-Web-Apps veröffentlichen, sind die folgenden Ressourcen e
 
 * Build-Artefakte
 * Ordner und Dateien, die den folgenden Globmustern entsprechen:
-  * `**\*.config` (Beispiel: *web.config* )
+  * `**\*.config` (Beispiel: *web.config*)
   * `**\*.json` (Beispiel *appsettings.json* )
   * `wwwroot\**`
 
-MSBuild unterstützt [Globmuster](https://gruntjs.com/configuring-tasks#globbing-patterns). Das folgende `<Content>`-Element unterdrückt beispielsweise das Kopieren von Textdateien ( *TXT* ) aus dem Ordner *wwwroot/content* und allen seinen Unterordnern:
+MSBuild unterstützt [Globmuster](https://gruntjs.com/configuring-tasks#globbing-patterns). Das folgende `<Content>`-Element unterdrückt beispielsweise das Kopieren von Textdateien (*TXT*) aus dem Ordner *wwwroot/content* und allen seinen Unterordnern:
 
 ```xml
 <ItemGroup>
@@ -363,7 +363,7 @@ MSBuild unterstützt [Globmuster](https://gruntjs.com/configuring-tasks#globbing
 </ItemGroup>
 ```
 
-Das vorstehende Markup kann einem Veröffentlichungsprofil oder der *CSPROJ* -Datei hinzugefügt werden. Wenn es zu der *CSPROJ* -Datei hinzugefügt wird, wird die Regel zu allen Veröffentlichungsprofilen im Projekt hinzugefügt.
+Das vorstehende Markup kann einem Veröffentlichungsprofil oder der *CSPROJ*-Datei hinzugefügt werden. Wenn es zu der *CSPROJ*-Datei hinzugefügt wird, wird die Regel zu allen Veröffentlichungsprofilen im Projekt hinzugefügt.
 
 Das folgende `<MsDeploySkipRules>`-Element schließt alle Dateien aus dem Ordner *wwwroot\content* aus:
 
@@ -376,7 +376,7 @@ Das folgende `<MsDeploySkipRules>`-Element schließt alle Dateien aus dem Ordner
 </ItemGroup>
 ```
 
-`<MsDeploySkipRules>` löscht die *Skip* -Ziele von der Bereitstellungsseite nicht. `<Content>`-Zieldateien und -ordner werden von der Bereitstellungsseite gelöscht. Nehmen wir beispielsweise an, dass eine bereitgestellte Web-App folgende Dateien enthält:
+`<MsDeploySkipRules>` löscht die *Skip*-Ziele von der Bereitstellungsseite nicht. `<Content>`-Zieldateien und -ordner werden von der Bereitstellungsseite gelöscht. Nehmen wir beispielsweise an, dass eine bereitgestellte Web-App folgende Dateien enthält:
 
 * *Views/Home/About1.cshtml*
 * *Views/Home/About2.cshtml*
@@ -451,15 +451,15 @@ Das Element `<ItemGroup>` im folgenden Beispiel veranschaulicht das Kopieren ein
 
 Das obenstehende Markup:
 
-* Kann der *CSPROJ* -Datei oder dem Veröffentlichungsprofil hinzugefügt werden. Wenn es der *CSPROJ* -Datei hinzugefügt wird, wird es in jedes Veröffentlichungsprofil im Projekt eingeschlossen.
-* Deklariert ein `_CustomFiles`-Element, um Dateien zu speichern, die mit dem Globmuster des `Include`-Attributs übereinstimmen. Der Ordner *images* , auf den im Muster verwiesen wird, befindet sich außerhalb des Projektverzeichnisses. Die [reservierte Eigenschaft](/visualstudio/msbuild/msbuild-reserved-and-well-known-properties)`$(MSBuildProjectDirectory)` löst den absoluten Pfad der Projektdatei auf.
+* Kann der *CSPROJ*-Datei oder dem Veröffentlichungsprofil hinzugefügt werden. Wenn es der *CSPROJ*-Datei hinzugefügt wird, wird es in jedes Veröffentlichungsprofil im Projekt eingeschlossen.
+* Deklariert ein `_CustomFiles`-Element, um Dateien zu speichern, die mit dem Globmuster des `Include`-Attributs übereinstimmen. Der Ordner *images*, auf den im Muster verwiesen wird, befindet sich außerhalb des Projektverzeichnisses. Die [reservierte Eigenschaft](/visualstudio/msbuild/msbuild-reserved-and-well-known-properties)`$(MSBuildProjectDirectory)` löst den absoluten Pfad der Projektdatei auf.
 * Stellt eine Liste der zu verarbeitenden `DotNetPublishFiles`-Elemente bereit. Das `<DestinationRelativePath>`-Element des Elements ist standardmäßig leer. Der Standardwert wird im Markup überschrieben und verwendet [bekannte Elementmetadaten](/visualstudio/msbuild/msbuild-well-known-item-metadata) wie z. B. `%(RecursiveDir)`. Der innere Text stellt den Ordner *wwwroot/images* der veröffentlichten Website dar.
 
 ### <a name="selective-file-inclusion"></a>Selektives Einbeziehen von Dateien
 
 Der markierte Markup-Code im folgenden Beispiel veranschaulicht Folgendes:
 
-* Das Kopieren einer Datei, die sich außerhalb eines Projekts befindet, in den *wwwroot* -Ordner der veröffentlichten Website. Der Dateiname *ReadMe2.md* wird beibehalten.
+* Das Kopieren einer Datei, die sich außerhalb eines Projekts befindet, in den *wwwroot*-Ordner der veröffentlichten Website. Der Dateiname *ReadMe2.md* wird beibehalten.
 * Ausschließen des Ordners *wwwroot\Content*.
 * Ausschließen von *Views\Home\About2.cshtml*.
 

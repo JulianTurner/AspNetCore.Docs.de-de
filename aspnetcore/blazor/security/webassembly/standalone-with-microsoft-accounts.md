@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 4ad4a70c92ce8dd61b676dd7d35ecb4f3b4fa99f
-ms.sourcegitcommit: 45aa1c24c3fdeb939121e856282b00bdcf00ea55
+ms.openlocfilehash: 49f15e3e0d68ec475bb4c9a047d6c5e37d314a42
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93343688"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97854456"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Sichern einer eigenständigen ASP.NET Core Blazor WebAssembly-App mit Microsoft-Konten
 
@@ -36,7 +36,7 @@ Registrieren Sie eine AAD-App im Bereich **Azure Active Directory** > **App-Regi
 
 ::: moniker range=">= aspnetcore-5.0"
 
-1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD Microsoft Accounts** ).
+1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD Microsoft Accounts**).
 1. Wählen Sie unter **Unterstützte Kontotypen** die Option **Konten in einem beliebigen Organisationsverzeichnis** aus.
 1. Treffen Sie für **Umleitungs-URI** die Dropdownauswahl **Single-Page-Anwendung (SPA)** , und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
 1. Deaktivieren Sie das Kontrollkästchen **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen**.
@@ -55,15 +55,15 @@ In **Authentifizierung** > **Plattformkonfigurationen** > **Single-Page-Anwendun
 
 ::: moniker range="< aspnetcore-5.0"
 
-1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD Microsoft Accounts** ).
+1. Geben Sie einen **Namen** für die App an (z. B. **Blazor Standalone AAD Microsoft Accounts**).
 1. Wählen Sie unter **Unterstützte Kontotypen** die Option **Konten in einem beliebigen Organisationsverzeichnis** aus.
-1. Belassen Sie die Dropdownauswahl für **Umleitungs-URI** auf **Web** , und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
+1. Belassen Sie die Dropdownauswahl für **Umleitungs-URI** auf **Web**, und geben Sie den folgenden Umleitungs-URI an: `https://localhost:{PORT}/authentication/login-callback`. Der Standardport für eine App, die auf Kestrel ausgeführt wird, ist 5001. Wenn die App auf einem anderen Kestrel-Port ausgeführt wird, verwenden Sie den Port der App. Für IIS Express finden Sie den zufällig generierten Port für die App in den Eigenschaften der App im Panel **Debuggen**. Da die App an dieser Stelle noch nicht existiert und der IIS Express-Port unbekannt ist, kehren Sie nach dem Erstellen der App zu diesem Schritt zurück, und aktualisieren Sie den Umleitungs-URI. Weiter unten in diesem Artikel erscheint ein Hinweis, um IIS Express-Benutzer an die Aktualisierung des Umleitungs-URIs zu erinnern.
 1. Deaktivieren Sie das Kontrollkästchen **Berechtigungen** > **Administratoreinwilligung für openid- und offline_access-Berechtigungen erteilen**.
 1. Wählen Sie **Registrieren**.
 
 Notieren Sie sich die Anwendungs-ID (Client-ID) (z. B. `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
 
-In **Authentifizierung** > **Plattformkonfigurationen** > **Web** :
+In **Authentifizierung** > **Plattformkonfigurationen** > **Web**:
 
 1. Vergewissern Sie sich, dass der **Umleitungs-URI** von `https://localhost:{PORT}/authentication/login-callback` vorhanden ist.
 1. Aktivieren Sie für **Implizite Gewährung** die Kontrollkästchen **Zugriffstoken** und **ID-Token**.
@@ -94,7 +94,7 @@ Der mit der Option `-o|--output` angegebene Ausgabespeicherort erstellt einen Pr
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!INCLUDE[](~/includes/blazor-security/additional-scopes-standalone-nonAAD.md)]
+[!INCLUDE[](~/blazor/includes/security/additional-scopes-standalone-nonAAD.md)]
 
 ::: moniker-end
 
@@ -179,11 +179,11 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
+[!INCLUDE[](~/blazor/includes/security/azure-scope-3x.md)]
 
 ::: moniker-end
 
-Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *zusätzlichen Szenarios* :
+Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *zusätzlichen Szenarios*:
 
 * [Anfordern zusätzlicher Zugriffstoken](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
 * [Anfügen von Token an ausgehende Anforderungen](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
@@ -192,35 +192,35 @@ Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *z
 
 ## <a name="login-mode"></a>Anmeldemodus
 
-[!INCLUDE[](~/includes/blazor-security/msal-login-mode.md)]
+[!INCLUDE[](~/blazor/includes/security/msal-login-mode.md)]
 
 ::: moniker-end
 
 ## <a name="imports-file"></a>Imports-Datei
 
-[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/includes/security/imports-file-standalone.md)]
 
 ## <a name="index-page"></a>Indexseite
 
-[!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
+[!INCLUDE[](~/blazor/includes/security/index-page-msal.md)]
 
 ## <a name="app-component"></a>App-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/app-component.md)]
+[!INCLUDE[](~/blazor/includes/security/app-component.md)]
 
 ## <a name="redirecttologin-component"></a>RedirectToLogin-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
 
 ## <a name="logindisplay-component"></a>LoginDisplay-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/includes/security/logindisplay-component.md)]
 
 ## <a name="authentication-component"></a>Authentication-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
+[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
 
-[!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

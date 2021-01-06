@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: b3c714ea8e741430df1f70b2df258f1e8f1c7ad5
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0f70b5f12b9097f8710c9641404b3e085968fc3f
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060507"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97753152"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>Veröffentlichen einer ASP.NET Core-App in IIS
 
@@ -47,8 +47,8 @@ Dieses Tutorial behandelt die folgenden Themen:
 >
 > Wichtige Szenarien für das IIS-Hosting, die in diesem Tutorial nicht behandelt werden, sind:
 >
-> * [Erstellen einer Registrierungsstruktur für den ASP.NET Core-Datenschutz](xref:host-and-deploy/iis/index#data-protection)
-> * [Konfiguration der Zugriffssteuerungsliste (Access Control List, ACL) des App-Pools](xref:host-and-deploy/iis/index#application-pool-identity)
+> * [Erstellen einer Registrierungsstruktur für den ASP.NET Core-Datenschutz](xref:host-and-deploy/iis/advanced#data-protection)
+> * [Konfiguration der Zugriffssteuerungsliste (Access Control List, ACL) des App-Pools](xref:host-and-deploy/iis/advanced#application-pool-identity)
 > * Um sich auf IIS-Bereitstellungskonzepte zu konzentrieren, stellt dieses Tutorial eine Anwendung ohne in IIS konfigurierte HTTPS-Sicherheit bereit. Weitere Informationen zum Hosting einer App, die für das HTTPS-Protokoll aktiviert ist, finden Sie in den Sicherheitsthemen im Abschnitt [Weitere Ressourcen](#additional-resources) in diesem Artikel. Weitere Anleitungen zum Hosting von ASP.NET Core-Apps finden Sie im Artikel <xref:host-and-deploy/iis/index>.
 
 ## <a name="install-the-net-core-hosting-bundle"></a>Installieren des .NET Core Hosting-Pakets
@@ -76,7 +76,7 @@ Laden Sie den Installer über folgenden Link herunter:
 
 1. Vergewissern Sie sich, dass die Prozessmodellidentität über die richtigen Berechtigungen verfügt.
 
-   Wenn die Standardidentität des App-Pools ( **Prozessmodell** >  **Identity** ) von `ApplicationPoolIdentity` in eine andere Identität geändert wird, sollten Sie sicherstellen, dass die neue Identität über die erforderlichen Berechtigungen zum Zugriff auf den Ordner, die Datenbank und andere erforderliche Ressourcen der App verfügt. Der App-Pool benötigt beispielsweise Lese- und Schreibzugriff für Ordner, in denen die App Lese- und Schreibvorgänge für Dateien ausführt.
+   Wenn die Standardidentität des App-Pools (**Prozessmodell** >  **Identity** ) von `ApplicationPoolIdentity` in eine andere Identität geändert wird, sollten Sie sicherstellen, dass die neue Identität über die erforderlichen Berechtigungen zum Zugriff auf den Ordner, die Datenbank und andere erforderliche Ressourcen der App verfügt. Der App-Pool benötigt beispielsweise Lese- und Schreibzugriff für Ordner, in denen die App Lese- und Schreibvorgänge für Dateien ausführt.
 
 ## <a name="create-an-aspnet-core-no-locrazor-pages-app"></a>Erstellen einer ASP.NET Core Razor Pages-App
 
@@ -96,6 +96,7 @@ Befolgen Sie das Tutorial <xref:getting-started> zum Erstellen einer Razor Pages
 1. Legen Sie den Pfad **des Ordners oder der Dateifreigabe** fest.
    * Wenn Sie einen Ordner für die IIS-Website erstellt haben, der auf dem Entwicklungscomputer als Netzwerkfreigabe verfügbar ist, geben Sie den Pfad zur Freigabe an. Der aktuelle Benutzer muss über Schreibzugriff verfügen, um auf der Freigabe veröffentlichen zu können.
    * Wenn Sie nicht in der Lage sind, die Bereitstellung direkt im Ordner der IIS-Website auf dem IIS-Server auszuführen, veröffentlichen Sie diese in einem Ordner auf entfernbaren Medien, und verschieben Sie die veröffentlichte App physisch in den Ordner der IIS-Website auf dem Server. Dies ist der **physische Pfad** der Website in IIS-Manager. Verschieben Sie den Inhalt des Ordners `bin/Release/{TARGET FRAMEWORK}/publish` in den Ordner der IIS-Website auf dem Server, der der **physische Pfad** der Website in IIS Manager ist.
+1. Wählen Sie die Schaltfläche **Veröffentlichen** aus.
 
 # <a name="net-core-cli"></a>[.NET Core-CLI](#tab/netcore-cli)
 
@@ -113,6 +114,7 @@ Befolgen Sie das Tutorial <xref:getting-started> zum Erstellen einer Razor Pages
 1. Legen Sie den Pfad unter **Pfad auswählen** fest.
    * Wenn Sie einen Ordner für die IIS-Website erstellt haben, der auf dem Entwicklungscomputer als Netzwerkfreigabe verfügbar ist, geben Sie den Pfad zur Freigabe an. Der aktuelle Benutzer muss über Schreibzugriff verfügen, um auf der Freigabe veröffentlichen zu können.
    * Wenn Sie nicht in der Lage sind, die Bereitstellung direkt im Ordner der IIS-Website auf dem IIS-Server auszuführen, veröffentlichen Sie in einem Ordner auf entfernbaren Medien, und verschieben Sie die veröffentlichte App physisch in den Ordner der IIS-Website auf dem Server. Dies ist der **physische Pfad** der Website in IIS Manager. Verschieben Sie den Inhalt des Ordners `bin/Release/{TARGET FRAMEWORK}/publish` in den Ordner der IIS-Website auf dem Server, der der **physische Pfad** der Website in IIS Manager ist.
+1. Wählen Sie die Schaltfläche **Veröffentlichen** aus.
 
 ---
 

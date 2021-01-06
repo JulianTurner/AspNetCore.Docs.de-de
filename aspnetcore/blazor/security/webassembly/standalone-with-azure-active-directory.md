@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
-ms.openlocfilehash: 4f203e57fe69c3a14dc267c0693094fcefa3dd80
-ms.sourcegitcommit: 59d95a9106301d5ec5c9f612600903a69c4580ef
+ms.openlocfilehash: 557c700ffd24d4d6c85848ad360690d583e05321
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96024682"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97854474"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-azure-active-directory"></a>Sichern einer eigenständigen Blazor WebAssembly-App in ASP.NET Core mit Azure Active Directory
 
@@ -110,7 +110,7 @@ Der mit der Option `-o|--output` angegebene Ausgabespeicherort erstellt einen Pr
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!INCLUDE[](~/includes/blazor-security/additional-scopes-standalone-AAD.md)]
+[!INCLUDE[](~/blazor/includes/security/additional-scopes-standalone-AAD.md)]
 
 ::: moniker-end
 
@@ -195,7 +195,7 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
+[!INCLUDE[](~/blazor/includes/security/azure-scope-3x.md)]
 
 ::: moniker-end
 
@@ -208,35 +208,35 @@ Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *z
 
 ## <a name="login-mode"></a>Anmeldemodus
 
-[!INCLUDE[](~/includes/blazor-security/msal-login-mode.md)]
+[!INCLUDE[](~/blazor/includes/security/msal-login-mode.md)]
 
 ::: moniker-end
 
 ## <a name="imports-file"></a>Imports-Datei
 
-[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/includes/security/imports-file-standalone.md)]
 
 ## <a name="index-page"></a>Indexseite
 
-[!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
+[!INCLUDE[](~/blazor/includes/security/index-page-msal.md)]
 
 ## <a name="app-component"></a>App-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/app-component.md)]
+[!INCLUDE[](~/blazor/includes/security/app-component.md)]
 
 ## <a name="redirecttologin-component"></a>RedirectToLogin-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
 
 ## <a name="logindisplay-component"></a>LoginDisplay-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/includes/security/logindisplay-component.md)]
 
 ## <a name="authentication-component"></a>Authentication-Komponente
 
-[!INCLUDE[](~/includes/blazor-security/authentication-component.md)]
+[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
 
-[!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 87626ff30589de82a04c95634fc0dcbcf2eeac18
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.openlocfilehash: 6659b075f54292d9546466919f6842b920e6ece1
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97507006"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97808737"
 ---
 # <a name="build-a-no-locblazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
 
@@ -83,7 +83,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo0.razor?highlight=1)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo0.razor?highlight=1)]
 
    Speichern Sie die Datei `Pages/Todo.razor`.
 
@@ -116,11 +116,11 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo2.razor?highlight=5-10,13)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo2.razor?highlight=5-10,13)]
 
 1. Die App benötigt Benutzeroberflächenelemente, damit der Liste Aufgabenelemente hinzugefügt werden können. Fügen Sie eine Texteingabe (`<input>`) und eine Schaltfläche (`<button>`) unterhalb der Liste (`<ul>...</ul>`) hinzu:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo3.razor?highlight=12-13)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo3.razor?highlight=12-13)]
 
 1. Speichern Sie die Datei `TodoItem.cs` und die aktualisierte Datei `Pages/Todo.razor`. In der Befehlsshell wird die App automatisch neu erstellt, wenn die Dateien gespeichert werden. Der Browser verliert vorübergehend seine Verbindung mit der App und lädt die Seite dann neu, wenn die Verbindung erneut hergestellt wird.
 
@@ -128,11 +128,11 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
 1. Fügen Sie der `Todo`-Komponente eine `AddTodo`-Methode hinzu, und registrieren Sie die Methode für die Schaltfläche mithilfe des `@onclick`-Attributs. Die C#-Methode `AddTodo` wird aufgerufen, wenn die Schaltfläche ausgewählt wird:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo4.razor?highlight=2,7-10)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo4.razor?highlight=2,7-10)]
 
 1. Fügen Sie am oberen Rand des `@code`-Blocks ein `newTodo`-Zeichenfolgenfeld hinzu, um den Titel des neuen To-do-Elements zu erhalten:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo5.razor?highlight=3)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo5.razor?highlight=3)]
 
    Ändern Sie das`<input>`-Textelement, um `newTodo` mit dem `@bind`-Attribut zu verknüpfen:
 
@@ -142,13 +142,13 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
 1. Aktualisieren Sie die `AddTodo`-Methode, um das `TodoItem` mit dem angegebenen Titel der Liste hinzuzufügen. Löschen Sie den Wert der Texteingabe, indem Sie für `newTodo` eine leere Zeichenfolge festlegen:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo6.razor?highlight=19-26)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo6.razor?highlight=19-26)]
 
-1. Speichern Sie die Datei `Pages/ToDo.razor`. Die App wird automatisch in der Befehlsshell neu erstellt. Die Seite wird nach dem erneuten Verbinden des Browsers mit der App im Browser neu geladen.
+1. Speichern Sie die Datei `Pages/Todo.razor`. Die App wird automatisch in der Befehlsshell neu erstellt. Die Seite wird nach dem erneuten Verbinden des Browsers mit der App im Browser neu geladen.
 
 1. Der Titeltext für die einzelnen Aufgabenelemente kann als bearbeitbar festgelegt werden, und ein Kontrollkästchen kann dem Benutzer helfen, die erledigten Elemente nachzuverfolgen. Fügen Sie für jedes Aufgabenelement eine Kontrollkästcheneingabe hinzu, und binden Sie ihren Wert an die `IsDone`-Eigenschaft. Ändern Sie `@todo.Title` in ein `<input>`-Element, das mit `@bind` mit `todo.Title` verknüpft ist:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo7.razor?highlight=4-7)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo7.razor?highlight=4-7)]
 
 1. Aktualisieren Sie den `<h3>`-Header, um die Anzahl der nicht abgeschlossene To-do-Elemente anzuzeigen (`IsDone` ist `false`).
 
@@ -160,7 +160,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/Todo1.razor)]
 
-1. Speichern Sie die Datei `Pages/ToDo.razor`. Die App wird automatisch in der Befehlsshell neu erstellt. Die Seite wird nach dem erneuten Verbinden des Browsers mit der App im Browser neu geladen.
+1. Speichern Sie die Datei `Pages/Todo.razor`. Die App wird automatisch in der Befehlsshell neu erstellt. Die Seite wird nach dem erneuten Verbinden des Browsers mit der App im Browser neu geladen.
 
 1. Fügen Sie Elemente hinzu, und markieren Sie To-do-Elemente als abgeschlossen, um die Komponente zu testen.
 

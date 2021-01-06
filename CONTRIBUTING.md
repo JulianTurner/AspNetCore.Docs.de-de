@@ -14,7 +14,7 @@ Sie benötigen Grundkenntnisse von [Git und GitHub.com](https://guides.github.co
 * Forken Sie das Repository [aspnet/Docs](https://github.com/dotnet/AspNetCore.Docs/), und erstellen Sie einen Branch für Ihre Änderungen.
 * Senden Sie einen PR mit Ihren Änderungen an den Master.
 * Wenn Ihrem PR die Bezeichnung „cla-required“ zugewiesen ist, [füllen Sie die Lizenzvereinbarung für Mitwirkende (Contribution License Agreement, CLA) aus](https://cla.dotnetfoundation.org/).
-* Treffen Sie entsprechende Maßnahmen bezüglich des PR-Feedbacks.
+* Reagieren Sie auf das PR-Feedback.
 
 Ein Beispiel, in dem dieser Prozess zur Veröffentlichung eines neuen Artikels geführt hat, finden Sie im Repository für die .NET-Dokumentation im [Thema &num;67](https://github.com/dotnet/docs/issues/67) und im [Pull Request &num;798](https://github.com/dotnet/docs/pull/798). Der neue Artikel lautet [Dokumentieren von Code mit XML-Kommentaren](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
 
@@ -34,7 +34,7 @@ Für jede Markdowndatei ist eventuell ein Ordner für Bilder und ein Ordner für
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
 ```
 
-Alle Bilder müssen mit [Alternativtext (alt)](https://wikipedia.org/wiki/Alt_attribute) versehen sein. Hinweise zum Angeben von Alternativtext finden Sie in den Onlineressourcen, z.B. auf der WebAIM-Website unter [ Alternative Text](https://webaim.org/techniques/alttext/) (Alternativtext).
+Alle Bilder müssen mit [Alternativtext (alt)](https://wikipedia.org/wiki/Alt_attribute) versehen sein. Hinweise zum Angeben von Alternativtext finden Sie in den Onlineressourcen, z.B. auf der WebAIM-Website unter [Alternative Text](https://webaim.org/techniques/alttext/) (Alternativtext).
 
 Verwenden Sie Kleinbuchstaben für Namen von Markdown- und Bilddateien.
 
@@ -86,7 +86,7 @@ Um einen Teil einer Datei als Ausschnitt mittels Zeilennummern zu rendern, führ
 
 Informationen zu C#-Ausschnitten finden Sie in der Referenz für [C#-Regionen](https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region). Verwenden Sie nach Möglichkeit Regionen anstelle von Zeilennummern, da sich Zeilennummern in einer Codedatei in der Regel ändern und nicht mehr den Zeilennummernverweisen in der Markdowndatei entsprechen können. C#-Regionen können geschachtelt werden. Wenn auf die äußere Region verwiesen wird, werden die inneren `#region`- und `#endregion`-Anweisungen in einem Ausschnitt nicht gerendert. 
 
-Um eine C# Region mit dem Namen „snippet_Example“ zu rendern, führen Sie Folgendes aus:
+Um eine C# Region namens „snippet_Example“ zu rendern, führen Sie Folgendes aus:
 
 ```md
 [!code-csharp[](configuration/index/sample/Program.cs?name=snippet_Example)]
@@ -147,7 +147,7 @@ Für DocFX ist Folgendes erforderlich:
 
 * Navigieren Sie in einem Browser zu `http://localhost:8080/group1-dest/`.
 
-## <a name="voice-and-tone"></a>Schreibstil
+## <a name="voice-and-tone"></a>Sprache und Tonfall
 
 Unser Ziel ist es, Dokumentation bereitzustellen, die für eine größtmögliche Zielgruppe leicht verständlich ist. Zu diesem Zweck haben wir Richtlinien für den Schreibstil entwickelt, um deren Einhaltung wir unsere Beitragende bitten. Weitere Informationen finden Sie im .NET-Repository unter [Richtlinien zum Schreibstil](https://github.com/dotnet/docs/blob/master/styleguide/voice-tone.md).
 

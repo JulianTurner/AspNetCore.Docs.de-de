@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/Microsoft.dotnet-openapi
-ms.openlocfilehash: 28a71c7040667c7544cc17c1184c09b5b39959b9
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5d9f1684aa333c38c73673138a703b04d318c6df
+ms.sourcegitcommit: b64c44ba5e3abb4ad4d50de93b7e282bf0f251e4
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052551"
+ms.lasthandoff: 01/07/2021
+ms.locfileid: "97972027"
 ---
 # <a name="develop-aspnet-core-apps-using-openapi-tools"></a>Entwickeln von ASP.NET Core-Apps mit OpenAPI-Tools
 
@@ -41,7 +41,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ## <a name="add"></a>Hinzufügen
 
-Wenn Sie mit einem der Befehle auf dieser Seite einen OpenAPI-Verweis hinzufügen, wird ein `<OpenApiReference />`-Element ähnlich dem folgenden zur *CSPROJ* -Datei hinzugefügt:
+Wenn Sie mit einem der Befehle auf dieser Seite einen OpenAPI-Verweis hinzufügen, wird ein `<OpenApiReference />`-Element ähnlich dem folgenden zur *CSPROJ*-Datei hinzugefügt:
 
 ```xml
 <OpenApiReference Include="openapi.json" />
@@ -72,11 +72,11 @@ Der oben genannte Verweis ist erforderlich, damit die App den generierten Client
 |-------|------|-------|---------|
 | -p|--updateProject | Das Projekt, das bearbeitet werden soll. |dotnet openapi add file *--updateProject .\Ref.csproj* .\OpenAPI.json |
 | -c|--code-generator| Der Codegenerator, der auf den Verweis angewendet werden soll. Die Optionen sind `NSwagCSharp` und `NSwagTypeScript`. Wenn `--code-generator` nicht angegeben ist, werden standardmäßig `NSwagCSharp`-Tools verwendet.|dotnet openapi add file .\OpenApi.json --code-generator
-| -H|--help|Zeigt Hilfeinformationen an.|dotnet openapi add file --help|
+| -h|--help|Zeigt Hilfeinformationen an.|dotnet openapi add file --help|
 
 #### <a name="arguments"></a>Argumente
 
-|  Argument  | Beschreibung | Beispiel |
+|  Argument  | BESCHREIBUNG | Beispiel |
 |-------------|-------------|---------|
 | source-file | Die Quelle, aus der ein Verweis erstellt werden soll. Es muss sich um eine OpenAPI-Datei handeln. |dotnet openapi add file *.\OpenAPI.json* |
 
@@ -88,29 +88,29 @@ Der oben genannte Verweis ist erforderlich, damit die App den generierten Client
 |-------|------|-------------|---------|
 | -p|--updateProject | Das Projekt, das bearbeitet werden soll. |dotnet openapi add url *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
 | -o|--output-file | Speicherort für die lokale Kopie der OpenAPI-Datei. |dotnet openapi add url `https://contoso.com/openapi.json` *--output-file myclient.json* |
-| -c|--code-generator| Der Codegenerator, der auf den Verweis angewendet werden soll. Die Optionen sind `NSwagCSharp` und `NSwagTypeScript`. |dotnet openapi add file .\OpenApi.json --code-generator
-| -H|--help|Zeigt Hilfeinformationen an.|dotnet openapi add url --help|
+| -c|--code-generator| Der Codegenerator, der auf den Verweis angewendet werden soll. Die Optionen sind `NSwagCSharp` und `NSwagTypeScript`. |DotNet OpenAPI Add URL `https://contoso.com/openapi.json` --Code-Generator
+| -h|--help|Zeigt Hilfeinformationen an.|dotnet openapi add url --help|
 
 #### <a name="arguments"></a>Argumente
 
-|  Argument  | Beschreibung | Beispiel |
+|  Argument  | BESCHREIBUNG | Beispiel |
 |-------------|-------------|---------|
 | source-URL | Die Quelle, aus der ein Verweis erstellt werden soll. Es muss sich um eine URL handeln. |dotnet openapi add url `https://contoso.com/openapi.json` |
 
 ## <a name="remove"></a>Entfernen
 
-Entfernt den OpenAPI-Verweis, der mit dem angegebenen Dateinamen übereinstimmt, aus der *CSPROJ* -Datei. Wenn der OpenAPI-Verweis entfernt wird, werden keine Clients generiert. Lokale *JSON* - und *YAML* -Dateien werden gelöscht.
+Entfernt den OpenAPI-Verweis, der mit dem angegebenen Dateinamen übereinstimmt, aus der *CSPROJ*-Datei. Wenn der OpenAPI-Verweis entfernt wird, werden keine Clients generiert. Lokale *JSON*- und *YAML*-Dateien werden gelöscht.
 
 ### <a name="options"></a>Optionen
 
 | Kurze Option| Lange Option| Beschreibung| Beispiel |
 |-------|------|------------|---------|
 | -p|--updateProject | Das Projekt, das bearbeitet werden soll. |dotnet openapi remove *--updateProject .\Ref.csproj* .\OpenAPI.json |
-| -H|--help|Zeigt Hilfeinformationen an.|dotnet openapi remove --help|
+| -h|--help|Zeigt Hilfeinformationen an.|dotnet openapi remove --help|
 
 ### <a name="arguments"></a>Argumente
 
-|  Argument  | Beschreibung| Beispiel |
+|  Argument  | BESCHREIBUNG| Beispiel |
 | ------------|------------|---------|
 | source-file | Die Quelle, aus der der Verweis entfernt werden soll. |dotnet openapi remove *.\OpenAPI.json* |
 
@@ -123,10 +123,10 @@ Aktualisiert die lokale Version einer Datei, die unter Verwendung der neuesten D
 | Kurze Option| Lange Option| Beschreibung | Beispiel |
 |-------|------|-------------|---------|
 | -p|--updateProject | Das Projekt, das bearbeitet werden soll. | dotnet openapi refresh *--updateProject .\Ref.csproj* `https://contoso.com/openapi.json` |
-| -H|--help|Zeigt Hilfeinformationen an.|dotnet openapi refresh --help|
+| -h|--help|Zeigt Hilfeinformationen an.|dotnet openapi refresh --help|
 
 ### <a name="arguments"></a>Argumente
 
-|  Argument  | Beschreibung | Beispiel |
+|  Argument  | BESCHREIBUNG | Beispiel |
 | ------------|-------------|---------|
 | source-URL | Die URL, aus der der Verweis aktualisiert werden soll. | dotnet openapi refresh `https://contoso.com/openapi.json` |

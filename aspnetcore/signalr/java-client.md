@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/java-client
-ms.openlocfilehash: da6876e0540579dac5fb9e92362b38a398bca4d5
-ms.sourcegitcommit: b64c44ba5e3abb4ad4d50de93b7e282bf0f251e4
+ms.openlocfilehash: 92941d21820de90eb2ae8fb76c21c588ed9f1ffb
+ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/07/2021
-ms.locfileid: "97972079"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "98024755"
 ---
 # <a name="aspnet-core-no-locsignalr-java-client"></a>ASP.net Core SignalR Java-Client
 
@@ -108,12 +108,43 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
     })).build();
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="passing-class-information-in-java"></a>Übergeben von Klassen Informationen in Java
+
+Wenn die- `on` ,- `invoke` oder- `stream` Methoden von `HubConnection` im Java-Client aufgerufen werden, sollten Benutzer anstelle eines-Objekts ein-Objekt übergeben, `Type` `Class<?>` um alle `Object` an die-Methode übergebenen generischen zu beschreiben. Eine `Type` kann mithilfe der angegebenen-Klasse abgerufen werden `TypeReference` . Mit `Foo<T>` dem folgenden Code wird beispielsweise eine benutzerdefinierte generische Klasse mit dem Namen abgerufen `Type` :
+
+```java
+Type fooType = new TypeReference<Foo<String>>() { }).getType();
+```
+
+Bei nicht-Generika, z. b. primitiven oder anderen nicht parametrisierten Typen wie `String` , können Sie einfach das integrierte verwenden `.class` .
+
+Wenn Sie eine dieser Methoden mit einem oder mehreren Objekttypen aufrufen, verwenden Sie die Generika Syntax, wenn Sie die Methode aufrufen. Wenn Sie z. b. einen `on` Handler für eine Methode mit dem Namen registrieren `func` , die als Argumente für eine Zeichenfolge und ein- `Foo<String>` Objekt verwendet, verwenden Sie den folgenden Code, um eine Aktion zum Drucken der Argumente festzulegen:
+
+```java
+hubConnection.<String, Foo<String>>on("func", (param1, param2) ->{
+    System.out.println(param1);
+    System.out.println(param2);
+}, String.class, fooType);
+```
+
+Diese Konvention ist erforderlich, da wir `Object.getClass` aufgrund der typlöschung in Java keine umfassenden Informationen zu komplexen Typen mit der-Methode abrufen können. Wenn Sie z. b. für einen aufrufen, wird `getClass` `ArrayList<String>` nicht zurückgegeben `Class<ArrayList<String>>` , sondern `Class<ArrayList>` der Deserialisierer verfügt nicht über genügend Informationen, um eine eingehende Nachricht ordnungsgemäß zu deserialisieren. Das gleiche gilt für benutzerdefinierte Objekte.
+
+::: moniker-end
+
 ## <a name="known-limitations"></a>Bekannte Einschränkungen
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
 
-* Nur das JSON-Protokoll wird unterstützt.
 * Der Transport Fall Back und der Transport der Server gesendeten Ereignisse werden nicht unterstützt.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+* Der Transport Fall Back und der Transport der Server gesendeten Ereignisse werden nicht unterstützt.
+* Nur das JSON-Protokoll wird unterstützt.
 
 ::: moniker-end
 

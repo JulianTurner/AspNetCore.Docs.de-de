@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/messagepackhubprotocol
-ms.openlocfilehash: e7d19a42e48048d2be4b87d6b0ac1ba6b2596ff1
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 7c3640e9cd2c5d392400a115813584861f789554
+ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058167"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "98024690"
 ---
 # <a name="use-messagepack-hub-protocol-in-no-locsignalr-for-aspnet-core"></a>Verwenden des messagepack-Hub-Protokolls in SignalR für ASP.net Core
 
@@ -97,10 +97,10 @@ Nach der Installation des NPM-Pakets kann das Modul direkt über ein JavaScript-
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
-In einem Browser muss auf die `msgpack5` Bibliothek ebenfalls verwiesen werden. Verwenden Sie ein- `<script>` Tag, um einen Verweis zu erstellen. Die Bibliothek finden Sie unter *node_modules\msgpack5\dist\msgpack5.js* .
+In einem Browser muss auf die `msgpack5` Bibliothek ebenfalls verwiesen werden. Verwenden Sie ein- `<script>` Tag, um einen Verweis zu erstellen. Die Bibliothek finden Sie unter *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> Wenn Sie das- `<script>` Element verwenden, ist die Reihenfolge wichtig. Wenn auf *signalr-protocol-msgpack.js* vor *msgpack5.js* verwiesen wird, tritt ein Fehler auf, wenn versucht wird, eine Verbindung mit messagepack herzustellen. *signalr.js* ist auch erforderlich, bevor *signalr-protocol-msgpack.js* .
+> Wenn Sie das- `<script>` Element verwenden, ist die Reihenfolge wichtig. Wenn auf *signalr-protocol-msgpack.js* vor *msgpack5.js* verwiesen wird, tritt ein Fehler auf, wenn versucht wird, eine Verbindung mit messagepack herzustellen. *signalr.js* ist auch erforderlich, bevor *signalr-protocol-msgpack.js*.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -120,6 +120,26 @@ const connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > Zurzeit gibt es keine Konfigurationsoptionen für das messagepack-Protokoll auf dem JavaScript-Client.
 
+### <a name="java-client"></a>Java-Client
+
+Installieren Sie das-Paket, um messagepack mit Java zu aktivieren `com.microsoft.signalr.messagepack` . Wenn Sie gradle verwenden, fügen Sie die folgende Zeile zum- `dependencies` Abschnitt der Datei " *Build. gradle* " hinzu:
+
+```gradle
+implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
+```
+
+Wenn Sie Maven verwenden, fügen Sie die folgenden Zeilen im- `<dependencies>` Element der *pom.xml* Datei hinzu:
+
+[!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
+
+Aufgerufen `withHubProtocol(new MessagePackHubProtocol())` wird `HubConnectionBuilder` .
+
+```java
+HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
+    .withHubProtocol(new MessagePackHubProtocol())
+    .build();
+```
+
 ## <a name="messagepack-quirks"></a>Messagepack-Quiri
 
 Bei der Verwendung des messagepack-Hub-Protokolls sind einige Aspekte zu beachten.
@@ -136,7 +156,7 @@ public class ChatMessage
 }
 ```
 
-Beim Senden vom JavaScript-Client müssen Sie `PascalCased` Eigenschaftsnamen verwenden, da die Groß-/Kleinschreibung genau mit der c#-Klasse übereinstimmen muss. Zum Beispiel:
+Beim Senden vom JavaScript-Client müssen Sie `PascalCased` Eigenschaftsnamen verwenden, da die Groß-/Kleinschreibung genau mit der c#-Klasse übereinstimmen muss. Beispiel:
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
@@ -187,6 +207,10 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 ```
 
 Weitere Informationen zu dieser Einschränkung finden Sie unter GitHub [-Problem ASPNET/ SignalR #2937](https://github.com/aspnet/SignalR/issues/2937).
+
+### <a name="chars-and-strings-in-java"></a>Zeichen und Zeichen folgen in Java
+
+Im Java-Client `char` werden Objekte als One-Character-Objekte serialisiert `String` . Dies steht im Gegensatz zum c#-und JavaScript-Client, die Sie als Objekte serialisieren `short` . Die messagepack-Spezifikation selbst definiert das Verhalten für `char` Objekte nicht. Daher liegt es an dem Autor der Bibliothek, zu bestimmen, wie Sie serialisiert werden. Der Unterschied im Verhalten zwischen unseren Clients ist das Ergebnis der Bibliotheken, die wir für unsere Implementierungen verwendet haben.
 
 ## <a name="related-resources"></a>Verwandte Ressourcen
 
@@ -277,10 +301,10 @@ Nach der Installation des NPM-Pakets kann das Modul direkt über ein JavaScript-
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
-In einem Browser muss auf die `msgpack5` Bibliothek ebenfalls verwiesen werden. Verwenden Sie ein- `<script>` Tag, um einen Verweis zu erstellen. Die Bibliothek finden Sie unter *node_modules\msgpack5\dist\msgpack5.js* .
+In einem Browser muss auf die `msgpack5` Bibliothek ebenfalls verwiesen werden. Verwenden Sie ein- `<script>` Tag, um einen Verweis zu erstellen. Die Bibliothek finden Sie unter *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> Wenn Sie das- `<script>` Element verwenden, ist die Reihenfolge wichtig. Wenn auf *signalr-protocol-msgpack.js* vor *msgpack5.js* verwiesen wird, tritt ein Fehler auf, wenn versucht wird, eine Verbindung mit messagepack herzustellen. *signalr.js* ist auch erforderlich, bevor *signalr-protocol-msgpack.js* .
+> Wenn Sie das- `<script>` Element verwenden, ist die Reihenfolge wichtig. Wenn auf *signalr-protocol-msgpack.js* vor *msgpack5.js* verwiesen wird, tritt ein Fehler auf, wenn versucht wird, eine Verbindung mit messagepack herzustellen. *signalr.js* ist auch erforderlich, bevor *signalr-protocol-msgpack.js*.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -316,7 +340,7 @@ public class ChatMessage
 }
 ```
 
-Beim Senden vom JavaScript-Client müssen Sie `PascalCased` Eigenschaftsnamen verwenden, da die Groß-/Kleinschreibung genau mit der c#-Klasse übereinstimmen muss. Zum Beispiel:
+Beim Senden vom JavaScript-Client müssen Sie `PascalCased` Eigenschaftsnamen verwenden, da die Groß-/Kleinschreibung genau mit der c#-Klasse übereinstimmen muss. Beispiel:
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
@@ -457,10 +481,10 @@ Nach der Installation des NPM-Pakets kann das Modul direkt über ein JavaScript-
 
 *node_modules\\@aspnet\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js*
 
-In einem Browser muss auf die `msgpack5` Bibliothek ebenfalls verwiesen werden. Verwenden Sie ein- `<script>` Tag, um einen Verweis zu erstellen. Die Bibliothek finden Sie unter *node_modules\msgpack5\dist\msgpack5.js* .
+In einem Browser muss auf die `msgpack5` Bibliothek ebenfalls verwiesen werden. Verwenden Sie ein- `<script>` Tag, um einen Verweis zu erstellen. Die Bibliothek finden Sie unter *node_modules\msgpack5\dist\msgpack5.js*.
 
 > [!NOTE]
-> Wenn Sie das- `<script>` Element verwenden, ist die Reihenfolge wichtig. Wenn auf *signalr-protocol-msgpack.js* vor *msgpack5.js* verwiesen wird, tritt ein Fehler auf, wenn versucht wird, eine Verbindung mit messagepack herzustellen. *signalr.js* ist auch erforderlich, bevor *signalr-protocol-msgpack.js* .
+> Wenn Sie das- `<script>` Element verwenden, ist die Reihenfolge wichtig. Wenn auf *signalr-protocol-msgpack.js* vor *msgpack5.js* verwiesen wird, tritt ein Fehler auf, wenn versucht wird, eine Verbindung mit messagepack herzustellen. *signalr.js* ist auch erforderlich, bevor *signalr-protocol-msgpack.js*.
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -496,7 +520,7 @@ public class ChatMessage
 }
 ```
 
-Beim Senden vom JavaScript-Client müssen Sie `PascalCased` Eigenschaftsnamen verwenden, da die Groß-/Kleinschreibung genau mit der c#-Klasse übereinstimmen muss. Zum Beispiel:
+Beim Senden vom JavaScript-Client müssen Sie `PascalCased` Eigenschaftsnamen verwenden, da die Groß-/Kleinschreibung genau mit der c#-Klasse übereinstimmen muss. Beispiel:
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });

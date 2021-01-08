@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/client-features
-ms.openlocfilehash: 1d1778f95c53179ca05eaced3d1913f208220df4
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 65ad619bb943a0e5ffbaec7ec80243972dafc49f
+ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93050978"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "98024664"
 ---
 # <a name="aspnet-core-no-locsignalr-clients"></a>ASP.net Core SignalR Clients
 
@@ -41,13 +41,13 @@ Die 1. x-Versionen von entsprechen SignalR den .net Core-Versionen 2,1 und 2,2 u
 | 1.1. x | 2.2.x | Ende der Lebensdauer | 23. Dezember 2019 |
 | 3. x oder höher | *identisch mit SignalR Version* | Weitere Informationen finden Sie in der [.net Core-Unterstützungs Richtlinie](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) . |
 
-**Hinweis:** In ASP.net Core 3,0 wurde der JavaScript- *moved* Client in das `@microsoft/signalr` NPM-Paket verschoben.
+**Hinweis:** In ASP.net Core 3,0 wurde der JavaScript-  Client in das `@microsoft/signalr` NPM-Paket verschoben.
 
 ## <a name="feature-distribution"></a>Funktionsverteilung
 
 In der folgenden Tabelle sind die Features und die Unterstützung für Clients aufgeführt, die Echtzeitunterstützung anbieten. Für jede Funktion wird die *Mindestversion* aufgelistet, die dieses Feature unterstützt. Wenn keine Version aufgeführt ist, wird die Funktion nicht unterstützt.
 
-| Feature | Server | .NET-Client | JavaScript-Client | Java-Client |
+| Funktion | Server | .NET-Client | JavaScript-Client | Java-Client |
 | ---- | :-: | :-: | :-: | :-: |
 | Azure- SignalR Dienst Unterstützung |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Streaming zwischen Server und Client](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
@@ -57,7 +57,7 @@ In der folgenden Tabelle sind die Features und die Unterstützung für Clients a
 | Transport von Server-Sent Ereignissen |2.1.0|1.0.0|1.0.0|❌|
 | Langer Abruf Transport |2.1.0|1.0.0|1.0.0|3.0.0|
 | JSON Hub-Protokoll |2.1.0|1.0.0|1.0.0|1.0.0|
-| Hub-Protokoll „MessagePack“ |2.1.0|1.0.0|1.0.0|❌|
+| Hub-Protokoll „MessagePack“ |2.1.0|1.0.0|1.0.0|5.0.0|
 
 Die Unterstützung für die Aktivierung zusätzlicher Client Features wird in [unserer Problem](https://github.com/dotnet/AspNetCore/issues)Verfolgung nachverfolgt.
 

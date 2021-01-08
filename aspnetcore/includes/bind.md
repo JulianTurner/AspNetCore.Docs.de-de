@@ -15,11 +15,11 @@ Eine Optionsklasse:
 
 * Eine Optionsklasse muss nicht abstrakt sein und über einen öffentlichen parameterlosen Konstruktor verfügen.
 * Alle öffentlichen Lese-/Schreibeigenschaften des Typs sind gebunden.
-* Felder werden ***nicht*** gebunden. Im vorangehenden Code ist `Position` nicht gebunden. Die `Position`-Eigenschaft wird verwendet, sodass die Zeichenfolge `"Position"` nicht in der App hartcodiert werden muss, wenn die Klasse an einen Konfigurationsanbieter gebunden wird.
+* Felder werden **nicht** gebunden. Im vorangehenden Code ist `Position` nicht gebunden. Die `Position`-Eigenschaft wird verwendet, sodass die Zeichenfolge `"Position"` nicht in der App hartcodiert werden muss, wenn die Klasse an einen Konfigurationsanbieter gebunden wird.
 
 Der folgende Code
 
-* Ruft [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) auf, um die `PositionOptions`-Klasse an den `Position`-Abschnitt zu binden.
+_ ruft [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) auf, um die `PositionOptions`-Klasse an den `Position`-Abschnitt zu binden
 * Zeigt die `Position`-Konfigurationsdaten an.
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]
@@ -32,7 +32,7 @@ Im vorangehenden Code werden standardmäßig Änderungen an der JSON-Konfigurati
 
 Im vorangehenden Code werden standardmäßig Änderungen an der JSON-Konfigurationsdatei gelesen, nachdem die App gestartet wurde.
 
-Eine alternative Vorgehensweise bei der Verwendung des ***Optionsmusters*** besteht darin, den `Position`-Abschnitt zu binden und ihn zum [Dependency-Injection-Dienstcontainer](xref:fundamentals/dependency-injection) hinzuzufügen. Im folgenden Code wird `PositionOptions` mit <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> zum Dienstcontainer hinzugefügt und an die Konfiguration gebunden:
+Eine alternative Vorgehensweise bei der Verwendung des **Optionsmusters** besteht darin, den `Position`-Abschnitt zu binden und ihn zum [Dependency-Injection-Dienstcontainer](xref:fundamentals/dependency-injection) hinzuzufügen. Im folgenden Code wird `PositionOptions` mit <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure_> zum Dienstcontainer hinzugefügt und an die Konfiguration gebunden:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Startup.cs?name=snippet)]
 

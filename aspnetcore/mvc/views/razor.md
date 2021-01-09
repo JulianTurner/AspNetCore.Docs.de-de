@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: 91e35a7cbd97e2bd6e77566362f02409915de7d7
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: cb9ffab19062bf726dd519c782d502f76e372073
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035709"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058284"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor Syntax Verweis für ASP.net Core
 
@@ -34,7 +34,7 @@ Razor ist eine Markup Syntax zum Einbetten von Server basiertem Code in Webseite
 
 Die Standard Razor Sprache ist HTML. Das Rendern von HTML aus Razor Markup unterscheidet sich nicht vom Rendern von HTML aus einer HTML-Datei. Das HTML-Markup in *. cshtml* - Razor Dateien wird vom Server unverändert gerendert.
 
-## <a name="no-locrazor-syntax"></a>Razor-Syntax
+## <a name="no-locrazor-syntax"></a>Syntax von Razor
 
 Razor unterstützt c# und verwendet das `@` Symbol für den Übergang von HTML zu c#. Razor wertet c#-Ausdrücke aus und rendert Sie in der HTML-Ausgabe.
 
@@ -611,7 +611,7 @@ Die- `@inject` Direktive ermöglicht der Razor Seite, einen Dienst aus dem [Dien
 
 *Dieses Szenario gilt nur für Razor Komponenten (Razor).*
 
-Die- `@layout` Direktive gibt ein Layout für eine Razor Komponente an. Layoutkomponenten werden verwendet, um Codeduplizierung und Inkonsistenzen zu vermeiden. Weitere Informationen finden Sie unter <xref:blazor/layouts>.
+Die- `@layout` Anweisung gibt ein Layout für Routing fähige Razor Komponenten an, die über eine- [`@page`](#page) Direktive verfügen. Layoutkomponenten werden verwendet, um Codeduplizierung und Inkonsistenzen zu vermeiden. Weitere Informationen finden Sie unter <xref:blazor/layouts>.
 
 ::: moniker-end
 
@@ -662,7 +662,7 @@ Für das Razor Beispiel "Pages" in der folgenden Tabelle:
 * *Pages/_ViewImports.cshtml* enthält `@namespace Hello.World`.
 * Jede Seite weist `Hello.World` als Stamm ihres Namespace auf.
 
-| Seite                                        | Namespace                             |
+| erweitert?“                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
 | *Pages/index. cshtml*                        | `Hello.World`                         |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
@@ -674,7 +674,7 @@ Wenn mehrere Importdateien über eine `@namespace`-Anweisung verfügen, wird die
 
 Wenn der Ordner *EvenMorePages* im Beispiel oben eine Importdatei mit `@namespace Another.Planet` enthält (oder die Datei *Pages/MorePages/EvenMorePages/Page.cshtml*`@namespace Another.Planet` enthält), finden Sie das Ergebnis in der folgenden Tabelle.
 
-| Seite                                        | Namespace               |
+| erweitert?“                                        | Namespace               |
 | ------------------------------------------- | ----------------------- |
 | *Pages/index. cshtml*                        | `Hello.World`           |
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
@@ -705,9 +705,9 @@ Die- `@page` Direktive in der ersten Zeile einer *cshtml* -Datei gibt an, dass d
 
 Wenn die Einstellung auf `false` (Standard) festgelegt ist, werden Leerzeichen im gerenderten Markup aus Razor Komponenten ( `.razor` ) entfernt, wenn Folgendes gilt:
 
-* Führende oder nachfolgende Elemente innerhalb eines Elements.
-* Führende oder nachfolgende innerhalb eines `RenderFragment` Parameters. Beispielsweise wird ein untergeordneter Inhalt an eine andere Komponente übermittelt.
-* Er ist einem c#-Codeblock vorangestellt oder folgt, `@if` z `@foreach` . b. oder.
+* Sie stehen in einem Element am Anfang oder am Ende.
+* Sie stehen in einem `RenderFragment`-Parameter am Anfang oder am Ende. Ein Beispiel hierfür ist untergeordneter Inhalt, der an eine andere Komponente übergeben wird
+* Sie stehen am Anfang oder Ende eines C#-Codeblocks wie `@if` oder `@foreach`.
 
 ::: moniker-end
 

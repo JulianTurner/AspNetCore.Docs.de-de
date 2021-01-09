@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie Fehler in ASP.NET Core-Web-APIs beheben könn
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 07/23/2020
+ms.date: 1/11/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: 0efcf1bbeeb65cf7f4420f8c50fb4adf7d1d016d
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 92e9350a7892f8f38f64d4ebd68d54a97ec7e994
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052525"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058375"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>Fehlerbehandlung in ASP.NET Core-Web-APIs
 
@@ -80,7 +80,7 @@ Host: localhost:44312
 User-Agent: curl/7.55.1
 ```
 
-Legen Sie den HTTP-Anforderungsheader `Accept` auf den Medientyp `text/html` fest, um stattdessen eine HTML-formatierte Antwort anzuzeigen. Zum Beispiel:
+Legen Sie den HTTP-Anforderungsheader `Accept` auf den Medientyp `text/html` fest, um stattdessen eine HTML-formatierte Antwort anzuzeigen. Beispiel:
 
 ```bash
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
@@ -127,7 +127,9 @@ Die HTML-formatierte Antwort wird beim Durchführen von Tests in Tools wie etwa 
 ::: moniker-end
 
 > [!WARNING]
-> Aktivieren Sie die Seite mit Ausnahmen für Entwickler **nur dann, wenn die App in der Entwicklungsumgebung ausgeführt wird** . Wenn die App in der Produktionsumgebung ausgeführt wird, sollten Sie keine detaillierten Ausnahmeinformationen öffentlich teilen. Weitere Informationen zum Konfigurieren der Umgebungen finden Sie unter <xref:fundamentals/environments>.
+> Aktivieren Sie die Seite mit Ausnahmen für Entwickler **nur dann, wenn die App in der Entwicklungsumgebung ausgeführt wird**. Geben Sie ausführliche Ausnahme Informationen nicht öffentlich frei, wenn die app in der Produktionsumgebung ausgeführt wird. Weitere Informationen zum Konfigurieren der Umgebungen finden Sie unter <xref:fundamentals/environments>.
+>
+> Markieren Sie die Aktionsmethode für die Fehlerbehandlung nicht mit HTTP-Methodenattributen wie `HttpGet`. Durch explizite Verben könnte bei einigen Anforderungen verhindert werden, dass diese Aktionsmethode zum Einsatz kommt. Hiermit wird der anonyme Zugriff auf die-Methode zugelassen, wenn nicht authentifizierte Benutzer den Fehler sehen sollen.
 
 ## <a name="exception-handler"></a>Ausnahmehandler
 
@@ -222,6 +224,8 @@ Middleware zur Ausnahmebehandlung kann auch eine detailliertere Ausgabe der Inha
 
     ::: moniker-end
 
+    Der vorangehende Code ruft [controllerbase. Problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) auf, um eine Antwort zu erstellen <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> .
+
 ## <a name="use-exceptions-to-modify-the-response"></a>Verwenden von Ausnahmen zum Ändern der Antwort
 
 Der Inhalt der Antwort kann außerhalb des Controllers geändert werden. In der ASP.NET 4.x-Web-API war die einzige Möglichkeit hierfür die Verwendung des Typs <xref:System.Web.Http.HttpResponseException>. ASP.NET Core enthält keinen entsprechenden Typ. Die Unterstützung für `HttpResponseException` kann mit folgenden Schritten hinzugefügt werden:
@@ -234,7 +238,7 @@ Der Inhalt der Antwort kann außerhalb des Controllers geändert werden. In der 
 
     [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
 
-    Im vorangehenden Filter wird die magische Zahl 10 vom maximalen ganzzahligen Wert subtrahiert. Wenn Sie diese Zahl subtrahieren, können andere Filter am Ende der Pipeline ausgeführt werden.
+    Der vorangehende Filter gibt einen `Order` des maximalen ganzzahligen Werts minus 10 an. Dies ermöglicht das Ausführen anderer Filter am Ende der Pipeline.
 
 1. Fügen Sie den Aktionsfilter in `Startup.ConfigureServices` der Filtersammlung hinzu:
 
@@ -337,3 +341,7 @@ Verwenden Sie die <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorM
 [!code-csharp[](index/samples/2.x/2.2/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=9-10)]
 
 ::: moniker-end
+
+## <a name="custom-middleware-to-handle-exceptions"></a>Benutzerdefinierte Middleware zum Behandeln von Ausnahmen
+
+Die Standardwerte in der Middleware für die Ausnahmebehandlung funktionieren für die meisten apps gut. Bei apps, für die eine spezielle Ausnahmebehandlung erforderlich ist, sollten Sie [die Middleware für die Ausnahmebehandlung anpassen](xref:fundamentals/error-handling#exception-handler-lambda).

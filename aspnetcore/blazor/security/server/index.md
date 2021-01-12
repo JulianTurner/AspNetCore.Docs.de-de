@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 108fb3a8a24295cad43fd8c83303abd95a7ecd33
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: aa24def1a003a2c2608691e6168066c740f47205
+ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93055476"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "98024625"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Schützen von Blazor Server-Apps von ASP.NET Core
 
@@ -45,7 +45,7 @@ Nachdem Sie im Dialogfeld **Neue ASP.NET Core-Webanwendung erstellen** die Vorla
 Ein Dialogfeld wird geöffnet, in dem dieselben Authentifizierungsmechanismen angeboten werden, die auch für andere ASP.NET-Core-Projekte verfügbar sind:
 
 * **Keine Authentifizierung**
-* **Einzelne Benutzerkonten** : Benutzerkonten können wie folgt gespeichert werden:
+* **Einzelne Benutzerkonten**: Benutzerkonten können wie folgt gespeichert werden:
   * Innerhalb der App anhand des Systems [Identity](xref:security/authentication/identity) von ASP.NET Core.
   * Mit [Azure AD B2C](xref:security/authentication/azure-ad-b2c).
 * **Geschäfts-, Schul- oder Unikonten**
@@ -131,3 +131,6 @@ Gerüst Identity in einem Blazor Server-Projekt:
 
 * [Schnellstart: Hinzufügen von „Bei Microsoft anmelden“ zu einer ASP.NET Core-Web-App](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
 * [Schnellstart: Schützen einer ASP.NET Core-Web-API mit Microsoft Identity Platform](/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
+* <xref:host-and-deploy/proxy-load-balancer>: Umfasst Hinweise zu:
+  * der Verwendung der Middleware für weitergeleitete Header, um HTTPS-Schemainformationen für Proxyserver und interne Netzwerke zu schützen
+  * zusätzlichen Szenarios und Anwendungsfällen, einschließlich der manuellen Schemakonfiguration, Änderungen von Anforderungspfaden für fehlerfreies Routing von Anforderungen und der Weiterleitung des Anforderungsschemas für Linux- und Nicht-IIS-Reverseproxys.

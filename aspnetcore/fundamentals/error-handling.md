@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: c8174c7e253a596d02dbc6cec183453b3723bc24
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: ad9920ccd830b93d083f3c5ede03702164842b6e
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060468"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97753113"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Fehlerbehandlung in ASP.NET Core
 
@@ -66,7 +66,7 @@ Im folgenden Beispiel fügt <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerE
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml* ) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält die Aktionsmethode `Error` und die Ansicht „Error“ im Home-Controller.
+Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml*) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält die Aktionsmethode `Error` und die Ansicht „Error“ im Home-Controller.
 
 Markieren Sie die Aktionsmethode für die Fehlerbehandlung nicht mit HTTP-Methodenattributen wie `HttpGet`. Durch explizite Verben könnte bei einigen Anforderungen verhindert werden, dass diese Aktionsmethode zum Einsatz kommt. Lassen Sie den anonymen Zugriff auf die Methode zu, wenn nicht authentifizierten Benutzern die Fehleransicht angezeigt werden soll.
 
@@ -108,15 +108,9 @@ So testen Sie den Lambdaausdruck für die Ausnahmebehandlung in der [Beispiel-Ap
 
 ## <a name="usestatuscodepages"></a>UseStatusCodePages
 
-Die ASP.NET Core-App stellt für HTTP-Fehlerstatuscodes wie *404 – Nicht gefunden* standardmäßig keine Statuscodeseite zur Verfügung. Wenn eine App eine HTTP-Fehlerbedingung zwischen 400–499 feststellt, die keinen Text enthält, werden der Statuscode und ein leerer Antworttext zurückgegeben. Verwenden Sie zum Bereitstellen von Statuscodeseiten Middleware für Statuscodeseiten. Um für gängige Statuscodes einfache Handler im Textformat zu aktivieren, rufen Sie in der `Startup.Configure`-Methode <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> auf:
+Die ASP.NET Core-App stellt für HTTP-Fehlerstatuscodes wie *404 – Nicht gefunden* standardmäßig keine Statuscodeseite zur Verfügung. Wenn die App einen HTTP-Fehlerstatuscode 400–599 feststellt, der keinen Text enthält, werden der Statuscode und ein leerer Antworttext zurückgegeben. Verwenden Sie zum Bereitstellen von Statuscodeseiten Middleware für Statuscodeseiten. Um für gängige Statuscodes einfache Handler im Textformat zu aktivieren, rufen Sie in der `Startup.Configure`-Methode <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> auf:
 
 [!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/StartupUseStatusCodePages.cs?name=snippet&highlight=13)]
-
-<!-- Review: 
-When you comment out // UseExceptionHandler("/Error");`
-you get a browser dependant error, not the codepage as I expected.
-call /index/2 -> return StatusCode(500); -> you get the codepage 
--->
 
 Rufen Sie `UseStatusCodePages` vor der Middleware für die Anforderungsverarbeitung auf. Rufen Sie beispielsweise `UseStatusCodePages` vor der Middleware für statische Dateien und der Middleware für Endpunkte auf.
 
@@ -133,6 +127,9 @@ So testen Sie `UseStatusCodePages` in der [Beispiel-App](https://github.com/dotn
 * Legen Sie die Umgebung auf Produktion fest.
 * Entfernen Sie die Kommentare aus `webBuilder.UseStartup<StartupUseStatusCodePages>();` in *Program.cs*.
 * Klicken Sie auf die Links auf der Startseite.
+
+> [!NOTE]
+> Die Middleware für Statuscodeseiten erfasst **keine** Ausnahmen. Um eine benutzerdefinierte Fehlerbehandlungsseite bereitzustellen, verwenden Sie die [Ausnahmehandlerseite](#exception-handler-page).
 
 ### <a name="usestatuscodepages-with-format-string"></a>UseStatusCodePages mit Formatzeichenfolge
 
@@ -314,7 +311,7 @@ Im folgenden Beispiel fügt <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerE
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
 
-Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml* ) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält eine Fehleraktionsmethode und die Ansicht „Fehler“ im Home-Controller.
+Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml*) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält eine Fehleraktionsmethode und die Ansicht „Fehler“ im Home-Controller.
 
 Markieren Sie die Aktionsmethode für die Fehlerbehandlung nicht mit HTTP-Methodenattributen wie `HttpGet`. Durch explizite Verben könnte bei einigen Anforderungen verhindert werden, dass diese Methode zum Einsatz kommt. Lassen Sie den anonymen Zugriff auf die Methode zu, wenn nicht authentifizierten Benutzern die Fehleransicht angezeigt werden soll.
 

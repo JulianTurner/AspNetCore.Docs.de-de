@@ -1,1 +1,1 @@
-Informationen dazu, wie Global alle Benutzer authentifiziert werden müssen, finden Sie unter Anfordern von [authentifizierten Benutzern](xref:security/authorization/secure-data#rau).
+Informationen dazu, wie global die Authentifizierung aller Benutzer angefordert werden kann, finden Sie unter [Authentifizierte Benutzer erforderlich](xref:security/authorization/secure-data#rau).

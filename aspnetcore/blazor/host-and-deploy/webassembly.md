@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 5983cbc1e0256f7cf8e85fb07f9ba1bbc1bf08db
-ms.sourcegitcommit: c321518bfe367280ef262aecaada287f17fe1bc5
+ms.openlocfilehash: 55289dd7048c08ac61432c7cc062e74d2e69ee24
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/10/2020
-ms.locfileid: "97011870"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97753126"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
@@ -135,9 +135,17 @@ Informationen zum Bereitstellen für Azure App Service finden Sie unter <xref:tu
 
 ### <a name="app-configuration"></a>App-Konfiguration
 
-So konfigurieren Sie eine gehostete Blazor-Lösung für mehrere Blazor WebAssembly-Apps:
+Gehostete Blazor-Lösungen können mehrere Blazor WebAssembly-Apps verarbeiten.
 
-* Verwenden Sie eine vorhandene gehostete Blazor-Lösung, oder erstellen Sie eine neue Projektmappe aus der Projektvorlage „Blazor Hosted“.
+> [!NOTE]
+> Das Beispiel in diesem Abschnitt verweist auf die Verwendung einer Visual Studio-*Projektmappe*, aber die Verwendung von Visual Studio und einer Visual Studio-Projektmappe ist nicht erforderlich, damit mehrere Client-Apps in einem Szenario mit gehosteten Blazor WebAssembly-Apps funktionieren. Wenn Sie Visual Studio nicht verwenden, ignorieren Sie die `{SOLUTION NAME}.sln`-Datei und alle anderen Dateien, die für Visual Studio erstellt wurden.
+
+Im folgenden Beispiel:
+
+* Die anfängliche (erste) Client-App ist das Standardclientprojekt einer Projektmappe, die aus der Blazor WebAssembly-Projektvorlage erstellt wurde. Der Zugriff auf die erste Client-App erfolgt in einem Browser über die URL `/FirstApp` entweder auf Port 5001 oder mit einem Host von `firstapp.com`.
+* Eine zweite Client-App, `SecondBlazorApp.Client`, wird der Projektmappe hinzugefügt. Der Zugriff auf die zweite Client-App erfolgt in einem Browser über die URL `/SecondApp` entweder auf Port 5002 oder mit einem Host von `secondapp.com`.
+
+Verwenden Sie eine vorhandene gehostete Blazor-Lösung, oder erstellen Sie eine neue Projektmappe aus der Projektvorlage „Blazor Hosted“:
 
 * Fügen Sie in der Projektdatei der Client-App `<PropertyGroup>` eine `<StaticWebAssetBasePath>`-Eigenschaft mit dem Wert `FirstApp` hinzu, um den Basispfad für die statischen Ressourcen des Projekts festzulegen:
 
@@ -150,9 +158,19 @@ So konfigurieren Sie eine gehostete Blazor-Lösung für mehrere Blazor WebAssemb
 
 * Fügen Sie der Projektmappe eine zweite Client-App hinzu:
 
-  * Fügen Sie dem Ordner der Projektmappe einen Ordner mit dem Namen `SecondClient` hinzu.
+  * Fügen Sie dem Ordner der Projektmappe einen Ordner mit dem Namen `SecondClient` hinzu. Der Projektmappenordner, der aus der Projektvorlage erstellt wurde, enthält die folgende Projektmappendatei und die folgenden Ordner, nachdem der `SecondClient`-Ordner hinzugefügt wurde:
+  
+    * `Client` (Ordner)
+    * `SecondClient` (Ordner)
+    * `Server` (Ordner)
+    * `Shared` (Ordner)
+    * `{SOLUTION NAME}.sln` (Datei)
+    
+    Der Platzhalter `{SOLUTION NAME}` ist der Name der Projektmappe.
+
   * Erstellen Sie eine Blazor WebAssembly-App mit dem Namen `SecondBlazorApp.Client` im Ordner `SecondClient` aus der Blazor WebAssembly-Projektvorlage.
-  * In der Projektdatei der App:
+
+  * In der Projektdatei der `SecondBlazorApp.Client`-App:
 
     * Fügen Sie `<PropertyGroup>` eine `<StaticWebAssetBasePath>`-Eigenschaft mit dem Wert `SecondApp` hinzu:
 
@@ -173,14 +191,17 @@ So konfigurieren Sie eine gehostete Blazor-Lösung für mehrere Blazor WebAssemb
 
       Der Platzhalter `{SOLUTION NAME}` ist der Name der Projektmappe.
 
-* Erstellen Sie in der Projektdatei der Server-App einen Projektverweis für die hinzugefügte Client-App:
+* Erstellen Sie in der Projektdatei der Server-App einen Projektverweis für die hinzugefügte `SecondBlazorApp.Client`-Client-App:
 
   ```xml
   <ItemGroup>
-    ...
+    <ProjectReference Include="..\Client\{SOLUTION NAME}.Client.csproj" />
     <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
+    <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
   </ItemGroup>
   ```
+  
+  Der Platzhalter `{SOLUTION NAME}` ist der Name der Projektmappe.
 
 * Konfigurieren Sie in der Datei `Properties/launchSettings.json` der Server-App die `applicationUrl` des Kestrel-Profils (`{SOLUTION NAME}.Server`) für den Zugriff auf Client-Apps an den Ports 5001 und 5002:
 

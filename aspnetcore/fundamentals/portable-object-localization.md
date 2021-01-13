@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: 2e28ebaf1962ebd834c43f1cfbc28929b1937c40
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: f9c0ecd32f0e5c05782c2db76eff92bb64845db7
+ms.sourcegitcommit: 53e01d6e9b70a18a05618f0011cf115a16633c21
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93053721"
+ms.lasthandoff: 01/05/2021
+ms.locfileid: "97878398"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Konfigurieren der Lokalisierung portabler Objekte in ASP.NET Core
 
@@ -32,15 +32,15 @@ Von [Sébastien Ros](https://github.com/sebastienros), [Scott Addie](https://twi
 
 Dieser Artikel erläutert die Schritte zur Verwendung von portablen Objektdateien (PO) in einer ASP.NET Core-Anwendung mit dem Framework [Orchard Core](https://github.com/OrchardCMS/OrchardCore).
 
-**Hinweis** : Orchard Core ist kein Microsoft-Produkt. Microsoft bietet daher keinen Support für dieses Feature an.
+**Hinweis**: Orchard Core ist kein Microsoft-Produkt. Microsoft bietet daher keinen Support für dieses Feature an.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/3.x/POLocalization) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
 ## <a name="what-is-a-po-file"></a>Was ist eine PO-Datei?
 
-PO-Dateien werden als Textdateien verteilt, die übersetzte Zeichenfolgen für eine bestimmte Sprache enthalten. Einige Vorteile der Verwendung von PO-Dateien im Vergleich zu *RESX* -Dateien sind:
-- PO-Dateien unterstützen Pluralisierung; *RESX* -Dateien unterstützen sie nicht.
-- PO-Dateien werden nicht wie *RESX* -Dateien kompiliert. Daher sind spezialisierte Tools und die Buildschritte nicht erforderlich.
+PO-Dateien werden als Textdateien verteilt, die übersetzte Zeichenfolgen für eine bestimmte Sprache enthalten. Einige Vorteile der Verwendung von PO-Dateien im Vergleich zu *RESX*-Dateien sind:
+- PO-Dateien unterstützen Pluralisierung; *RESX*-Dateien unterstützen sie nicht.
+- PO-Dateien werden nicht wie *RESX*-Dateien kompiliert. Daher sind spezialisierte Tools und die Buildschritte nicht erforderlich.
 - PO-Dateien funktionieren gut mit gemeinsamen Onlinebearbeitungstools.
 
 ### <a name="example"></a>Beispiel
@@ -83,7 +83,7 @@ Dieses Beispiel beruht auf einer ASP.NET Core MVC-Anwendung, die aus einer Visua
 
 Fügen Sie einen Verweis auf das NuGet-Paket `OrchardCore.Localization.Core` hinzu. Dieses ist auf [MyGet](https://www.myget.org/) unter der Paketquelle https://www.myget.org/F/orchardcore-preview/api/v3/index.json verfügbar.
 
-Die *CSPROJ* -Datei enthält nun eine Zeile, die der folgenden Zeile ähnelt (die Versionsnummer kann davon abweichen):
+Die *CSPROJ*-Datei enthält nun eine Zeile, die der folgenden Zeile ähnelt (die Versionsnummer kann davon abweichen):
 
 [!code-xml[](localization/sample/3.x/POLocalization/POLocalization.csproj?range=8)]
 
@@ -105,11 +105,11 @@ Eine `IViewLocalizer`-Instanz wird eingefügt und zum Übersetzen des Texts „H
 
 ### <a name="creating-a-po-file"></a>Erstellen einer PO-Datei
 
-Erstellen Sie eine Datei mit dem Namen *\<culture code>.po* im Stammordner Ihrer Anwendung. In diesem Beispiel lautet der Dateiname *fr.po* , weil die französische Sprache verwendet wird:
+Erstellen Sie eine Datei mit dem Namen *\<culture code>.po* im Stammordner Ihrer Anwendung. In diesem Beispiel lautet der Dateiname *fr.po*, weil die französische Sprache verwendet wird:
 
 [!code-text[](localization/sample/3.x/POLocalization/fr.po)]
 
-Diese Datei speichert die zu übersetzende Zeichenfolge sowie die französische Zeichenfolge. Übersetzungen stellen ihre übergeordnete Kultur wieder her, wenn erforderlich. In diesem Beispiel wird die *fr.po* -Datei verwendet, wenn die angeforderte Kultur `fr-FR` oder `fr-CA` ist.
+Diese Datei speichert die zu übersetzende Zeichenfolge sowie die französische Zeichenfolge. Übersetzungen stellen ihre übergeordnete Kultur wieder her, wenn erforderlich. In diesem Beispiel wird die *fr.po*-Datei verwendet, wenn die angeforderte Kultur `fr-FR` oder `fr-CA` ist.
 
 ### <a name="testing-the-application"></a>Testen der Anwendung
 
@@ -125,7 +125,7 @@ Das Orchard Localization-Paket stellt eine API zur Verfügung, um diese anderen 
 
 ### <a name="creating-pluralization-po-files"></a>Erstellen von PO-Pluraldateien
 
-Fügen Sie den folgenden Inhalt zur zuvor erwähnten *fr.po* -Datei hinzu:
+Fügen Sie den folgenden Inhalt zur zuvor erwähnten *fr.po*-Datei hinzu:
 
 ```text
 msgid "There is one item."
@@ -159,7 +159,7 @@ var supportedCultures = new List<CultureInfo>
 };
 ```
 
-Bearbeiten Sie die *Views/Home/About.cshtml* -Datei zum Rendern von lokalisierten Pluralzeichenfolgen für mehrere Kardinalitäten:
+Bearbeiten Sie die *Views/Home/About.cshtml*-Datei zum Rendern von lokalisierten Pluralzeichenfolgen für mehrere Kardinalitäten:
 
 ```cshtml
 <p>@Localizer.Plural(1, "There is one item.", "There are {0} items.")</p>
@@ -167,7 +167,7 @@ Bearbeiten Sie die *Views/Home/About.cshtml* -Datei zum Rendern von lokalisierte
 <p>@Localizer.Plural(5, "There is one item.", "There are {0} items.")</p>
 ```
 
-**Hinweis** : In einem echten Szenario würde eine Variable die Anzahl darstellen. Hier wiederholen wir den gleichen Code mit drei verschiedenen Werten, um einen sehr speziellen Fall verfügbar zu machen.
+**Hinweis**: In einem echten Szenario würde eine Variable die Anzahl darstellen. Hier wiederholen wir den gleichen Code mit drei verschiedenen Werten, um einen sehr speziellen Fall verfügbar zu machen.
 
 Beim Wechsel von Kulturen sehen Sie Folgendes:
 
@@ -205,7 +205,7 @@ Anwendungen enthalten die zu übersetzenden Zeichenfolgen häufig an mehreren St
 
 Die PO-Lokalisierungsdienste verwenden den Namen der vollständigen Klasse oder der Ansicht, die bei der Übersetzung einer Zeichenfolge verwendet wird. Dies wird durch Festlegen des Werts im `msgctxt`-Eintrag erreicht.
 
-Ziehen Sie eine geringfügige Hinzufügung zum vorherigen *fr.po* -Beispiel in Erwägung. Eine Razor-Ansicht in *Views/Home/About.cshtml* kann als Dateikontext definiert werden, indem der reservierte `msgctxt`-Eintragswert festgelegt wird:
+Ziehen Sie eine geringfügige Hinzufügung zum vorherigen *fr.po*-Beispiel in Erwägung. Eine Razor-Ansicht in *Views/Home/About.cshtml* kann als Dateikontext definiert werden, indem der reservierte `msgctxt`-Eintragswert festgelegt wird:
 
 ```text
 msgctxt "Views.Home.About"
@@ -247,15 +247,15 @@ Von [Sébastien Ros](https://github.com/sebastienros) und [Scott Addie](https://
 
 Dieser Artikel erläutert die Schritte zur Verwendung von portablen Objektdateien (PO) in einer ASP.NET Core-Anwendung mit dem Framework [Orchard Core](https://github.com/OrchardCMS/OrchardCore).
 
-**Hinweis** : Orchard Core ist kein Microsoft-Produkt. Microsoft bietet daher keinen Support für dieses Feature an.
+**Hinweis**: Orchard Core ist kein Microsoft-Produkt. Microsoft bietet daher keinen Support für dieses Feature an.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/2.x/POLocalization) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 
 ## <a name="what-is-a-po-file"></a>Was ist eine PO-Datei?
 
-PO-Dateien werden als Textdateien verteilt, die übersetzte Zeichenfolgen für eine bestimmte Sprache enthalten. Einige Vorteile der Verwendung von PO-Dateien im Vergleich zu *RESX* -Dateien sind:
-- PO-Dateien unterstützen Pluralisierung; *RESX* -Dateien unterstützen sie nicht.
-- PO-Dateien werden nicht wie *RESX* -Dateien kompiliert. Daher sind spezialisierte Tools und die Buildschritte nicht erforderlich.
+PO-Dateien werden als Textdateien verteilt, die übersetzte Zeichenfolgen für eine bestimmte Sprache enthalten. Einige Vorteile der Verwendung von PO-Dateien im Vergleich zu *RESX*-Dateien sind:
+- PO-Dateien unterstützen Pluralisierung; *RESX*-Dateien unterstützen sie nicht.
+- PO-Dateien werden nicht wie *RESX*-Dateien kompiliert. Daher sind spezialisierte Tools und die Buildschritte nicht erforderlich.
 - PO-Dateien funktionieren gut mit gemeinsamen Onlinebearbeitungstools.
 
 ### <a name="example"></a>Beispiel
@@ -298,7 +298,7 @@ Dieses Beispiel beruht auf einer ASP.NET Core MVC-Anwendung, die aus einer Visua
 
 Fügen Sie einen Verweis auf das NuGet-Paket `OrchardCore.Localization.Core` hinzu. Dieses ist auf [MyGet](https://www.myget.org/) unter der Paketquelle https://www.myget.org/F/orchardcore-preview/api/v3/index.json verfügbar.
 
-Die *CSPROJ* -Datei enthält nun eine Zeile, die der folgenden Zeile ähnelt (die Versionsnummer kann davon abweichen):
+Die *CSPROJ*-Datei enthält nun eine Zeile, die der folgenden Zeile ähnelt (die Versionsnummer kann davon abweichen):
 
 [!code-xml[](localization/sample/2.x/POLocalization/POLocalization.csproj?range=9)]
 
@@ -320,11 +320,11 @@ Eine `IViewLocalizer`-Instanz wird eingefügt und zum Übersetzen des Texts „H
 
 ### <a name="creating-a-po-file"></a>Erstellen einer PO-Datei
 
-Erstellen Sie eine Datei mit dem Namen *\<culture code>.po* im Stammordner Ihrer Anwendung. In diesem Beispiel lautet der Dateiname *fr.po* , weil die französische Sprache verwendet wird:
+Erstellen Sie eine Datei mit dem Namen *\<culture code>.po* im Stammordner Ihrer Anwendung. In diesem Beispiel lautet der Dateiname *fr.po*, weil die französische Sprache verwendet wird:
 
 [!code-text[](localization/sample/2.x/POLocalization/fr.po)]
 
-Diese Datei speichert die zu übersetzende Zeichenfolge sowie die französische Zeichenfolge. Übersetzungen stellen ihre übergeordnete Kultur wieder her, wenn erforderlich. In diesem Beispiel wird die *fr.po* -Datei verwendet, wenn die angeforderte Kultur `fr-FR` oder `fr-CA` ist.
+Diese Datei speichert die zu übersetzende Zeichenfolge sowie die französische Zeichenfolge. Übersetzungen stellen ihre übergeordnete Kultur wieder her, wenn erforderlich. In diesem Beispiel wird die *fr.po*-Datei verwendet, wenn die angeforderte Kultur `fr-FR` oder `fr-CA` ist.
 
 ### <a name="testing-the-application"></a>Testen der Anwendung
 
@@ -340,7 +340,7 @@ Das Orchard Localization-Paket stellt eine API zur Verfügung, um diese anderen 
 
 ### <a name="creating-pluralization-po-files"></a>Erstellen von PO-Pluraldateien
 
-Fügen Sie den folgenden Inhalt zur zuvor erwähnten *fr.po* -Datei hinzu:
+Fügen Sie den folgenden Inhalt zur zuvor erwähnten *fr.po*-Datei hinzu:
 
 ```text
 msgid "There is one item."
@@ -374,7 +374,7 @@ var supportedCultures = new List<CultureInfo>
 };
 ```
 
-Bearbeiten Sie die *Views/Home/About.cshtml* -Datei zum Rendern von lokalisierten Pluralzeichenfolgen für mehrere Kardinalitäten:
+Bearbeiten Sie die *Views/Home/About.cshtml*-Datei zum Rendern von lokalisierten Pluralzeichenfolgen für mehrere Kardinalitäten:
 
 ```cshtml
 <p>@Localizer.Plural(1, "There is one item.", "There are {0} items.")</p>
@@ -382,7 +382,7 @@ Bearbeiten Sie die *Views/Home/About.cshtml* -Datei zum Rendern von lokalisierte
 <p>@Localizer.Plural(5, "There is one item.", "There are {0} items.")</p>
 ```
 
-**Hinweis** : In einem echten Szenario würde eine Variable die Anzahl darstellen. Hier wiederholen wir den gleichen Code mit drei verschiedenen Werten, um einen sehr speziellen Fall verfügbar zu machen.
+**Hinweis**: In einem echten Szenario würde eine Variable die Anzahl darstellen. Hier wiederholen wir den gleichen Code mit drei verschiedenen Werten, um einen sehr speziellen Fall verfügbar zu machen.
 
 Beim Wechsel von Kulturen sehen Sie Folgendes:
 
@@ -420,7 +420,7 @@ Anwendungen enthalten die zu übersetzenden Zeichenfolgen häufig an mehreren St
 
 Die PO-Lokalisierungsdienste verwenden den Namen der vollständigen Klasse oder der Ansicht, die bei der Übersetzung einer Zeichenfolge verwendet wird. Dies wird durch Festlegen des Werts im `msgctxt`-Eintrag erreicht.
 
-Ziehen Sie eine geringfügige Hinzufügung zum vorherigen *fr.po* -Beispiel in Erwägung. Eine Razor-Ansicht in *Views/Home/About.cshtml* kann als Dateikontext definiert werden, indem der reservierte `msgctxt`-Eintragswert festgelegt wird:
+Ziehen Sie eine geringfügige Hinzufügung zum vorherigen *fr.po*-Beispiel in Erwägung. Eine Razor-Ansicht in *Views/Home/About.cshtml* kann als Dateikontext definiert werden, indem der reservierte `msgctxt`-Eintragswert festgelegt wird:
 
 ```text
 msgctxt "Views.Home.About"

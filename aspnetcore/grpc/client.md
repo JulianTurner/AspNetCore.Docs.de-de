@@ -4,7 +4,7 @@ author: jamesnk
 description: Hier erfahren Sie, wie Sie gRPC-Dienste mit dem .NET-gRPC-Client aufrufen.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 07/27/2020
+ms.date: 12/18/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 9322020083ce25b00b2979633ae8a692cfd4da4a
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 39f9b3fde19e31ca970668552e5829308705f513
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060962"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97699142"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>Aufrufen von gRPC-Diensten mithilfe eines .NET-Clients
 
@@ -34,7 +34,7 @@ Im NuGet-Paket [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client)
 
 ## <a name="configure-grpc-client"></a>Konfigurieren eines gRPC-Clients
 
-gRPC-Clients sind konkrete Clienttypen, [die aus *\*.proto* Dateien generiert werden](xref:grpc/basics#generated-c-assets). Der konkrete gRPC-Client verfügt über Methoden, die in den gRPC-Dienst in der *\*.proto* -Datei übersetzt werden. Beispielsweise generiert ein Dienst namens `Greeter` einen `GreeterClient`-Typ mit Methoden zum Aufrufen des Diensts.
+gRPC-Clients sind konkrete Clienttypen, [die aus *\*.proto* Dateien generiert werden](xref:grpc/basics#generated-c-assets). Der konkrete gRPC-Client verfügt über Methoden, die in den gRPC-Dienst in der *\*.proto*-Datei übersetzt werden. Beispielsweise generiert ein Dienst namens `Greeter` einen `GreeterClient`-Typ mit Methoden zum Aufrufen des Diensts.
 
 Ein gRPC-Client wird aus einem Kanal erstellt. Starten Sie das Erstellen eines Kanals mithilfe von `GrpcChannel.ForAddress`, und verwenden Sie dann den Kanal, um einen gRPC-Client zu erstellen:
 
@@ -201,11 +201,33 @@ Um die beste Leistung zu erzielen und unnötige Fehler beim Client und beim Dien
 
 Während des Aufrufs von bidirektionalem Streaming können sich Client und Dienst jederzeit gegenseitig Nachrichten senden. Die beste Clientlogik für die Interaktion mit einem bidirektionalem Aufruf variiert je nach Dienstlogik.
 
+## <a name="access-grpc-headers"></a>Zugreifen auf gRPC-Header
+
+gRPC-Aufrufe geben Antwortheader zurück. HTTP-Antwortheader übergeben Name/Wert-Metadaten über einen Befehl, der nicht mit der zurückgegebenen Nachricht verknüpft ist.
+
+Auf Header kann über `ResponseHeadersAsync` zugegriffen werden, wodurch eine Sammlung von Metadaten zurückgegeben wird. Da Header in der Regel mit der Antwortnachricht zurückgegeben werden, müssen Sie darauf warten.
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using var call = client.SayHelloAsync(new HelloRequest { Name = "World" });
+
+var headers = await call.ResponseHeadersAsync;
+var myValue = headers.GetValue("my-trailer-name");
+
+var response = await call.ResponseAsync;
+```
+
+Verwendung von `ResponseHeadersAsync`:
+
+* Auf das Ergebnis von `ResponseHeadersAsync` muss gewartet werden, um die Headersammlung zu erhalten.
+* Darauf muss nicht vor `ResponseAsync` (oder den Antwortstream beim Streaming) zugegriffen werden. Wenn eine Antwort zurückgegeben wurde, gibt `ResponseHeadersAsync` umgehend Header zurück.
+* Löst eine Ausnahme aus, wenn eine Verbindung bestand, oder Serverfehler und Header nicht für den gRPC-Aufruf zurückgegeben wurden.
+
 ## <a name="access-grpc-trailers"></a>Zugreifen auf gRPC-Nachspanne
 
-gRPC-Aufrufe können gRPC-Nachspanne zurückgeben. gRPC-Nachspanne werden verwendet, um Name/Wert-Metadaten zu einem Aufruf bereitzustellen. Nachspanne stellen eine ähnliche Funktionalität wie HTTP-Header bereit, werden aber am Ende des Aufrufs empfangen.
+gRPC-Aufrufe können Antwortnachspanne zurückgeben. Nachspanne werden verwendet, um Name/Wert-Metadaten zu einem Aufruf bereitzustellen. Nachspanne stellen eine ähnliche Funktionalität wie HTTP-Header bereit, werden aber am Ende des Aufrufs empfangen.
 
-Auf gRPC-Nachspanne kann über `GetTrailers()` zugegriffen werden, die eine Sammlung von Metadaten zurückgibt. Nachspanne werden nach Abschluss der Antwort zurückgegeben, weshalb Sie erst alle Antwortnachrichten abwarten müssen, bevor Sie auf die Nachspanne zugreifen können.
+Auf Nachspanne kann über `GetTrailers()` zugegriffen werden, die eine Sammlung von Metadaten zurückgibt. Nach dem Abschluss der Antwort werden Nachspanne zurückgegeben. Daher müssen Sie auf alle Antwortnachrichten warten, bevor Sie auf die Nachspanne zugreifen.
 
 Unäre und Clientstreamingaufrufe müssen auf `ResponseAsync` warten, bevor sie `GetTrailers()` aufrufen können:
 
@@ -237,7 +259,7 @@ var trailers = call.GetTrailers();
 var myValue = trailers.GetValue("my-trailer-name");
 ```
 
-Auf gRPC-Nachspanne kann auch über `RpcException` zugegriffen werden. Ein Dienst kann Nachspanne eventuell zusammen mit einem gRPC-Status von „nicht in Ordnung“ zurückgeben. In dieser Situation werden die Nachspanne vom gRPC-Client aus der ausgelösten Ausnahme abgerufen:
+Auf Nachspanne kann auch über `RpcException` zugegriffen werden. Ein Dienst kann Nachspanne eventuell zusammen mit einem gRPC-Status von „nicht in Ordnung“ zurückgeben. In dieser Situation werden die Nachspanne vom gRPC-Client aus der ausgelösten Ausnahme abgerufen:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);

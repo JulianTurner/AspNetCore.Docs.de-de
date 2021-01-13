@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Blazor-Apps Dienste in Komponenten einfügen kön
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/11/2020
+ms.date: 12/19/2020
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/dependency-injection
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: af6b645fc3c398414c85c78e1cfeb213e538c2a6
-ms.sourcegitcommit: 6b87f2e064cea02e65dacd206394b44f5c604282
+ms.openlocfilehash: 3f2b4eff5422acbec80b2fd9b801101271cc3f75
+ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97506798"
+ms.lasthandoff: 01/04/2021
+ms.locfileid: "97808724"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>Abhängigkeitsinjektion in ASP.NET Core Blazor
 
@@ -106,7 +106,7 @@ Das Abhängigkeitsinjektionssystem basiert auf dem Abhängigkeitsinjektionssyste
 
 ## <a name="request-a-service-in-a-component"></a>Anfordern eines Diensts in einer Komponente
 
-Nachdem die Dienste der Dienstsammlung hinzugefügt wurden, fügen Sie die Dienste mit der Razor-Anweisung [\@inject](xref:mvc/views/razor#inject) in die Komponenten ein. [`@inject`](xref:mvc/views/razor#inject) besitzt zwei Parameter:
+Nachdem die Dienste der Dienstsammlung hinzugefügt wurden, fügen Sie die Dienste mit der [`@inject`](xref:mvc/views/razor#inject) Razor-Anweisung ein, die zwei Parameter hat:
 
 * Typ: Der Typ des einzufügenden Diensts.
 * Eigenschaft: Der Name der Eigenschaft, die den eingefügten App-Dienst erhält. Die Eigenschaft erfordert keine manuelle Erstellung. Der Compiler erstellt die Eigenschaft.
@@ -192,8 +192,6 @@ Zwei Versionen des Typs <xref:Microsoft.AspNetCore.Components.OwningComponentBas
 
 Weitere Informationen finden Sie unter <xref:blazor/blazor-server-ef-core>.
 
-::: moniker range="< aspnetcore-5.0"
-
 ## <a name="detect-transient-disposables"></a>Erkennen vorübergehender verwerfbarer Dienste
 
 In den folgenden Beispielen wird veranschaulicht, wie verwerfbare vorübergehende Dienste in einer App erkannt werden, die <xref:Microsoft.AspNetCore.Components.OwningComponentBase> verwenden sollte. Weitere Informationen finden Sie im Abschnitt [Hilfsprogramm-Basiskomponentenklassen zur Verwaltung eines Bereichs für die Abhängigkeitsinjektion](#utility-base-component-classes-to-manage-a-di-scope).
@@ -206,17 +204,17 @@ In den folgenden Beispielen wird veranschaulicht, wie verwerfbare vorübergehend
 
 Im folgenden Beispiel wird `TransientDisposable` erkannt (`Program.cs`):
 
-<!-- moniker range=">= aspnetcore-5.0"
+::: moniker range=">= aspnetcore-5.0"
 
 [!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-moniker-end 
+::: moniker-end 
 
-moniker range="< aspnetcore-5.0" -->
+::: moniker range="< aspnetcore-5.0"
 
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-<!-- moniker-end -->
+::: moniker-end
 
 ::: zone-end
 
@@ -242,7 +240,20 @@ Im folgenden Beispiel wird `TransientDependency` erkannt (`Startup.cs`):
 
 ::: zone-end
 
-::: moniker-end
+Die App kann vorübergehende verwerfbare Elemente registrieren, ohne eine Ausnahme auszulösen. Der Versuch, ein vorübergehendes verwerfbares Ergebnis aufzulösen, führt jedoch zu einer <xref:System.InvalidOperationException>, wie im folgenden Beispiel gezeigt.
+
+`Pages/TransientDisposable.razor`:
+
+```razor
+@page "/transient-disposable"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigieren Sie zur `TransientDisposable`-Komponente unter `/transient-disposable`, und eine <xref:System.InvalidOperationException> wird ausgelöst, wenn das Framework versucht, eine Instanz von `TransientDisposable` zu erstellen:
+
+> System.InvalidOperationException: Es wurde versucht, den vorübergehenden verwerfbaren Dienst TransientDisposable im falschen Bereich aufzulösen. Verwenden Sie für den Dienst „T“, den Sie auflösen möchten, eine „OwningComponentBase\<T>“-Komponentenbasisklasse.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

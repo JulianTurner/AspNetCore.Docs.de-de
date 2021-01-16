@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: a27fdd70963830d22b3501972d6150dde5e1ea54
-ms.sourcegitcommit: fe2e3174c34bee1e425c6e52dd8f663fe52b8756
+ms.openlocfilehash: 49e299ed00ea0e5d54c1ba795971da379cd5b695
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/26/2020
-ms.locfileid: "96174596"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253136"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Webserverimplementierungen in ASP.NET Core
 
@@ -176,7 +176,30 @@ Eine *launchSettings.json*-Datei bietet Konfiguration während des App-Starts mi
 
 [HTTP/2](https://httpwg.org/specs/rfc7540.html) wird mit ASP.NET Core in den folgenden Bereitstellungsszenarien unterstützt:
 
-::: moniker range=">= aspnetcore-2.2"
+::: moniker range=">= aspnetcore-5.0"
+
+* [Kestrel](xref:fundamentals/servers/kestrel/http2)
+  * Betriebssystem
+    * Windows Server 2016/Windows 10 oder höher&dagger;
+    * Linux mit OpenSSL 1.0.2 oder höher (z.B. Ubuntu 16.04 oder höher)
+    * HTTP/2 wird unter macOS in einem zukünftigen Release unterstützt.
+  * Zielframework: .NET Core 2.2 oder höher
+* [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
+  * Windows Server 2016/Windows 10 oder höher
+  * Zielframework: Gilt nicht für HTTP.sys-Bereitstellungen.
+* [IIS (In-Process)](xref:host-and-deploy/iis/index#http2-support)
+  * Windows Server 2016/Windows 10 oder höher, IIS 10 oder höher
+  * Zielframework: .NET Core 2.2 oder höher
+* [IIS (Out-of-Process)](xref:host-and-deploy/iis/index#http2-support)
+  * Windows Server 2016/Windows 10 oder höher, IIS 10 oder höher
+  * Öffentlich zugängliche Edge-Server-Verbindungen verwenden HTTP/2, aber die Reverseproxyverbindung mit Kestrel verwendet HTTP/1.1.
+  * Zielframework: Gilt nicht für Out-of-Process-Bereitstellungen von IIS.
+
+&dagger;Kestrel bietet eingeschränkte Unterstützung für HTTP/2 unter Windows Server 2012 R2 und Windows 8.1. Die Unterstützung ist eingeschränkt, weil die Liste der unterstützten TLS-Verschlüsselungssammlungen unter diesen Betriebssystemen begrenzt ist. Zum Sichern von TLS-Verbindungen ist möglicherweise ein durch einen Elliptic Curve Digital Signature Algorithm (ECDSA) generiertes Zertifikat erforderlich.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2 < aspnetcore-5.0"
 
 * [Kestrel](xref:fundamentals/servers/kestrel#http2-support)
   * Betriebssystem

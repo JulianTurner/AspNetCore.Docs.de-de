@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/community
-ms.openlocfilehash: fcea5384b9f1d9f7e4c5a210dd2ceb7cf2e957ca
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 9bb9848398ecc0c0909f93798a56061a8e57b782
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061364"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252980"
 ---
 # <a name="community-oss-authentication-options-for-aspnet-core"></a>Community OSS-Authentifizierungs Optionen für ASP.net Core
 
@@ -32,11 +32,10 @@ Diese Seite enthält von der Community bereitgestellte Open Source-Authentifizie
 
 Die nachstehende Liste ist alphabetisch sortiert.
 
-| Name | Beschreibung |
+| Name | BESCHREIBUNG |
 | ---- | ----------- |
-| [ASPNET. Security. openidconnect. Server (ASOs)](https://github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server) | Das Asos ist ein OpenID Connect-Server Framework auf niedriger Ebene für ASP.net Core und owin/Katana. |
 | [GLUU-Server](https://gluu.org/) | Unternehmen bereit, Open Source-Software für Identität, Zugriffs Verwaltung (IAM) und Single Sign-on (SSO). Weitere Informationen finden Sie in der [Produktdokumentation zu GLUU](https://gluu.org/docs/). |
-| [IdentityServers](https://identityserver.io/) | IdentityDer Server ist ein OpenID Connect-und OAuth 2,0-Framework für ASP.net Core, das offiziell durch OpenID Foundation und durch die Governance von .Net Foundation zertifiziert ist. Weitere Informationen finden Sie unter [Willkommen bei Identity Server4 (Dokumentation)](https://identityserver4.readthedocs.io/en/latest/). |
-| [Openiddict](https://github.com/openiddict/openiddict-core) | Openiddict ist ein einfach zu verwendende OpenID Connect-Server für ASP.net Core. |
+| [IdentityServer](https://identityserver.io/) | IdentityDer Server ist ein OpenID Connect-und OAuth 2,0-Framework für ASP.net Core, das offiziell durch OpenID Foundation und durch die Governance von .Net Foundation zertifiziert ist. Weitere Informationen finden Sie unter [Willkommen bei Identity Server4 (Dokumentation)](https://identityserver4.readthedocs.io/en/latest/). |
+| [Openiddict](https://github.com/openiddict/openiddict-core) | Vielseitiger OpenID Connect-Stapel für ASP.net Core 2.1/3.1/5.0 und Microsoft. owin 4,1 (kompatibel mit ASP.NET 4.6.1). |
 
 Um einen Anbieter hinzuzufügen, [Bearbeiten Sie diese Seite](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Faspnet%2FDocs%2Fedit%2Fmaster%2Faspnetcore%2Fsecurity%2Fauthentication%2Fcommunity.md).

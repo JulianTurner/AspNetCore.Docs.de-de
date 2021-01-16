@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: 8f54f2e4894328f8471d5f80c8184839ce47add6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 0d43bbbc44015aff040b12dfacb260fe50492e54
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93059688"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252993"
 ---
 # <a name="share-authentication-no-loccookies-among-aspnet-apps"></a>Freigeben von Authentifizierungs- cookie e unter ASP.net-apps
 
@@ -65,6 +65,8 @@ services.ConfigureApplicationCookie(options => {
     options.Cookie.Name = ".AspNet.SharedCookie";
 });
 ```
+
+**Hinweis:** Die vorangehenden Anweisungen funktionieren nicht mit `ITicketStore` ( `CookieAuthenticationOptions.SessionStore` ).  Weitere Informationen finden Sie in [diesem GitHub-Issue](https://github.com/dotnet/AspNetCore.Docs/issues/21163).
 
 ## <a name="share-authentication-no-loccookies-without-no-locaspnet-core-identity"></a>Freigeben von Authentifizierung cookie s ohne ASP.NET Core Identity
 
@@ -135,7 +137,7 @@ Suchen und ändern Sie den-Befehl an `UseCookieAuthentication` :
 
 Wenn `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier` Sie und nicht festlegen `http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider` , legen <xref:System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier> Sie auf einen Anspruch fest, der eindeutige Benutzer unterscheidet.
 
-*App_Start/Startup.auth.cs* :
+*App_Start/Startup.auth.cs*:
 
 ```csharp
 app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -170,7 +172,7 @@ System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
 
 Beim Erstellen einer Benutzeridentität muss der Authentifizierungstyp ( `Identity.Application` ) mit dem Typ identisch sein, der in `AuthenticationType` Set with `UseCookieAuthentication` in *App_Start/Startup.auth.cs* definiert ist.
 
-*Modelle/ Identity Models.cs* :
+*Modelle/ Identity Models.cs*:
 
 ```csharp
 public class ApplicationUser : IdentityUser

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
-ms.openlocfilehash: 4f8330521bb9114f6639c1889cc15ebd18adc0ed
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: d63364b0c052ba7f9e745e1ad829b8d1ca9122d2
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061131"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253123"
 ---
 # <a name="environment-tag-helper-in-aspnet-core"></a>Umgebungstaghilfsprogramm in ASP.NET Core
 
@@ -39,13 +39,13 @@ Eine Übersicht der Taghilfsprogramme finden Sie unter <xref:mvc/views/tag-helpe
 
 `names` akzeptiert den Namen einer einzelnen Hostingumgebung oder eine durch Trennzeichen getrennte Liste mit Namen von Hostingumgebungen, die das Rendering des eingeschlossenen Inhalts auslösen.
 
-Umgebungswerte werden im Vergleich zum aktuellen Wert von [IHostingEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*) zurückgegeben. Bei dem Vergleich wird die Groß-/Kleinschreibung ignoriert.
+Umgebungs Werte werden mit dem aktuellen Wert verglichen, der von [iwebhostenvironment. Environment Name](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*)zurückgegeben wird. Bei dem Vergleich wird die Groß-/Kleinschreibung ignoriert.
 
 Im folgenden Beispiel wird ein Environment-Taghilfsprogramm verwendet: Der Inhalt wird wiedergegeben, wenn es sich bei der Hostumgebung um eine Staging- oder Produktionsumgebung handelt:
 
 ```cshtml
 <environment names="Staging,Production">
-    <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
+    <strong>IWebHostEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>
 ```
 
@@ -57,11 +57,11 @@ Im folgenden Beispiel wird ein Environment-Taghilfsprogramm verwendet: Der Inhal
 
 ### <a name="include"></a>include
 
-Die `include`-Eigenschaft zeigt ein ähnliches Verhalten wie das Attribut `names`. Eine im Attributwert `include` aufgeführte Umgebung muss der App-Hostingumgebung ([IHostingEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*)) entsprechen, damit der Inhalt des Tags `<environment>` gerendert werden kann.
+Die `include`-Eigenschaft zeigt ein ähnliches Verhalten wie das Attribut `names`. Eine im Attribut Wert aufgelistete Umgebung `include` muss der Hostingumgebung der APP ([iwebhostenvironment. Environment Name](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*)) entsprechen, um den Inhalt des Tags zu erzeugen `<environment>` .
 
 ```cshtml
 <environment include="Staging,Production">
-    <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
+    <strong>IWebHostEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>
 ```
 
@@ -71,7 +71,7 @@ Im Gegensatz zum Attribut `include` wird der Inhalt des `<environment>`-Tags ger
 
 ```cshtml
 <environment exclude="Development">
-    <strong>HostingEnvironment.EnvironmentName is not Development</strong>
+    <strong>IWebHostEnvironment.EnvironmentName is not Development</strong>
 </environment>
 ```
 

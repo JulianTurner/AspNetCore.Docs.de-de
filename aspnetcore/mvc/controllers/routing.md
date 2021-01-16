@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: a163c87fdb9a02c1b074ab32c19c11932c66cfd4
-ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
+ms.openlocfilehash: 44c507fb5e0ff4477a84bfc1e4d0c62180c8dd37
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/03/2021
-ms.locfileid: "97854534"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252837"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -43,7 +43,7 @@ Dieses Dokument:
 * Erläutert die Interaktionen zwischen MVC und Routing:
   * Verwendung von Routing Features durch typische MVC-apps
   * Umfasst beides:
-    * [Konventionell Routing](#cr) , das in der Regel für Controller und Ansichten verwendet wird.
+    * [Herkömmliches Routing](#cr) wird in der Regel mit Controllern und Ansichten verwendet.
     * *Attribut Routing* , das mit Rest-APIs verwendet wird. Wenn Sie hauptsächlich an der Weiterleitung von Rest-APIs interessiert sind, springen Sie zum Abschnitt [Attribut Routing für Rest-APIs](#ar) .
   * Weitere Informationen finden Sie unter [Routing](xref:fundamentals/routing) für erweiterte Routing Details.
 * Bezieht sich auf das Standard Routing System, das in ASP.net Core 3,0 hinzugefügt wurde, dem sogenannten Endpunkt Routing. Es ist möglich, Controller mit der vorherigen Version des Routings zu Kompatibilitätszwecken zu verwenden. Anweisungen hierzu finden Sie im [2.2-3.0-Migrations Handbuch](xref:migration/22-to-30) . Das Referenzmaterial zum Legacy Routing System finden Sie in der [Version 2,2 dieses Dokuments](xref:mvc/controllers/routing?view=aspnetcore-2.2) .
@@ -430,7 +430,7 @@ Routenvorlagen, die auf eine Aktion angewendet werden, die mit einem `/` oder `~
 
 In der folgenden Tabelle werden die `[Route]` Attribute im vorangehenden Code erläutert:
 
-| attribute               | Kombiniert mit `[Route("Home")]` | Definiert die Routen Vorlage. |
+| Attribut               | Kombiniert mit `[Route("Home")]` | Definiert die Routen Vorlage. |
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Ja | `"Home"` |
 | `[Route("Index")]` | Ja | `"Home/Index"` |
@@ -570,7 +570,7 @@ Attributrouten unterstützen dieselbe Inline-Syntax wie herkömmliche Routen, um
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
-Im vorangehenden Code wird `[HttpPost("product/{id:int}")]` eine Routen Einschränkung angewendet. Die `ProductsController.ShowProduct` Aktion wird nur durch URL-Pfade wie abgeglichen `/product/3` . Der Weiterleitungs Vorlagen Teil `{id:int}` schränkt dieses Segment auf ganze Zahlen ein.
+Im vorangehenden Code wird `[HttpPost("product14/{id:int}")]` eine Routen Einschränkung angewendet. Die `Products14Controller.ShowProduct` Aktion wird nur durch URL-Pfade wie abgeglichen `/product14/3` . Der Weiterleitungs Vorlagen Teil `{id:int}` schränkt dieses Segment auf ganze Zahlen ein.
 
 Eine ausführliche Beschreibung der Syntax der Routenvorlage finden Sie unter [Routenvorlagenreferenz](xref:fundamentals/routing#route-template-reference).
 

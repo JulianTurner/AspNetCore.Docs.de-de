@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 83525a4c1e87a60b57130c1bba14360c7d03f552
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 71f05163c075a2ef88d5c606814925cdcef879d2
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061378"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253045"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>Konfigurieren der Zertifikat Authentifizierung in ASP.net Core
 
@@ -48,7 +48,7 @@ Fügen Sie in Ihrer Web-App einen Verweis auf das Paket [Microsoft. aspnetcore. 
 
 Wenn die Authentifizierung fehlschlägt, gibt dieser Handler `403 (Forbidden)` wie erwartet eine Antwort zurück `401 (Unauthorized)` . Der Grund dafür ist, dass die Authentifizierung während der anfänglichen TLS-Verbindung stattfinden soll. Bis zum Zeitpunkt, an dem der Handler erreicht wird, ist es zu spät. Es gibt keine Möglichkeit, die Verbindung von einer anonymen Verbindung mit einem Zertifikat zu aktualisieren.
 
-Fügen Sie außerdem `app.UseAuthentication();` die- `Startup.Configure` Methode hinzu. Andernfalls `HttpContext.User` wird nicht auf `ClaimsPrincipal` aus dem Zertifikat erstellt festgelegt. Zum Beispiel:
+Fügen Sie außerdem `app.UseAuthentication();` die- `Startup.Configure` Methode hinzu. Andernfalls `HttpContext.User` wird nicht auf `ClaimsPrincipal` aus dem Zertifikat erstellt festgelegt. Beispiel:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -152,37 +152,37 @@ Der Handler hat zwei Ereignisse:
   * Ermitteln, ob das Zertifikat den Diensten bekannt ist.
   * Erstellen eines eigenen Prinzipals. Betrachten Sie das folgende Beispiel in `Startup.ConfigureServices`:
 
-```csharp
-services.AddAuthentication(
-    CertificateAuthenticationDefaults.AuthenticationScheme)
-    .AddCertificate(options =>
-    {
-        options.Events = new CertificateAuthenticationEvents
+    ```csharp
+    services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+        .AddCertificate(options =>
         {
-            OnCertificateValidated = context =>
+            options.Events = new CertificateAuthenticationEvents
             {
-                var claims = new[]
+                OnCertificateValidated = context =>
                 {
-                    new Claim(
-                        ClaimTypes.NameIdentifier, 
-                        context.ClientCertificate.Subject,
-                        ClaimValueTypes.String, 
-                        context.Options.ClaimsIssuer),
-                    new Claim(ClaimTypes.Name,
-                        context.ClientCertificate.Subject,
-                        ClaimValueTypes.String, 
-                        context.Options.ClaimsIssuer)
-                };
-
-                context.Principal = new ClaimsPrincipal(
-                    new ClaimsIdentity(claims, context.Scheme.Name));
-                context.Success();
-
-                return Task.CompletedTask;
-            }
-        };
-    });
-```
+                    var claims = new[]
+                    {
+                        new Claim(
+                            ClaimTypes.NameIdentifier, 
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String, 
+                            context.Options.ClaimsIssuer),
+                        new Claim(ClaimTypes.Name,
+                            context.ClientCertificate.Subject,
+                            ClaimValueTypes.String, 
+                            context.Options.ClaimsIssuer)
+                    };
+    
+                    context.Principal = new ClaimsPrincipal(
+                        new ClaimsIdentity(claims, context.Scheme.Name));
+                    context.Success();
+    
+                    return Task.CompletedTask;
+                }
+            };
+        });
+    ```
 
 Wenn Sie feststellen, dass das eingehende Zertifikat die zusätzliche Überprüfung nicht erfüllt, können Sie `context.Fail("failure reason")` mit einem Fehler Grund anrufen.
 
@@ -301,7 +301,7 @@ public void ConfigureServices(IServiceCollection services)
         options.HeaderConverter = (headerValue) =>
         {
             X509Certificate2 clientCertificate = null;
-        
+
             if(!string.IsNullOrWhiteSpace(headerValue))
             {
                 byte[] bytes = StringToByteArray(headerValue);
@@ -638,6 +638,24 @@ ASP.net Core 5 Preview 7 und höher bietet eine komfortable Unterstützung für 
 
 Der folgende Ansatz unterstützt optionale Client Zertifikate:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* Richten Sie eine Bindung für die Domäne und die Unterdomäne ein:
+  * Richten Sie z. b. Bindungen für `contoso.com` und ein `myClient.contoso.com` . Für den `contoso.com` Host ist kein Client Zertifikat erforderlich `myClient.contoso.com` .
+  * Weitere Informationen finden Sie unter
+    * [Kestrel](/fundamentals/servers/kestrel):
+      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
+      * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
+      * Hinweis Kestrel unterstützt derzeit nicht mehrere TLS-Konfigurationen für eine Bindung. Sie benötigen zwei Bindungen mit eindeutigen IPS oder Ports. Siehe https://github.com/dotnet/runtime/issues/31097.
+    * IIS
+      * [Hosting von IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Konfigurieren der Sicherheit für IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
+    * Http.Sys: [Konfigurieren von Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * Richten Sie eine Bindung für die Domäne und die Unterdomäne ein:
   * Richten Sie z. b. Bindungen für `contoso.com` und ein `myClient.contoso.com` . Für den `contoso.com` Host ist kein Client Zertifikat erforderlich `myClient.contoso.com` .
   * Weitere Informationen finden Sie unter
@@ -649,6 +667,9 @@ Der folgende Ansatz unterstützt optionale Client Zertifikate:
       * [Hosting von IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [Konfigurieren der Sicherheit für IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * Http.Sys: [Konfigurieren von Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+
+::: moniker-end
+
 * Für Anforderungen an die Web-App, für die ein Client Zertifikat erforderlich ist und keines vorhanden ist:
   * Leiten Sie mithilfe der geschützten Unterdomäne des Client Zertifikats eine Umleitung zur gleichen Seite ein.
   * Beispielsweise können Sie zu umleiten `myClient.contoso.com/requestedPage` . Da es sich bei der Anforderung an um `myClient.contoso.com/requestedPage` einen anderen Hostnamen als handelt `contoso.com/requestedPage` , stellt der Client eine andere Verbindung her, und das Client Zertifikat wird bereitgestellt.

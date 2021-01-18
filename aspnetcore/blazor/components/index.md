@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: a2738ab40e2a463a0166ce8916ed6f1b05ea1d08
-ms.sourcegitcommit: a71bb61f7add06acb949c9258fe506914dfe0c08
+ms.openlocfilehash: 12a1f528bdff0230bbf17075284d27de654a423e
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96855377"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252421"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -40,7 +40,7 @@ Komponenten werden mithilfe einer Kombination aus C# und HTML-Markup in [Razor](
 
 ### <a name="no-locrazor-syntax"></a>Razor-Syntax
 
-Razor-Komponenten in Blazor-Apps verwenden Razor-Syntax ausführlich. Wenn Sie mit der Razor-Markupsprache nicht vertraut sind, sollten Sie <xref:mvc/views/razor> lesen, bevor Sie fortfahren.
+Razor-Komponenten in Blazor-Apps verwenden Razor-Syntax ausführlich. Wenn Sie mit der Razor-Markupsprache nicht vertraut sind, empfiehlt es sich, die [Razor-Syntaxreferenz für ASP.NET Core](xref:mvc/views/razor) zu lesen, bevor Sie fortfahren.
 
 Beachten Sie beim Zugriff auf den Inhalt der Razor-Syntax besonders die folgenden Abschnitte:
 
@@ -81,7 +81,7 @@ Komponentenmember können als Teil der Renderinglogik der Komponente mithilfe vo
 }
 ```
 
-Nachdem die Komponente zum ersten Mal gerendert wurde, generiert sie ihre Renderingstruktur als Reaktion auf Ereignisse erneut. Blazor vergleicht die neue Renderingstruktur dann mit der vorherigen und wendet alle Änderungen auf das Browser-Dokumentobjektmodell (Document Object Model, DOM) an.
+Nachdem die Komponente zum ersten Mal gerendert wurde, generiert sie ihre Renderingstruktur als Reaktion auf Ereignisse erneut. Blazor vergleicht die neue Renderingstruktur dann mit der vorherigen und wendet alle Änderungen auf das Browser-Dokumentobjektmodell (Document Object Model, DOM) an. Weitere Informationen finden Sie in <xref:blazor/components/rendering>.
 
 Komponenten sind normale C#-Klassen und können an beliebiger Stelle innerhalb eines Projekts eingefügt werden. Komponenten, die Webseiten erzeugen, befinden sich in der Regel im Ordner `Pages`. Nicht für Seiten verwendete Komponenten werden häufig im Ordner `Shared` oder einem benutzerdefinierten Ordner gespeichert, der dem Projekt hinzugefügt wurde.
 
@@ -293,7 +293,7 @@ Gemäß Konvention wird ein aus C#-Code bestehender Attributwert einem Parameter
 * Ergebnis einer Methode: `Title="@{METHOD}"`, wobei der Platzhalter `{METHOD}` eine C#-Methode der übergeordneten Komponente ist.
 * [Impliziter oder expliziter Ausdruck](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`, wobei der Platzhalter `{EXPRESSION}` ein C#-Ausdruck ist.
   
-Weitere Informationen finden Sie unter <xref:mvc/views/razor>.
+Weitere Informationen finden Sie unter [Razor-Syntaxreferenz für ASP.NET Core](xref:mvc/views/razor).
 
 > [!WARNING]
 > Erstellen Sie keine Komponenten, die in ihre eigenen *Komponentenparameter* schreiben, sondern verwenden Sie stattdessen ein privates Feld. Weitere Informationen finden Sie im Abschnitt [Überschriebene Parameter](#overwritten-parameters).
@@ -579,7 +579,7 @@ Verwenden Sie `NotifierService`, um eine Komponente zu aktualisieren:
 }
 ```
 
-Im vorherigen Beispiel ruft `NotifierService` die `OnNotify`-Methode der Komponente außerhalb des Synchronisierungskontexts von Blazor auf. `InvokeAsync` wird verwendet, um zum richtigen Kontext zu wechseln und ein Rendering in die Warteschlange zu stellen.
+Im vorherigen Beispiel ruft `NotifierService` die `OnNotify`-Methode der Komponente außerhalb des Synchronisierungskontexts von Blazor auf. `InvokeAsync` wird verwendet, um zum richtigen Kontext zu wechseln und ein Rendering in die Warteschlange zu stellen. Weitere Informationen finden Sie unter <xref:blazor/components/rendering>.
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>Verwenden von \@key zur Steuerung der Beibehaltung von Elementen und Komponenten
 
@@ -801,7 +801,7 @@ Wenn `IsCompleted` den Wert `false` aufweist, wird das Kontrollkästchen wie fol
 <input type="checkbox" />
 ```
 
-Weitere Informationen finden Sie unter <xref:mvc/views/razor>.
+Weitere Informationen finden Sie unter [Razor-Syntaxreferenz für ASP.NET Core](xref:mvc/views/razor).
 
 > [!WARNING]
 > Einige HTML-Attribute wie [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons) funktionieren nicht ordnungsgemäß, wenn der .NET-Typ `bool` ist. Verwenden Sie in diesen Fällen statt `bool` einen `string`-Typ.
@@ -957,13 +957,13 @@ Leerzeichen werden aus dem vorangehenden Razor-Markup nicht beibehalten:
 * <xref:blazor/security/server/threat-mitigation>: Enthält Anleitungen zum Erstellen von Blazor Server-Apps, die Ressourcenauslastung handhaben müssen.
 
 <!--Reference links in article-->
-[1]: <xref:mvc/views/razor#code>
-[2]: <xref:mvc/views/razor#using>
-[3]: <xref:mvc/views/razor#attributes>
-[4]: <xref:mvc/views/razor#ref>
-[5]: <xref:mvc/views/razor#key>
-[6]: <xref:mvc/views/razor#inherits>
-[7]: <xref:mvc/views/razor#attribute>
-[8]: <xref:mvc/views/razor#namespace>
-[9]: <xref:mvc/views/razor#page>
-[10]: <xref:mvc/views/razor#bind>
+[1]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#code)
+[2]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#using)
+[3]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attributes)
+[4]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#ref)
+[5]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#key)
+[6]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#inherits)
+[7]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attribute)
+[8]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#namespace)
+[9]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#page)
+[10]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#bind)

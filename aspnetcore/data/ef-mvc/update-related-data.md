@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/update-related-data
-ms.openlocfilehash: f41d0b1d7ba46ef4867e0d160dc61f21042ce403
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 9ad0de9984b42c2b14dfaf48c74660915de93be1
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93053942"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058323"
 ---
 # <a name="tutorial-update-related-data---aspnet-mvc-with-ef-core"></a>Tutorial: Aktualisieren verwandter Daten: ASP.NET Core MVC mit EF Core
 
@@ -34,7 +34,7 @@ In den folgenden Abbildungen werden die Seiten dargestellt, mit denen Sie arbeit
 
 ![Bearbeitungsseite „Kurs“](update-related-data/_static/course-edit.png)
 
-![Bearbeitungsseite „Dozent“](update-related-data/_static/instructor-edit-courses.png)
+![Bearbeiten der Dozentenseite](update-related-data/_static/instructor-edit-courses.png)
 
 In diesem Tutorial:
 
@@ -91,7 +91,7 @@ Fügen Sie `AsNoTracking`-Aufrufe in die `Details` und zu den HttpGet-Methoden `
 
 Fügen Sie in der *Views/Courses/Create.cshtml*-Datei die Option „Select Department“ (Fachbereich auswählen) zu der Dropdownliste **Department** (Fachbereich) hinzu, ändern Sie den Titel von **DepartmentID** in **Department**, und fügen Sie eine Validierungsmeldung hinzu.
 
-[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-35)]
 
 Nehmen Sie in der Datei *Views/Courses/Edit.cshtml* dieselben Änderungen für das Feld „Department“ (Fachbereich) vor wie in der Datei *Create.cshtml*.
 

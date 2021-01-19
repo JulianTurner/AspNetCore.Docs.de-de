@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: b01b1c70be010ba0ad9bbd2c1114e5d8341b3261
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e5f9a07db742ce2e26f03c0b6e1caa1904e4e0d9
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506863"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058232"
 ---
 # <a name="aspnet-core-no-locblazor-lifecycle"></a>ASP.NET Core Blazor-Lebenszyklus
 
@@ -53,7 +53,9 @@ Verarbeitung von DOM-Ereignissen (Document Object Model):
 
 Der `Render`-Lebenszyklus:
 
-1. Wenn es sich beim Renderingvorgang nicht um das erste Rendering der Komponente handelt oder wenn [`ShouldRender`](#suppress-ui-refreshing) als `false` ausgewertet wird, führen Sie keine weiteren Vorgänge für die Komponente aus.
+1. Beenden Sie weitere Renderingvorgänge für die Komponente in den folgenden Fällen:
+   * Nach dem ersten Rendering
+   * Wenn [`ShouldRender`](#suppress-ui-refreshing) den Wert `false` aufweist
 1. Erstellen Sie das Diff (Unterschied) der Renderstruktur, und rendern Sie die Komponente.
 1. Warten Sie, bis das DOM aktualisiert wurde.
 1. Rufen Sie [`OnAfterRender{Async}`](#after-component-render) auf.

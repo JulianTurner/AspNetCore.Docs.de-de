@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/layouts
-ms.openlocfilehash: 3cb7c6184c13a003b4f4294f887d8938caa42f97
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 417f69e797296cdcd01fc4ce326388512a406368
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506902"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058271"
 ---
 # <a name="aspnet-core-no-locblazor-layouts"></a>Blazor-Layouts in ASP.NET Core
 
@@ -32,7 +32,7 @@ Von [Rainer Stropek](https://www.timecockpit.com) und [Luke Latham](https://gith
 
 Einige App-Elemente wie Menüs, Copyrightmeldungen und Firmenlogos sind in der Regel Teil des allgemeinen Layouts von Apps und werden von allen Komponenten der App verwendet. Das Kopieren des Codes dieser Elemente in alle Komponenten einer App ist kein effizientes Konzept. Jedes Mal, wenn eines der Elemente ein Update erfordert, muss jede Komponente aktualisiert werden. Eine solche Duplizierung ist schwer zu verwalten und kann im Laufe der Zeit zu inkonsistenten Inhalten führen. Mit *Layouts* wird dieses Problem gelöst.
 
-Technisch gesehen ist ein Layout nur eine weitere Komponente. Layouts werden in Razor-Vorlagen oder in C#-Code definiert und können [Datenbindung](xref:blazor/components/data-binding), [Abhängigkeitsinjektion](xref:blazor/fundamentals/dependency-injection) und andere Komponentenszenarien nutzen.
+Technisch gesehen ist ein Layout nur eine weitere Komponente. Layouts werden in Razor-Vorlagen oder in C#-Code definiert und können [Datenbindung](xref:blazor/components/data-binding), [Abhängigkeitsinjektion](xref:blazor/fundamentals/dependency-injection) und andere Komponentenszenarien nutzen. Layouts gelten nur für routingfähige Razor-Komponenten mit [`@page`](xref:mvc/views/razor#page)-Anweisungen.
 
 So konvertieren Sie eine Komponente in ein Layout:
 
@@ -79,7 +79,7 @@ Das Festlegen des Layouts als Standardlayout im Router ist nützlich, da es pro 
 
 ## <a name="specify-a-layout-in-a-component"></a>Festlegen eines Layouts in einer Komponente
 
-Verwenden Sie die Razor-Anweisung `@layout`, um ein Layout auf eine Komponente anzuwenden. Der Compiler konvertiert `@layout` in eine <xref:Microsoft.AspNetCore.Components.LayoutAttribute>-Eigenschaft, die auf die Komponentenklasse angewendet wird.
+Verwenden Sie die Razor-Anweisung [`@layout`](xref:mvc/views/razor#layout), um ein Layout auf eine routingfähige Razor-Komponente anzuwenden, die ebenfalls über eine [`@page`](xref:mvc/views/razor#page)-Anweisung verfügt. Der Compiler konvertiert `@layout` in eine <xref:Microsoft.AspNetCore.Components.LayoutAttribute>-Eigenschaft, die auf die Komponentenklasse angewendet wird.
 
 Der Inhalt der folgenden `MasterList`-Komponente wird bei der Position von `@Body` in `MasterLayout` eingefügt:
 
@@ -105,6 +105,9 @@ Durch das Festlegen eines Layouts in `_Imports.razor` wird ein Layout überschri
 
 > [!WARNING]
 > Fügen Sie der `_Imports.razor`-Stammdatei **keine** Razor `@layout`-Anweisung hinzu. Dies würde zu einer Endlosschleife von Layouts in der App führen. Um das Standardlayout der App zu steuern, legen Sie es in der Komponente `Router` fest. Weitere Informationen finden Sie im Abschnitt [Standardlayout](#default-layout).
+
+> [!NOTE]
+> Die Razor-Anweisung [`@layout`](xref:mvc/views/razor#layout) wendet ein Layout nur auf routingfähige Razor-Komponenten mit [`@page`](xref:mvc/views/razor#page)-Anweisungen an.
 
 ## <a name="nested-layouts"></a>Geschachtelte Layouts
 

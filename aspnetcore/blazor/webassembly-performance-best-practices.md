@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: cc090b4e56745e6b010e4a7ee17332b0d3a95560
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 0753ef0f1cde7bbb45ecc09b97fecb5ce364811c
+ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "95417382"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "98024651"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Best Practices zur Blazor WebAssembly-Leistung in ASP.NET Core
 
@@ -43,16 +43,16 @@ Die folgenden Abschnitte enthalten Empfehlungen zum Minimieren der Renderingwork
 
 Zur Laufzeit sind Komponenten als Hierarchie vorhanden. Eine Stammkomponente weist untergeordnete Komponenten auf. Die untergeordneten Elemente des Stamms verfügen wiederum über eigene untergeordnete Komponenten usw. Wenn ein Ereignis auftritt, z. B. ein Benutzer eine Schaltfläche auswählt, entscheidet Blazor folgendermaßen, welche Komponenten erneut gerendert werden:
 
- 1. Das Ereignis selbst wird an den Ereignishandler der gerenderten Komponente gesendet. Nach Ausführung des Ereignishandlers wird diese Komponente erneut gerendert.
- 1. Jedes Mal, wenn eine Komponente erneut gerendert wird, wird eine neue Kopie der Parameterwerte für jede ihrer untergeordneten Komponenten bereitgestellt.
- 1. Beim Empfang eines neuen Satzes von Parameterwerten wählt jede Komponente aus, ob sie erneut gerendert werden muss. Standardmäßig werden Komponenten erneut gerendert, wenn die Parameterwerte geändert wurden (wenn sie z. B. veränderbare Objekte sind).
+1. Das Ereignis selbst wird an den Ereignishandler der gerenderten Komponente gesendet. Nach Ausführung des Ereignishandlers wird diese Komponente erneut gerendert.
+1. Jedes Mal, wenn eine Komponente erneut gerendert wird, wird eine neue Kopie der Parameterwerte für jede ihrer untergeordneten Komponenten bereitgestellt.
+1. Beim Empfang eines neuen Satzes von Parameterwerten wählt jede Komponente aus, ob sie erneut gerendert werden muss. Standardmäßig werden Komponenten erneut gerendert, wenn die Parameterwerte geändert wurden (wenn sie z. B. veränderbare Objekte sind).
 
 Die letzten beiden Schritte dieser Sequenz werden rekursiv die Komponentenhierarchie hinab fortgesetzt. In vielen Fällen wird die gesamte Unterstruktur erneut gerendert. Dies bedeutet, dass Ereignisse, die auf Komponenten auf hoher Ebene gerichtet sind, aufwändige erneute Renderingvorgänge verursachen können, da alles unterhalb dieses Punkts erneut gerendert werden muss.
 
 Wenn Sie diesen Vorgang unterbrechen und die Renderingrekursion in einer bestimmten Unterstruktur unterbrechen möchten, können Sie Folgendes tun:
 
- * Stellen Sie sicher, dass alle Parameter für eine bestimmte Komponente primitive unveränderliche Typen sind (z. B. `string`, `int`, `bool`, `DateTime` und andere). Die integrierte Logik zum automatischen Erkennen von Änderungen überspringt das erneute Rendern, wenn keiner dieser Parameterwerte geändert wurde. Wenn Sie eine untergeordnete Komponente mit `<Customer CustomerId="@item.CustomerId" />` rendern, wobei `CustomerId` ein `int`-Wert ist, wird sie nur dann erneut gerendert, wenn `item.CustomerId` sich ändert.
- * Wenn Sie nicht primitive Parameterwerte wie benutzerdefinierte Modelltypen, Ereignisrückrufe oder <xref:Microsoft.AspNetCore.Components.RenderFragment>-Werte akzeptieren müssen, können Sie <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> überschreiben, um die Entscheidung über das Rendern zu steuern, was im Abschnitt [Verwendung von `ShouldRender`](#use-of-shouldrender) beschrieben wird.
+* Stellen Sie sicher, dass alle Parameter für eine bestimmte Komponente primitive unveränderliche Typen sind (z. B. `string`, `int`, `bool`, `DateTime` und andere). Die integrierte Logik zum automatischen Erkennen von Änderungen überspringt das erneute Rendern, wenn keiner dieser Parameterwerte geändert wurde. Wenn Sie eine untergeordnete Komponente mit `<Customer CustomerId="@item.CustomerId" />` rendern, wobei `CustomerId` ein `int`-Wert ist, wird sie nur dann erneut gerendert, wenn `item.CustomerId` sich ändert.
+* Wenn Sie nicht primitive Parameterwerte wie benutzerdefinierte Modelltypen, Ereignisrückrufe oder <xref:Microsoft.AspNetCore.Components.RenderFragment>-Werte akzeptieren müssen, können Sie <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> überschreiben, um die Entscheidung über das Rendern zu steuern, was im Abschnitt [Verwendung von `ShouldRender`](#use-of-shouldrender) beschrieben wird.
 
 Indem Sie die erneute Ausführung ganzer Unterstrukturen überspringen, können Sie möglicherweise den größten Teil des Renderingaufwands beim Auftreten eines Ereignisses vermeiden.
 
@@ -109,38 +109,7 @@ Weitere Informationen finden Sie unter <xref:blazor/components/lifecycle>.
 
 Wenn große Teile der Benutzeroberfläche in einer Schleife gerendert werden, z. B. Listen oder Raster mit Tausenden von Einträgen, kann die schiere Menge an Renderingvorgängen zu einer Verzögerung beim Rendern der Benutzeroberfläche und somit zu einer negativen Benutzererfahrung führen. Da der Benutzer ohne Scrollen nur eine kleine Anzahl von Elementen gleichzeitig sehen kann, ist es offenbar Verschwendung, so viel Zeit in das Rendern von Elementen zu investieren, die derzeit nicht sichtbar sind.
 
-Darum stellt Blazor eine integrierte [`<Virtualize>`-Komponente](xref:blazor/components/virtualization) bereit, die das Aussehen und Scrollverhalten einer beliebig großen Liste definiert, aber tatsächlich nur die Listenelemente rendert, die sich innerhalb des aktuellen Scrollviewports befinden. Dies bedeutet beispielsweise, dass nur der Aufwand zum Rendern von 20 Elementen erforderlich ist, die gleichzeitig sichtbar sind, wenn die App über eine Liste mit 100.000 Einträgen verfügt. Mit Verwendung der `<Virtualize>`-Komponente können Sie die Leistung der Benutzeroberfläche um Größenordnungen hochskalieren.
-
-`<Virtualize>` kann in folgenden Fällen verwendet werden:
-
- * Rendern eines Satzes von Datenelementen in einer Schleife.
- * Die meisten Elemente sind beim Scrollen nicht sichtbar.
- * Die gerenderten Elemente haben exakt die gleiche Größe. Wenn der Benutzer zu einem beliebigen Punkt scrollt, kann die Komponente die anzuzeigenden sichtbaren Elemente berechnen.
-
-Es folgt ein Beispiel für eine nicht virtualisierte Liste:
-
-```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
-    @foreach (var flight in allFlights)
-    {
-        <FlightSummary @key="flight.FlightId" Flight="@flight" />
-    }
-</div>
-```
-
-Wenn die `allFlights`-Sammlung 10.000 Elemente enthält, instanziiert und rendert sie 10.000 `<FlightSummary>`-Komponenteninstanzen. Im Vergleich dazu ein Beispiel für eine virtualisierte Liste:
-
-```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
-    <Virtualize Items="@allFlights" Context="flight">
-        <FlightSummary @key="flight.FlightId" Flight="@flight" />
-    </Virtualize>
-</div>
-```
-
-Obwohl die resultierende Benutzeroberfläche für einen Benutzer gleich aussieht, instanziiert und rendert die Komponente im Hintergrund nur so viele `<FlightSummary>`-Instanzen, wie zum Ausfüllen des scrollbaren Bereichs benötigt werden. Der angezeigte Satz von `<FlightSummary>`-Instanzen wird neu berechnet und gerendert, wenn der Benutzer scrollt.
-
-`<Virtualize>` hat noch weitere Vorteile. Wenn eine Komponente z. B. Daten von einer externen API anfordert, ermöglicht `<Virtualize>` der Komponente, nur das Segment von Datensätzen abzurufen, die dem aktuell sichtbaren Bereich entsprechen, anstatt alle Daten aus der Sammlung herunterzuladen.
+Hierzu stellt Blazor die Komponente `Virtualize` bereit, die die Darstellung und das Scrollverhalten eine Liste mit beliebiger Größe erstellt, aber nur die Listenelemente rendert, die sich derzeit im Anzeigebereich befinden. Dies bedeutet beispielsweise, dass nur der Aufwand zum Rendern von 20 Elementen erforderlich ist, die gleichzeitig sichtbar sind, wenn die App über eine Liste mit 100.000 Einträgen verfügt. Mit Verwendung der `Virtualize`-Komponente können Sie die Leistung der Benutzeroberfläche um Größenordnungen hochskalieren.
 
 Weitere Informationen finden Sie unter <xref:blazor/components/virtualization>.
 
@@ -152,9 +121,9 @@ Die meisten Blazor-Komponenten erfordern keine aggressiven Optimierungsbemühung
 
 Es gibt jedoch auch gängige Szenarien, in denen Sie Komponenten erstellen, die im großen Stil wiederholt werden müssen. Beispiel:
 
- * Umfangreiche geschachtelte Formen können aus Hunderten von einzelnen Eingaben, Bezeichnungen und anderen Elementen bestehen.
- * Raster verfügen möglicherweise über Tausende von Zellen.
- * Streudiagramme können Millionen von Datenpunkten enthalten.
+* Umfangreiche geschachtelte Formen können aus Hunderten von einzelnen Eingaben, Bezeichnungen und anderen Elementen bestehen.
+* Raster verfügen möglicherweise über Tausende von Zellen.
+* Streudiagramme können Millionen von Datenpunkten enthalten.
 
 Wenn jede Einheit als separate Komponenteninstanz modelliert wird, entstehen so viele, dass Probleme bei der Renderingleistung auftreten können. In diesem Abschnitt wird erläutert, wie Sie solche Komponenten vereinfachen, sodass die Benutzeroberfläche schnell und reaktionsfähig bleibt.
 
@@ -162,8 +131,8 @@ Wenn jede Einheit als separate Komponenteninstanz modelliert wird, entstehen so 
 
 Jede Komponente ist eine separate Insel, die unabhängig von ihren übergeordneten und untergeordneten Elementen gerendert werden kann. Indem Sie auswählen, wie die Benutzeroberfläche in eine Hierarchie von Komponenten aufgeteilt werden soll, bestimmen Sie die Granularität des Renderings der Benutzeroberfläche. Dies kann für die Leistung entweder gut oder schlecht sein.
 
- * Wenn Sie die Benutzeroberfläche in mehr Komponenten aufteilen, können kleinere Teile der Benutzeroberfläche erneut gerendert werden, wenn Ereignisse auftreten. Wenn ein Benutzer z. B. auf eine Schaltfläche in einer Tabellenzeile klickt, können Sie vielleicht nur diese einzelne Zeile anstelle der gesamten Seite oder Tabelle erneut rendern lassen.
- * Jede zusätzliche Komponente benötigt jedoch zusätzlichen Arbeitsspeicher und CPU-Mehraufwand, um den unabhängigen Zustand und den Renderinglebenszyklus zu verwalten.
+* Wenn Sie die Benutzeroberfläche in mehr Komponenten aufteilen, können kleinere Teile der Benutzeroberfläche erneut gerendert werden, wenn Ereignisse auftreten. Wenn ein Benutzer z. B. auf eine Schaltfläche in einer Tabellenzeile klickt, können Sie vielleicht nur diese einzelne Zeile anstelle der gesamten Seite oder Tabelle erneut rendern lassen.
+* Jede zusätzliche Komponente benötigt jedoch zusätzlichen Arbeitsspeicher und CPU-Mehraufwand, um den unabhängigen Zustand und den Renderinglebenszyklus zu verwalten.
 
 Beim Optimieren der Leistung von Blazor WebAssembly in .NET 5 haben wir einen Renderingmehraufwand von ca. 0,06 ms pro Komponenteninstanz gemessen. Dies basiert bei Ausführung auf einem typischen Laptop auf einer einfachen Komponente, die drei Parameter akzeptiert. Intern entsteht der Mehraufwand größtenteils durch das Abrufen des Status pro Komponente aus Wörterbüchern und Übergabe und Empfang von Parametern. Beim Hinzufügen 2.000 zusätzlicher Komponenteninstanzen ergibt sich durch Multiplikation, dass die Renderingzeit um 0,12 Sekunden verlängert und die Benutzeroberfläche den Benutzern langsam erscheinen würde.
 
@@ -297,8 +266,8 @@ Im vorherigen Beispiel ist `Data` für jede Zelle anders, aber `Options` ist fü
 
 Die `<CascadingValue>`-Komponente hat einen optionalen Parameter namens `IsFixed`.
 
- * Wenn der `IsFixed`-Wert `false` ist (Standard), richtet jeder Empfänger des kaskadierenden Werts ein Abonnement ein, um Änderungsbenachrichtigungen zu empfangen. In diesem Fall erfordert jeder `[CascadingParameter]` aufgrund der Abonnementnachverfolgung **erheblich mehr Aufwand** als ein regulärer `[Parameter]`.
- * Wenn der `IsFixed`-Wert `true` ist (z. B. `<CascadingValue Value="@someValue" IsFixed="true">`), dann empfangen Empfänger den Anfangswert, richten aber *kein* Abonnement für den Empfang von Updates ein. In diesem Fall ist jeder `[CascadingParameter]` einfach und **nicht aufwändiger** als ein regulärer `[Parameter]`.
+* Wenn der `IsFixed`-Wert `false` ist (Standard), richtet jeder Empfänger des kaskadierenden Werts ein Abonnement ein, um Änderungsbenachrichtigungen zu empfangen. In diesem Fall erfordert jeder `[CascadingParameter]` aufgrund der Abonnementnachverfolgung **erheblich mehr Aufwand** als ein regulärer `[Parameter]`.
+* Wenn der `IsFixed`-Wert `true` ist (z. B. `<CascadingValue Value="@someValue" IsFixed="true">`), dann empfangen Empfänger den Anfangswert, richten aber *kein* Abonnement für den Empfang von Updates ein. In diesem Fall ist jeder `[CascadingParameter]` einfach und **nicht aufwändiger** als ein regulärer `[Parameter]`.
 
 Daher sollten Sie bei kaskadierenden Werten nach Möglichkeit `IsFixed="true"` verwenden. Dies ist möglich, wenn sich der angegebene Wert nicht im Laufe der Zeit ändert. In dem allgemeinen Muster, bei dem eine Komponente `this` als kaskadierenden Wert übergibt, sollten Sie `IsFixed="true"` verwenden:
 
@@ -338,9 +307,9 @@ Einer der Hauptaspekte des Renderingmehraufwands pro Komponente ist das Schreibe
 
 In einigen Extremfällen möchten Sie möglicherweise die Reflektion vermeiden und ihre eigene Logik für die Parametereinstellung manuell implementieren. Dies kann unter folgenden Umständen anwendbar sein:
 
- * Sie verfügen über eine Komponente, die sehr häufig gerendert wird (z. B. gibt es Hunderte oder Tausende Kopien davon in der Benutzeroberfläche).
- * Sie akzeptiert viele Parameter.
- * Sie finden, dass der Mehraufwand für das Empfangen von Parametern die Reaktionsfähigkeit der Benutzeroberfläche merklich beeinträchtigt.
+* Sie verfügen über eine Komponente, die sehr häufig gerendert wird (z. B. gibt es Hunderte oder Tausende Kopien davon in der Benutzeroberfläche).
+* Sie akzeptiert viele Parameter.
+* Sie finden, dass der Mehraufwand für das Empfangen von Parametern die Reaktionsfähigkeit der Benutzeroberfläche merklich beeinträchtigt.
 
 In diesen Fällen können Sie die virtuelle <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>-Methode der Komponente überschreiben und ihre eigene komponentenspezifische Logik implementieren. Im folgenden Beispiel werden absichtlich Wörterbuch-Suchvorgänge vermieden:
 
@@ -452,8 +421,8 @@ Diese Technik kann für Blazor Server sogar noch wichtiger sein, weil jeder Erei
 
 Aufrufe zwischen .NET und JavaScript sind aus folgenden Gründen mit zusätzlichem Mehraufwand verbunden:
 
- * Standardmäßig sind Aufrufe asynchron.
- * Standardmäßig werden Parameter und Rückgabewerte JSON-serialisiert. Dies soll einen leicht verständlichen Konvertierungsmechanismus zwischen .NET- und JavaScript-Typen bieten.
+* Standardmäßig sind Aufrufe asynchron.
+* Standardmäßig werden Parameter und Rückgabewerte JSON-serialisiert. Dies soll einen leicht verständlichen Konvertierungsmechanismus zwischen .NET- und JavaScript-Typen bieten.
 
 Zusätzlich werden diese Aufrufe auf Blazor Server über das Netzwerk übergeben.
 

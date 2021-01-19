@@ -19,19 +19,22 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/aad-groups-roles
-ms.openlocfilehash: ded70f028b3021574ba260838837d9b23abd72f1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 96a7dde9a5a756e40125ffda4c54fbf24fdc616a
+ms.sourcegitcommit: 97243663fd46c721660e77ef652fe2190a461f81
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94981881"
+ms.lasthandoff: 01/09/2021
+ms.locfileid: "98058258"
 ---
 # <a name="azure-active-directory-aad-groups-administrator-roles-and-user-defined-roles"></a>AAD-Gruppen (Azure Active Directory), Administratorrollen und benutzerdefinierte Rollen
 
 Von [Luke Latham](https://github.com/guardrex) und [Javier Calvarro Nelson](https://github.com/javiercn)
 
 > [!NOTE]
-> Dieser Artikel bezieht sich auf Blazor ASP.NET Core-Apps Version 3.1 mit Microsoft Identity v1.0 und ist für das Update auf 5.0 mit Identity v2.0 vorgesehen. Weitere Informationen finden Sie unter [Blazor WASM mit AAD-/B2C-Gruppen und -Rollen (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683).
+> Dieser Artikel bezieht sich auf Blazor ASP.NET Core-Apps der Version 3.1 mit Microsoft Identity 1.0 und wird in Kürze mit Identity 2.0 auf Version 5.0 aktualisiert. Weitere Informationen finden Sie im folgenden GitHub-Issue und Pull Request. Auf der Registerkarte **Files changed** (Geänderte Dateien) des Pull Requests finden Sie den Entwurfstext und Beispiele für die Updates für diesen Artikel. Nach einer Überprüfung und finalen Updates wird der Pull Request mit der veröffentlichten Dokumentation zusammengeführt.
+>
+> * Problem: [Blazor WASM mit AAD-Gruppen und -Rollen (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683)
+> * Pull Request: [Blazor Version 5.0 des Artikels für AAD-Gruppen und -Rollen (dotnet/AspNetCore.Docs #20856)](https://github.com/dotnet/AspNetCore.Docs/pull/20856)
 
 Azure Active Directory (AAD) bietet mehrere Autorisierungsansätze, die mit ASP.NET Core Identity kombiniert werden können:
 

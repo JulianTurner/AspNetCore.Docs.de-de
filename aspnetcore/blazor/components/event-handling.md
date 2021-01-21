@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/event-handling
-ms.openlocfilehash: 56306d305a61d549380e847ab2754fa41130e14e
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: fe50b95dda14afeae35c4922d0ae3470280bfd02
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94507810"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252525"
 ---
 # <a name="aspnet-core-no-locblazor-event-handling"></a>ASP.NET Core Blazor-Ereignisbehandlung
 
@@ -208,7 +208,7 @@ Die `ParentComponent` legt die <xref:Microsoft.AspNetCore.Components.EventCallba
 Wenn die Schaltfläche in der `ChildComponent` ausgewählt ist:
 
 * Die `ShowMessage`-Methode von `ParentComponent` wird aufgerufen. `messageText` wird aktualisiert und in der `ParentComponent` angezeigt.
-* Ein Aufruf von [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) ist in der Methode des Rückrufs (`ShowMessage`) nicht erforderlich. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> wird automatisch aufgerufen, um die `ParentComponent` zu rendern, so wie Ereignisse untergeordneter Elemente das Rendern von Komponenten in Ereignishandlern auslösen, die innerhalb des untergeordneten Elements ausgeführt werden.
+* Ein Aufruf von [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) ist in der Methode des Rückrufs (`ShowMessage`) nicht erforderlich. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> wird automatisch aufgerufen, um die `ParentComponent` zu rendern, so wie Ereignisse untergeordneter Elemente das Rendern von Komponenten in Ereignishandlern auslösen, die innerhalb des untergeordneten Elements ausgeführt werden. Weitere Informationen finden Sie unter <xref:blazor/components/rendering>.
 
 <xref:Microsoft.AspNetCore.Components.EventCallback> und <xref:Microsoft.AspNetCore.Components.EventCallback%601> gestatten asynchrone Delegate. <xref:Microsoft.AspNetCore.Components.EventCallback> ist schwach typisiert und erlaubt das Übergeben von Argumenten eines beliebigen Typs in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback%601> ist stark typisiert und erfordert das Übergeben eines `T`-Arguments in `InvokeAsync(T)`, das `TValue` zugewiesen werden kann.
 

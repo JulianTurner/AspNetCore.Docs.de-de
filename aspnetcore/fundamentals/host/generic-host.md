@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/host/generic-host
-ms.openlocfilehash: 263c7713166005dfdec8ede6bfa9b03b730dede7
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: b99b0f0ab6e67ac84bf1232ff6681c5edd54ffb9
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96035813"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253175"
 ---
 # <a name="net-generic-host-in-aspnet-core"></a>Generischer .NET-Host in ASP.NET Core
 
@@ -129,8 +129,8 @@ Die <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>-Methode:
 Die <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*>-Methode:
 
 * Lädt Hostkonfiguration aus Umgebungsvariablen mit dem Präfix `ASPNETCORE_`.
-* Legt den [Kestrel](xref:fundamentals/servers/kestrel)-Server als Webserver fest und konfiguriert ihn mithilfe der Hostkonfigurationsanbieter der App. Die Standardoptionen des Kestrel-Servers finden Sie unter <xref:fundamentals/servers/kestrel#kestrel-options>.
-* Fügt [Middleware zum Filtern von Hosts](xref:fundamentals/servers/kestrel#host-filtering) hinzu.
+* Legt den [Kestrel](xref:fundamentals/servers/kestrel)-Server als Webserver fest und konfiguriert ihn mithilfe der Hostkonfigurationsanbieter der App. Die Standardoptionen des Kestrel-Servers finden Sie unter <xref:fundamentals/servers/kestrel/options>.
+* Fügt [Middleware zum Filtern von Hosts](xref:fundamentals/servers/kestrel/host-filtering) hinzu.
 * Fügt [Middleware für weitergeleitete Header](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) hinzu, wenn `ASPNETCORE_FORWARDEDHEADERS_ENABLED` den Wert `true` aufweist.
 * Ermöglicht die Integration von IIS. Informationen zu den IIS-Standardoptionen finden Sie unter <xref:host-and-deploy/iis/index#iis-options>.
 
@@ -437,7 +437,7 @@ Verwenden Sie die Umgebungsvariable, oder rufen Sie `UseUrls` auf, um diesen Wer
 webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
 ```
 
-Kestrel verfügt über eine eigene API für die Endpunktkonfiguration. Weitere Informationen finden Sie unter <xref:fundamentals/servers/kestrel#endpoint-configuration>.
+Kestrel verfügt über eine eigene API für die Endpunktkonfiguration. Weitere Informationen finden Sie unter <xref:fundamentals/servers/kestrel/endpoints>.
 
 ### <a name="webroot"></a>WebRoot
 

@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Kestrel
 uid: aspnetcore-5.0
-ms.openlocfilehash: d7ffcb67637593ab2909885a9e1f6de74a78361b
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5caa412773bf9c8e3bed5ebc529d48b886de6956
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96855494"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253071"
 ---
 # <a name="whats-new-in-aspnet-core-50"></a>Neuerungen in ASP.NET Core 5.0
 
@@ -333,7 +333,7 @@ Servernamensanzeige (SNI) ist eine TLS-Erweiterung zum Einbinden einer virtuelle
 ### <a name="http2"></a>HTTP/2
 
 * Erhebliche Reduzierung der Zuweisungen im HTTP/2-Codepfad.
-* Unterstützung für [dynamische HPack-Komprimierung](https://tools.ietf.org/html/rfc7541) von HTTP/2-Antwortheadern in [Kestrel](xref:fundamentals/servers/kestrel). Weitere Informationen finden Sie unter [Größe der Headertabelle](xref:fundamentals/servers/kestrel#header-table-size) und [HPACK: The Silent Killer (Feature) of HTTP/2](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/) (HPACK: Der lautlose Killer (Feature) von HTTP/2).
+* Unterstützung für [dynamische HPack-Komprimierung](https://tools.ietf.org/html/rfc7541) von HTTP/2-Antwortheadern in [Kestrel](xref:fundamentals/servers/kestrel). Weitere Informationen finden Sie unter [Größe der Headertabelle](xref:fundamentals/servers/kestrel/options#header-table-size) und [HPACK: The Silent Killer (Feature) of HTTP/2](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/) (HPACK: Der lautlose Killer (Feature) von HTTP/2).
 * Senden von HTTP/2-PING-Frames: HTTP/2 verfügt über einen Mechanismus zum Senden von PING-Frames, um sicherzustellen, dass eine Verbindung im Leerlauf noch funktionsfähig ist. Das Sicherstellen einer funktionsfähigen Verbindung ist besonders nützlich, wenn mit lange dauernden Streams gearbeitet wird, die oft im Leerlauf sind und nur sporadisch Aktivität aufweisen, z. B. gRPC-Streams. In [Kestrel](xref:fundamentals/servers/kestrel) können Apps periodische PING-Frames senden, indem sie Grenzwerte für <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> festlegen:
 
    ```csharp

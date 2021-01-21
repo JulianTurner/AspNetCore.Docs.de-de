@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/migration
-ms.openlocfilehash: 1a230e470fa666b2aa6761b4d5dabd09264d2aae
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 27c53dd4b41d6c99e45fccb5af79bab1ed5dc1b9
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059831"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253149"
 ---
 # <a name="migrating-grpc-services-from-c-core-to-aspnet-core"></a>Migrieren von gRPC-Diensten von C-core zu ASP.NET Core
 
@@ -90,7 +90,13 @@ public class GreeterService : Greeter.GreeterBase
 
 ## <a name="https"></a>HTTPS
 
+::: moniker range=">= aspnetcore-5.0"
+Bei C-core-basierten Apps wird HTTPS über die [Eigenschaft Server.Ports](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports) konfiguriert. Ein ähnliches Konzept wird beim Konfigurieren von Servern in ASP.NET Core verwendet. Kestrel verwendet beispielsweise die [Endpunktkonfiguration](xref:fundamentals/servers/kestrel/endpoints) für diese Funktion.
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 Bei C-core-basierten Apps wird HTTPS über die [Eigenschaft Server.Ports](https://grpc.io/grpc/csharp/api/Grpc.Core.Server.html#Grpc_Core_Server_Ports) konfiguriert. Ein ähnliches Konzept wird beim Konfigurieren von Servern in ASP.NET Core verwendet. Kestrel verwendet beispielsweise die [Endpunktkonfiguration](xref:fundamentals/servers/kestrel#endpoint-configuration) für diese Funktion.
+::: moniker-end
 
 ## <a name="grpc-interceptors-vs-middleware"></a>Gegenüberstellung gRPC-Interceptors und Middleware
 

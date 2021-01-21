@@ -20,12 +20,12 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 4813668f5278473fbaae36d572e69700b3fe771a
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5901a1cb693dfe8e34e62ce2a28456bcf584221c
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97764236"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252265"
 ---
 # <a name="tooling-for-aspnet-core-no-locblazor"></a>Tools für ASP.NET-Core Blazor
 
@@ -129,7 +129,7 @@ Wenn eine Eingabeaufforderung dem Entwicklungszertifikat zu vertrauen scheint, v
 
 ## <a name="use-visual-studio-code-for-cross-platform-no-locblazor-development"></a>Verwenden von Visual Studio Code für die plattformübergreifende Blazor-Entwicklung
 
-[Visual Studio Code](https://code.visualstudio.com/) ist eine plattformübergreifende Open-Source-Entwicklungsumgebung (Integrated Development Environment, IDE), mit der Blazor-Apps entwickelt werden können. Verwenden Sie die .NET-CLI zum Erstellen einer neuen Blazor-App für die Entwicklung mit Visual Studio Code. Weitere Informationen finden Sie in der [Linux-Version dieses Artikels](/aspnet/core/blazor/tooling?pivots=linux).
+[Visual Studio Code](https://code.visualstudio.com/) ist eine plattformübergreifende Open-Source-Entwicklungsumgebung (Integrated Development Environment, IDE), mit der Blazor-Apps entwickelt werden können. Verwenden Sie die .NET-CLI zum Erstellen einer neuen Blazor-App für die Entwicklung mit Visual Studio Code. Weitere Informationen finden Sie in der [Linux-Version dieses Artikels](?pivots=linux).
 
 ## <a name="no-locblazor-template-options"></a>Blazor-Vorlagenoptionen
 

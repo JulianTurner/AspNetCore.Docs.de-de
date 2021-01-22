@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: dc70cfe7cb0c0f044f5f1e7ee68a293b3ea7507f
-ms.sourcegitcommit: 04a404a9655c59ad1ea02aff5d399ae1b833ad6a
+ms.openlocfilehash: ebd3c0dc9baa63b30f142773d7a3d621ce4082d9
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/03/2021
-ms.locfileid: "97854651"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689304"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>Erstellen einer ASP.net Core-Web-App mit von der Autorisierung geschützten Benutzerdaten
 
@@ -129,6 +129,8 @@ Legen Sie die Fall Back Authentifizierungs Richtlinie so fest, dass Benutzer aut
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
 Der obige markierte Code legt die [Fall Back Authentifizierungs Richtlinie](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy)fest. Die Fall Back Authentifizierungs Richtlinie erfordert, dass **_all_* _-Benutzer authentifiziert werden, mit Ausnahme von Razor Seiten, Controllern oder Aktionsmethoden mit einem Authentifizierungs Attribut. Beispielsweise werden Razor Seiten, Controller oder Aktionsmethoden mit `[AllowAnonymous]` oder `[Authorize(PolicyName="MyPolicy")]` das angewendete Authentifizierungs Attribut anstelle der Fall Back Authentifizierungs Richtlinie verwendet.
+
+<xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> fügt <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> der aktuellen-Instanz hinzu, die erzwingt, dass der aktuelle Benutzer authentifiziert wird.
 
 Die Richtlinie für die Fall Back Authentifizierung:
 

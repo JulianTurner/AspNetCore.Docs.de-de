@@ -19,30 +19,30 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 8acc34c88bf62b3da1b920acc7318c94435c100e
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5a6c160ebdda3ec600980aa839770f4f22a9c2fc
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93051979"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658663"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>Authentifizierung und Autorisierung für Spas
 
 Der ASP.net Core 3,1-Vorlagen und spätere Vorlagen bieten die Authentifizierung in Single-Page-Apps (Spas) mithilfe der Unterstützung für API-Autorisierung. ASP.NET Core Identityzum Authentifizieren und Speichern von Benutzern wird der [ Identity Server](https://identityserver.io/) zum Implementieren von OpenID Connect kombiniert.
 
-Der **Angular** -und **der-Projekt** Vorlagen, die dem-Authentifizierungs Parameter in den Projektvorlagen für **Webanwendungen (Model-View-Controller)** (MVC) und **Webanwendungen** (Seiten) ähneln, wurde ein Authentifizierungs Parameter hinzugefügt Razor . Die zulässigen Parameterwerte sind **None** und **Individual** . Die Projektvorlage " **React.js und Redux** " unterstützt derzeit den Authentifizierungs Parameter nicht.
+Der **Angular** -und **der-Projekt** Vorlagen, die dem-Authentifizierungs Parameter in den Projektvorlagen für **Webanwendungen (Model-View-Controller)** (MVC) und **Webanwendungen** (Seiten) ähneln, wurde ein Authentifizierungs Parameter hinzugefügt Razor . Die zulässigen Parameterwerte sind **None** und **Individual**. Die Projektvorlage " **React.js und Redux** " unterstützt derzeit den Authentifizierungs Parameter nicht.
 
 ## <a name="create-an-app-with-api-authorization-support"></a>Erstellen einer APP mit Unterstützung für die API-Autorisierung
 
 Benutzerauthentifizierung und-Autorisierung können mit Angular-und reagingspas verwendet werden. Öffnen Sie eine Befehlsshell, und führen Sie den folgenden Befehl aus:
 
-**Angular** :
+**Angular**:
 
 ```dotnetcli
 dotnet new angular -o <output_directory_name> -au Individual
 ```
 
-**Reagieren** :
+**Reagieren**:
 
 ```dotnetcli
 dotnet new react -o <output_directory_name> -au Individual
@@ -98,6 +98,27 @@ Die- `Startup` Klasse verfügt über die folgenden Ergänzungen:
     app.UseIdentityServer();
     ```
 
+### <a name="azure-app-service-on-linux"></a>Azure App Service unter Linux
+
+Geben Sie für Azure App Service Bereitstellungen unter Linux den Aussteller explizit in an `Startup.ConfigureServices` :
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
+    options =>
+    {
+        options.Authority = "{AUTHORITY}";
+    });
+```
+
+Im vorangehenden Code ist der `{AUTHORITY}` Platzhalter der <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions.Authority> , der beim Erstellen von OpenID Connect-aufrufen verwendet wird.
+
+Beispiel:
+
+```csharp
+options.Authority = "https://contoso-service.azurewebsites.net";
+```
+
 ### <a name="addapiauthorization"></a>AddApiAuthorization
 
 Diese Hilfsmethode konfiguriert Identity den Server für die Verwendung unserer unterstützten Konfiguration. IdentityServer ist ein leistungsfähiges und erweiterbares Framework für Überlegungen zum Thema „App-Sicherheit“. Gleichzeitig stellt dies unnötige Komplexität für die gängigsten Szenarien bereit. Folglich werden Ihnen eine Reihe von Konventionen und Konfigurationsoptionen zur Verfügung gestellt, die als guter Ausgangspunkt angesehen werden. Nachdem sich Ihre Authentifizierung geändert hat, ist die volle Leistung des Identity Servers weiterhin verfügbar, um die Authentifizierung an Ihre Bedürfnisse anzupassen.
@@ -151,9 +172,9 @@ Im *appsettings.Development.jsfür* die Datei des Projekt Stamms gibt es einen `
 Die Unterstützung von Authentifizierung und API-Autorisierung in der Angular-Vorlage befindet sich in einem eigenen Angular-Modul im Verzeichnis *clientapp\src\api-Authorization* . Das Modul besteht aus den folgenden Elementen:
 
 * 3 Komponenten:
-  * *Login. Component. TS* : verarbeitet den Anmelde Fluss der app.
-  * *Abmelde. Component. TS* : verarbeitet den Abmelde Fluss der app.
-  * *Login-Menu. Component. TS* : ein Widget, das eine der folgenden Gruppen von Links anzeigt:
+  * *Login. Component. TS*: verarbeitet den Anmelde Fluss der app.
+  * *Abmelde. Component. TS*: verarbeitet den Abmelde Fluss der app.
+  * *Login-Menu. Component. TS*: ein Widget, das eine der folgenden Gruppen von Links anzeigt:
     * Benutzerprofil Verwaltung und Abmelde Links, wenn der Benutzer authentifiziert ist.
     * Links zur Registrierung und Anmeldung, wenn der Benutzer nicht authentifiziert ist.
 * Ein Weiterleitungs Wächter `AuthorizeGuard` , der Routen hinzugefügt werden kann und erfordert, dass ein Benutzer vor dem Besuch der Route authentifiziert wird.
@@ -166,12 +187,12 @@ Die Unterstützung von Authentifizierung und API-Autorisierung in der Angular-Vo
 Die Unterstützung für die Authentifizierung und API-Autorisierung in der "reagieren"-Vorlage befindet sich im Verzeichnis " *clientapp\src\components\api-Authorization* ". Sie besteht aus den folgenden Elementen:
 
 * 4 Komponenten:
-  * *Login.js* : übernimmt den Anmelde Fluss der app.
-  * *Logout.js* : verarbeitet den Abmelde Fluss der app.
-  * *LoginMenu.js* : ein Widget, das eine der folgenden Gruppen von Links anzeigt:
+  * *Login.js*: übernimmt den Anmelde Fluss der app.
+  * *Logout.js*: verarbeitet den Abmelde Fluss der app.
+  * *LoginMenu.js*: ein Widget, das eine der folgenden Gruppen von Links anzeigt:
     * Benutzerprofil Verwaltung und Abmelde Links, wenn der Benutzer authentifiziert ist.
     * Links zur Registrierung und Anmeldung, wenn der Benutzer nicht authentifiziert ist.
-  * *AuthorizeRoute.js* : eine Routen Komponente, für die vor dem Rendern der im-Parameter angegeben Komponente eine Authentifizierung des Benutzers erforderlich ist `Component` .
+  * *AuthorizeRoute.js*: eine Routen Komponente, für die vor dem Rendern der im-Parameter angegeben Komponente eine Authentifizierung des Benutzers erforderlich ist `Component` .
 * Eine exportierte `authService` Instanz der `AuthorizeService` -Klasse, die die Details des Authentifizierungsprozesses auf niedrigerer Ebene behandelt und Informationen über den authentifizierten Benutzer für den Rest der App zur Nutzung verfügbar macht.
 
 Nachdem Sie die Hauptkomponenten der Lösung kennengelernt haben, können Sie sich einen tieferen Einblick in die einzelnen Szenarios für die APP machen.

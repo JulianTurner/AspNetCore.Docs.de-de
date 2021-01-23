@@ -57,8 +57,6 @@
         - name: MVC
           displayName: tutorial
           items:
-            - name: Übersicht
-              uid: tutorials/first-mvc-app/index
             - name: Erste Schritte
               uid: tutorials/first-mvc-app/start-mvc
             - name: Hinzufügen eines Controllers
@@ -262,8 +260,6 @@
           uid: mvc/overview
         - name: Lernprogramm
           items:
-            - name: Übersicht
-              uid: tutorials/first-mvc-app/index
             - name: Erste Schritte
               uid: tutorials/first-mvc-app/start-mvc
             - name: Hinzufügen eines Controllers

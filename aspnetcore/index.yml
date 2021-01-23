@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 06/05/2020
-  ms.openlocfilehash: d01cb4dee4c7539c0337343615a259fc7346eb6a
-  ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+  ms.openlocfilehash: 3d50ae8d0c1bf2bfdf6fbdfb187f1d6c95dca5cc
+  ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
   ms.translationtype: HT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 09/17/2020
-  ms.locfileid: "90722795"
+  ms.lasthandoff: 01/22/2021
+  ms.locfileid: "98710453"
 highlightedContent:
   items:
   - title: Erstellen einer ASP.NET Core-App auf einer beliebigen Plattform in nur 5 Minuten
@@ -109,7 +109,7 @@ conceptualContent:
     - url: mvc/overview.md
       itemType: overview
       text: Übersicht
-    - url: tutorials/first-mvc-app/index.md
+    - url: tutorials/first-mvc-app/start-mvc.md
       itemType: get-started
       text: Erstellen Ihrer ersten ASP.NET Core-MVC-App
     - url: mvc/views/overview.md

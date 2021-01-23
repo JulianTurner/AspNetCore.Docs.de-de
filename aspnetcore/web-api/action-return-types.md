@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/action-return-types
-ms.openlocfilehash: a2866970a20785ae8fa306d484972697817b7f92
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 62c8227ca770a3a9adbe780685b140bc0e86841e
+ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93058947"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98710697"
 ---
 # <a name="controller-action-return-types-in-aspnet-core-web-api"></a>Rückgabetypen für Controlleraktionen in der ASP.NET Core-Web-API
 
@@ -92,11 +92,11 @@ Sie sollten den Rückgabetyp der Signatur der Aktion als `IAsyncEnumerable<T>` d
 
 Sehen Sie sich die folgende Aktion an, die den Verkaufspreis enthaltende Produktdatensätze als `IEnumerable<Product>` zurückgibt:
 
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetOnSaleProducts)]
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetOnSaleProducts)]
 
 Die `IAsyncEnumerable<Product>`-Entsprechung der vorherigen Aktion lautet wie folgt:
 
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetOnSaleProductsAsync)]
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetOnSaleProductsAsync)]
 
 Beide vorangehenden Aktionen führen ab ASP.NET Core 3.0 nicht mehr zu Blockierungen.
 

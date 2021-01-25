@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/linux-apache
-ms.openlocfilehash: 0bae3f888a1b7a3c2860b85754779189c636d86f
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e81ad43e1c3b86900848671d9da377a5c04a2a82
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93057699"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98253006"
 ---
 # <a name="host-aspnet-core-on-linux-with-apache"></a>Hosten von ASP.NET Core unter Linux mit Apache
 
@@ -78,7 +78,7 @@ Jede vom Schema abhängige Komponente, wie etwa Authentifizierung, Linkgenerieru
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
-Rufen Sie die Methode <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> am Anfang von `Startup.Configure` auf, bevor Sie andere Middleware aufrufen. Konfigurieren Sie die Middleware so, dass die Header `X-Forwarded-For` und `X-Forwarded-Proto` weitergeleitet werden:
+Rufen Sie die Methode <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> am Anfang von `Startup.Configure` auf, bevor Sie andere Middleware aufrufen. Konfigurieren Sie die Middleware so, dass die Header `X-Forwarded-For` und `X-Forwarded-Proto` weitergeleitet werden:
 
 ```csharp
 // using Microsoft.AspNetCore.HttpOverrides;
@@ -93,7 +93,7 @@ app.UseAuthentication();
 
 Wenn für die Middleware keine <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> angegeben sind, lauten die weiterzuleitenden Standardheader `None`.
 
-Proxys, die unter Loopbackadressen (127.0.0.0/8, [::1]) ausgeführt werden, einschließlich der standardmäßigen Localhostadresse (127.0.0.1), werden standardmäßig als vertrauenswürdig eingestuft. Wenn andere vertrauenswürdige Proxys oder Netzwerke innerhalb des Unternehmens Anforderungen zwischen dem Internet und dem Webserver verarbeiten, fügen Sie diese der Liste der <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> oder <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> mit <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> hinzu. Das folgende Beispiel fügt einen vertrauenswürdigen Proxyserver mit der IP-Adresse 10.0.0.0.100 der Middleware für weitergeleitete Header `KnownProxies` in `Startup.ConfigureServices` hinzu:
+Proxys, die unter Loopbackadressen (`127.0.0.0/8, [::1]`) ausgeführt werden, einschließlich der Standardadresse von Localhost (127.0.0.1), werden standardmäßig als vertrauenswürdig eingestuft. Wenn andere vertrauenswürdige Proxys oder Netzwerke innerhalb des Unternehmens Anforderungen zwischen dem Internet und dem Webserver verarbeiten, fügen Sie diese der Liste der <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> oder <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> mit <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> hinzu. Das folgende Beispiel fügt einen vertrauenswürdigen Proxyserver mit der IP-Adresse 10.0.0.0.100 der Middleware für weitergeleitete Header `KnownProxies` in `Startup.ConfigureServices` hinzu:
 
 ```csharp
 // using System.Net;
@@ -163,10 +163,20 @@ So erstellen Sie eine Konfigurationsdatei mit dem Namen *helloapp.conf* für die
 </VirtualHost>
 ```
 
-Der Block `VirtualHost` kann mehrmals erscheinen, in mindestens einer Datei auf einem Server. In der vorangehenden Konfigurationsdatei akzeptiert Apache öffentlichen Datenverkehr über Port 80. Die Domäne `www.example.com` wird bearbeitet, und der Alias `*.example.com` wird auf der gleichen Website aufgelöst. Weitere Informationen finden Sie unter [Namensbasierte virtuelle Hostunterstützung](https://httpd.apache.org/docs/current/vhosts/name-based.html). Anforderungen werden über einen Proxy auf Stammebene an Port 5000 des Servers unter 127.0.0.1 übergeben. Für bidirektionale Kommunikation sind `ProxyPass` und `ProxyPassReverse` erforderlich. Informationen zum Ändern der IP-Adresse bzw. des Ports von Kestrel finden Sie unter [Kestrel: Endpoint configuration (Kestrel: Endpunktkonfiguration)](xref:fundamentals/servers/kestrel#endpoint-configuration).
+::: moniker range=">= aspnetcore-5.0"
+
+Der Block `VirtualHost` kann mehrmals erscheinen, in mindestens einer Datei auf einem Server. In der vorangehenden Konfigurationsdatei akzeptiert Apache öffentlichen Datenverkehr über Port 80. Die Domäne `www.example.com` wird bearbeitet, und der Alias `*.example.com` wird auf der gleichen Website aufgelöst. Weitere Informationen finden Sie unter [Unterstützung für namensbasierte virtuelle Hosts](https://httpd.apache.org/docs/current/vhosts/name-based.html). Anforderungen werden über einen Proxy auf Stammebene an Port 5000 des Servers unter 127.0.0.1 übergeben. Für bidirektionale Kommunikation sind `ProxyPass` und `ProxyPassReverse` erforderlich. Informationen zum Ändern der IP-Adresse bzw. des Ports von Kestrel finden Sie unter [Kestrel: Endpoint configuration (Kestrel: Endpunktkonfiguration)](xref:fundamentals/servers/kestrel/endpoints).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Der Block `VirtualHost` kann mehrmals erscheinen, in mindestens einer Datei auf einem Server. In der vorangehenden Konfigurationsdatei akzeptiert Apache öffentlichen Datenverkehr über Port 80. Die Domäne `www.example.com` wird bearbeitet, und der Alias `*.example.com` wird auf der gleichen Website aufgelöst. Weitere Informationen finden Sie unter [Unterstützung für namensbasierte virtuelle Hosts](https://httpd.apache.org/docs/current/vhosts/name-based.html). Anforderungen werden über einen Proxy auf Stammebene an Port 5000 des Servers unter 127.0.0.1 übergeben. Für bidirektionale Kommunikation sind `ProxyPass` und `ProxyPassReverse` erforderlich. Informationen zum Ändern der IP-Adresse bzw. des Ports von Kestrel finden Sie unter [Kestrel: Endpoint configuration (Kestrel: Endpunktkonfiguration)](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+::: moniker-end
 
 > [!WARNING]
-> Schlägt die Angabe einer ordnungsgemäßen [ServerName-Anweisung](https://httpd.apache.org/docs/current/mod/core.html#servername) im Block **VirtualHost** fehl, ist Ihre App Sicherheitsrisiken ausgesetzt. Platzhalterbindungen in untergeordneten Domänen (z.B. `*.example.com`) verursachen kein Sicherheitsrisiko, wenn Sie die gesamte übergeordnete Domäne steuern (im Gegensatz zu `*.com`, das angreifbar ist). Weitere Informationen finden Sie unter [rfc7230 im Abschnitt 5.4](https://tools.ietf.org/html/rfc7230#section-5.4).
+> Schlägt die Angabe einer ordnungsgemäßen [ServerName-Anweisung](https://httpd.apache.org/docs/current/mod/core.html#servername) im Block **VirtualHost** fehl, ist Ihre App Sicherheitsrisiken ausgesetzt. Platzhalterbindungen in untergeordneten Domänen (z.B. `*.example.com`) verursachen kein Sicherheitsrisiko, wenn Sie die gesamte übergeordnete Domäne steuern (im Gegensatz zu `*.com`, das angreifbar ist). Weitere Informationen finden Sie unter [rfc7230 im Abschnitt 5.4](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 Die Protokollierung kann über `VirtualHost` mit den `ErrorLog`- und `CustomLog`-Anweisungen konfiguriert werden. `ErrorLog` ist der Speicherort, an dem der Server Fehler protokolliert. `CustomLog` legt den Dateinamen und das Format der Protokolldatei fest. In diesem Fall werden hier Anforderungsinformationen protokolliert. Für jede Anforderung gibt es eine Zeile.
 
@@ -236,6 +246,7 @@ systemd-escape "<value-to-escape>"
 Doppelpunkte (`:`) als Trennzeichen werden in Umgebungsvariablennamen nicht unterstützt. Verwenden Sie statt eines Doppelpunkts zwei Unterstriche (`__`). Der [Umgebungsvariablen-Konfigurationsanbieter](xref:fundamentals/configuration/index#environment-variables-configuration-provider) konvertiert jeweils die zwei Unterstriche in einen Doppelpunkt, wenn die Umgebungsvariablen in die Konfiguration gelesen werden. Im folgenden Beispiel wird der Verbindungszeichenfolgeschlüssel `ConnectionStrings:DefaultConnection` als `ConnectionStrings__DefaultConnection` in die Dienstdefinitionsdatei platziert:
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 Doppelpunkte (`:`) als Trennzeichen werden in Umgebungsvariablennamen nicht unterstützt. Verwenden Sie statt eines Doppelpunkts zwei Unterstriche (`__`). Der [Umgebungsvariablen-Konfigurationsanbieter](xref:fundamentals/configuration/index#environment-variables) konvertiert jeweils die zwei Unterstriche in einen Doppelpunkt, wenn die Umgebungsvariablen in die Konfiguration gelesen werden. Im folgenden Beispiel wird der Verbindungszeichenfolgeschlüssel `ConnectionStrings:DefaultConnection` als `ConnectionStrings__DefaultConnection` in die Dienstdefinitionsdatei platziert:
@@ -316,7 +327,7 @@ Wenn Sie den Schutz von Daten konfigurieren möchten, um den Schlüsselring pers
 sudo yum install firewalld -y
 ```
 
-Mit `firewalld` können Sie nur die für die App erforderlichen Ports öffnen. In diesem Fall werden die Ports 80 und 443 verwendet. Über die folgenden Befehle werden die Ports 80 und 443 dauerhaft geöffnet:
+Mit `firewalld` können Sie nur die für die App erforderlichen Ports öffnen. In diesem Fall werden die Ports 80 und 443 verwendet. Über die folgenden Befehle werden die Ports 80 und 443 dauerhaft geöffnet:
 
 ```bash
 sudo firewall-cmd --add-port=80/tcp --permanent
@@ -350,8 +361,19 @@ Der [dotnet run](/dotnet/core/tools/dotnet-run)-Befehl verwendet die *Properties
 
 Konfigurieren Sie mithilfe eines der folgenden Ansätze die App so, dass sie bei der Entwicklung für den Befehl `dotnet run` oder die Entwicklungsumgebung (F5 oder STRG+F5 in Visual Studio Code) ein Zertifikat verwendet:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* [Ersetzen des Standardzertifikats aus der Konfiguration](xref:fundamentals/servers/kestrel/endpoints#configuration) (*Empfohlen*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * [Ersetzen des Standardzertifikats aus der Konfiguration](xref:fundamentals/servers/kestrel#configuration) (*Empfohlen*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
 
 **Konfigurieren des Reverseproxys für sichere (HTTPS) Clientverbindungen**
 
@@ -417,7 +439,7 @@ Starten Sie die vom Server gehosteten ASP.NET Core-Apps nach dem Upgrade des fre
 
 ### <a name="additional-headers"></a>Zusätzliche Header
 
-Als Schutz gegen böswillige Angriffe müssen einige Header geändert oder hinzugefügt werden. So stellen Sie sicher, dass das Modul `mod_headers` installiert wurde:
+Als Schutz gegen Angriffe müssen einige Header geändert oder hinzugefügt werden. So stellen Sie sicher, dass das Modul `mod_headers` installiert wurde:
 
 ```bash
 sudo yum install mod_headers

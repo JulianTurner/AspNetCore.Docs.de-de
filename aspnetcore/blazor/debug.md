@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 990882c03ddc14c664aa8da0518fb36087199aca
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5bdfcc5660b4c897d3552d4cf25e43dade71541c
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94550516"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252512"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
@@ -50,6 +50,7 @@ Folgendes ist derzeit *nicht möglich*:
 * Halt bei Ausnahmefehlern
 * Erreichen von Breakpoints während des App-Starts, bevor der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
 * Debuggen Sie in nicht lokalen Szenarien (z. B. [Windows-Subsystem für Linux (WSL)](/windows/wsl/) oder [Visual Studio Codespaces](/visualstudio/codespaces/overview/what-is-vsonline)).
+* Erstellen Sie die `*Server*`-Back-End-App einer gehosteten Blazor-Lösung während des Debuggens neu, z. B. durch Ausführen der App mit [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## <a name="prerequisites"></a>Voraussetzungen
 

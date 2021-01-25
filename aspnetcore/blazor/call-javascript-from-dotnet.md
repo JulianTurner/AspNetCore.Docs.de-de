@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 11312a34dc62dd3bace791819f62379bffbb1c49
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 2502f43f4eaf245996827f704462ec340bbb8e07
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97592834"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252538"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
 
@@ -527,7 +527,7 @@ var module = await js.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
-Der Bezeichner `import` im Beispiel oben ist ein spezieller Bezeichner, der insbesondere zum Importieren eines JavaScript-Moduls verwendet wird. Geben Sie das Modul mithilfe seines stabilen statischen Webressourcenpfads an: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. Der Platzhalter `{LIBRARY NAME}` ist der Name der Bibliothek. Der Platzhalter `{PATH UNDER WWWROOT}` ist der Pfad zum Skript unter `wwwroot`.
+Der Bezeichner `import` im Beispiel oben ist ein spezieller Bezeichner, der insbesondere zum Importieren eines JavaScript-Moduls verwendet wird. Geben Sie das Modul mithilfe seines stabilen statischen Webressourcenpfads an: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. Das Pfadsegment für das aktuelle Verzeichnis (`./`) ist erforderlich, damit der korrekte Pfad zu statischen Objekten in der JavaScript-Datei erstellt werden kann. Der Platzhalter `{LIBRARY NAME}` ist der Name der Bibliothek. Der Platzhalter `{PATH UNDER WWWROOT}` ist der Pfad zum Skript unter `wwwroot`.
 
 <xref:Microsoft.JSInterop.IJSRuntime> importiert das Modul als `IJSObjectReference`-Element, das einen Verweis auf ein JavaScript-Objekt aus .NET-Code darstellt. Verwenden Sie `IJSObjectReference`, um exportierte JavaScript-Funktionen aus dem Modul aufzurufen:
 
@@ -655,29 +655,9 @@ Außerdem zeigt das vorherige Beispiel, wie es möglich ist, JavaScript-Logik un
 
 ## <a name="size-limits-on-js-interop-calls"></a>Größenbeschränkungen bei JS-Interop-Aufrufen
 
-In Blazor WebAssembly gibt das Framework keine Beschränkungen hinsichtlich der Größe von Ein- und Ausgaben von JS-Interop-Aufrufen vor.
+In Blazor WebAssembly gibt das Framework keine Beschränkungen hinsichtlich der Größe von JS Interop-Eingaben und -Ausgaben vor.
 
-In Blazor Server wird das Ergebnis eines JS-Interop-Aufrufs durch die maximale Payloadgröße beschränkt, die von SignalR (<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>) erzwungen wird. Der Standardwert ist 32 KB. Anwendungen, die versuchen, mit einer Payload über <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> auf einen JS-Interop-Befehl zu reagieren, lösen einen Fehler aus. Eine höherer Grenzwert kann durch Ändern von <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> konfiguriert werden. Im folgenden Beispiel wird die maximale Größe eingehender Nachrichten auf 64 KB (64 × 1.024 × 1.024) festgelegt:
-
-```csharp
-services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 1024);
-```
-
-Wenn Sie den Grenzwert von SignalR erhöhen, verbrauchen Sie auch mehr Serverressourcen und setzen den Server einem erhöhten Risiko durch böswillige Benutzer aus. Darüber hinaus kann das Lesen sehr großer Inhalte in den Arbeitsspeicher als Zeichenfolgen oder Bytearrays zu Zuordnungen führen, die vom Garbage Collector nur schlecht verarbeitet werden können. Dies kann zu zusätzlichen Leistungseinbußen führen. Eine Möglichkeit zum Lesen großer Payloads besteht darin, den Inhalt in kleineren Blöcken zu senden und die Nutzdaten als <xref:System.IO.Stream> zu verarbeiten. Diesen Ansatz können Sie anwenden, wenn große JSON-Payloads gelesen werden oder die Daten in JavaScript als unformatierte Bytes verfügbar sind. Ein Beispiel für das Senden großer binärer Payloads in Blazor Server, bei dem ähnliche Techniken wie die `InputFile`-Komponente verwendet werden, finden Sie unter der [Beispiel-App BinarySubmit](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
-
-Beachten Sie die folgenden Anleitungen, wenn Sie Code zum Übertragen großer Datenmengen zwischen JavaScript und Blazor entwickeln:
-
-* Segmentieren Sie die Daten in kleinere Teile, und senden Sie die Datensegmente sequenziell, bis alle Daten vom Server empfangen wurden.
-* Ordnen Sie in JavaScript- und C#-Code keine großen Objekte zu.
-* Blockieren Sie den hauptsächlichen Benutzeroberflächenthread nicht für lange Zeiträume, wenn Sie Daten senden oder empfangen.
-* Geben Sie belegten Arbeitsspeicher frei, wenn der Prozess abgeschlossen oder abgebrochen wird.
-* Erzwingen Sie die folgenden zusätzlichen Anforderungen aus Sicherheitsgründen:
-  * Deklarieren Sie die maximale Datei- oder Datengröße, die übermittelt werden kann.
-  * Deklarieren Sie die minimale Uploadrate vom Client an den Server.
-* Nachdem die Daten vom Server empfangen wurden, ist mit den Daten Folgendes möglich:
-  * Sie können temporär in einem Speicherpuffer gespeichert werden, bis alle Segmente gesammelt wurden.
-  * Sie können sofort verarbeitet werden. Beispielsweise können die Daten sofort in einer Datenbank gespeichert oder auf den Datenträger geschrieben werden, wenn die einzelnen Segmente empfangen werden.
+In Blazor Server werden JS Interop-Aufrufe hinsichtlich ihrer Größe durch den Maximalwert eingehender SignalR-Nachrichten beschränkt, die für Hubmethoden zulässig sind. Dies wird von <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> erzwungen. Der Standardwert beträgt 32 KB. SignalR-Nachrichten von JS an .NET, die größer als <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> sind, führen zu einem Fehler. Das Framework beinhaltet keine Beschränkungen hinsichtlich der Größe einer SignalR-Nachricht vom Hub an einen Client. Weitere Informationen finden Sie unter <xref:blazor/call-dotnet-from-javascript#size-limits-on-js-interop-calls>.
   
 ## <a name="js-modules"></a>JS-Module
 

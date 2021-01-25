@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: c1a97919cb41f42a93f28d9b5f1ecf6bd3e64da0
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 5a00bfb87b8cfe0fb3e2a832a553b8a4cd45ee6d
+ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97592855"
+ms.lasthandoff: 01/16/2021
+ms.locfileid: "98252499"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Aufrufen von .NET-Methoden von JavaScript-Funktionen in ASP.NET Core Blazor
 
@@ -456,6 +456,60 @@ Weitere Informationen finden Sie unter den folgenden Problemen:
 
 * [Zirkelbezüge werden nicht unterstützt, die Zweite (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
 * [Vorschlag: Hinzufügen eines Mechanismus zur Verarbeitung von Zirkelbezügen bei der Serialisierung (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
+
+## <a name="size-limits-on-js-interop-calls"></a>Größenbeschränkungen bei JS-Interop-Aufrufen
+
+In Blazor WebAssembly gibt das Framework keine Beschränkungen hinsichtlich der Größe von JS Interop-Eingaben und -Ausgaben vor.
+
+In Blazor Server werden JS Interop-Aufrufe hinsichtlich ihrer Größe durch den Maximalwert eingehender SignalR-Nachrichten beschränkt, die für Hubmethoden zulässig sind. Dies wird von <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> erzwungen. Der Standardwert beträgt 32 KB. SignalR-Nachrichten von JS an .NET, die größer als <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> sind, führen zu einem Fehler. Das Framework beinhaltet keine Beschränkungen hinsichtlich der Größe einer SignalR-Nachricht vom Hub an einen Client.
+
+Wenn die SignalR-Protokollierung nicht auf [Debuggen](xref:Microsoft.Extensions.Logging.LogLevel) oder [Überwachung](xref:Microsoft.Extensions.Logging.LogLevel) festgelegt ist, wird ein Fehler zur Nachrichtengröße nur in der Konsole für Entwicklertools des Browsers angezeigt:
+
+> Fehler: Connection disconnected with error „Error: Server returned an error on close: Connection closed with an error.“ (Die Verbindung wurde durch den folgenden Fehler getrennt: „Der Server hat beim Schließen einen Fehler zurückgegeben: Die Verbindung wurde durch einen Fehler beendet.“)
+
+Wenn die [serverseitige Protokollierung in SignalR](xref:signalr/diagnostics#server-side-logging) auf [Debuggen](xref:Microsoft.Extensions.Logging.LogLevel) oder [Überwachung](xref:Microsoft.Extensions.Logging.LogLevel) festgelegt ist, tritt bei der serverseitigen Protokollierung eine <xref:System.IO.InvalidDataException>-Ausnahme für einen Fehler in Bezug auf die Nachrichtengröße auf.
+
+`appsettings.Development.json`:
+
+```json
+{
+  "DetailedErrors": true,
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Microsoft.AspNetCore.SignalR": "Debug"
+    }
+  }
+}
+```
+
+> System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions. (System.IO.InvalidDataException: Die maximale Nachrichtengröße von 32.768 Byte wurde überschritten. Die Nachrichtengröße kann unter AddHubOptions konfiguriert werden.)
+
+Erhöhen Sie den Grenzwert, indem Sie <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Startup.ConfigureServices` festlegen. Im folgenden Beispiel wird die maximale Größe eingehender Nachrichten auf 64 KB (64 × 1.024) festgelegt:
+
+```csharp
+services.AddServerSideBlazor()
+   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
+```
+
+Wenn Sie den Grenzwert für die Größe eingehender Nachrichten von SignalR erhöhen, verbrauchen Sie auch mehr Serverressourcen und setzen den Server einem erhöhten Risiko durch böswillige Benutzer aus. Darüber hinaus kann das Lesen sehr großer Inhalte in den Arbeitsspeicher als Zeichenfolgen oder Bytearrays zu Zuordnungen führen, die vom Garbage Collector nur schlecht verarbeitet werden können. Dies kann zu zusätzlichen Leistungseinbußen führen.
+
+Eine Möglichkeit zum Lesen großer Mengen an Nutzdaten besteht darin, den Inhalt in kleineren Blöcken zu senden und die Nutzdaten als <xref:System.IO.Stream> zu verarbeiten. Diesen Ansatz können Sie anwenden, wenn große JSON-Payloads gelesen werden oder die Daten in JavaScript als unformatierte Bytes verfügbar sind. Ein Beispiel für das Senden großer binärer Payloads in Blazor Server, bei dem ähnliche Techniken wie die `InputFile`-Komponente verwendet werden, finden Sie unter der [Beispiel-App BinarySubmit](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
+
+Beachten Sie die folgenden Anleitungen, wenn Sie Code zum Übertragen großer Datenmengen zwischen JavaScript und Blazor entwickeln:
+
+* Segmentieren Sie die Daten in kleinere Teile, und senden Sie die Datensegmente sequenziell, bis alle Daten vom Server empfangen wurden.
+* Ordnen Sie in JavaScript- und C#-Code keine großen Objekte zu.
+* Blockieren Sie den hauptsächlichen Benutzeroberflächenthread nicht für lange Zeiträume, wenn Sie Daten senden oder empfangen.
+* Geben Sie belegten Arbeitsspeicher frei, wenn der Prozess abgeschlossen oder abgebrochen wird.
+* Erzwingen Sie die folgenden zusätzlichen Anforderungen aus Sicherheitsgründen:
+  * Deklarieren Sie die maximale Datei- oder Datengröße, die übermittelt werden kann.
+  * Deklarieren Sie die minimale Uploadrate vom Client an den Server.
+* Nachdem die Daten vom Server empfangen wurden, ist mit den Daten Folgendes möglich:
+  * Sie können temporär in einem Speicherpuffer gespeichert werden, bis alle Segmente gesammelt wurden.
+  * Sie können sofort verarbeitet werden. Beispielsweise können die Daten sofort in einer Datenbank gespeichert oder auf den Datenträger geschrieben werden, wenn die einzelnen Segmente empfangen werden.
 
 ## <a name="js-modules"></a>JS-Module
 

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: c4d1095d3c3b457ca4d94cb1a573c3dc49548ff3
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: 2df938f3ace47472536020f9848e954fc4446f15
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024638"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658585"
 ---
 # <a name="secure-aspnet-core-no-locblazor-webassembly"></a>Schützen der Blazor WebAssembly von ASP.NET Core
 
@@ -106,6 +106,10 @@ Apps fordern häufig Ansprüche für Benutzer basierend auf einem Web-API-Aufruf
 
 * [Zusätzliche Szenarios: Anpassen des Benutzers](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
 * <xref:blazor/security/webassembly/aad-groups-roles>
+
+## <a name="azure-app-service-on-linux-with-no-locidentity-server"></a>Azure App Service für Linux mit Identity Server
+
+Geben Sie den Zertifikataussteller explizit an, wenn Sie eine Bereitstellung auf Azure App Service für Linux mit Identity Server durchführen. Weitere Informationen finden Sie unter <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
 
 ## <a name="implementation-guidance"></a>Implementierungsleitfaden
 

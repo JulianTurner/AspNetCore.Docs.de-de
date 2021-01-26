@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: f8b31c617ef71003042d31690de49d48946ac3d5
-ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
+ms.openlocfilehash: 35620299b1138ca45a6ebf1d789a9f4aa9b29518
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/22/2021
-ms.locfileid: "98710645"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751605"
 ---
 # <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Authentifizierung und Autorisierung in ASP.NET Core Blazor
 
@@ -299,7 +299,7 @@ Wenn keine Autorisierungsbedingungen angegeben sind, verwendet <xref:Microsoft.A
 * Authentifizierte (angemeldete) Benutzer als autorisiert.
 * Nicht authentifizierte (abgemeldete) Benutzer als nicht autorisiert.
 
-Die Komponente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> kann in der Komponente `NavMenu` (`Shared/NavMenu.razor`) verwendet werden, um ein Listenelement (`<li>...</li>`) für eine [`NavLink`-Komponente](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) anzuzeigen. Beachten Sie jedoch, dass bei diesem Ansatz nur das Listenelement aus der gerenderten Ausgabe entfernt wird. Benutzer werden nicht daran gehindert, zur Komponente zu navigieren.
+Die Komponente <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> kann in der Komponente `NavMenu` (`Shared/NavMenu.razor`) verwendet werden, um ein Listenelement (`<li>...</li>`) für eine [`NavLink`-Komponente](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>) anzuzeigen. Beachten Sie jedoch, dass bei diesem Ansatz nur das Listenelement aus der gerenderten Ausgabe entfernt wird. Benutzer werden nicht daran gehindert, zur Komponente zu navigieren.
 
 ### <a name="role-based-and-policy-based-authorization"></a>Rollenbasierte und richtlinienbasierte Autorisierung
 

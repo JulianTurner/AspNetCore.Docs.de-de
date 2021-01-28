@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/portable-object-localization
-ms.openlocfilehash: f9c0ecd32f0e5c05782c2db76eff92bb64845db7
-ms.sourcegitcommit: 53e01d6e9b70a18a05618f0011cf115a16633c21
+ms.openlocfilehash: 175614c426c564ce91068e18035ce05311432698
+ms.sourcegitcommit: ebc5beccba5f3f7619de20baa58ad727d2a3d18c
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/05/2021
-ms.locfileid: "97878398"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98689239"
 ---
 # <a name="configure-portable-object-localization-in-aspnet-core"></a>Konfigurieren der Lokalisierung portabler Objekte in ASP.NET Core
 
@@ -81,7 +81,7 @@ Dieses Beispiel beruht auf einer ASP.NET Core MVC-Anwendung, die aus einer Visua
 
 ### <a name="referencing-the-package"></a>Verweisen auf das Paket
 
-Fügen Sie einen Verweis auf das NuGet-Paket `OrchardCore.Localization.Core` hinzu. Dieses ist auf [MyGet](https://www.myget.org/) unter der Paketquelle https://www.myget.org/F/orchardcore-preview/api/v3/index.json verfügbar.
+Fügen Sie einen Verweis auf das NuGet-Paket `OrchardCore.Localization.Core` hinzu.
 
 Die *CSPROJ*-Datei enthält nun eine Zeile, die der folgenden Zeile ähnelt (die Versionsnummer kann davon abweichen):
 
@@ -296,7 +296,7 @@ Dieses Beispiel beruht auf einer ASP.NET Core MVC-Anwendung, die aus einer Visua
 
 ### <a name="referencing-the-package"></a>Verweisen auf das Paket
 
-Fügen Sie einen Verweis auf das NuGet-Paket `OrchardCore.Localization.Core` hinzu. Dieses ist auf [MyGet](https://www.myget.org/) unter der Paketquelle https://www.myget.org/F/orchardcore-preview/api/v3/index.json verfügbar.
+Fügen Sie einen Verweis auf das NuGet-Paket `OrchardCore.Localization.Core` hinzu.
 
 Die *CSPROJ*-Datei enthält nun eine Zeile, die der folgenden Zeile ähnelt (die Versionsnummer kann davon abweichen):
 

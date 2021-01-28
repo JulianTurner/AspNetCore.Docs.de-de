@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
-ms.openlocfilehash: 95ac4784634d38add5e28644d42b0182e15c6de9
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 192784b4f2cb3b80511814de4f777c4a49fc594b
+ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93060026"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98710736"
 ---
 # <a name="choose-between-aspnet-4x-and-aspnet-core"></a>Wählen zwischen ASP.NET 4.x und ASP.NET Core
 
@@ -56,7 +56,7 @@ Weitere Informationen über Unterstützung für ASP.NET Core 2.x in .NET Framewo
 
 ## <a name="aspnet-core-scenarios"></a>ASP.NET Core-Szenarien
 
-* [Websites](xref:tutorials/first-mvc-app/index)
+* [Websites](xref:tutorials/first-mvc-app/start-mvc)
 * [APIs](xref:tutorials/first-web-api)
 * [Echtzeit](xref:signalr/introduction)
 * [Bereitstellen einer ASP.NET Core-App in Azure](/azure/app-service/app-service-web-get-started-dotnet)

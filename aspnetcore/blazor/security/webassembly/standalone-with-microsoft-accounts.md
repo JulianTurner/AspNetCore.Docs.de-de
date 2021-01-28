@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
-ms.openlocfilehash: 49f15e3e0d68ec475bb4c9a047d6c5e37d314a42
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 268debd51b6828aad0bcfe917bdf95b691ac7365
+ms.sourcegitcommit: da5a5bed5718a9f8db59356ef8890b4b60ced6e9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97854456"
+ms.lasthandoff: 01/22/2021
+ms.locfileid: "98710516"
 ---
 # <a name="secure-an-aspnet-core-no-locblazor-webassembly-standalone-app-with-microsoft-accounts"></a>Sichern einer eigenständigen ASP.NET Core Blazor WebAssembly-App mit Microsoft-Konten
 
@@ -225,6 +225,7 @@ Weitere Informationen finden Sie in den folgenden Abschnitten des Artikels zu *z
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * <xref:blazor/security/webassembly/additional-scenarios>
+* [Erstellen einer benutzerdefinierten Version der Authentication.MSAL-JavaScript-Bibliothek](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Nicht authentifizierte oder nicht autorisierte Web-API-Anforderungen in einer App mit einem sicheren Standardclient](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * [Schnellstart: Registrieren einer Anwendung bei Microsoft Identity Platform](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)

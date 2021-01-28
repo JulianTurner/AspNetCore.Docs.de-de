@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization-extensibility
-ms.openlocfilehash: a6ef5a547e6ccba6771cdf892a9636f83d6796b1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c41ebc0506a565666963d9b4c70ed73df389c826
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93053734"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751661"
 ---
 # <a name="localization-extensibility"></a>Lokalisierungserweiterbarkeit
 
@@ -151,7 +151,7 @@ public class AppSettingsRequestCultureProvider : RequestCultureProvider
 
 Die ASP.NET Core-Lokalisierung stellt <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer> bereit. <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer> ist eine Implementierung von <xref:Microsoft.Extensions.Localization.IStringLocalizer>, die `resx` verwendet, um Lokalisierungsressourcen zu speichern.
 
-Sie sind nicht auf die Verwendung von `resx`-Dateien beschränkt. Durch Implementieren von `IStringLocalized` kann jede beliebige Datenquelle verwendet werden.
+Sie sind nicht auf die Verwendung von `resx`-Dateien beschränkt. Durch Implementieren von `IStringLocalizer` kann jede beliebige Datenquelle verwendet werden.
 
 Die folgenden Beispielprojekte implementieren <xref:Microsoft.Extensions.Localization.IStringLocalizer>: 
 

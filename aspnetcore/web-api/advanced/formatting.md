@@ -1,10 +1,10 @@
 ---
 title: Formatieren von Antwortdaten in Web-APIs in ASP.NET Core
-author: ardalis
+author: rick-anderson
 description: Informationen zum Formatieren von Antwortdaten in Web-APIS in ASP.NET Core
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 04/17/2020
+ms.date: 1/28/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/advanced/formatting
-ms.openlocfilehash: 89e3e51373db5f7cff974b7a8c69d06bedf856ca
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 5d228af00ee34e7f8ca60a5085872fdb93842367
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052512"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057498"
 ---
 # <a name="format-response-data-in-aspnet-core-web-api"></a>Formatieren von Antwortdaten in Web-APIs in ASP.NET Core
 
@@ -88,7 +88,7 @@ Eine *Aushandlung* des Inhalts findet statt, wenn in der Anforderung ein `Accept
 
 Wenn kein Formatierer gefunden wird, der die Clientanforderung erfüllen kann, führt ASP.NET Core Folgendes aus:
 
-* Es wird `406 Not Acceptable` zurückgegeben, wenn <xref:Microsoft.AspNetCore.Mvc.MvcOptions> festgelegt wurde, oder
+* Gibt `406 Not Acceptable` zurück <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ReturnHttpNotAcceptable?displayProperty=nameWithType> , wenn auf festgelegt ist `true` , oder-
 * Es wird versucht, den ersten Formatierer zu finden, der eine Antwort erzeugen kann.
 
 Wenn kein Formatierer für das angeforderte Format konfiguriert wurde, wird der erste Formatierer verwendet, der das Objekt formatieren kann. Wenn in der Anforderung kein `Accept`-Header vorhanden ist, gilt Folgendes:
@@ -132,9 +132,22 @@ Der oben stehende Code serialisiert Ergebnisse mithilfe von `XmlSerializer`.
 
 Bei Verwendung dieses Codes geben Controllermethoden das geeignete Format basierend auf dem `Accept`-Header der Anforderung zurück.
 
-### <a name="configure-systemtextjson-based-formatters"></a>Konfigurieren von System.Text.Json-basierten Formatierern
+### <a name="configure-systemtextjson-based-formatters"></a>Konfigurieren von System.Text.Jsauf basierten Formatierern
 
-Funktionen für die `System.Text.Json`-basierten Formatierer können mithilfe von `Microsoft.AspNetCore.Mvc.JsonOptions.SerializerOptions` konfiguriert werden.
+Funktionen für die- `System.Text.Json` basierten Formatierer können mithilfe von konfiguriert werden <xref:Microsoft.AspNetCore.Mvc.JsonOptions.JsonSerializerOptions?displayProperty=fullName> . Die Standard Formatierung ist "CamelCase". Der folgende markierte Code legt die PascalCase-Formatierung fest:
+
+[!code-csharp[](./formatting/5.0samples/WebAPI5PascalCase/Startup.cs?name=snippet&highlight=4-5)]
+
+Mit der folgenden Aktionsmethode wird [controllerbase. Problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) aufgerufen, um eine Antwort zu erstellen <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> :
+
+[!code-csharp[](formatting/5.0samples/WebAPI5PascalCase/Controllers/WeatherForecastController.cs?name=snippet&highlight=4)]
+
+Mit dem vorangehenden Code:
+
+  * `https://localhost:5001/WeatherForecast/temperature` gibt PascalCase zurück.
+  * `https://localhost:5001/WeatherForecast/error` gibt "CamelCase" zurück. Die Fehler Antwort lautet immer "CamelCase", auch wenn die APP das Format auf "PascalCase" festlegt. `ProblemDetails` folgt [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), das Kleinbuchstaben angibt
+
+Mit dem folgenden Code wird PascalCase festgelegt und ein benutzerdefinierter Konverter hinzugefügt:
 
 ```csharp
 services.AddControllers().AddJsonOptions(options =>
@@ -147,7 +160,7 @@ services.AddControllers().AddJsonOptions(options =>
 });
 ```
 
-Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Zum Beispiel:
+Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Beispiel:
 
 ```csharp
 public IActionResult Get()
@@ -194,7 +207,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
 });
 ```
 
-Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Zum Beispiel:
+Optionen zur Ausgabeserialisierung können aktionsweise mithilfe von `JsonResult` konfiguriert werden. Beispiel:
 
 ```csharp
 public IActionResult Get()
@@ -226,7 +239,7 @@ Bei Verwendung dieses Codes sollten Controllermethoden das geeignete Format basi
 
 ### <a name="specify-a-format"></a>Angeben eines Formats
 
-Um die Antwortformate einzuschränken, wenden Sie den [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) Filter an. Wie die [Filters](xref:mvc/controllers/filters)meisten Filter `[Produces]` können auch auf Aktion, Controller oder globaler Bereich angewendet werden:
+Um die Antwortformate einzuschränken, wenden Sie den [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) Filter an. Wie die [](xref:mvc/controllers/filters)meisten Filter `[Produces]` können auch auf Aktion, Controller oder globaler Bereich angewendet werden:
 
 [!code-csharp[](./formatting/3.0sample/Controllers/WeatherForecastController.cs?name=snippet)]
 
@@ -239,7 +252,7 @@ Weitere Informationen finden Sie unter [Filter](xref:mvc/controllers/filters).
 
 ### <a name="special-case-formatters"></a>Formatierer für besondere Fälle
 
-Einige besondere Fälle werden mithilfe von integrierten Formatierungsprogrammen implementiert. Standardmäßig werden `string`-Rückgabetypen als *text/plain* formatiert (bzw. als *text/html* , wenn sie über den `Accept`-Header angefordert werden). Dieses Verhalten kann durch Entfernen von <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter> gelöscht werden. Formatierer werden in der `ConfigureServices`-Methode entfernt. Aktionen mit einem Modellobjekt-Rückgabetyp geben `null` zurück, wenn der Rückgabewert `204 No Content` lautet. Dieses Verhalten kann durch Entfernen von <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter> gelöscht werden. Der folgende Code entfernt `StringOutputFormatter` und `HttpNoContentOutputFormatter`.
+Einige besondere Fälle werden mithilfe von integrierten Formatierungsprogrammen implementiert. Standardmäßig werden `string`-Rückgabetypen als *text/plain* formatiert (bzw. als *text/html*, wenn sie über den `Accept`-Header angefordert werden). Dieses Verhalten kann durch Entfernen von <xref:Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter> gelöscht werden. Formatierer werden in der `ConfigureServices`-Methode entfernt. Aktionen mit einem Modellobjekt-Rückgabetyp geben `null` zurück, wenn der Rückgabewert `204 No Content` lautet. Dieses Verhalten kann durch Entfernen von <xref:Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter> gelöscht werden. Der folgende Code entfernt `StringOutputFormatter` und `HttpNoContentOutputFormatter`.
 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](./formatting/3.0sample/StartupStringOutputFormatter.cs?name=snippet)]
@@ -250,7 +263,7 @@ Einige besondere Fälle werden mithilfe von integrierten Formatierungsprogrammen
 
 Ohne den `StringOutputFormatter` formatiert der integrierte JSON-Formatierer `string`-Rückgabetypen. Wenn der integrierte JSON-Formatierer entfernt wird und ein XML-Formatierer verfügbar ist, formatiert der XML-Formatierer `string`-Rückgabetypen. Andernfalls geben `string`-Rückgabetypen `406 Not Acceptable` zurück.
 
-Ohne `HttpNoContentOutputFormatter` werden NULL-Objekte mithilfe des konfigurierten Formatierungsprogramms formatiert. Zum Beispiel:
+Ohne `HttpNoContentOutputFormatter` werden NULL-Objekte mithilfe des konfigurierten Formatierungsprogramms formatiert. Beispiel:
 
 * Der JSON-Formatierer gibt eine Antwort mit dem Text `null` zurück.
 * Der XML-Formatierer gibt ein leeres XML-Element mit festgelegtem Attribut `xsi:nil="true"` zurück.
@@ -262,7 +275,7 @@ Clients können in der URL ein bestimmtes Format anfordern, beispielsweise folge
 * In der Abfragezeichenfolge oder als Teil des Pfads.
 * Durch Verwendung einer formatspezifischen Dateierweiterung wie „.xml“ oder „.json“.
 
-Die Zuordnung des Anforderungspfads sollte in der Route angegeben werden, die die API verwendet. Zum Beispiel:
+Die Zuordnung des Anforderungspfads sollte in der Route angegeben werden, die die API verwendet. Beispiel:
 
 [!code-csharp[](./formatting/sample/Controllers/ProductsController.cs?name=snippet)]
 

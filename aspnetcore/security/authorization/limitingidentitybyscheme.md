@@ -18,14 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: a5f2dff7b0e0d4f209ba445b2efb6fb261cbaab1
-ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
+ms.openlocfilehash: c4cbec1b829fb8fd47f7b6924b6870bd5dd7097d
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94464015"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057303"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>Autorisieren mit einem bestimmten Schema in ASP.net Core
+
+Eine Einführung in die Authentifizierungs Schemas in ASP.net Core finden Sie unter [Authentifizierungsschema](xref:security/authentication/index#authentication-scheme).
 
 In einigen Szenarien, z. b. Single-Page-Anwendungen (Spas), ist es üblich, mehrere Authentifizierungsmethoden zu verwenden. Beispielsweise kann die APP die cookie -basierte Authentifizierung für die Anmeldung und die JWT-Träger Authentifizierung für JavaScript-Anforderungen verwenden. In einigen Fällen verfügt die APP möglicherweise über mehrere Instanzen eines Authentifizierungs Handlers. Beispielsweise zwei cookie Handler, bei denen eine eine grundlegende Identität enthält und eine erstellt wird, wenn eine Multi-Factor Authentication (MFA) ausgelöst wurde. MFA kann ausgelöst werden, da der Benutzer einen Vorgang angefordert hat, der zusätzliche Sicherheit erfordert. Weitere Informationen zum Erzwingen von MFA, wenn ein Benutzer eine Ressource anfordert, für die MFA erforderlich ist, finden Sie im Abschnitt "GitHub-Problem [Schutz" mit MFA](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195).
 

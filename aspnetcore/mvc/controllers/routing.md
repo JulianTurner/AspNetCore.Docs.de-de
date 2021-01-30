@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 44c507fb5e0ff4477a84bfc1e4d0c62180c8dd37
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 04ece9628265135efd0dd92d29c8b14fc897329e
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252837"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057355"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -120,7 +120,7 @@ Herkömmliches Routing wird mit Controllern und Ansichten verwendet. Die `defaul
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
-ist ein Beispiel für *herkömmliches Routing*. Es wird als *herkömmliches Routing* bezeichnet, da es eine *Konvention* für URL-Pfade festlegt:
+Das vorangehende Beispiel ist ein Beispiel für eine *konventionelle Route*. Es wird als *herkömmliches Routing* bezeichnet, da es eine *Konvention* für URL-Pfade festlegt:
 
 * Das erste Pfad Segment, `{controller=Home}` , wird dem Controller Namen zugeordnet.
 * Das zweite Segment, `{action=Index}` , wird dem [Aktions](#action) Namen zugeordnet.
@@ -351,7 +351,7 @@ Beachten Sie den folgenden Controller:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet)]
 
-Im obigen Code:
+Für den Code oben gilt:
 
 * Jede Aktion enthält das- `[HttpGet]` Attribut, das die Übereinstimmung von HTTP-GET-Anforderungen einschränkt.
 * Die `GetProduct` Aktion enthält die `"{id}"` Vorlage und `id` wird daher an die `"api/[controller]"` Vorlage auf dem Controller angehängt. Die Methoden Vorlage ist `"api/[controller]/"{id}""` . Daher entspricht diese Aktion nur Get-Anforderungen für das Formular `/api/test2/xyz` , `/api/test2/123` , `/api/test2/{any string}` usw.
@@ -430,11 +430,11 @@ Routenvorlagen, die auf eine Aktion angewendet werden, die mit einem `/` oder `~
 
 In der folgenden Tabelle werden die `[Route]` Attribute im vorangehenden Code erläutert:
 
-| Attribut               | Kombiniert mit `[Route("Home")]` | Definiert die Routen Vorlage. |
+| attribute               | Kombiniert mit `[Route("Home")]` | Definiert die Routen Vorlage. |
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Ja | `"Home"` |
 | `[Route("Index")]` | Ja | `"Home/Index"` |
-| `[Route("/")]` | **Nein** | `""` |
+| `[Route("/")]` | **No** | `""` |
 | `[Route("About")]` | Ja | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -489,7 +489,7 @@ Zur einfacheren Unterstützung unterstützen Attribut Routen die *Tokenersetzung
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
-Im obigen Code:
+Für den Code oben gilt:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
@@ -628,7 +628,7 @@ Sehen Sie sich beispielsweise den folgenden Controller an:
 
 [!code-csharp[](routing/samples/3.x/nsrc/Controllers/UsersController.cs)]
 
-Im obigen Code:
+Für den Code oben gilt:
 
 * Die Basis `namespace` ist `My.Application` .
 * Der vollständige Name des vorangehenden Controllers ist `My.Application.Admin.Controllers.UsersController` .

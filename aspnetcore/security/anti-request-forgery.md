@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/anti-request-forgery
-ms.openlocfilehash: 197954965ee57b2a44ad0217d79ba142114e7df6
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 3bb3c059eafa8e948fe2e719207927c009902e59
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060845"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057446"
 ---
 # <a name="prevent-cross-site-request-forgery-xsrfcsrf-attacks-in-aspnet-core"></a>Verhindern von Angriffen für Website übergreifende Anforderungs Fälschung (XSRF/CSRF) in ASP.net Core
 
@@ -91,7 +91,7 @@ Wenn ein Benutzer sich mit seinem Benutzernamen und Kennwort authentifiziert, wi
 
 ### <a name="token-based-authentication"></a>Tokenbasierte Authentifizierung
 
-Wenn ein Benutzer authentifiziert wird, wird ein Token ausgestellt (kein antifälschungstoken). Das Token enthält Benutzerinformationen in Form von [Ansprüchen](/dotnet/framework/security/claims-based-identity-model) oder ein Verweis Token, das die APP auf den Benutzer Zustand verweist, der in der APP verwaltet wird. Wenn ein Benutzer versucht, auf eine Ressource zuzugreifen, die eine Authentifizierung erfordert, wird das Token mit einem zusätzlichen Autorisierungs Header als bearertoken an die APP gesendet. Dadurch wird die APP zustandslos. In jeder nachfolgenden Anforderung wird das Token in der Anforderung für die serverseitige Validierung übermittelt. Dieses Token ist nicht *verschlüsselt* . Sie ist *codiert* . Auf dem Server wird das Token decodiert, um auf seine Informationen zuzugreifen. Um das Token für nachfolgende Anforderungen zu senden, speichern Sie das Token im lokalen Speicher des Browsers. Machen Sie sich keine Gedanken über das Sicherheitsrisiko von CSRF, wenn das Token im lokalen Speicher des Browsers gespeichert wird. Csrf ist ein Problem, wenn das Token in einer gespeichert wird cookie . Weitere Informationen finden Sie im GitHub Issue [Spa-Codebeispiel für das Hinzufügen von zwei cookie s](https://github.com/dotnet/AspNetCore.Docs/issues/13369).
+Wenn ein Benutzer authentifiziert wird, wird ein Token ausgestellt (kein antifälschungstoken). Das Token enthält Benutzerinformationen in Form von [Ansprüchen](/dotnet/framework/security/claims-based-identity-model) oder ein Verweis Token, das die APP auf den Benutzer Zustand verweist, der in der APP verwaltet wird. Wenn ein Benutzer versucht, auf eine Ressource zuzugreifen, die eine Authentifizierung erfordert, wird das Token mit einem zusätzlichen Autorisierungs Header als bearertoken an die APP gesendet. Dadurch wird die APP zustandslos. In jeder nachfolgenden Anforderung wird das Token in der Anforderung für die serverseitige Validierung übermittelt. Dieses Token ist nicht *verschlüsselt*. Sie ist *codiert*. Auf dem Server wird das Token decodiert, um auf seine Informationen zuzugreifen. Um das Token für nachfolgende Anforderungen zu senden, speichern Sie das Token im lokalen Speicher des Browsers. Machen Sie sich keine Gedanken über das Sicherheitsrisiko von CSRF, wenn das Token im lokalen Speicher des Browsers gespeichert wird. Csrf ist ein Problem, wenn das Token in einer gespeichert wird cookie . Weitere Informationen finden Sie im GitHub Issue [Spa-Codebeispiel für das Hinzufügen von zwei cookie s](https://github.com/dotnet/AspNetCore.Docs/issues/13369).
 
 ### <a name="multiple-apps-hosted-at-one-domain"></a>Mehrere apps, die in einer Domäne gehostet werden
 
@@ -488,6 +488,10 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
+
+## <a name="windows-authentication-and-antiforgery-no-loccookies"></a>Windows-Authentifizierung und- cookie Antifälschung
+
+Wenn Sie die Windows-Authentifizierung verwenden, müssen Anwendungs Endpunkte auf die gleiche Weise wie für s vor CSRF-Angriffen geschützt werden cookie .  Der Browser sendet den Authentifizierungs Kontext implizit an den Server, weshalb Endpunkte vor CSRF-Angriffen geschützt werden müssen.
 
 ## <a name="extend-antiforgery"></a>Antifälschung erweitern
 

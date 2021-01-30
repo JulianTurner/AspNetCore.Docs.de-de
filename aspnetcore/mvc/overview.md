@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 4f0e98057c03769a672ef350cc3ec724a4f7e721
-ms.sourcegitcommit: fe5a287fa6b9477b130aa39728f82cdad57611ee
+ms.openlocfilehash: 642a7b26a3ba0a79a35437a5c19ee0be63a367af
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431056"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057316"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>Übersicht über ASP.NET Core MVC
 
@@ -67,13 +67,13 @@ Das ASP.NET Core MVC-Framework ist ein einfaches, äußerst testfähiges Open-So
 
 ASP.NET Core MVC stellt eine auf Mustern basierte Methode zum Entwickeln dynamischer Websites dar, die eine saubere Trennung von Belangen ermöglicht. Es ermöglicht Ihnen die vollständige Kontrolle über das Markup, unterstützt eine TDD-freundliche Entwicklung und verwendet die aktuellsten Webstandards.
 
-## <a name="features"></a>Funktionen
+## <a name="features"></a>Features
 
 Zu ASP.NET Core MVC gehören folgende Elemente:
 
 * [Routing](#routing)
-* [Modell Bindung](#model-binding)
-* [Modell Validierung](#model-validation)
+* [Modellbindung](#model-binding)
+* [Modellvalidierung](#model-validation)
 * [Dependency Injection](../fundamentals/dependency-injection.md)
 * [Filter](#filters)
 * [Bereiche](#areas)
@@ -88,7 +88,7 @@ Zu ASP.NET Core MVC gehören folgende Elemente:
 
 ASP.NET Core MVC baut auf dem [Routing von ASP.NET Core](../fundamentals/routing.md) auf, einer leistungsstarken URL-Zuordnungskomponente, mit der Sie Anwendungen mit verständlichen und suchbaren URLs erstellen können. Damit können Sie die URL-Benennungsmuster für Ihre Anwendung definieren, die sich für die Suchmaschinenoptimierung (SEO) und die Linkgenerierung eignen, ohne dass die Organisation der Dateien auf Ihrem Webserver berücksichtigt werden muss. Sie können die Routen mithilfe einer geeigneten Syntax für Routenvorlagen definieren, die Routenwerteinschränkungen, Standardwerte sowie optionale Werte unterstützt.
 
-Mit dem *auf Konventionen basierten Routing* können Sie global definieren, welche URL-Formate Ihre Anwendung akzeptiert, und wie diese Formate einer bestimmten Aktionsmethode auf dem angegebenen Controller zugeordnet werden. Wird eine eingehende Anforderung empfangen, analysiert die Routingengine die URL und vergleicht sie mit einer der definierten URL-Formate. Anschließend wird die zugeordnete Aktionsmethode des Controllers aufgerufen.
+Das *auf der Konvention basierende Routing* ermöglicht es Ihnen, die URL-Formate global zu definieren, die von der Anwendung akzeptiert werden, und zu erfahren, wie die einzelnen Formate einer bestimmten Aktionsmethode auf einem bestimmten Controller zugeordnet werden. Wird eine eingehende Anforderung empfangen, analysiert die Routingengine die URL und vergleicht sie mit einer der definierten URL-Formate. Anschließend wird die zugeordnete Aktionsmethode des Controllers aufgerufen.
 
 ```csharp
 routes.MapRoute(name: "Default", template: "{controller=Home}/{action=Index}/{id?}");
@@ -269,5 +269,5 @@ Weitere Informationen finden Sie unter <xref:mvc/compatibility-version>.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. ( *Wird von Microsoft nicht verwaltet oder unterstützt.* )
+* [Mytesting. aspnetcore. MVC-fließende Test Bibliothek für ASP.net Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): stark typisierte unittestbibliothek, die eine fließende Oberfläche zum Testen von MVC-und Web-API-apps bereitstellt. (*Wird von Microsoft nicht verwaltet oder unterstützt.* )
 * <xref:blazor/components/prerendering-and-integration>

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: 6a70183ce4b1a129ef213300473b233a5ef822f9
-ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
+ms.openlocfilehash: e4cf10d09c1629afb298aef0c2b86ad3bf7b646c
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94463885"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057368"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Schlüsselspeicher Anbieter in ASP.net Core
 
@@ -133,13 +133,13 @@ Weitere Informationen finden Sie unter den folgenden Themen:
 
 **Gilt nur für Windows-bereit Stellungen.**
 
-Manchmal verfügt die APP möglicherweise nicht über Schreibzugriff auf das Dateisystem. Stellen Sie sich ein Szenario vor, in dem eine App als virtuelles Dienst Konto (z. b. die Identität des App-Pools für *w3wp.exe* ) ausgeführt wird. In diesen Fällen kann der Administrator einen Registrierungsschlüssel bereitstellen, der über die Dienst Konto Identität zugänglich ist. Nennen Sie die [persistkeystoregistry](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) -Erweiterungsmethode, wie unten gezeigt. Geben Sie einen [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) an, der auf den Speicherort verweist, an dem kryptografische Schlüssel gespeichert werden sollen:
+Manchmal verfügt die APP möglicherweise nicht über Schreibzugriff auf das Dateisystem. Stellen Sie sich ein Szenario vor, in dem eine App als virtuelles Dienst Konto (z. b. die Identität des App-Pools für *w3wp.exe*) ausgeführt wird. In diesen Fällen kann der Administrator einen Registrierungsschlüssel bereitstellen, der über die Dienst Konto Identität zugänglich ist. Nennen Sie die [persistkeystoregistry](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.persistkeystoregistry) -Erweiterungsmethode, wie unten gezeigt. Geben Sie einen [RegistryKey](/dotnet/api/microsoft.aspnetcore.dataprotection.repositories.registryxmlrepository.registrykey) an, der auf den Speicherort verweist, an dem kryptografische Schlüssel gespeichert werden sollen:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddDataProtection()
-        .PersistKeysToRegistry(Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Sample\keys"));
+        .PersistKeysToRegistry(Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Sample\keys", true));
 }
 ```
 

@@ -430,11 +430,11 @@ Routenvorlagen, die auf eine Aktion angewendet werden, die mit einem `/` oder `~
 
 In der folgenden Tabelle werden die `[Route]` Attribute im vorangehenden Code erläutert:
 
-| attribute               | Kombiniert mit `[Route("Home")]` | Definiert die Routen Vorlage. |
+| Attribut               | Kombiniert mit `[Route("Home")]` | Definiert die Routen Vorlage. |
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | Ja | `"Home"` |
 | `[Route("Index")]` | Ja | `"Home/Index"` |
-| `[Route("/")]` | **No** | `""` |
+| `[Route("/")]` | **Nein** | `""` |
 | `[Route("About")]` | Ja | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>

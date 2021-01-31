@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 04ece9628265135efd0dd92d29c8b14fc897329e
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: 0863b5758f33b720636f3b927fcb9014cd106c21
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057355"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217543"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>Routing zu Controlleraktionen in ASP.NET Core
 
@@ -826,7 +826,7 @@ Das [[Area]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) -Attribut bezeichnet e
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/UsersController.cs)]
 
-Der Namespace der einzelnen Controller wird hier aus Gründen der Vollständigkeit angezeigt. Wenn die vorangehenden Controller denselben Namespace verwenden, wird ein Compilerfehler generiert. Klassennamespaces haben keine Auswirkungen auf das MVC-Routing.
+Der Namespace der einzelnen Controller wird hier aus Gründen der Vollständigkeit angezeigt. Wenn die vorhergehenden Controller denselben Namespace verwendet haben, wird ein Compilerfehler generiert. Klassennamespaces haben keine Auswirkungen auf das MVC-Routing.
 
 Die ersten beiden Controller gehören zu Bereichen und werden können nur abgleichen, wenn ihr jeweiliger Bereichsname vom `area`-Routenwert bereitgestellt wird. Der dritte Controller gehört keinem Bereich an und kann nur abgleichen, wenn vom Routing kein Wert für `area` bereitgestellt wird.
 

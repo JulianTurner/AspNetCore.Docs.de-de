@@ -17,22 +17,22 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/application-model
-ms.openlocfilehash: a7a654eb43c0dbf375af911d8d5353ac4c04a825
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: cf16536284ee9c88913257607df837ad6e50ea2c
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93060936"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217374"
 ---
 # <a name="work-with-the-application-model-in-aspnet-core"></a>Arbeiten mit dem Anwendungsmodell in ASP.NET Core
 
 Von [Steve Smith](https://ardalis.com/)
 
-ASP.NET Core MVC definiert ein *Anwendungsmodell* , in dem die Komponenten einer MVC-App dargestellt werden. Sie können dieses Modell lesen und bearbeiten, um die Verhaltensweise von MVC-Elementen zu ändern. MVC folgt standardmäßig bestimmten Konventionen, um zu ermitteln, welche Klassen als Controller betrachtet werden, welche Methoden in diesen Klassen Aktionen darstellen und wie sich Parameter und das Routing verhalten. Sie können dieses Verhalten an die Anforderungen Ihrer App anpassen, indem Sie Ihre eigenen Konventionen schaffen und diese global oder in Form von Attributen anwenden.
+ASP.NET Core MVC definiert ein *Anwendungsmodell*, in dem die Komponenten einer MVC-App dargestellt werden. Sie können dieses Modell lesen und bearbeiten, um die Verhaltensweise von MVC-Elementen zu ändern. MVC folgt standardmäßig bestimmten Konventionen, um zu ermitteln, welche Klassen als Controller betrachtet werden, welche Methoden in diesen Klassen Aktionen darstellen und wie sich Parameter und das Routing verhalten. Sie können dieses Verhalten an die Anforderungen Ihrer App anpassen, indem Sie Ihre eigenen Konventionen schaffen und diese global oder in Form von Attributen anwenden.
 
 ## <a name="models-and-providers"></a>Modelle und Anbieter
 
-Das ASP.NET Core-MVC-Anwendungsmodell enthält abstrakte Schnittstellen und konkrete Implementierungsklassen, die eine MVC-Anwendung beschreiben. Dieses Modell resultiert aus der MVC-Ermittlung von Controllern, Aktionen, Aktionsparametern, Routen und Filtern der App gemäß den Standardkonventionen. Wenn Sie mit dem Anwendungsmodell arbeiten, können Sie Ihre App so ändern, dass sie verschiedenen Konventionen des MVC-Standardverhaltens folgt. Die Parameter, Namen, Routen und Filter werden alle als Konfigurationsdaten für Aktionen und Controller verwendet.
+Das ASP.net Core MVC-Anwendungsmodell umfasst sowohl abstrakte Schnittstellen als auch konkrete Implementierungsklassen, die eine MVC-Anwendung beschreiben. Dieses Modell resultiert aus der MVC-Ermittlung von Controllern, Aktionen, Aktionsparametern, Routen und Filtern der App gemäß den Standardkonventionen. Wenn Sie mit dem Anwendungsmodell arbeiten, können Sie Ihre App so ändern, dass sie verschiedenen Konventionen des MVC-Standardverhaltens folgt. Die Parameter, Namen, Routen und Filter werden alle als Konfigurationsdaten für Aktionen und Controller verwendet.
 
 Das ASP.NET Core-MVC-Anwendungsmodell weist folgende Struktur auf:
 

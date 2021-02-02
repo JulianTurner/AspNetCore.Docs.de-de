@@ -4,7 +4,7 @@ author: mjrousos
 description: Hier erfahren Sie mehr zur Authentifizierung in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2020
+ms.date: 1/24/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/index
-ms.openlocfilehash: e9e4ca11d20557666c75b84e56af825d002df0f1
-ms.sourcegitcommit: fbd5427293d9ecccc388bd5fd305c2eb8ada7281
+ms.openlocfilehash: 72036e9c4c92ee5dd82ac4a67e766fb0e5c8f924
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94464002"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057290"
 ---
 # <a name="overview-of-aspnet-core-authentication"></a>Übersicht über die ASP.NET Core-Authentifizierung
 
@@ -62,7 +62,19 @@ Die Authentifizierungsmiddleware wird in `Startup.Configure` durch Aufrufen der 
 
 ## <a name="authentication-concepts"></a>Authentifizierungskonzepte
 
+Die Authentifizierung ist verantwortlich für die Bereitstellung der <xref:System.Security.Claims.ClaimsPrincipal>-Klasse für die Autorisierung, um Berechtigungsentscheidungen zu treffen. Es gibt mehrere Ansätze zum Thema Authentifizierungsschema, um auszuwählen, welcher Authentifizierungshandler für die Erstellung der richtigen Ansprüche zuständig ist:
+
+  * [Das Authentifizierungsschema](xref:security/authorization/limitingidentitybyscheme), das auch im nächsten Abschnitt erläutert wird
+  * Das Standardauthentifizierungsschema, das im nächsten Abschnitt erläutert wird
+  * Direktes Festlegen von [HttpContext.User](xref:Microsoft.AspNetCore.Http.HttpContext.User)
+
+Es gibt keine automatische Überprüfung von Schemas. Wenn das Standardschema nicht angegeben wird, muss das Schema im Autorisierungsattribut angegeben werden. andernfalls wird der folgende Fehler ausgelöst:
+
+  InvalidOperationException: No authenticationScheme was specified, and there was no DefaultAuthenticateScheme found. The default schemes can be set using either AddAuthentication(string defaultScheme) or AddAuthentication(Action&lt;AuthenticationOptions&gt; configureOptions) (Es wurde kein authenticationScheme angegeben, und DefaultAuthenticateScheme wurde nicht gefunden. Die Standardschemas können entweder mit AddAuthentication(Zeichenfolge defaultScheme) oder AddAuthentication(Aktion<AuthenticationOptions> configureOptions) festgelegt werden.)
+
 ### <a name="authentication-scheme"></a>Authentifizierungsschema
+
+Das [Authentifizierungsschema](xref:security/authorization/limitingidentitybyscheme) kann auswählen, welcher Authentifizierungshandler zum Generieren der richtigen Ansprüche verantwortlich ist. Weitere Informationen finden Sie unter [Autorisieren mit einem bestimmten Schema](xref:security/authorization/limitingidentitybyscheme).
 
 Ein Authentifizierungsschema ist ein Name, der Folgendem entspricht:
 

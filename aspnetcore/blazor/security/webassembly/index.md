@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 2df938f3ace47472536020f9848e954fc4446f15
-ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
+ms.openlocfilehash: 0b555ad7befe882c4ffd06e2505a9edc1263eee2
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/21/2021
-ms.locfileid: "98658585"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057082"
 ---
-# <a name="secure-aspnet-core-no-locblazor-webassembly"></a>Schützen der Blazor WebAssembly von ASP.NET Core
+# <a name="secure-aspnet-core-blazor-webassembly"></a>Schützen der Blazor WebAssembly von ASP.NET Core
 
 Von [Javier Calvarro Nelson](https://github.com/javiercn)
 
@@ -107,9 +107,17 @@ Apps fordern häufig Ansprüche für Benutzer basierend auf einem Web-API-Aufruf
 * [Zusätzliche Szenarios: Anpassen des Benutzers](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
 * <xref:blazor/security/webassembly/aad-groups-roles>
 
-## <a name="azure-app-service-on-linux-with-no-locidentity-server"></a>Azure App Service für Linux mit Identity Server
+## <a name="azure-app-service-on-linux-with-identity-server"></a>Azure App Service für Linux mit Identity Server
 
 Geben Sie den Zertifikataussteller explizit an, wenn Sie eine Bereitstellung auf Azure App Service für Linux mit Identity Server durchführen. Weitere Informationen finden Sie unter <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+
+## <a name="windows-authentication"></a>Windows-Authentifizierung
+
+Es wird nicht empfohlen, die Windows-Authentifizierung mit Blazor WebAssembly oder mit einem anderen SPA-Framework zu verwenden. Wir empfehlen die Verwendung von tokenbasierten Protokollen anstelle der Windows-Authentifizierung, z. B. OIDC mit Active Directory-Verbunddiensten (ADFS).
+
+Wenn die Windows-Authentifizierung mit Blazor WebAssembly oder mit einem anderen SPA-Framework verwendet wird, sind weitere Maßnahmen nötig, um die App vor Token für siteübergreifende Anforderungsfälschung (CSRF) zu schützen. Die gleichen Probleme, die für cookies zutreffen, gelten auch für die Windows-Authentifizierung mit dem Zusatz, dass die Windows-Authentifizierung keine Mechanismen bietet, um die ursprungsübergreifende Freigabe des Authentifizierungskontexts zu verhindern. Apps, die die Windows-Authentifizierung ohne zusätzlichen Schutz vor siteübergreifender Anforderungsfälschung verwenden, sollten zumindest auf das Intranet einer Organisation beschränkt sein und nicht im Internet verwendet werden.
+
+Weitere Informationen finden Sie unter <xref:security/anti-request-forgery>.
 
 ## <a name="implementation-guidance"></a>Implementierungsleitfaden
 

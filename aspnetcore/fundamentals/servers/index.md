@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 49e299ed00ea0e5d54c1ba795971da379cd5b695
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 2acddd212639ac0a82b3c46f2225ff66d0999dd0
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253136"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217556"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Webserverimplementierungen in ASP.NET Core
 
@@ -32,31 +32,13 @@ Von [Tom Dykstra](https://github.com/tdykstra), [Steve Smith](https://ardalis.co
 
 Eine ASP.NET Core-App wird über eine In-Process-Implementierung eines HTTP-Servers ausgeführt. Die Serverimplementierung lauscht auf HTTP-Anforderungen und leitet diese als [Anforderungsfunktionen](xref:fundamentals/request-features), die in einer <xref:Microsoft.AspNetCore.Http.HttpContext>-Klasse zusammengefasst werden, an die App weiter.
 
-## <a name="kestrel"></a>Kestrel
-
-Kestrel ist der Standardwebserver, der für ASP.NET Core-Projektvorlagen erforderlich ist.
-
-Verwendung von Kestrel:
-
-* Eigenständig als Edge-Server zur Verarbeitung von Anforderungen, die direkt aus einem Netzwerk, auch über das Internet, kommen.
-
-  ![Kestrel kommuniziert direkt und ohne Reverseproxyserver mit dem Internet](kestrel/_static/kestrel-to-internet2.png)
-
-* Mit einem *Reverseproxyserver* wie [IIS (Internetinformationsdienste)](https://www.iis.net/), [Nginx](https://nginx.org) oder [Apache](https://httpd.apache.org/). Ein Reverseproxyserver empfängt HTTP-Anforderungen aus dem Internet und leitet diese an Kestrel weiter.
-
-  ![Kestrel kommuniziert indirekt mit dem Internet über einen Reverseproxyserver wie IIS, Nginx oder Apache](kestrel/_static/kestrel-to-internet.png)
-
-Beide Hostingkonfigurationen (&mdash;mit oder ohne Reverseproxyserver&mdash;) werden unterstützt.
-
-Leitfäden zur Kestrel-Konfiguration und Informationen darüber, wann Kestrel in einer Reverseproxykonfiguration verwendet wird, finden Sie unter <xref:fundamentals/servers/kestrel>.
-
 ::: moniker range=">= aspnetcore-2.2"
 
 # <a name="windows"></a>[Windows](#tab/windows)
 
 ASP.NET Core wird mit folgendem Umfang ausgeliefert:
 
-* Ein [Kestrel-Server](xref:fundamentals/servers/kestrel) stellt die plattformübergreifende Standardimplementierung von HTTP-Servern dar.
+* Ein [Kestrel-Server](xref:fundamentals/servers/kestrel) stellt die plattformübergreifende Standardimplementierung von HTTP-Servern dar. Kestrel bietet die beste Leistung und Arbeitsspeicherauslastung, verfügt jedoch nicht über einige erweiterte Features in HTTP.sys. Weitere Informationen finden Sie unter [Kestrel im Vergleich zu HTTP.sys](#korh) in diesem Dokument.
 * IIS-HTTP-Server ist ein [In-Process-Server](#hosting-models) für IIS.
 * [HTTP.sys Server](xref:fundamentals/servers/httpsys) ist ein nur für Windows verfügbarer HTTP-Server, der auf dem [Http.sys-Kerneltreiber und der HTTP Server API](/windows/desktop/Http/http-api-start-page) basiert.
 
@@ -66,6 +48,26 @@ Wenn Sie [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-architec
 * In einem anderen Prozess als im IIS-Workerprozess (das [Out-of-Process-Hostingmodell](#hosting-models)) mit dem [Kestrel-Server](#kestrel).
 
 Das [ASP.NET Core-Modul](xref:host-and-deploy/aspnet-core-module) ist ein natives IIS-Modul, das native IIS-Anforderungen zwischen IIS und dem In-Process-IIS-HTTP-Server oder Kestrel verarbeitet. Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module>.
+
+<a name="korh"></a>
+
+## <a name="kestrel-vs-httpsys"></a>Kestrel im Vergleich zu HTTP.sys
+
+Kestrel bietet die folgenden Vorteile gegenüber HTTP.sys:
+
+  * Bessere Leistung und Arbeitsspeicherauslastung
+  * Plattformübergreifend
+  * Agilität: Entwicklung und Patchen unabhängig vom Betriebssystem
+  * Programmgesteuerte Port- und TLS-Konfiguration
+  * Erweiterbarkeit mit Möglichkeit für Protokolle wie [PPv2](https://github.com/aspnet/AspLabs/blob/master/src/ProxyProtocol/ProxyProtocol.Sample/ProxyProtocol.cs) und alternative Transporte
+
+HTTP.sys fungiert als freigegebene Kernelmoduskomponente mit den folgenden Features, die Kestrel nicht besitzt:
+
+  * Portfreigabe
+  * Windows-Authentifizierung im Kernelmodus. [Kestrel unterstützt nur die Authentifizierung im Benutzermodus](xref:security/authentication/windowsauth#kestrel).
+  * Schnelle Proxyfunktion über Warteschlangenübertragungen
+  * Direkte Dateiübertragung
+  * Zwischenspeichern von Antworten
 
 ## <a name="hosting-models"></a>Hostingmodelle
 
@@ -89,6 +91,24 @@ ASP.NET Core wird mit [Kestrel Server](xref:fundamentals/servers/kestrel) ausgel
 ---
 
 ::: moniker-end
+
+## <a name="kestrel"></a>Kestrel
+
+ Ein [Kestrel-Server](xref:fundamentals/servers/kestrel) stellt die plattformübergreifende Standardimplementierung von HTTP-Servern dar. Kestrel bietet die beste Leistung und Arbeitsspeicherauslastung, verfügt jedoch nicht über einige erweiterte Features in HTTP.sys. Weitere Informationen finden Sie unter [Kestrel im Vergleich zu HTTP.sys](#korh) in diesem Dokument.
+
+Verwendung von Kestrel:
+
+* Eigenständig als Edge-Server zur Verarbeitung von Anforderungen, die direkt aus einem Netzwerk, auch über das Internet, kommen.
+
+  ![Kestrel kommuniziert direkt und ohne Reverseproxyserver mit dem Internet](kestrel/_static/kestrel-to-internet2.png)
+
+* Mit einem *Reverseproxyserver* wie [IIS (Internetinformationsdienste)](https://www.iis.net/), [Nginx](https://nginx.org) oder [Apache](https://httpd.apache.org/). Ein Reverseproxyserver empfängt HTTP-Anforderungen aus dem Internet und leitet diese an Kestrel weiter.
+
+  ![Kestrel kommuniziert indirekt mit dem Internet über einen Reverseproxyserver wie IIS, Nginx oder Apache](kestrel/_static/kestrel-to-internet.png)
+
+Beide Hostingkonfigurationen (&mdash;mit oder ohne Reverseproxyserver&mdash;) werden unterstützt.
+
+Leitfäden zur Kestrel-Konfiguration und Informationen darüber, wann Kestrel in einer Reverseproxykonfiguration verwendet wird, finden Sie unter <xref:fundamentals/servers/kestrel>.
 
 ::: moniker range="< aspnetcore-2.2"
 
@@ -140,7 +160,7 @@ Informationen dazu, wie Apache unter Linux als Reverseproxyserver für Kestrel v
 
 ## <a name="httpsys"></a>HTTP.sys
 
-Wenn ASP.NET Core-Apps unter Windows ausgeführt werden, ist HTTP.sys eine Alternative zu Kestrel. Grundsätzlich empfiehlt sich Kestrel, um die beste Leistung zu erzielen. HTTP.sys kann in Szenarien verwendet werden, in denen die App mit dem Internet verbunden ist und erforderliche Funktionen von HTTP.sys, aber nicht von Kestrel unterstützt werden. Weitere Informationen finden Sie unter <xref:fundamentals/servers/httpsys>.
+Wenn ASP.NET Core-Apps unter Windows ausgeführt werden, ist HTTP.sys eine Alternative zu Kestrel. Kestrel wird vor HTTP.sys empfohlen, es sei denn, die App benötigt Features, die in Kestrel nicht verfügbar sind. Weitere Informationen finden Sie unter <xref:fundamentals/servers/httpsys>.
 
 ![HTTP.sys kommuniziert direkt mit dem Internet](httpsys/_static/httpsys-to-internet.png)
 

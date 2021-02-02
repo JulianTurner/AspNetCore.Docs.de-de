@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 1f22468c2c9bfb5c3c184e8686f1a8d1b486536d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e873fdd201cf0cdc809030fde30c6a8da2899861
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486069"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751554"
 ---
-# <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor-Datenbindung
+# <a name="aspnet-core-blazor-data-binding"></a>ASP.NET Core Blazor-Datenbindung
 
 Von [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27) und [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -426,7 +426,7 @@ Die folgenden Komponenten veranschaulichen die oben beschriebenen Konzepte:
 }
 ```
 
-Einen alternativen Ansatz, der sich für die arbeitsspeicherinterne und komponentenübergreifende Datenfreigabe eignet (Komponenten müssen nicht unbedingt geschachtelt sein), finden Sie im Abschnitt *In-Memory-Zustandscontainerdienst* unter <xref:blazor/state-management>.
+Einen alternativen Ansatz, der sich für die komponentenübergreifende Freigabe von Daten im Arbeitsspeicher eignet (die Komponenten müssen nicht unbedingt geschachtelt sein), finden Sie im Abschnitt *In-Memory-Zustandscontainerdienst* des Artikels <xref:blazor/state-management>.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

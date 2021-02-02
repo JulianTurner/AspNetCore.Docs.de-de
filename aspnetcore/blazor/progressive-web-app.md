@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 196e19528341e98ac06cefb08ba92f9e47d265ea
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 1706d3502dc68f1c25e0c35ba8f5dd44b55ce690
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252473"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658650"
 ---
-# <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>Erstellen progressiver Webanwendungen mit Blazor WebAssembly für ASP.NET Core
+# <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Erstellen progressiver Webanwendungen mit Blazor WebAssembly für ASP.NET Core
 
 Von [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -71,7 +71,7 @@ Im vorherigen Befehl erstellt die `-o|--output`-Option einen neuen Ordner für d
 
 Die PWA kann optional für eine App konfiguriert werden, die über die gehostete ASP.NET Core-Vorlage erstellt wurde. Das PWA-Szenario ist unabhängig vom Hostmodell.
 
-## <a name="convert-an-existing-no-locblazor-webassembly-app-into-a-pwa"></a>Konvertieren einer vorhandenen Blazor WebAssembly-App in eine PWA
+## <a name="convert-an-existing-blazor-webassembly-app-into-a-pwa"></a>Konvertieren einer vorhandenen Blazor WebAssembly-App in eine PWA
 
 In diesem Abschnitt finden Sie einen Leitfaden zum Konvertieren einer vorhandenen Blazor WebAssembly-App in eine PWA.
 
@@ -272,10 +272,20 @@ const shouldServeIndexHtml = event.request.mode === 'navigate';
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/Identity/');
+  && !event.request.url.includes('/Identity/');
 ```
 
 Wenn Sie dies nicht tun, fängt der Service Worker unabhängig von der Netzwerkkonnektivität Anforderungen für diese URLs ab und löst sie mithilfe von `/index.html` auf.
+
+Fügen Sie der Überprüfung weitere Endpunkte für externe Authentifizierungsanbieter hinzu. Im folgenden Beispiel wird der Überprüfung `/signin-google` für die Google-Authentifizierung hinzugefügt:
+
+```javascript
+const shouldServeIndexHtml = event.request.mode === 'navigate'
+  && !event.request.url.includes('/Identity/')
+  && !event.request.url.includes('/signin-google');
+```
+
+Für die Entwicklungsumgebung ist keine Aktion erforderlich. Dort werden Inhalte immer aus dem Netzwerk abgerufen.
 
 ### <a name="control-asset-caching"></a>Steuern der Zwischenspeicherung von Ressourcen
 

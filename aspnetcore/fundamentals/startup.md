@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/startup
-ms.openlocfilehash: 747b13abb0ce3fed2d1dc018c6dbf82db1ae7130
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e2825476c5fe36571b365ac5ee3c57ff4db61b87
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93052239"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658676"
 ---
 # <a name="app-startup-in-aspnet-core"></a>Anwendungsstart in ASP.NET Core
 
@@ -124,7 +124,7 @@ Rufen Sie die Hilfsmethoden `ConfigureServices` und `Configure` im Hostgenerator
 
 Verwenden Sie <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
 
-* Um Middleware am Anfang und Ende der [Configure](#the-configure-method)-Middlewarepipeline einer App zu konfigurieren, ohne `Use{Middleware}` explizit aufzurufen. `IStartupFilter` wird von ASP.NET Core verwendet, um Standardwerte am Anfang der Pipeline hinzuzufügen, ohne dass der App-Autor die Standardmiddleware explizit registrieren lassen muss. `IStartupFilter` ermöglicht im Auftrag des App-Autors einen Aufruf einer anderen Komponente `Use{Middleware}`.
+* Um Middleware am Anfang und Ende der [Configure](#the-configure-method)-Middlewarepipeline einer App zu konfigurieren, ohne `Use{Middleware}` explizit aufzurufen. `IStartupFilter` wird von ASP.NET Core verwendet, um Standardwerte am Anfang der Pipeline hinzuzufügen, ohne dass der App-Autor die Standardmiddleware explizit registrieren lassen muss. `IStartupFilter` ermöglicht einer anderen Komponente den Aufruf von `Use{Middleware}` im Auftrag des App-Autors.
 * Um eine Pipeline aus `Configure`-Methoden zu erstellen. [IStartupFilter.Configure](xref:Microsoft.AspNetCore.Hosting.IStartupFilter.Configure*) kann festlegen, dass eine Middleware vor oder nach dem Hinzufügen von Middleware durch Bibliotheken ausgeführt wird.
 
 `IStartupFilter` implementiert <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*>. Das Element empfängt einen `Action<IApplicationBuilder>` und gibt diesen zurück. Eine <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>-Schnittstelle definiert Klassen, um die Anforderungspipeline einer App zu konfigurieren. Weitere Informationen finden Sie unter [Erstellen einer Middlewarepipeline mit IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder).

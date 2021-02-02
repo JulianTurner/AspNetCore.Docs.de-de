@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 5a00bfb87b8cfe0fb3e2a832a553b8a4cd45ee6d
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: e602f29e6932280f4625ade64201ff232e02150d
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252499"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751633"
 ---
-# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>Aufrufen von .NET-Methoden von JavaScript-Funktionen in ASP.NET Core Blazor
+# <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Aufrufen von .NET-Methoden von JavaScript-Funktionen in ASP.NET Core Blazor
 
 Von [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Shashikant Rudrawadi](http://wisne.co) und [Luke Latham](https://github.com/guardrex)
 
@@ -35,6 +35,9 @@ Eine Blazor-App kann JavaScript-Funktionen über .NET-Methoden und .NET-Methoden
 In diesem Artikel wird das Aufrufen von .NET-Methoden über JavaScript behandelt. Informationen zum Aufrufen von JavaScript-Funktionen über .NET finden Sie unter <xref:blazor/call-javascript-from-dotnet>.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
+
+> [!NOTE]
+> Fügen Sie JS-Dateien (`<script>`-Tags) vor dem schließenden `</body>`-Tag in die Datei `wwwroot/index.html` (Blazor WebAssembly) oder die Datei `Pages/_Host.cshtml` (Blazor Server) ein. Stellen Sie sicher, dass JS-Dateien mit JS-Interopmethoden vor JS-Dateien des Blazor-Frameworks eingeschlossen werden.
 
 ## <a name="static-net-method-call"></a>Statischer .NET-Methodenaufruf
 

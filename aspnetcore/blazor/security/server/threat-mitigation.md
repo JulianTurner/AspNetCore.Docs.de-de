@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/threat-mitigation
-ms.openlocfilehash: d0ed36731d78d3e98aa294aca50492f0a3ac8174
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 4256e90ca5f185992a73d1e43460ca5d27159d6f
+ms.sourcegitcommit: d4836f9b7c508f51c6c4ee6d0cc719b38c1729c4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506694"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98758274"
 ---
-# <a name="threat-mitigation-guidance-for-aspnet-core-no-locblazor-server"></a>Leitfaden zur Bedrohungsabwehr für Blazor Server in ASP.NET Core
+# <a name="threat-mitigation-guidance-for-aspnet-core-blazor-server"></a>Leitfaden zur Bedrohungsabwehr für Blazor Server in ASP.NET Core
 
 Von [Javier Calvarro Nelson](https://github.com/javiercn)
 
@@ -41,7 +41,7 @@ In eingeschränkten Umgebungen wie Unternehmensnetzwerken oder Intranets:
 * treffen einige der Hinweise aus diesem Artikel nicht zu
 * rechnen sich die Implementierungskosten für einige der Hinweise aus diesem Artikel nicht, da das Sicherheitsrisiko in eingeschränkten Umgebungen gering ist.
 
-## <a name="no-locblazor-and-shared-state"></a>Blazor und freigegebener Zustand
+## <a name="blazor-and-shared-state"></a>Blazor und freigegebener Zustand
 
 [!INCLUDE[](~/blazor/includes/security/blazor-shared-state.md)]
 
@@ -306,12 +306,7 @@ JS-Interop-Interaktionen zwischen dem Client und dem Server werden in den Server
 
 Wenn auf dem Server ein Fehler auftritt, benachrichtigt das Framework den Client und beendet die Sitzung. Der Client empfängt automatisch eine Standardfehlermeldung, die in den Entwicklertools des Browsers aufgerufen werden kann.
 
-Die clientseitige Fehlermeldung enthält weder den Aufrufstapel noch Details zur Fehlerursache, die Serverprotokolle hingegen schon. Zu Entwicklungszwecken können vertrauliche Fehlerinformationen für den Client verfügbar gemacht werden, indem Sie detaillierte Fehlermeldungen aktivieren.
-
-In JavaScript werden detaillierte Fehlermeldungen wie folgt aktiviert:
-
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
-* Der Konfigurationsschlüssel `DetailedErrors` muss auf `true` festgelegt werden. Diese Einstellung können Sie in der Einstellungsdatei der App (`appsettings.json`) vornehmen. Der Schlüssel lässt sich darüber hinaus mithilfe der Umgebungsvariablen `ASPNETCORE_DETAILEDERRORS` auf den Wert `true` festlegen.
+Die clientseitige Fehlermeldung enthält weder den Aufrufstapel noch Details zur Fehlerursache, die Serverprotokolle hingegen schon. Zu Entwicklungszwecken können vertrauliche Fehlerinformationen für den Client verfügbar gemacht werden, indem Sie [detaillierte Fehlermeldungen](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors) aktivieren.
 
 > [!WARNING]
 > Das Verfügbarmachen von Fehlerinformationen für internetseitige Clients ist ein Sicherheitsrisiko, dass immer vermieden werden sollte.

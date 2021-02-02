@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 2502f43f4eaf245996827f704462ec340bbb8e07
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 53b702cddca778e06e617df3798bffb21677d36b
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252538"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751647"
 ---
-# <a name="call-javascript-functions-from-net-methods-in-aspnet-core-no-locblazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
+# <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
 
 Von [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Pranav Krishnamoorthy](https://github.com/pranavkm) und [Luke Latham](https://github.com/guardrex)
 
@@ -35,6 +35,9 @@ Eine Blazor-App kann JavaScript-Funktionen über .NET-Methoden und .NET-Methoden
 In diesem Artikel wird das Aufrufen von JavaScript-Funktionen über .NET behandelt. Weitere Informationen zum Aufrufen von .NET-Methoden über JavaScript finden Sie unter <xref:blazor/call-dotnet-from-javascript>.
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
+
+> [!NOTE]
+> Fügen Sie JS-Dateien (`<script>`-Tags) vor dem schließenden `</body>`-Tag in die Datei `wwwroot/index.html` (Blazor WebAssembly) oder die Datei `Pages/_Host.cshtml` (Blazor Server) ein. Stellen Sie sicher, dass JS-Dateien mit JS-Interopmethoden vor JS-Dateien des Blazor-Frameworks eingeschlossen werden.
 
 Verwenden Sie die <xref:Microsoft.JSInterop.IJSRuntime>-Abstraktion, um JavaScript über .NET aufzurufen. Fügen Sie die <xref:Microsoft.JSInterop.IJSRuntime>-Abstraktion in Ihre Komponente ein, um JS Interop-Aufrufe auszugeben. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> akzeptiert einen Bezeichner für die JavaScript-Funktion, die Sie aufrufen möchten, sowie eine beliebige Anzahl JSON-serialisierbarer Argumente. Der Funktionsbezeichner ist relativ zum globalen Bereich (`window`). Wenn Sie `window.someScope.someFunction` aufrufen möchten, lautet der Bezeichner `someScope.someFunction`. Die Funktion muss nicht registriert werden, bevor sie aufgerufen wird. Der Rückgabetyp `T` muss ebenfalls JSON-serialisierbar sein. `T` sollte mit dem .NET-Typ übereinstimmen, der dem zurückgegebenen JSON-Typ am ehesten entspricht.
 
@@ -170,7 +173,7 @@ Verwenden Sie <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?d
 * JavaScript-Funktionen, die [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) oder [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) zurückgeben
 * Wenn .NET nicht erforderlich ist, um das Ergebnis eines JavaScript-Aufrufs zu lesen
 
-## <a name="detect-when-a-no-locblazor-server-app-is-prerendering"></a>Erkennen, wenn für eine Blazor Server-App ein Prerendering durchgeführt wird
+## <a name="detect-when-a-blazor-server-app-is-prerendering"></a>Erkennen, wenn für eine Blazor Server-App ein Prerendering durchgeführt wird
  
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
@@ -505,7 +508,7 @@ Weitere Informationen finden Sie unter [Circular references are not supported, t
 
 ::: moniker range=">= aspnetcore-5.0"
 
-## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor-JavaScript-Isolation und Objektverweise
+## <a name="blazor-javascript-isolation-and-object-references"></a>Blazor-JavaScript-Isolation und Objektverweise
 
 Blazor aktiviert JavaScript-Isolierung in [JavaScript-Standardmodulen](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript-Isolierung bietet die folgenden Vorteile:
 

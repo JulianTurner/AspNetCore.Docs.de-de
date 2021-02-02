@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: ad9920ccd830b93d083f3c5ede03702164842b6e
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: e65983fb1a440057283111ea5a79a79b765607b7
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97753113"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751681"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>Fehlerbehandlung in ASP.NET Core
 
@@ -68,7 +68,14 @@ Im folgenden Beispiel fügt <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerE
 
 Die Razor Pages-App-Vorlage stellt im Ordner *Pages* eine Fehlerseite ( *.cshtml*) und <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>-Klasse (`ErrorModel`) bereit. Die Projektvorlage einer MVC-App enthält die Aktionsmethode `Error` und die Ansicht „Error“ im Home-Controller.
 
-Markieren Sie die Aktionsmethode für die Fehlerbehandlung nicht mit HTTP-Methodenattributen wie `HttpGet`. Durch explizite Verben könnte bei einigen Anforderungen verhindert werden, dass diese Aktionsmethode zum Einsatz kommt. Lassen Sie den anonymen Zugriff auf die Methode zu, wenn nicht authentifizierten Benutzern die Fehleransicht angezeigt werden soll.
+Die Middleware für die Ausnahmebehandlung führt die Anforderung unter Verwendung der *ursprünglichen* HTTP-Methode erneut aus. Wenn ein Endpunkt für die Fehlerbehandlung auf bestimmte HTTP-Methoden beschränkt ist, wird er nur für diese Methoden ausgeführt. Beispielsweise wird eine MVC-Controller-Aktion, die das Attribut `[HttpGet]` verwendet, nur für GET-Anforderungen ausgeführt. Um sicherzustellen, dass *alle* Anforderungen die benutzerdefinierte Seite für die Fehlerbehandlung erreichen, beschränken Sie die Endpunkte nicht auf bestimmte HTTP-Methoden.
+
+So behandeln Sie Ausnahmen unterschiedlich, basierend auf der ursprünglichen HTTP-Methode:
+
+* Für Razor Pages erstellen Sie mehrere Handlermethoden. Verwenden Sie beispielsweise `OnGet` zum Behandeln von GET-Ausnahmen und `OnPost` zum Behandeln von POST-Ausnahmen.
+* Für MVC wenden Sie HTTP-Verbattribute auf mehrere Aktionen an. Verwenden Sie beispielsweise `[HttpGet]` zum Behandeln von GET-Ausnahmen und `[HttpPost]` zum Behandeln von POST-Ausnahmen.
+
+Um nicht authentifizierten Benutzern die Anzeige der benutzerdefinierten Seite für die Fehlerbehandlung zu ermöglichen, stellen Sie sicher, dass der anonyme Zugriff unterstützt wird.
 
 ### <a name="access-the-exception"></a>Zugreifen auf die Ausnahme
 

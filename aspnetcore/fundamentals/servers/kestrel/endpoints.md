@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/kestrel/endpoints
-ms.openlocfilehash: 780250feab456fa3eedee4e023c9bc774e748291
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 5fec573013da5bcb5039b7a189fd84d964349b3a
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98253848"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658741"
 ---
 # <a name="configure-endpoints-for-the-aspnet-core-kestrel-web-server"></a>Konfigurieren von Endpunkten für den ASP.NET Core-Kestrel-Webserver
 
@@ -169,7 +169,7 @@ Ein Standardkonfigurationsschema für HTTPS-App-Einstellungen ist für Kestrel v
 Im folgenden Beispiel für *appsettings.json* gilt:
 
 * Legen Sie `AllowInvalid` auf `true` fest, um die Verwendung von ungültigen Zertifikaten zu erlauben (z.B. selbstsignierte Zertifikate).
-* Jeder HTTPS-Endpunkt, der kein Zertifikat angibt (im folgenden Beispiel `HttpsDefaultCert`), greift auf das unter `Certificates` > `Default` festgelegte Zertifikat oder das Entwicklungszertifikat zurück.
+* Jeder HTTPS-Endpunkt, der kein Zertifikat angibt (im folgenden Beispiel `HttpsDefaultCert`), greift auf das unter `Certificates:Default` festgelegte Zertifikat oder das Entwicklungszertifikat zurück.
 
 ```json
 {
@@ -185,8 +185,16 @@ Im folgenden Beispiel für *appsettings.json* gilt:
           "Password": "<certificate password>"
         }
       },
-      "HttpsInlineCertStore": {
+      "HttpsInlineCertAndKeyFile": {
         "Url": "https://localhost:5002",
+        "Certificate": {
+          "Path": "<path to .pem/.crt file>",
+          "KeyPath": "<path to .key file>",
+          "Password": "<certificate password>"
+        }
+      },
+      "HttpsInlineCertStore": {
+        "Url": "https://localhost:5003",
         "Certificate": {
           "Subject": "<subject; required>",
           "Store": "<certificate store; required>",
@@ -195,14 +203,7 @@ Im folgenden Beispiel für *appsettings.json* gilt:
         }
       },
       "HttpsDefaultCert": {
-        "Url": "https://localhost:5003"
-      },
-      "Https": {
-        "Url": "https://*:5004",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
-        }
+        "Url": "https://localhost:5004"
       }
     },
     "Certificates": {
@@ -215,7 +216,24 @@ Im folgenden Beispiel für *appsettings.json* gilt:
 }
 ```
 
-Alternativ zur Verwendung von `Path` und `Password` für alle Zertifikatknoten können Sie das Zertifikat mithilfe von Zertifikatspeicherfeldern angeben. Das Zertifikat unter `Certificates` > `Default` kann beispielweise wie folgt angegeben werden:
+Schema-Hinweise:
+
+* Bei den Namen der Endpunkte wird die [Groß-/Kleinschreibung nicht beachtet](xref:fundamentals/configuration/index#configuration-keys-and-values). `HTTPS` and `Https` gleichwertig.
+* Der Parameter `Url` ist für jeden Endpunkt erforderlich. Das Format für diesen Parameter ist identisch mit dem allgemeinen Konfigurationsparameter `Urls`, mit der Ausnahme, dass er auf einen einzelnen Wert begrenzt ist.
+* Diese Endpunkte ersetzen die in der allgemeinen `Urls`-Konfiguration festgelegten Endpunkte, anstatt zu ihnen hinzuzufügen. Endpunkte, die über `Listen` in Code definiert werden, werden den im Konfigurationsabschnitt definierten Endpunkten hinzugefügt.
+* Der `Certificate`-Abschnitt ist optional. Wenn der `Certificate`-Abschnitt nicht angegeben ist, werden die in `Certificates:Default` definierten Standardwerte verwendet. Wenn keine Standardwerte verfügbar sind, wird das Entwicklungszertifikat verwendet. Wenn weder Standardwerte noch Entwicklungszertifikat vorhanden sind, löst der Server eine Ausnahme aus und kann nicht gestartet werden.
+* Der `Certificate`-Abschnitt unterstützt mehrere [Zertifikatquellen](#certificate-sources).
+* In [Konfiguration](xref:fundamentals/configuration/index) kann eine beliebige Anzahl von Endpunkten definiert werden, solange sie keine Portkonflikte verursachen.
+
+#### <a name="certificate-sources"></a>Zertifikatquellen
+
+Zertifikatknoten können so konfiguriert werden, dass Zertifikate aus einer Reihe von Quellen geladen werden:
+
+* `Path` und `Password` zum Laden von *.pfx*-Dateien.
+* `Path`, `KeyPath` und `Password` zum Laden von *.pem*/ *.crt*- und *.key*-Dateien.
+* `Subject` und `Store` zum Laden aus dem Zertifikatspeicher.
+
+Das Zertifikat unter `Certificates:Default` kann beispielweise wie folgt angegeben werden:
 
 ```json
 "Default": {
@@ -226,15 +244,9 @@ Alternativ zur Verwendung von `Path` und `Password` für alle Zertifikatknoten k
 }
 ```
 
-Schema-Hinweise:
+#### <a name="configurationloader"></a>ConfigurationLoader
 
-* Bei den Namen der Endpunkte wird die Groß-/Kleinschreibung nicht beachtet. Zum Beispiel sind `HTTPS` und `Https` gültig.
-* Der Parameter `Url` ist für jeden Endpunkt erforderlich. Das Format für diesen Parameter ist identisch mit dem allgemeinen Konfigurationsparameter `Urls`, mit der Ausnahme, dass er auf einen einzelnen Wert begrenzt ist.
-* Diese Endpunkte ersetzen die in der allgemeinen `Urls`-Konfiguration festgelegten Endpunkte, anstatt zu ihnen hinzuzufügen. Endpunkte, die über `Listen` in Code definiert werden, werden den im Konfigurationsabschnitt definierten Endpunkten hinzugefügt.
-* Der `Certificate`-Abschnitt ist optional. Wenn der `Certificate`-Abschnitt nicht angegeben ist, werden die in früheren Szenarios definierten Standardwerte verwendet. Wenn keine Standardwerte verfügbar sind, löst der Server eine Ausnahme aus und startet nicht.
-* Der `Certificate`-Abschnitt unterstützt die Zertifikate `Path`&ndash;`Password` und `Subject`&ndash;`Store` (Antragsteller–Speicher).
-* Auf diese Weise kann eine beliebige Anzahl von Endpunkten definiert werden, solange Sie keine Portkonflikte verursachen.
-* `options.Configure(context.Configuration.GetSection("{SECTION}"))` gibt `KestrelConfigurationLoader` mit der Methode `.Endpoint(string name, listenOptions => { })` zurück, die dazu verwendet werden kann, die Einstellungen eines Endpunkts zu ergänzen:
+`options.Configure(context.Configuration.GetSection("{SECTION}"))` gibt <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> mit der Methode `.Endpoint(string name, listenOptions => { })` zurück, die dazu verwendet werden kann, die Einstellungen eines Endpunkts zu ergänzen:
 
 ```csharp
 webBuilder.UseKestrel((context, serverOptions) =>

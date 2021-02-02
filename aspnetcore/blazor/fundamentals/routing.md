@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: ec183f4aadc6bafd8e77f9d97291ba3d47bd92f5
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 74886eae7431045e56de535b5221040bd56cdc2d
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506928"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751567"
 ---
-# <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor-Routing
+# <a name="aspnet-core-blazor-routing"></a>ASP.NET Core Blazor-Routing
 
 Von [Luke Latham](https://github.com/guardrex)
 
@@ -326,11 +326,11 @@ Weitere Informationen zur Beseitigung von Komponenten finden Sie unter <xref:bla
 Die Abfragezeichenfolge einer Anforderung wird von der <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType>-Eigenschaft abgerufen:
 
 ```razor
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 
 ...
 
-var query = new Uri(Navigation.Uri).Query;
+var query = new Uri(NavigationManager.Uri).Query;
 ```
 
 So analysieren Sie die Parameter einer Abfragezeichenfolge:
@@ -354,7 +354,7 @@ Im folgenden `ParseQueryString`-Komponentenbeispiel wird ein Parameterschlüssel
 
 ::: moniker-end
 
-## <a name="navlink-component"></a>`NavLink`-Komponente
+## <a name="navlink-and-navmenu-components"></a>`NavLink`- und `NavMenu`-Komponenten
 
 Verwenden Sie bei der Erstellung von Navigationslinks eine <xref:Microsoft.AspNetCore.Components.Routing.NavLink>-Komponente anstelle von HTML-Hyperlinkelementen (`<a>`). Eine <xref:Microsoft.AspNetCore.Components.Routing.NavLink>-Komponente verhält sich wie ein `<a>`-Element, abgesehen davon, dass sie eine `active`-CSS-Klasse umschaltet, je nachdem, ob das `href`-Element mit der aktuellen URL übereinstimmt. Die `active`-Klasse zeigt einem Benutzer auf, welche Seite unter den angezeigten Navigationslinks aktiv ist. Optional können Sie <xref:Microsoft.AspNetCore.Components.Routing.NavLink.ActiveClass?displayProperty=nameWithType> einen CSS-Klassennamen zuweisen, um eine benutzerdefinierte CSS-Klasse auf den gerenderten Link anzuwenden, wenn die aktuelle Route mit `href` übereinstimmt.
 

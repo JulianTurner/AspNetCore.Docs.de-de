@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/comparison
-ms.openlocfilehash: 0fb50f07153f5f9953b667fe32062ad24b2bd66d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1ec553d54a9cad170cb322bc186bb67ac8bbded4
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059948"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658728"
 ---
 # <a name="compare-grpc-services-with-http-apis"></a>Vergleich von gRPC-Diensten mit HTTP-APIs
 
@@ -61,7 +61,7 @@ HTTP/2 ist nicht exklusiv für GrpC. Viele Anforderungstypen, einschließlich HT
 
 ### <a name="code-generation"></a>Codeerzeugung
 
-Alle gRPC-Frameworks bieten erstklassige Unterstützung für die Codegenerierung. Eine Kerndatei zur gRPC-Entwicklung ist die [.proto-Datei](https://developers.google.com/protocol-buffers/docs/proto3), die den Vertrag der gRPC-Dienste und -Nachrichten definiert. Aus dieser Datei generieren die gRPC-Frameworks im Code eine Dienstbasisklasse, Nachrichten und einen vollständigen Client.
+Alle gRPC-Frameworks bieten erstklassige Unterstützung für die Codegenerierung. Eine grundlegende Datei für die gRPC-Entwicklung ist die [`.proto`-Datei](https://developers.google.com/protocol-buffers/docs/proto3), die den Vertrag der gRPC-Dienste und -Nachrichten definiert. Aus dieser Datei generieren die gRPC-Frameworks eine Dienstbasisklasse, Nachrichten und einen vollständigen Client.
 
 Durch die Freigabe der *.proto*-Datei zwischen dem Server und dem Client können Nachrichten und Clientcode von Ende zu Ende generiert werden. Die Codegenerierung des Clients verhindert die Duplizierung von Nachrichten auf dem Client und dem Server und erstellt einen stark typisierten Client für Sie. Wenn Sie keinen Client schreiben müssen, sparen Sie bei Anwendungen mit vielen Diensten erheblich an Entwicklungszeit.
 

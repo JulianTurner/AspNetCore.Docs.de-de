@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/hosted-with-identity-server
-ms.openlocfilehash: fdd7eb3c4a3b07022760a43cbde80838bfaf7c84
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: d35dd0acf626a6305f00e295e7918c82c7d6a912
+ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024794"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98658702"
 ---
-# <a name="secure-an-aspnet-core-no-locblazor-webassembly-hosted-app-with-no-locidentity-server"></a>Sichern einer gehosteten Blazor WebAssembly-App in ASP.NET Core mit Identity Server
+# <a name="secure-an-aspnet-core-blazor-webassembly-hosted-app-with-identity-server"></a>Sichern einer gehosteten Blazor WebAssembly-App in ASP.NET Core mit Identity Server
 
 Von [Javier Calvarro Nelson](https://github.com/javiercn) und [Luke Latham](https://github.com/guardrex)
 
@@ -130,11 +130,15 @@ Die `Startup`-Klasse verfügt über die folgenden Ergänzungen.
     app.UseAuthorization();
     ```
 
+### <a name="azure-app-service-on-linux"></a>Azure App Service unter Linux
+
+Geben Sie den Zertifikataussteller explizit an, wenn Sie eine Bereitstellung in Azure App Service für Linux durchführen. Weitere Informationen finden Sie unter <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+
 ### <a name="addapiauthorization"></a>AddApiAuthorization
 
 Die <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A>-Hilfsmethode konfiguriert [IdentityServer](https://identityserver.io/) für ASP.NET Core-Szenarien. IdentityServer ist ein leistungsfähiges und erweiterbares Framework für Überlegungen zum Thema „App-Sicherheit“. IdentityServer ist für die meisten gängigen Szenarien unnötig komplex. Als Folge werden mehrere Konventionen und Konfigurationsoptionen bereitgestellt, die sich gut als Startpunkt eignen. Wenn sich Ihre Anforderungen an die Authentifizierung ändern, bietet IdentityServer eine Vielzahl leistungsfähiger Funktionen, mit denen Sie die Authentifizierung genau an die Anforderungen einer App anpassen können.
 
-### <a name="addno-locidentityserverjwt"></a>AddIdentityServerJwt
+### <a name="addidentityserverjwt"></a>AddIdentityServerJwt
 
 Die <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>-Hilfsprogrammmethode konfiguriert ein Richtlinienschema für die App als Standardauthentifizierungshandler. Die Richtlinie ist so konfiguriert, dass Identity alle an beliebige Unterpfade im Identity-URL-Raum `/Identity` weitergeleiteten Anforderungen verarbeiten kann. <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> verarbeitet alle anderen Anforderungen. Außerdem übernimmt diese Methode die folgenden Aufgaben:
 
@@ -370,7 +374,7 @@ services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 ```
 
-### <a name="configure-no-locidentity-server"></a>Konfigurieren von IdentityServer
+### <a name="configure-identity-server"></a>Konfigurieren von IdentityServer
 
 Verwenden Sie **einen** der folgenden Ansätze:
 
@@ -468,9 +472,12 @@ Die Ansätze zur Komponentenautorisierung in der *`Client`* -App sind an diesem 
 
 [!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
 
-## <a name="host-in-azure-app-service-with-a-custom-domain"></a>Hosten in Azure App Service mit einer benutzerdefinierten Domäne
+## <a name="host-in-azure-app-service-with-a-custom-domain-and-certificate"></a>Hosten in Azure App Service mit einer benutzerdefinierten Domäne und einem Zertifikat
 
-In der folgenden Anleitung wird erläutert, wie Sie eine gehostete Blazor WebAssembly-App mit Identity Server für [Azure App Service](https://azure.microsoft.com/services/app-service/) mit einer benutzerdefinierten Domäne bereitstellen.
+In diesem Leitfaden wird Folgendes erläutert:
+
+* Sie erfahren, wie Sie eine gehostete Blazor WebAssembly-App mit Identity Server für [Azure App Service](https://azure.microsoft.com/services/app-service/) mit einer benutzerdefinierten Domäne bereitstellen.
+* Sie erfahren, wie Sie ein TLS-Zertifikat für Kommunikation mit Browsern über HTTPS erstellen und verwenden. Der Leitfaden konzentriert sich zwar auf die Verwendung des Zertifikats mit einer benutzerdefinierten Domäne, gilt aber ebenso für die Verwendung einer standardmäßigen Azure App-Domäne wie z. B. `contoso.azurewebsites.net`.
 
 Verwenden Sie für dieses Hostingszenario **nicht** dasselbe Zertifikat für den [Tokensignaturschlüssel von Identity Server](https://docs.identityserver.io/en/latest/topics/crypto.html#token-signing-and-validation) und die sichere HTTPS-Kommunikation der Website mit Browsern:
 

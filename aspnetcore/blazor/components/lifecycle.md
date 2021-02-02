@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/lifecycle
-ms.openlocfilehash: acaa276efda9fb4d09a5c1b1ca59c6abde1b64ec
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 3591ba18351b89e2d5dfaef796777273c97ce98b
+ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252388"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98751617"
 ---
-# <a name="aspnet-core-no-locblazor-lifecycle"></a>ASP.NET Core Blazor-Lebenszyklus
+# <a name="aspnet-core-blazor-lifecycle"></a>ASP.NET Core Blazor-Lebenszyklus
 
 Von [Luke Latham](https://github.com/guardrex) und [Daniel Roth](https://github.com/danroth27)
 
@@ -68,14 +68,38 @@ Wenn [`StateHasChanged`](#state-changes) von Entwicklern aufgerufen wird, führt
 
 ### <a name="before-parameters-are-set"></a>Bevor die Parameter festgelegt werden
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> legt Parameter fest, die vom übergeordneten Element der Komponente in der Renderstruktur bereitgestellt werden:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> legt Parameter fest, die vom übergeordneten Element der Komponente in der Renderstruktur oder aus Routingparametern bereitgestellt werden. Durch Überschreiben dieser Methode kann Entwicklercode direkt mit den Parametern von <xref:Microsoft.AspNetCore.Components.ParameterView> interagieren.
 
-```csharp
-public override async Task SetParametersAsync(ParameterView parameters)
-{
-    await ...
+Im folgenden Beispiel weist <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> den Wert des `Param`-Parameters `value` zu, wenn die Analyse eines Routingparameters für `Param` erfolgreich ist. Wenn `value` nicht `null` lautet, wird der Wert von der `SetParametersAsyncExample`-Komponente angezeigt.
 
-    await base.SetParametersAsync(parameters);
+`Pages/SetParametersAsyncExample.razor`:
+
+```razor
+@page "/setparametersasync-example/{Param?}"
+
+<h1>SetParametersAsync Example</h1>
+
+<p>@message</p>
+
+@code {
+    private string message;
+
+    [Parameter]
+    public string Param { get; set; }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        if (parameters.TryGetValue<string>(nameof(Param), out var value))
+        {
+            message = $"The value of 'Param' is {value}.";
+        }
+        else 
+        {
+            message = "The value of 'Param' is null.";
+        }
+
+        await base.SetParametersAsync(parameters);
+    }
 }
 ```
 
@@ -296,9 +320,9 @@ Weitere Informationen zum <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTag
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## <a name="component-disposal-with-idisposable"></a>Beseitigung von Komponenten mit IDisposable
+## <a name="component-disposal-with-idisposable"></a>Entfernen von Komponenten mit `IDisposable`
 
-Wenn eine Komponente <xref:System.IDisposable> implementiert, wird die [`Dispose`-Methode](/dotnet/standard/garbage-collection/implementing-dispose) aufgerufen, wenn die Komponente aus der Benutzeroberfläche entfernt wird. Das Entfernen kann jederzeit erfolgen, auch während der [Initialisierung von Komponenten](#component-initialization-methods). Die folgende Komponente verwendet `@implements IDisposable` und die `Dispose`-Methode:
+Wenn eine Komponente <xref:System.IDisposable> implementiert, ruft das Framework die [Dispose-Methode](/dotnet/standard/garbage-collection/implementing-dispose) auf, wenn die Komponente aus der Benutzeroberfläche entfernt wird. Dabei können nicht verwaltete Ressourcen freigegeben werden. Das Entfernen kann jederzeit erfolgen, auch während der [Initialisierung von Komponenten](#component-initialization-methods). Die folgende Komponente implementiert <xref:System.IDisposable> mit der Razor-Anweisung [`@implements`](xref:mvc/views/razor#implements):
 
 ```razor
 @using System
@@ -314,6 +338,15 @@ Wenn eine Komponente <xref:System.IDisposable> implementiert, wird die [`Dispose
 }
 ```
 
+Verwenden Sie bei asynchronen Aufgaben zur Entfernung `DisposeAsync` anstelle von `Dispose` im obigen Beispiel:
+
+```csharp
+public async ValueTask DisposeAsync()
+{
+    ...
+}
+```
+
 > [!NOTE]
 > Der Aufruf von <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` wird nicht unterstützt. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> könnte im Rahmen des Beendens des Renderers aufgerufen werden, sodass die Anforderung von UI-Updates an diesem Punkt nicht unterstützt wird.
 
@@ -326,6 +359,8 @@ Kündigen Sie die .NET-Ereignisabonnements der Ereignishandler. Die folgenden [B
 * Ansatz mit einer privaten Methode
 
   [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
+  
+Weitere Informationen finden Sie unter [Bereinigen von nicht verwalteten Ressourcen](/dotnet/standard/garbage-collection/unmanaged) und den Themen zum Implementieren der Methoden `Dispose` und `DisposeAsync`.
 
 ## <a name="cancelable-background-work"></a>Abbrechbare Hintergrundarbeit
 
@@ -397,6 +432,6 @@ Im folgenden Beispiel:
 }
 ```
 
-## <a name="no-locblazor-server-reconnection-events"></a>Blazor Server-Ereignisse zur Wiederherstellung von Verbindungen
+## <a name="blazor-server-reconnection-events"></a>Blazor Server-Ereignisse zur Wiederherstellung von Verbindungen
 
 Die in diesem Artikel behandelten Ereignisse zum Komponentenlebenszyklus werden getrennt von den [Blazor Server-Ereignishandlern zur Wiederherstellung von Verbindungen](xref:blazor/fundamentals/additional-scenarios#reflect-the-connection-state-in-the-ui) ausgeführt. Wenn bei einer Blazor Server-App die SignalR-Verbindung mit dem Client getrennt wird, werden nur Updates der Benutzeroberfläche unterbrochen. Updates der Benutzeroberfläche werden fortgesetzt, sobald die Verbindung wiederhergestellt wurde. Weitere Informationen zu Verbindungshandlerereignissen und zur Konfiguration finden Sie unter <xref:blazor/fundamentals/additional-scenarios>.

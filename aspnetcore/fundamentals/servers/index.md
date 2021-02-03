@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/index
-ms.openlocfilehash: 2acddd212639ac0a82b3c46f2225ff66d0999dd0
-ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
+ms.openlocfilehash: a49388c73f2ec0ea03b35dbba1575ce70a4e1512
+ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/31/2021
-ms.locfileid: "99217556"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99238334"
 ---
 # <a name="web-server-implementations-in-aspnet-core"></a>Webserverimplementierungen in ASP.NET Core
 
@@ -38,7 +38,7 @@ Eine ASP.NET Core-App wird über eine In-Process-Implementierung eines HTTP-Serv
 
 ASP.NET Core wird mit folgendem Umfang ausgeliefert:
 
-* Ein [Kestrel-Server](xref:fundamentals/servers/kestrel) stellt die plattformübergreifende Standardimplementierung von HTTP-Servern dar. Kestrel bietet die beste Leistung und Arbeitsspeicherauslastung, verfügt jedoch nicht über einige erweiterte Features in HTTP.sys. Weitere Informationen finden Sie unter [Kestrel im Vergleich zu HTTP.sys](#korh) in diesem Dokument.
+* Ein [Kestrel-Server](xref:fundamentals/servers/kestrel) stellt die plattformübergreifende Standardimplementierung von HTTP-Servern dar. Kestrel bietet die beste Leistung und Arbeitsspeicherauslastung, verfügt jedoch nicht über einige erweiterte Features in HTTP.sys. Weitere Informationen finden Sie unter [Kestrel im Vergleich zu HTTP.sys](#korh) im nächsten Abschnitt.
 * IIS-HTTP-Server ist ein [In-Process-Server](#hosting-models) für IIS.
 * [HTTP.sys Server](xref:fundamentals/servers/httpsys) ist ein nur für Windows verfügbarer HTTP-Server, der auf dem [Http.sys-Kerneltreiber und der HTTP Server API](/windows/desktop/Http/http-api-start-page) basiert.
 

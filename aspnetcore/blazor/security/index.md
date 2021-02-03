@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 35620299b1138ca45a6ebf1d789a9f4aa9b29518
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: 0a271b2e306e2969530248fe820ed8aab2fa45e0
+ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751605"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99238189"
 ---
-# <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>Authentifizierung und Autorisierung in ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-authentication-and-authorization"></a>Authentifizierung und Autorisierung in ASP.NET Core Blazor
 
 Von [Steve Sanderson](https://github.com/SteveSandersonMS) und [Luke Latham](https://github.com/guardrex)
 
@@ -48,7 +48,7 @@ Blazor WebAssembly-Apps werden auf dem Client ausgeführt. Die Autorisierung wir
 
 Blazor verwendet die vorhandenen ASP.NET Core-Authentifizierungsmechanismen, um die Identität des Benutzers festzustellen. Der genaue Mechanismus hängt davon ab, wie die Blazor-App gehostet wird – über Blazor WebAssembly oder Blazor Server.
 
-### <a name="no-locblazor-webassembly-authentication"></a>Authentifizierung per Blazor WebAssembly
+### <a name="blazor-webassembly-authentication"></a>Authentifizierung per Blazor WebAssembly
 
 In den Blazor WebAssembly-Apps können Authentifizierungsprüfungen umgangen werden, da der gesamte clientseitige Code von Benutzern geändert werden kann. Dasselbe gilt für alle clientseitigen App-Technologien, einschließlich JavaScript SPA-Frameworks oder native Apps für jedes Betriebssystem.
 
@@ -61,7 +61,7 @@ Die Verwendung eines integrierten oder benutzerdefinierten <xref:Microsoft.AspNe
 
 Weitere Informationen zur Erstellung von Apps und Konfigurationen finden Sie unter <xref:blazor/security/webassembly/index>.
 
-### <a name="no-locblazor-server-authentication"></a>Authentifizierung per Blazor Server
+### <a name="blazor-server-authentication"></a>Authentifizierung per Blazor Server
 
 Blazor Server-Apps funktionieren über eine Echtzeitverbindung, die mit SignalR erstellt wurde. Die [Authentifizierung in SignalR-basierten Apps wird verarbeitet](xref:signalr/authn-and-authz), wenn die Verbindung hergestellt wird. Die Authentifizierung kann auf einem cookie oder einem anderen Bearertoken basieren.
 
@@ -391,9 +391,9 @@ Wenn weder <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 
 Gemeinsam mit der <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>-Komponente ermöglicht die <xref:Microsoft.AspNetCore.Components.Routing.Router>-Komponente der App, benutzerdefinierten Inhalt anzugeben, wenn:
 
-* Inhalt nicht gefunden wird.
-* Der Benutzer eine [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Bedingung nicht erfüllt, die für die Komponente angewendet wird. Das [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Attribut wird im Abschnitt [`[Authorize]`-Attribut](#authorize-attribute) behandelt.
-* Die Asynchrone Authentifizierung ausgeführt wird.
+* Der Benutzer eine [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Bedingung nicht erfüllt, die für die Komponente angewendet wird. Das Markup des [`<NotAuthorized>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized?displayProperty=nameWithType)-Elements wird angezeigt. Das [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Attribut wird im Abschnitt [`[Authorize]`-Attribut](#authorize-attribute) behandelt.
+* Asynchrone Autorisierung wird ausgeführt. Dies bedeutet in der Regel, dass der Benutzer authentifiziert wird. Das Markup des [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType)-Elements wird angezeigt.
+* Inhalt nicht gefunden wird. Das Markup des [`<NotFound>`](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound?displayProperty=nameWithType)-Elements wird angezeigt.
 
 In der Standardprojektvorlage für Blazor Server zeigt die Komponente `App` (`App.razor`), wie benutzerdefinierte Inhalte festgelegt werden können:
 
@@ -409,8 +409,8 @@ In der Standardprojektvorlage für Blazor Server zeigt die Komponente `App` (`Ap
                     <p>You may need to log in as a different user.</p>
                 </NotAuthorized>
                 <Authorizing>
-                    <h1>Authentication in progress</h1>
-                    <p>Only visible while authentication is in progress.</p>
+                    <h1>Authorization in progress</h1>
+                    <p>Only visible while authorization is in progress.</p>
                 </Authorizing>
             </AuthorizeRouteView>
         </Found>

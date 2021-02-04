@@ -18,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/validation
-ms.openlocfilehash: 77d49710b9d69f6fbbe92970f1c455de32489444
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: d6fa7e4524a8afdc23d4ad46354d9d8b395656a3
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93056958"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99530189"
 ---
-# <a name="model-validation-in-aspnet-core-mvc-and-no-locrazor-pages"></a>Modell Validierung in ASP.net Core MVC und Razor Seiten
+# <a name="model-validation-in-aspnet-core-mvc-and-razor-pages"></a>Modell Validierung in ASP.net Core MVC und Razor Seiten
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -76,13 +76,13 @@ Im [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnota
 
 ### <a name="error-messages"></a>Fehlermeldungen
 
-Mit Validierungsattributen können Sie die Fehlermeldung angeben, die im Fall einer ungültigen Eingabe angezeigt werden soll. Zum Beispiel:
+Mit Validierungsattributen können Sie die Fehlermeldung angeben, die im Fall einer ungültigen Eingabe angezeigt werden soll. Beispiel:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-Intern rufen die Attribute die Methode `String.Format` mit einem Platzhalter für den Feldnamen und manchmal zusätzliche Platzhalter auf. Zum Beispiel:
+Intern rufen die Attribute die Methode `String.Format` mit einem Platzhalter für den Feldnamen und manchmal zusätzliche Platzhalter auf. Beispiel:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -92,9 +92,27 @@ Bei Anwendung auf eine `Name`-Eigenschaft wäre die Fehlermeldung, die vom voran
 
 Wenn Sie herausfinden möchten, welche Parameter an die Methode `String.Format` für die Fehlermeldung eines bestimmten Attributs übergeben werden, sehen Sie sich den [DataAnnotations-Quellcode](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations) an.
 
-## <a name="required-attribute"></a>[Required]-Attribut
+## <a name="non-nullable-reference-types-and-required-attribute"></a>Verweis Typen und [Required]-Attribut, die keine NULL-Werte zulassen
 
-Das Validierungssystem in .NET Core 3.0 und höher behandelt Non-Nullable-Parameter oder gebundene Eigenschaften so, als würden sie ein `[Required]`-Attribut aufweisen. [Werttypen](/dotnet/csharp/language-reference/keywords/value-types) wie `decimal` und `int` lassen keine NULL-Werte zu. Dieses Verhalten kann deaktiviert werden, indem <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices` konfiguriert wird:
+Das Validierungssystem behandelt Parameter, die keine NULL-Werte zulassen, oder gebundene Eigenschaften, als hätten Sie ein- `[Required]` Attribut. Durch das [Aktivieren von `Nullable` Kontexten](/dotnet/csharp/nullable-references#nullable-contexts)beginnt MVC implizit mit der Validierung von Eigenschaften oder Parametern, die keine NULL-Werte zulassen, als wäre sie mit dem-Attribut versehen worden `[Required]` . Betrachten Sie folgenden Code:
+
+```csharp
+public class Person
+{
+    public string Name { get; set; }
+}
+```
+
+Wenn die APP mit erstellt wurde `<Nullable>enable</Nullable>` , führt ein fehlender Wert für `Name` in einem JSON-oder Formular-Post zu einem Validierungs Fehler. Verwenden Sie einen Verweistyp, der NULL-Werte zulässt, damit NULL-Werte oder fehlende Werte für die Eigenschaft angegeben werden können `Name` :
+
+```csharp
+public class Person
+{
+    public string? Name { get; set; }
+}
+```
+
+. Dieses Verhalten kann deaktiviert werden, indem <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices` konfiguriert wird:
 
 ```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
@@ -176,7 +194,7 @@ Wenn Sie eine Validierung benötigen, die nicht von integrierten Attributen bere
 
 Für Szenarios, die die integrierten Validierungsattribute nicht verarbeiten können, können Sie benutzerdefinierte Validierungsattribute erstellen. Erstellen Sie eine Klasse, die von <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> erbt, und überschreiben Sie die <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*>-Methode.
 
-Die `IsValid`-Methode akzeptiert ein Objekt namens *value* . Dies ist die Eingabe, die überprüft werden soll. Ein Überladen akzeptiert auch ein `ValidationContext`-Objekt, das zusätzliche Informationen bereitstellt, z. B. die Modellinstanz, die von der Modellbindung erstellt wurde.
+Die `IsValid`-Methode akzeptiert ein Objekt namens *value*. Dies ist die Eingabe, die überprüft werden soll. Ein Überladen akzeptiert auch ein `ValidationContext`-Objekt, das zusätzliche Informationen bereitstellt, z. B. die Modellinstanz, die von der Modellbindung erstellt wurde.
 
 Im folgenden Beispiel wird überprüft, ob das Veröffentlichungsdatum eines Films aus dem Genre *Classic* (Klassiker) zeitlich nicht hinter einer angegebenen Jahreszahl liegt. Das `[ClassicMovie]`-Attribut:
 
@@ -210,7 +228,7 @@ Knoten auf oberster Ebene können <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Bi
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAgeSignature)]
 
-Auf der Seite für die Altersprüfung ( *CheckAge.cshtml* ) sind zwei Formulare vorhanden. Das erste Formular übermittelt einen `Age`-Wert von `99` als Abfragezeichenfolgen-Parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
+Auf der Seite für die Altersprüfung (*CheckAge.cshtml*) sind zwei Formulare vorhanden. Das erste Formular übermittelt einen `Age`-Wert von `99` als Abfragezeichenfolgen-Parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 Wenn ein ordnungsgemäß formatierter `age`-Parameter aus der Abfragezeichenfolge übermittelt wird, wird das Formular überprüft.
 
@@ -357,7 +375,7 @@ Wie bereits gesagt, verwenden [Taghilfsprogramme](xref:mvc/views/tag-helpers/int
 
 Diese Methode, bei der `data-`-Attribute in HTML gerendert werden, wird vom `ClassicMovie`-Attribut in der Beispiel-App verwendet. So fügen Sie die Clientvalidierung mithilfe dieser Methode hinzu:
 
-1. Erstellen Sie eine Attributadapterklasse für das benutzerdefinierte Validierungsattribut. Leiten Sie die Klasse von [attributeadapterbase \<T> ](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2)ab. Erstellen Sie eine `AddValidation`-Methode, die der gerenderten Ausgabe `data-`-Attribute hinzufügt, wie es im folgenden Beispiel gezeigt wird:
+1. Erstellen Sie eine Attributadapterklasse für das benutzerdefinierte Validierungsattribut. Leiten Sie Klasse aus <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>ab. Erstellen Sie eine `AddValidation`-Methode, die der gerenderten Ausgabe `data-`-Attribute hinzufügt, wie es im folgenden Beispiel gezeigt wird:
 
    [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs?name=snippet_Class)]
 
@@ -385,8 +403,8 @@ Der folgende Code deaktiviert die Client Validierung in Razor Seiten:
 
 Weitere Optionen zum Deaktivieren der clientseitigen Validierung:
 
-* Kommentieren Sie den Verweis auf `_ValidationScriptsPartial` in allen *CSHTML* -Dateien aus.
-* Entfernen Sie den Inhalt der *Pages\Shared\_ValidationScriptsPartial.cshtml* -Datei.
+* Kommentieren Sie den Verweis auf `_ValidationScriptsPartial` in allen *CSHTML*-Dateien aus.
+* Entfernen Sie den Inhalt der *Pages\Shared\_ValidationScriptsPartial.cshtml*-Datei.
 
 Der vorherige Ansatz verhindert nicht die Client seitige Validierung der ASP.NET Core Identity Razor Klassenbibliothek. Weitere Informationen finden Sie unter <xref:security/authentication/scaffold-identity>.
 
@@ -430,7 +448,7 @@ Mit Validierungsattributen können Sie Validierungsregeln für Modelleigenschaft
 Zu den integrierten Validierungsattributen gehören:
 
 * `[CreditCard]`: Überprüft, ob die Eigenschaft über ein Kreditkartenformat verfügt.
-* `[Compare]`: Überprüft, ob zwei Eigenschaften in einem Modell stimmen. Beispielsweise verwendet die *Register.cshtml.cs* -Datei `[Compare]`, um zu prüfen, ob die beiden eingegebenen Kennwörter übereinstimmen. [Gerüst Identity ](xref:security/authentication/scaffold-identity) , um den Registrierungscode anzuzeigen.
+* `[Compare]`: Überprüft, ob zwei Eigenschaften in einem Modell stimmen. Beispielsweise verwendet die *Register.cshtml.cs*-Datei `[Compare]`, um zu prüfen, ob die beiden eingegebenen Kennwörter übereinstimmen. [Gerüst Identity ](xref:security/authentication/scaffold-identity) , um den Registrierungscode anzuzeigen.
 * `[EmailAddress]`: Überprüft, ob die Eigenschaft ein e-Mail-Format aufweist.
 * `[Phone]`: Überprüft, ob die Eigenschaft über ein Telefonnummern Format verfügt.
 * `[Range]`: Überprüft, ob der Eigenschafts Wert innerhalb eines angegebenen Bereichs liegt.
@@ -440,19 +458,19 @@ Zu den integrierten Validierungsattributen gehören:
 * `[Url]`: Überprüft, ob die Eigenschaft ein URL-Format aufweist.
 * `[Remote]`: Überprüft die Eingabe auf dem Client, indem eine Aktionsmethode auf dem Server aufgerufen wird. Weitere Informationen zum Verhalten dieses Attributs finden Sie unter [ `[Remote]` Attribut](#remote-attribute) .
 
-Wenn das `[RegularExpression]`-Attribut mit der clientseitigen Validierung verwendet wird, wird der Regex in JavaScript auf dem Client ausgeführt. Dies bedeutet, dass ein mit [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) übereinstimmendes Verhalten verwendet wird. Weitere Informationen finden Sie in [diesem GitHub-Problem](https://github.com/dotnet/corefx/issues/42487).
+Wenn das `[RegularExpression]`-Attribut mit der clientseitigen Validierung verwendet wird, wird der Regex in JavaScript auf dem Client ausgeführt. Dies bedeutet, dass ein mit [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) übereinstimmendes Verhalten verwendet wird. Weitere Informationen finden Sie in [diesem GitHub-Issue](https://github.com/dotnet/corefx/issues/42487).
 
 Im [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations)-Namespace finden Sie eine vollständige Liste der Validierungsattribute.
 
 ### <a name="error-messages"></a>Fehlermeldungen
 
-Mit Validierungsattributen können Sie die Fehlermeldung angeben, die im Fall einer ungültigen Eingabe angezeigt werden soll. Zum Beispiel:
+Mit Validierungsattributen können Sie die Fehlermeldung angeben, die im Fall einer ungültigen Eingabe angezeigt werden soll. Beispiel:
 
 ```csharp
 [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
 ```
 
-Intern rufen die Attribute die Methode `String.Format` mit einem Platzhalter für den Feldnamen und manchmal zusätzliche Platzhalter auf. Zum Beispiel:
+Intern rufen die Attribute die Methode `String.Format` mit einem Platzhalter für den Feldnamen und manchmal zusätzliche Platzhalter auf. Beispiel:
 
 ```csharp
 [StringLength(8, ErrorMessage = "{0} length must be between {2} and {1}.", MinimumLength = 6)]
@@ -542,7 +560,7 @@ Wenn Sie eine Validierung benötigen, die nicht von integrierten Attributen bere
 
 Für Szenarios, die die integrierten Validierungsattribute nicht verarbeiten können, können Sie benutzerdefinierte Validierungsattribute erstellen. Erstellen Sie eine Klasse, die von <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> erbt, und überschreiben Sie die <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid*>-Methode.
 
-Die `IsValid`-Methode akzeptiert ein Objekt namens *value* . Dies ist die Eingabe, die überprüft werden soll. Ein Überladen akzeptiert auch ein `ValidationContext`-Objekt, das zusätzliche Informationen bereitstellt, z. B. die Modellinstanz, die von der Modellbindung erstellt wurde.
+Die `IsValid`-Methode akzeptiert ein Objekt namens *value*. Dies ist die Eingabe, die überprüft werden soll. Ein Überladen akzeptiert auch ein `ValidationContext`-Objekt, das zusätzliche Informationen bereitstellt, z. B. die Modellinstanz, die von der Modellbindung erstellt wurde.
 
 Im folgenden Beispiel wird überprüft, ob das Veröffentlichungsdatum eines Films aus dem Genre *Classic* (Klassiker) zeitlich nicht hinter einer angegebenen Jahreszahl liegt. Das `[ClassicMovie2]`-Attribut prüft zuerst das Genre und fährt nur fort, wenn als Genre *Classic* bestimmt werden kann. Für Filme, die als Klassiker erkannt wurden, prüft es das Veröffentlichungsdatum, um dafür zu sorgen, dass der Film nicht älter ist als eine Jahresgrenze, die an den Attributkonstruktor übergeben wurde.
 
@@ -573,7 +591,7 @@ Knoten auf oberster Ebene können <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Bi
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Controllers/UsersController.cs?name=snippet_CheckAge)]
 
-Auf der Seite für die Altersprüfung ( *CheckAge.cshtml* ) sind zwei Formulare vorhanden. Das erste Formular übermittelt einen `Age`-Wert von `99` als Abfragezeichenfolge: `https://localhost:5001/Users/CheckAge?Age=99`.
+Auf der Seite für die Altersprüfung (*CheckAge.cshtml*) sind zwei Formulare vorhanden. Das erste Formular übermittelt einen `Age`-Wert von `99` als Abfragezeichenfolge: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 Wenn ein ordnungsgemäß formatierter `age`-Parameter aus der Abfragezeichenfolge übermittelt wird, wird das Formular überprüft.
 
@@ -728,7 +746,7 @@ Wie bereits gesagt, verwenden [Taghilfsprogramme](xref:mvc/views/tag-helpers/int
 
 Diese Methode, bei der `data-`-Attribute in HTML gerendert werden, wird vom `ClassicMovie`-Attribut in der Beispiel-App verwendet. So fügen Sie die Clientvalidierung mithilfe dieser Methode hinzu:
 
-1. Erstellen Sie eine Attributadapterklasse für das benutzerdefinierte Validierungsattribut. Leiten Sie die Klasse von [attributeadapterbase \<T> ](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2)ab. Erstellen Sie eine `AddValidation`-Methode, die der gerenderten Ausgabe `data-`-Attribute hinzufügt, wie es im folgenden Beispiel gezeigt wird:
+1. Erstellen Sie eine Attributadapterklasse für das benutzerdefinierte Validierungsattribut. Leiten Sie Klasse aus <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>ab. Erstellen Sie eine `AddValidation`-Methode, die der gerenderten Ausgabe `data-`-Attribute hinzufügt, wie es im folgenden Beispiel gezeigt wird:
 
    [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttributeAdapter.cs?name=snippet_ClassicMovieAttributeAdapter)]
 
@@ -758,7 +776,7 @@ Und in Razor Seiten:
 
 [!code-csharp[](validation/samples_snapshot/2.x/Startup3.cs?name=snippet_DisableClientValidation)]
 
-Eine andere Möglichkeit, um die Clientvalidierung zu deaktivieren, ist es, den Verweis auf `_ValidationScriptsPartial` in Ihrer *.cshtml* -Datei auszukommentieren.
+Eine andere Möglichkeit, um die Clientvalidierung zu deaktivieren, ist es, den Verweis auf `_ValidationScriptsPartial` in Ihrer *.cshtml*-Datei auszukommentieren.
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

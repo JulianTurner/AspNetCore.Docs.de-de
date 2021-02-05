@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: fe30c3b3be92c30dea6d0cb97e642eec1da6328b
-ms.sourcegitcommit: 72c8ada9b9644ee4751ed6869e892a8558dd8e66
+ms.openlocfilehash: efc73022d0bd8c29595f9bed1c06fe07002eb54a
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2021
-ms.locfileid: "98723511"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99530098"
 ---
-# <a name="create-and-use-aspnet-core-no-locrazor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
+# <a name="create-and-use-aspnet-core-razor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
 Von [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27) [Scott Addie](https://github.com/scottaddie) und [Tobias Bartsch](https://www.aveo-solutions.com/)
 
@@ -38,7 +38,7 @@ Blazor-Apps werden mithilfe von *Komponenten* erstellt. Eine Komponente ist ein 
 
 Komponenten werden mithilfe einer Kombination aus C# und HTML-Markup in [Razor](xref:mvc/views/razor)-Komponentendateien (`.razor`) implementiert. Eine Komponente in Blazor wird formal als *Razor-Komponente* bezeichnet.
 
-### <a name="no-locrazor-syntax"></a>Razor-Syntax
+### <a name="razor-syntax"></a>Razor-Syntax
 
 Razor-Komponenten in Blazor-Apps verwenden Razor-Syntax ausführlich. Wenn Sie mit der Razor-Markupsprache nicht vertraut sind, empfiehlt es sich, die [Razor-Syntaxreferenz für ASP.NET Core](xref:mvc/views/razor) zu lesen, bevor Sie fortfahren.
 
@@ -339,6 +339,11 @@ Aufgrund der Art und Weise, in der Blazor untergeordneten Inhalt rendert, erford
 >     </ChildComponent>
 > }
 > ```
+
+Informationen zur Verwendung von <xref:Microsoft.AspNetCore.Components.RenderFragment> als Vorlage für die Benutzeroberfläche einer Razor-Komponente finden Sie in den folgenden Artikeln:
+
+* <xref:blazor/components/templated-components>
+* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
 
 ## <a name="attribute-splatting-and-arbitrary-parameters"></a>Attributsplatting und arbiträre Parameter
 
@@ -824,7 +829,7 @@ Im folgenden Beispiel wird veranschaulicht, wie der `MarkupString`-Typ verwendet
 }
 ```
 
-## <a name="no-locrazor-templates"></a>Razor-Vorlagen
+## <a name="razor-templates"></a>Razor-Vorlagen
 
 Renderingfragmente können mithilfe der Razor-Vorlagensyntax definiert werden. Mit Razor-Vorlagen können Sie einen Benutzeroberflächencodeausschnitt festlegen und das folgende Format voraussetzen:
 

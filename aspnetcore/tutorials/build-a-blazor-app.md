@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 6659b075f54292d9546466919f6842b920e6ece1
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 106e1119db777074b5eae24f5d7e216e6127ca13
+ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97808737"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99238298"
 ---
-# <a name="build-a-no-locblazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
+# <a name="build-a-blazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
 
 Von [Daniel Roth](https://github.com/danroth27) und [Luke Latham](https://github.com/guardrex)
 
@@ -54,7 +54,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
 ::: moniker-end
 
-## <a name="create-a-todo-list-no-locblazor-app"></a>Erstellen einer Aufgabenlisten-Blazor-App
+## <a name="create-a-todo-list-blazor-app"></a>Erstellen einer Aufgabenlisten-Blazor-App
 
 1. Erstellen Sie in einer Befehlsshell eine neue Blazor-App namens `TodoList`:
 
@@ -108,6 +108,12 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
    `TodoItem.cs`:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/TodoItem.cs)]
+   
+   > [!NOTE]
+   > Wenn Sie Visual Studio verwenden, um die `ToDoItem.cs`-Datei und `ToDoItem`-Klasse zu erstellen, verwenden Sie einen der folgenden Ansätze:
+   >
+   > * Entfernen Sie den Namespace, der von Visual Studio für die Klasse generiert wird.
+   > * Verwenden Sie die Schaltfläche **Kopieren** im vorangehenden Codeblock, und ersetzen Sie den gesamten Inhalt der von Visual Studio generierten Datei.
 
 1. Navigieren Sie zur `Todo`-Komponente zurück, und führen Sie Folgendes durch:
 

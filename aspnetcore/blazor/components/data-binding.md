@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: e873fdd201cf0cdc809030fde30c6a8da2899861
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: 67a63f1b4f705a4857dea2e6d1a942d4f21469f5
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751554"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057095"
 ---
 # <a name="aspnet-core-blazor-data-binding"></a>ASP.NET Core Blazor-Datenbindung
 
@@ -146,7 +146,7 @@ Die Angabe eines Formats für den Feldtyp `date` wird nicht empfohlen, da Blazor
 
 Ein häufiges Szenario besteht darin, eine Eigenschaft in einer untergeordneten Komponente an eine Eigenschaft in ihrem übergeordneten Element zu binden. Dieses Szenario wird als *verkettete Bindung* bezeichnet, da mehrere Ebenen der Bindung gleichzeitig auftreten.
 
-[Komponentenparameter](xref:blazor/components/index#component-parameters) erlauben das Binden von Eigenschaften und Feldern einer übergeordneten Komponente mit `@bind-{PROPERTY OR FIELD}`-Syntax.
+[Komponentenparameter](xref:blazor/components/index#component-parameters) erlauben das Binden von Eigenschaften einer übergeordneten Komponente mit `@bind-{PROPERTY}`-Syntax.
 
 Verkettete Bindungen können nicht mit der [`@bind`](xref:mvc/views/razor#bind)-Syntax in der untergeordneten Komponente implementiert werden. Separat müssen ein Ereignishandler und ein Wert angegeben werden, um die Aktualisierung der Eigenschaft in der übergeordneten Komponente zu unterstützen.
 

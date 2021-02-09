@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: 97ee00dd37ed4eef1c013e0f45b598a79f3f260c
-ms.sourcegitcommit: 3f0ad1e513296ede1bff39a05be6c278e879afed
+ms.openlocfilehash: 62c9d1a58e0f771d91e2bc57f39ec5ebb25baaed
+ms.sourcegitcommit: 37186f76e4a50d7fb7389026dd0e5e234b51ebb2
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/25/2020
-ms.locfileid: "96035865"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99541367"
 ---
 # <a name="configuration-in-aspnet-core"></a>Konfiguration in ASP.NET Core
 
@@ -98,7 +98,7 @@ Der Standard-<xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProv
 
 [!INCLUDE[](~/includes/bind.md)]
 
-Wenn die [Standard](#default)-Konfiguration verwendet wird, werden die Dateien *appsettings.json* und *appsettings.* `Environment` *.json* mit [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75) aktiviert. Änderungen an den Dateien *appsettings.json* und *appsettings.* `Environment` *.json* ***nach** dem Start der App werden vom [JSON-Konfigurationsanbieter](#jcp) gelesen.
+Wenn die [Standard](#default)-Konfiguration verwendet wird, werden die Dateien *appsettings.json* und *appsettings.* `Environment` *.json* mit [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75) aktiviert. Änderungen an den Dateien *appsettings.json* und *appsettings.* `Environment` *.json* ***nach*** dem Start der App werden vom [JSON-Konfigurationsanbieter](#jcp) gelesen.
 
 Weitere Informationen zum Hinzufügen zusätzlicher JSON-Konfigurationsdateien finden Sie unter [JSON-Konfigurationsanbieter](#jcp) in diesem Dokument.
 
@@ -112,7 +112,7 @@ Weitere Informationen zum Hinzufügen zusätzlicher JSON-Konfigurationsdateien f
 
 Richtlinien für Konfigurationsdaten:
 
-_ Speichern Sie nie Kennwörter oder andere vertrauliche Daten im Konfigurationsanbietercode oder in Nur-Text-Konfigurationsdateien. Das [Secret Manager](xref:security/app-secrets)-Tool kann zum Speichern von Geheimnissen in der Entwicklungsumgebung verwendet werden.
+* Speichern Sie nie Kennwörter oder andere vertrauliche Daten im Konfigurationsanbietercode oder in Nur-Text-Konfigurationsdateien. Das [Secret Manager](xref:security/app-secrets)-Tool kann zum Speichern von Geheimnissen in der Entwicklungsumgebung verwendet werden.
 * Verwenden Sie keine Produktionsgeheimnisse in Entwicklungs- oder Testumgebungen.
 * Geben Sie Geheimnisse außerhalb des Projekts an, damit sie nicht versehentlich in ein Quellcoderepository übernommen werden können.
 
@@ -449,13 +449,13 @@ Der vorangehende Code:
   * `reloadOnChange: true` : Die Datei wird erneut geladen, wenn Änderungen gespeichert werden.
 * Liest die [Standardkonfigurationsanbieter](#default) vor der Datei *MyConfig.json*. Einstellungen in der Datei *MyConfig.json* überschreiben die Einstellung in den Standardkonfigurationsanbietern, einschließlich des [Umgebungsvariablen-Konfigurationsanbieters](#evcp) und des [Befehlszeilen-Konfigurationsanbieters](#clcp).
 
-In der Regel möchten Sie ***nicht**, dass eine benutzerdefinierte JSON-Datei Werte überschreibt, die im [Umgebungsvariablen-Konfigurationsanbieter](#evcp) und im [Befehlszeilen-Konfigurationsanbieter](#clcp) festgelegt sind.
+In der Regel möchten Sie ***nicht***, dass eine benutzerdefinierte JSON-Datei Werte überschreibt, die im [Umgebungsvariablen-Konfigurationsanbieter](#evcp) und im [Befehlszeilen-Konfigurationsanbieter](#clcp) festgelegt sind.
 
 Mit dem folgenden Code werden alle Konfigurationsanbieter gelöscht und mehrere Konfigurationsanbieter hinzugefügt:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
-Im obigen Code gilt für Einstellungen in den Dateien _MyConfig.json* und *MyConfig*.`Environment`.*json*:
+Im obigen Code gilt für Einstellungen in den Dateien *MyConfig.json* und *MyConfig*.`Environment`.*json*:
 
 * Sie überschreiben Einstellungen in den Dateien *appsettings.json* und *appsettings*.`Environment`.*json*.
 * Sie werden durch Einstellungen im [Umgebungsvariablen-Konfigurationsanbieter](#evcp) und im [Befehlszeilen-Konfigurationsanbieter](#clcp) überschrieben.
@@ -727,7 +727,7 @@ Der folgende Code zeigt Konfigurationsdaten in `Startup`-Methoden an:
 
 Ein Beispiel für den Zugriff auf die Konfiguration mit den Starthilfsmethoden finden Sie unter [Anwendungsstart: Hilfsmethoden](xref:fundamentals/startup#convenience-methods).
 
-## <a name="access-configuration-in-no-locrazor-pages"></a>Zugriffskonfiguration in Razor Pages
+## <a name="access-configuration-in-razor-pages"></a>Zugriffskonfiguration in Razor Pages
 
 Der folgende Code zeigt Konfigurationsdaten auf einer Razor-Seite an:
 
@@ -805,7 +805,7 @@ Eine <xref:Microsoft.AspNetCore.Hosting.IHostingStartup>-Implementierung ermögl
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
-* [Quellcode der Konfiguration](https://github.com/dotnet/extensions/tree/master/src/Configuration)
+* [Quellcode der Konfiguration](https://github.com/dotnet/runtime/tree/master/src/libraries/Microsoft.Extensions.Configuration)
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
@@ -1148,7 +1148,7 @@ Bei Apps, die Switchmappings verwenden, sollten im `CreateDefaultBuilder`-Aufruf
 
 Das erstellte Switchmappingwörterbuch enthält die in der folgenden Tabelle gezeigten Daten.
 
-| Key       | Wert             |
+| Schlüssel       | Wert             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1725,7 +1725,7 @@ config.AddJsonFile(
 
 Das Schlüssel-Wert-Paar in der Tabelle wird in die Konfiguration geladen.
 
-| Key             | Wert  |
+| Schlüssel             | Wert  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 
@@ -1839,7 +1839,7 @@ public class Startup
 
 Ein Beispiel für den Zugriff auf die Konfiguration mit den Starthilfsmethoden finden Sie unter [Anwendungsstart: Hilfsmethoden](xref:fundamentals/startup#convenience-methods).
 
-## <a name="access-configuration-in-a-no-locrazor-pages-page-or-mvc-view"></a>Zugreifen auf die Konfiguration auf einer Razor Pages-Seite oder in einer MVC-Ansicht
+## <a name="access-configuration-in-a-razor-pages-page-or-mvc-view"></a>Zugreifen auf die Konfiguration auf einer Razor Pages-Seite oder in einer MVC-Ansicht
 
 Um auf die Konfigurationseinstellungen auf einer Razor Pages-Seite oder in einer MVC-Ansicht zuzugreifen, fügen Sie eine [using-Anweisung](xref:mvc/views/razor#using) ([C#-Referenz: using-Anweisung](/dotnet/csharp/language-reference/keywords/using-directive)) für den [Microsoft.Extensions.Configuration-Namespace](xref:Microsoft.Extensions.Configuration) hinzu, und fügen Sie <xref:Microsoft.Extensions.Configuration.IConfiguration> auf der Seite bzw. in der Ansicht ein.
 

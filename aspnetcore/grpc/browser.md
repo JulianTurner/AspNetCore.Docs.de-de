@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 6456707620ae1c1f4d23f3562c78d1bf05d4844f
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 0967a70b498156d9c4ea8818ee1c80b37d9f2d87
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058908"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217478"
 ---
 # <a name="use-grpc-in-browser-apps"></a>Verwenden von gRPC in Browser-Apps
 
@@ -66,9 +66,9 @@ Alternativ kann die gRPC-Web-Middleware so konfiguriert werden, dass alle Dienst
 [!code-csharp[](~/grpc/browser/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=12)]
 
 > [!NOTE]
-> Es gibt ein bekanntes Problem, das dazu führen kann, dass gRPC-Web fehlschlägt, wenn es [von Htpp.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x gehostet wird.
+> Ein bekanntes Problem kann dazu führen, dass ein Fehler auftritt, wenn gRPC-Web in .NET Core 3.x [von HTPP.sys gehostet wird](xref:fundamentals/servers/httpsys).
 >
-> Eine Problemumgehung, um gRPC-Web auf Http.sys betreiben zu können, finden Sie [hier](https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202).
+> Eine Problemumgehung, um gRPC-Web auf HTTP.sys betreiben zu können, finden Sie [hier](https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202).
 
 ### <a name="grpc-web-and-cors"></a>gRPC-Web und CORS
 

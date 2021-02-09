@@ -5,7 +5,7 @@ description: Erfahren Sie mehr über die Verwendung der IHttpClientFactory-Schni
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/09/2020
+ms.date: 1/21/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,18 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: 34c35daac3da845bac9156fe96078df7902a4cd0
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1cf3029452f87a396847f969f0f3136a75874752
+ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059493"
+ms.lasthandoff: 01/29/2021
+ms.locfileid: "99057329"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>Stellen von HTTP-Anforderungen mithilfe von IHttpClientFactory in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
 
-Von [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak),  [Steve Gordon](https://github.com/stevejgordon), [Rick Anderson](https://twitter.com/RickAndMSFT) und [Kirk Larkin](https://github.com/serpent5)
+Von [Kirk Larkin](https://github.com/serpent5), [Steve Gordon](https://github.com/stevejgordon), [Glenn Condron](https://github.com/glennc) und [Ryan Nowak](https://github.com/rynowak).
 
 <xref:System.Net.Http.IHttpClientFactory> kann registriert und zum Konfigurieren und Erstellen von <xref:System.Net.Http.HttpClient>-Instanzen in einer App verwendet werden. `IHttpClientFactory` bietet die folgenden Vorteile:
 
@@ -58,7 +58,7 @@ Der beste Ansatz richtet sich nach den Anforderungen der App.
 
 `IHttpClientFactory` kann durch Aufrufen von `AddHttpClient` registriert werden:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1&highlight=13)]
 
 Eine `IHttpClientFactory`-Schnittstelle kann mithilfe der [Dependency Injection (DI)](xref:fundamentals/dependency-injection) angefordert werden. Im folgenden Code wird `IHttpClientFactory` verwendet, um eine `HttpClient`-Instanz zu erstellen:
 
@@ -238,16 +238,15 @@ Weitere Informationen zur Verwendung unterschiedlicher HTTP-Verben mit `HttpClie
 
 `HttpClient` enthält das Konzept, Handler zu delegieren, die für ausgehende HTTP-Anforderungen miteinander verknüpft werden können. `IHttpClientFactory`:
 
-* Erleichtert das Definieren der Handler, die für jeden benannten Client angewendet werden
-* Unterstützt die Registrierung und Verkettung von mehreren Handlern, um eine Pipeline für die Middleware für ausgehende Anforderungen zu erstellen. Jeder dieser Handler kann vor und nach der ausgehenden Anforderung Aufgaben ausführen. Dieses Muster:
-
-  * ähnelt der eingehenden Pipeline für Middleware in ASP.NET Core
-  * bietet einen Mechanismus zum Verwalten von übergreifenden Belangen bezüglich HTTP-Anforderungen, z. B.:
-
-    * Zwischenspeicherung
-    * Fehlerbehandlung
-    * Serialisierung
-    * Protokollierung
+  * Erleichtert das Definieren der Handler, die für jeden benannten Client angewendet werden
+  * Unterstützt die Registrierung und Verkettung von mehreren Handlern, um eine Pipeline für die Middleware für ausgehende Anforderungen zu erstellen. Jeder dieser Handler kann vor und nach der ausgehenden Anforderung Aufgaben ausführen. Dieses Muster:
+  
+    * ähnelt der eingehenden Pipeline für Middleware in ASP.NET Core
+    * bietet einen Mechanismus zum Verwalten von übergreifenden Belangen bezüglich HTTP-Anforderungen, z. B.:
+      * Zwischenspeicherung
+      * Fehlerbehandlung
+      * Serialisierung
+      * Protokollierung
 
 So erstellen Sie einen delegierenden Handler:
 
@@ -262,13 +261,31 @@ Für eine `HttpClient`-Klasse mit <xref:Microsoft.Extensions.DependencyInjection
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
 
-Im vorangehenden Code ist `ValidateHeaderHandler` mit DI registriert. Die `IHttpClientFactory` erstellt einen separaten DI-Bereich für jeden Handler. Handler können von Diensten eines beliebigen Bereichs abhängen. Dienste, von denen Handler abhängig sind, werden verworfen, wenn der Handler verworfen wird.
-
-Nach der Registrierung kann <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> aufgerufen werden, was den Typ für den Handler übergibt.
+Im vorangehenden Code ist `ValidateHeaderHandler` mit DI registriert. Nach der Registrierung kann <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> aufgerufen werden, was den Typ für den Handler übergibt.
 
 Mehrere Handler können in der Reihenfolge registriert werden, in der sie ausgeführt werden sollen. Jeder Handler umschließt den nächsten Handler, bis der endgültige `HttpClientHandler` die Anforderung ausführt:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet6)]
+
+### <a name="use-di-in-outgoing-request-middleware"></a>Verwenden von DI in Middleware für ausgehende Anforderungen
+
+Wenn `IHttpClientFactory` einen neuen delegierenden Handler erstellt, wird DI verwendet, um die Konstruktorparameter des Handlers zu erfüllen. `IHttpClientFactory` erstellt einen **separaten** DI-Bereich für jeden Handler. Dies kann zu überraschendem Verhalten führen, wenn ein Handler einen *bereichsbezogenen* Dienst nutzt.
+
+Sehen Sie sich beispielsweise die folgende Schnittstelle und ihre Implementierung an, die eine Aufgabe als Vorgang mit einem Bezeichner `OperationId` darstellt:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs?name=snippet_Types)]
+
+Wie der Name bereits vermuten lässt, wird `IOperationScoped` bei DI registriert, wobei eine *bereichsbezogene* Lebensdauer verwendet wird:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped&highlight=18,26)]
+
+Der folgende delegierende Handler verwendet `IOperationScoped`, um den `X-OPERATION-ID`-Header für die ausgehende Anforderung festzulegen:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
+
+Navigieren Sie im [`HttpRequestsSample`-Download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)] zu `/Operation`, und aktualisieren Sie die Seite. Der Wert für den Anforderungsbereich ändert sich für jede Anforderung, aber der Wert des Handlerbereichs ändert sich nur alle 5 Sekunden.
+
+Handler können von Diensten eines beliebigen Bereichs abhängen. Dienste, von denen Handler abhängig sind, werden verworfen, wenn der Handler verworfen wird.
 
 Verwenden Sie einen der folgenden Ansätze, um den anforderungsspezifischen Zustand mit Meldungshandlern zu teilen:
 
@@ -363,7 +380,7 @@ Diese Ansätze lösen die Ressourcenverwaltungsprobleme, die `IHttpClientFactory
 - `SocketsHttpHandler` gibt Verbindungen für `HttpClient`-Instanzen frei. Durch diese Freigabe wird die Erschöpfung von Sockets vermieden.
 - `SocketsHttpHandler` wechselt die Verbindungen anhand von `PooledConnectionLifetime`, um Probleme durch veraltetes DNS zu umgehen.
 
-### <a name="no-loccookies"></a>Cookie
+### <a name="cookies"></a>Cookie
 
 Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die cookies erfordern, folgende Vorgehensweisen in Betracht:
 
@@ -681,7 +698,7 @@ Diese Ansätze lösen die Ressourcenverwaltungsprobleme, die `IHttpClientFactory
 - `SocketsHttpHandler` gibt Verbindungen für `HttpClient`-Instanzen frei. Durch diese Freigabe wird die Erschöpfung von Sockets vermieden.
 - `SocketsHttpHandler` wechselt die Verbindungen anhand von `PooledConnectionLifetime`, um Probleme durch veraltetes DNS zu umgehen.
 
-### <a name="no-loccookies"></a>Cookie
+### <a name="cookies"></a>Cookie
 
 Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die cookies erfordern, folgende Vorgehensweisen in Betracht:
 
@@ -989,7 +1006,7 @@ Diese Ansätze lösen die Ressourcenverwaltungsprobleme, die `IHttpClientFactory
 - `SocketsHttpHandler` gibt Verbindungen für `HttpClient`-Instanzen frei. Durch diese Freigabe wird die Erschöpfung von Sockets vermieden.
 - `SocketsHttpHandler` wechselt die Verbindungen anhand von `PooledConnectionLifetime`, um Probleme durch veraltetes DNS zu umgehen.
 
-### <a name="no-loccookies"></a>Cookie
+### <a name="cookies"></a>Cookie
 
 Die zusammengelegten `HttpMessageHandler`-Instanzen resultieren in der Freigabe von `CookieContainer`-Objekten. Die unerwartete Freigabe von `CookieContainer`-Objekten führt oft zu fehlerhaftem Code. Ziehen Sie für Apps, die cookies erfordern, folgende Vorgehensweisen in Betracht:
 

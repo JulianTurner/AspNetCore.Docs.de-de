@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/css-isolation
-ms.openlocfilehash: 92545eab4004f6b67080f79d64b94bb424d5a102
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 0748f606314963788e6733ca2ae2ca2123d839b3
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96320082"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99529981"
 ---
-# <a name="aspnet-core-no-locblazor-css-isolation"></a>ASP.NET Core Blazor-CSS-Isolation
+# <a name="aspnet-core-blazor-css-isolation"></a>ASP.NET Core Blazor-CSS-Isolation
 
 Von [Dave Brock](https://twitter.com/daveabrock)
 
@@ -34,11 +34,19 @@ Die CSS-Isolation verringert den CSS-Speicherbedarf einer App, indem Abhängigke
 
 ## <a name="enable-css-isolation"></a>Aktivieren der CSS-Isolation 
 
-Damit Sie komponentenspezifische Stile definieren können, erstellen Sie eine Datei `.razor.css`, die mit dem Namen der `.razor`-Datei für die Komponente übereinstimmt. Eine solche Datei `.razor.css` ist eine *bereichsbezogene CSS-Datei*. 
+Damit Sie komponentenspezifische Stile definieren können, erstellen Sie eine Datei `.razor.css`, die mit dem Namen der `.razor`-Datei für die Komponente im selben Ordner übereinstimmt. Die Datei `.razor.css` ist eine *bereichsbezogene CSS-Datei*. 
 
-Erstellen Sie für eine `MyComponent`-Komponente, die eine Datei `MyComponent.razor` enthält, eine Datei mit dem Namen `MyComponent.razor.css`. Beim `MyComponent`-Wert im Dateinamen von `.razor.css` wird **nicht** zwischen Groß- und Kleinschreibung unterschieden.
+Erstellen Sie für eine `Example`-Komponente in einer `Example.razor`-Datei eine Datei mit dem Namen `Example.razor.css`. Die `Example.razor.css`-Datei muss sich im gleichen Ordner befinden wie die `Example`-Komponente (`Example.razor`). Beim `Example`-Basisnamen der Datei wird die Groß-/Kleinschreibung **nicht** beachtet.
 
-Wenn Sie beispielsweise der `Counter`-Komponente in der Standardprojektvorlage Blazor CSS-Isolation hinzufügen möchten, fügen Sie neben der Datei `Counter.razor` eine neue Datei mit dem Namen `Counter.razor.css` und dann folgenden CSS-Code hinzu:
+`Pages/Example.razor`:
+
+```razor
+@page "/example"
+
+<h1>Scoped CSS Example</h1>
+```
+
+`Pages/Example.razor.css`:
 
 ```css
 h1 { 
@@ -47,10 +55,10 @@ h1 {
 }
 ```
 
-Die in `Counter.razor.css` definierten Stile werden nur auf die gerenderte Ausgabe der `Counter`-Komponente angewandt. `h1`-CSS-Deklarationen, die an anderer Stelle in der App definiert sind, verursachen keine Konflikte mit `Counter`-Stilen.
+**Die in `Example.razor.css` definierten Stile werden nur auf die gerenderte Ausgabe der `Example`-Komponente angewandt.** Die CSS-Isolation wird auf HTML-Elemente in der entsprechenden Razor-Datei angewandt. `h1`-CSS-Deklarationen, die an anderer Stelle in der App definiert sind, verursachen keine Konflikte mit den Stilen der `Example`-Komponente.
 
 > [!NOTE]
-> Damit die Stilisolation auch bei der Bündelung gewährleistet ist, werden `@import` Razor-Blöcke in bereichsbezogenen CSS-Dateien nicht unterstützt.
+> Damit die Stilisolation auch bei der Bündelung gewährleistet ist, wird das Importieren von CSS in Razor-Codeblöcken nicht unterstützt.
 
 ## <a name="css-isolation-bundling"></a>Bündelung mit CSS-Isolation
 
@@ -59,7 +67,7 @@ Die CSS-Isolation erfolgt zum Zeitpunkt der Erstellung. Während dieses Vorgangs
 Auf diese statischen Dateien wird standardmäßig aus dem Stammpfad der App verwiesen. Die Referenzierung auf die gebündelte Datei in der App erfolgt durch Überprüfen des Verweises im `<head>`-Tag des generierten HTML-Codes:
 
 ```html
-<link href="MyProjectName.styles.css" rel="stylesheet">
+<link href="ProjectName.styles.css" rel="stylesheet">
 ```
 
 Innerhalb der gebündelten Datei ist jede Komponente einem Bereichsbezeichner zugeordnet. Für jede formatierte Komponente wird ein HTML-Attribut im Format `b-<10-character-string>` angehängt. Der Bezeichner ist für jede App eindeutig. In der gerenderten `Counter`-Komponente fügt Blazor einen Bereichsbezeichner an das `h1`-Element an:
@@ -68,7 +76,7 @@ Innerhalb der gebündelten Datei ist jede Komponente einem Bereichsbezeichner zu
 <h1 b-3xxtam6d07>
 ```
 
-Die Datei `MyProjectName.styles.css` verwendet den Bereichsbezeichner, um eine Stildeklaration mit Ihrer Komponente zu gruppieren. Im folgenden Beispiel wird der Stil für das vorherige `<h1>`-Element bereitstellt:
+Die Datei `ProjectName.styles.css` verwendet den Bereichsbezeichner, um eine Stildeklaration mit Ihrer Komponente zu gruppieren. Im folgenden Beispiel wird der Stil für das vorherige `<h1>`-Element bereitstellt:
 
 ```css
 /* /Pages/Counter.razor.rz.scp.css */
@@ -77,7 +85,7 @@ h1[b-3xxtam6d07] {
 }
 ```
 
-Zum Zeitpunkt der Erstellung wird ein Projektbündel mit der Konvention `{STATIC WEB ASSETS BASE PATH}/MyProject.lib.scp.css` erstellt, wobei der Platzhalter `{STATIC WEB ASSETS BASE PATH}` der statische Basispfad für Webressourcen ist.
+Zum Zeitpunkt der Erstellung wird ein Projektbündel mit der Konvention `{STATIC WEB ASSETS BASE PATH}/Project.lib.scp.css` erstellt, wobei der Platzhalter `{STATIC WEB ASSETS BASE PATH}` der statische Basispfad für Webressourcen ist.
 
 Wenn andere Projekte verwendet werden, z. B. NuGet-Pakete oder [Razor-Klassenbibliotheken](xref:blazor/components/class-libraries), gilt für die gebündelte Datei Folgendes:
 
@@ -90,7 +98,7 @@ Standardmäßig gilt die CSS-Isolation nur für die Komponente, die Sie dem Form
 
 Das folgende Beispiel zeigt die übergeordnete Komponente `Parent`, die eine untergeordnete Komponente namens `Child` hat.
 
-`Parent.razor`:
+`Pages/Parent.razor`:
 
 ```razor
 @page "/parent"
@@ -102,13 +110,15 @@ Das folgende Beispiel zeigt die übergeordnete Komponente `Parent`, die eine unt
 </div>
 ```
 
-`Child.razor`:
+`Shared/Child.razor`:
 
 ```razor
 <h1>Child Component</h1>
 ```
 
-Aktualisieren Sie die `h1`-Deklaration in `Parent.razor.css` mit dem `::deep`-Kombinator, um anzugeben, dass die Stildeklaration `h1` auf die übergeordnete Komponente und deren untergeordnete Komponenten angewandt werden muss:
+Aktualisieren Sie die `h1`-Deklaration in `Parent.razor.css` mit dem `::deep`-Kombinator, um anzugeben, dass die Stildeklaration `h1` auf die übergeordnete Komponente und deren untergeordnete Komponenten angewandt werden muss.
+
+`Pages/Parent.razor.css`:
 
 ```css
 ::deep h1 { 
@@ -118,26 +128,27 @@ Aktualisieren Sie die `h1`-Deklaration in `Parent.razor.css` mit dem `::deep`-Ko
 
 Der `h1`-Stil gilt jetzt für die Komponenten `Parent` und `Child`, ohne dass eine separate CSS-Datei für die untergeordnete Komponente erstellt werden muss.
 
-> [!NOTE]
-> Der `::deep`-Kombinator funktioniert nur mit Nachfolgerelementen. Die folgende HTML-Struktur wendet die `h1`-Stile wie erwartet auf Komponenten an:
-> 
-> ```razor
-> <div>
->     <h1>Parent</h1>
->
->     <Child />
-> </div>
-> ```
->
-> In diesem Szenario wendet ASP.NET Core den Bereichsbezeichner der übergeordneten Komponente auf das `div`-Element an, damit der Browser weiß, dass Stile von der übergeordneten Komponente geerbt werden.
->
-> Wenn Sie jedoch das `div`-Element ausschließen, wird die Nachfolgerbeziehung aufgehoben, und der Stil wird **nicht** auf die untergeordnete Komponente angewandt:
->
-> ```razor
-> <h1>Parent</h1>
->
-> <Child />
-> ```
+Der `::deep`-Kombinator funktioniert nur mit Nachfolgerelementen. Das folgende Markup wendet die `h1`-Stile wie erwartet auf Komponenten an. Der Bereichsbezeichner der übergeordneten Komponente wird auf das `div`-Element angewendet, damit der Browser weiß, dass Stile von der übergeordneten Komponente geerbt werden.
+
+`Pages/Parent.razor`:
+
+```razor
+<div>
+    <h1>Parent</h1>
+
+    <Child />
+</div>
+```
+
+Durch Ausschließen des `div`-Elements wird jedoch die Nachfolgerbeziehung entfernt. Im folgenden Beispiel wird der Stil **nicht** auf die untergeordnete Komponente angewendet.
+
+`Pages/Parent.razor`:
+
+```razor
+<h1>Parent</h1>
+
+<Child />
+```
 
 ## <a name="css-preprocessor-support"></a>Unterstützung für CSS-Präprozessoren
 
@@ -155,11 +166,28 @@ Standardmäßig wird für Bereichsbezeichner das Format `b-<10-character-string>
 
 ```xml
 <ItemGroup>
-    <None Update="MyComponent.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/Example.razor.css" CssScope="my-custom-scope-identifier" />
 </ItemGroup>
 ```
 
-Im vorherigen Beispiel ändert der für `MyComponent.Razor.css` generierte CSS-Code seinen Bereichsbezeichner von `b-<10-character-string>` in `my-custom-scope-identifier`.
+Im vorherigen Beispiel ändert der für `Example.Razor.css` generierte CSS-Code seinen Bereichsbezeichner von `b-<10-character-string>` in `my-custom-scope-identifier`.
+
+Verwenden Sie Bereichsbezeichner, um eine Vererbung mit bereichsbezogenen CSS-Dateien zu erzielen. Im folgenden Beispiel für eine Projektdatei enthält eine `BaseComponent.razor.css`-Datei allgemeine Stile in Komponenten. Eine `DerivedComponent.razor.css`-Datei erbt diese Stile.
+
+```xml
+<ItemGroup>
+  <None Update="Pages/BaseComponent.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/DerivedComponent.razor.css" CssScope="my-custom-scope-identifier" />
+</ItemGroup>
+```
+
+Verwenden Sie den Platzhalteroperator (`*`), um Bereichsbezeichner für mehrere Dateien freizugeben:
+
+```xml
+<ItemGroup>
+  <None Update="Pages/*.razor.css" CssScope="my-custom-scope-identifier" />
+</ItemGroup>
+```
 
 ### <a name="change-base-path-for-static-web-assets"></a>Ändern des Basispfads für statische Webressourcen
 
@@ -181,7 +209,7 @@ Wenn Sie das Verhalten von Blazor beim Veröffentlichen und Laden bereichsbezoge
 </PropertyGroup>
 ```
 
-## <a name="no-locrazor-class-library-rcl-support"></a>Unterstützung für Razor-Klassenbibliothek (RCL)
+## <a name="razor-class-library-rcl-support"></a>Unterstützung für Razor-Klassenbibliothek (RCL)
 
 Wenn eine [Razor-Klassenbibliothek (RCL)](xref:razor-pages/ui-class) isolierte Stile bereitstellt, zeigt das `href`-Attribut des `<link>`-Tags auf `{STATIC WEB ASSET BASE PATH}/{ASSEMBLY NAME}.bundle.scp.css`, wobei die Platzhalter für Folgendes stehen:
 
@@ -192,6 +220,8 @@ Im folgenden Beispiel:
 
 * Der Basispfad der statischen Webressource lautet `_content/ClassLib`.
 * Der Assemblyname der Klassenbibliothek lautet `ClassLib`.
+
+`wwwroot/index.html` (Blazor WebAssembly) oder `Pages_Host.cshtml` (Blazor Server):
 
 ```html
 <link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-javascript-from-dotnet
-ms.openlocfilehash: 53b702cddca778e06e617df3798bffb21677d36b
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: ca42b611a61fc394655e396f914e8e050c578e6a
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751647"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99530085"
 ---
 # <a name="call-javascript-functions-from-net-methods-in-aspnet-core-blazor"></a>Aufrufen von JavaScript-Funktionen über .NET-Methoden in ASP.NET Core Blazor
 
@@ -523,14 +523,14 @@ export function showPrompt(message) {
 }
 ```
 
-Fügen Sie das oben gezeigte JavaScript-Modul einer .NET-Bibliothek als statische Webressource (`wwwroot/exampleJsInterop.js`) hinzu, und importieren Sie das Modul dann mithilfe des <xref:Microsoft.JSInterop.IJSRuntime>-Diensts in den .NET-Code. Der Dienst wird im folgenden Beispiel als `js` (nicht gezeigt) eingefügt:
+Fügen Sie das oben gezeigte JavaScript-Modul einer .NET-Bibliothek als statische Webressource (`wwwroot/exampleJsInterop.js`) hinzu, und importieren Sie das Modul dann durch Aufrufen von <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> im <xref:Microsoft.JSInterop.IJSRuntime>-Dienst in den .NET-Code. Der Dienst wird im folgenden Beispiel als `js` (nicht gezeigt) eingefügt:
 
 ```csharp
 var module = await js.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
-Der Bezeichner `import` im Beispiel oben ist ein spezieller Bezeichner, der insbesondere zum Importieren eines JavaScript-Moduls verwendet wird. Geben Sie das Modul mithilfe seines stabilen statischen Webressourcenpfads an: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. Das Pfadsegment für das aktuelle Verzeichnis (`./`) ist erforderlich, damit der korrekte Pfad zu statischen Objekten in der JavaScript-Datei erstellt werden kann. Der Platzhalter `{LIBRARY NAME}` ist der Name der Bibliothek. Der Platzhalter `{PATH UNDER WWWROOT}` ist der Pfad zum Skript unter `wwwroot`.
+Der Bezeichner `import` im Beispiel oben ist ein spezieller Bezeichner, der insbesondere zum Importieren eines JavaScript-Moduls verwendet wird. Geben Sie das Modul mithilfe seines stabilen statischen Webressourcenpfads an: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. Das Pfadsegment für das aktuelle Verzeichnis (`./`) ist erforderlich, damit der korrekte Pfad zu statischen Objekten in der JavaScript-Datei erstellt werden kann. Das dynamische Importieren eines Moduls erfordert eine Netzwerkanforderung, sodass es nur asynchron durch Aufrufen von <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> erreicht werden kann. Der Platzhalter `{LIBRARY NAME}` ist der Name der Bibliothek. Der Platzhalter `{PATH UNDER WWWROOT}` ist der Pfad zum Skript unter `wwwroot`.
 
 <xref:Microsoft.JSInterop.IJSRuntime> importiert das Modul als `IJSObjectReference`-Element, das einen Verweis auf ein JavaScript-Objekt aus .NET-Code darstellt. Verwenden Sie `IJSObjectReference`, um exportierte JavaScript-Funktionen aus dem Modul aufzurufen:
 

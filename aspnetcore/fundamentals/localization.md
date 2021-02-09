@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 07e2f561b0e9db58780d6e8a271e32b00132b1b5
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 67f245b7f4e4aa97b30c5318c73732617aea44c7
+ms.sourcegitcommit: 7e394a8527c9818caebb940f692ae4fcf2f1b277
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059519"
+ms.lasthandoff: 01/31/2021
+ms.locfileid: "99217569"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>Globalisierung und Lokalisierung in ASP.NET Core
 
@@ -134,7 +134,7 @@ Im obigen Codebeispiel bezeichnet `SharedResource` die Klasse, die der RESX-Date
 
 ### <a name="supportedcultures-and-supporteduicultures"></a>SupportedCultures und SupportedUICultures
 
-ASP.NET Core ermöglicht Ihnen, zwei Werte für die Kultur anzugeben: `SupportedCultures` und `SupportedUICultures`. Das Objekt [CultureInfo](/dotnet/api/system.globalization.cultureinfo) für `SupportedCultures` bestimmt die Ergebnisse von kulturabhängigen Funktionen, wie z.B. das Format von Datumswerten, Uhrzeiten, Zahlen und Währungen. `SupportedCultures` bestimmt auch die Sortierreihenfolge von Texten, Groß-/Kleinschreibungskonventionen und Zeichenfolgenvergleichen. Weitere Informationen darüber, wie der Server die Kultur abruft, finden Sie unter [CultureInfo.CurrentCulture](/dotnet/api/system.stringcomparer.currentculture#System_StringComparer_CurrentCulture). `SupportedUICultures` bestimmt, welche übersetzten Zeichenfolgen (aus den *RESX*-Dateien) von [ResourceManager](/dotnet/api/system.resources.resourcemanager) abgerufen werden. Die `ResourceManager`-Klasse sucht nach kulturspezifischen Zeichenfolgen, die durch `CurrentUICulture` bestimmt werden. Jeder Thread in .NET enthält die Objekte `CurrentCulture` und `CurrentUICulture`. ASP.NET Core überprüft diese Werte beim Rendern von kulturspezifischen Funktionen. Wenn die Kultur des aktuellen Threads zum Beispiel auf „en-US“ (Englisch, USA) festgelegt ist, gibt `DateTime.Now.ToLongDateString()` „Thursday, February 18, 2016“ aus, wenn `CurrentCulture` jedoch auf „es-ES“ (Spanisch, Spanien) festgelegt ist, wird „jueves, 18 de febrero de 2016“ ausgegeben.
+ASP.NET Core ermöglicht Ihnen, zwei Werte für die Kultur anzugeben: <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedCultures> und <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SupportedUICultures>. Das Objekt <xref:System.Globalization.CultureInfo> für `SupportedCultures` bestimmt die Ergebnisse von kulturabhängigen Funktionen, wie z.B. das Format von Datumswerten, Uhrzeiten, Zahlen und Währungen. `SupportedCultures` bestimmt auch die Sortierreihenfolge von Texten, Groß-/Kleinschreibungskonventionen und Zeichenfolgenvergleichen. Weitere Informationen zur Art und Weise, wie der Server die Kultur erhält, finden Sie unter <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=nameWithType> und <xref:System.Globalization.CultureInfo.CurrentUICulture?displayProperty=nameWithType>. `SupportedUICultures` bestimmt, welche übersetzten Zeichenfolgen (aus den `.resx`-Dateien) von <xref:System.Resources.ResourceManager> abgerufen werden. Die `ResourceManager`-Klasse sucht nach kulturspezifischen Zeichenfolgen, die durch `CurrentUICulture` bestimmt werden. Jeder Thread in .NET enthält die Objekte `CurrentCulture` und `CurrentUICulture`. Das Framework überprüft diese Werte beim Rendern von kulturspezifischen Funktionen. Wenn die Kultur des aktuellen Threads auf `en-US` (Englisch, USA) festgelegt ist, zeigt `DateTime.Now.ToLongDateString()` `Thursday, February 18, 2016` an. Wenn `CurrentCulture` jedoch auf `es-ES` (Spanisch, Spanien) festgelegt ist, lautet die Ausgabe `jueves, 18 de febrero de 2016`.
 
 ## <a name="resource-files"></a>Ressourcendateien
 
@@ -177,7 +177,7 @@ Wenn Sie nicht die Option `ResourcesPath` verwenden, befindet sich die *RESX*-Da
 
 ### <a name="rootnamespaceattribute"></a>RootNamespaceAttribute 
 
-Das [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1)-Attribut stellt den Stammnamespace einer Assembly bereit, wenn der Stammnamespace einer Assembly sich vom Assemblynamen unterscheidet. 
+Das <xref:Microsoft.Extensions.Localization.RootNamespaceAttribute>-Attribut stellt den Stammnamespace einer Assembly bereit, wenn der Stammnamespace einer Assembly sich vom Assemblynamen unterscheidet. 
 
 > [!WARNING]
 > Dies kann vorkommen, wenn der Name eines Projekts kein gültiger .NET-Bezeichner ist. Beispielsweise verwendet `my-project-name.csproj` den Stammnamespace `my_project_name` und den Assemblynamen `my-project-name`, der zu diesem Fehler führt. 
@@ -261,7 +261,7 @@ Wenn Sie nur eine der beiden Abfragezeichenfolgen (`culture` oder `ui-culture`) 
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
 Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines cookies.
 
@@ -531,7 +531,7 @@ Wenn Sie nicht die Option `ResourcesPath` verwenden, befindet sich die *RESX*-Da
 
 ### <a name="rootnamespaceattribute"></a>RootNamespaceAttribute 
 
-Das [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1)-Attribut stellt den Stammnamespace einer Assembly bereit, wenn der Stammnamespace einer Assembly sich vom Assemblynamen unterscheidet. 
+Das <xref:Microsoft.Extensions.Localization.RootNamespaceAttribute>-Attribut stellt den Stammnamespace einer Assembly bereit, wenn der Stammnamespace einer Assembly sich vom Assemblynamen unterscheidet. 
 
 > [!WARNING]
 > Dies kann vorkommen, wenn der Name eines Projekts kein gültiger .NET-Bezeichner ist. Beispielsweise verwendet `my-project-name.csproj` den Stammnamespace `my_project_name` und den Assemblynamen `my-project-name`, der zu diesem Fehler führt. 
@@ -617,7 +617,7 @@ Wenn Sie nur eine der beiden Abfragezeichenfolgen (`culture` oder `ui-culture`) 
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
 Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines cookies.
 
@@ -886,7 +886,7 @@ Wenn Sie nicht die Option `ResourcesPath` verwenden, befindet sich die *RESX*-Da
 
 ### <a name="rootnamespaceattribute"></a>RootNamespaceAttribute 
 
-Das [RootNamespace](/dotnet/api/microsoft.extensions.localization.rootnamespaceattribute?view=aspnetcore-2.1)-Attribut stellt den Stammnamespace einer Assembly bereit, wenn der Stammnamespace einer Assembly sich vom Assemblynamen unterscheidet. 
+Das <xref:Microsoft.Extensions.Localization.RootNamespaceAttribute>-Attribut stellt den Stammnamespace einer Assembly bereit, wenn der Stammnamespace einer Assembly sich vom Assemblynamen unterscheidet. 
 
 > [!WARNING]
 > Dies kann vorkommen, wenn der Name eines Projekts kein gültiger .NET-Bezeichner ist. Beispielsweise verwendet `my-project-name.csproj` den Stammnamespace `my_project_name` und den Assemblynamen `my-project-name`, der zu diesem Fehler führt. 
@@ -972,7 +972,7 @@ Wenn Sie nur eine der beiden Abfragezeichenfolgen (`culture` oder `ui-culture`) 
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
 
 Produktions-Apps bieten oft einen Mechanismus zum Festlegen der Kultur mithilfe des ASP.NET Core-Kulturcookies. Verwenden Sie die Methode `MakeCookieValue` zum Erstellen eines cookies.
 

@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 0753ef0f1cde7bbb45ecc09b97fecb5ce364811c
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: 58a87bc5413523fdf052a9e1c41196bb8b0ab457
+ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024651"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99529968"
 ---
-# <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>Best Practices zur Blazor WebAssembly-Leistung in ASP.NET Core
+# <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Best Practices zur Blazor WebAssembly-Leistung in ASP.NET Core
 
 Von [Pranav Krishnamoorthy](https://github.com/pranavkm) und [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -191,7 +191,7 @@ Sie können untergeordnete Komponenten ausschließlich als Möglichkeit zur Wied
 @RenderWelcomeInfo
 
 @code {
-    RenderFragment RenderWelcomeInfo = __builder =>
+    private RenderFragment RenderWelcomeInfo = __builder =>
     {
         <div>
             <p>Welcome to your new app!</p>
@@ -221,12 +221,12 @@ Dieser könnte nun von einer nicht verknüpften Komponente aus aufgerufen werden
 <div class="chat">
     @foreach (var message in messages)
     {
-        @DisplayChatMessage(message)
+        @ChatMessageDisplay(message)
     }
 </div>
 
 @code {
-    RenderFragment<ChatMessage> DisplayChatMessage = message => __builder =>
+    private RenderFragment<ChatMessage> ChatMessageDisplay = message => __builder =>
     {
         <div class="chat-message">
             <span class="author">@message.Author</span>
@@ -237,6 +237,17 @@ Dieser könnte nun von einer nicht verknüpften Komponente aus aufgerufen werden
 ```
 
 Dieser Ansatz bietet den Vorteil, dass Renderinglogik ohne Mehraufwand pro Komponente gerendert werden kann. Allerdings hat er weder den Vorteil, dass seine Unterstruktur der Benutzeroberfläche unabhängig aktualisiert werden kann, noch kann das Rendering dieser Unterstruktur der Benutzeroberfläche übersprungen werden, wenn ihr übergeordnetes Element gerendert wird, da es keine Komponentenbegrenzung gibt.
+
+Verwenden Sie für ein nicht statisches Feld, eine Methode oder Eigenschaft, worauf kein Feldinitialisierer verweisen kann, wie z. B. `TitleTemplate` im folgenden Beispiel, eine Eigenschaft anstelle eines Felds für das <xref:Microsoft.AspNetCore.Components.RenderFragment>:
+
+```csharp
+protected RenderFragment DisplayTitle => __builder =>
+{
+    <div>
+        @TitleTemplate
+    </div>   
+};
+```
 
 #### <a name="dont-receive-too-many-parameters"></a>Nicht zu viele Parameter empfangen
 

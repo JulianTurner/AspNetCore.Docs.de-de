@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/memory
-ms.openlocfilehash: 9b19c782d1d42ddaba590f05bab31899402f681a
-ms.sourcegitcommit: 6af9016d1ffc2dffbb2454c7da29c880034cefcd
+ms.openlocfilehash: 19e8dc0ae4d5f8fd28d03d5be87c0b1bbf32d940
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96901222"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100107219"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>Speicher interne Speicherung in ASP.net Core
 
@@ -181,7 +181,7 @@ Durch <xref:System.Threading.CancellationTokenSource> die Verwendung von können
 
 ## <a name="additional-notes"></a>Zusätzliche Hinweise
 
-* Das Ablaufdatum wird im Hintergrund nicht angezeigt. Es gibt keinen Timer, der den Cache aktiv nach abgelaufenen Elementen scannt. Jede Aktivität im Cache ( `Get` , `Set` , `Remove` ) kann eine Hintergrund Überprüfung für abgelaufene Elemente auslöst. Ein Timer `CancellationTokenSource` <xref:System.Threading.CancellationTokenSource.CancelAfter*> für () entfernt ebenfalls den Eintrag und löst eine Überprüfung abgelaufener Elemente aus. Im folgenden Beispiel wird [CancellationTokenSource (TimeSpan)](/dotnet/api/system.threading.cancellationtokensource.-ctor) für das registrierte Token verwendet. Wenn dieses Token ausgelöst wird, wird der Eintrag sofort entfernt, und die Entfernungs Rückrufe werden ausgelöst:
+* Das Ablaufdatum wird im Hintergrund nicht angezeigt. Es gibt keinen Timer, der den Cache aktiv nach abgelaufenen Elementen scannt. Jede Aktivität im Cache ( `Get` , `Set` , `Remove` ) kann eine Hintergrund Überprüfung für abgelaufene Elemente auslöst. Ein Timer für `CancellationTokenSource` ( <xref:System.Threading.CancellationTokenSource.CancelAfter*> ) entfernt ebenfalls den Eintrag und löst eine Überprüfung abgelaufener Elemente aus. Im folgenden Beispiel wird [CancellationTokenSource (TimeSpan)](/dotnet/api/system.threading.cancellationtokensource.-ctor) für das registrierte Token verwendet. Wenn dieses Token ausgelöst wird, wird der Eintrag sofort entfernt, und die Entfernungs Rückrufe werden ausgelöst:
 
 [!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet_ae)]
 

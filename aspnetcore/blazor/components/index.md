@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: efc73022d0bd8c29595f9bed1c06fe07002eb54a
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 111512916cb7f0a4fc1f17648e2f9c69e366dff3
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99530098"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100107050"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -268,7 +268,7 @@ Informationen zu Routenparametern (`{*pageRoute}`), die Pfade über mehrere Ordn
 
 ### <a name="component-parameters"></a>Komponentenparameter
 
-Komponenten können *Komponentenparameter* enthalten, die mithilfe öffentlicher einfacher oder komplexer Eigenschaften für die Komponentenklasse mit dem [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute)-Attribut definiert werden. Verwenden Sie Attribute, um Argumente für eine Komponente im Markup anzugeben.
+Komponenten können *Komponentenparameter* enthalten, die mithilfe öffentlicher einfacher oder komplexer Eigenschaften für die Komponentenklasse mit dem [`[Parameter]`-Attribut](xref:Microsoft.AspNetCore.Components.ParameterAttribute) definiert werden. Verwenden Sie Attribute, um Argumente für eine Komponente im Markup anzugeben.
 
 `Components/ChildComponent.razor`:
 
@@ -396,7 +396,7 @@ Die gerenderten `<input>`-Elemente sind mit beiden Ansätzen identisch:
        size="50">
 ```
 
-Definieren Sie einen Komponentenparameter mithilfe des [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute)-Attributs, bei dem die <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues>-Eigenschaft auf `true` festgelegt ist, damit beliebige Attribute akzeptiert werden:
+Definieren Sie einen Komponentenparameter mithilfe des [`[Parameter]`-Attributs](xref:Microsoft.AspNetCore.Components.ParameterAttribute), bei dem die <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues>-Eigenschaft auf `true` festgelegt ist, damit beliebige Attribute akzeptiert werden:
 
 ```razor
 @code {
@@ -584,7 +584,10 @@ Verwenden Sie `NotifierService`, um eine Komponente zu aktualisieren:
 }
 ```
 
-Im vorherigen Beispiel ruft `NotifierService` die `OnNotify`-Methode der Komponente außerhalb des Synchronisierungskontexts von Blazor auf. `InvokeAsync` wird verwendet, um zum richtigen Kontext zu wechseln und ein Rendering in die Warteschlange zu stellen. Weitere Informationen finden Sie unter <xref:blazor/components/rendering>.
+Im vorherigen Beispiel:
+
+* `NotifierService` ruft die `OnNotify`-Methode der Komponente außerhalb des Synchronisierungskontexts von Blazor auf. `InvokeAsync` wird verwendet, um zum richtigen Kontext zu wechseln und ein Rendering in die Warteschlange zu stellen. Weitere Informationen finden Sie unter <xref:blazor/components/rendering>.
+* Die Komponente implementiert <xref:System.IDisposable>, und der `OnNotify`-Delegat wird in der `Dispose`-Methode abbestellt. Diese wird vom Framework aufgerufen, wenn die Komponente verworfen wird. Weitere Informationen finden Sie unter <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
 ## <a name="use-key-to-control-the-preservation-of-elements-and-components"></a>Verwenden von \@key zur Steuerung der Beibehaltung von Elementen und Komponenten
 
@@ -772,7 +775,7 @@ Weitere Informationen finden Sie unter [Bidirektionaler Blazor-Bindungsfehler (d
 
 ## <a name="apply-an-attribute"></a>Hinzufügen eines Attributs
 
-Attribute können in Razor-Komponenten mit der [`@attribute`][7]-Anweisung hinzugefügt werden. Im folgenden Beispiel wird das [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)-Attribut auf die Komponentenklasse angewendet:
+Attribute können in Razor-Komponenten mit der [`@attribute`][7]-Anweisung hinzugefügt werden. Im folgenden Beispiel wird das [`[Authorize]`-Attribut](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) auf die Komponentenklasse angewendet:
 
 ```razor
 @page "/"

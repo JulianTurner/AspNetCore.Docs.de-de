@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: bd42ba41c6f599d7c0308febbbde71e0d060cc84
-ms.sourcegitcommit: 20a41c8e40a2e69e99291e2fe18caa04c02e7109
+ms.openlocfilehash: d42136de00ccc9b7565c5ae088e1ecf4560a63c5
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "99578294"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100106881"
 ---
 # <a name="introduction-to-aspnet-core-blazor"></a>Einführung in ASP.NET Core Blazor
 
@@ -148,8 +148,9 @@ Die Größe der veröffentlichten App, ihre *Nutzlastgröße*, ist ein wichtiger
 
 Blazor entkoppelt die Komponentenrenderinglogik von Aktualisierungen der Benutzeroberfläche. *Blazor Server* bietet Unterstützung für das Hosten von Razor-Komponenten in einer ASP.NET Core-App auf dem Server. Aktualisierungen der Benutzeroberfläche werden über eine [SignalR](xref:signalr/introduction)-Verbindung verarbeitet.
 
-Die Runtime verarbeitet Folgendes:
+Die Runtime verbleibt auf dem Server und führt folgende Aufgaben aus:
 
+* Ausführen des C#-Codes der App
 * Senden von Benutzeroberflächenereignissen vom Browser an den Server.
 * Anwenden von Benutzeroberflächenupdates, die vom Server zurückgesendet werden, auf die gerenderte Komponente.
 

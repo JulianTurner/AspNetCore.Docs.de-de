@@ -19,20 +19,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 5031273c3395be4365b3a6d239ebce7aaf9b66ac
-ms.sourcegitcommit: cc405f20537484744423ddaf87bd1e7d82b6bdf0
+ms.openlocfilehash: 5a3d3c6e06653de7f0d01565444d37013f347a5b
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/21/2021
-ms.locfileid: "98658637"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280312"
 ---
-# <a name="secure-aspnet-core-no-locblazor-server-apps"></a>Schützen von Blazor Server-Apps von ASP.NET Core
-
-Von [Luke Latham](https://github.com/guardrex)
+# <a name="secure-aspnet-core-blazor-server-apps"></a>Schützen von Blazor Server-Apps von ASP.NET Core
 
 Das Schützen von Blazor Server-Apps funktioniert genau wie bei ASP.NET Core-Apps. Weitere Informationen finden Sie in den Artikeln unter <xref:security/index>. Die Themen in dieser Übersicht gelten speziell für Blazor Server.
 
-## <a name="no-locblazor-server-project-template"></a>Blazor Server-Projektvorlage
+## <a name="blazor-server-project-template"></a>Blazor Server-Projektvorlage
 
 Die Projektvorlage Blazor Server kann beim Erstellen des Projekts für die Authentifizierung konfiguriert werden.
 
@@ -120,14 +118,14 @@ Weitere Informationen finden Sie unter:
 
 ---
 
-## <a name="scaffold-no-locidentity"></a>Gerüst Identity
+## <a name="scaffold-identity"></a>Gerüst Identity
 
 Gerüst Identity in einem Blazor Server-Projekt:
 
 * [Ohne vorhandene Autorisierung](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
 * [Mit Autorisierung](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization)
 
-## <a name="azure-app-service-on-linux-with-no-locidentity-server"></a>Azure App Service für Linux mit Identity Server
+## <a name="azure-app-service-on-linux-with-identity-server"></a>Azure App Service für Linux mit Identity Server
 
 Geben Sie den Zertifikataussteller explizit an, wenn Sie eine Bereitstellung auf Azure App Service für Linux mit Identity Server durchführen. Weitere Informationen finden Sie unter <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
 

@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 111512916cb7f0a4fc1f17648e2f9c69e366dff3
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: 823c24620b369874fdbc3e314b5b08952df83c8b
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100107050"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280113"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
-
-Von [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27) [Scott Addie](https://github.com/scottaddie) und [Tobias Bartsch](https://www.aveo-solutions.com/)
 
 [Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
 

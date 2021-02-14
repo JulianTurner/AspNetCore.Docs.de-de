@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: 6d87c8de66bf5600189465b96dee903841106b6f
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: 6f89046f2e1805111dd81b3282253a72a7c6ea09
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93061144"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100281017"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>Verteiltes Zwischenspeichern in ASP.net Core
 
@@ -129,12 +129,12 @@ In [diesem GitHub-Problem](https://github.com/dotnet/AspNetCore.Docs/issues/1954
 
 [NCache](https://github.com/Alachisoft/NCache) ist ein Open Source-verteilter, in-Memory-Cache, der System intern in .net und .net Core entwickelt wurde. NCache funktioniert sowohl lokal als auch als verteilter Cache Cluster für eine ASP.net Core-APP, die in Azure oder auf anderen Hostingplattformen ausgeführt wird.
 
-Informationen zum Installieren und Konfigurieren von NCache auf dem lokalen Computer finden Sie im Leitfaden zu den ersten Schritten mit [NCache für Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/).
+Informationen zum Installieren und Konfigurieren von NCache auf Ihrem lokalen Computer finden Sie unter Leitfaden für die ersten Schritte [für Windows (.net und .net Core)](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/).
 
 So konfigurieren Sie NCache:
 
 1. Installieren [Sie NCache Open Source nuget](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Konfigurieren Sie den Cache Cluster in " [Client. ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html)".
+1. Konfigurieren Sie den Cache Cluster in " [Client. ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html)".
 1. Fügen Sie den folgenden Code zu `Startup.ConfigureServices` hinzu:
 
    ```csharp
@@ -173,7 +173,7 @@ Aktualisieren Sie die zwischengespeicherte Zeit sofort auf die aktuelle Zeit, in
 
 * Vorhandene Infrastruktur
 * Leistungsanforderungen
-* Kosten
+* „Cost“ (Kosten)
 * Team Darstellung
 
 Zwischen Speicherungs Lösungen basieren in der Regel auf in-Memory-Speicher, um das schnelle Abrufen von zwischengespeicherten Daten zu ermöglichen, aber der Arbeitsspeicher ist eine begrenzte Ressource und ist aufwändig Speichert nur häufig verwendete Daten in einem Cache.
@@ -299,12 +299,12 @@ So installieren Sie redis auf dem lokalen Computer:
 
 [NCache](https://github.com/Alachisoft/NCache) ist ein Open Source-verteilter, in-Memory-Cache, der System intern in .net und .net Core entwickelt wurde. NCache funktioniert sowohl lokal als auch als verteilter Cache Cluster für eine ASP.net Core-APP, die in Azure oder auf anderen Hostingplattformen ausgeführt wird.
 
-Informationen zum Installieren und Konfigurieren von NCache auf dem lokalen Computer finden Sie im Leitfaden zu den ersten Schritten mit [NCache für Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/).
+Informationen zum Installieren und Konfigurieren von NCache auf Ihrem lokalen Computer finden Sie unter Leitfaden für die ersten Schritte [für Windows (.net und .net Core)](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/).
 
 So konfigurieren Sie NCache:
 
 1. Installieren [Sie NCache Open Source nuget](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Konfigurieren Sie den Cache Cluster in " [Client. ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html)".
+1. Konfigurieren Sie den Cache Cluster in " [Client. ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html)".
 1. Fügen Sie den folgenden Code zu `Startup.ConfigureServices` hinzu:
 
    ```csharp
@@ -343,7 +343,7 @@ Aktualisieren Sie die zwischengespeicherte Zeit sofort auf die aktuelle Zeit, in
 
 * Vorhandene Infrastruktur
 * Leistungsanforderungen
-* Kosten
+* „Cost“ (Kosten)
 * Team Darstellung
 
 Zwischen Speicherungs Lösungen basieren in der Regel auf in-Memory-Speicher, um das schnelle Abrufen von zwischengespeicherten Daten zu ermöglichen, aber der Arbeitsspeicher ist eine begrenzte Ressource und ist aufwändig Speichert nur häufig verwendete Daten in einem Cache.
@@ -475,12 +475,12 @@ So installieren Sie redis auf dem lokalen Computer:
 
 [NCache](https://github.com/Alachisoft/NCache) ist ein Open Source-verteilter, in-Memory-Cache, der System intern in .net und .net Core entwickelt wurde. NCache funktioniert sowohl lokal als auch als verteilter Cache Cluster für eine ASP.net Core-APP, die in Azure oder auf anderen Hostingplattformen ausgeführt wird.
 
-Informationen zum Installieren und Konfigurieren von NCache auf dem lokalen Computer finden Sie im Leitfaden zu den ersten Schritten mit [NCache für Windows](https://www.alachisoft.com/resources/docs/ncache-oss/getting-started-guide-windows/).
+Informationen zum Installieren und Konfigurieren von NCache auf Ihrem lokalen Computer finden Sie unter Leitfaden für die ersten Schritte [für Windows (.net und .net Core)](https://www.alachisoft.com/resources/docs/ncache/getting-started-guide-windows/).
 
 So konfigurieren Sie NCache:
 
 1. Installieren [Sie NCache Open Source nuget](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Konfigurieren Sie den Cache Cluster in " [Client. ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html)".
+1. Konfigurieren Sie den Cache Cluster in " [Client. ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html)".
 1. Fügen Sie den folgenden Code zu `Startup.ConfigureServices` hinzu:
 
    ```csharp
@@ -519,7 +519,7 @@ Aktualisieren Sie die zwischengespeicherte Zeit sofort auf die aktuelle Zeit, in
 
 * Vorhandene Infrastruktur
 * Leistungsanforderungen
-* Kosten
+* „Cost“ (Kosten)
 * Team Darstellung
 
 Zwischen Speicherungs Lösungen basieren in der Regel auf in-Memory-Speicher, um das schnelle Abrufen von zwischengespeicherten Daten zu ermöglichen, aber der Arbeitsspeicher ist eine begrenzte Ressource und ist aufwändig Speichert nur häufig verwendete Daten in einem Cache.

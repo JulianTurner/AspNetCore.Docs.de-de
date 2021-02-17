@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 30baab0649268f4abf0dbd6c99dfeef3f43d0054
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536293"
+---
 Die bevorzugte Methode für das Lesen zugehöriger Konfigurationswerte ist die Verwendung des [Optionsmusters](xref:fundamentals/configuration/options). Um z. B. die folgenden Konfigurationswerte zu lesen:
 
 ```json
@@ -15,11 +35,11 @@ Eine Optionsklasse:
 
 * Eine Optionsklasse muss nicht abstrakt sein und über einen öffentlichen parameterlosen Konstruktor verfügen.
 * Alle öffentlichen Lese-/Schreibeigenschaften des Typs sind gebunden.
-* Felder werden **nicht** gebunden. Im vorangehenden Code ist `Position` nicht gebunden. Die `Position`-Eigenschaft wird verwendet, sodass die Zeichenfolge `"Position"` nicht in der App hartcodiert werden muss, wenn die Klasse an einen Konfigurationsanbieter gebunden wird.
+* Felder werden ***nicht*** gebunden. Im vorangehenden Code ist `Position` nicht gebunden. Die `Position`-Eigenschaft wird verwendet, sodass die Zeichenfolge `"Position"` nicht in der App hartcodiert werden muss, wenn die Klasse an einen Konfigurationsanbieter gebunden wird.
 
 Der folgende Code
 
-_ ruft [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) auf, um die `PositionOptions`-Klasse an den `Position`-Abschnitt zu binden
+* Ruft [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) auf, um die `PositionOptions`-Klasse an den `Position`-Abschnitt zu binden.
 * Zeigt die `Position`-Konfigurationsdaten an.
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test22.cshtml.cs?name=snippet)]

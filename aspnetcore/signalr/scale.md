@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: d3e9cd23a55702bcf9b002dcce556428683afeca
-ms.sourcegitcommit: ca34c1ac578e7d3daa0febf1810ba5fc74f60bbf
+ms.openlocfilehash: e70f3143159a1817e326a95b30e7369a5c9ab025
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93052772"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564008"
 ---
-# <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.net Core SignalR Hosting und Skalierung
+# <a name="aspnet-core-signalr-hosting-and-scaling"></a>ASP.net Core SignalR Hosting und Skalierung
 
 Von [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaester](https://twitter.com/bradygaster)und [Tom Dykstra](https://github.com/tdykstra)
 
@@ -46,13 +46,13 @@ Anleitungen zum Konfigurieren von Azure App Service für SignalR finden Sie unte
 
 ## <a name="tcp-connection-resources"></a>TCP-Verbindungs Ressourcen
 
-Die Anzahl der gleichzeitigen TCP-Verbindungen, die ein Webserver unterstützen kann, ist begrenzt. Standard-HTTP-Clients verwenden *kurzlebige* Verbindungen. Diese Verbindungen können geschlossen werden, wenn der Client in den Leerlauf wechselt und später erneut geöffnet wird. Auf der anderen Seite ist eine SignalR Verbindung *persistent* . SignalR Verbindungen bleiben auch dann geöffnet, wenn der Client in den Leerlauf wechselt. In einer APP mit hohem Datenverkehr, die viele Clients bedient, können diese persistenten Verbindungen bewirken, dass Server die maximale Anzahl von Verbindungen erreichen.
+Die Anzahl der gleichzeitigen TCP-Verbindungen, die ein Webserver unterstützen kann, ist begrenzt. Standard-HTTP-Clients verwenden *kurzlebige* Verbindungen. Diese Verbindungen können geschlossen werden, wenn der Client in den Leerlauf wechselt und später erneut geöffnet wird. Auf der anderen Seite ist eine SignalR Verbindung *persistent*. SignalR Verbindungen bleiben auch dann geöffnet, wenn der Client in den Leerlauf wechselt. In einer APP mit hohem Datenverkehr, die viele Clients bedient, können diese persistenten Verbindungen bewirken, dass Server die maximale Anzahl von Verbindungen erreichen.
 
 Persistente Verbindungen verbrauchen auch zusätzlichen Arbeitsspeicher, um die einzelnen Verbindungen zu verfolgen.
 
 Die intensive Verwendung von Verbindungs bezogenen Ressourcen von SignalR kann sich auf andere Web-Apps auswirken, die auf demselben Server gehostet werden. Wenn SignalR geöffnet wird und die letzten verfügbaren TCP-Verbindungen enthält, sind auch andere Web-Apps auf demselben Server nicht mehr verfügbar.
 
-Wenn auf einem Server keine Verbindungen mehr auftreten, werden zufällige Socketfehler und Fehler beim Zurücksetzen der Verbindung angezeigt. Zum Beispiel:
+Wenn auf einem Server keine Verbindungen mehr auftreten, werden zufällige Socketfehler und Fehler beim Zurücksetzen der Verbindung angezeigt. Beispiel:
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...
@@ -70,7 +70,7 @@ Eine APP, die verwendet SignalR , muss alle zugehörigen Verbindungen nachverfol
 
 Die Optionen für die Lösung dieses Problems sind der [Azure- SignalR Dienst](#azure-signalr-service) und die [redis-Rückwand](#redis-backplane).
 
-## <a name="azure-no-locsignalr-service"></a>Azure SignalR Service
+## <a name="azure-signalr-service"></a>Azure SignalR Service
 
 Beim Azure- SignalR Dienst handelt es sich um einen Proxy und nicht um eine Backplane. Jedes Mal, wenn ein Client eine Verbindung mit dem Server initiiert, wird der Client umgeleitet, um eine Verbindung mit dem Dienst herzustellen. Dieser Prozess wird in der folgenden Abbildung veranschaulicht:
 
@@ -201,10 +201,11 @@ Weitere Informationen zum Lastenausgleich und zu kurz Notizen finden Sie unter [
 Weitere Informationen zu ASP.net Core mit nginx finden Sie im folgenden Artikel:
 * <xref:host-and-deploy/linux-nginx>
 
-## <a name="third-party-no-locsignalr-backplane-providers"></a>Drittanbieter- SignalR Rückwand-Anbieter
+## <a name="third-party-signalr-backplane-providers"></a>Drittanbieter- SignalR Rückwand-Anbieter
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
 * [Tro](https://github.com/OrleansContrib/SignalR.Orleans)
+* [Rebus](https://github.com/rebus-org/Rebus.SignalR)
 
 ## <a name="next-steps"></a>Nächste Schritte
 

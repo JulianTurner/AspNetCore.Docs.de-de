@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 79457d55e0dcda342bc0017bb386c23525666657
-ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
+ms.openlocfilehash: 416fc292d82cf841b2134e23a8e494e3e8d945ca
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/10/2021
-ms.locfileid: "100107193"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100563982"
 ---
 # <a name="filters-in-aspnet-core"></a>Filter in ASP.NET Core
 
@@ -443,7 +443,7 @@ Durch Auslösen einer Ausnahme in einer Aktionsmethode geschieht Folgendes:
 Bei einem `IAsyncActionFilter` hat der Aufruf von <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate> folgende Auswirkungen:
 
 * Alle nachfolgenden Aktionsfilter und die Aktionsmethode werden ausgeführt.
-* Gibt `ActionExecutedContext` zurück.
+* Gibt `ActionExecutedContext`zurück.
 
 Weisen Sie einer Ergebnisinstanz <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> zu, und rufen Sie nicht `next` (den `ActionExecutionDelegate`) auf, um die Pipeline kurzzuschließen.
 
@@ -551,7 +551,7 @@ Beispielsweise wird der folgende Filter immer ausgeführt und legt ein Aktionser
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/UnprocessableResultFilter.cs?name=snippet)]
 
-### <a name="ifilterfactory"></a>IFilterFactory
+## <a name="ifilterfactory"></a>IFilterFactory
 
 <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implementiert <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Deshalb kann eine `IFilterFactory`-Instanz an einer beliebigen Stelle in der Filterpipeline als `IFilterMetadata`-Instanz verwendet werden. Wenn die Runtime den Aufruf des Filters vorbereitet, versucht sie, ihn in eine `IFilterFactory` umzuwandeln. Wenn diese Umwandlung gelingt, wird die Methode <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> aufgerufen, um die Instanz `IFilterMetadata` für den Aufruf zu erstellen. Da die exakte Filterpipeline beim Start der Anwendung nicht explizit festgelegt werden muss, wird dadurch ein sehr flexibles Design ermöglicht.
 
@@ -990,7 +990,7 @@ Durch Auslösen einer Ausnahme in einer Aktionsmethode geschieht Folgendes:
 Bei einem `IAsyncActionFilter` hat der Aufruf von <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate> folgende Auswirkungen:
 
 * Alle nachfolgenden Aktionsfilter und die Aktionsmethode werden ausgeführt.
-* Gibt `ActionExecutedContext` zurück.
+* Gibt `ActionExecutedContext`zurück.
 
 Weisen Sie einer Ergebnisinstanz <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext.Result?displayProperty=fullName> zu, und rufen Sie nicht `next` (den `ActionExecutionDelegate`) auf, um die Pipeline kurzzuschließen.
 
@@ -1091,7 +1091,7 @@ Beispielsweise wird der folgende Filter immer ausgeführt und legt ein Aktionser
 
 [!code-csharp[](./filters/sample/FiltersSample/Filters/UnprocessableResultFilter.cs?name=snippet)]
 
-### <a name="ifilterfactory"></a>IFilterFactory
+## <a name="ifilterfactory"></a>IFilterFactory
 
 <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implementiert <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Deshalb kann eine `IFilterFactory`-Instanz an einer beliebigen Stelle in der Filterpipeline als `IFilterMetadata`-Instanz verwendet werden. Wenn die Runtime den Aufruf des Filters vorbereitet, versucht sie, ihn in eine `IFilterFactory` umzuwandeln. Wenn diese Umwandlung gelingt, wird die Methode <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> aufgerufen, um die Instanz `IFilterMetadata` für den Aufruf zu erstellen. Da die exakte Filterpipeline beim Start der Anwendung nicht explizit festgelegt werden muss, wird dadurch ein sehr flexibles Design ermöglicht.
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/key-storage-providers
-ms.openlocfilehash: e4cf10d09c1629afb298aef0c2b86ad3bf7b646c
-ms.sourcegitcommit: 83524f739dd25fbfa95ee34e95342afb383b49fe
+ms.openlocfilehash: d2f3e9dc7445b59c677f917bbd6c466b5037390c
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/29/2021
-ms.locfileid: "99057368"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101196"
 ---
 # <a name="key-storage-providers-in-aspnet-core"></a>Schlüsselspeicher Anbieter in ASP.net Core
 
@@ -59,7 +59,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Wenn die Web-App als Azure-Dienst ausgeführt wird, kann die Verbindungs Zeichenfolge verwendet werden, um sich mithilfe von [Azure. Storage. BLOB](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient)bei Azure Storage zu authentifizieren.
+Wenn die Web-App als Azure-Dienst ausgeführt wird, kann die Verbindungs Zeichenfolge verwendet werden, um sich mithilfe von [Azure. Storage. BLOB](/dotnet/api/azure.storage.blobs.blobcontainerclient)bei Azure Storage zu authentifizieren.
 
 ```csharp
 string connectionString = "<connection_string>";

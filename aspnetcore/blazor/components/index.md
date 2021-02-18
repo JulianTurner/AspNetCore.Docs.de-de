@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 823c24620b369874fdbc3e314b5b08952df83c8b
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: 7b4438b4003916488c17d389b9817b5e09d1086c
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280113"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536219"
 ---
 # <a name="create-and-use-aspnet-core-razor-components"></a>Erstellen und Verwenden von ASP.NET Core-Razor-Komponenten
 
@@ -285,16 +285,168 @@ Im folgenden Beispiel aus der Beispiel-App legt der `ParentComponent` den Wert d
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
-Gemäß Konvention wird ein aus C#-Code bestehender Attributwert einem Parameter mithilfe des [reservierten `@`-Symbols von Razor zugewiesen](xref:mvc/views/razor#razor-syntax):
+Weisen Sie Komponentenparametern C#- Felder, -Eigenschaften und -Methoden mit dem [reservierten `@`-Symbol von Razor](xref:mvc/views/razor#razor-syntax) als HTML-Attributwerte zu:
 
-* Übergeordnetes Feld oder übergeordnete Eigenschaft: `Title="@{FIELD OR PROPERTY}`, wobei der Platzhalter `{FIELD OR PROPERTY}` ein C#-Feld oder eine C#-Eigenschaft der übergeordneten Komponente ist.
-* Ergebnis einer Methode: `Title="@{METHOD}"`, wobei der Platzhalter `{METHOD}` eine C#-Methode der übergeordneten Komponente ist.
-* [Impliziter oder expliziter Ausdruck](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`, wobei der Platzhalter `{EXPRESSION}` ein C#-Ausdruck ist.
+* Um einem Parameter einer untergeordneten Komponente das Feld, die Eigenschaft oder die Methode einer übergeordneten Komponente zuzuweisen, stellen Sie dem Feld-, Eigenschafts- oder Methodennamen das `@`-Symbol voran. Um das Ergebnis eines [impliziten C#-Ausdrucks](xref:mvc/views/razor#implicit-razor-expressions) einem Parameter zuzuweisen, stellen Sie dem impliziten Ausdruck ein `@`-Symbol voran.
+
+  Die folgende übergeordnete Komponente zeigt vier Instanzen der vorangehenden `ChildComponent`-Komponente an und legt ihre `Title`-Parameterwerte folgendermaßen fest:
+
+  * Der Wert des `title`-Felds.
+  * Das Ergebnis der `GetTitle`-C#-Methode.
+  * Das aktuelle lokale Datum im langen Format mit <xref:System.DateTime.ToLongDateString%2A>.
+  * Die `Name`-Eigenschaft des `person`-Objekts.
+
+  `Pages/ParentComponent.razor`:
+  
+  ```razor
+  <ChildComponent Title="@title">
+      Title from field.
+  </ChildComponent>
+  
+  <ChildComponent Title="@GetTitle()">
+      Title from method.
+  </ChildComponent>
+  
+  <ChildComponent Title="@DateTime.Now.ToLongDateString()">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  <ChildComponent Title="@person.Name">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+      private Person person = new Person();
+      
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+      
+      private class Person
+      {
+          public string Name { get; set; } = "Dr. Who";
+      }
+  }
+  ```
+  
+  Anders als bei Razor-Seiten (`.cshtml`) kann Blazor keine asynchronen Aufgaben in einem Razor-Ausdruck ausführen, während eine Komponente gerendert wird. Der Grund hierfür ist, dass Blazor für das Rendering interaktiver Benutzeroberflächen konzipiert ist. In einer interaktiven Benutzeroberfläche muss auf dem Bildschirm immer etwas angezeigt werden. Daher ist es nicht sinnvoll, den Renderingfluss zu blockieren. Stattdessen wird die asynchrone Arbeit während eines der [asynchronen Lebenszyklusereignisse](xref:blazor/components/lifecycle) ausgeführt. Nach jedem asynchronen Lebenszyklusereignis kann die Komponente wieder gerendert werden. Folgende Razor-Syntax wird **nicht** unterstützt:
+  
+  ```razor
+  <ChildComponent Title="@await ...">
+      ...
+  </ChildComponent>
+  ```
+  
+  Der Code im vorangehenden Beispiel generiert einen *Compilerfehler*, wenn die App erstellt wird:
+  
+  > Der 'await'-Operator kann nur innerhalb einer 'async'-Methode verwendet werden. Markieren Sie ggf. diese Methode mit dem 'async'-Modifizierer, und ändern Sie ihren Rückgabetyp in 'Task'.
+
+  Um einen Wert für den `Title`-Parameter im vorangehenden Beispiel asynchron abzurufen, kann die Komponente das [`OnInitializedAsync`-Lebenszyklusereignis](xref:blazor/components/lifecycle#component-initialization-methods) verwenden, wie im folgenden Beispiel gezeigt:
+  
+  ```razor
+  <ChildComponent Title="@title">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title;
+      
+      protected override async Task OnInitializedAsync()
+      {
+          title = await ...;
+      }
+  }
+  ```
+  
+* Um das Ergebnis eines [expliziten C#-Ausdrucks](xref:mvc/views/razor#explicit-razor-expressions) in der übergeordneten Komponente dem Parameter einer untergeordneten Komponente zuzuweisen, müssen Sie den Ausdruck in Klammern einschließen und mit einem `@`-Symbolpräfix versehen.
+
+  Die folgende untergeordnete Komponente hat den <xref:System.DateTime>-Komponentenparameter `ShowItemsSinceDate`.
+  
+  `Shared/ChildComponent.razor`:
+  
+  ```razor
+  <div class="panel panel-default">
+      <div class="panel-heading">Explicit DateTime Expression Example</div>
+      <div class="panel-body">
+          <p>@ChildContent</p>
+          <p>One week ago date: @ShowItemsSinceDate</p>
+      </div>
+  </div>
+
+  @code {
+      [Parameter]
+      public DateTime ShowItemsSinceDate { get; set; }
+
+      [Parameter]
+      public RenderFragment ChildContent { get; set; }
+  }
+  ```
+  
+  Die folgende übergeordnete Komponente berechnet mit einem expliziten C#-Ausdruck ein Datum, das eine Woche zurückliegt, für die Zuweisung zum `ShowItemsSinceDate`-Parameter des untergeordneten Elements.
+  
+  `Pages/ParentComponent.razor`:
+
+  ```razor
+  <ChildComponent ShowItemsSinceDate="@(DateTime.Now - TimeSpan.FromDays(7))">
+      Title from explicit Razor expression.
+  </ChildComponent>
+  ```
+
+  Die Verwendung eines expliziten Ausdrucks zur Verkettung von Text mit einem Ausdrucksergebnis für die Zuweisung zu einem Parameter wird **nicht** unterstützt. Im folgenden Beispiel wird versucht, den Text „SKU-“ mit einer Produktbestandsnummer (`SKU`-Eigenschaft, „Stock Keeping Unit“) zu verketten, die vom `product`-Objekt einer übergeordneten Komponente bereitgestellt wird. Obwohl diese Syntax in einer Razor-Seite (`.cshtml`) unterstützt wird, ist sie nicht für die Zuweisung zum `Title`-Parameter des untergeordneten Elements gültig.
+  
+  ```razor
+  <ChildComponent Title="SKU-@(product.SKU)">
+      Title from composed Razor expression. This doesn't compile.
+  </ChildComponent>
+  ```
+  
+  Der Code im vorangehenden Beispiel generiert einen *Compilerfehler*, wenn die App erstellt wird:
+  
+  > Komponentenattribute unterstützen keine komplexen Inhalte (C# und Markup gemischt).
+  
+  Um die Zuweisung eines zusammengesetzten Werts zu unterstützen, verwenden Sie eine Methode, ein Feld oder eine Eigenschaft. Im folgenden Beispiel wird die Verkettung von „SKU-“ und einer Produktbestandsnummer in der C#-Methode `GetTitle` durchgeführt:
+  
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Composed title from method.
+  </ChildComponent>
+  
+  @code {
+      private Product product = new Product();
+
+      private string GetTitle() => $"SKU-{product.SKU}";
+      
+      private class Product
+      {
+          public string SKU { get; set; } = "12345";
+      }
+  }
+  ```
   
 Weitere Informationen finden Sie unter [Razor-Syntaxreferenz für ASP.NET Core](xref:mvc/views/razor).
 
 > [!WARNING]
 > Erstellen Sie keine Komponenten, die in ihre eigenen *Komponentenparameter* schreiben, sondern verwenden Sie stattdessen ein privates Feld. Weitere Informationen finden Sie im Abschnitt [Überschriebene Parameter](#overwritten-parameters).
+
+#### <a name="component-parameters-should-be-auto-properties"></a>Komponentenparameter sollten Auto-Eigenschaften sein
+
+Komponentenparameter sollten als *Auto-Eigenschaften* deklariert werden, d. h., ihre Getter oder Setter sollten keine benutzerdefinierte Logik enthalten. Beispielsweise ist die folgende `StartData`-Eigenschaft eine Auto-Eigenschaft:
+
+```csharp
+[Parameter]
+public DateTime StartData { get; set; }
+```
+
+Platzieren Sie die benutzerdefinierte Logik nicht in der `get`- oder `set`-Zugriffsmethode, da Komponentenparameter ausschließlich zur Verwendung als Kanal für eine übergeordnete Komponente vorgesehen sind, über den Informationen an eine untergeordnete Komponente fließen. Wenn ein Setter einer untergeordneten Komponenteneigenschaft Logik enthält, die das erneute Rendern der übergeordneten Komponente bewirkt, resultiert daraus eine Rendering-Endlosschleife.
+
+Wenn Sie einen empfangenen Parameterwert transformieren müssen:
+
+* Belassen Sie die Parametereigenschaft als reine Auto-Eigenschaft, um die bereitgestellten Rohdaten darzustellen.
+* Erstellen Sie eine andere Eigenschaft oder Methode, die die transformierten Daten basierend auf der Parametereigenschaft bereitstellt.
+
+Sie können `OnParametersSetAsync` überschreiben, wenn Sie einen empfangenen Parameter jedes Mal transformieren möchten, wenn neue Daten empfangen werden.
 
 ## <a name="child-content"></a>Untergeordneter Inhalt
 

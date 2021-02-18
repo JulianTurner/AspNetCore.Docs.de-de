@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: a6f1c88b8e93c0d8ccfebca482895ebab8d18a81
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 780161090d376f08b849fadb47127810d6661d0c
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506915"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279761"
 ---
-# <a name="aspnet-core-no-locblazor-hosting-models"></a>Blazor-Hostingmodelle in ASP.NET Core
-
-Von [Daniel Roth](https://github.com/danroth27)
+# <a name="aspnet-core-blazor-hosting-models"></a>Blazor-Hostingmodelle in ASP.NET Core
 
 Das Webframework Blazor kann auf Clientseite im Browser in einer auf [WebAssembly](https://webassembly.org/) basierenden .NET-Runtime ( *Blazor WebAssembly* ) oder auf Serverseite in ASP.NET Core ( *Blazor Server* ) ausgeführt werden. Die App und die Komponentenmodelle sind für alle Hostingmodelle *identisch*.
 
@@ -38,7 +36,7 @@ Das primäre Blazor-Hostingmodell wird clientseitig im Browser in WebAssembly au
 
 ![Blazor WebAssembly: Die Blazor-App wird in einem Benutzeroberflächenthread im Browser ausgeführt.](hosting-models/_static/blazor-webassembly.png)
 
-Wenn die Blazor WebAssembly-App für die Bereitstellung ohne ASP.NET Core-App im Back-End für die Bereitstellung der zugehörigen Dateien erstellt wird, wird die App als *eigenständige* Blazor WebAssembly-App bezeichnet. Wenn die App für die Bereitstellung mit einer Back-End-App zum Bereitstellen der zugehörigen Dateien erstellt wird, wird die App als *gehostete* Blazor WebAssembly-App bezeichnet. Eine gehostete Blazor WebAssembly-App interagiert in der Regel mithilfe von Web-API-Aufrufen oder [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>) mit dem Server über das Netzwerk.
+Wenn die Blazor WebAssembly-App für die Bereitstellung ohne ASP.NET Core-App im Back-End für die Bereitstellung der zugehörigen Dateien erstellt wird, wird die App als *eigenständige* Blazor WebAssembly-App bezeichnet. Wenn die App für die Bereitstellung mit einer Back-End-App zum Bereitstellen der zugehörigen Dateien erstellt wird, wird die App als *gehostete* Blazor WebAssembly-App bezeichnet. Eine gehostete Blazor WebAssembly-App interagiert in der Regel mithilfe von Web-API-Aufrufen oder [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>) mit dem Server über das Netzwerk.
 
 Das `blazor.webassembly.js`-Skript wird vom Framework und von den Handles bereitgestellt:
 
@@ -160,5 +158,5 @@ Bei der Verwendung von IIS sind persistente Sitzungen mit *Routing von Anwendung
 
 * <xref:blazor/tooling>
 * <xref:signalr/introduction>
-* <xref:blazor/fundamentals/additional-scenarios>
-* <xref:tutorials/signalr-blazor-webassembly>
+* <xref:blazor/fundamentals/signalr>
+* <xref:tutorials/signalr-blazor>

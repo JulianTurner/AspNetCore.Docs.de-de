@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/configuration
-ms.openlocfilehash: 5889d775c09ee23f19bf3ff59344c52d469c4bdc
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 48d78f40e9254bac182ffbc534550157664bcc5b
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97485966"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100106933"
 ---
-# <a name="aspnet-core-no-locblazor-configuration"></a>Blazor-Konfiguration in ASP.NET Core
+# <a name="aspnet-core-blazor-configuration"></a>Blazor-Konfiguration in ASP.NET Core
 
 > [!NOTE]
 > Dieses Thema gilt für Blazor WebAssembly. Eine allgemeine Anleitung zur App-Konfiguration in ASP.NET Core finden Sie unter <xref:fundamentals/configuration/index>.
@@ -102,57 +102,6 @@ using var response = await http.GetAsync("cars.json");
 using var stream = await response.Content.ReadAsStreamAsync();
 
 builder.Configuration.AddJsonStream(stream);
-```
-
-## <a name="custom-configuration-provider-with-ef-core"></a>Benutzerdefinierter Konfigurationsanbieter mit EF Core
-
-Der benutzerdefinierte Konfigurationsanbieter mit EF Core, der in <xref:fundamentals/configuration/index#custom-configuration-provider> gezeigt wird, funktioniert mit Blazor WebAssembly-Apps.
-
-> [!WARNING]
-> Datenbank-Verbindungszeichenfolgen und Datenbanken, die mit Blazor WebAssembly-Apps geladen werden, sind nicht sicher und sollten nicht zum Speichern vertraulicher Daten verwendet werden.
-
-Fügen Sie der Projektdatei der App Paketverweise für [`Microsoft.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore) und [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory) hinzu.
-
-Fügen Sie die Entity Framework Core-Konfigurationsklassen hinzu, die unter <xref:fundamentals/configuration/index#custom-configuration-provider> beschrieben werden.
-
-Fügen Sie `Program.cs` die Namespaces für <xref:Microsoft.EntityFrameworkCore?displayProperty=fullName> und <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> hinzu:
-
-```csharp
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration.Memory;
-```
-
-In `Program.Main` von `Program.cs`:
-
-```csharp
-builder.Configuration.AddEFConfiguration(
-    options => options.UseInMemoryDatabase("InMemoryDb"));
-```
-
-Fügen Sie eine <xref:Microsoft.Extensions.Configuration.IConfiguration>-Instanz in eine Komponente ein, um auf die Konfigurationsdaten zuzugreifen.
-
-`Pages/EFCoreConfig.razor`:
-
-```razor
-@page "/efcore-config"
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
-
-<h1>EF Core configuration example</h1>
-
-<h2>Quotes</h2>
-
-<ul>
-    <li>@Configuration["quote1"]</li>
-    <li>@Configuration["quote2"]</li>
-    <li>@Configuration["quote3"]</li>
-</ul>
-
-<p>
-    Quotes &copy;2005 
-    <a href="https://www.uphe.com/">Universal Pictures</a>: 
-    <a href="https://www.uphe.com/movies/serenity">Serenity</a>
-</p>
 ```
 
 ## <a name="memory-configuration-source"></a>Arbeitsspeicher als Konfigurationsquelle

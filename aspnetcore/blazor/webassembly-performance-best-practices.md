@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 58a87bc5413523fdf052a9e1c41196bb8b0ab457
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: 1860a36ba4122fb39ca92797da9a44b282afa793
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99529968"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280649"
 ---
 # <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>Best Practices zur Blazor WebAssembly-Leistung in ASP.NET Core
-
-Von [Pranav Krishnamoorthy](https://github.com/pranavkm) und [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 Blazor WebAssembly wurde sorgfältig entworfen und optimiert, um hohe Leistung in den realistischsten Anwendungsbenutzeroberflächen-Szenarien zu ermöglichen. Die besten Ergebnisse zu erzielen, hängt jedoch davon ab, dass die Entwickler die richtigen Muster und Features verwenden. Berücksichtigen Sie folgende Aspekte:
 
@@ -91,7 +89,7 @@ Wenn die Komponente nur ein erneutes Rendern erfordert, wenn die Parameterwerte 
         prevInboundFlightId = InboundFlight.FlightId;
     }
 
-    protected override void ShouldRender() => shouldRender;
+    protected override bool ShouldRender() => shouldRender;
 
     // Note that 
 }
@@ -545,7 +543,7 @@ function jsInteropCall() {
 
 ### <a name="intermediate-language-il-trimming"></a>IL-Kürzung (Intermediate Language, Zwischensprache)
 
-[Das Kürzen nicht verwendeter Assemblys über eine Blazor WebAssembly-App](xref:blazor/host-and-deploy/configure-trimmer) reduziert die Größe der App, indem nicht genutzter Code in den Binärdateien der App entfernt wird. Der Trimmer wird standardmäßig beim Veröffentlichen einer Anwendung ausgeführt. Veröffentlichen Sie die App für die Bereitstellung mithilfe des Befehls [`dotnet publish`](/dotnet/core/tools/dotnet-publish) mit auf `Release` festgelegter Option [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), um von der Kürzung zu profitieren:
+Das Kürzen nicht verwendeter Assemblys über eine Blazor WebAssembly-App reduziert die Größe der App, indem nicht genutzter Code in den Binärdateien der App entfernt wird. Weitere Informationen finden Sie unter <xref:blazor/host-and-deploy/configure-trimmer>.
 
 ::: moniker-end
 
@@ -555,11 +553,11 @@ function jsInteropCall() {
 
 [Das Konfigurieren eines Linkers für eine Blazor WebAssembly-App](xref:blazor/host-and-deploy/configure-linker) reduziert die Größe der App, indem nicht genutzter Code in den Binärdateien der App gekürzt wird. Standardmäßig ist der IL-Linker (Intermediate Language, Zwischensprache) nur aktiviert, wenn der Erstellvorgang in der `Release`-Konfiguration ausgeführt wird. Veröffentlichen Sie die App für die Bereitstellung mithilfe des Befehls [`dotnet publish`](/dotnet/core/tools/dotnet-publish) mit auf `Release` festgelegter Option [-c|--configuration](/dotnet/core/tools/dotnet-publish#options), um diesen Vorteil zu nutzen:
 
-::: moniker-end
-
 ```dotnetcli
 dotnet publish -c Release
 ```
+
+::: moniker-end
 
 ### <a name="use-systemtextjson"></a>Verwenden von System.Text.Json
 

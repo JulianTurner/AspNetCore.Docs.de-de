@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: f8f261f25d854a9bf36ad3299f4af392d5c4fafd
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 8baee9bc0a8e569174f33dac6a406b2162d09552
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93055879"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279907"
 ---
-# <a name="aspnet-core-no-locblazor-globalization-and-localization"></a>Globalisierung und Lokalisierung in ASP.NET Core Blazor
-
-Von [Luke Latham](https://github.com/guardrex) und [Daniel Roth](https://github.com/danroth27)
+# <a name="aspnet-core-blazor-globalization-and-localization"></a>Globalisierung und Lokalisierung in ASP.NET Core Blazor
 
 Razor-Komponenten können Benutzern mit verschiedenen Kulturen und Sprachen zur Verfügung gestellt werden. Die folgenden Szenarios zur Globalisierung und Lokalisierung von .NET sind verfügbar:
 
@@ -127,7 +125,7 @@ Die Kultur kann mit einem der folgenden Ansätze festgelegt werden:
 
 Weitere Informationen und Beispiele finden Sie unter <xref:fundamentals/localization>.
 
-#### <a name="no-loccookies"></a>Cookie
+#### <a name="cookies"></a>Cookie
 
 Ein cookie für die Lokalisierungskultur kann die Kultur des Benutzers beibehalten. Die Lokalisierungsmiddleware liest das cookie bei aufeinanderfolgenden Anforderungen, um die Kultur des Benutzers festzulegen. 
 

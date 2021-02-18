@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: fcf06295deb41f304b92caa82535a1197c909898
-ms.sourcegitcommit: 75db2f684a9302b0be7925eab586aa091c6bd19f
+ms.openlocfilehash: 515da543fc6b6cca0b90968b154d91b611ea3345
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/01/2021
-ms.locfileid: "99238233"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280546"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>Erstellen progressiver Webanwendungen mit Blazor WebAssembly für ASP.NET Core
-
-Von [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 Eine progressive Webanwendung (PWA) ist in der Regel eine Single-Page-Webanwendung (SPA), die mithilfe moderner Browser-APIs und -Funktionen das gleiche Verhalten wie eine Desktop-App aufweist. Blazor WebAssembly ist eine auf Standards basierende clientseitige Web-App-Plattform, die beliebige Browser-APIs einschließlich der PWA-APIs verwenden kann, die für die folgenden Funktionen erforderlich sind:
 
@@ -406,4 +404,4 @@ Die Beispiel-App [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 
 * [PowerShell-Skript für die Behebung von Problemen bei der Integrität](xref:blazor/host-and-deploy/webassembly#troubleshoot-integrity-powershell-script)
-* [Ursprungsübergreifende SignalR-Aushandlung für die Authentifizierung](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [Ursprungsübergreifende SignalR-Aushandlung für die Authentifizierung](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication)

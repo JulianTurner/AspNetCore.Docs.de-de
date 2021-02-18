@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: d51a4a43f585b0a0b7e3aab2c5de1b2d215de494
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: a8bb659a72e8370c31cc9c213689399e74f11b5c
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93059597"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564056"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Problembehandlung bei ASP.NET Core in Azure App Service und IIS
 
@@ -275,7 +275,7 @@ Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weiter
 *Erfordert die Installation der Runtimeerweiterung für ASP.NET Core {VERSION} (x86).*
 
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` ist die Runtimeversion.)
-1. Führen Sie die App aus: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+1. Ausführen der App: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
 Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weitergeleitet.
 
@@ -288,7 +288,7 @@ Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weiter
   1. Führen Sie die App aus: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 * Wenn es sich bei der App um eine [eigenständige Bereitstellung](/dotnet/core/deploying/#self-contained-deployments-scd) handelt:
   1. `cd D:\home\site\wwwroot`
-  1. Führen Sie die App aus: `{ASSEMBLY NAME}.exe`
+  1. Ausführen der App: `{ASSEMBLY NAME}.exe`
 
 Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weitergeleitet.
 
@@ -297,7 +297,7 @@ Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weiter
 *Erfordert die Installation der Runtimeerweiterung für ASP.NET Core {VERSION} (x64).*
 
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x64` (`{X.Y}` ist die Runtimeversion.)
-1. Führen Sie die App aus: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
+1. Ausführen der App: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
 Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weitergeleitet.
 
@@ -321,6 +321,8 @@ Das stdout-Protokoll des ASP.NET Core-Moduls zeichnet häufig nützliche Fehlerm
 Deaktivieren Sie die stdout-Protokollierung, wenn die Problembehandlung abgeschlossen ist, indem Sie `stdoutLogEnabled="false"` festlegen.
 
 Weitere Informationen finden Sie unter <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+
+<a name="enhanced-diagnostic-logs"></a>
 
 ### <a name="aspnet-core-module-debug-log-azure-app-service"></a>Debugprotokoll im ASP.NET Core-Modul (Azure App Service)
 
@@ -760,7 +762,7 @@ Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weiter
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` ist die Runtimeversion.)
 1. Ausführen der App: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-Die Konsolenausgabe der App, in der alle Fehler angezeigt werden, wird per Pipe an die Kudu-Konsole weitergeleitet.
+Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weitergeleitet.
 
 #### <a name="test-a-64-bit-x64-app"></a>Testen einer 64-Bit-App (x64)
 
@@ -773,7 +775,7 @@ Die Konsolenausgabe der App, in der alle Fehler angezeigt werden, wird per Pipe 
   1. `cd D:\home\site\wwwroot`
   1. Ausführen der App: `{ASSEMBLY NAME}.exe`
 
-Die Konsolenausgabe der App, in der alle Fehler angezeigt werden, wird per Pipe an die Kudu-Konsole weitergeleitet.
+Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weitergeleitet.
 
 **Frameworkabhängige Bereitstellung, die in einem Vorschaurelease ausgeführt wird**
 
@@ -1238,7 +1240,7 @@ Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weiter
 1. `cd D:\home\SiteExtensions\AspNetCoreRuntime.{X.Y}.x32` (`{X.Y}` ist die Runtimeversion.)
 1. Ausführen der App: `dotnet \home\site\wwwroot\{ASSEMBLY NAME}.dll`
 
-Die Konsolenausgabe der App, in der alle Fehler angezeigt werden, wird per Pipe an die Kudu-Konsole weitergeleitet.
+Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weitergeleitet.
 
 #### <a name="test-a-64-bit-x64-app"></a>Testen einer 64-Bit-App (x64)
 
@@ -1251,7 +1253,7 @@ Die Konsolenausgabe der App, in der alle Fehler angezeigt werden, wird per Pipe 
   1. `cd D:\home\site\wwwroot`
   1. Ausführen der App: `{ASSEMBLY NAME}.exe`
 
-Die Konsolenausgabe der App, in der alle Fehler angezeigt werden, wird per Pipe an die Kudu-Konsole weitergeleitet.
+Die Konsolenausgabe der App, die Fehler anzeigt, wird an die Kudu-Konsole weitergeleitet.
 
 **Frameworkabhängige Bereitstellung, die in einem Vorschaurelease ausgeführt wird**
 

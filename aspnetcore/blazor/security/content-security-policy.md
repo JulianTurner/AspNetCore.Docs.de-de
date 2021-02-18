@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/content-security-policy
-ms.openlocfilehash: 744449240fabc3dae317d0d7bc9090311521c224
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: f44f348947e31864f5d0d44c9caf1a3aa9c3b1d4
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94570119"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280341"
 ---
-# <a name="enforce-a-content-security-policy-for-aspnet-core-no-locblazor"></a>Erzwingen einer Content Security Policy für ASP.NET Core Blazor
-
-Von [Javier Calvarro Nelson](https://github.com/javiercn) und [Luke Latham](https://github.com/guardrex)
+# <a name="enforce-a-content-security-policy-for-aspnet-core-blazor"></a>Erzwingen einer Content Security Policy für ASP.NET Core Blazor
 
 Beim [Cross-Site-Scripting (XSS)](xref:security/cross-site-scripting) handelt es sich um ein Sicherheitsrisiko, bei dem ein Angreifer mindestens ein schädliches clientseitiges Skript in den gerenderten Inhalt einer App einfügt. Eine Content Security Policy (CSP) hilft beim Schutz gegen XSS-Angriffe, indem sie den Browser über Folgendes informiert:
 

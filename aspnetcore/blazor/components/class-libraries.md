@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: 14370f9bbf45079fd3654d3e55af4178691cf4f5
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: fed5d26ecd73a4710ee794c413fd51e0b4cb4913
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252551"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280195"
 ---
-# <a name="aspnet-core-no-locrazor-components-class-libraries"></a>Klassenbibliotheken für ASP.NET Core-Razor-Komponenten
-
-Von [Simon Timms](https://github.com/stimms)
+# <a name="aspnet-core-razor-components-class-libraries"></a>Klassenbibliotheken für ASP.NET Core-Razor-Komponenten
 
 Komponenten können in einer [Razor-Klassenbibliothek (RCL)](xref:razor-pages/ui-class) projektübergreifend gemeinsam genutzt werden. Eine *Klassenbibliothek für Razor-Komponenten* kann wie folgt einbezogen werden:
 
@@ -127,7 +125,7 @@ Bei Bibliothekskomponenten, die [CSS-Isolation](xref:blazor/components/css-isola
 
 <!-- REACTIVATE WHEN HEAD COMPONENTS COME BACK AT 6.0
 
-To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) in `Component1.razor`:
+To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) in `Component1.razor`:
 
 ```razor
 <div class="my-component">
@@ -176,17 +174,17 @@ Um die `my-component`-CSS-Klasse von `Component1`bereitzustellen, stellen Sie ei
 
 ::: moniker-end
 
-## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>Erstellen einer Klassenbibliothek für Razor-Komponenten mit statischen Objekten
+## <a name="create-a-razor-components-class-library-with-static-assets"></a>Erstellen einer Klassenbibliothek für Razor-Komponenten mit statischen Objekten
 
 Eine RCL kann statische Objekte enthalten. Die statischen Objekte sind für jede App verfügbar, die die Bibliothek nutzt. Weitere Informationen finden Sie unter <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
-## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>Bereitstellen von Komponenten und statischen Ressourcen für mehrere gehostete Blazor-Apps
+## <a name="supply-components-and-static-assets-to-multiple-hosted-blazor-apps"></a>Bereitstellen von Komponenten und statischen Ressourcen für mehrere gehostete Blazor-Apps
 
 Weitere Informationen finden Sie unter <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-## <a name="browser-compatibility-analyzer-for-no-locblazor-webassembly"></a>Browserkompatibilitäts-Analysetool für Blazor WebAssembly
+## <a name="browser-compatibility-analyzer-for-blazor-webassembly"></a>Browserkompatibilitäts-Analysetool für Blazor WebAssembly
 
 Blazor WebAssembly-Apps zielen auf die vollständige .NET-API-Oberfläche ab, aber aufgrund von Browsersandboxeinschränkungen werden nicht alle .NET-APIs in WebAssembly unterstützt. Nicht unterstützte APIs lösen <xref:System.PlatformNotSupportedException> bei der Ausführung in Webassembly aus. Ein Plattformkompatibilitäts-Analysetool warnt den Entwickler, wenn die API APIs verwendet, die nicht von den Zielplattformen der App unterstützt werden. Bei Blazor WebAssembly-Apps bedeutet dies eine Überprüfung, dass die APIs in Browsern unterstützt werden. Das Kommentieren von .NET Framework-APIs für das Kompatibilitätsanalysetool Analyzer ist ein fortlaufenden Prozess, sodass nicht alle .NET Framework-APIs derzeit mit Anmerkungen versehen sind.
 
@@ -210,7 +208,7 @@ private static string GetLoggingDirectory()
 
 Weitere Informationen finden Sie unter [Kommentieren von APIs als nicht unterstützt auf bestimmten Plattformen (dotnet/designs-GitHub-Repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
 
-## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor-JavaScript-Isolierung und Objektverweise
+## <a name="blazor-javascript-isolation-and-object-references"></a>Blazor-JavaScript-Isolierung und Objektverweise
 
 Blazor aktiviert JavaScript-Isolierung in [JavaScript-Standardmodulen](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript-Isolierung bietet die folgenden Vorteile:
 

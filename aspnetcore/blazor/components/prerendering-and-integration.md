@@ -20,16 +20,14 @@ no-loc:
 - SignalR
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 3402117334548f9d90880d4f536e8baa288e7bc9
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: d120440c292d15b7741260ed31af92d60db2261c
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97506980"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280070"
 ---
-# <a name="prerender-and-integrate-aspnet-core-no-locrazor-components"></a>Vorabrendern und Integrieren von ASP.NET Core Razor-Komponenten
-
-Von [Luke Latham](https://github.com/guardrex) und [Daniel Roth](https://github.com/danroth27)
+# <a name="prerender-and-integrate-aspnet-core-razor-components"></a>Vorabrendern und Integrieren von ASP.NET Core Razor-Komponenten
 
 ::: zone pivot="webassembly"
 
@@ -284,7 +282,7 @@ Eine vorhandene Razor Pages- oder MVC-App kann Razor-Komponenten in Seiten und A
 
 1. Integrieren Sie Komponenten in eine beliebige Seite oder Ansicht. Weitere Informationen finden Sie im Abschnitt [Rendern von Komponenten einer Seite oder Ansicht](#render-components-from-a-page-or-view).
 
-## <a name="use-routable-components-in-a-no-locrazor-pages-app"></a>Verwenden routingfähiger Komponenten in einer Razor Pages-App
+## <a name="use-routable-components-in-a-razor-pages-app"></a>Verwenden routingfähiger Komponenten in einer Razor Pages-App
 
 *In diesem Abschnitt wird das Hinzufügen von Komponenten behandelt, die über Benutzeranforderungen direkt routingfähig sind.*
 

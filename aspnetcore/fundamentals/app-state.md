@@ -19,10 +19,10 @@ no-loc:
 - SignalR
 uid: fundamentals/app-state
 ms.openlocfilehash: c11b748f9d79235b14c9541019da6e1fb3428af6
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.sourcegitcommit: c1839f2992b003c92cd958244a2e0771ae928786
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
+ms.lasthandoff: 02/05/2021
 ms.locfileid: "93051407"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>Sitzungs- und Zustandsverwaltung in ASP.NET Core
@@ -49,7 +49,7 @@ Zustände können mithilfe mehrerer Ansätze gespeichert werden. Die Ansätze we
 | [HttpContext.Items](#httpcontextitems) | Serverseitiger App-Code |
 | [Cache](#cache) | Serverseitiger App-Code |
 
-## <a name="no-loccookies"></a>Cookie
+## <a name="cookies"></a>Cookie
 
 Cookies speichern Daten anforderungsübergreifend. Da mit jeder Anforderung cookies gesendet werden, sollte deren Größe auf ein Minimum begrenzt sein. Idealerweise sollte nur ein Bezeichner in einem cookie gespeichert werden, während die Daten von der App gespeichert werden sollten. Die meisten Browser beschränken die Größe von cookies auf 4096 Byte. Nur eine begrenzte Anzahl von cookies ist für jede Domäne verfügbar.
 
@@ -288,7 +288,7 @@ Die Middleware für Sitzungen kann eine Sitzung nicht aufrechterhalten, wenn der
 
 Es wird empfohlen, nach Fehlern zu suchen, indem Sie `await feature.Session.CommitAsync` aufrufen, wenn die App mit dem Schreiben in die Sitzung fertig ist. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> löst eine Ausnahme aus, wenn der Sicherungsspeicher nicht verfügbar ist. Wenn `CommitAsync` fehlschlägt, kann die App die Ausnahme verarbeiten. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> wird unter den gleichen Bedingungen ausgelöst, wenn der Sicherungsspeicher nicht verfügbar ist.
   
-## <a name="no-locsignalr-and-session-state"></a>SignalR und Sitzungszustand
+## <a name="signalr-and-session-state"></a>SignalR und Sitzungszustand
 
 SignalR-Apps dürfen nicht den Sitzungszustand verwenden, um Informationen zu speichern. SignalR-Apps können Informationen je nach Verbindungszustand in `Context.Items` im Hub speichern. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
@@ -320,7 +320,7 @@ Zustände können mithilfe mehrerer Ansätze gespeichert werden. Die Ansätze we
 | [Cache](#cache) | Serverseitiger App-Code |
 | [Abhängigkeitsinjektion](#dependency-injection) | Serverseitiger App-Code |
 
-## <a name="no-loccookies"></a>Cookie
+## <a name="cookies"></a>Cookie
 
 Cookies speichern Daten anforderungsübergreifend. Da mit jeder Anforderung cookies gesendet werden, sollte deren Größe auf ein Minimum begrenzt sein. Idealerweise sollte nur ein Bezeichner in einem cookie gespeichert werden, während die Daten von der App gespeichert werden sollten. Die meisten Browser beschränken die Größe von cookies auf 4096 Byte. Nur eine begrenzte Anzahl von cookies ist für jede Domäne verfügbar.
 
@@ -599,7 +599,7 @@ Verwenden Sie [Dependency Injection](xref:fundamentals/dependency-injection), um
 
   Es wird empfohlen, nach Fehlern zu suchen, indem Sie `await feature.Session.CommitAsync();` über App-Code aufrufen, wenn die App mit dem Schreiben in die Sitzung fertig ist. `CommitAsync` löst eine Ausnahme aus, wenn der Sicherungsspeicher nicht verfügbar ist. Wenn `CommitAsync` fehlschlägt, kann die App die Ausnahme verarbeiten. `LoadAsync` wird unter den gleichen Bedingungen ausgelöst, wenn der Sicherungsspeicher nicht verfügbar ist.
   
-## <a name="no-locsignalr-and-session-state"></a>SignalR und Sitzungszustand
+## <a name="signalr-and-session-state"></a>SignalR und Sitzungszustand
 
 SignalR-Apps dürfen nicht den Sitzungszustand verwenden, um Informationen zu speichern. SignalR-Apps können Informationen je nach Verbindungszustand in `Context.Items` im Hub speichern. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 

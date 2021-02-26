@@ -5,7 +5,7 @@ description: Hier erfahren Sie, wie Sie den IL-Linker (Intermediate Language, Zw
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/14/2020
+ms.date: 02/08/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,31 +19,28 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-trimmer
-ms.openlocfilehash: 337b188d3c0aeac9c5c635ebca265b9a35c6904d
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 41887638f13a08d375075e8377da19d1d0098c4b
+ms.sourcegitcommit: ef8d8c79993a6608bf597ad036edcf30b231843f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93055801"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99975213"
 ---
-# <a name="configure-the-trimmer-for-aspnet-core-no-locblazor"></a>Konfigurieren des Trimmers für ASP.NET Core Blazor
+# <a name="configure-the-trimmer-for-aspnet-core-blazor"></a>Konfigurieren des Trimmers für ASP.NET Core Blazor
 
-Von [Pranav Krishnamoorthy](https://github.com/pranavkm)
+Blazor WebAssembly führt eine [IL-Kürzung (Intermediate Language, Zwischensprache)](/dotnet/standard/managed-code#intermediate-language--execution) aus, um die Größe der veröffentlichten Ausgabe zu verringern. Standardmäßig erfolgt die Kürzung beim Veröffentlichen einer App.
 
-Blazor WebAssembly führt eine [IL-Kürzung (Intermediate Language, Zwischensprache)](/dotnet/standard/managed-code#intermediate-language--execution) aus, um die Größe der veröffentlichten Ausgabe zu verringern.
+Das Kürzen kann negative Auswirkungen haben. In Apps, die Reflexion verwenden, kann der Trimmer oft nicht die erforderlichen Typen für die Reflexion zur Laufzeit bestimmen. Zur Kürzung von Apps, die die Reflektion verwenden, muss der Trimmer über die Typen informiert werden, die für die Reflektion im Code und in Paketen oder Frameworks der App erforderlich sind, von denen die App abhängig ist. Der Trimmer kann auch nicht auf das dynamische Verhalten einer App zur Laufzeit reagieren. Wenn Sie sicherstellen möchten, dass die gekürzte App nach der Bereitstellung ordnungsgemäß funktioniert, testen Sie während der Entwicklung regelmäßig die veröffentlichte Ausgabe.
 
-Durch das Kürzen einer App wird die Größe optimiert. Dies kann jedoch auch negative Auswirkungen haben. Apps, die Reflektion oder ähnliche dynamische Features verwenden, können beim Kürzen unterbrochen werden, da der Trimmer dieses dynamische Verhalten nicht kennt und nicht ermitteln kann, welche Typen für die Reflektion zur Laufzeit erforderlich sind. Zur Kürzung solcher Apps muss der Trimmer über alle Typen informiert werden, die für die Reflektion im Code und in Paketen oder Frameworks erforderlich sind, von denen die App abhängig ist.
+Informationen zum Konfigurieren des Trimmers finden Sie im Artikel [Kürzungsoptionen](/dotnet/core/deploying/trimming-options) in der Dokumentation zu .NET-Grundlagen, die zudem Leitlinien zu folgenden Themen enthält:
 
-Wenn Sie sicherstellen möchten, dass die gekürzte App nach der Bereitstellung ordnungsgemäß funktioniert, ist es wichtig, bei der Entwicklung veröffentlichte Ausgaben häufig zu testen.
-
-Das Kürzen kann für .NET-Apps deaktiviert werden, indem die MSBuild-Eigenschaft `PublishTrimmed` in der Projektdatei der App auf `false` festgelegt wird:
-
-```xml
-<PropertyGroup>
-  <PublishTrimmed>false</PublishTrimmed>
-</PropertyGroup>
-```
-Weitere Optionen zum Konfigurieren des Trimmers finden Sie unter [Kürzungsoptionen](/dotnet/core/deploying/trimming-options).
+* Deaktivieren der Kürzung für die gesamte App mit der Eigenschaft `<PublishTrimmed>` in der Projektdatei
+* Steuern, wie aggressiv nicht verwendete IL vom Trimmer verworfen wird
+* Verhindern, dass der Trimmer bestimmte Assemblys kürzt
+* „Root“-Assemblys (Stammassemblys) für die Kürzung
+* Oberflächenwarnungen für reflektierte Typen, indem die `<SuppressTrimAnalysisWarnings>`-Eigenschaft in der Projektdatei auf `false` festgelegt wird.
+* Steuern der Symbolkürzung und Debuggerunterstützung
+* Festlegen von Trimmerfeatures für Bibliotheksfeatures des Trimmingframeworks
 
 ## <a name="additional-resources"></a>Zusätzliche Ressourcen
 

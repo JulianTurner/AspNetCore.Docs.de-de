@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/new-field
-ms.openlocfilehash: 2961fcaa8bbb93527eb80f5aa7b18ef04761fb50
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 852c26f89b229d89797d9ce6fce2983319defe9c
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97486160"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101145"
 ---
-# <a name="part-7-add-a-new-field-to-a-no-locrazor-page-in-aspnet-core"></a>Teil 7: Hinzufügen eines neuen Felds zu einer Razor-Seite in ASP.NET Core
+# <a name="part-7-add-a-new-field-to-a-razor-page-in-aspnet-core"></a>Teil 7: Hinzufügen eines neuen Felds zu einer Razor-Seite in ASP.NET Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -41,7 +41,7 @@ In diesem Abschnitt werden [Entity Framework](/ef/core/get-started/aspnetcore/ne
 
 Bei der Verwendung von EF Code First für die automatische Erstellung einer Datenbank geht Code First wie folgt vor:
 
-* Es fügt der Datenbank die Tabelle [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) hinzu, um nachzuverfolgen, ob das Schema der Datenbank mit den Modellklassen synchron ist, aus denen sie generiert wurde.
+* Es fügt der Datenbank die Tabelle [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) hinzu, um nachzuverfolgen, ob das Schema der Datenbank mit den Modellklassen synchron ist, aus denen sie generiert wurde.
 * Wenn die Datenbank mit den Modellklassen nicht synchron ist, löst EF eine Ausnahme aus.
 
 Durch die automatische Überprüfung, ob Schema und Modell synchron sind, können Probleme aufgrund inkonsistenter Datenbankencodes leichter ermittelt werden.
@@ -182,7 +182,7 @@ In diesem Abschnitt werden [Entity Framework](/ef/core/get-started/aspnetcore/ne
 
 Bei der Verwendung von EF Code First für die automatische Erstellung einer Datenbank geht Code First wie folgt vor:
 
-* Es fügt der Datenbank die Tabelle [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) hinzu, um nachzuverfolgen, ob das Schema der Datenbank mit den Modellklassen synchron ist, aus denen sie generiert wurde.
+* Es fügt der Datenbank die Tabelle [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) hinzu, um nachzuverfolgen, ob das Schema der Datenbank mit den Modellklassen synchron ist, aus denen sie generiert wurde.
 * Wenn die Datenbank mit den Modellklassen nicht synchron ist, löst EF eine Ausnahme aus.
 
 Durch die automatische Überprüfung, ob Schema und Modell synchron sind, können Probleme aufgrund inkonsistenter Datenbankencodes leichter ermittelt werden.
@@ -323,7 +323,7 @@ In diesem Abschnitt werden [Entity Framework](/ef/core/get-started/aspnetcore/ne
 
 Bei der Verwendung von EF Code First für die automatische Erstellung einer Datenbank geht Code First wie folgt vor:
 
-* Es fügt der Datenbank die Tabelle [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) hinzu, um nachzuverfolgen, ob das Schema der Datenbank mit den Modellklassen synchron ist, aus denen sie generiert wurde.
+* Es fügt der Datenbank die Tabelle [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) hinzu, um nachzuverfolgen, ob das Schema der Datenbank mit den Modellklassen synchron ist, aus denen sie generiert wurde.
 * Wenn die Datenbank mit den Modellklassen nicht synchron ist, löst EF eine Ausnahme aus.
 
 Durch die automatische Überprüfung, ob Schema und Modell synchron sind, können Probleme aufgrund inkonsistenter Datenbankencodes leichter ermittelt werden.

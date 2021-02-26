@@ -4,7 +4,7 @@ author: jamesnk
 description: In diesem Artikel erfahren Sie, wie Sie Protobuf-Nachrichten für .NET-Apps erstellen.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/23/2020
+ms.date: 02/12/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: b70a5ee00405eecfce900b86dc631a54682dce1a
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: adb048c9b20e172ef8a7bc13f9b56928b1d4bf77
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93058895"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280286"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>Erstellen von Protobuf-Nachrichten für .NET-Apps
 
@@ -48,6 +48,8 @@ message Person {
 ```
 
 In der obigen Nachrichtendefinition werden drei Felder als Name/Wert-Paare angegeben. Wie Eigenschaften von .NET-Typen verfügt jedes Feld über einen Namen und einen Typ. Beim Feldtyp kann es sich um einen [Protobuf-Skalarwerttyp](#scalar-value-types) handeln, z. B. `int32`, oder eine andere Nachricht.
+
+Im [Protobuf-Styleguide](https://developers.google.com/protocol-buffers/docs/style) wird `underscore_separated_names` für die Feldnamen empfohlen. Die neuen Protobuf-Nachrichten, die für .NET-Apps erstellt wurden, sollten den Protobuf-Stilrichtlinien entsprechen. .NET-Tools generieren automatisch .NET-Typen, die .NET-Benennungsstandards verwenden. Beispielsweise generiert ein Protobuf-Feld `first_name` die .NET-Eigenschaft `FirstName`.
 
 Zusätzlich zu einem Namen verfügt jedes Feld in der Nachrichtendefinition über eine eindeutige Zahl. Feldzahlen werden dazu verwendet, Felder zu identifizieren, wenn die Nachricht an Protobuf serialisiert wird. Die Serialisierung einer kleinen Zahl ist schneller als die Serialisierung des gesamten Feldnamens. Da Feldzahlen zur Identifikation eines Felds dienen, ist es wichtig, dass Änderung mit Bedacht vorgenommen werden. Weitere Informationen zum Ändern von Protobuf-Nachrichten finden Sie unter <xref:grpc/versioning>.
 

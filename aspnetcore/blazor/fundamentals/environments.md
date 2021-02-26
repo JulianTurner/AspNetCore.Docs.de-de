@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/environments
-ms.openlocfilehash: 3d9b0cab42a826c7a5868324d891e597cd9ed986
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: a5ead59e467da331b585e8daefb1d7d259c7edba
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97678299"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101047"
 ---
-# <a name="aspnet-core-no-locblazor-environments"></a>ASP.NET Core Blazor-Umgebungen
+# <a name="aspnet-core-blazor-environments"></a>ASP.NET Core Blazor-Umgebungen
 
 > [!NOTE]
 > Dieses Thema gilt für Blazor WebAssembly. Eine allgemeine Anleitung zur Konfiguration von ASP.NET Core-Apps, in der die Ansätze für Blazor Server-Apps beschrieben werden, finden Sie unter <xref:fundamentals/environments>.
@@ -62,7 +62,17 @@ Rufen Sie die Umgebung der App in einer Komponente ab, indem Sie <xref:Microsoft
 
 `Pages/ReadEnvironment.razor`:
 
-[!code-razor[](environments/samples_snapshot/ReadEnvironment.razor?highlight=3,7)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor?highlight=3,7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor?highlight=3,7)]
+
+::: moniker-end
 
 Während des Starts macht <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> die Schnittstelle <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> über die <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> -Eigenschaft verfügbar, die umgebungsspezifische Logik im Code des Host-Generators ermöglicht.
 

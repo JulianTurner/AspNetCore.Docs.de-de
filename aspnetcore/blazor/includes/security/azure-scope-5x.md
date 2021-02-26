@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 5964554c36e2242b70faee390374828acd2bd860
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100551754"
+---
 Wenn Sie mit einer Server-API arbeiten, die bei AAD registriert ist, und sich die AAD-Registrierung der App in einem Mandanten befindet, der auf einer [nicht überprüften Herausgeberdomäne](/azure/active-directory/develop/howto-configure-publisher-domain) basiert, ist der App-ID-URI Ihrer Server-API-App nicht `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}`, sondern hat das `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`-Format. Wenn dies der Fall ist, wird der Standardzugriffstoken-Bereich in `Program.Main` (`Program.cs`) der *`Client`* -App ähnlich wie folgt angezeigt:
 
 ```csharp

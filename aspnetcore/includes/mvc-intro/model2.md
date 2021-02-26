@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 44cef0c1491cc609dd9b821910014ec88ecaad81
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100551368"
+---
 ::: moniker range=">= aspnetcore-3.0"
 
 <a name="dc"></a>
@@ -14,7 +34,7 @@ Der vorangehende Code erstellt eine `DbSet`-Eigenschaft für die Entitätenmenge
 
 ### <a name="add-a-database-connection-string"></a>Hinzufügen einer Datenbank-Verbindungszeichenfolge
 
-Fügen Sie der Datei *appsettings.json* eine Verbindungszeichenfolge hinzu:
+Fügen Sie in der *appsettings.json* -Datei eine Verbindungszeichenfolge hinzu:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
 
@@ -53,7 +73,7 @@ Der vorangehende Code erstellt eine `DbSet`-Eigenschaft für die Entitätenmenge
 
 ### <a name="add-a-database-connection-string"></a>Hinzufügen einer Datenbank-Verbindungszeichenfolge
 
-Fügen Sie der Datei *appsettings.json* eine Verbindungszeichenfolge hinzu:
+Fügen Sie in der *appsettings.json* -Datei eine Verbindungszeichenfolge hinzu:
 
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-10)]
 

@@ -5,7 +5,7 @@ description: Erfahren Sie, wie Sie Daten aus einer Vorgängerkomponente in Nachf
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 02/02/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,105 +19,81 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: 56d70cea50a3a913b4483f6ea488438269aa58fe
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1fb9d75ca1613a7098840efd3ecb86ee90f4064c
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "94507979"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280238"
 ---
-# <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a>Kaskadierende Werte und Parameter in ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-cascading-values-and-parameters"></a>Kaskadierende Werte und Parameter in ASP.NET Core Blazor
 
-Von [Luke Latham](https://github.com/guardrex) und [Daniel Roth](https://github.com/danroth27)
+*Kaskadierende Werte und Parameter* bieten eine praktische Möglichkeit, Daten nach unten in einer Komponentenhierarchie zu übermitteln, dabei kann es sich um eine Vorgängerkomponente bis hin zu beliebigen untergeordneten Nachfolgerkomponenten handeln. Im Gegensatz zu [Komponentenparametern](xref:blazor/components/index#component-parameters) erfordern kaskadierende Werte und Parameter keine Attributzuweisung für jede Nachfolgerkomponente, in der die Daten genutzt werden. Mithilfe von kaskadierenden Werten und Parametern können Komponenten auch über eine Komponentenhierarchie miteinander abgestimmt werden.
 
-[Anzeigen oder Herunterladen von Beispielcode](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([Vorgehensweise zum Herunterladen](xref:index#how-to-download-a-sample))
+## <a name="cascadingvalue-component"></a>`CascadingValue`-Komponente
 
-In einigen Szenarios ist es unpraktisch, Daten mithilfe von [Komponentenparametern](xref:blazor/components/index#component-parameters) von einer Vorgängerkomponente an eine Nachfolgerkomponente zu übertragen. Das gilt insbesondere, wenn es mehrere Komponentenebenen gibt. Kaskadierende Werte und Parameter lösen dieses Problem, indem es Vorgängerkomponenten einfach ermöglicht wird, für alle Nachfolgerkomponenten einen Wert bereitzustellen. Kaskadierende Werte und Parameter bieten auch einen Ansatz für die Koordination von Komponenten.
+Eine Vorgängerkomponente stellt einen kaskadierenden Wert mithilfe der [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601)-Komponente des Blazor-Frameworks bereit, die eine Unterstruktur einer Komponentenhierarchie umschließt und einen einzelnen Wert für alle Komponenten in deren Unterstruktur bereitstellt.
 
-### <a name="theme-example"></a>Designbeispiel
+Das folgende Beispiel veranschaulicht den Ablauf der Designinformationen nach unten in der Komponentenhierarchie einer Layoutkomponente, um eine CSS-Formatklasse für Schaltflächen in untergeordneten Komponenten bereitzustellen.
 
-Im folgenden Beispiel aus der Beispiel-App gibt die `ThemeInfo`-Klasse die Designinformationen an, die in der Komponentenhierarchie nach unten weitergegeben werden, sodass alle Schaltflächen innerhalb eines bestimmten Teils der App denselben Stil aufweisen.
+Die folgende C#-Klasse `ThemeInfo` wird in einem Ordner namens `UIThemeClasses` platziert und gibt die Designinformation an.
+
+> [!NOTE]
+> Für die Beispiele in diesem Abschnitt lautet der Namespace der App `BlazorSample`. Wenn Sie mit dem Code in Ihrer eigenen Beispiel-App experimentieren, ändern Sie den Namespace der App in den Namespace Ihrer eigenen Beispiel-App.
 
 `UIThemeClasses/ThemeInfo.cs`:
 
 ```csharp
-public class ThemeInfo
+namespace BlazorSample.UIThemeClasses
 {
-    public string ButtonClass { get; set; }
-}
-```
-
-Eine Vorgängerkomponente kann einen kaskadierenden Wert mithilfe der CascadingValue-Komponente bereitstellen. Die <xref:Microsoft.AspNetCore.Components.CascadingValue%601>-Komponente umschließt eine Teilstruktur der Komponentenhierarchie und stellt einen einzelnen Wert für alle Komponenten in dieser Unterstruktur bereit.
-
-Beispielsweise gibt die Beispiel-App Designinformationen (`ThemeInfo`) in einem der Layouts der App als kaskadierenden Parameter für alle Komponenten an, die den Layouttext der `@Body`-Eigenschaft bilden. `ButtonClass` wird in der Layoutkomponente der Wert `btn-success` zugewiesen. Jede Nachfolgerkomponente kann diese Eigenschaft über das kaskadierende `ThemeInfo`-Objekt nutzen.
-
-`CascadingValuesParametersLayout`-Komponente:
-
-```razor
-@inherits LayoutComponentBase
-@using BlazorSample.UIThemeClasses
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3">
-            <NavMenu />
-        </div>
-        <div class="col-sm-9">
-            <CascadingValue Value="theme">
-                <div class="content px-4">
-                    @Body
-                </div>
-            </CascadingValue>
-        </div>
-    </div>
-</div>
-
-@code {
-    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
-}
-```
-
-Komponenten deklarieren kaskadierende Parameter mithilfe des [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute)-Attributs, um kaskadierende Werte zu verwenden. Kaskadierende Werte werden nach Typ an kaskadierende Parameter gebunden.
-
-In der Beispiel-App bindet die `CascadingValuesParametersTheme`-Komponente den kaskadierenden `ThemeInfo`-Wert an einen kaskadierenden Parameter. Der Parameter wird verwendet, um die CSS-Klasse für eine der Schaltflächen festzulegen, die von der Komponente angezeigt werden.
-
-`CascadingValuesParametersTheme`-Komponente:
-
-```razor
-@page "/cascadingvaluesparameterstheme"
-@layout CascadingValuesParametersLayout
-@using BlazorSample.UIThemeClasses
-
-<h1>Cascading Values & Parameters</h1>
-
-<p>Current count: @currentCount</p>
-
-<p>
-    <button class="btn" @onclick="IncrementCount">
-        Increment Counter (Unthemed)
-    </button>
-</p>
-
-<p>
-    <button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">
-        Increment Counter (Themed)
-    </button>
-</p>
-
-@code {
-    private int currentCount = 0;
-
-    [CascadingParameter]
-    protected ThemeInfo ThemeInfo { get; set; }
-
-    private void IncrementCount()
+    public class ThemeInfo
     {
-        currentCount++;
+        public string ButtonClass { get; set; }
     }
 }
 ```
 
-Sie können mehrere Werte desselben Typs innerhalb derselben Unterstruktur kaskadieren, indem Sie jeder <xref:Microsoft.AspNetCore.Components.CascadingValue%601>-Komponente und dem entsprechenden [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute)-Attribut eine eindeutige <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A>-Zeichenfolge bereitstellen. Im folgenden Beispiel kaskadieren zwei <xref:Microsoft.AspNetCore.Components.CascadingValue%601>-Komponenten verschiedene Instanzen von `MyCascadingType` nach Namen:
+Die folgende [Layoutkomponente](xref:blazor/layouts) gibt die Designinformation (`ThemeInfo`) als kaskadierenden Wert für alle Komponenten an, aus denen der Layouttext der <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body>-Eigenschaft besteht. `ButtonClass` wird ein Wert von [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/) zugewiesen, bei dem es sich um ein Bootstrapschaltflächenformat handelt. Jede Nachfolgerkomponente in der Komponentenhierarchie kann die `ButtonClass`-Eigenschaft über den kaskadierenden `ThemeInfo`-Wert verwenden.
+
+`Shared/MainLayout.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/MainLayout.razor?highlight=2,10-14,19)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/MainLayout.razor?highlight=2,9-13,17)]
+
+::: moniker-end
+
+## <a name="cascadingparameter-attribute"></a>`[CascadingParameter]`-Attribut
+
+Nachfolgerkomponenten deklarieren kaskadierende Parameter mithilfe des [`[CascadingParameter]`-Attributs](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), um die kaskadierenden Werte zu nutzen. Kaskadierende Werte sind **nach Typ** an kaskadierende Parameter gebunden. Das Kaskadieren mehrerer Werte desselben Typs wird später in diesem Artikel im Abschnitt [Kaskadieren mehrerer Werte](#cascade-multiple-values) behandelt.
+
+Die folgende Komponente bindet den kaskadierenden `ThemeInfo`-Wert an einen kaskadierenden Parameter, wobei optional der gleiche Name `ThemeInfo` verwendet wird. Der Parameter wird verwendet, um die CSS-Klasse für die Schaltfläche **`Increment Counter (Themed)`** festzulegen.
+
+`Pages/ThemedCounter.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
+
+::: moniker-end
+
+## <a name="cascade-multiple-values"></a>Kaskadieren mehrerer Werte
+
+Sie können mehrere Werte desselben Typs innerhalb derselben Unterstruktur kaskadieren, indem Sie jeder [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601)-Komponente und dem entsprechenden [`[CascadingParameter]`-Attribut](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) eine eindeutige <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A>-Zeichenfolge bereitstellen.
+
+Im folgenden Beispiel kaskadieren zwei [`CascadingValue`](xref:Microsoft.AspNetCore.Components.CascadingValue%601)-Komponenten verschiedene Instanzen von `CascadingType` nach Namen:
 
 ```razor
 <CascadingValue Value="@parentCascadeParameter1" Name="CascadeParam1">
@@ -127,41 +103,145 @@ Sie können mehrere Werte desselben Typs innerhalb derselben Unterstruktur kaska
 </CascadingValue>
 
 @code {
-    private MyCascadingType parentCascadeParameter1;
+    private CascadingType parentCascadeParameter1;
 
     [Parameter]
-    public MyCascadingType ParentCascadeParameter2 { get; set; }
+    public CascadingType ParentCascadeParameter2 { get; set; }
 
     ...
 }
 ```
 
-In einer Nachfolgerkomponente erhalten die kaskadierenden Parameter ihre Werte nach Namen von den entsprechenden kaskadierenden Werten in der Vorgängerkomponente:
+In einer Nachfolgerkomponente erhalten die kaskadierenden Parameter ihre kaskadierenden Werte von der Vorgängerkomponente nach <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A>:
 
 ```razor
 ...
 
 @code {
     [CascadingParameter(Name = "CascadeParam1")]
-    protected MyCascadingType ChildCascadeParameter1 { get; set; }
+    protected CascadingType ChildCascadeParameter1 { get; set; }
     
     [CascadingParameter(Name = "CascadeParam2")]
-    protected MyCascadingType ChildCascadeParameter2 { get; set; }
+    protected CascadingType ChildCascadeParameter2 { get; set; }
 }
 ```
 
-### <a name="tabset-example"></a>TabSet-Beispiel
+## <a name="pass-data-across-a-component-hierarchy"></a>Übergeben von Daten über eine Komponentenhierarchie
 
-Kaskadierende Parameter ermöglichen auch die Zusammenarbeit von Komponenten in der Komponentenhierarchie. Sehen Sie sich z. B. das folgende `TabSet`-Beispiel in der Beispiel-App an.
+Kaskadierende Parameter ermöglichen Komponenten auch, Daten über eine Komponentenhierarchie zu übergeben. Sehen Sie sich das folgende Beispiel auf der Benutzeroberflächen-Registerkarte aus, auf der eine auf der Registerkarte festgelegte Komponente eine Reihe einzelner Tabs beibehält.
 
-Die Beispiel-App enthält eine `ITab`-Schnittstelle, die Registerkarten implementieren:
+> [!NOTE]
+> Für die Beispiele in diesem Abschnitt lautet der Namespace der App `BlazorSample`. Wenn Sie mit dem Code in Ihrer eigenen Beispiel-App experimentieren, ändern Sie den Namespace in den Namespace Ihrer eigenen Beispiel-App.
 
-[!code-csharp[](../common/samples/5.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
+Erstellen Sie eine `ITab`-Schnittstelle, die von Registerkarten in einem Ordner namens `UIInterfaces` implementiert wird.
 
-Die `CascadingValuesParametersTabSet`-Komponente verwendet die `TabSet`-Komponente, die mehrere `Tab`-Komponenten enthält:
+`UIInterfaces/ITab.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample.UIInterfaces
+{
+    public interface ITab
+    {
+        RenderFragment ChildContent { get; }
+    }
+}
+```
+
+Die folgende `TabSet`-Komponente verwaltet eine Reihe von Registerkarten. Die `Tab`-Komponenten der Registerkarten, die später in diesem Abschnitt erstellt werden, stellen die Listenelemente (`<li>...</li>`) für die Liste (`<ul>...</ul>`) bereit.
+
+Die untergeordneten `Tab`-Komponenten werden nicht explizit als Parameter an `TabSet`übermittelt. Stattdessen sind die untergeordneten `Tab`-Komponenten Teil des untergeordneten Inhalts von `TabSet`. Allerdings muss `TabSet` weiterhin über jede `Tab`-Komponente informiert werden, damit die Header und die aktive Registerkarte gerendert werden können. Damit diese Koordination ohne zusätzlichen Code möglich ist, kann die `TabSet`-Komponente *sich selbst als kaskadierenden Wert angeben*, der dann von der `Tab`-Nachfolgerkomponente abgerufen wird.
+
+`Shared/TabSet.razor`:
 
 ```razor
-@page "/CascadingValuesParametersTabSet"
+@using BlazorSample.UIInterfaces
+
+<!-- Display the tab headers -->
+
+<CascadingValue Value=this>
+    <ul class="nav nav-tabs">
+        @ChildContent
+    </ul>
+</CascadingValue>
+
+<!-- Display body for only the active tab -->
+
+<div class="nav-tabs-body p-4">
+    @ActiveTab?.ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public ITab ActiveTab { get; private set; }
+
+    public void AddTab(ITab tab)
+    {
+        if (ActiveTab == null)
+        {
+            SetActiveTab(tab);
+        }
+    }
+
+    public void SetActiveTab(ITab tab)
+    {
+        if (ActiveTab != tab)
+        {
+            ActiveTab = tab;
+            StateHasChanged();
+        }
+    }
+}
+```
+
+Die `Tab`-Nachfolgerkomponenten erfassen das weiterführenden `TabSet` als kaskadierenden Parameter. Die `Tab`-Komponenten fügen sich selbst zu `TabSet` hinzu, und stimmen sich miteinander ab, um die aktive Registerkarte festzulegen.
+
+`Shared/Tab.razor`:
+
+```razor
+@using BlazorSample.UIInterfaces
+@implements ITab
+
+<li>
+    <a @onclick="ActivateTab" class="nav-link @TitleCssClass" role="button">
+        @Title
+    </a>
+</li>
+
+@code {
+    [CascadingParameter]
+    public TabSet ContainerTabSet { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private string TitleCssClass => 
+        ContainerTabSet.ActiveTab == this ? "active" : null;
+
+    protected override void OnInitialized()
+    {
+        ContainerTabSet.AddTab(this);
+    }
+
+    private void ActivateTab()
+    {
+        ContainerTabSet.SetActiveTab(this);
+    }
+}
+```
+
+Die folgende `ExampleTabSet`-Komponente verwendet die `TabSet`-Komponente, die drei `Tab`-Komponenten enthält.
+
+`Pages/ExampleTabSet.razor`:
+
+```razor
+@page "/example-tab-set"
 
 <TabSet>
     <Tab Title="First tab">
@@ -172,8 +252,9 @@ Die `CascadingValuesParametersTabSet`-Komponente verwendet die `TabSet`-Komponen
             Toggle third tab
         </label>
     </Tab>
+
     <Tab Title="Second tab">
-        <h4>The second tab says Hello World!</h4>
+        <h4>Hello from the second tab!</h4>
     </Tab>
 
     @if (showThirdTab)
@@ -189,15 +270,3 @@ Die `CascadingValuesParametersTabSet`-Komponente verwendet die `TabSet`-Komponen
     private bool showThirdTab;
 }
 ```
-
-Die untergeordneten `Tab`-Komponenten werden nicht explizit als Parameter an `TabSet`übermittelt. Stattdessen sind die untergeordneten `Tab`-Komponenten Teil des untergeordneten Inhalts von `TabSet`. Allerdings muss `TabSet` weiterhin über jede `Tab`-Komponente informiert werden, damit die Header und die aktive Registerkarte gerendert werden können. Damit diese Koordination ohne zusätzlichen Code möglich ist, kann die `TabSet`-Komponente *sich selbst als kaskadierenden Wert angeben*, der dann von der `Tab`-Nachfolgerkomponente abgerufen wird.
-
-`TabSet`-Komponente:
-
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/TabSet.razor)]
-
-Die `Tab`-Nachfolgerkomponenten erfassen die enthaltende `TabSet`-Komponente als kaskadierenden Parameter. Das bedeutet, dass die `Tab`-Komponenten sich zu `TabSet` hinzufügen und koordinieren, welche Registerkarte aktiv ist.
-
-`Tab`-Komponente:
-
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/Tab.razor)]

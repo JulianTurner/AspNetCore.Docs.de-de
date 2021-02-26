@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 9c65abd5a055bb677a14921296316e7e03760bc2
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: ad37f8434b6025c5f3ec97dc52987f5660a64edc
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96855364"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100106673"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>Implementierung des Http.sys-Webservers in ASP.NET Core
 
@@ -62,7 +62,7 @@ HTTP.sys eignet sich für Bereitstellungen, auf die Folgendes zutrifft:
 
   ![HTTP.sys kommuniziert direkt mit dem Internet](httpsys/_static/httpsys-to-internet.png)
 
-* Eine interne Bereitstellung erfordert ein Feature, das in Kestrel nicht verfügbar ist, z.B. die [Windows-Authentifizierung](xref:security/authentication/windowsauth).
+* Eine interne Bereitstellung erfordert ein Features, das in Kestrel nicht verfügbar ist. Weitere Informationen finden Sie unter [Kestrel im Vergleich zu HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
 
   ![HTTP.sys kommuniziert direkt mit dem internen Netzwerk](httpsys/_static/httpsys-to-internal.png)
 
@@ -96,7 +96,7 @@ Die weitere Konfiguration von HTTP.sys erfolgt über [Registrierungseinstellunge
 
 **HTTP.sys-Optionen**
 
-| Eigenschaft | Beschreibung | Standard |
+| Eigenschaft | BESCHREIBUNG | Standard |
 | -------- | ----------- | :-----: |
 | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.AllowSynchronousIO> | Hiermit steuern Sie, ob eine synchrone Eingabe/Ausgabe für `HttpContext.Request.Body` und `HttpContext.Response.Body` zulässig ist. | `false` |
 | [Authentication.AllowAnonymous](xref:Microsoft.AspNetCore.Server.HttpSys.AuthenticationManager.AllowAnonymous) | Hiermit lassen Sie anonyme Anforderungen zu. | `true` |

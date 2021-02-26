@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: e602f29e6932280f4625ade64201ff232e02150d
-ms.sourcegitcommit: 610936e4d3507f7f3d467ed7859ab9354ec158ba
+ms.openlocfilehash: 45ddcc9e006df2c5e86a7859efc76882b269a496
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98751633"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280400"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-blazor"></a>Aufrufen von .NET-Methoden von JavaScript-Funktionen in ASP.NET Core Blazor
-
-Von [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Shashikant Rudrawadi](http://wisne.co) und [Luke Latham](https://github.com/guardrex)
 
 Eine Blazor-App kann JavaScript-Funktionen über .NET-Methoden und .NET-Methoden über JavaScript-Funktionen aufrufen. Diese Szenarios werden als *JavaScript-Interoperabilität* (*JS Interop*) bezeichnet.
 
@@ -41,9 +39,9 @@ In diesem Artikel wird das Aufrufen von .NET-Methoden über JavaScript behandelt
 
 ## <a name="static-net-method-call"></a>Statischer .NET-Methodenaufruf
 
-Um eine statische .NET-Methode über JavaScript aufzurufen, verwenden Sie die Funktionen `DotNet.invokeMethod` oder `DotNet.invokeMethodAsync`. Übergeben Sie den Bezeichner der statischen Methode, die Sie aufrufen möchten, den Namen der Assembly, die die Funktion enthält, und alle Argumente. Die asynchrone Version wird bevorzugt, um Blazor Server-Szenarien zu unterstützen. Die .NET-Methode muss öffentlich und statisch sein sowie das Attribut [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) aufweisen. Das Aufrufen offener generischer Methoden wird derzeit nicht unterstützt.
+Um eine statische .NET-Methode über JavaScript aufzurufen, verwenden Sie die Funktionen `DotNet.invokeMethod` oder `DotNet.invokeMethodAsync`. Übergeben Sie den Bezeichner der statischen Methode, die Sie aufrufen möchten, den Namen der Assembly, die die Funktion enthält, und alle Argumente. Die asynchrone Version wird bevorzugt, um Blazor Server-Szenarien zu unterstützen. Die .NET-Methode muss öffentlich und statisch sein sowie das [`[JSInvokable]`-Attribut](xref:Microsoft.JSInterop.JSInvokableAttribute) aufweisen. Das Aufrufen offener generischer Methoden wird derzeit nicht unterstützt.
 
-Die Beispiel-App enthält eine C#-Methode zur Rückgabe eines `int`-Arrays. Das [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute)-Attribut wird auf die Methode angewendet.
+Die Beispiel-App enthält eine C#-Methode zur Rückgabe eines `int`-Arrays. Das [`[JSInvokable]`-Attribut](xref:Microsoft.JSInterop.JSInvokableAttribute) wird auf die Methode angewendet.
 
 `Pages/JsInterop.razor`:
 
@@ -78,7 +76,7 @@ Array(4) [ 1, 2, 3, 4 ]
 
 Der vierte Arraywert wird in das von `ReturnArrayAsync` zurückgegebene Array (`data.push(4);`) gepusht.
 
-Standardmäßig ist der Methodenbezeichner der Methodenname, aber Sie können mit dem Attributkonstruktor [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) einen anderen Bezeichner angeben:
+Standardmäßig ist der Methodenbezeichner der Methodenname, aber Sie können mit dem [`[JSInvokable]`-Attributkonstruktor](xref:Microsoft.JSInterop.JSInvokableAttribute) einen anderen Bezeichner angeben:
 
 ```csharp
 @code {

@@ -19,12 +19,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 939841ca7214e212a2f197ea1e00b0f6152c471e
-ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
+ms.openlocfilehash: d984023a1c46c5383d47a1634c54e61747b83d60
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/12/2021
-ms.locfileid: "100280514"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101209"
 ---
 # <a name="build-a-blazor-todo-list-app"></a>Erstellen einer Blazor-App mit einer Aufgabenliste
 
@@ -117,7 +117,7 @@ Am Ende dieses Tutorials verfügen Sie über eine funktionierende Aufgabenlisten
 
    Speichern Sie die Datei `Shared/NavMenu.razor`.
 
-1. Erstellen Sie die App, und führen Sie sie aus, indem Sie den [`dotnet watch run`](/aspnet/core/tutorials/dotnet-watch)-Befehl in der Befehlsshell im Ordner `TodoList` ausführen. Wenn die App ausgeführt wird, navigieren Sie zur neuen To-do-Seite, indem Sie in der Navigationsleiste der App den Link **`Todo`** auswählen, der die Seite unter `/todo` lädt.
+1. Erstellen Sie die App, und führen Sie sie aus, indem Sie den [`dotnet watch run`](xref:tutorials/dotnet-watch)-Befehl in der Befehlsshell im Ordner `TodoList` ausführen. Wenn die App ausgeführt wird, navigieren Sie zur neuen To-do-Seite, indem Sie in der Navigationsleiste der App den Link **`Todo`** auswählen, der die Seite unter `/todo` lädt.
 
    Lassen Sie die App die Befehlsshell weiter ausführen. Jedes Mal, wenn eine Datei gespeichert wird, wird die App automatisch erneut erstellt. Die Verbindung zwischen dem Browser und der App wird während der Kompilierung und des Neustarts vorübergehend unterbrochen. Die Seite im Browser wird automatisch erneut geladen, wenn die Verbindung wiederhergestellt wird.
 

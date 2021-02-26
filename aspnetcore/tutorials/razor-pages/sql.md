@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/sql
-ms.openlocfilehash: 8c9d0d9c24e0ce81925ccde463bcf085531b665e
-ms.sourcegitcommit: 8b0e9a72c1599ce21830c843558a661ba908ce32
+ms.openlocfilehash: fa1060ae1a046a40d55e9fef4a094aa9e51a18af
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "98024734"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101170"
 ---
-# <a name="part-4-of-tutorial-series-on-no-locrazor-pages"></a>Dies ist Teil 4 der Tutorialreihe zu Razor Pages.
+# <a name="part-4-of-tutorial-series-on-razor-pages"></a>Dies ist Teil 4 der Tutorialreihe zu Razor Pages.
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT) und [Joe Audette](https://twitter.com/joeaudette)
 
@@ -142,7 +142,7 @@ Im vorherigen Code wurde die `Main`-Methode geändert, um Folgendes durchzuführ
 
 * Rufen Sie eine Datenbankkontextinstanz aus dem Dependency Injection-Container ab.
 * Rufen Sie die `seedData.Initialize`-Methode auf, und übergeben Sie sie an die Instanz mit dem Datenbankkontext.
-* Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist. Die [using-Anweisung](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) stellt sicher, dass der Kontext verworfen wird.
+* Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist. Die [using-Anweisung](/dotnet/csharp/language-reference/keywords/using-statement) stellt sicher, dass der Kontext verworfen wird.
 
 Die folgende Ausnahme tritt auf, wenn `Update-Database` nicht ausgeführt wurde:
 
@@ -296,7 +296,7 @@ Im vorherigen Code wurde die `Main`-Methode geändert, um Folgendes durchzuführ
 
 * Rufen Sie eine Datenbankkontextinstanz aus dem Dependency Injection-Container ab.
 * Rufen Sie die `seedData.Initialize`-Methode auf, und übergeben Sie sie an die Instanz mit dem Datenbankkontext.
-* Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist. Die [using-Anweisung](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) stellt sicher, dass der Kontext verworfen wird.
+* Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist. Die [using-Anweisung](/dotnet/csharp/language-reference/keywords/using-statement) stellt sicher, dass der Kontext verworfen wird.
 
 Die folgende Ausnahme tritt auf, wenn `Update-Database` nicht ausgeführt wurde:
 
@@ -440,7 +440,7 @@ Im vorherigen Code wurde die `Main`-Methode geändert, um Folgendes durchzuführ
 
 * Rufen Sie eine Datenbankkontextinstanz aus dem Dependency Injection-Container ab.
 * Rufen Sie die `seedData.Initialize`-Methode auf, und übergeben Sie sie an die Instanz mit dem Datenbankkontext.
-* Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist. Die [using-Anweisung](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) stellt sicher, dass der Kontext verworfen wird.
+* Löschen Sie den Kontext, wenn die Seedmethode abgeschlossen ist. Die [using-Anweisung](/dotnet/csharp/language-reference/keywords/using-statement) stellt sicher, dass der Kontext verworfen wird.
 
 Eine Produktions-App würde `Database.Migrate` nicht aufrufen. Es wird zum vorangehenden Code hinzugefügt, um die folgende Ausnahme zu verhindern, wenn `Update-Database` nicht ausgeführt wurde:
 

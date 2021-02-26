@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 5bdfcc5660b4c897d3552d4cf25e43dade71541c
-ms.sourcegitcommit: 063a06b644d3ade3c15ce00e72a758ec1187dd06
+ms.openlocfilehash: 9214fa10a2bf7d53a4cb12263a3fa69bded84b29
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/16/2021
-ms.locfileid: "98252512"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100536232"
 ---
-# <a name="debug-aspnet-core-no-locblazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
-
-[Daniel Roth](https://github.com/danroth27)
+# <a name="debug-aspnet-core-blazor-webassembly"></a>Debuggen von ASP.NET Core Blazor WebAssembly
 
 Das Debuggen von Blazor WebAssembly-Apps kann mithilfe der Browserentwicklertools in Chromium-basierten Browsern (Edge/Chrome) durchgeführt werden. Sie können Ihre App auch mithilfe der folgenden integrierten Entwicklungsumgebungen (IDEs) debuggen:
 
@@ -164,6 +162,8 @@ Weitere Informationen zur Verwendung eines benutzerdefinierten App-Basispfads f�
 
 <h2 id="vscode">Debuggen von eigenständiger Blazor WebAssembly</h2>
 
+Weitere Informationen zur Konfiguration von VS Code-Objekten im Ordner `.vscode` finden Sie im Leitfaden für **Linux**-Betriebssysteme unter <xref:blazor/tooling>.
+
 1. Öffnen Sie die eigenständige Blazor WebAssembly-App in VS Code.
 
    Möglicherweise erhalten Sie die folgende Benachrichtigung, dass zum Aktivieren des Debuggens ein zusätzliches Setup erforderlich ist:
@@ -192,13 +192,15 @@ Weitere Informationen zur Verwendung eines benutzerdefinierten App-Basispfads f�
 > [!NOTE]
 > Während App-Starts werden Breakpoints **nicht** erreicht, während der Debugproxy ausgeführt wird. Dazu gehören Breakpoints in `Program.Main` (`Program.cs`) und Breakpoints in den [`OnInitialized{Async}`-Methoden](xref:blazor/components/lifecycle#component-initialization-methods) von Komponenten, die von der ersten von der App angeforderten Seite geladen werden.
 
-## <a name="debug-hosted-no-locblazor-webassembly"></a>Debuggen der gehosteten Blazor WebAssembly
+## <a name="debug-hosted-blazor-webassembly"></a>Debuggen der gehosteten Blazor WebAssembly
 
 1. Öffnen Sie den Projektmappenordner der gehosteten Blazor WebAssembly-App in VS Code.
 
 1. Wenn für das Projekt keine Startkonfiguration eingestellt ist, wird folgende Benachrichtigung angezeigt. Wählen Sie **Ja**.
 
    > Required assets to build and debug are missing from „{APPLICATION NAME}“. (Die erforderlichen Objekte für die Erstellung und das Debugging sind in „{ANWENDUNGSNAME}“ nicht vorhanden.) Sollen Sie hinzugefügt werden?“) angezeigt wird.
+
+   Weitere Informationen zur Konfiguration von VS Code-Objekten im Ordner `.vscode` finden Sie im Leitfaden für **Linux**-Betriebssysteme unter <xref:blazor/tooling>.
 
 1. Wählen Sie in der Befehlspalette oben im Fenster das Projekt *Server* in der gehosteten Lösung aus.
 
@@ -238,7 +240,7 @@ Für den Debugtyp `blazorwasm` (`.vscode/launch.json`) werden die folgenden Opti
 
 ## <a name="example-launch-configurations"></a>Beispiel für Startkonfigurationen
 
-### <a name="launch-and-debug-a-standalone-no-locblazor-webassembly-app"></a>Starten und Debuggen einer eigenständigen Blazor WebAssembly-App
+### <a name="launch-and-debug-a-standalone-blazor-webassembly-app"></a>Starten und Debuggen einer eigenständigen Blazor WebAssembly-App
 
 ```json
 {
@@ -259,7 +261,7 @@ Für den Debugtyp `blazorwasm` (`.vscode/launch.json`) werden die folgenden Opti
 }
 ```
 
-### <a name="launch-and-debug-a-hosted-no-locblazor-webassembly-app-with-microsoft-edge"></a>Starten und Debuggen einer gehosteten Blazor WebAssembly-App mit Microsoft Edge
+### <a name="launch-and-debug-a-hosted-blazor-webassembly-app-with-microsoft-edge"></a>Starten und Debuggen einer gehosteten Blazor WebAssembly-App mit Microsoft Edge
 
 Die Browserkonfiguration verwendet standardmäßig Google Chrome. Wenn Sie Microsoft Edge zum Debuggen verwenden möchten, legen Sie `browser` auf `edge` fest. Um Google Chrome zu verwenden, legen Sie die Option `browser` nicht fest, oder legen Sie den Optionswert auf `chrome` fest.
 

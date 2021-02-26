@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: 5a255c2d3535311cecd6b7219447e80d1ae78877
-ms.sourcegitcommit: d4836f9b7c508f51c6c4ee6d0cc719b38c1729c4
+ms.openlocfilehash: f7cac477e2c5bca54e24ae3faeadff9b51bdcd0f
+ms.sourcegitcommit: 422e8444b9f5cedc373be5efe8032822db54fcaf
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98758246"
+ms.lasthandoff: 02/18/2021
+ms.locfileid: "101101060"
 ---
 # <a name="handle-errors-in-aspnet-core-blazor-apps"></a>Fehlerbehandlung in ASP.NET Core Blazor-Apps
-
-Von [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 In diesem Artikel wird beschrieben, wie Blazor Ausnahmefehler behandelt und wie Sie Apps entwickeln können, die Fehler erkennen und behandeln.
 
@@ -173,7 +171,7 @@ Die genannten Ausnahmefehler werden in den folgenden Abschnitten dieses Artikels
 Wenn durch Blazor eine Instanz einer Komponente erstellt wird:
 
 * Wird der Konstruktor der Komponente aufgerufen.
-* Werden die Konstruktoren von Nicht-Singleton-DI-Diensten aufgerufen, die dem Konstruktor der Komponente mit der Anweisung [`@inject`](xref:mvc/views/razor#inject) oder mit dem Attribut [`[Inject]`](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component) bereitgestellt werden.
+* Werden die Konstruktoren von Nicht-Singleton-Abhängigkeitsinjektionsdiensten aufgerufen, die über die Anweisung [`@inject`](xref:mvc/views/razor#inject) oder das [Attribut `[Inject]`](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component) für den Konstruktor der Komponente bereitgestellt werden
 
 Bei einer Blazor Server-Leitung tritt ein Fehler auf, wenn ein ausgeführter Konstruktor oder ein Setter für eine `[Inject]`-Eigenschaft einen Ausnahmefehler auslöst. Die Ausnahme ist schwerwiegend, weil die Komponente durch das Framework nicht instanziiert werden kann. Wenn eine Konstruktorlogik Ausnahmen auslösen kann, muss die App die Ausnahmen mithilfe einer [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisung mit Fehlerbehandlung und Fehlerprotokollierung abfangen.
 
@@ -195,7 +193,17 @@ Im folgenden Beispiel, in dem <xref:Microsoft.AspNetCore.Components.ComponentBas
   * wird `loadFailed` auf `true` festgelegt, sodass dem Benutzer eine Fehlermeldung angezeigt wird.
   * wird der Fehler protokolliert.
 
-[!code-razor[](handle-errors/samples_snapshot/3.x/product-details.razor?highlight=11,27-39)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+
+::: moniker-end
 
 ### <a name="rendering-logic"></a>Renderinglogik
 
@@ -205,7 +213,17 @@ Die Renderinglogik kann eine Ausnahme auslösen. Ein Beispiel für dieses Szenar
 
 Um in einer Renderinglogik eine Nullverweisausnahme zu vermeiden, prüfen Sie vor dem Zugriff auf die entsprechenden Member, ob ein `null`-Objekt vorhanden ist. Im folgenden Beispiel wird auf die `person.Address`-Eigenschaften nicht zugegriffen, wenn `person.Address` `null` ist:
 
-[!code-razor[](handle-errors/samples_snapshot/3.x/person-example.razor?highlight=1)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
+
+::: moniker-end
 
 Für den obigen Code wird angenommen, dass `person` nicht `null` ist. Häufig wird durch die Codestruktur sichergestellt, dass ein Objekt zu dem Zeitpunkt vorhanden ist, zu dem die Komponente gerendert wird. In diesen Fällen muss nicht geprüft werden, ob `null` in der Renderinglogik vorhanden ist. Im obigen Beispiel kann garantiert werden, dass `person` vorhanden ist, da `person` beim Instanziieren der Komponente erstellt wird.
 
@@ -242,7 +260,7 @@ Die folgenden Bedingungen gelten für die Fehlerbehandlung mit <xref:Microsoft.J
 * Wenn ein Aufruf von <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> asynchron fehlschlägt, schlägt die .NET <xref:System.Threading.Tasks.Task> fehl. Ein Aufruf von <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> kann beispielsweise fehlschlagen, wenn der JavaScript-Code eine Ausnahme auslöst oder eine `Promise` zurückgibt, die als `rejected` abgeschlossen wird. Die Ausnahme muss vom Entwicklercode abgefangen werden. Wenn Sie den [`await`](/dotnet/csharp/language-reference/keywords/await)-Operator verwenden, sollten Sie in Erwägung ziehen, den Methodenaufruf mithilfe einer [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch)-Anweisung mit Fehlerbehandlung und Fehlerprotokollierung zu umschließen. Tun Sie dies nicht, führt der fehlerhafte Code zu einem Ausnahmefehler, der für eine Blazor Server-Leitung schwerwiegend ist.
 * Ein Aufruf von <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> muss standardmäßig innerhalb eines bestimmten Zeitraums abgeschlossen werden, da ansonsten für den Aufruf ein Timeout auftritt. Die Standardwert für das Zeitlimit beträgt eine Minute. Mit dem Zeitlimit wird der Code vor dem Verlust der Netzwerkkonnektivität oder vor JavaScript-Code geschützt, der keine Abschlussmeldung sendet. Wenn beim Aufruf ein Timeout auftritt, schlägt die resultierende <xref:System.Threading.Tasks> mit einer <xref:System.OperationCanceledException>fehl. Die Ausnahme wird abgefangen und mit Protokollierung verarbeitet.
 
-Ähnlich kann JavaScript-Code Aufrufe von .NET-Methoden initiieren, die durch das [`[JSInvokable]`](xref:blazor/call-dotnet-from-javascript)-Attribut angegeben werden. Wenn diese .NET-Methoden einen Ausnahmefehler auslösen:
+Ähnlich kann JavaScript-Code Aufrufe von .NET-Methoden initiieren, die vom [Attribut `[JSInvokable]`](xref:blazor/call-dotnet-from-javascript) angegeben werden. Wenn diese .NET-Methoden einen Ausnahmefehler auslösen:
 
 * wird die Ausnahme nicht als schwerwiegend für eine Blazor Server-Leitung behandelt.
 * wird die JavaScript-seitige `Promise` abgelehnt.

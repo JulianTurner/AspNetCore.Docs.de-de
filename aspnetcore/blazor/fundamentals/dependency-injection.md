@@ -20,14 +20,14 @@ no-loc:
 - SignalR
 uid: blazor/fundamentals/dependency-injection
 zone_pivot_groups: blazor-hosting-models
-ms.openlocfilehash: 3f2b4eff5422acbec80b2fd9b801101271cc3f75
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 30edffedf1faf96ed54d5380762c8558e478966c
+ms.sourcegitcommit: 04ad9cd26fcaa8bd11e261d3661f375f5f343cdc
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97808724"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100106920"
 ---
-# <a name="aspnet-core-no-locblazor-dependency-injection"></a>Abhängigkeitsinjektion in ASP.NET Core Blazor
+# <a name="aspnet-core-blazor-dependency-injection"></a>Abhängigkeitsinjektion in ASP.NET Core Blazor
 
 Von [Rainer Stropek](https://www.timecockpit.com) und [Mike Rousos](https://github.com/mjrousos)
 
@@ -38,7 +38,7 @@ Die Abhängigkeitsinjektion, die sogenannte [Dependency Injection](xref:fundamen
 
 ## <a name="default-services"></a>Standarddienste
 
-Die in der folgenden Tabelle enthaltenen Dienste werden häufig in Blazor-Apps verwendet.
+Die in der folgenden Tabelle aufgeführten Dienste werden häufig in Blazor-Apps verwendet.
 
 | Dienst | Lebensdauer | Beschreibung |
 | ------- | -------- | ----------- |
@@ -119,7 +119,7 @@ Das folgende Beispiel veranschaulicht die Verwendung von [`@inject`](xref:mvc/vi
 
 [!code-razor[](dependency-injection/samples_snapshot/CustomerList.razor?highlight=2-3,20)]
 
-Intern verwendet die generierte Eigenschaft (`DataRepository`) das Attribut [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute). In der Regel wird dieses Attribut nicht direkt verwendet. Wenn eine Basisklasse für Komponenten erforderlich ist und die eingefügten Eigenschaften auch für die Basisklasse erforderlich sind, fügen Sie das [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute)-Attribut manuell hinzu:
+Intern verwendet die generierte Eigenschaft (`DataRepository`) das [Attribut `[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute). In der Regel wird dieses Attribut nicht direkt verwendet. Wenn eine Basisklasse für Komponenten erforderlich ist und die injizierten Eigenschaften auch für die Basisklasse erforderlich sind, fügen Sie das [Attribut `[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) manuell hinzu:
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -144,7 +144,7 @@ In Komponenten, die von der Basisklasse abgeleitet sind, ist die [`@inject`](xre
 
 ## <a name="use-di-in-services"></a>Verwenden der Abhängigkeitsinjektion in Diensten
 
-Komplexe Dienste können zusätzliche Dienste erfordern. Im folgenden Beispiel ist für `DataAccess` der <xref:System.Net.Http.HttpClient>-Standarddienst erforderlich. [`@inject`](xref:mvc/views/razor#inject) (oder das [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute)-Attribut) ist nicht für die Verwendung in Diensten verfügbar. Stattdessen muss die *Constructor Injection* verwendet werden. Erforderliche Dienste werden durch Hinzufügen von Parametern zum Konstruktor des Diensts hinzugefügt. Wenn die Abhängigkeitsinjektion den Dienst erstellt, erkennt sie die erforderlichen Dienste im Konstruktor und stellt sie entsprechend zur Verfügung. Im folgenden Beispiel empfängt der Konstruktor einen <xref:System.Net.Http.HttpClient> über die Abhängigkeitsinjektion. <xref:System.Net.Http.HttpClient> ist ein Standarddienst.
+Komplexe Dienste können zusätzliche Dienste erfordern. Im folgenden Beispiel ist für `DataAccess` der <xref:System.Net.Http.HttpClient>-Standarddienst erforderlich. [`@inject`](xref:mvc/views/razor#inject) (oder das [Attribut `[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute)) ist nicht für die Verwendung in Diensten verfügbar. Stattdessen muss die *Constructor Injection* verwendet werden. Erforderliche Dienste werden durch Hinzufügen von Parametern zum Konstruktor des Diensts hinzugefügt. Wenn die Abhängigkeitsinjektion den Dienst erstellt, erkennt sie die erforderlichen Dienste im Konstruktor und stellt sie entsprechend zur Verfügung. Im folgenden Beispiel empfängt der Konstruktor einen <xref:System.Net.Http.HttpClient> über die Abhängigkeitsinjektion. <xref:System.Net.Http.HttpClient> ist ein Standarddienst.
 
 ```csharp
 using System.Net.Http;
@@ -180,7 +180,7 @@ Zwei Versionen des Typs <xref:Microsoft.AspNetCore.Components.OwningComponentBas
 
 * <xref:Microsoft.AspNetCore.Components.OwningComponentBase> ist ein abstraktes, verwerfbares, untergeordnetes Element vom Typ <xref:Microsoft.AspNetCore.Components.ComponentBase> mit einer geschützten <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices>-Eigenschaft vom Typ <xref:System.IServiceProvider>. Dieser Anbieter kann zur Auflösung von Diensten verwendet werden, die der Lebensdauer der Komponente zugeordnet sind.
 
-  Abhängigkeitsinjektionsdienste, die mit [`@inject`](xref:mvc/views/razor#inject) oder dem [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute)-Attribut in die Komponente eingefügt werden, werden nicht im Gültigkeitsbereich der Komponente erstellt. Um den Bereich der Komponente zu verwenden, müssen die Dienste mit <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> oder <xref:System.IServiceProvider.GetService%2A> aufgelöst werden. Allen Diensten, die unter Verwendung des <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices>-Anbieters aufgelöst werden, werden ihre Abhängigkeiten aus demselben Bereich bereitgestellt.
+  Abhängigkeitsinjektionsdienste, die mit [`@inject`](xref:mvc/views/razor#inject) oder dem [Attribut `[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) in die Komponente injiziert werden, werden nicht im Bereich der Komponente erstellt. Um den Bereich der Komponente zu verwenden, müssen die Dienste mit <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> oder <xref:System.IServiceProvider.GetService%2A> aufgelöst werden. Allen Diensten, die unter Verwendung des <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices>-Anbieters aufgelöst werden, werden ihre Abhängigkeiten aus demselben Bereich bereitgestellt.
 
   [!code-razor[](dependency-injection/samples_snapshot/Preferences.razor?highlight=3,20-21)]
 

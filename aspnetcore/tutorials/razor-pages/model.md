@@ -19,14 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 7ea28e0ecad410335c37c603c8ec1eb5e6e41d33
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 92bfda330399b43871b3ae0e6b609726f7ad4a91
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "97485991"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564052"
 ---
-# <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>Teil 2: Hinzufügen eines Modells zu einer Razor Pages-App in ASP.NET Core
+# <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>Teil 2: Hinzufügen eines Modells zu einer Razor Pages-App in ASP.NET Core
 
 Von [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -161,7 +161,7 @@ In diesem Abschnitt wird das Gerüst für das Filmmodell erstellt. Mit dem Tool 
 1. Vervollständigen Sie das Dialogfeld **Add Razor Pages using Entity Framework (CRUD)** (Razor-Seiten mithilfe des Entity Frameworks (CRUD) hinzufügen):
    1. Wählen Sie in der Dropdownliste **Modellklasse** den Eintrag **Film (RazorPagesMovie.Models)** aus.
    1. Wählen Sie in der Zeile **Datenkontextklasse** das **+** -Zeichen (Pluszeichen) aus.
-      1. Im Dialogfeld **Datenkontext hinzufügen** wird der Klassenname *RazorPagesMovie.Data.RazorPagesMovieContext* generiert.
+      1. Im Dialogfeld **Datenkontext hinzufügen** wird der Klassenname `RazorPagesMovie.Data.RazorPagesMovieContext` generiert.
    1. Wählen Sie **Hinzufügen** aus.
 
    ![Abbildung der vorherigen Anweisungen.](model/_static/3/arp.png)
@@ -226,7 +226,7 @@ Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die 
    ![Abbildung der vorherigen Anweisungen.](model/_static/add_scaffoldMac.png)
 
 1. Vervollständigen Sie das Dialogfeld **Add Razor Pages using Entity Framework (CRUD)** (Razor-Seiten mithilfe des Entity Frameworks (CRUD) hinzufügen):
-   1. Nennen Sie in der Zeile **Zu verwendende DbContext-Klasse:** die Klasse *RazorPagesMovie.Data.RazorPagesMovieContext*.
+   1. Benennen Sie die Klasse `RazorPagesMovie.Data.RazorPagesMovieContext` in der Zeile **Zu verwendende DbContext-Klasse:** .
    1. Wählen Sie **Fertig stellen** aus.
 
    ![Abbildung der vorherigen Anweisungen.](model/_static/5/arpMac.png)
@@ -247,7 +247,7 @@ Wenn SQLite ausgewählt wurde, ist der von der Vorlage generierte Code für die 
 
 Der Gerüstprozess erstellt und ändert folgende Dateien:
 
-* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“
 * *Data/RazorPagesMovieContext.cs*
 
 ### <a name="updated"></a>Aktualisiert
@@ -260,7 +260,7 @@ Die erstellten und aktualisierten Daten werden im nächsten Abschnitt erläutert
 
 Der Gerüstbauprozess erstellt die folgenden Dateien:
 
-* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“.
+* *Pages/Movies*: „Create“, „Delete“, „Details“, „Edit“ und „Index“
 
 Die erstellten Daten werden im nächsten Abschnitt erläutert.
 

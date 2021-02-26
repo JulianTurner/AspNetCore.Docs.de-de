@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/virtualization
-ms.openlocfilehash: 72b33bc3c2861380551915b1e8caab49122e8fab
-ms.sourcegitcommit: e311cfb77f26a0a23681019bd334929d1aaeda20
+ms.openlocfilehash: d9fc767a4b5160c616053b075ba92194bcffa275
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99529916"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100280017"
 ---
 # <a name="aspnet-core-blazor-component-virtualization"></a>ASP.NET Core Blazor-Komponentenvirtualisierung
-
-Von [Daniel Roth](https://github.com/danroth27)
 
 Verbessern Sie die wahrgenommene Leistung von Komponentenrendering mithilfe der integrierten Virtualisierungsunterstützung des Blazor-Frameworks. Virtualisierung ist eine Technik zum Einschränken des Benutzeroberflächenrenderings auf die aktuell sichtbaren Elemente. Die Virtualisierung ist beispielsweise hilfreich, wenn die App eine lange Liste von Elementen rendern und nur eine Teilmenge der Elemente zu einem bestimmten Zeitpunkt sichtbar sein muss. Blazor stellt die [`Virtualize`-Komponente](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601) bereit, die zum Hinzufügen der Virtualisierung zu den Komponenten einer App verwendet werden kann.
 
@@ -156,6 +154,8 @@ Die Höhe jedes Elements in Pixeln kann mit <xref:Microsoft.AspNetCore.Component
     ...
 </Virtualize>
 ```
+
+Die Komponente `Virtualize` misst die tatsächliche Renderinggröße standardmäßig *nach* dem ersten Rendering. Verwenden Sie <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A>, um die genaue Elementgröße im Voraus anzugeben, um die Leistung beim ersten Rendering zu verbessern und die richtige Scrollposition für das erneute Laden von Webseiten sicherzustellen. Wenn die Standardvorgehensweise <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> zur Folge hat, dass einige Elemente außerhalb der sichtbaren Ansicht gerendert werden, wird ein zweites Rendering ausgelöst. Damit die Scrollposition des Browsers in einer virtualisierten Liste korrekt beibehalten wird, muss das erste Rendering korrekt sein. Andernfalls werden Benutzern ggf. falsche Elemente angezeigt. 
 
 ## <a name="overscan-count"></a>Overscananzahl
 

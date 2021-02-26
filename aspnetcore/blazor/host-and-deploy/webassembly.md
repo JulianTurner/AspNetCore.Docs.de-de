@@ -19,16 +19,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 2b464c2b6ca434ce4c3b559480da69945266ff69
-ms.sourcegitcommit: cb984e0d7dc23a88c3a4121f23acfaea0acbfe1e
+ms.openlocfilehash: 04eba2e004e920e9ca799b316781857f0b0b4ca3
+ms.sourcegitcommit: 1166b0ff3828418559510c661e8240e5c5717bb7
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/19/2021
-ms.locfileid: "98570972"
+ms.lasthandoff: 02/12/2021
+ms.locfileid: "100279779"
 ---
-# <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
-
-Von [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams) und [Safia Abdalla](https://safia.rocks)
+# <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>Hosten und Bereitstellen von ASP.NET Core Blazor WebAssembly
 
 Mit dem [Blazor WebAssembly-Hostingmodell](xref:blazor/hosting-models#blazor-webassembly):
 
@@ -52,12 +50,15 @@ Blazor basiert auf dem Host, um die entsprechenden komprimierten Dateien bereitz
 * Informationen zur Komprimierungskonfiguration der Datei `web.config` von IIS finden Sie im Abschnitt [IIS: Brotli- und Gzip-Komprimierung](#brotli-and-gzip-compression). 
 * Beim Hosten über statische Hostinglösungen, die die Inhaltsaushandlung für statisch komprimierte Dateien nicht unterstützen (z. B. GitHub-Seiten), sollten Sie die App so konfigurieren, dass sie die in das Brotli-Format komprimierten Dateien abruft und decodiert:
 
-  * Rufen Sie den JavaScript Brotli-Decoder aus dem [GitHub-Repository „google/brotli“](https://github.com/google/brotli) ab. Die Decoderdatei heißt `decode.min.js` und befindet sich im [Ordner `js`](https://github.com/google/brotli/tree/master/js) des Repositorys.
+  * Rufen Sie den JavaScript Brotli-Decoder aus dem [GitHub-Repository „google/brotli“](https://github.com/google/brotli) ab. Die Decoderdatei heißt `decode.js` und befindet sich im [Ordner `js`](https://github.com/google/brotli/tree/master/js) des Repositorys.
+  
+    > [!NOTE]
+    > Eine Regression ist in der verkleinerten Version des Skripts `decode.js` (`decode.min.js`) im [GitHub-Repository „google/brotli“](https://github.com/google/brotli) enthalten. Sie können das Skript entweder selbst minimieren (siehe z. B. [Konfigurieren der Bündelung und Minimierung](xref:client-side/bundling-and-minification#configure-bundling-and-minification)) oder das [npm-Paket](https://www.npmjs.com/package/brotli) verwenden, bis das Issue [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881) behoben ist. Im Beispielcode in diesem Abschnitt wird die **nicht verkleinerte** Version des Skripts verwendet.
 
   * Aktualisieren Sie die App zur Verwendung des Decoders. Ändern Sie das Markup innerhalb des schließenden `<body>`-Tags in der Datei `wwwroot/index.html` wie folgt:
   
     ```html
-    <script src="decode.min.js"></script>
+    <script src="decode.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
       Blazor.start({
@@ -128,7 +129,7 @@ Weitere Informationen zum Hosten und Bereitstellen von ASP.NET Core-Apps finden 
 
 Informationen zum Bereitstellen für Azure App Service finden Sie unter <xref:tutorials/publish-to-azure-webapp-using-vs>.
 
-## <a name="hosted-deployment-with-multiple-no-locblazor-webassembly-apps"></a>Gehostete Bereitstellung mit mehreren Blazor WebAssembly-Apps
+## <a name="hosted-deployment-with-multiple-blazor-webassembly-apps"></a>Gehostete Bereitstellung mit mehreren Blazor WebAssembly-Apps
 
 ### <a name="app-configuration"></a>App-Konfiguration
 
@@ -315,7 +316,7 @@ Verwenden Sie die folgenden Verfahren für statische Ressourcen:
 Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
 
 * The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
-* The component can use the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) to obtain the static assets.
+* The component can use the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) to obtain the static assets.
 
 The preceding approaches are demonstrated in the following examples.
 
@@ -369,7 +370,7 @@ Fügen Sie einer der Client-Apps die folgende `Jeep`-Komponente hinzu. Die `Jeep
 
 ::: moniker range=">= aspnetcore-5.0"
 
-The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements):
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements):
 
 ```razor
 <div class="my-component">
@@ -387,7 +388,7 @@ The library's `jeep-yj.png` image can also be added to the library's `Component1
 </div>
 ```
 
-An alternative to using the [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
+An alternative to using the [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
 
 ```html
 <head>

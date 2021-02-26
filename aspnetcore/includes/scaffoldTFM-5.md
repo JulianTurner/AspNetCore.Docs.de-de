@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: f0d34557b5442f41ebd1ef9cb3a61122b8516f7d
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100552891"
+---
 Wenn Sie einen Gerüstbaufehler erhalten, überprüfen Sie den Zielframeworkmoniker (TFM), der mit der NuGet-Paketversion in der Projektdatei übereinstimmt. Beispielsweise werden in der folgenden Projektdatei die .NET-Version 5.0 und aufgeführten NuGet-Pakete verwendet:
 
 ```xml

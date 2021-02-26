@@ -4,7 +4,7 @@ author: rick-anderson
 description: Informationen zum Erstellen einer Web-API mit ASP.NET Core.
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 08/13/2020
+ms.date: 02/04/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -19,12 +19,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: ccbfc27eb89e23938a69f0ab4cb306d6a4136889
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: 1f7c7db857090ff0a174d37b86e1265bab40b4fd
+ms.sourcegitcommit: f77a7467651bab61b24261da9dc5c1dd75fc1fa9
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "96175051"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100564093"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>Tutorial: Erstellen einer Web-API mit ASP.NET Core
 
@@ -97,7 +97,6 @@ Das folgende Diagramm zeigt den Entwurf der App.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -127,10 +126,9 @@ Das folgende Diagramm zeigt den Entwurf der App.
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Öffnen Sie im Projektordner ein Befehlsterminal, und führen Sie die folgenden Befehle aus:
+Öffnen Sie im Projektordner ein Befehlsterminal, und führen Sie den folgenden Befehl aus:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -270,13 +268,10 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 ### <a name="add-nuget-packages"></a>Hinzufügen von NuGet-Paketen
 
 * Klicken Sie im Menü **Extras** auf **NuGet-Paket-Manager > NuGet-Pakete für Projektmappe verwalten...** .
-* Klicken Sie auf die Registerkarte **Durchsuchen**, und geben Sie dann **Microsoft.EntityFrameworkCore.SqlServer** in das Suchfeld ein.
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
-* Wählen Sie im linken Bereich **Microsoft.EntityFrameworkCore.SqlServer** aus.
+* Klicken Sie auf die Registerkarte **Durchsuchen**, und geben Sie dann **Microsoft.EntityFrameworkCore.InMemory** in das Suchfeld ein.
+* Wählen Sie im linken Bereich **Microsoft.EntityFrameworkCore.InMemory** aus.
 * Aktivieren Sie das Kontrollkästchen **Projekt** im rechten Bereich, und klicken Sie dann auf **Installieren**.
-* Verwenden Sie die Anweisungen oben zum Hinzuzufügen des **Microsoft.EntityFrameworkCore.InMemory**-NuGet-Pakets.
 
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Update this image at RTM -->
 ![NuGet-Paket-Manager](first-web-api/_static/5/vsNuGet.png)
 
 ## <a name="add-the-todocontext-database-context"></a>Hinzufügen des TodoContext-Datenbankkontexts
@@ -355,7 +350,7 @@ Wenn sich das `[action]`-Token nicht in der Routenvorlage befindet, wird der [ac
 
 ## <a name="update-the-posttodoitem-create-method"></a>Aktualisieren der PostTodoItem-Erstellungsmethode
 
-Ersetzen Sie die Rückgabeanweisung in `PostTodoItem` durch eine Anweisung mit dem [nameof](/dotnet/csharp/language-reference/operators/nameof)-Operator:
+Aktualisieren Sie die Rückgabeanweisung in `PostTodoItem` mit dem [nameof](/dotnet/csharp/language-reference/operators/nameof)-Operator:
 
 [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
@@ -621,7 +616,6 @@ Das folgende Diagramm zeigt den Entwurf der App.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -651,10 +645,9 @@ Das folgende Diagramm zeigt den Entwurf der App.
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Öffnen Sie im Projektordner ein Befehlsterminal, und führen Sie die folgenden Befehle aus:
+Öffnen Sie im Projektordner ein Befehlsterminal, und führen Sie den folgenden Befehl aus:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -764,10 +757,9 @@ Der *Datenbankkontext* ist die Hauptklasse, die die Entity Framework-Funktionen 
 ### <a name="add-nuget-packages"></a>Hinzufügen von NuGet-Paketen
 
 * Klicken Sie im Menü **Extras** auf **NuGet-Paket-Manager > NuGet-Pakete für Projektmappe verwalten...** .
-* Klicken Sie auf die Registerkarte **Durchsuchen**, und geben Sie dann **Microsoft.EntityFrameworkCore.SqlServer** in das Suchfeld ein.
-* Wählen Sie im linken Bereich **Microsoft.EntityFrameworkCore.SqlServer** aus.
+* Klicken Sie auf die Registerkarte **Durchsuchen**, und geben Sie dann **Microsoft.EntityFrameworkCore.InMemory** in das Suchfeld ein.
+* Wählen Sie im linken Bereich **Microsoft.EntityFrameworkCore.InMemory** aus.
 * Aktivieren Sie das Kontrollkästchen **Projekt** im rechten Bereich, und klicken Sie dann auf **Installieren**.
-* Verwenden Sie die Anweisungen oben zum Hinzuzufügen des **Microsoft.EntityFrameworkCore.InMemory**-NuGet-Pakets.
 
 ![NuGet-Paket-Manager](first-web-api/_static/vs3NuGet.png)
 

@@ -16,7 +16,7 @@ Sie benötigen Grundkenntnisse von [Git und GitHub.com](https://guides.github.co
 * Wenn Ihrem PR die Bezeichnung „cla-required“ zugewiesen ist, [füllen Sie die Lizenzvereinbarung für Mitwirkende (Contribution License Agreement, CLA) aus](https://cla.dotnetfoundation.org/).
 * Reagieren Sie auf das PR-Feedback.
 
-Ein Beispiel, in dem dieser Prozess zur Veröffentlichung eines neuen Artikels geführt hat, finden Sie im Repository für die .NET-Dokumentation im [Thema &num;67](https://github.com/dotnet/docs/issues/67) und im [Pull Request &num;798](https://github.com/dotnet/docs/pull/798). Der neue Artikel lautet [Dokumentieren von Code mit XML-Kommentaren](https://docs.microsoft.com/dotnet/articles/csharp/codedoc).
+Ein Beispiel, in dem dieser Prozess zur Veröffentlichung eines neuen Artikels geführt hat, finden Sie im Repository für die .NET-Dokumentation im [Issue 1477](https://github.com/dotnet/docs/issues/1477) und im [Pull Request 18955](https://github.com/dotnet/docs/pull/18955). Der neue Artikel ist die [Verwendung von Code Coverage für Unittests](/dotnet/core/testing/unit-testing-code-coverage).
 
 ## <a name="docs-authoring-pack-extension-in-visual-studio-code"></a>Docs Authoring Pack-Erweiterung in Visual Studio Code
 

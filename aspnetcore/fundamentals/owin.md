@@ -4,7 +4,7 @@ author: ardalis
 description: Erfahren Sie, wie ASP.NET Core die Open Web Interface for .NET (OWIN) unterstützt, die das Entkoppeln von Web-Apps von Webservern ermöglicht.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 12/18/2018
+ms.date: 2/8/2021
 no-loc:
 - appsettings.json
 - ASP.NET Core Identity
@@ -18,18 +18,23 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/owin
-ms.openlocfilehash: 6085abc45137223d7a676107cf06dc2cf97a5c19
-ms.sourcegitcommit: 3593c4efa707edeaaceffbfa544f99f41fc62535
+ms.openlocfilehash: c44803c6f67d8e03759a01f7aa71d82088be9a11
+ms.sourcegitcommit: ef8d8c79993a6608bf597ad036edcf30b231843f
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/04/2021
-ms.locfileid: "93060676"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99975273"
 ---
 # <a name="open-web-interface-for-net-owin-with-aspnet-core"></a>Open Web Interface for .NET (OWIN) mit ASP.NET Core
 
 Von [Steve Smith](https://ardalis.com/) und [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core unterstützt Open Web Interface for .NET (OWIN). Mit OWIN können Web-Apps von Webservern entkoppelt werden. OWIN legt eine Standardmöglichkeit des Einsatzes von Middleware in einer Pipeline zum Verarbeiten von Anforderungen und den entsprechenden Antworten fest. ASP.NET Core-Anwendungen und -Middleware können mit auf OWIN basierten Anwendungen, Servern und OWIN basierter Middleware zusammenarbeiten.
+ASP.NET Core:
+
+* unterstützt Open Web Interface for .NET (OWIN)
+* enthält mit .NET Core kompatiblen Ersatz für `Microsoft.Owin.*`-Bibliotheken ([Katana](/aspnet/aspnet/overview/owin-and-katana/))
+
+Mit OWIN können Web-Apps von Webservern entkoppelt werden. OWIN legt eine Standardmöglichkeit des Einsatzes von Middleware in einer Pipeline zum Verarbeiten von Anforderungen und den entsprechenden Antworten fest. ASP.NET Core-Anwendungen und -Middleware können mit auf OWIN basierten Anwendungen, Servern und OWIN basierter Middleware zusammenarbeiten.
 
 OWIN bietet eine Entkopplungsebene, die das gemeinsame Verwenden zweier Frameworks mit unterschiedlichen Objektmodellen zulässt. Das `Microsoft.AspNetCore.Owin`-Paket bietet zwei Adapterimplementierungen:
 

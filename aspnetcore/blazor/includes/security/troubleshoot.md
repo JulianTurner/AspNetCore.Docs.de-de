@@ -1,3 +1,23 @@
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: 4e7c0e9b0a164e0181af5d6baaedf0669c1c06aa
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100552938"
+---
 ## <a name="troubleshoot"></a>Problembehandlung
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -16,7 +36,7 @@
   So beheben Sie den Fehler
 
   1. Greifen Sie im Azure-Portal auf das [Manifest der App](/azure/active-directory/develop/reference-app-manifest) zu.
-  1. Legen Sie das Attribut [`allowPublicClient`](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) auf `null` oder `true` fest.
+  1. Legen Sie das [`allowPublicClient`-Attribut](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) auf `null` oder `true` fest.
 
 ::: moniker-end
 
@@ -24,14 +44,14 @@
 
 Cookies und Standortdaten können über App-Updates hinweg beibehalten werden und das Testen und die Problembehandlung beeinträchtigen. Entfernen Sie Folgendes, wenn Sie Änderungen am App-Code, Änderungen an den Benutzerkonten beim Anbieter oder Konfigurationsänderungen an Anbieter-Apps vornehmen:
 
-* Anmelde-Cookies von Benutzern
-* App-Cookies
+* cookies für Benutzeranmeldung
+* cookies für App
 * Zwischengespeicherte und gespeicherte Standortdaten
 
-Ein Ansatz, um zu verhindern, dass veraltete Cookies und Standortdaten das Testen und die Problembehandlung beeinträchtigen, ist folgender:
+Ein Ansatz, um zu verhindern, dass veraltete cookies und Standortdaten das Testen und die Problembehandlung beeinträchtigen, ist folgender:
 
 * Browser konfigurieren
-  * Verwenden Sie zum Testen einen Browser, den Sie so konfigurieren können, dass alle Cookies und Standortdaten jedes Mal gelöscht werden, wenn der Browser geschlossen wird.
+  * Verwenden Sie zum Testen einen Browser, den Sie so konfigurieren können, dass alle cookies und Standortdaten jedes Mal gelöscht werden, wenn der Browser geschlossen wird.
   * Stellen Sie sicher, dass der Browser manuell oder durch die IDE für alle Änderungen an der App, dem Testbenutzer oder der Anbieterkonfiguration geschlossen wird.
 * Verwenden Sie einen benutzerdefinierten Befehl, um in Visual Studio einen Browser im Inkognito- oder im privaten Modus zu öffnen:
   * Öffnen Sie mithilfe der Schaltfläche **Ausführen** von Visual Studio das Dialogfeld **Browserauswahl**.
@@ -51,7 +71,7 @@ Ein Ansatz, um zu verhindern, dass veraltete Cookies und Standortdaten das Teste
 
 ### <a name="run-the-server-app"></a>Ausführen der Server-App
 
-Stellen Sie beim Testen und Beheben von Problemen bei einer gehosteten Blazor-App sicher, dass Sie die App aus dem **`Server`** -Projekt ausführen. Vergewissern Sie sich z. B. in Visual Studio, dass das Serverprojekt im **Projektmappen-Explorer** markiert ist, bevor Sie die App mit einem der folgenden Ansätze starten:
+Stellen Sie beim Testen und Beheben von Problemen bei einer gehosteten Blazor-App sicher, dass Sie die Blazor aus dem **`Server`** -Projekt ausführen. Vergewissern Sie sich z. B. in Visual Studio, dass das Serverprojekt im **Projektmappen-Explorer** markiert ist, bevor Sie die App mit einem der folgenden Ansätze starten:
 
 * Wählen Sie die Schaltfläche **Ausführen**.
 * Verwenden Sie im Menü **Debuggen** > **Debuggen starten**.

@@ -1,4 +1,24 @@
-Die `App`-Komponente (`App.razor`) ähnelt der in den Blazor-Server-Apps gefundenen `App`-Komponente:
+---
+no-loc:
+- appsettings.json
+- ASP.NET Core Identity
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
+ms.openlocfilehash: d632ab0604f81f7b6067d4535b0f5da0afe2e0ad
+ms.sourcegitcommit: a49c47d5a573379effee5c6b6e36f5c302aa756b
+ms.translationtype: HT
+ms.contentlocale: de-DE
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100552095"
+---
+Die `App`-Komponente (`App.razor`) ähnelt der in den Blazor Server-Apps gefundenen `App`-Komponente:
 
 * Die <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState>-Komponente verwaltet das Verfügbarmachen der <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>-Komponente für die restliche App.
 * Die <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>-Komponente stellt sicher, dass der aktuelle Benutzer autorisiert ist, auf eine bestimmte Seite zuzugreifen; andernfalls wird die `RedirectToLogin`-Komponente gerendert.

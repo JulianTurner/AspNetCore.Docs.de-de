@@ -84,7 +84,7 @@ Es gibt zwei empfohlene Pfade für die Modernisierung von WCF-Apps:
 
 * gRPC basiert auf modernen Technologien und wird in der Entwicklercommunity für RPC-Apps bevorzugt verwendet. Ab .NET Core 3.0 verfügen moderne .NET-Plattformen über eine ausgezeichnete Unterstützung für gRPC. Wenn Sie WCF-Dienste migrieren, sodass gRPC verwendet werden kann, können Sie die RPC-Features, die Leistung und die Interoperabilität bereitstellen, die in modernen Apps erforderlich sind.
 
-* [CoreWCF](https://github.com/CoreWCF/CoreWCF) ist eine Communityinitiative, mit der .NET Core und .NET 5 die Unterstützung zum Hosten von WCF-Diensten erhalten sollen. Ein Vorschauversion ist verfügbar, und das Projekt ist in Kürze für die Produktion bereit. CoreWCF unterstützt nur einen Teil der Features von WCF, und bei .NET Framework-Apps, die zur Verwendung dieser Features migriert werden, muss der Code geändert und getestet werden. CoreWCF ist eine gute Wahl, wenn eine App die Kompatibilität mit vorhandenen Clients wahren muss, die WCF-Dienste aufrufen.
+* [CoreWCF](https://github.com/CoreWCF/CoreWCF) ist eine Communityinitiative, mit der .NET Core und .NET 5 die Unterstützung zum Hosten von WCF-Diensten erhalten sollen. Eine Vorschauversion ist verfügbar, und das Projekt ist in Kürze für die Produktion bereit. CoreWCF unterstützt nur einen Teil der Features von WCF, und bei .NET Framework-Apps, die zur Verwendung dieser Features migriert werden, muss der Code geändert und getestet werden. CoreWCF ist eine gute Wahl, wenn eine App die Kompatibilität mit vorhandenen Clients wahren muss, die WCF-Dienste aufrufen.
 
 ## <a name="get-started"></a>Erste Schritte
 
